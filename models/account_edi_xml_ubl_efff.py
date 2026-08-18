@@ -2,6 +2,6 @@
 from odoo import fields, models
 
 
-class AccountEdiXmlUblEfff(models.Model):
+class AccountEdiXmlUblEfff(models.AbstractModel):
     _inherit = 'account.edi.xml.ubl_efff'
 

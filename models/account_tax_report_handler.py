@@ -2,6 +2,6 @@
 from odoo import fields, models
 
 
-class AccountTaxReportHandler(models.Model):
+class AccountTaxReportHandler(models.AbstractModel):
     _inherit = 'account.tax.report.handler'
 

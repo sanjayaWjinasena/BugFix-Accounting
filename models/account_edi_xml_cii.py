@@ -2,6 +2,6 @@
 from odoo import fields, models
 
 
-class AccountEdiXmlCii(models.Model):
+class AccountEdiXmlCii(models.AbstractModel):
     _inherit = 'account.edi.xml.cii'
 

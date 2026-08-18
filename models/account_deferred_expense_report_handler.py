@@ -2,6 +2,6 @@
 from odoo import fields, models
 
 
-class AccountDeferredExpenseReportHandler(models.Model):
+class AccountDeferredExpenseReportHandler(models.AbstractModel):
     _inherit = 'account.deferred.expense.report.handler'
 

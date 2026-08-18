@@ -2,6 +2,6 @@
 from odoo import fields, models
 
 
-class AccountEdiXmlUbl20(models.Model):
+class AccountEdiXmlUbl20(models.AbstractModel):
     _inherit = 'account.edi.xml.ubl_20'
 
