@@ -16,5 +16,5 @@ class XTempActualBudget(models.Model):
     x_studio_crossovered_budget_id = fields.Many2one('crossovered.budget', string='Budget')
     x_studio_date_from = fields.Date(string='Start Date')
     x_studio_date_to = fields.Date(string='End Date')
-    x_studio_planned_amount = fields.Monetary(string='Planned Amount')
+    x_studio_planned_amount = fields.Float(string='Planned Amount')  # was Monetary (no currency_field)
     x_studio_sequence = fields.Integer(string='Sequence')

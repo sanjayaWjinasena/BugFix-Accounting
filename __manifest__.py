@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'BugFix - Accounting',
-    'version': '17.0.0.0.4',
+    'version': '17.0.0.0.5',
     'summary': 'Studio-to-Python port for BugFix-Accounting',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Accounting',
