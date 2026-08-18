@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!-- TODO: 13 server_actions records need hand-porting. -->
+  <!-- Clear-DB id=1312: IMP - Pass Currency Information to Custom Currency -->
+  <!-- Clear-DB id=1311: IMP - Validate From To Dates in Custom Rates -->
+  <!-- Clear-DB id=2674: JIN - Company Id in Custom Currency -->
+  <!-- Clear-DB id=2675: JIN - Company Id in Custom Currency Rate -->
+  <!-- Clear-DB id=2176: RR - RUG Account Update in SI -->
+  <!-- Clear-DB id=2427: RR - Validate Payment % -->
+  <!-- Clear-DB id=2331: RR - Validate RUG in Customer Invoice -->
+  <!-- Clear-DB id=3278: Execute Code -->
+  <!-- Clear-DB id=2827: JIN - Company Id in Payment Terms -->
+  <!-- Clear-DB id=2738: Project - Update Project No for Manual Transactions -->
+  <!-- Clear-DB id=1775: SLS - Validate Bank Guarantee in Customer Invoice -->
+  <!-- Clear-DB id=1751: SLS - Validate Payment in Customer Invoice -->
+  <!-- Clear-DB id=2627: Update Project No in Journal Entry -->
+</odoo>

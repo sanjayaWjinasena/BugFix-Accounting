@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+  <record id="model_x_advance_payment_acco" model="ir.model"><field name="name">x_advance_payment_acco</field><field name="model">x_advance_payment_acco</field></record>
+  <record id="model_x_custom_currency" model="ir.model"><field name="name">x_custom_currency</field><field name="model">x_custom_currency</field></record>
+  <record id="model_x_custom_currency_rate" model="ir.model"><field name="name">x_custom_currency_rate</field><field name="model">x_custom_currency_rate</field></record>
+  <record id="model_x_customer_posting_pro" model="ir.model"><field name="name">x_customer_posting_pro</field><field name="model">x_customer_posting_pro</field></record>
+  <record id="model_x_jinasena_paymaster_config" model="ir.model"><field name="name">x_jinasena_paymaster_config</field><field name="model">x_jinasena_paymaster_config</field></record>
+  <record id="model_x_rm_cust_invoice_s1" model="ir.model"><field name="name">x_rm_cust_invoice_s1</field><field name="model">x_rm_cust_invoice_s1</field></record>
+  <record id="model_x_rm_customer_wise_inv" model="ir.model"><field name="name">x_rm_customer_wise_inv</field><field name="model">x_rm_customer_wise_inv</field></record>
+  <record id="model_x_rm_gross_margin_comp" model="ir.model"><field name="name">x_rm_gross_margin_comp</field><field name="model">x_rm_gross_margin_comp</field></record>
+  <record id="model_x_temp_actual_budget" model="ir.model"><field name="name">x_temp_actual_budget</field><field name="model">x_temp_actual_budget</field></record>
+  <record id="model_x_temp_tp_invoice_line" model="ir.model"><field name="name">x_temp_tp_invoice_line</field><field name="model">x_temp_tp_invoice_line</field></record>
+  <record id="model_x_test_rm_gross_margin" model="ir.model"><field name="name">x_test_rm_gross_margin</field><field name="model">x_test_rm_gross_margin</field></record>
+</odoo>

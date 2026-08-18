@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!-- TODO: 6 Studio reports need hand-porting. -->
+  <!-- Clear-DB id=3455: Jinasena Payment Receipt -->
+  <!-- Clear-DB id=3469: Journal Entry Report -->
+  <!-- Clear-DB id=3470: Journal Entry Report -->
+  <!-- Clear-DB id=3468: Pro forma Invoice -->
+  <!-- Clear-DB id=3454: account.payment Report -->
+  <!-- Clear-DB id=3456: account.payment Report -->
+</odoo>

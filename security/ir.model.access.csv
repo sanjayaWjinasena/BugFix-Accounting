@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_x_advance_payment_acco_user,x_advance_payment_acco user access,model_x_advance_payment_acco,base.group_user,1,1,1,1
+access_x_custom_currency_user,x_custom_currency user access,model_x_custom_currency,base.group_user,1,1,1,1
+access_x_custom_currency_rate_user,x_custom_currency_rate user access,model_x_custom_currency_rate,base.group_user,1,1,1,1
+access_x_customer_posting_pro_user,x_customer_posting_pro user access,model_x_customer_posting_pro,base.group_user,1,1,1,1
+access_x_jinasena_paymaster_config_user,x_jinasena_paymaster_config user access,model_x_jinasena_paymaster_config,base.group_user,1,1,1,1
+access_x_rm_cust_invoice_s1_user,x_rm_cust_invoice_s1 user access,model_x_rm_cust_invoice_s1,base.group_user,1,1,1,1
+access_x_rm_customer_wise_inv_user,x_rm_customer_wise_inv user access,model_x_rm_customer_wise_inv,base.group_user,1,1,1,1
+access_x_rm_gross_margin_comp_user,x_rm_gross_margin_comp user access,model_x_rm_gross_margin_comp,base.group_user,1,1,1,1
+access_x_temp_actual_budget_user,x_temp_actual_budget user access,model_x_temp_actual_budget,base.group_user,1,1,1,1
+access_x_temp_tp_invoice_line_user,x_temp_tp_invoice_line user access,model_x_temp_tp_invoice_line,base.group_user,1,1,1,1
+access_x_test_rm_gross_margin_user,x_test_rm_gross_margin user access,model_x_test_rm_gross_margin,base.group_user,1,1,1,1

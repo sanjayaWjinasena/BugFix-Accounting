@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!-- TODO: 22 automations records need hand-porting. -->
+  <!-- Clear-DB id=43: Work Center Costing Model - Update Journal Entries -->
+  <!-- Clear-DB id=60: IMP - Validate From To Dates in Custom Rates -->
+  <!-- Clear-DB id=61: IMP - Pass Currency Information to Custom Currency -->
+  <!-- Clear-DB id=64: IMP - Update Consignment - Vendor Bill -->
+  <!-- Clear-DB id=72: IMP - Update LC Status to Paid -->
+  <!-- Clear-DB id=73: IMP - Update LC Status to Paid - 2 -->
+  <!-- Clear-DB id=115: Validate Journals Created from CP & NPO -->
+  <!-- Clear-DB id=120: SRM - Auto Populate Report Type in Account Move Lines -->
+  <!-- Clear-DB id=121: SRM - Update Sales Order - Customer Invoice -->
+  <!-- Clear-DB id=138: Supplier Invoice No Update in Import Vendor Bill -->
+  <!-- Clear-DB id=145: SLS - Validate Bank Guarantee in Customer Invoice -->
+  <!-- Clear-DB id=170: Supplier Invoice No Update in Import Vendor Bill - 2 -->
+  <!-- Clear-DB id=215: RR - Validate RUG in Customer Invoice -->
+  <!-- Clear-DB id=219: Update Analytic Tag Parameters - Sales Invoice Line - Product -->
+  <!-- Clear-DB id=237: Update Analytic Tag Parameters - Sales Invoice - Customer -->
+  <!-- Clear-DB id=241: RR - Validate Payment % -->
+  <!-- Clear-DB id=292: Update Project No in Journal Entry -->
+  <!-- Clear-DB id=310: JIN - Company Id in Custom Currency -->
+  <!-- Clear-DB id=311: JIN - Company Id in Custom Currency Rate -->
+  <!-- Clear-DB id=328: Project - Update Project No for Manual Transactions -->
+  <!-- Clear-DB id=335: JIN - Company Id in Payment Terms -->
+  <!-- Clear-DB id=343: ETF Schedule - Contract Id -->
+</odoo>
