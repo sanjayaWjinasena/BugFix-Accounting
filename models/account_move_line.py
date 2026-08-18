@@ -50,7 +50,7 @@ class AccountMoveLine(models.Model):
     x_studio_related_field_e9NHB = fields.Char(string='New Related Field', readonly=True)
     x_studio_related_field_kbp8y = fields.Char(string='New Related Field', readonly=True, store=False)
     x_studio_related_field_lBjdh = fields.Float(string='New Related Field', readonly=True, store=False)
-    x_studio_related_field_zy8mz = fields.One2many('purchase.order.line', 'TODO_inverse', string='New Related Field', readonly=True, store=False)
+    # TODO: x_studio_related_field_zy8mz = fields.One2many(...) -- Studio inverse name unknown; port from Clear-DB manually.
     x_studio_sales_report_type = fields.Many2one('x_sales_report_type', string='Report Type (S- Incentive Calculation)')
     x_studio_sales_team = fields.Many2one('crm.team', string='Sales Team', readonly=True)
     x_studio_status = fields.Selection([], string='Status', readonly=True)
