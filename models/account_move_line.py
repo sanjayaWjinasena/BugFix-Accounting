@@ -57,7 +57,7 @@ class AccountMoveLine(models.Model):
     x_studio_status_1 = fields.Selection([], string='Status', readonly=True)
     x_studio_surname = fields.Char(string='Surname', readonly=True)
     x_studio_swift_code = fields.Char(string='Swift Code', readonly=True)
-    x_studio_tags = fields.Many2many('x_misc_charge_codes', string='Tags')
+    x_studio_tags = fields.Many2many('x_misc_charge_codes', 'account_move_line_x_studio_tags_rel', 'account_id', 'x_misc_charge_codes_id', string='Tags')
     x_studio_tax = fields.Monetary(string='Tax', readonly=True)
     x_studio_to_account = fields.Char(string='To Account', readonly=True)
     x_studio_total_contribution = fields.Float(string='Total Contribution', readonly=True, store=False)
