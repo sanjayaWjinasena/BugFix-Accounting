@@ -1,17 +1,244 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <!-- TODO: 13 server_actions records need hand-porting. -->
-  <!-- Clear-DB id=1312: IMP - Pass Currency Information to Custom Currency -->
-  <!-- Clear-DB id=1311: IMP - Validate From To Dates in Custom Rates -->
-  <!-- Clear-DB id=2674: JIN - Company Id in Custom Currency -->
-  <!-- Clear-DB id=2675: JIN - Company Id in Custom Currency Rate -->
-  <!-- Clear-DB id=2176: RR - RUG Account Update in SI -->
-  <!-- Clear-DB id=2427: RR - Validate Payment % -->
-  <!-- Clear-DB id=2331: RR - Validate RUG in Customer Invoice -->
-  <!-- Clear-DB id=3278: Execute Code -->
-  <!-- Clear-DB id=2827: JIN - Company Id in Payment Terms -->
-  <!-- Clear-DB id=2738: Project - Update Project No for Manual Transactions -->
-  <!-- Clear-DB id=1775: SLS - Validate Bank Guarantee in Customer Invoice -->
-  <!-- Clear-DB id=1751: SLS - Validate Payment in Customer Invoice -->
-  <!-- Clear-DB id=2627: Update Project No in Journal Entry -->
+  <!-- 13 server_actions ports for BugFix-Accounting (auto-generated from Clear-DB snapshot) -->
+  <record id="server_action_1312_imp_pass_currency_information_to_custom_currency" model="ir.actions.server">
+    <field name="name">IMP - Pass Currency Information to Custom Currency</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;x_custom_currency&apos;)]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[if record.x_studio_currency_id.id:
+  currency = env['res.currency'].search([('id', '=', record.x_studio_currency_id.id)], limit=1)
+  if currency:
+    record['x_studio_iso_currency_code'] = currency.symbol
+    record['x_name'] = currency.name
+  
+
+
+
+]]></field>
+    <field name="usage">base_automation</field>
+  </record>
+  <record id="server_action_1311_imp_validate_from_to_dates_in_custom_rates" model="ir.actions.server">
+    <field name="name">IMP - Validate From To Dates in Custom Rates</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;x_custom_currency_rate&apos;)]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[if record.x_studio_end_date < record.x_studio_start_date:
+  raise UserError('End Date must be Greater than Start Date.')
+
+
+
+]]></field>
+    <field name="usage">base_automation</field>
+  </record>
+  <record id="server_action_2674_jin_company_id_in_custom_currency" model="ir.actions.server">
+    <field name="name">JIN - Company Id in Custom Currency</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;x_custom_currency&apos;)]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
+company = env['res.company'].browse(company_id)
+
+record['x_studio_company_id'] = company.id]]></field>
+    <field name="usage">base_automation</field>
+  </record>
+  <record id="server_action_2675_jin_company_id_in_custom_currency_rate" model="ir.actions.server">
+    <field name="name">JIN - Company Id in Custom Currency Rate</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;x_custom_currency_rate&apos;)]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
+company = env['res.company'].browse(company_id)
+
+record['x_studio_company_id'] = company.id]]></field>
+    <field name="usage">base_automation</field>
+  </record>
+  <record id="server_action_2176_rr_rug_account_update_in_si" model="ir.actions.server">
+    <field name="name">RR - RUG Account Update in SI</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;account.move&apos;)]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[if record.x_studio_rug_confirmed == True:
+  company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
+  company = env['res.company'].browse(company_id)
+  
+  rug_account = env['x_repair_accounts'].search([('x_studio_company_id', '=',  company.id)], limit=1)
+  if rug_account:
+    if rug_account.x_studio_rug_account == False:
+      raise UserError('RUG Account must be Specified in Repair Accounts')
+  
+  lines = env['account.move.line'].search([('move_id', '=', record.id),('account_id', '=', record.journal_id.default_account_id.id)])
+  #lines = env['account.move.line'].search([('move_id', '=', record.id),('account_id', '=', record.partner_id.property_account_receivable_id.id)])
+  for line in lines:
+    line.write({'account_id':rug_account.x_studio_rug_account.id}) 
+  
+  record.write({'x_studio_rug_acc_updated': True})]]></field>
+    <field name="usage">ir_actions_server</field>
+  </record>
+  <record id="server_action_2427_rr_validate_payment" model="ir.actions.server">
+    <field name="name">RR - Validate Payment %</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;account.payment&apos;)]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[# bugfix_sales:config-cutover-v22
+if record.state == 'draft':
+  if record.x_studio_quotation_type == 'Repair':
+    sum_total = 0
+    so_value = 0
+    payment = env['account.payment'].search([('x_studio_sales_order', '=', record.x_studio_sales_order.id),('state', '=', 'posted')])
+    if payment:
+      for total in payment:
+        sum_total += total.amount
+          
+    min_magin = record.company_id
+    if min_magin:
+      so_value = round(record.x_studio_sales_order.amount_total * (min_magin.x_studio_advance_payment_/100),2)
+        
+    if so_value > (record.amount + sum_total):
+      raise UserError('Payment is not within the minimum precentage.')
+  
+  
+
+
+
+]]></field>
+    <field name="usage">base_automation</field>
+  </record>
+  <record id="server_action_2331_rr_validate_rug_in_customer_invoice" model="ir.actions.server">
+    <field name="name">RR - Validate RUG in Customer Invoice</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;account.move&apos;)]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[if record.x_studio_rug_confirmed == True:
+  if record.x_studio_rug_acc_updated == True:
+    if record.state == 'posted':
+      so = env['sale.order'].search([('id', '=', record.x_studio_sale_id.id),('state', '=', 'done')],limit=1)
+      if so:
+        record['payment_state'] = 'in_payment'
+      else:
+        raise UserError('Incomplete sales order. Process terminatedddd.')
+      
+
+
+]]></field>
+    <field name="usage">base_automation</field>
+  </record>
+  <record id="server_action_3278_execute_code" model="ir.actions.server">
+    <field name="name">Execute Code</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;account.move.line&apos;)]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[#contract = env['hr.contract'].search([('analytic_account_id', '=', record.analytic_account_id.id)])
+#if contract:
+#  record['x_studio_contract_id'] = contract.id
+
+#analytic_dist = record.analytic_distribution
+#if analytic_dist:
+#    analytic_account_id = list(analytic_dist.keys())[0]
+#    contract = env['hr.contract'].search([('analytic_account_id', '=', int(analytic_account_id))], limit=1)
+#    if contract:
+#        record['x_studio_contract_id'] = contract.id
+
+if record.distribution_analytic_account_ids:
+    contract = env['hr.contract'].search([('analytic_account_id', 'in', record.distribution_analytic_account_ids.ids)], limit=1)
+    if contract:
+        record['x_studio_contract_id'] = contract.id]]></field>
+    <field name="usage">base_automation</field>
+  </record>
+  <record id="server_action_2827_jin_company_id_in_payment_terms" model="ir.actions.server">
+    <field name="name">JIN - Company Id in Payment Terms</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;account.payment.term&apos;)]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
+company = env['res.company'].browse(company_id)
+
+record['company_id'] = company.id]]></field>
+    <field name="usage">base_automation</field>
+  </record>
+  <record id="server_action_2738_project_update_project_no_for_manual_transactions" model="ir.actions.server">
+    <field name="name">Project - Update Project No for Manual Transactions</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;account.move&apos;)]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[if record.x_studio_project_no != False:
+  if record.x_studio_journal_type == 'Bill':
+    record.write({'x_studio_project_no_bill':record.x_studio_project_no.id, 'x_studio_project_no_issue':False, 'x_studio_project_no_settle':False})
+  elif record.x_studio_journal_type == 'Payment':
+    record.write({'x_studio_project_no_bill':False, 'x_studio_project_no_issue':record.x_studio_project_no.id, 'x_studio_project_no_settle':False})
+  elif record.x_studio_journal_type == 'Settlement':
+    record.write({'x_studio_project_no_bill':False, 'x_studio_project_no_issue':False, 'x_studio_project_no_settle':record.x_studio_project_no.id})
+  else:
+    record.write({'x_studio_project_no_bill':False, 'x_studio_project_no_issue':False, 'x_studio_project_no_settle':False})
+  
+
+
+
+]]></field>
+    <field name="usage">base_automation</field>
+  </record>
+  <record id="server_action_1775_sls_validate_bank_guarantee_in_customer_invoice" model="ir.actions.server">
+    <field name="name">SLS - Validate Bank Guarantee in Customer Invoice</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;account.move&apos;)]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[if record.partner_id.customer_rank > 0:
+  if record.state == 'posted':
+    if record.move_type == 'out_invoice':
+      if record.partner_id.x_studio_customer_group.x_studio_group_type != 'General':
+        if record.partner_id.x_studio_mandatory_bank_guarantee == True:
+          if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():
+            #raise UserError("Customer's bank guarantee is expired.")
+            raise UserError("Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
+          else:
+            #if record.partner_id.x_studio_mandatory_bank_guarantee < (record.partner_id.credit + record.amount_total):
+            if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_id.credit + record.amount_total):
+              #raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.x_studio_mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_id.credit + record.amount_total)))
+              #raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_id.credit + record.amount_total))
+              raise UserError("The credit limit is higher than the bank guarantee amount." + "\n" + "Customer: " + record.partner_id.name + "\n" + " Sales Order: " + record.x_studio_sale_id.name + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_id.credit + record.amount_total))
+        else:
+          if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():
+            records.message_post(body="Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
+          else:
+            if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_id.credit + record.amount_total):
+              #records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.x_studio_mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_id.credit + record.amount_total)))
+              #records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_id.credit + record.amount_total))
+              records.message_post(body="The credit limit is higher than the bank guarantee amount." + "\n" + "Customer: " + str(record.partner_id.name) + "\n" + " Sales Order: " + str(record.x_studio_sale_id.name) + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_id.credit + record.amount_total))
+        
+    
+  
+
+
+
+ 
+
+
+]]></field>
+    <field name="usage">base_automation</field>
+  </record>
+  <record id="server_action_1751_sls_validate_payment_in_customer_invoice" model="ir.actions.server">
+    <field name="name">SLS - Validate Payment in Customer Invoice</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;account.move&apos;)]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[if record.state == 'posted':
+  so = env['sale.order'].search([('id', '=', record.x_studio_sale_id.id),('state', '=', 'done'),('x_studio_order_payment_method', '=', 'Cash'),('x_studio_grant_temporary_credit', '=', False)],limit=1)
+  if so:
+    sum_total = 0
+    payment = env['account.payment'].search([('x_studio_sales_order', '=', record.x_studio_sale_id.id),('state', '=', 'posted')])
+    if payment:
+      for total in payment:
+        sum_total += total.amount
+              
+    if record.amount_total > sum_total:     
+      #raise UserError('The Payment Against the Cash Sales Order must be equal to the total invoice amount.')
+      raise UserError('The Payment Against the Cash Sales Order must be equal to the total invoice amount.' + '\n'  + '\n' + 'This sale: ' + str(record.amount_total) + '\n' + 'Total payments: ' + str(sum_total) + '\n' + 'Payment due: ' + str(record.amount_total - sum_total))
+        
+    record['payment_state'] = 'in_payment'
+  
+
+
+]]></field>
+    <field name="usage">base_automation</field>
+  </record>
+  <record id="server_action_2627_update_project_no_in_journal_entry" model="ir.actions.server">
+    <field name="name">Update Project No in Journal Entry</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;account.payment&apos;)]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[if record.x_studio_project_no_1 != False:
+  journal_entry = env['account.move'].search([('payment_id', '=', record.id)],limit=1)
+  if journal_entry:
+    journal_entry.write({'x_studio_project_no':record.x_studio_project_no_1.id, 'x_studio_journal_type':'Payment', 'x_studio_project_no_issue':record.x_studio_project_no_1.id, 'x_studio_type':record.x_studio_type})
+    
+    ]]></field>
+    <field name="usage">base_automation</field>
+  </record>
 </odoo>

@@ -1,26 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <!-- TODO: 22 automations records need hand-porting. -->
-  <!-- Clear-DB id=43: Work Center Costing Model - Update Journal Entries -->
-  <!-- Clear-DB id=60: IMP - Validate From To Dates in Custom Rates -->
-  <!-- Clear-DB id=61: IMP - Pass Currency Information to Custom Currency -->
-  <!-- Clear-DB id=64: IMP - Update Consignment - Vendor Bill -->
-  <!-- Clear-DB id=72: IMP - Update LC Status to Paid -->
-  <!-- Clear-DB id=73: IMP - Update LC Status to Paid - 2 -->
-  <!-- Clear-DB id=115: Validate Journals Created from CP & NPO -->
-  <!-- Clear-DB id=120: SRM - Auto Populate Report Type in Account Move Lines -->
-  <!-- Clear-DB id=121: SRM - Update Sales Order - Customer Invoice -->
-  <!-- Clear-DB id=138: Supplier Invoice No Update in Import Vendor Bill -->
-  <!-- Clear-DB id=145: SLS - Validate Bank Guarantee in Customer Invoice -->
-  <!-- Clear-DB id=170: Supplier Invoice No Update in Import Vendor Bill - 2 -->
-  <!-- Clear-DB id=215: RR - Validate RUG in Customer Invoice -->
-  <!-- Clear-DB id=219: Update Analytic Tag Parameters - Sales Invoice Line - Product -->
-  <!-- Clear-DB id=237: Update Analytic Tag Parameters - Sales Invoice - Customer -->
-  <!-- Clear-DB id=241: RR - Validate Payment % -->
-  <!-- Clear-DB id=292: Update Project No in Journal Entry -->
-  <!-- Clear-DB id=310: JIN - Company Id in Custom Currency -->
-  <!-- Clear-DB id=311: JIN - Company Id in Custom Currency Rate -->
-  <!-- Clear-DB id=328: Project - Update Project No for Manual Transactions -->
-  <!-- Clear-DB id=335: JIN - Company Id in Payment Terms -->
-  <!-- Clear-DB id=343: ETF Schedule - Contract Id -->
+  <!-- 22 automations ports for BugFix-Accounting (auto-generated from Clear-DB snapshot) -->
+  <record id="automation_43_work_center_costing_model_update_journal_entries" model="base.automation">
+    <field name="name">Work Center Costing Model - Update Journal Entries</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;Journal Entry&apos;)]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="active" eval="True"/>
+    <!-- TODO: wire action_server_ids to actual server_action xmlids: [1144] -->
+  </record>
+  <record id="automation_60_imp_validate_from_to_dates_in_custom_rates" model="base.automation">
+    <field name="name">IMP - Validate From To Dates in Custom Rates</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;Custom Currency Rate&apos;)]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="active" eval="True"/>
+    <!-- TODO: wire action_server_ids to actual server_action xmlids: [1311] -->
+  </record>
+  <record id="automation_61_imp_pass_currency_information_to_custom_currency" model="base.automation">
+    <field name="name">IMP - Pass Currency Information to Custom Currency</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;Custom Currency&apos;)]"/>
+    <field name="trigger">on_change</field>
+    <field name="active" eval="True"/>
+    <!-- TODO: wire action_server_ids to actual server_action xmlids: [1312] -->
+  </record>
+  <record id="automation_64_imp_update_consignment_vendor_bill" model="base.automation">
+    <field name="name">IMP - Update Consignment - Vendor Bill</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;Journal Entry&apos;)]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="active" eval="True"/>
+    <!-- TODO: wire action_server_ids to actual server_action xmlids: [1368] -->
+  </record>
+  <record id="automation_72_imp_update_lc_status_to_paid" model="base.automation">
+    <field name="name">IMP - Update LC Status to Paid</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;Journal Entry&apos;)]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="active" eval="True"/>
+    <!-- TODO: wire action_server_ids to actual server_action xmlids: [1408] -->
+  </record>
+  <record id="automation_73_imp_update_lc_status_to_paid_2" model="base.automation">
+    <field name="name">IMP - Update LC Status to Paid - 2</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;account.payment&apos;)]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="active" eval="True"/>
+    <!-- TODO: wire action_server_ids to actual server_action xmlids: [1409] -->
+  </record>
+  <record id="automation_115_validate_journals_created_from_cp_npo" model="base.automation">
+    <field name="name">Validate Journals Created from CP &amp; NPO</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;Journal Entry&apos;)]"/>
+    <field name="trigger">on_unlink</field>
+    <field name="active" eval="True"/>
+    <!-- TODO: wire action_server_ids to actual server_action xmlids: [1720] -->
+  </record>
+  <record id="automation_120_srm_auto_populate_report_type_in_account_move_lines" model="base.automation">
+    <field name="name">SRM - Auto Populate Report Type in Account Move Lines</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;Journal Item&apos;)]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="active" eval="True"/>
+    <!-- TODO: wire action_server_ids to actual server_action xmlids: [1732] -->
+  </record>
+  <record id="automation_121_srm_update_sales_order_customer_invoice" model="base.automation">
+    <field name="name">SRM - Update Sales Order - Customer Invoice</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;Journal Entry&apos;)]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="active" eval="True"/>
+    <!-- TODO: wire action_server_ids to actual server_action xmlids: [1733] -->
+  </record>
+  <record id="automation_138_supplier_invoice_no_update_in_import_vendor_bill" model="base.automation">
+    <field name="name">Supplier Invoice No Update in Import Vendor Bill</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;Journal Entry&apos;)]"/>
+    <field name="trigger">on_change</field>
+    <field name="active" eval="True"/>
+    <!-- TODO: wire action_server_ids to actual server_action xmlids: [1766] -->
+  </record>
+  <record id="automation_145_sls_validate_bank_guarantee_in_customer_invoice" model="base.automation">
+    <field name="name">SLS - Validate Bank Guarantee in Customer Invoice</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;Journal Entry&apos;)]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="active" eval="True"/>
+    <!-- TODO: wire action_server_ids to actual server_action xmlids: [1775] -->
+  </record>
+  <record id="automation_170_supplier_invoice_no_update_in_import_vendor_bill_2" model="base.automation">
+    <field name="name">Supplier Invoice No Update in Import Vendor Bill - 2</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;Journal Entry&apos;)]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="active" eval="True"/>
+    <!-- TODO: wire action_server_ids to actual server_action xmlids: [1847] -->
+  </record>
+  <record id="automation_215_rr_validate_rug_in_customer_invoice" model="base.automation">
+    <field name="name">RR - Validate RUG in Customer Invoice</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;Journal Entry&apos;)]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="active" eval="True"/>
+    <!-- TODO: wire action_server_ids to actual server_action xmlids: [2331] -->
+  </record>
+  <record id="automation_219_update_analytic_tag_parameters_sales_invoice_line_product" model="base.automation">
+    <field name="name">Update Analytic Tag Parameters - Sales Invoice Line - Product</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;Journal Item&apos;)]"/>
+    <field name="trigger">on_change</field>
+    <field name="active" eval="True"/>
+    <!-- TODO: wire action_server_ids to actual server_action xmlids: [2344] -->
+  </record>
+  <record id="automation_237_update_analytic_tag_parameters_sales_invoice_customer" model="base.automation">
+    <field name="name">Update Analytic Tag Parameters - Sales Invoice - Customer</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;Journal Entry&apos;)]"/>
+    <field name="trigger">on_change</field>
+    <field name="active" eval="True"/>
+    <!-- TODO: wire action_server_ids to actual server_action xmlids: [2417] -->
+  </record>
+  <record id="automation_241_rr_validate_payment" model="base.automation">
+    <field name="name">RR - Validate Payment %</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;account.payment&apos;)]"/>
+    <field name="trigger">on_change</field>
+    <field name="active" eval="True"/>
+    <!-- TODO: wire action_server_ids to actual server_action xmlids: [2427] -->
+  </record>
+  <record id="automation_292_update_project_no_in_journal_entry" model="base.automation">
+    <field name="name">Update Project No in Journal Entry</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;account.payment&apos;)]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="active" eval="True"/>
+    <!-- TODO: wire action_server_ids to actual server_action xmlids: [2627] -->
+  </record>
+  <record id="automation_310_jin_company_id_in_custom_currency" model="base.automation">
+    <field name="name">JIN - Company Id in Custom Currency</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;Custom Currency&apos;)]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="active" eval="True"/>
+    <!-- TODO: wire action_server_ids to actual server_action xmlids: [2674] -->
+  </record>
+  <record id="automation_311_jin_company_id_in_custom_currency_rate" model="base.automation">
+    <field name="name">JIN - Company Id in Custom Currency Rate</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;Custom Currency Rate&apos;)]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="active" eval="True"/>
+    <!-- TODO: wire action_server_ids to actual server_action xmlids: [2675] -->
+  </record>
+  <record id="automation_328_project_update_project_no_for_manual_transactions" model="base.automation">
+    <field name="name">Project - Update Project No for Manual Transactions</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;Journal Entry&apos;)]"/>
+    <field name="trigger">on_change</field>
+    <field name="active" eval="True"/>
+    <!-- TODO: wire action_server_ids to actual server_action xmlids: [2738] -->
+  </record>
+  <record id="automation_335_jin_company_id_in_payment_terms" model="base.automation">
+    <field name="name">JIN - Company Id in Payment Terms</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;Payment Terms&apos;)]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="active" eval="True"/>
+    <!-- TODO: wire action_server_ids to actual server_action xmlids: [2827] -->
+  </record>
+  <record id="automation_343_etf_schedule_contract_id" model="base.automation">
+    <field name="name">ETF Schedule - Contract Id</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;Journal Item&apos;)]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="active" eval="True"/>
+    <field name="filter_domain">[("distribution_analytic_account_ids", "!=", False)]</field>
+    <!-- TODO: wire action_server_ids to actual server_action xmlids: [3278] -->
+  </record>
 </odoo>

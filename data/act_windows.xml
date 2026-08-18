@@ -1,70 +1,382 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <!-- TODO: 66 act_windows records need hand-porting. -->
-  <!-- Clear-DB id=2740: Advance Payment Account -->
-  <!-- Clear-DB id=1308: Custom Currency -->
-  <!-- Clear-DB id=1309: Custom Currency Rate -->
-  <!-- Clear-DB id=2063: Custom Currency Rates -->
-  <!-- Clear-DB id=779: Customer Posting Profile -->
-  <!-- Clear-DB id=1683: RM Cust Invoice S1 -->
-  <!-- Clear-DB id=1682: RM Customer wise Invoices -->
-  <!-- Clear-DB id=2186: RM Gross Margin - Comparison -->
-  <!-- Clear-DB id=1310: Rates -->
-  <!-- Clear-DB id=1891: Tax Groups -->
-  <!-- Clear-DB id=1941: Tax Units -->
-  <!-- Clear-DB id=1376: Temp TP Invoice Line -->
-  <!-- Clear-DB id=2123: Temp_Actual_Budget -->
-  <!-- Clear-DB id=3623: Test - RM Gross Margin - Actuals -->
-  <!-- Clear-DB id=2678: x_customer_posting_pro -->
-  <!-- Clear-DB id=2530: AAAA -->
-  <!-- Clear-DB id=3276: account.analytic.account -->
-  <!-- Clear-DB id=2742: account.analytic.line -->
-  <!-- Clear-DB id=3277:  account.analytic.plan -->
-  <!-- Clear-DB id=2815: account.bank.statement -->
-  <!-- Clear-DB id=2628: account.move -->
-  <!-- Clear-DB id=1145: account.move.line -->
-  <!-- Clear-DB id=1442: account.payment -->
-  <!-- Clear-DB id=2741: 	account.payment.method.line -->
-  <!-- Clear-DB id=2422: Advance Payments -->
-  <!-- Clear-DB id=2737: All Journal Items -->
-  <!-- Clear-DB id=2333: Analytic Account -->
-  <!-- Clear-DB id=2334: Analytic Line -->
-  <!-- Clear-DB id=2734: Cash Advance Bills -->
-  <!-- Clear-DB id=900: Cash Issued -->
-  <!-- Clear-DB id=1322: Custom Clearance -->
-  <!-- Clear-DB id=1372: Custom Clearance Reversal -->
-  <!-- Clear-DB id=1363: Custom Clearance Reversal -->
-  <!-- Clear-DB id=1371: Dispatch Reversal -->
-  <!-- Clear-DB id=2893: ETF Schedule -->
-  <!-- Clear-DB id=2894: EPF Schedule -->
-  <!-- Clear-DB id=3268: Invoice Wise Revenue Report -->
-  <!-- Clear-DB id=3271: Invoice Wise Revenue Report -->
-  <!-- Clear-DB id=1569: Invoices -->
-  <!-- Clear-DB id=2735: Issued Cash Advances -->
-  <!-- Clear-DB id=3275: Journal -->
-  <!-- Clear-DB id=2630: Journal Entries -->
-  <!-- Clear-DB id=2377: Journal Item - 2 -->
-  <!-- Clear-DB id=2371: Journal Item -->
-  <!-- Clear-DB id=2379: Journal Item Testing - 02 -->
-  <!-- Clear-DB id=2378: Journal Item Testing -->
-  <!-- Clear-DB id=2631: Journal Items -->
-  <!-- Clear-DB id=2120: Month End Entries -->
-  <!-- Clear-DB id=2342: Payments -->
-  <!-- Clear-DB id=2629: Payments -->
-  <!-- Clear-DB id=2190: Project Budgeted Cash Flow -->
-  <!-- Clear-DB id=2191: Project Budgeted Cash Flow -->
-  <!-- Clear-DB id=2278: Pump Price Costing -->
-  <!-- Clear-DB id=2285: Pump Product Costing -->
-  <!-- Clear-DB id=989: Related Invoice Journal -->
-  <!-- Clear-DB id=1571: Sales Invoice lines -->
-  <!-- Clear-DB id=1572: Sales Invoice Lines -->
-  <!-- Clear-DB id=1570: Sales invoice lines -->
-  <!-- Clear-DB id=2198: Sales Invoices -->
-  <!-- Clear-DB id=2736: Settled Cash Advances -->
-  <!-- Clear-DB id=1977: stock.picking -->
-  <!-- Clear-DB id=2758: Taxes -->
-  <!-- Clear-DB id=1362: Vend. Dispatch Reversal -->
-  <!-- Clear-DB id=1385: Vendor Bill -->
-  <!-- Clear-DB id=1386: Vendor Bill -->
-  <!-- Clear-DB id=1306: Vendor Despatch -->
+  <!-- 66 act_windows ports for BugFix-Accounting (auto-generated from Clear-DB snapshot) -->
+  <record id="action_2740_advance_payment_account" model="ir.actions.act_window">
+    <field name="name">Advance Payment Account</field>
+    <field name="res_model">x_advance_payment_acco</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+  <record id="action_1308_custom_currency" model="ir.actions.act_window">
+    <field name="name">Custom Currency</field>
+    <field name="res_model">x_custom_currency</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+  <record id="action_1309_custom_currency_rate" model="ir.actions.act_window">
+    <field name="name">Custom Currency Rate</field>
+    <field name="res_model">x_custom_currency_rate</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+  <record id="action_2063_custom_currency_rates" model="ir.actions.act_window">
+    <field name="name">Custom Currency Rates</field>
+    <field name="res_model">x_custom_currency</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+  <record id="action_779_customer_posting_profile" model="ir.actions.act_window">
+    <field name="name">Customer Posting Profile</field>
+    <field name="res_model">x_customer_posting_pro</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+  <record id="action_1683_rm_cust_invoice_s1" model="ir.actions.act_window">
+    <field name="name">RM Cust Invoice S1</field>
+    <field name="res_model">x_rm_cust_invoice_s1</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+  <record id="action_1682_rm_customer_wise_invoices" model="ir.actions.act_window">
+    <field name="name">RM Customer wise Invoices</field>
+    <field name="res_model">x_rm_customer_wise_inv</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+  <record id="action_2186_rm_gross_margin_comparison" model="ir.actions.act_window">
+    <field name="name">RM Gross Margin - Comparison</field>
+    <field name="res_model">x_rm_gross_margin_comp</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+  <record id="action_1310_rates" model="ir.actions.act_window">
+    <field name="name">Rates</field>
+    <field name="res_model">x_custom_currency_rate</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_custom_currency_id', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_custom_currency_id': active_id,'default_x_studio_custom_currency_id': active_id}</field>
+  </record>
+  <record id="action_1891_tax_groups" model="ir.actions.act_window">
+    <field name="name">Tax Groups</field>
+    <field name="res_model">account.tax.group</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+  <record id="action_1941_tax_units" model="ir.actions.act_window">
+    <field name="name">Tax Units</field>
+    <field name="res_model">account.tax.unit</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+  <record id="action_1376_temp_tp_invoice_line" model="ir.actions.act_window">
+    <field name="name">Temp TP Invoice Line</field>
+    <field name="res_model">x_temp_tp_invoice_line</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+  <record id="action_2123_temp_actual_budget" model="ir.actions.act_window">
+    <field name="name">Temp_Actual_Budget</field>
+    <field name="res_model">x_temp_actual_budget</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+  <record id="action_3623_test_rm_gross_margin_actuals" model="ir.actions.act_window">
+    <field name="name">Test - RM Gross Margin - Actuals</field>
+    <field name="res_model">x_test_rm_gross_margin</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+  <record id="action_2678_x_customer_posting_pro" model="ir.actions.act_window">
+    <field name="name">x_customer_posting_pro</field>
+    <field name="res_model">x_customer_posting_pro</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+  <record id="action_2530_aaaa" model="ir.actions.act_window">
+    <field name="name">AAAA</field>
+    <field name="res_model">account.move.line</field>
+    <field name="view_mode">kanban,tree,form,pivot,graph</field>
+  </record>
+  <record id="action_3276_account_analytic_account" model="ir.actions.act_window">
+    <field name="name">account.analytic.account</field>
+    <field name="res_model">account.analytic.account</field>
+    <field name="view_mode">kanban,tree,form</field>
+  </record>
+  <record id="action_2742_account_analytic_line" model="ir.actions.act_window">
+    <field name="name">account.analytic.line</field>
+    <field name="res_model">account.analytic.line</field>
+    <field name="view_mode">kanban,tree,form,pivot,graph,grid</field>
+  </record>
+  <record id="action_3277_account_analytic_plan" model="ir.actions.act_window">
+    <field name="name"> account.analytic.plan</field>
+    <field name="res_model">account.analytic.plan</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+  <record id="action_2815_account_bank_statement" model="ir.actions.act_window">
+    <field name="name">account.bank.statement</field>
+    <field name="res_model">account.bank.statement</field>
+    <field name="view_mode">tree,form,pivot,graph</field>
+  </record>
+  <record id="action_2628_account_move" model="ir.actions.act_window">
+    <field name="name">account.move</field>
+    <field name="res_model">account.move</field>
+    <field name="view_mode">kanban,tree,form,pivot</field>
+  </record>
+  <record id="action_1145_account_move_line" model="ir.actions.act_window">
+    <field name="name">account.move.line</field>
+    <field name="res_model">account.move.line</field>
+    <field name="view_mode">kanban,tree,form,pivot,graph</field>
+  </record>
+  <record id="action_1442_account_payment" model="ir.actions.act_window">
+    <field name="name">account.payment</field>
+    <field name="res_model">account.payment</field>
+    <field name="view_mode">kanban,tree,form,graph</field>
+  </record>
+  <record id="action_2741_account_payment_method_line" model="ir.actions.act_window">
+    <field name="name">	account.payment.method.line</field>
+    <field name="res_model">account.payment.method.line</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+  <record id="action_2422_advance_payments" model="ir.actions.act_window">
+    <field name="name">Advance Payments</field>
+    <field name="res_model">account.payment</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_purchase_order', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_purchase_order': active_id,'default_x_studio_purchase_order': active_id}</field>
+  </record>
+  <record id="action_2737_all_journal_items" model="ir.actions.act_window">
+    <field name="name">All Journal Items</field>
+    <field name="res_model">account.move.line</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_project_no', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_project_no': active_id,'default_x_studio_project_no': active_id}</field>
+  </record>
+  <record id="action_2333_analytic_account" model="ir.actions.act_window">
+    <field name="name">Analytic Account</field>
+    <field name="res_model">account.analytic.account</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('plan_id', '=', active_id)]</field>
+    <field name="context">{'search_default_group_id': active_id,'default_group_id': active_id}</field>
+  </record>
+  <record id="action_2334_analytic_line" model="ir.actions.act_window">
+    <field name="name">Analytic Line</field>
+    <field name="res_model">account.analytic.line</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[(1, '=', 1)]</field>
+    <field name="context">{'search_default_group_id': active_id,'default_group_id': active_id}</field>
+  </record>
+  <record id="action_2734_cash_advance_bills" model="ir.actions.act_window">
+    <field name="name">Cash Advance Bills</field>
+    <field name="res_model">account.move</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_project_no_bill', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_project_no_bill': active_id,'default_x_studio_project_no_bill': active_id}</field>
+  </record>
+  <record id="action_900_cash_issued" model="ir.actions.act_window">
+    <field name="name">Cash Issued</field>
+    <field name="res_model">account.move</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_cre', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_cre': active_id,'default_x_studio_cre': active_id}</field>
+  </record>
+  <record id="action_1322_custom_clearance" model="ir.actions.act_window">
+    <field name="name">Custom Clearance</field>
+    <field name="res_model">account.move</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_created_from_consignment_1', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_created_from_consignment_1': active_id,'default_x_studio_created_from_consignment_1': active_id}</field>
+  </record>
+  <record id="action_1372_custom_clearance_reversal" model="ir.actions.act_window">
+    <field name="name">Custom Clearance Reversal</field>
+    <field name="res_model">account.move</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_created_from_vendor_bill_1', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_created_from_vendor_bill_1': active_id,'default_x_studio_created_from_vendor_bill_1': active_id}</field>
+  </record>
+  <record id="action_1363_custom_clearance_reversal" model="ir.actions.act_window">
+    <field name="name">Custom Clearance Reversal</field>
+    <field name="res_model">account.move</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_create_from_transfer_1', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_create_from_transfer_1': active_id,'default_x_studio_create_from_transfer_1': active_id}</field>
+  </record>
+  <record id="action_1371_dispatch_reversal" model="ir.actions.act_window">
+    <field name="name">Dispatch Reversal</field>
+    <field name="res_model">account.move</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_created_from_vendor_bill', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_created_from_vendor_bill': active_id,'default_x_studio_created_from_vendor_bill': active_id}</field>
+  </record>
+  <record id="action_2893_etf_schedule" model="ir.actions.act_window">
+    <field name="name">ETF Schedule</field>
+    <field name="res_model">account.move.line</field>
+    <field name="view_mode">tree,form,pivot,graph,kanban</field>
+    <field name="domain">[('balance', '&lt;', 0),('name', '=', 'ETF 3%'),('analytic_distribution', '!=', False)]</field>
+  </record>
+  <record id="action_2894_epf_schedule" model="ir.actions.act_window">
+    <field name="name">EPF Schedule</field>
+    <field name="res_model">account.move.line</field>
+    <field name="view_mode">tree,form,pivot,graph,kanban</field>
+    <field name="domain">[('balance', '&lt;', 0),('name', '=', 'EPF 12%'),('analytic_distribution', '!=', False)]</field>
+  </record>
+  <record id="action_3268_invoice_wise_revenue_report" model="ir.actions.act_window">
+    <field name="name">Invoice Wise Revenue Report</field>
+    <field name="res_model">account.move</field>
+    <field name="view_mode">kanban,tree,form,pivot,activity</field>
+  </record>
+  <record id="action_3271_invoice_wise_revenue_report" model="ir.actions.act_window">
+    <field name="name">Invoice Wise Revenue Report</field>
+    <field name="res_model">account.move.line</field>
+    <field name="view_mode">kanban,tree,form,pivot,graph</field>
+  </record>
+  <record id="action_1569_invoices" model="ir.actions.act_window">
+    <field name="name">Invoices</field>
+    <field name="res_model">account.move</field>
+    <field name="view_mode">tree,form,pivot</field>
+  </record>
+  <record id="action_2735_issued_cash_advances" model="ir.actions.act_window">
+    <field name="name">Issued Cash Advances</field>
+    <field name="res_model">account.move</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_project_no_issue', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_project_no_issue': active_id,'default_x_studio_project_no_issue': active_id}</field>
+  </record>
+  <record id="action_3275_journal" model="ir.actions.act_window">
+    <field name="name">Journal</field>
+    <field name="res_model">account.journal</field>
+    <field name="view_mode">kanban,tree,form,pivot</field>
+  </record>
+  <record id="action_2630_journal_entries" model="ir.actions.act_window">
+    <field name="name">Journal Entries</field>
+    <field name="res_model">account.move</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_project_no', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_project_no': active_id,'default_x_studio_project_no': active_id}</field>
+  </record>
+  <record id="action_2377_journal_item_2" model="ir.actions.act_window">
+    <field name="name">Journal Item - 2</field>
+    <field name="res_model">account.move.line</field>
+    <field name="view_mode">kanban,tree,form,pivot,graph</field>
+  </record>
+  <record id="action_2371_journal_item" model="ir.actions.act_window">
+    <field name="name">Journal Item</field>
+    <field name="res_model">account.move.line</field>
+    <field name="view_mode">kanban,tree,form,pivot,graph</field>
+  </record>
+  <record id="action_2379_journal_item_testing_02" model="ir.actions.act_window">
+    <field name="name">Journal Item Testing - 02</field>
+    <field name="res_model">account.move.line</field>
+    <field name="view_mode">kanban,tree,form,pivot,graph</field>
+  </record>
+  <record id="action_2378_journal_item_testing" model="ir.actions.act_window">
+    <field name="name">Journal Item Testing</field>
+    <field name="res_model">account.move.line</field>
+    <field name="view_mode">kanban,tree,form,pivot,graph</field>
+  </record>
+  <record id="action_2631_journal_items" model="ir.actions.act_window">
+    <field name="name">Journal Items</field>
+    <field name="res_model">account.move.line</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_project_no', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_project_no': active_id,'default_x_studio_project_no': active_id}</field>
+  </record>
+  <record id="action_2120_month_end_entries" model="ir.actions.act_window">
+    <field name="name">Month End Entries</field>
+    <field name="res_model">account.move</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_created_from_project_no', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_created_from_project_no': active_id,'default_x_studio_created_from_project_no': active_id}</field>
+  </record>
+  <record id="action_2342_payments" model="ir.actions.act_window">
+    <field name="name">Payments</field>
+    <field name="res_model">account.payment</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_sales_order', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_sales_order': active_id,'default_x_studio_sales_order': active_id}</field>
+  </record>
+  <record id="action_2629_payments" model="ir.actions.act_window">
+    <field name="name">Payments</field>
+    <field name="res_model">account.payment</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_project_no_1', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_project_no_1': active_id,'default_x_studio_project_no_1': active_id}</field>
+  </record>
+  <record id="action_2190_project_budgeted_cash_flow" model="ir.actions.act_window">
+    <field name="name">Project Budgeted Cash Flow</field>
+    <field name="res_model">account.account</field>
+    <field name="view_mode">kanban,tree,form</field>
+  </record>
+  <record id="action_2191_project_budgeted_cash_flow" model="ir.actions.act_window">
+    <field name="name">Project Budgeted Cash Flow</field>
+    <field name="res_model">account.account</field>
+    <field name="view_mode">kanban,tree,form</field>
+  </record>
+  <record id="action_2278_pump_price_costing" model="ir.actions.act_window">
+    <field name="name">Pump Price Costing</field>
+    <field name="res_model">account.move.line</field>
+    <field name="view_mode">kanban,tree,form,pivot,graph</field>
+  </record>
+  <record id="action_2285_pump_product_costing" model="ir.actions.act_window">
+    <field name="name">Pump Product Costing</field>
+    <field name="res_model">account.move.line</field>
+    <field name="view_mode">tree,kanban,form,pivot,graph</field>
+  </record>
+  <record id="action_989_related_invoice_journal" model="ir.actions.act_window">
+    <field name="name">Related Invoice Journal</field>
+    <field name="res_model">account.move</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_created_from_npo_no', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_created_from_npo_no': active_id,'default_x_studio_created_from_npo_no': active_id}</field>
+  </record>
+  <record id="action_1571_sales_invoice_lines" model="ir.actions.act_window">
+    <field name="name">Sales Invoice lines</field>
+    <field name="res_model">account.move</field>
+    <field name="view_mode">kanban,tree,form,pivot</field>
+  </record>
+  <record id="action_1572_sales_invoice_lines" model="ir.actions.act_window">
+    <field name="name">Sales Invoice Lines</field>
+    <field name="res_model">account.move.line</field>
+    <field name="view_mode">kanban,tree,form,pivot,graph</field>
+  </record>
+  <record id="action_1570_sales_invoice_lines" model="ir.actions.act_window">
+    <field name="name">Sales invoice lines</field>
+    <field name="res_model">account.edi.document</field>
+    <field name="view_mode">tree</field>
+  </record>
+  <record id="action_2198_sales_invoices" model="ir.actions.act_window">
+    <field name="name">Sales Invoices</field>
+    <field name="res_model">account.move.line</field>
+    <field name="view_mode">kanban,tree,form,pivot,graph</field>
+  </record>
+  <record id="action_2736_settled_cash_advances" model="ir.actions.act_window">
+    <field name="name">Settled Cash Advances</field>
+    <field name="res_model">account.move</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_project_no_settle', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_project_no_settle': active_id,'default_x_studio_project_no_settle': active_id}</field>
+  </record>
+  <record id="action_1977_stock_picking" model="ir.actions.act_window">
+    <field name="name">stock.picking</field>
+    <field name="res_model">account.account</field>
+    <field name="view_mode">kanban,tree,form</field>
+  </record>
+  <record id="action_2758_taxes" model="ir.actions.act_window">
+    <field name="name">Taxes</field>
+    <field name="res_model">account.tax</field>
+    <field name="view_mode">kanban,tree,form</field>
+  </record>
+  <record id="action_1362_vend_dispatch_reversal" model="ir.actions.act_window">
+    <field name="name">Vend. Dispatch Reversal</field>
+    <field name="res_model">account.move</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_created_from_transfer', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_created_from_transfer': active_id,'default_x_studio_created_from_transfer': active_id}</field>
+  </record>
+  <record id="action_1385_vendor_bill" model="ir.actions.act_window">
+    <field name="name">Vendor Bill</field>
+    <field name="res_model">account.move</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_created_from_tp_invoice', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_created_from_tp_invoice': active_id,'default_x_studio_created_from_tp_invoice': active_id}</field>
+  </record>
+  <record id="action_1386_vendor_bill" model="ir.actions.act_window">
+    <field name="name">Vendor Bill</field>
+    <field name="res_model">account.move</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_tp_id', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_tp_id': active_id,'default_x_studio_tp_id': active_id}</field>
+  </record>
+  <record id="action_1306_vendor_despatch" model="ir.actions.act_window">
+    <field name="name">Vendor Despatch</field>
+    <field name="res_model">account.move</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_created_from_consignment', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_created_from_consignment': active_id,'default_x_studio_created_from_consignment': active_id}</field>
+  </record>
 </odoo>
