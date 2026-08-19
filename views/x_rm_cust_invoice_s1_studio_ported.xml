@@ -27,18 +27,4 @@
       </form>
     </field>
   </record>
-  <record id="ported_odoo_studio_default__b7f83450_d158_4b53_ab6a_3722eac4db7f" model="ir.ui.view">
-    <field name="name">Odoo Studio: Default form view for x_rm_cust_invoice_s1 customization</field>
-    <field name="model">x_rm_cust_invoice_s1</field>
-    <field name="key">studio_customization.odoo_studio_default__b7f83450-d158-4b53-ab6a-3722eac4db7f</field>
-    <field name="type">form</field>
-    <field name="priority">99</field>
-    <field name="mode">extension</field>
-    <field name="inherit_id" ref="BugFix-Accounting.ported_default_form_view_fo_7a09d097_0d14_4d92_aaab_95b003fbf75f"/>
-    <field name="arch" type="xml">
-      <data>
-        
-      </data>
-    </field>
-  </record>
 </odoo>

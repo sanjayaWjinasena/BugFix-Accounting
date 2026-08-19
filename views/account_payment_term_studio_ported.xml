@@ -1,18 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="ported_odoo_studio_account__aa45edb8_79c2_454d_9dc9_7dcf39b67f04" model="ir.ui.view">
-    <field name="name">Odoo Studio: account.payment.term.form customization</field>
-    <field name="model">account.payment.term</field>
-    <field name="key">studio_customization.odoo_studio_account__aa45edb8-79c2-454d-9dc9-7dcf39b67f04</field>
-    <field name="type">form</field>
-    <field name="priority">99</field>
-    <field name="mode">extension</field>
-    <field name="inherit_id" ref="account.view_payment_term_form"/>
-    <field name="arch" type="xml">
-      <data>
-        
-        
-      </data>
-    </field>
-  </record>
 </odoo>

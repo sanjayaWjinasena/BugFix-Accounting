@@ -31,23 +31,4 @@
       </form>
     </field>
   </record>
-  <record id="ported_odoo_studio_default__fc4d9ef7_2d23_4a16_911c_66cf2185de9b" model="ir.ui.view">
-    <field name="name">Odoo Studio: Default form view for x_tp_invoice_header customization</field>
-    <field name="model">x_tp_invoice_header</field>
-    <field name="key">studio_customization.odoo_studio_default__fc4d9ef7-2d23-4a16-911c-66cf2185de9b</field>
-    <field name="type">form</field>
-    <field name="priority">99</field>
-    <field name="mode">extension</field>
-    <field name="inherit_id" ref="BugFix-Accounting.ported_default_form_view_fo_b04274bb_8930_4e7e_a2cc_e65229996a48"/>
-    <field name="arch" type="xml">
-      <data>
-        
-        
-        
-        
-        
-        
-      </data>
-    </field>
-  </record>
 </odoo>

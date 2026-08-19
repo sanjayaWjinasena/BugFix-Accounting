@@ -44,45 +44,4 @@
       </data>
     </field>
   </record>
-  <record id="ported_odoo_studio_account__90b17aa7_ffee_4b9b_a033_66b87042b830" model="ir.ui.view">
-    <field name="name">Odoo Studio: account.move.form customization_button</field>
-    <field name="model">account.move</field>
-    <field name="key">studio_customization.odoo_studio_account__90b17aa7-ffee-4b9b-a033-66b87042b830</field>
-    <field name="type">form</field>
-    <field name="priority">99</field>
-    <field name="mode">extension</field>
-    <field name="active" eval="False"/>
-    <field name="inherit_id" ref="account.view_move_form"/>
-    <field name="arch" type="xml">
-      <data>
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-            
-          
-          
-          
-          <!--xpath expr="//field[@name='analytic_account_id']" position="attributes">
-           <attribute name="domain">[["group_id","=",x_studio_analytic_group]]</attribute>
-          </xpath-->
-          
-          
-        </data>
-    </field>
-  </record>
 </odoo>

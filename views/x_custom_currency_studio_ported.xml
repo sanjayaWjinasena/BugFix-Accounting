@@ -27,21 +27,4 @@
       </form>
     </field>
   </record>
-  <record id="ported_odoo_studio_default__d6e426ae_1b5c_4bbd_b6cf_aaab9463d6cb" model="ir.ui.view">
-    <field name="name">Odoo Studio: Default form view for x_custom_currency customization</field>
-    <field name="model">x_custom_currency</field>
-    <field name="key">studio_customization.odoo_studio_default__d6e426ae-1b5c-4bbd-b6cf-aaab9463d6cb</field>
-    <field name="type">form</field>
-    <field name="priority">99</field>
-    <field name="mode">extension</field>
-    <field name="inherit_id" ref="BugFix-Accounting.ported_default_form_view_fo_8a4b6def_7c88_4ab2_9f17_96bd901a9f4e"/>
-    <field name="arch" type="xml">
-      <data>
-        
-        
-        
-        
-      </data>
-    </field>
-  </record>
 </odoo>

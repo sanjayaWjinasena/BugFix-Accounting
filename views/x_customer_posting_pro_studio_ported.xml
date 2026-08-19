@@ -30,19 +30,4 @@
       </form>
     </field>
   </record>
-  <record id="ported_odoo_studio_default__48b939b5_01fe_4c2d_8fb8_dbabd7799b2f" model="ir.ui.view">
-    <field name="name">Odoo Studio: Default form view for x_customer_posting_pro customization</field>
-    <field name="model">x_customer_posting_pro</field>
-    <field name="key">studio_customization.odoo_studio_default__48b939b5-01fe-4c2d-8fb8-dbabd7799b2f</field>
-    <field name="type">form</field>
-    <field name="priority">99</field>
-    <field name="mode">extension</field>
-    <field name="inherit_id" ref="BugFix-Accounting.ported_default_form_view_fo_f49a8f85_9bb2_43ef_8f4f_8b962b411265"/>
-    <field name="arch" type="xml">
-      <data>
-        
-        
-      </data>
-    </field>
-  </record>
 </odoo>

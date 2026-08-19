@@ -27,21 +27,4 @@
       </form>
     </field>
   </record>
-  <record id="ported_odoo_studio_default__d44ef857_6f61_4cce_b760_cde110a7cae9" model="ir.ui.view">
-    <field name="name">Odoo Studio: Default form view for x_advance_payment_acco customization</field>
-    <field name="model">x_advance_payment_acco</field>
-    <field name="key">studio_customization.odoo_studio_default__d44ef857-6f61-4cce-b760-cde110a7cae9</field>
-    <field name="type">form</field>
-    <field name="priority">99</field>
-    <field name="mode">extension</field>
-    <field name="inherit_id" ref="BugFix-Accounting.ported_default_form_view_fo_c97b1ccb_8539_4035_a437_f09e7ab96775"/>
-    <field name="arch" type="xml">
-      <data>
-        
-        
-        
-        
-      </data>
-    </field>
-  </record>
 </odoo>

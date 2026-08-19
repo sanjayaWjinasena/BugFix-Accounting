@@ -27,18 +27,4 @@
       </form>
     </field>
   </record>
-  <record id="ported_odoo_studio_default__cb099adf_20d3_4e33_8500_801e1c815b1f" model="ir.ui.view">
-    <field name="name">Odoo Studio: Default form view for x_temp_tp_invoice_line customization</field>
-    <field name="model">x_temp_tp_invoice_line</field>
-    <field name="key">studio_customization.odoo_studio_default__cb099adf-20d3-4e33-8500-801e1c815b1f</field>
-    <field name="type">form</field>
-    <field name="priority">99</field>
-    <field name="mode">extension</field>
-    <field name="inherit_id" ref="BugFix-Accounting.ported_default_form_view_fo_8e00b755_fbe6_4921_925a_91bb567326d7"/>
-    <field name="arch" type="xml">
-      <data>
-        
-      </data>
-    </field>
-  </record>
 </odoo>
