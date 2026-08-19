@@ -22,11 +22,7 @@
             <group name="studio_group_1b21a2_right"/>
           </group>
         </sheet>
-        <div class="oe_chatter" name="oe_chatter">
-          <field name="message_follower_ids"/>
-          <field name="message_ids"/>
-          <field name="activity_ids"/>
-        </div>
+        
       </form>
     </field>
   </record>
