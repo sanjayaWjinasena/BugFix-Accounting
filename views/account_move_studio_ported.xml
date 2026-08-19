@@ -124,7 +124,7 @@
           <field name="x_studio_account_mandatory" string="Account Mandatory" force_save="True" readonly="1" invisible="1"/>
         </xpath>
         <xpath expr="//button[@name='action_automatic_entry']" position="after">
-          <field optional="hide" name="x_studio_tags" string="Tags" widget="many2many_tags"/>
+          
         </xpath>
         <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='other_info']/group[1]/group[@name='sale_info_group']/field[@name='partner_bank_id']" position="after">
           <field name="x_studio_credit_note_request_sent" string="Credit Note Request Sent" force_save="True" readonly="1" invisible="1"/>

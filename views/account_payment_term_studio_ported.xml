@@ -14,9 +14,9 @@
           <attribute name="readonly">1</attribute></xpath>
         <xpath expr="//field[@name='line_ids']" position="inside">
           <tree string="Payment Terms">
-            <field name="value" string="Due Type"/>
-            <field name="value_amount" readonly="value == 'balance'"/>
-            <field name="nb_days"/>
+            
+            
+            
             </tree>
         </xpath>
       </data>
