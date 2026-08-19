@@ -73,15 +73,7 @@
           <field name="x_studio_tp_id" string="Created From TP Invoice" force_save="True" readonly="1" invisible="x_studio_tp_id == False"/>
         </xpath>
         
-        <xpath expr="//field[@name='purchase_vendor_bill_id']" position="after">
-          <field name="x_studio_purchase_type" string="PR Type" invisible="(x_studio_purchase_type == False) or (x_studio_purchase_type == 'Local')"/>
-          <field name="x_studio_test_type" string="Test Type" invisible="1"/>
-          <field name="x_studio_consignment_no" string="Consignment No" domain="[[&quot;x_studio_status&quot;,&quot;=&quot;,&quot;Done&quot;]]" help="Select the correct Consignment Number of the shipment which the invoice/vendor bill is going to be posted for." invisible="(x_studio_purchase_type == False) or (x_studio_purchase_type == 'Local')" readonly="x_studio_update_consignment == True" required="x_studio_purchase_type == 'Import'"/>
-          <field name="x_studio_custom_clearance_no" string="Custom Clearance No" help="Custom clearance number: This will be filled automatically based on the consignment number." invisible="(x_studio_purchase_type == False) or (x_studio_purchase_type == 'Local')"/>
-          <field name="x_studio_created_from_vendor_bill_1" string="Created From Vendor Bill" force_save="True" readonly="1" invisible="x_studio_created_from_vendor_bill_1 == False"/>
-          <field name="x_studio_created_from_vendor_bill" string="Created From Vendor Bill" force_save="True" readonly="1" invisible="x_studio_created_from_vendor_bill == False"/>
-          <field name="x_studio_created_from_project_no" string="Created From Project No" force_save="True" readonly="1" invisible="x_studio_created_from_project_no == False"/>
-        </xpath>
+        
         <xpath expr="//field[@name='invoice_date']" position="attributes">
           <attribute name="help">This Bill Date will be updated in vendors transactions.</attribute>
         </xpath>
