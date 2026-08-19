@@ -47,10 +47,7 @@
           <attribute name="delete">false</attribute>
         </xpath>
         
-        <xpath expr="//field[@name='x_name']" position="attributes">
-          <attribute name="force_save">True</attribute>
-          <attribute name="string">Registration No</attribute>
-        <attribute name="readonly">1</attribute></xpath>
+        
         
         
       </data>

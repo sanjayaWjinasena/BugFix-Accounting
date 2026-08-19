@@ -10,16 +10,7 @@
     <field name="inherit_id" ref="account.view_move_line_form"/>
     <field name="arch" type="xml">
       <data>
-        <xpath expr="//field[@name='move_id']" position="after">
-          <field name="x_studio_many2one_field_kiSUJ"/>
-          <field name="x_studio_sales_report_type" string="Report Type (S- Incentive Calculation)"/>
-          <field name="price_unit"/>
-          <field name="price_subtotal"/>
-          <field name="price_total"/>
-          <field name="account_internal_group"/>
-          <field name="display_type"/>
-          <field name="x_studio_status"/>
-        </xpath>
+        
       </data>
     </field>
   </record>

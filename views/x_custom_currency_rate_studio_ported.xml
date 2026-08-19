@@ -37,8 +37,7 @@
     <field name="inherit_id" ref="BugFix-Accounting.ported_default_form_view_fo_f5872bac_d1f7_4709_a9b1_364b0db1710c"/>
     <field name="arch" type="xml">
       <data>
-        <xpath expr="//field[@name='x_name']" position="attributes">
-          <attribute name="invisible">1</attribute><attribute name="required"/></xpath>
+        
         
       </data>
     </field>

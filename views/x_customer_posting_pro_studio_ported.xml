@@ -40,7 +40,7 @@
     <field name="inherit_id" ref="BugFix-Accounting.ported_default_form_view_fo_f49a8f85_9bb2_43ef_8f4f_8b962b411265"/>
     <field name="arch" type="xml">
       <data>
-        <xpath expr="//form[1]/sheet[1]/div[1]/h1[1]" position="replace"/>
+        
         
       </data>
     </field>

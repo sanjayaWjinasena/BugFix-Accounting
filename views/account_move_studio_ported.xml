@@ -10,10 +10,6 @@
     <field name="inherit_id" ref="account.view_move_form"/>
     <field name="arch" type="xml">
       <data>
-      <field name="Import" invisible="1"/>
-      <field name="draft" invisible="1"/>
-      <field name="posted" invisible="1"/>
-      <field name="state" invisible="1"/>
         <xpath expr="//form[1]" position="attributes">
           <attribute name="create">false</attribute>
           <attribute name="delete">false</attribute>
@@ -27,67 +23,23 @@
         
         
         
-        <xpath expr="//form[1]/sheet[1]/group[1]/group[1]/label[2]" position="after">
-          <field name="stock_move_id" readonly="(state == 'posted') or (x_studio_created_from_consignment != False)"/>
-        </xpath>
-        
-        
-        
-        <xpath expr="//field[@name='tax_cash_basis_origin_move_id']" position="after">
-          <field name="x_studio_cre" string="Created From CP No" force_save="True" readonly="1" invisible="x_studio_cre == False"/>
-          <field name="x_studio_created_from_consignment" string="Created From Consignment" force_save="True" readonly="1" help="The Consignment/Purchase Invoice which this vendor dispatch voucher was created from." invisible="x_studio_created_from_consignment == False"/>
-          <field name="x_studio_created_from_consignment_1" string="Created From Consignment" force_save="True" readonly="1" help="The Consignment/Purchase Invoice which this vendor dispatch voucher was created from." invisible="x_studio_created_from_consignment_1 == False"/>
-          <field name="x_studio_created_from_npo_no" string="Created From NPO No" force_save="True" readonly="1" invisible="x_studio_created_from_npo_no == False"/>
-          <field name="x_studio_created_from_transfer" string="Created From Transfer" force_save="True" readonly="1" invisible="x_studio_created_from_transfer == False"/>
-          <field name="x_studio_create_from_transfer_1" string="Create From Transfer" force_save="True" readonly="1" invisible="x_studio_create_from_transfer_1 == False"/>
-          <field name="x_studio_tp_id" string="Created From TP Invoice" force_save="True" readonly="1" invisible="x_studio_tp_id == False"/>
-        </xpath>
-        <xpath expr="//field[@name='purchase_id']" position="after">
-          <field name="x_studio_update_consignment" string="Update Consignment" force_save="True" readonly="1" invisible="1"/>
-          <field name="x_studio_purchase_id" string="Purchase Order" force_save="True" readonly="1" invisible="x_studio_purchase_id == False"/>
-        </xpath>
-        
-        <xpath expr="//field[@name='invoice_date']" position="attributes">
-          <attribute name="help">This Bill Date will be updated in vendors transactions.</attribute>
-        </xpath>
-        <xpath expr="//field[@name='invoice_date']" position="after">
-          <field name="x_studio_supplier_invoice_number" string="Supplier's Invoice Number (Bill Reference)" readonly="(x_studio_purchase_type == 'Import') or (state != 'draft')" required="x_studio_purchase_id != False"/>
-          <field name="x_studio_type" string="Type" readonly="(payment_id != False) or (state != 'draft')" required="(x_studio_created_from_project == True) or (x_studio_project_no != False)"/>
-          <field name="x_studio_project_no" string="Project No" readonly="(x_studio_created_from_project == True) or ((payment_id != False) or (state != 'draft'))" required="x_studio_created_from_project == True"/>
-          <field name="x_studio_project_no_issue" string="Project No Issue" force_save="True" readonly="1" invisible="1"/>
-          <field name="x_studio_project_no_settle" force_save="True" readonly="1" invisible="1"/>
-          <field name="x_studio_project_no_bill" string="Project No Bill" force_save="True" readonly="1" invisible="1"/>
-          <field name="x_studio_created_from_project" string="Created From Project" force_save="True" readonly="1" invisible="1"/>
-          <field name="x_studio_journal_type" string="Journal Type" help="For advance payments for project expenses, enter the project number and then select the journal type. To clear the Journal Type selection, first clear the Project Number, then remove the selection. Then the &quot;Journal Type&quot; field will dissapear." invisible="(x_studio_journal_type == False) and (x_studio_project_no == False)" readonly="(payment_id != False) or ((x_studio_created_from_project == True) or (state != 'draft'))" required="x_studio_project_no != False"/>
-          <field name="x_studio_rug_confirmed" string="RUG Confirmed" invisible="1"/>
-          <field name="x_studio_rug_rejected" string="RUG Rejected" invisible="1"/>
-          <field name="x_studio_rug_acc_updated" string="RUG Account Updated" force_save="True" readonly="1" invisible="1"/>
-          <field name="x_studio_order_payment_method" string="Order Payment Method" invisible="1"/>
-          <field name="x_studio_credit_limit_approved" string="Credit Limit Approved" invisible="1"/>
-          <field name="x_studio_credit_limit_validation" string="Credit Limit Validation" invisible="1"/>
-          <field name="x_studio_over_bank_guarantee" string="Over Bank Guarantee" invisible="1"/>
-          <field name="x_studio_bank_guarantee_approved" string="Bank Guarantee Approved" invisible="1"/>
-          <field name="x_studio_bank_guarantee_validation" string="Bank Guarantee Validation" invisible="1"/>
-          <field name="x_studio_bank_guarantee_notification" string="Bank Guarantee Notification" invisible="1"/>
-          <field name="x_studio_bg_sent" string="BG Sent" invisible="1"/>
-          <field name="x_studio_purchase_type" invisible="1"/>
-          <field name="x_studio_purchase_id" invisible="1"/>
-          <field name="x_studio_created_from_consignment" invisible="1"/>
-          <field name="x_studio_update_consignment" invisible="1"/>
-          <field name="x_studio_cre" invisible="1"/>
-        </xpath>
-        
-        
-        <xpath expr="//form[1]/sheet[1]/group[1]/group[2]/div[1]/label[2]" position="attributes">
-          <attribute name="string">Supplier's Invoice Date (Bill Date)</attribute>
-        </xpath>
         
         
         
         
-        <xpath expr="//field[@name='qr_code_method']" position="after">
-          <field name="payment_id" invisible="1"/>
-        </xpath>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
       </data>
     </field>
@@ -117,8 +69,7 @@
           
           
           
-          <xpath expr="//sheet/notebook/page/field[@name='invoice_line_ids']" position="attributes">
-            <attribute name="readonly">((x_studio_update_consignment == True) and (x_studio_pr_type_1 == 'Import')) or (state == 'posted')</attribute></xpath>
+          
           
           
           
