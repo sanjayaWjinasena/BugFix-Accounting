@@ -3,6 +3,7 @@
   <record id="ported_default_form_view_fo_8e00b755_fbe6_4921_925a_91bb567326d7" model="ir.ui.view">
     <field name="name">Default form view for x_temp_tp_invoice_line</field>
     <field name="model">x_temp_tp_invoice_line</field>
+    <field name="key">studio_customization.default_form_view_fo_8e00b755-fbe6-4921-925a-91bb567326d7</field>
     <field name="type">form</field>
     <field name="priority">16</field>
     <field name="mode">primary</field>
@@ -29,22 +30,14 @@
   <record id="ported_odoo_studio_default__cb099adf_20d3_4e33_8500_801e1c815b1f" model="ir.ui.view">
     <field name="name">Odoo Studio: Default form view for x_temp_tp_invoice_line customization</field>
     <field name="model">x_temp_tp_invoice_line</field>
+    <field name="key">studio_customization.odoo_studio_default__cb099adf-20d3-4e33-8500-801e1c815b1f</field>
     <field name="type">form</field>
     <field name="priority">99</field>
     <field name="mode">extension</field>
     <field name="inherit_id" ref="BugFix-Accounting.ported_default_form_view_fo_8e00b755_fbe6_4921_925a_91bb567326d7"/>
     <field name="arch" type="xml">
       <data>
-        <xpath expr="//group[@name='studio_group_0b2b4a_left']" position="inside">
-          <field name="x_studio_temp_tp_invoice_header_id" string="Temp TP Invoice Header Id" force_save="True" readonly="1"/>
-          <field name="x_studio_select" string="Select"/>
-          <field name="x_studio_amount" string="Amount"/>
-          <field name="x_studio_basis" string="Basis"/>
-          <field name="x_studio_charge_group" string="Charge Group"/>
-          <field name="x_studio_charge_name" string="Charge Name"/>
-          <field name="x_studio_consignment_id" string="Consignment Id"/>
-          <field name="x_studio_consignment_charge_header_id" string="Consignment Charge Header Id"/>
-        </xpath>
+        
       </data>
     </field>
   </record>

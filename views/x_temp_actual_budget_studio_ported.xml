@@ -3,6 +3,7 @@
   <record id="ported_default_form_view_fo_741643ee_ca4d_4aa5_a8e3_76dfefa6c8c1" model="ir.ui.view">
     <field name="name">Default form view for x_temp_actual_budget</field>
     <field name="model">x_temp_actual_budget</field>
+    <field name="key">studio_customization.default_form_view_fo_741643ee-ca4d-4aa5-a8e3-76dfefa6c8c1</field>
     <field name="type">form</field>
     <field name="priority">16</field>
     <field name="mode">primary</field>

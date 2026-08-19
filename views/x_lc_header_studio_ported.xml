@@ -3,6 +3,7 @@
   <record id="ported_default_form_view_fo_0505f2ad_156e_4774_9f56_2c28078f71bc" model="ir.ui.view">
     <field name="name">Default form view for x_lc_header</field>
     <field name="model">x_lc_header</field>
+    <field name="key">studio_customization.default_form_view_fo_0505f2ad-156e-4774-9f56-2c28078f71bc</field>
     <field name="type">form</field>
     <field name="priority">16</field>
     <field name="mode">primary</field>
@@ -34,6 +35,7 @@
   <record id="ported_odoo_studio_default__20735bbc_d408_4d7a_8c04_a3bf6b3dfcd9" model="ir.ui.view">
     <field name="name">Odoo Studio: Default form view for x_lc_header customization</field>
     <field name="model">x_lc_header</field>
+    <field name="key">studio_customization.odoo_studio_default__20735bbc-d408-4d7a-8c04-a3bf6b3dfcd9</field>
     <field name="type">form</field>
     <field name="priority">99</field>
     <field name="mode">extension</field>
@@ -49,79 +51,8 @@
           <attribute name="force_save">True</attribute>
           <attribute name="string">Registration No</attribute>
         <attribute name="readonly">1</attribute></xpath>
-        <xpath expr="//group[@name='studio_group_535d1b_left']" position="inside">
-          <field name="x_studio_created_from_purchase_order" string="Ref. PO" force_save="True" readonly="1" invisible="x_studio_created_from_purchase_order == False"/>
-          <field name="x_studio_version_no" string="Version No" force_save="True" readonly="1"/>
-          <field name="x_studio_company_id" string="Company"/>
-        </xpath>
-        <xpath expr="//group[@name='studio_group_535d1b']" position="after">
-          <notebook name="studio_notebook_NOcl4">
-            <page string="General" name="studio_page_NOcl4">
-              <group name="studio_group_NOcl4">
-                <group name="studio_group_NOcl4_left" string="Letter of Credit">
-                  <field name="x_studio_indent_no" string="Indent No" required="1" readonly="x_studio_status != 'Draft'"/>
-                  <field name="x_studio_date_of_receipt" string="Date of Receipt" required="1" readonly="x_studio_status != 'Draft'"/>
-                  <field name="x_studio_lc_credit_type" string="Documentary Credit Type (40A)" required="1" readonly="x_studio_status != 'Draft'"/>
-                  <field name="x_studio_lc_credit_sub_type" string="Documentary Credit Sub Type (40A)" readonly="x_studio_status != 'Draft'"/>
-                  <field name="x_studio_lc_no" string="Documentatry Credit Number (20)" readonly="x_studio_status != 'Draft'"/>
-                  <field name="x_studio_date_of_expiry" string="Date of Expiry (31D)" required="1" readonly="x_studio_status != 'Draft'"/>
-                  <field name="x_studio_place_of_expiry" string="Place of Expiry (31D)" required="1" readonly="x_studio_status != 'Draft'"/>
-                </group>
-                <group name="studio_group_NOcl4_right" string="General">
-                  <field name="x_studio_vendor" string="Vendor" readonly="x_studio_status != 'Draft'"/>
-                  <field name="x_studio_beneficiary" string="Beneficiary (59)" force_save="True" readonly="1"/>
-                  <field name="x_studio_currency_id" string="Currency (32B)" required="1" readonly="x_studio_status != 'Draft'"/>
-                  <field name="x_studio_lc_amount" string="LC Amount (32B)" readonly="x_studio_status != 'Draft'"/>
-                  <field name="x_studio_lc_amount_lcy" string="LC Amount (LCY)"/>
-                  <field name="x_studio_tolerance" string="Tolerance (39A)" readonly="x_studio_status != 'Draft'"/>
-                  <field name="x_studio_tolerance_type" string="Tolerance Type" readonly="x_studio_status != 'Draft'"/>
-                  <field name="x_studio_revised_lc_amount" string="Revised Amount" force_save="True" readonly="1"/>
-                  <field name="x_studio_paid_amount_lcy" string="Paid Amount (LCY)" force_save="True" readonly="1"/>
-                  <field name="x_studio_status" string="Status" force_save="True" readonly="1"/>
-                </group>
-              </group>
-            </page>
-            <page string="Bank Details" name="studio_page_Q4El5">
-              <group name="studio_group_Q4El5">
-                <group name="studio_group_Q4El5_left">
-                  <field name="x_studio_issuing_bank" string="Issuing Bank" required="1" readonly="x_studio_status != 'Draft'"/>
-                  <field name="x_studio_date_of_issue" string="Date of Issue (31C)" required="1" readonly="x_studio_status != 'Draft'"/>
-                </group>
-                <group name="studio_group_Q4El5_right">
-                  <field name="x_studio_available_with_by" string="Available with / By (41A)" required="1" readonly="x_studio_status != 'Draft'"/>
-                  <field name="x_studio_issuing_bank_reference_no_1" string="Issuing Bank Reference No" readonly="x_studio_status != 'Draft'"/>
-                </group>
-              </group>
-            </page>
-            <page string="Terms" name="studio_page_qmu1S">
-              <group name="studio_group_qmu1S">
-                <group name="studio_group_qmu1S_left" string="Shipment Terms">
-                  <field name="x_studio_partial_shipment" string="Partial Shipment (43P)" readonly="x_studio_status != 'Draft'"/>
-                  <field name="x_studio_transshipment" string="Transshipment (43T)" readonly="x_studio_status != 'Draft'"/>
-                  <field name="x_studio_loading_on_board" string="Loading on Board (44A)" required="1" readonly="x_studio_status != 'Draft'"/>
-                  <field name="x_studio_latest_shipment_date" string="Latest Shipment Date (44C)" required="1" readonly="x_studio_status != 'Draft'"/>
-                  <field name="x_studio_transportation" string="Transportation (44B)" readonly="x_studio_status != 'Draft'"/>
-                  <field name="x_studio_description_of_goods" string="Description of Goods and / or Services (45A)" readonly="x_studio_status != 'Draft'"/>
-                </group>
-                <group name="studio_group_qmu1S_right" string="Payment Terms">
-                  <field name="x_studio_bank_charges" string="Bank Charges (71B)" readonly="x_studio_status != 'Draft'"/>
-                  <field name="x_studio_draft" readonly="x_studio_status != 'Draft'"/>
-                  <field name="x_studio_deferred_days" string="Deferred Days" readonly="x_studio_status != 'Draft'"/>
-                  <field name="x_studio_period_for_presentation" string="Period for Presentation (48)" readonly="x_studio_status != 'Draft'"/>
-                  <field name="x_studio_confirmation_instructions" string="Confirmation Instructions (49)" readonly="x_studio_status != 'Draft'"/>
-                  <field name="x_studio_instruction_remarks" string="Instruction / Remarks (78)" readonly="x_studio_status != 'Draft'"/>
-                </group>
-              </group>
-              <group name="studio_group_582X4">
-                <group name="studio_group_582X4_left" string="Documents Required">
-                  <field name="x_studio_document_required" string="Document Required (46A/B)" readonly="x_studio_status != 'Draft'"/>
-                  <field name="x_studio_additional_conditions" string="Additional Conditions (47A/B)" readonly="x_studio_status != 'Draft'"/>
-                </group>
-                <group name="studio_group_582X4_right"/>
-              </group>
-            </page>
-          </notebook>
-        </xpath>
+        
+        
       </data>
     </field>
   </record>

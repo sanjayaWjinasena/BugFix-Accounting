@@ -3,6 +3,7 @@
   <record id="ported_odoo_studio_account__456ee71e_48d4_4569_9fc4_ed88a1ad7a74" model="ir.ui.view">
     <field name="name">Odoo Studio: account.analytic.group.form customization</field>
     <field name="model">account.analytic.plan</field>
+    <field name="key">studio_customization.odoo_studio_account__456ee71e-48d4-4569-9fc4-ed88a1ad7a74</field>
     <field name="type">form</field>
     <field name="priority">99</field>
     <field name="mode">extension</field>

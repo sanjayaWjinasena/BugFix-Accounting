@@ -3,6 +3,7 @@
   <record id="ported_imp_copy_charges_to__02d06147_ff91_4ff4_bb53_489854bb1ddd" model="ir.ui.view">
     <field name="name">IMP Copy Charges to TP Invoice</field>
     <field name="model">x_temp_tp_invoice_head</field>
+    <field name="key">studio_customization.imp_copy_charges_to__02d06147-ff91-4ff4-bb53-489854bb1ddd</field>
     <field name="type">form</field>
     <field name="priority">16</field>
     <field name="mode">primary</field>

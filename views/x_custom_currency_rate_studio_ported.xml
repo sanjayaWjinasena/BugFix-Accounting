@@ -3,6 +3,7 @@
   <record id="ported_default_form_view_fo_f5872bac_d1f7_4709_a9b1_364b0db1710c" model="ir.ui.view">
     <field name="name">Default form view for x_custom_currency_rate</field>
     <field name="model">x_custom_currency_rate</field>
+    <field name="key">studio_customization.default_form_view_fo_f5872bac-d1f7-4709-a9b1-364b0db1710c</field>
     <field name="type">form</field>
     <field name="priority">16</field>
     <field name="mode">primary</field>
@@ -29,6 +30,7 @@
   <record id="ported_odoo_studio_default__98249da6_8d85_410b_8ba9_952472bdd50c" model="ir.ui.view">
     <field name="name">Odoo Studio: Default form view for x_custom_currency_rate customization</field>
     <field name="model">x_custom_currency_rate</field>
+    <field name="key">studio_customization.odoo_studio_default__98249da6-8d85-410b-8ba9-952472bdd50c</field>
     <field name="type">form</field>
     <field name="priority">99</field>
     <field name="mode">extension</field>
@@ -37,12 +39,7 @@
       <data>
         <xpath expr="//field[@name='x_name']" position="attributes">
           <attribute name="invisible">1</attribute><attribute name="required"/></xpath>
-        <xpath expr="//group[@name='studio_group_e8c751_left']" position="inside">
-          <field name="x_studio_start_date" string="Start Date"/>
-          <field name="x_studio_end_date" string="End Date"/>
-          <field name="x_studio_rate" string="Rate"/>
-          <field name="x_studio_custom_currency_id" string="Custom Currency Id" invisible="1"/>
-        </xpath>
+        
       </data>
     </field>
   </record>

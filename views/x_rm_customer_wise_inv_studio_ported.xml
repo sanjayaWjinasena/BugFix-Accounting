@@ -3,6 +3,7 @@
   <record id="ported_default_form_view_fo_28459b2e_d60c_4b3a_9ee2_68b375f0d598" model="ir.ui.view">
     <field name="name">Default form view for x_rm_customer_wise_inv</field>
     <field name="model">x_rm_customer_wise_inv</field>
+    <field name="key">studio_customization.default_form_view_fo_28459b2e-d60c-4b3a-9ee2-68b375f0d598</field>
     <field name="type">form</field>
     <field name="priority">16</field>
     <field name="mode">primary</field>
@@ -29,15 +30,14 @@
   <record id="ported_odoo_studio_default__461f7504_2101_403c_880e_62b0d141b1b4" model="ir.ui.view">
     <field name="name">Odoo Studio: Default form view for x_rm_customer_wise_inv customization</field>
     <field name="model">x_rm_customer_wise_inv</field>
+    <field name="key">studio_customization.odoo_studio_default__461f7504-2101-403c-880e-62b0d141b1b4</field>
     <field name="type">form</field>
     <field name="priority">99</field>
     <field name="mode">extension</field>
     <field name="inherit_id" ref="BugFix-Accounting.ported_default_form_view_fo_28459b2e_d60c_4b3a_9ee2_68b375f0d598"/>
     <field name="arch" type="xml">
       <data>
-        <xpath expr="//group[@name='studio_group_907795_left']" position="inside">
-          <field name="x_studio_sales_report_model_id" string="Sales Report Model Id" invisible="1"/>
-        </xpath>
+        
       </data>
     </field>
   </record>

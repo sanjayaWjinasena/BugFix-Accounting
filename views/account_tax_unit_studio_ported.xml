@@ -3,6 +3,7 @@
   <record id="ported_view_tax_unit_form" model="ir.ui.view">
     <field name="name">account.tax.unit.form</field>
     <field name="model">account.tax.unit</field>
+    <field name="key">account_reports.view_tax_unit_form</field>
     <field name="type">form</field>
     <field name="priority">16</field>
     <field name="mode">primary</field>

@@ -3,18 +3,15 @@
   <record id="ported_odoo_studio_account__04156de1_ac5b_4a72_aa12_17f15def295d" model="ir.ui.view">
     <field name="name">Odoo Studio: account.journal.form customization</field>
     <field name="model">account.journal</field>
+    <field name="key">studio_customization.odoo_studio_account__04156de1-ac5b-4a72-aa12-17f15def295d</field>
     <field name="type">form</field>
     <field name="priority">160</field>
     <field name="mode">extension</field>
     <field name="inherit_id" ref="account.view_account_journal_form"/>
     <field name="arch" type="xml">
       <data>
-        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='page_incoming_payments']/field[@name='inbound_payment_method_line_ids']/tree[1]/field[@name='sequence']" position="after">
-          <field name="id" optional="show"/>
-        </xpath>
-        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='page_outgoing_payments']/field[@name='outbound_payment_method_line_ids']/tree[1]/field[@name='sequence']" position="after">
-          <field name="id" optional="show"/>
-        </xpath>
+        
+        
       </data>
     </field>
   </record>

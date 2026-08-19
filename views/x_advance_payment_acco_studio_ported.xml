@@ -3,6 +3,7 @@
   <record id="ported_default_form_view_fo_c97b1ccb_8539_4035_a437_f09e7ab96775" model="ir.ui.view">
     <field name="name">Default form view for x_advance_payment_acco</field>
     <field name="model">x_advance_payment_acco</field>
+    <field name="key">studio_customization.default_form_view_fo_c97b1ccb-8539-4035-a437-f09e7ab96775</field>
     <field name="type">form</field>
     <field name="priority">16</field>
     <field name="mode">primary</field>
@@ -29,25 +30,17 @@
   <record id="ported_odoo_studio_default__d44ef857_6f61_4cce_b760_cde110a7cae9" model="ir.ui.view">
     <field name="name">Odoo Studio: Default form view for x_advance_payment_acco customization</field>
     <field name="model">x_advance_payment_acco</field>
+    <field name="key">studio_customization.odoo_studio_default__d44ef857-6f61-4cce-b760-cde110a7cae9</field>
     <field name="type">form</field>
     <field name="priority">99</field>
     <field name="mode">extension</field>
     <field name="inherit_id" ref="BugFix-Accounting.ported_default_form_view_fo_c97b1ccb_8539_4035_a437_f09e7ab96775"/>
     <field name="arch" type="xml">
       <data>
-        <xpath expr="//group[@name='studio_group_9ff9b8_left']" position="attributes">
-          <attribute name="string">Advance Payment Accounts</attribute>
-        </xpath>
-        <xpath expr="//group[@name='studio_group_9ff9b8_left']" position="inside">
-          <field name="x_studio_advance_payment_account_sales" string="Advance Payment Account (Sales)"/>
-          <field name="x_studio_advance_payment_account_purchases_1" string="Advance Payment Account (Purchases)"/>
-        </xpath>
-        <xpath expr="//group[@name='studio_group_9ff9b8_right']" position="attributes">
-          <attribute name="string">Advance Accounts</attribute>
-        </xpath>
-        <xpath expr="//group[@name='studio_group_9ff9b8_right']" position="inside">
-          <field name="x_studio_advance_account_project" string="Advance Account (Project)"/>
-        </xpath>
+        
+        
+        
+        
       </data>
     </field>
   </record>

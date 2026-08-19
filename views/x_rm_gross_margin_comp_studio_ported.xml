@@ -3,6 +3,7 @@
   <record id="ported_default_form_view_fo_2c4ff7a9_7c71_4304_a9eb_f205aa6d9c48" model="ir.ui.view">
     <field name="name">Default form view for x_rm_gross_margin_comp</field>
     <field name="model">x_rm_gross_margin_comp</field>
+    <field name="key">studio_customization.default_form_view_fo_2c4ff7a9-7c71-4304-a9eb-f205aa6d9c48</field>
     <field name="type">form</field>
     <field name="priority">16</field>
     <field name="mode">primary</field>
