@@ -61,7 +61,17 @@
         </xpath>
         <xpath expr="//group[@name='studio_group_c9cf25']" position="after">
           <notebook name="studio_notebook_ukf7u">
-            
+            <page string="Lines" name="studio_page_ukf7u">
+              
+              <group class="oe_subtotal_footer oe_right">
+                <field name="x_studio_total_invoice_amount" widget="monetary" options="{'currency_field': 'x_currency_id'}"/>
+                <field name="x_studio_taxes_1" widget="monetary" options="{'currency_field': 'x_currency_id'}"/>
+                <div class="oe_subtotal_footer_separator oe_inline" name="studio_div_1fae73">
+                  <label for="x_studio_total_1"/>
+                </div>
+                <field name="x_studio_total_1" nolabel="1" class="oe_subtotal_footer_separator" widget="monetary" options="{'currency_field': 'x_currency_id'}"/>
+              </group>
+            </page>
           </notebook>
         </xpath>
       </data>
