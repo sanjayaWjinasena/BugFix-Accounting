@@ -9,7 +9,6 @@
     <field name="mode">primary</field>
     <field name="arch" type="xml">
       <form>
-      <field name="domain" invisible="1"/>
                           <sheet>
                               <div class="oe_title">
                                   <h1>
