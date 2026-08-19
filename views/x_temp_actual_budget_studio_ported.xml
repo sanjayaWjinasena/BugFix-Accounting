@@ -27,4 +27,34 @@
       </form>
     </field>
   </record>
+  <record id="ported_default_list_view_fo_bcc5f161_0ade_4995_9c51_35002b4f9d4d" model="ir.ui.view">
+    <field name="name">Default list view for x_temp_actual_budget</field>
+    <field name="model">x_temp_actual_budget</field>
+    <field name="key">studio_customization.default_list_view_fo_bcc5f161-0ade-4995-9c51-35002b4f9d4d</field>
+    <field name="type">tree</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="x_studio_sequence" widget="handle"/>
+        <field name="x_name"/>
+      </tree>
+    </field>
+  </record>
+  <record id="ported_default_search_view__65bb7bb5_0341_4946_8b0e_8040521503cf" model="ir.ui.view">
+    <field name="name">Default search view for x_temp_actual_budget</field>
+    <field name="model">x_temp_actual_budget</field>
+    <field name="key">studio_customization.default_search_view__65bb7bb5-0341-4946-8b0e-8040521503cf</field>
+    <field name="type">search</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="x_name"/>
+        <separator/>
+        <filter string="Archived" name="archived_x_temp_actual_budget" domain="[['x_active', '=', False]]"/>
+        <separator/>
+      </search>
+    </field>
+  </record>
 </odoo>

@@ -27,4 +27,51 @@
       </form>
     </field>
   </record>
+  <record id="ported_default_list_view_fo_631d132b_10b2_4e4a_b9e3_a90375e170a1" model="ir.ui.view">
+    <field name="name">Default list view for x_advance_payment_acco</field>
+    <field name="model">x_advance_payment_acco</field>
+    <field name="key">studio_customization.default_list_view_fo_631d132b-10b2-4e4a-b9e3-a90375e170a1</field>
+    <field name="type">tree</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="x_studio_sequence" widget="handle"/>
+        <field name="x_name"/>
+      </tree>
+    </field>
+  </record>
+  <record id="ported_default_search_view__0e667438_cb9e_47fc_a925_bb838c4999b2" model="ir.ui.view">
+    <field name="name">Default search view for x_advance_payment_acco</field>
+    <field name="model">x_advance_payment_acco</field>
+    <field name="key">studio_customization.default_search_view__0e667438-cb9e-47fc-a925-bb838c4999b2</field>
+    <field name="type">search</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="x_name"/>
+        <separator/>
+        <filter string="Archived" name="archived_x_advance_payment_acco" domain="[['x_active', '=', False]]"/>
+        <separator/>
+      </search>
+    </field>
+  </record>
+  <record id="ported_odoo_studio_default__41a634d6_2040_4c1a_aca8_66e1b57d1cfa" model="ir.ui.view">
+    <field name="name">Odoo Studio: Default list view for x_advance_payment_acco customization</field>
+    <field name="model">x_advance_payment_acco</field>
+    <field name="key">studio_customization.odoo_studio_default__41a634d6-2040-4c1a-aca8-66e1b57d1cfa</field>
+    <field name="type">tree</field>
+    <field name="priority">99</field>
+    <field name="mode">extension</field>
+    <field name="inherit_id" ref="BugFix-Accounting.ported_default_list_view_fo_631d132b_10b2_4e4a_b9e3_a90375e170a1"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//tree[1]" position="attributes">
+          <attribute name="create">false</attribute>
+          <attribute name="delete">false</attribute>
+        </xpath>
+      </data>
+    </field>
+  </record>
 </odoo>

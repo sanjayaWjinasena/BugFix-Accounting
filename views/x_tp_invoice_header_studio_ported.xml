@@ -31,4 +31,54 @@
       </form>
     </field>
   </record>
+  <record id="ported_default_list_view_fo_87762a20_9628_4266_a414_8bb858fd9746" model="ir.ui.view">
+    <field name="name">Default list view for x_tp_invoice_header</field>
+    <field name="model">x_tp_invoice_header</field>
+    <field name="key">studio_customization.default_list_view_fo_87762a20-9628-4266-a414-8bb858fd9746</field>
+    <field name="type">tree</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="x_studio_sequence" widget="handle"/>
+        <field name="x_name"/>
+      </tree>
+    </field>
+  </record>
+  <record id="ported_default_search_view__12511c2f_92e3_4ad8_a81a_9adf7a7e038f" model="ir.ui.view">
+    <field name="name">Default search view for x_tp_invoice_header</field>
+    <field name="model">x_tp_invoice_header</field>
+    <field name="key">studio_customization.default_search_view__12511c2f-92e3-4ad8-a81a-9adf7a7e038f</field>
+    <field name="type">search</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="x_name"/>
+        <separator/>
+        <filter string="Archived" name="archived_x_tp_invoice_header" domain="[['x_active', '=', False]]"/>
+        <separator/>
+      </search>
+    </field>
+  </record>
+  <record id="ported_odoo_studio_default__c572715b_284c_469b_9b41_7a04b3431fc6" model="ir.ui.view">
+    <field name="name">Odoo Studio: Default list view for x_tp_invoice_header customization</field>
+    <field name="model">x_tp_invoice_header</field>
+    <field name="key">studio_customization.odoo_studio_default__c572715b-284c-469b-9b41-7a04b3431fc6</field>
+    <field name="type">tree</field>
+    <field name="priority">99</field>
+    <field name="mode">extension</field>
+    <field name="inherit_id" ref="BugFix-Accounting.ported_default_list_view_fo_87762a20_9628_4266_a414_8bb858fd9746"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//tree[1]" position="attributes">
+          <attribute name="create">false</attribute>
+          <attribute name="delete">false</attribute>
+        </xpath>
+        
+        
+        
+      </data>
+    </field>
+  </record>
 </odoo>

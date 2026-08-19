@@ -27,4 +27,34 @@
       </form>
     </field>
   </record>
+  <record id="ported_default_list_view_fo_ebc1fec3_02e8_4e3a_a42a_8a43aeef04c4" model="ir.ui.view">
+    <field name="name">Default list view for x_test_rm_gross_margin</field>
+    <field name="model">x_test_rm_gross_margin</field>
+    <field name="key">studio_customization.default_list_view_fo_ebc1fec3-02e8-4e3a-a42a-8a43aeef04c4</field>
+    <field name="type">tree</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="x_studio_sequence" widget="handle"/>
+        <field name="x_name"/>
+      </tree>
+    </field>
+  </record>
+  <record id="ported_default_search_view__1ca0ea84_3938_4f26_ad80_7824d77d00f2" model="ir.ui.view">
+    <field name="name">Default search view for x_test_rm_gross_margin</field>
+    <field name="model">x_test_rm_gross_margin</field>
+    <field name="key">studio_customization.default_search_view__1ca0ea84-3938-4f26-ad80-7824d77d00f2</field>
+    <field name="type">search</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="x_name"/>
+        <separator/>
+        <filter string="Archived" name="archived_x_test_rm_gross_margin" domain="[['x_active', '=', False]]"/>
+        <separator/>
+      </search>
+    </field>
+  </record>
 </odoo>

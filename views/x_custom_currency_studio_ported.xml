@@ -27,4 +27,34 @@
       </form>
     </field>
   </record>
+  <record id="ported_default_list_view_fo_c10f81e8_0461_45dc_bca4_c7824d05528e" model="ir.ui.view">
+    <field name="name">Default list view for x_custom_currency</field>
+    <field name="model">x_custom_currency</field>
+    <field name="key">studio_customization.default_list_view_fo_c10f81e8-0461-45dc-bca4-c7824d05528e</field>
+    <field name="type">tree</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="x_studio_sequence" widget="handle"/>
+        <field name="x_name"/>
+      </tree>
+    </field>
+  </record>
+  <record id="ported_default_search_view__a298038c_e955_424c_892e_bd176971bcc1" model="ir.ui.view">
+    <field name="name">Default search view for x_custom_currency</field>
+    <field name="model">x_custom_currency</field>
+    <field name="key">studio_customization.default_search_view__a298038c-e955-424c-892e-bd176971bcc1</field>
+    <field name="type">search</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="x_name"/>
+        <separator/>
+        <filter string="Archived" name="archived_x_custom_currency" domain="[['x_active', '=', False]]"/>
+        <separator/>
+      </search>
+    </field>
+  </record>
 </odoo>

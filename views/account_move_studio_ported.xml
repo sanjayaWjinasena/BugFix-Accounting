@@ -1,5 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+  <record id="ported_default_pivot_view_f_579a1e20_d982_4b37_be90_ad2cefa0aef5" model="ir.ui.view">
+    <field name="name">Default pivot view for ir.model(446,)</field>
+    <field name="model">account.move</field>
+    <field name="key">studio_customization.default_pivot_view_f_579a1e20-d982-4b37-be90-ad2cefa0aef5</field>
+    <field name="type">pivot</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <pivot string="Journal Entry"/>
+    </field>
+  </record>
+  <record id="ported_odoo_studio_account__29c77b7b_16f2_4af0_a17b_5aa40c932833" model="ir.ui.view">
+    <field name="name">Odoo Studio: account.invoice.tree customization</field>
+    <field name="model">account.move</field>
+    <field name="key">studio_customization.odoo_studio_account__29c77b7b-16f2-4af0-a17b-5aa40c932833</field>
+    <field name="type">tree</field>
+    <field name="priority">99</field>
+    <field name="mode">extension</field>
+    <field name="inherit_id" ref="account.view_invoice_tree"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//tree[1]" position="attributes">
+          <attribute name="create">false</attribute>
+        </xpath>
+        
+      </data>
+    </field>
+  </record>
   <record id="ported_odoo_studio_account__05b91b49_9dd1_4362_a49e_835596bd7ace" model="ir.ui.view">
     <field name="name">Odoo Studio: account.move.form customization</field>
     <field name="model">account.move</field>
@@ -41,6 +69,40 @@
         
         
         
+      </data>
+    </field>
+  </record>
+  <record id="ported_odoo_studio_account__3d938809_4b3e_4ad9_aff4_9c2a2e2b0eb5" model="ir.ui.view">
+    <field name="name">Odoo Studio: account.out.invoice.tree customization</field>
+    <field name="model">account.move</field>
+    <field name="key">studio_customization.odoo_studio_account__3d938809-4b3e-4ad9-aff4-9c2a2e2b0eb5</field>
+    <field name="type">tree</field>
+    <field name="priority">99</field>
+    <field name="mode">extension</field>
+    <field name="inherit_id" ref="account.view_out_invoice_tree"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//tree[1]" position="attributes">
+          <attribute name="create">true</attribute>
+        </xpath>
+        
+        
+      </data>
+    </field>
+  </record>
+  <record id="ported_odoo_studio_account__53334ddd_2d0c_4baa_a85d_f090510fcdc6" model="ir.ui.view">
+    <field name="name">Odoo Studio: account.out.invoice.tree customization</field>
+    <field name="model">account.move</field>
+    <field name="key">studio_customization.odoo_studio_account__53334ddd-2d0c-4baa-a85d-f090510fcdc6</field>
+    <field name="type">tree</field>
+    <field name="priority">99</field>
+    <field name="mode">extension</field>
+    <field name="inherit_id" ref="account.view_in_invoice_tree"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//tree[1]" position="attributes">
+          <attribute name="create">true</attribute>
+        </xpath>
       </data>
     </field>
   </record>

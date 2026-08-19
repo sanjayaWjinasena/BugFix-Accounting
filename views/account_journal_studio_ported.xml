@@ -1,3 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+  <record id="ported_default_pivot_view_f_e6b5ae70_5837_410f_a7ec_43da4ff64f33" model="ir.ui.view">
+    <field name="name">Default pivot view for ir.model(435,)</field>
+    <field name="model">account.journal</field>
+    <field name="key">studio_customization.default_pivot_view_f_e6b5ae70-5837-410f-a7ec-43da4ff64f33</field>
+    <field name="type">pivot</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <pivot string="Journal" sample="1"/>
+    </field>
+  </record>
 </odoo>

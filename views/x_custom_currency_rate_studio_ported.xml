@@ -27,4 +27,53 @@
       </form>
     </field>
   </record>
+  <record id="ported_default_list_view_fo_ca009934_0cbf_4bef_b9a5_cc7156daa1a9" model="ir.ui.view">
+    <field name="name">Default list view for x_custom_currency_rate</field>
+    <field name="model">x_custom_currency_rate</field>
+    <field name="key">studio_customization.default_list_view_fo_ca009934-0cbf-4bef-b9a5-cc7156daa1a9</field>
+    <field name="type">tree</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="x_studio_sequence" widget="handle"/>
+        <field name="x_name"/>
+      </tree>
+    </field>
+  </record>
+  <record id="ported_default_search_view__008371aa_6777_483b_a35b_55bb47e097eb" model="ir.ui.view">
+    <field name="name">Default search view for x_custom_currency_rate</field>
+    <field name="model">x_custom_currency_rate</field>
+    <field name="key">studio_customization.default_search_view__008371aa-6777-483b-a35b-55bb47e097eb</field>
+    <field name="type">search</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="x_name"/>
+        <separator/>
+        <filter string="Archived" name="archived_x_custom_currency_rate" domain="[['x_active', '=', False]]"/>
+        <separator/>
+      </search>
+    </field>
+  </record>
+  <record id="ported_odoo_studio_default__3d5acdf8_7c5e_4d86_bee2_d071d148e8e7" model="ir.ui.view">
+    <field name="name">Odoo Studio: Default list view for x_custom_currency_rate customization</field>
+    <field name="model">x_custom_currency_rate</field>
+    <field name="key">studio_customization.odoo_studio_default__3d5acdf8-7c5e-4d86-bee2-d071d148e8e7</field>
+    <field name="type">tree</field>
+    <field name="priority">99</field>
+    <field name="mode">extension</field>
+    <field name="inherit_id" ref="BugFix-Accounting.ported_default_list_view_fo_ca009934_0cbf_4bef_b9a5_cc7156daa1a9"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//tree[1]" position="attributes">
+          <attribute name="editable">bottom</attribute>
+        </xpath>
+        
+        
+        
+      </data>
+    </field>
+  </record>
 </odoo>

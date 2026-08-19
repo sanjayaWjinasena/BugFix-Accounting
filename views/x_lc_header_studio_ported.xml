@@ -32,6 +32,36 @@
       </form>
     </field>
   </record>
+  <record id="ported_default_list_view_fo_a916dec6_fd01_439b_b5cc_5936bca48af2" model="ir.ui.view">
+    <field name="name">Default list view for x_lc_header</field>
+    <field name="model">x_lc_header</field>
+    <field name="key">studio_customization.default_list_view_fo_a916dec6-fd01-439b-b5cc-5936bca48af2</field>
+    <field name="type">tree</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="x_studio_sequence" widget="handle"/>
+        <field name="x_name"/>
+      </tree>
+    </field>
+  </record>
+  <record id="ported_default_search_view__b401215c_a31a_436a_8006_25d5733275fa" model="ir.ui.view">
+    <field name="name">Default search view for x_lc_header</field>
+    <field name="model">x_lc_header</field>
+    <field name="key">studio_customization.default_search_view__b401215c-a31a-436a-8006-25d5733275fa</field>
+    <field name="type">search</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="x_name"/>
+        <separator/>
+        <filter string="Archived" name="archived_x_lc_header" domain="[['x_active', '=', False]]"/>
+        <separator/>
+      </search>
+    </field>
+  </record>
   <record id="ported_odoo_studio_default__20735bbc_d408_4d7a_8c04_a3bf6b3dfcd9" model="ir.ui.view">
     <field name="name">Odoo Studio: Default form view for x_lc_header customization</field>
     <field name="model">x_lc_header</field>
@@ -45,6 +75,29 @@
         <xpath expr="//form[1]" position="attributes">
           <attribute name="create">false</attribute>
           <attribute name="delete">false</attribute>
+        </xpath>
+        
+        
+        
+        
+      </data>
+    </field>
+  </record>
+  <record id="ported_odoo_studio_default__a61f262f_36fb_4249_a2be_011d2c858898" model="ir.ui.view">
+    <field name="name">Odoo Studio: Default list view for x_lc_header customization</field>
+    <field name="model">x_lc_header</field>
+    <field name="key">studio_customization.odoo_studio_default__a61f262f-36fb-4249-a2be-011d2c858898</field>
+    <field name="type">tree</field>
+    <field name="priority">99</field>
+    <field name="mode">extension</field>
+    <field name="inherit_id" ref="BugFix-Accounting.ported_default_list_view_fo_a916dec6_fd01_439b_b5cc_5936bca48af2"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//tree[1]" position="attributes">
+          <attribute name="create">false</attribute>
+          <attribute name="default_order">x_name desc</attribute>
+          <attribute name="delete">false</attribute>
+          <attribute name="edit">false</attribute>
         </xpath>
         
         

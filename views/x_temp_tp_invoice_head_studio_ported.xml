@@ -1,5 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+  <record id="ported_default_list_view_fo_e0a7e6f6_d908_4a20_91b6_3b7c31955737" model="ir.ui.view">
+    <field name="name">Default list view for x_temp_tp_invoice_head</field>
+    <field name="model">x_temp_tp_invoice_head</field>
+    <field name="key">studio_customization.default_list_view_fo_e0a7e6f6-d908-4a20-91b6-3b7c31955737</field>
+    <field name="type">tree</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="x_studio_sequence" widget="handle"/>
+        <field name="x_name"/>
+      </tree>
+    </field>
+  </record>
+  <record id="ported_default_search_view__7a379603_7a3e_4f48_9edf_8ef493282a72" model="ir.ui.view">
+    <field name="name">Default search view for x_temp_tp_invoice_head</field>
+    <field name="model">x_temp_tp_invoice_head</field>
+    <field name="key">studio_customization.default_search_view__7a379603-7a3e-4f48-9edf-8ef493282a72</field>
+    <field name="type">search</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="x_name"/>
+        <separator/>
+        <filter string="Archived" name="archived_x_temp_tp_invoice_head" domain="[['x_active', '=', False]]"/>
+        <separator/>
+      </search>
+    </field>
+  </record>
   <record id="ported_imp_copy_charges_to__02d06147_ff91_4ff4_bb53_489854bb1ddd" model="ir.ui.view">
     <field name="name">IMP Copy Charges to TP Invoice</field>
     <field name="model">x_temp_tp_invoice_head</field>

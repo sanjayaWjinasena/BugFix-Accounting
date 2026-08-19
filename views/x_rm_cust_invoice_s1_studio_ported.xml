@@ -27,4 +27,34 @@
       </form>
     </field>
   </record>
+  <record id="ported_default_list_view_fo_ec66ddc5_7ff8_42ac_8238_bdb020f850a2" model="ir.ui.view">
+    <field name="name">Default list view for x_rm_cust_invoice_s1</field>
+    <field name="model">x_rm_cust_invoice_s1</field>
+    <field name="key">studio_customization.default_list_view_fo_ec66ddc5-7ff8-42ac-8238-bdb020f850a2</field>
+    <field name="type">tree</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="x_studio_sequence" widget="handle"/>
+        <field name="x_name"/>
+      </tree>
+    </field>
+  </record>
+  <record id="ported_default_search_view__57a6d70d_a772_4194_afbe_241836e855ac" model="ir.ui.view">
+    <field name="name">Default search view for x_rm_cust_invoice_s1</field>
+    <field name="model">x_rm_cust_invoice_s1</field>
+    <field name="key">studio_customization.default_search_view__57a6d70d-a772-4194-afbe-241836e855ac</field>
+    <field name="type">search</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="x_name"/>
+        <separator/>
+        <filter string="Archived" name="archived_x_rm_cust_invoice_s1" domain="[['x_active', '=', False]]"/>
+        <separator/>
+      </search>
+    </field>
+  </record>
 </odoo>
