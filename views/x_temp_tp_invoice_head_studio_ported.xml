@@ -16,18 +16,7 @@
           </group> 
           <newline/>
           <group>
-            <field name="x_studio_charge_line" nolabel="1" colspan="2">
-              <tree string="Details" create="false" editable="bottom" delete="false"> 
-                <field name="x_studio_select"/>
-                <field name="x_studio_charge_group" options="{'no_open': true}" force_save="1" readonly="True"/>
-                <field name="x_studio_charge_name" options="{'no_open': true}" force_save="1" readonly="True"/>
-                <field name="x_studio_amount" options="{'no_open': true}" force_save="1" readonly="True"/>
-                <field name="x_studio_basis" options="{'no_open': true}" force_save="1" column_invisible="1" readonly="True"/>
-                <field name="x_studio_consignment_id" options="{'no_open': true}" force_save="1" column_invisible="1" readonly="True"/>
-                <field name="x_studio_temp_tp_invoice_header_id" options="{'no_open': true}" force_save="1" column_invisible="1" readonly="True"/>
-                <field name="x_studio_consignment_charge_header_id" options="{'no_open': true}" force_save="1" column_invisible="1" readonly="True"/>
-              </tree>
-            </field>
+            
           </group>
           <newline/>
           <footer>
