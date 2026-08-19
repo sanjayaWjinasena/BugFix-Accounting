@@ -42,10 +42,7 @@
         <xpath expr="//button[@name='action_reverse']" position="attributes">
           <attribute name="groups">account.group_account_invoice,studio_customization.sales_credit_note_ap_ee96b839-2a01-48d8-9116-c110a15beb4e</attribute>
         </xpath>
-        <xpath expr="//button[@name='action_view_landed_costs']" position="after">
-          
-          
-        </xpath>
+        
         <xpath expr="//form[1]/sheet[1]/field[@name='journal_id']" position="attributes">
           <attribute name="help">Type of the Journal</attribute>
           <attribute name="readonly">(x_studio_created_from_consignment != False) or (posted_before == True)</attribute>
