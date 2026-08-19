@@ -40,7 +40,6 @@
         'views/x_temp_tp_invoice_head_studio_ported.xml',
         'views/account_report_expression_studio_ported.xml',
         'views/account_tax_group_studio_ported.xml',
-        'views/account_tax_unit_studio_ported.xml',
         'views/account_account_studio_ported.xml',
         'views/account_move_studio_ported.xml',
         'views/account_move_line_studio_ported.xml',
