@@ -44,9 +44,7 @@
           <attribute name="create">false</attribute>
           <attribute name="delete">false</attribute>
         </xpath>
-        <xpath expr="//button[@name='1404']" position="after">
-          <field widget="statusbar" name="x_studio_selection_field_yo4qM"/>
-        </xpath>
+        
         <xpath expr="//field[@name='x_name']" position="attributes">
           <attribute name="force_save">True</attribute>
           <attribute name="string">Registration No</attribute>

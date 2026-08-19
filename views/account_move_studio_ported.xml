@@ -172,21 +172,13 @@
             
           </xpath>
           
-          <xpath expr="//header/button[@name='1370']" position="after">
-            
-          </xpath>
           
-          <xpath expr="//header/button[@name='2366']" position="after">
-            
-          </xpath>
           
-          <xpath expr="//header/button[@name='1493']" position="after">
-            
-          </xpath>
           
-          <xpath expr="//header/button[@name='1495']" position="attributes">
-          <attribute name="studio_approval">True</attribute>
-          </xpath>
+          
+          
+          
+          
           
           <xpath expr="//header/button[@name='action_post'][2]" position="attributes">
             <attribute name="invisible">((x_studio_rug_acc_updated == False) and ((x_studio_rug_rejected == False) and (x_studio_rug_confirmed == True))) or (((x_studio_bg_sent == False) and (x_studio_bank_guarantee_notification == True)) or (((x_studio_credit_note_approved == False) and (move_type == 'out_refund')) or (((x_studio_currency_rate_updated == False) and (x_studio_pr_type_1 == 'Import')) or (((x_studio_update_consignment == False) and (x_studio_pr_type_1 == 'Import')) or ((move_type == 'entry') or ((auto_post == True) or ((state != 'draft') or ((x_studio_bank_guarantee_validation == True) or (x_studio_credit_limit_validation == True)))))))))</attribute></xpath>
@@ -198,13 +190,9 @@
             
           </xpath>
           
-          <xpath expr="//header/button[@name='1852']" position="before">
             
-          </xpath>  
           
-          <xpath expr="//header/button[@name='1851']" position="before">
-            
-          </xpath>
+          
           
           <!--xpath expr="//field[@name='analytic_account_id']" position="attributes">
            <attribute name="domain">[["group_id","=",x_studio_analytic_group]]</attribute>
