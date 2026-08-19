@@ -50,7 +50,7 @@
     <field name="active" eval="True"/>
     <!-- TODO: wire action_server_ids to actual server_action xmlids: [1720] -->
   </record>
-  <!-- SKIPPED unresolved model ref: <record id="automation_120_srm_auto_populate_report_type_in_account_move_lines" model="base.automation">     <field name="name">SRM - Auto Populate Re... -->
+  
   <record id="automation_121_srm_update_sales_order_customer_invoice" model="base.automation">
     <field name="name">SRM - Update Sales Order - Customer Invoice</field>
     <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;account.move&apos;)]"/>
@@ -86,7 +86,7 @@
     <field name="active" eval="True"/>
     <!-- TODO: wire action_server_ids to actual server_action xmlids: [2331] -->
   </record>
-  <!-- SKIPPED unresolved model ref: <record id="automation_219_update_analytic_tag_parameters_sales_invoice_line_product" model="base.automation">     <field name="name">Update Analytic ... -->
+  
   <record id="automation_237_update_analytic_tag_parameters_sales_invoice_customer" model="base.automation">
     <field name="name">Update Analytic Tag Parameters - Sales Invoice - Customer</field>
     <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;account.move&apos;)]"/>
@@ -129,6 +129,6 @@
     <field name="active" eval="True"/>
     <!-- TODO: wire action_server_ids to actual server_action xmlids: [2738] -->
   </record>
-  <!-- SKIPPED unresolved model ref: <record id="automation_335_jin_company_id_in_payment_terms" model="base.automation">     <field name="name">JIN - Company Id in Payment Terms</field> ... -->
-  <!-- SKIPPED unresolved model ref: <record id="automation_343_etf_schedule_contract_id" model="base.automation">     <field name="name">ETF Schedule - Contract Id</field>     <field nam... -->
+  
+  
 </odoo>
