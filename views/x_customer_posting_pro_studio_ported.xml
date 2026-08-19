@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="ported_default_form_view_fo_f49a8f85_9bb2_43ef_8f4f_8b962b411265" model="ir.ui.view">
+    <field name="name">Default form view for x_customer_posting_pro</field>
+    <field name="model">x_customer_posting_pro</field>
+    <field name="type">form</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <form>
+        <header/>
+        <sheet string="Customer Posting Profile">
+          <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="x_active == True"/>
+          <field name="x_active" invisible="1"/>
+          <div class="oe_title">
+                      <h1>
+                          <field name="x_name" required="1" placeholder="Name..."/>
+                      </h1>
+                  </div>
+          <group name="studio_group_6195ed">
+            <group name="studio_group_6195ed_left"/>
+            <group name="studio_group_6195ed_right"/>
+          </group>
+          <group>
+            <field name="x_studio_notes" placeholder="Type down your notes here..." nolabel="1"/>
+          </group>
+        </sheet>
+        <div class="oe_chatter" name="oe_chatter">
+          <field name="message_follower_ids"/>
+          <field name="message_ids"/>
+          <field name="activity_ids"/>
+        </div>
+      </form>
+    </field>
+  </record>
+  <record id="ported_odoo_studio_default__48b939b5_01fe_4c2d_8fb8_dbabd7799b2f" model="ir.ui.view">
+    <field name="name">Odoo Studio: Default form view for x_customer_posting_pro customization</field>
+    <field name="model">x_customer_posting_pro</field>
+    <field name="type">form</field>
+    <field name="priority">99</field>
+    <field name="mode">extension</field>
+    <field name="inherit_id" ref="BugFix-Accounting.ported_default_form_view_fo_f49a8f85_9bb2_43ef_8f4f_8b962b411265"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//form[1]/sheet[1]/div[1]/h1[1]" position="replace"/>
+        <xpath expr="//group[@name='studio_group_6195ed_left']" position="inside">
+          <field name="x_studio_item_relation_type" string="Item Relation Type"/>
+        </xpath>
+      </data>
+    </field>
+  </record>
+</odoo>

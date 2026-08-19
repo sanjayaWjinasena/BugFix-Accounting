@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="ported_odoo_studio_account__0557b571_4d62_4301_a4d1_b2760e9b28e9" model="ir.ui.view">
+    <field name="name">Odoo Studio: account.account.form customization</field>
+    <field name="model">account.account</field>
+    <field name="type">form</field>
+    <field name="priority">99</field>
+    <field name="mode">extension</field>
+    <field name="inherit_id" ref="account.view_account_form"/>
+    <field name="arch" type="xml">
+      <data>
+        </data>
+    </field>
+  </record>
+</odoo>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="ported_odoo_studio_account__aa45edb8_79c2_454d_9dc9_7dcf39b67f04" model="ir.ui.view">
+    <field name="name">Odoo Studio: account.payment.term.form customization</field>
+    <field name="model">account.payment.term</field>
+    <field name="type">form</field>
+    <field name="priority">99</field>
+    <field name="mode">extension</field>
+    <field name="inherit_id" ref="account.view_payment_term_form"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='company_id']" position="attributes">
+          <attribute name="force_save">True</attribute>
+          <attribute name="readonly">1</attribute></xpath>
+        <xpath expr="//field[@name='line_ids']" position="inside">
+          <tree string="Payment Terms">
+            <field name="value" string="Due Type"/>
+            <field name="value_amount" readonly="value == 'balance'"/>
+            <field name="nb_days"/>
+            </tree>
+        </xpath>
+      </data>
+    </field>
+  </record>
+</odoo>

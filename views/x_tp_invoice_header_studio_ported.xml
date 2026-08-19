@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="ported_default_form_view_fo_b04274bb_8930_4e7e_a2cc_e65229996a48" model="ir.ui.view">
+    <field name="name">Default form view for x_tp_invoice_header</field>
+    <field name="model">x_tp_invoice_header</field>
+    <field name="type">form</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <form>
+        <header>  
+          
+        </header>
+        <header/>
+        <sheet string="TP Invoice Header">
+          <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="x_active == True"/>
+          <field name="x_active" invisible="1"/>
+          <div class="oe_title">
+                      <span class="o_form_label">Invoice Reference</span>
+                      <h1>
+                          <field name="x_name" required="1" placeholder="Name..."/>
+                      </h1>
+                  </div>
+          <group name="studio_group_c9cf25">
+            <group name="studio_group_c9cf25_left"/>
+            <group name="studio_group_c9cf25_right"/>
+          </group>
+        </sheet>
+        <div class="oe_chatter" name="oe_chatter">
+          <field name="message_follower_ids"/>
+          <field name="message_ids"/>
+          <field name="activity_ids"/>
+        </div>
+      </form>
+    </field>
+  </record>
+  <record id="ported_odoo_studio_default__fc4d9ef7_2d23_4a16_911c_66cf2185de9b" model="ir.ui.view">
+    <field name="name">Odoo Studio: Default form view for x_tp_invoice_header customization</field>
+    <field name="model">x_tp_invoice_header</field>
+    <field name="type">form</field>
+    <field name="priority">99</field>
+    <field name="mode">extension</field>
+    <field name="inherit_id" ref="BugFix-Accounting.ported_default_form_view_fo_b04274bb_8930_4e7e_a2cc_e65229996a48"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//button[@name='1384']" position="after">
+          <field widget="statusbar" name="x_studio_pipeline_status_bar" string="Pipeline status bar"/>
+        </xpath>
+        <xpath expr="//widget[@name='web_ribbon']" position="before">
+          <div name="button_box" class="oe_button_box">
+            
+          </div>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/div[not(@name)][1]/h1[1]/field[@name='x_name']" position="attributes">
+          <attribute name="force_save">True</attribute>
+          <attribute name="readonly">1</attribute></xpath>
+        <xpath expr="//group[@name='studio_group_c9cf25_left']" position="inside">
+          <field name="x_studio_vendor" string="Vendor" force_save="True" required="1"/>
+          <field name="x_studio_name" string="Name"/>
+          <field name="x_studio_con_no" string="Created From Consignment No" force_save="True" readonly="1" invisible="x_studio_con_no == False"/>
+        </xpath>
+        <xpath expr="//group[@name='studio_group_c9cf25_right']" position="inside">
+          <field name="x_studio_invoice_no" string="Supplier's Invoice No (Bill Reference)" required="1"/>
+          <field name="x_studio_invoice_date" string="Supplier's Invoice Date (Bill Date)" required="1"/>
+          <field name="x_studio_currency_id" string="Currency" required="1"/>
+          <field name="x_studio_status" string="Status" force_save="True" readonly="1"/>
+        </xpath>
+        <xpath expr="//group[@name='studio_group_c9cf25']" position="after">
+          <notebook name="studio_notebook_ukf7u">
+            <page string="Lines" name="studio_page_ukf7u">
+              <field name="x_studio_tp_lines">
+                <tree create="false" delete="false" editable="bottom">
+                  <field name="x_studio_charge_group" force_save="True" readonly="1"/>
+                  <field name="x_studio_charge_name" force_save="True" readonly="1"/>
+                  <field name="x_studio_original_amount" force_save="True" readonly="1"/>
+                  <field name="x_studio_invoice_amount"/>
+                  <field optional="show" name="x_studio_taxes" string="Taxes" widget="many2many_tags" options="{&quot;no_create&quot;:true}"/>
+                  <field optional="show" name="x_studio_tax_amount" string="Tax Amount"/>
+                  <field name="x_studio_sequence" widget="handle" column_invisible="1"/>
+                  <field name="x_name" column_invisible="1"/>
+                </tree>
+              </field>
+              <group class="oe_subtotal_footer oe_right">
+                <field name="x_studio_total_invoice_amount" widget="monetary" options="{'currency_field': 'x_currency_id'}"/>
+                <field name="x_studio_taxes_1" widget="monetary" options="{'currency_field': 'x_currency_id'}"/>
+                <div class="oe_subtotal_footer_separator oe_inline" name="studio_div_1fae73">
+                  <label for="x_studio_total_1"/>
+                </div>
+                <field name="x_studio_total_1" nolabel="1" class="oe_subtotal_footer_separator" widget="monetary" options="{'currency_field': 'x_currency_id'}"/>
+              </group>
+            </page>
+          </notebook>
+        </xpath>
+      </data>
+    </field>
+  </record>
+</odoo>

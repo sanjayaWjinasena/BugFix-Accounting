@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="ported_imp_copy_charges_to__02d06147_ff91_4ff4_bb53_489854bb1ddd" model="ir.ui.view">
+    <field name="name">IMP Copy Charges to TP Invoice</field>
+    <field name="model">x_temp_tp_invoice_head</field>
+    <field name="type">form</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <form string="Create TP Invoice">
+        <separator string="TP Invoice Details:"/>
+          <newline/>
+          <group>
+            <field name="x_studio_supplier_id" required="True"/>
+            <field name="x_studio_consignment_header_id" options="{'no_open': true}" invisible="1" readonly="True"/>
+          </group> 
+          <newline/>
+          <group>
+            <field name="x_studio_charge_line" nolabel="1" colspan="2">
+              <tree string="Details" create="false" editable="bottom" delete="false"> 
+                <field name="x_studio_select"/>
+                <field name="x_studio_charge_group" options="{'no_open': true}" force_save="1" readonly="True"/>
+                <field name="x_studio_charge_name" options="{'no_open': true}" force_save="1" readonly="True"/>
+                <field name="x_studio_amount" options="{'no_open': true}" force_save="1" readonly="True"/>
+                <field name="x_studio_basis" options="{'no_open': true}" force_save="1" column_invisible="1" readonly="True"/>
+                <field name="x_studio_consignment_id" options="{'no_open': true}" force_save="1" column_invisible="1" readonly="True"/>
+                <field name="x_studio_temp_tp_invoice_header_id" options="{'no_open': true}" force_save="1" column_invisible="1" readonly="True"/>
+                <field name="x_studio_consignment_charge_header_id" options="{'no_open': true}" force_save="1" column_invisible="1" readonly="True"/>
+              </tree>
+            </field>
+          </group>
+          <newline/>
+          <footer>
+            
+            <button special="cancel" string="Cancel" class="oe_link"/>
+          </footer>
+      </form>
+    </field>
+  </record>
+</odoo>

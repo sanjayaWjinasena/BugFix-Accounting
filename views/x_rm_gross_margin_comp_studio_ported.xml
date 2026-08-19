@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="ported_default_form_view_fo_2c4ff7a9_7c71_4304_a9eb_f205aa6d9c48" model="ir.ui.view">
+    <field name="name">Default form view for x_rm_gross_margin_comp</field>
+    <field name="model">x_rm_gross_margin_comp</field>
+    <field name="type">form</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <form>
+        <header/>
+        <sheet string="RM Gross Margin - Comparison">
+          <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="x_active == True"/>
+          <field name="x_active" invisible="1"/>
+          <div class="oe_title">
+                      <h1>
+                          <field name="x_name" required="1" placeholder="Name..."/>
+                      </h1>
+                  </div>
+          <group name="studio_group_505f8c">
+            <group name="studio_group_505f8c_left"/>
+            <group name="studio_group_505f8c_right"/>
+          </group>
+        </sheet>
+        <div class="oe_chatter" name="oe_chatter">
+          <field name="message_follower_ids"/>
+          <field name="message_ids"/>
+          <field name="activity_ids"/>
+        </div>
+      </form>
+    </field>
+  </record>
+</odoo>

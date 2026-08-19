@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="ported_default_form_view_fo_f5872bac_d1f7_4709_a9b1_364b0db1710c" model="ir.ui.view">
+    <field name="name">Default form view for x_custom_currency_rate</field>
+    <field name="model">x_custom_currency_rate</field>
+    <field name="type">form</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <form>
+        <header/>
+        <sheet string="Custom Currency Rate">
+          <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="x_active == True"/>
+          <field name="x_active" invisible="1"/>
+          <div class="oe_title">
+                      <h1>
+                          <field name="x_name" required="1" placeholder="Name..."/>
+                      </h1>
+                  </div>
+          <group name="studio_group_e8c751">
+            <group name="studio_group_e8c751_left"/>
+            <group name="studio_group_e8c751_right"/>
+          </group>
+        </sheet>
+        <div class="oe_chatter" name="oe_chatter">
+          <field name="message_follower_ids"/>
+          <field name="message_ids"/>
+          <field name="activity_ids"/>
+        </div>
+      </form>
+    </field>
+  </record>
+  <record id="ported_odoo_studio_default__98249da6_8d85_410b_8ba9_952472bdd50c" model="ir.ui.view">
+    <field name="name">Odoo Studio: Default form view for x_custom_currency_rate customization</field>
+    <field name="model">x_custom_currency_rate</field>
+    <field name="type">form</field>
+    <field name="priority">99</field>
+    <field name="mode">extension</field>
+    <field name="inherit_id" ref="BugFix-Accounting.ported_default_form_view_fo_f5872bac_d1f7_4709_a9b1_364b0db1710c"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='x_name']" position="attributes">
+          <attribute name="invisible">1</attribute><attribute name="required"/></xpath>
+        <xpath expr="//group[@name='studio_group_e8c751_left']" position="inside">
+          <field name="x_studio_start_date" string="Start Date"/>
+          <field name="x_studio_end_date" string="End Date"/>
+          <field name="x_studio_rate" string="Rate"/>
+          <field name="x_studio_custom_currency_id" string="Custom Currency Id" invisible="1"/>
+        </xpath>
+      </data>
+    </field>
+  </record>
+</odoo>
