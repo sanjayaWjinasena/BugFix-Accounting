@@ -46,7 +46,6 @@
         'views/account_payment_term_studio_ported.xml',
         'views/account_journal_studio_ported.xml',
         'views/account_analytic_plan_studio_ported.xml',
-        'views/account_tax_unit_studio_ported.xml',
         'views/account_move_studio_ported.xml',
     ],
     'installable': True,
