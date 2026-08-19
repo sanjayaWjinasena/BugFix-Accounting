@@ -48,7 +48,6 @@
         'views/account_move_studio_ported.xml',
         'views/account_report_external_value_studio_ported.xml',
         'views/account_tax_repartition_line_studio_ported.xml',
-        'views/account_payment_method_line_studio_ported.xml',
         'views/account_analytic_account_studio_ported.xml',
         'views/account_asset_studio_ported.xml',
         'views/account_group_studio_ported.xml',
