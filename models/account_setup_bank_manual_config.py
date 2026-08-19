@@ -2,7 +2,7 @@
 from odoo import fields, models
 
 
-class AccountSetupBankManualConfig(models.Model):
+class AccountSetupBankManualConfig(models.TransientModel):
     _inherit = 'account.setup.bank.manual.config'
 
     x_studio_bank_code = fields.Char(string='bank code', store=False)
