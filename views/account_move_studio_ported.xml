@@ -72,10 +72,7 @@
           <field name="x_studio_create_from_transfer_1" string="Create From Transfer" force_save="True" readonly="1" invisible="x_studio_create_from_transfer_1 == False"/>
           <field name="x_studio_tp_id" string="Created From TP Invoice" force_save="True" readonly="1" invisible="x_studio_tp_id == False"/>
         </xpath>
-        <xpath expr="//field[@name='purchase_id']" position="after">
-          <field name="x_studio_update_consignment" string="Update Consignment" force_save="True" readonly="1" invisible="1"/>
-          <field name="x_studio_purchase_id" string="Purchase Order" force_save="True" readonly="1" invisible="x_studio_purchase_id == False"/>
-        </xpath>
+        
         <xpath expr="//field[@name='purchase_vendor_bill_id']" position="after">
           <field name="x_studio_purchase_type" string="PR Type" invisible="(x_studio_purchase_type == False) or (x_studio_purchase_type == 'Local')"/>
           <field name="x_studio_test_type" string="Test Type" invisible="1"/>
