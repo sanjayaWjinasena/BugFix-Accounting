@@ -41,7 +41,6 @@
         'views/account_report_expression_studio_ported.xml',
         'views/account_tax_group_studio_ported.xml',
         'views/account_account_studio_ported.xml',
-        'views/account_move_studio_ported.xml',
         'views/account_move_line_studio_ported.xml',
         'views/account_payment_studio_ported.xml',
         'views/account_payment_term_studio_ported.xml',
