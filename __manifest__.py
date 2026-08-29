@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Accounting',
-    'version': '17.0.0.0.14',
+    'version': '17.0.0.0.15',
     'summary': 'Studio-to-Python port for BugFix-Accounting',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Accounting',
@@ -22,9 +22,17 @@
     #     catalog. Adds a new local dep edge into BugFix-Accounting,
     #     which was previously a root. No cycle: studio_usermodel_migration
     #     is itself a root.
+    #
+    # v0.0.15 additions:
+    #   * project — x_temp_estimated.x_studio_project_no m2o into
+    #     project.project. Standard Odoo module.
+    #   * BugFix-Project — x_temp_estimated.x_studio_category m2o into
+    #     x_project_category (owned by BugFix-Project). New local dep
+    #     edge BugFix-Accounting -> BugFix-Project verified acyclic
+    #     (BugFix-Project depends only on standard Odoo modules).
     'depends': [
-        'base_setup', 'account', 'mrp', 'sale', 'crm', 'stock',
-        'studio_usermodel_migration',
+        'base_setup', 'account', 'mrp', 'sale', 'crm', 'stock', 'project',
+        'studio_usermodel_migration', 'BugFix-Project',
     ],
     # v0.0.2: data XMLs populated from Clear-DB snapshot via
     # scripts/populate_data_xmls.py (13 server actions, 22
