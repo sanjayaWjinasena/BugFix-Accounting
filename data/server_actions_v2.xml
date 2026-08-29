@@ -237,6 +237,88 @@ if record.x_studio_type == 'Advance Payment':
         <field name="binding_view_types">list,form</field>
     </record>
 
+    <!-- 1404: IMP - Post LC. Sets x_studio_status/x_studio_selection_field_yo4qM
+         to 'Posted' after validating LC amount. Referenced from the primary
+         form view (restored in v0.0.26; auto-porter had dropped it). -->
+    <record id="srv_lc_post_lc" model="ir.actions.server">
+        <field name="name">IMP - Post LC</field>
+        <field name="model_id" ref="model_x_lc_header"/>
+        <field name="state">code</field>
+        <field name="usage">ir_actions_server</field>
+        <field name="sequence">5</field>
+        <field name="code"><![CDATA[
+if record.x_studio_lc_amount == 0.00:
+    raise UserError('LC Amount must be Specified')
+
+record['x_studio_status'] = 'Posted'
+record['x_studio_selection_field_yo4qM'] = 'Posted'
+]]></field>
+    </record>
+
+    <!-- 1405: IMP - Amend LC. Clones the LC to a new record with
+         incremented version_no, then flips the source status to 'Amended'.
+         Referenced from the primary form view (restored in v0.0.26). -->
+    <record id="srv_lc_amend_lc" model="ir.actions.server">
+        <field name="name">IMP - Amend LC</field>
+        <field name="model_id" ref="model_x_lc_header"/>
+        <field name="state">code</field>
+        <field name="usage">ir_actions_server</field>
+        <field name="sequence">5</field>
+        <field name="code"><![CDATA[
+if record.id:
+    lc = env['x_lc_header'].create({'x_studio_created_from_purchase_order': record.x_studio_created_from_purchase_order.id})
+    lc.write({
+        'x_name': record.x_name,
+        'x_studio_indent_no': record.x_studio_indent_no,
+        'x_studio_additional_conditions': record.x_studio_additional_conditions,
+        'x_studio_available_with_by': record.x_studio_available_with_by,
+        'x_studio_bank_charges': record.x_studio_bank_charges,
+        'x_studio_beneficiary': record.x_studio_beneficiary,
+        'x_studio_confirmation_instructions': record.x_studio_confirmation_instructions,
+        'x_studio_currency_id': record.x_studio_currency_id,
+        'x_studio_date_of_expiry': record.x_studio_date_of_expiry,
+        'x_studio_date_of_issue': record.x_studio_date_of_issue,
+        'x_studio_date_of_receipt': record.x_studio_date_of_receipt,
+        'x_studio_deferred_days': record.x_studio_deferred_days,
+        'x_studio_description_of_goods': record.x_studio_description_of_goods,
+        'x_studio_document_required': record.x_studio_document_required,
+        'x_studio_draft': record.x_studio_draft,
+        'x_studio_instruction_remarks': record.x_studio_instruction_remarks,
+        'x_studio_issuing_bank': record.x_studio_issuing_bank.id,
+        'x_studio_issuing_bank_reference_no_1': record.x_studio_issuing_bank_reference_no_1,
+        'x_studio_latest_shipment_date': record.x_studio_latest_shipment_date,
+        'x_studio_lc_amount': record.x_studio_lc_amount,
+        'x_studio_lc_credit_sub_type': record.x_studio_lc_credit_sub_type,
+        'x_studio_lc_credit_type': record.x_studio_lc_credit_type,
+        'x_studio_lc_no': record.x_studio_lc_no,
+        'x_studio_loading_on_board': record.x_studio_loading_on_board,
+        'x_studio_partial_shipment': record.x_studio_partial_shipment,
+        'x_studio_period_for_presentation': record.x_studio_period_for_presentation,
+        'x_studio_place_of_expiry': record.x_studio_place_of_expiry,
+        'x_studio_revised_lc_amount': record.x_studio_revised_lc_amount,
+        'x_studio_tolerance': record.x_studio_tolerance,
+        'x_studio_tolerance_type': record.x_studio_tolerance_type,
+        'x_studio_transportation': record.x_studio_transportation,
+        'x_studio_transshipment': record.x_studio_transshipment,
+        'x_studio_vendor': record.x_studio_vendor.id,
+        'x_studio_version_no': (record.x_studio_version_no + 1),
+    })
+
+    action = {
+        'name': 'Letter of Credit',
+        'domain': [('id', '=', lc.id)],
+        'type': 'ir.actions.act_window',
+        'res_model': 'x_lc_header',
+        'view_mode': 'tree,form',
+        'view_id': False,
+        'context': False,
+    }
+
+    record['x_studio_status'] = 'Amended'
+    record['x_studio_selection_field_yo4qM'] = 'Amended'
+]]></field>
+    </record>
+
     <!-- 1378: IMP - Apply Selected Charge Lines to TP Invoice.
          Full port of the Clear-DB Python — real workflow action
          that creates an x_tp_invoice_header from selected consignment

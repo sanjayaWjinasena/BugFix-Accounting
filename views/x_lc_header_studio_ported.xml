@@ -9,9 +9,14 @@
     <field name="mode">primary</field>
     <field name="arch" type="xml">
       <form>
-        <header>  
-          
-          
+        <header>
+          <!-- Restored in v0.0.26: auto-porter had stripped these two buttons
+               when it fetched the arch. Referenced from the v2 extension's
+               xpath anchor //button[@string='Post LC'] (line 45 of _v2 file).
+               Actions ported in data/server_actions_v2.xml (srv_lc_post_lc /
+               srv_lc_amend_lc). -->
+          <button type="action" name="%(BugFix-Accounting.srv_lc_post_lc)d" string="Post LC" class="btn-primary" invisible="x_studio_status not in ['Draft']"/>
+          <button type="action" name="%(BugFix-Accounting.srv_lc_amend_lc)d" string="Amend LC" class="btn-primary" invisible="x_studio_status not in ['Posted']"/>
         </header>
         <header/>
         <sheet string="LC Header">

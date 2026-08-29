@@ -42,7 +42,11 @@
                 <attribute name="create">false</attribute>
                 <attribute name="delete">false</attribute>
               </xpath>
-              <xpath expr="//button[@name='1404']" position="after">
+              <!-- v0.0.26: anchor was `//button[@name='1404']` on Clear-DB,
+                   but numeric action ids don't survive fresh install. Changed
+                   to string-based anchor which is stable across DBs and matches
+                   the same button (Post LC) that srv_lc_post_lc now provides. -->
+              <xpath expr="//button[@string='Post LC']" position="after">
                 <field widget="statusbar" name="x_studio_selection_field_yo4qM"/>
               </xpath>
               <xpath expr="//field[@name='x_name']" position="attributes">
