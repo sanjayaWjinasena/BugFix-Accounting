@@ -42,11 +42,14 @@
                 <attribute name="create">false</attribute>
                 <attribute name="delete">false</attribute>
               </xpath>
-              <!-- v0.0.26: anchor was `//button[@name='1404']` on Clear-DB,
-                   but numeric action ids don't survive fresh install. Changed
-                   to string-based anchor which is stable across DBs and matches
-                   the same button (Post LC) that srv_lc_post_lc now provides. -->
-              <xpath expr="//button[@string='Post LC']" position="after">
+              <!-- v0.0.27: anchor was `//button[@name='1404']` on Clear-DB,
+                   but numeric action ids don't survive fresh install. Odoo
+                   also disallows @string as a view-inheritance selector, so
+                   using positional xpath - selects the first button in the
+                   first header, which is Post LC (the primary view header is
+                   restored in x_lc_header_studio_ported.xml with Post LC as
+                   the first button and Amend LC as the second). -->
+              <xpath expr="//header[1]/button[1]" position="after">
                 <field widget="statusbar" name="x_studio_selection_field_yo4qM"/>
               </xpath>
               <xpath expr="//field[@name='x_name']" position="attributes">
