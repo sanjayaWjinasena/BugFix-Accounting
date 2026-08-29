@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Accounting',
-    'version': '17.0.0.0.22',
+    'version': '17.0.0.0.23',
     'summary': 'Studio-to-Python port for BugFix-Accounting',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Accounting',
@@ -44,11 +44,19 @@
     # v0.0.19 addition:
     #   * account_reports — v0.0.19 resolves the account.archived.tax.tag.tree
     #     inherit against account_reports.view_archived_tag_move_tree.
+    # v0.0.23 addition:
+    #   * bank-data — supplies the 19 bare x_ fields on account.move.line
+    #     (x_dest_bank_micr, x_cbc_amount, x_return_code, ...) that the
+    #     ported Studio tree-BankData + tree-EPF views reference. Also
+    #     supplies the 17 hr.payslip fields and paymaster.config model.
+    #     Verified acyclic (bank-data depends on account/hr/hr_payroll/base
+    #     only). Root cause of the v0.0.22 install failure — rule captured
+    #     as feedback-pin-source-verification in project memory.
     'depends': [
         'base_setup', 'account', 'account_budget', 'account_reports',
         'mrp', 'sale', 'crm', 'stock', 'project',
         'studio_usermodel_migration', 'BugFix-Project',
-        'BugFix-Sales', 'BugFix-Purchase',
+        'BugFix-Sales', 'BugFix-Purchase', 'bank-data',
     ],
     # v0.0.2: data XMLs populated from Clear-DB snapshot via
     # scripts/populate_data_xmls.py (13 server actions, 22
