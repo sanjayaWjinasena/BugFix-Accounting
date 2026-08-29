@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Accounting',
-    'version': '17.0.0.0.17',
+    'version': '17.0.0.0.18',
     'summary': 'Studio-to-Python port for BugFix-Accounting',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Accounting',
@@ -91,6 +91,60 @@
         'views/account_group_studio_ported.xml',
         'views/account_tax_studio_ported.xml',
         'views/account_analytic_line_studio_ported.xml',
+        # v0.0.18: auto-generated view records ported from Clear-DB
+        # by scripts/port_bugfix_accounting_views.py (2026-08-29).
+        # 40 files, 140 view records covering all 40 target models —
+        # default primary form/tree/search PLUS priority-99 Studio
+        # inherits with byte-verbatim arch_db. Loaded AFTER the older
+        # hand-ported views so any id collisions get caught by
+        # ir.model.data uniqueness (the earlier records win).
+        'views/account_analytic_line_studio_ported_v2.xml',
+        # v0.0.18 hold-back: account_move_studio_ported_v2.xml and
+        # account_move_line_studio_ported_v2.xml carry TODO markers
+        # for inherit_id references (account.archived.tax.tag.tree,
+        # account.move.line.tree-ETF/EPF/BankData — non-standard base
+        # views that need canonical xmlid lookup). Files exist on
+        # disk but not loaded until the inherit refs are resolved
+        # manually.
+        # 'views/account_move_studio_ported_v2.xml',
+        # 'views/account_move_line_studio_ported_v2.xml',
+        'views/account_payment_studio_ported_v2.xml',
+        'views/crossovered_budget_studio_ported_v2.xml',
+        'views/x_advance_payment_acco_studio_ported_v2.xml',
+        'views/x_consignment_charge_h_studio_ported_v2.xml',
+        'views/x_custom_currency_studio_ported_v2.xml',
+        'views/x_custom_currency_rate_studio_ported_v2.xml',
+        'views/x_customer_posting_pro_studio_ported_v2.xml',
+        'views/x_journal_types_studio_ported_v2.xml',
+        'views/x_lc_header_studio_ported_v2.xml',
+        'views/x_misc_charge_codes_studio_ported_v2.xml',
+        'views/x_rm_cust_invoice_s1_studio_ported_v2.xml',
+        'views/x_rm_customer_wise_inv_studio_ported_v2.xml',
+        'views/x_rm_daily_s1_studio_ported_v2.xml',
+        'views/x_rm_daily_s2_studio_ported_v2.xml',
+        'views/x_rm_daily_s3_studio_ported_v2.xml',
+        'views/x_rm_daily_sales_repor_studio_ported_v2.xml',
+        'views/x_rm_date_test_studio_ported_v2.xml',
+        'views/x_rm_gross_margin_actu_studio_ported_v2.xml',
+        'views/x_rm_gross_margin_comp_studio_ported_v2.xml',
+        'views/x_rm_gross_margin_esti_studio_ported_v2.xml',
+        'views/x_rm_gross_margin_esti_line_7e86d_studio_ported_v2.xml',
+        'views/x_rm_gross_margin_invo_studio_ported_v2.xml',
+        'views/x_rm_none_moving_studio_ported_v2.xml',
+        'views/x_rm_prod_summary_spli_studio_ported_v2.xml',
+        'views/x_rm_production_orders_studio_ported_v2.xml',
+        'views/x_rm_production_varian_studio_ported_v2.xml',
+        'views/x_rm_sales_order_line_studio_ported_v2.xml',
+        'views/x_rm_sales_prod_purch_studio_ported_v2.xml',
+        'views/x_sales_report_model_studio_ported_v2.xml',
+        'views/x_sales_report_type_studio_ported_v2.xml',
+        'views/x_temp_actual_budget_studio_ported_v2.xml',
+        'views/x_temp_estimated_studio_ported_v2.xml',
+        'views/x_temp_tp_invoice_head_studio_ported_v2.xml',
+        'views/x_temp_tp_invoice_line_studio_ported_v2.xml',
+        'views/x_test_rm_gross_margin_studio_ported_v2.xml',
+        'views/x_tp_invoice_header_studio_ported_v2.xml',
+        'views/x_tp_invoice_line_studio_ported_v2.xml',
     ],
     'installable': True,
     'auto_install': False,
