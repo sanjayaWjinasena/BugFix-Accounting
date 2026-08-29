@@ -199,7 +199,7 @@
         <field name="type">tree</field>
         <field name="priority">99</field>
         <field name="mode">extension</field>
-        <field name="inherit_id" ref="account.view_account_move_tree"/>
+        <field name="inherit_id" ref="account.view_move_tree"/>
         <field name="arch" type="xml">
             <data>
               <xpath expr="//tree[1]/field[@name='name']" position="after">

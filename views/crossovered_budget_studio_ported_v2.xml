@@ -19,7 +19,7 @@
         <field name="type">form</field>
         <field name="priority">99</field>
         <field name="mode">extension</field>
-        <field name="inherit_id" ref="account_budget.view_crossovered_budget_form"/>
+        <field name="inherit_id" ref="account_budget.crossovered_budget_view_form"/>
         <field name="arch" type="xml">
             <data>
               <xpath expr="//form[1]" position="attributes">
@@ -84,7 +84,7 @@
         <field name="type">tree</field>
         <field name="priority">99</field>
         <field name="mode">extension</field>
-        <field name="inherit_id" ref="account_budget.view_crossovered_budget_tree"/>
+        <field name="inherit_id" ref="account_budget.crossovered_budget_view_tree"/>
         <field name="arch" type="xml">
             <data>
               <xpath expr="//tree[1]" position="attributes">
