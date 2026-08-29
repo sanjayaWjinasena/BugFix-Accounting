@@ -15,6 +15,7 @@ from odoo import fields, models
 class XRmGrossMarginInvo(models.Model):
     _name = 'x_rm_gross_margin_invo'
     _description = 'Gross Margin Invoice Reporting Row'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'x_studio_sequence, id'
     _rec_name = 'x_name'
 

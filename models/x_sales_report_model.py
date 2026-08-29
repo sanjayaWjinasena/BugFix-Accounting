@@ -7,6 +7,7 @@ class XSalesReportModel(models.Model):
     _name = 'x_sales_report_model'
     _description = 'X Sales Report Model'
 
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     x_active = fields.Boolean(string='Active')
     x_name = fields.Char(string='Name')
     x_studio_actual_gp_ = fields.Float(string='Actual GP')

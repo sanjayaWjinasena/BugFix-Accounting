@@ -7,6 +7,7 @@ class XConsignmentChargeH(models.Model):
     _name = 'x_consignment_charge_h'
     _description = 'X Consignment Charge H'
 
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     x_active = fields.Boolean(string='Active')
     x_name = fields.Char(string='Name')
     x_studio_allocate_header_charges = fields.Boolean(string='Allocate Header Charges')

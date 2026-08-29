@@ -12,6 +12,7 @@ from odoo import fields, models
 class XRmDailySalesRepor(models.Model):
     _name = 'x_rm_daily_sales_repor'
     _description = 'Daily Sales Report Row'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'x_studio_sequence, id'
     _rec_name = 'x_name'
 

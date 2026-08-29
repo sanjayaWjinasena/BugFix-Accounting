@@ -7,6 +7,7 @@ class XSalesReportType(models.Model):
     _name = 'x_sales_report_type'
     _description = 'X Sales Report Type'
 
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     x_active = fields.Boolean(string='Active')
     x_name = fields.Char(string='Report Name')
     # TODO: x_studio_journal_entry_id = fields.One2many('account.move', <inverse>, string='Journal Entry Id')

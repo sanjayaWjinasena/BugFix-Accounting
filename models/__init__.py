@@ -14,6 +14,7 @@ from . import x_custom_currency
 from . import x_custom_currency_rate
 from . import x_customer_posting_pro
 from . import x_jinasena_paymaster_config
+from . import x_journal_types
 from . import x_lc_header
 from . import x_misc_charge_codes
 from . import x_rm_cust_invoice_s1
@@ -24,6 +25,8 @@ from . import x_rm_daily_s3
 from . import x_rm_daily_sales_repor
 from . import x_rm_date_test
 from . import x_rm_gross_margin_actu
+from . import x_rm_gross_margin_esti
+from . import x_rm_gross_margin_esti_line_7e86d
 from . import x_rm_gross_margin_invo
 from . import x_rm_none_moving
 from . import x_rm_prod_summary_spli

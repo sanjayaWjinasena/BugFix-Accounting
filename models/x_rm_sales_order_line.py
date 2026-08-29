@@ -17,6 +17,7 @@ from odoo import fields, models
 class XRmSalesOrderLine(models.Model):
     _name = 'x_rm_sales_order_line'
     _description = 'Sales Order Line Reporting Row'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'x_studio_sequence, id'
     _rec_name = 'x_name'
 

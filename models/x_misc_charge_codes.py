@@ -7,6 +7,7 @@ class XMiscChargeCodes(models.Model):
     _name = 'x_misc_charge_codes'
     _description = 'X Misc Charge Codes'
 
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     x_active = fields.Boolean(string='Active')
     x_name = fields.Char(string='Misc. Charge Code')
     x_studio_charge_group = fields.Selection([], string='Charge Group')

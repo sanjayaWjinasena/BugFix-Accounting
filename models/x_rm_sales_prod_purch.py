@@ -12,6 +12,7 @@ from odoo import fields, models
 class XRmSalesProdPurch(models.Model):
     _name = 'x_rm_sales_prod_purch'
     _description = 'Sales / Production / Purchase Reporting Row'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'x_studio_sequence, id'
     _rec_name = 'x_name'
 

@@ -12,6 +12,7 @@ from odoo import fields, models
 class XRmGrossMarginEsti(models.Model):
     _name = 'x_rm_gross_margin_esti'
     _description = 'Gross Margin Estimate Row'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'x_studio_sequence, id'
     _rec_name = 'x_name'
 

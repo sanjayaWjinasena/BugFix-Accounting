@@ -5,6 +5,7 @@
   <record id="model_x_custom_currency_rate" model="ir.model"><field name="name">x_custom_currency_rate</field><field name="model">x_custom_currency_rate</field></record>
   <record id="model_x_customer_posting_pro" model="ir.model"><field name="name">x_customer_posting_pro</field><field name="model">x_customer_posting_pro</field></record>
   <record id="model_x_jinasena_paymaster_config" model="ir.model"><field name="name">x_jinasena_paymaster_config</field><field name="model">x_jinasena_paymaster_config</field></record>
+  <record id="model_x_journal_types" model="ir.model"><field name="name">Journal Types</field><field name="model">x_journal_types</field></record>
   <record id="model_x_rm_cust_invoice_s1" model="ir.model"><field name="name">x_rm_cust_invoice_s1</field><field name="model">x_rm_cust_invoice_s1</field></record>
   <record id="model_x_rm_customer_wise_inv" model="ir.model"><field name="name">x_rm_customer_wise_inv</field><field name="model">x_rm_customer_wise_inv</field></record>
   <record id="model_x_rm_gross_margin_comp" model="ir.model"><field name="name">x_rm_gross_margin_comp</field><field name="model">x_rm_gross_margin_comp</field></record>

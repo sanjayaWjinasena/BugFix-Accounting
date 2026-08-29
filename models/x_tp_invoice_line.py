@@ -12,6 +12,7 @@ from odoo import fields, models
 class XTpInvoiceLine(models.Model):
     _name = 'x_tp_invoice_line'
     _description = 'TP Invoice Line'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'x_studio_sequence, id'
     _rec_name = 'x_name'
 
