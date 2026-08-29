@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Accounting',
-    'version': '17.0.0.0.18',
+    'version': '17.0.0.0.19',
     'summary': 'Studio-to-Python port for BugFix-Accounting',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Accounting',
@@ -41,8 +41,11 @@
     #   * BugFix-Purchase — crossovered.budget compute uses
     #     env['x_purchase_request'] (soft-guarded so absence doesn't
     #     crash, but declaring the dep is cleaner for fresh install).
+    # v0.0.19 addition:
+    #   * account_reports — v0.0.19 resolves the account.archived.tax.tag.tree
+    #     inherit against account_reports.view_archived_tag_move_tree.
     'depends': [
-        'base_setup', 'account', 'account_budget',
+        'base_setup', 'account', 'account_budget', 'account_reports',
         'mrp', 'sale', 'crm', 'stock', 'project',
         'studio_usermodel_migration', 'BugFix-Project',
         'BugFix-Sales', 'BugFix-Purchase',
@@ -99,15 +102,17 @@
         # hand-ported views so any id collisions get caught by
         # ir.model.data uniqueness (the earlier records win).
         'views/account_analytic_line_studio_ported_v2.xml',
-        # v0.0.18 hold-back: account_move_studio_ported_v2.xml and
-        # account_move_line_studio_ported_v2.xml carry TODO markers
-        # for inherit_id references (account.archived.tax.tag.tree,
-        # account.move.line.tree-ETF/EPF/BankData — non-standard base
-        # views that need canonical xmlid lookup). Files exist on
-        # disk but not loaded until the inherit refs are resolved
-        # manually.
-        # 'views/account_move_studio_ported_v2.xml',
-        # 'views/account_move_line_studio_ported_v2.xml',
+        # v0.0.19: TODO markers resolved. account.out.invoice.tree
+        # inherits resolved to account.view_out_invoice_tree +
+        # account.view_in_invoice_tree (both children of the same
+        # Studio pin name but different Odoo canonical xmlids).
+        # account.move.line.tree-ETF and -BankData now inherit from
+        # our own ported_view_8294 / ported_view_8295 primary parents
+        # (Clear-DB's ad-hoc primaries with no ir.model.data pin —
+        # rehosted verbatim). account.archived.tax.tag.tree resolved
+        # to account_reports.view_archived_tag_move_tree.
+        'views/account_move_studio_ported_v2.xml',
+        'views/account_move_line_studio_ported_v2.xml',
         'views/account_payment_studio_ported_v2.xml',
         'views/crossovered_budget_studio_ported_v2.xml',
         'views/x_advance_payment_acco_studio_ported_v2.xml',

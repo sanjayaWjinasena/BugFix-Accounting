@@ -219,8 +219,8 @@
         <field name="type">tree</field>
         <field name="priority">99</field>
         <field name="mode">extension</field>
-        <!-- TODO: resolve inherit_id manually -->
-        <!-- Clear-DB parent: id=873 name=account.out.invoice.tree -->
+        <!-- v0.0.19: resolved inherit_id via Clear-DB pin lookup -->
+        <field name="inherit_id" ref="account.view_out_invoice_tree"/>
         <field name="arch" type="xml">
             <data>
               <xpath expr="//tree[1]" position="attributes">
@@ -242,8 +242,9 @@
         <field name="type">tree</field>
         <field name="priority">99</field>
         <field name="mode">extension</field>
-        <!-- TODO: resolve inherit_id manually -->
-        <!-- Clear-DB parent: id=874 name=account.out.invoice.tree -->
+        <!-- v0.0.19: resolved inherit_id via Clear-DB pin lookup -->
+        <!-- id=874 pins as account.view_in_invoice_tree despite the name -->
+        <field name="inherit_id" ref="account.view_in_invoice_tree"/>
         <field name="arch" type="xml">
             <data>
               <xpath expr="//tree[1]" position="attributes">
