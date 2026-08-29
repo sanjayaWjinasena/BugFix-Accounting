@@ -40,7 +40,11 @@ class AccountMove(models.Model):
     x_studio_project_no_settle = fields.Many2one('project.project', string='Project No Settle')
     x_studio_purchase_id = fields.Many2one('purchase.order', string='Purchase Order')
     x_studio_purchase_type = fields.Selection([], string='PR Type', readonly=True)
-    x_studio_report_type_s_cust_aging = fields.Many2one('x_sales_report_type', string='Report Type (S - Cust Aging)')
+    # x_studio_report_type_s_cust_aging moved to studio_usermodel_migration
+    # (Jinasena : Masterdata : User) in v0.0.33. Its O2M partner
+    # x_sales_report_type.x_studio_journal_entry_id now lives in the
+    # same module, eliminating the x_sales_report_type cycle that had
+    # blocked BugFix-Stock/MRP from being deppable by this repo.
     x_studio_rug_acc_updated = fields.Boolean(string='RUG Account Updated')
     x_studio_rug_confirmed = fields.Boolean(string='RUG Confirmed', readonly=True)
     x_studio_rug_rejected = fields.Boolean(string='RUG Rejected', readonly=True)
