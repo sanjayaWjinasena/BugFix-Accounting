@@ -39,3 +39,4 @@ from . import x_temp_tp_invoice_line
 from . import x_temp_estimated
 from . import x_test_rm_gross_margin
 from . import x_tp_invoice_header
+from . import x_tp_invoice_line
