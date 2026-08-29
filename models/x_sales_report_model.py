@@ -36,7 +36,12 @@ class XSalesReportModel(models.Model):
     x_studio_from_date = fields.Date(string='From Date')
     x_studio_idling_rate = fields.Float(string='Idling Rate %')
     # TODO: x_studio_invoice_details_line_ids = fields.One2many('x_rm_gross_margin_invo', <inverse>, string='Invoice Details Line Ids')
-    # TODO: x_studio_journal_item_ids = fields.One2many('account.move.line', <inverse>, string='Journal Item Ids')
+    x_studio_journal_item_ids = fields.One2many(
+        'account.move.line',
+        related='x_studio_report_type.x_studio_journal_items_id',
+        string='Journal Item Ids',
+        readonly=True,
+    )
     x_studio_management_purpose = fields.Boolean(string='Management Purpose')
     x_studio_month_end_entry_updated = fields.Boolean(string='Month End Entry Updated')
     # TODO: x_studio_none_moving_item_ids = fields.One2many('x_rm_none_moving', <inverse>, string='None Moving Item IDs')

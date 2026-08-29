@@ -11,7 +11,11 @@ class XSalesReportType(models.Model):
     x_active = fields.Boolean(string='Active')
     x_name = fields.Char(string='Report Name')
     # TODO: x_studio_journal_entry_id = fields.One2many('account.move', <inverse>, string='Journal Entry Id')
-    # TODO: x_studio_journal_items_id = fields.One2many('account.move.line', <inverse>, string='Journal Items Id')
+    x_studio_journal_items_id = fields.One2many(
+        'account.move.line',
+        'x_studio_sales_report_type',
+        string='Journal Items Id',
+    )
     # TODO: x_studio_prod_summary_split_id = fields.One2many('stock.move.line', <inverse>, string='Prod. Summary Split Id')
     # TODO: x_studio_production_order_id = fields.One2many('mrp.production', <inverse>, string='Production Order Id')
     # TODO: x_studio_production_variance_id = fields.One2many('stock.move', <inverse>, string='Production Variance Id')
