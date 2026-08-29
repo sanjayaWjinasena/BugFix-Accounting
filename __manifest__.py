@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Accounting',
-    'version': '17.0.0.0.16',
+    'version': '17.0.0.0.17',
     'summary': 'Studio-to-Python port for BugFix-Accounting',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Accounting',
@@ -30,9 +30,22 @@
     #     x_project_category (owned by BugFix-Project). New local dep
     #     edge BugFix-Accounting -> BugFix-Project verified acyclic
     #     (BugFix-Project depends only on standard Odoo modules).
+    #
+    # v0.0.17 additions:
+    #   * account_budget — standard Odoo Enterprise module owning
+    #     crossovered.budget + crossovered.budget.lines (extended by
+    #     models/crossovered_budget.py).
+    #   * BugFix-Sales — crossovered.budget compute traversals into
+    #     sale.order.x_studio_quotation_type / _inventory_short /
+    #     _sub_contract fields, which BugFix-Sales owns.
+    #   * BugFix-Purchase — crossovered.budget compute uses
+    #     env['x_purchase_request'] (soft-guarded so absence doesn't
+    #     crash, but declaring the dep is cleaner for fresh install).
     'depends': [
-        'base_setup', 'account', 'mrp', 'sale', 'crm', 'stock', 'project',
+        'base_setup', 'account', 'account_budget',
+        'mrp', 'sale', 'crm', 'stock', 'project',
         'studio_usermodel_migration', 'BugFix-Project',
+        'BugFix-Sales', 'BugFix-Purchase',
     ],
     # v0.0.2: data XMLs populated from Clear-DB snapshot via
     # scripts/populate_data_xmls.py (13 server actions, 22
