@@ -20,8 +20,16 @@ from . import x_rm_customer_wise_inv
 from . import x_rm_daily_s1
 from . import x_rm_daily_s2
 from . import x_rm_daily_s3
+from . import x_rm_daily_sales_repor
 from . import x_rm_date_test
 from . import x_rm_gross_margin_actu
+from . import x_rm_gross_margin_invo
+from . import x_rm_none_moving
+from . import x_rm_prod_summary_spli
+from . import x_rm_production_orders
+from . import x_rm_production_varian
+from . import x_rm_sales_order_line
+from . import x_rm_sales_prod_purch
 from . import x_rm_gross_margin_comp
 from . import x_sales_report_model
 from . import x_sales_report_type

@@ -1,14 +1,31 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Accounting',
-    'version': '17.0.0.0.13',
+    'version': '17.0.0.0.14',
     'summary': 'Studio-to-Python port for BugFix-Accounting',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Accounting',
     'license': 'LGPL-3',
     # Do NOT depend on studio_customization -- Odoo SH does not ship
     # a manifest for it, listing it causes install skip.
-    'depends': ['base_setup', 'account'],
+    #
+    # v0.0.14 additions:
+    #   * mrp — x_rm_production_orders / x_rm_production_varian
+    #     m2o into mrp.production; without this dep the setup_nonrelated
+    #     fails with KeyError on fresh install.
+    #   * sale — x_rm_sales_order_line m2o into sale.order.
+    #   * crm — x_rm_daily_s1/s2/s3 m2o into crm.team (sales centre).
+    #   * stock — x_rm_production_orders.x_studio_warehouse into
+    #     stock.location.
+    #   * studio_usermodel_migration — x_rm_sales_order_line m2o into
+    #     x_customer_group. That module owns the customer/vendor group
+    #     catalog. Adds a new local dep edge into BugFix-Accounting,
+    #     which was previously a root. No cycle: studio_usermodel_migration
+    #     is itself a root.
+    'depends': [
+        'base_setup', 'account', 'mrp', 'sale', 'crm', 'stock',
+        'studio_usermodel_migration',
+    ],
     # v0.0.2: data XMLs populated from Clear-DB snapshot via
     # scripts/populate_data_xmls.py (13 server actions, 22
     # automations, 66 window actions -- real content, no longer
