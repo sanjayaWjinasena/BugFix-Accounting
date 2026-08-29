@@ -1,3 +1,16 @@
+> **⚠ SUPERSEDED — cross-repo tracker moved.**
+>
+> This document is a historical snapshot. The canonical Studio → Python
+> migration state lives at:
+>
+>     D:\Odoo Playwright Tests\PlayWrite Testings\MIGRATION_TRACKER.md
+>
+> Refresh with `python scripts/refresh_migration_tracker.py --live`.
+> Do NOT update this file for new work — append to the tracker's
+> Iteration Log instead. Content below preserved for provenance.
+
+---
+
 # BugFix-Accounting — views to hand-port
 
 84 views need hand-porting from Clear-DB. Do NOT 
