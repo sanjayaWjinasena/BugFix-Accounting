@@ -17,6 +17,10 @@ from . import x_lc_header
 from . import x_misc_charge_codes
 from . import x_rm_cust_invoice_s1
 from . import x_rm_customer_wise_inv
+from . import x_rm_daily_s1
+from . import x_rm_daily_s2
+from . import x_rm_daily_s3
+from . import x_rm_date_test
 from . import x_rm_gross_margin_actu
 from . import x_rm_gross_margin_comp
 from . import x_sales_report_model
