@@ -32,4 +32,8 @@ class XSalesReportType(models.Model):
     # TODO: x_studio_sales_prod_purch_id = fields.One2many('stock.move.line', <inverse>, string='Sales Prod. Purch. Id')
     x_studio_sequence = fields.Integer(string='Sequence')
     # TODO: x_studio_slow_moving_item_id = fields.One2many('stock.move.line', <inverse>, string='Slow Moving Item Id')
-    # TODO: x_studio_test = fields.One2many('account.move.line', <inverse>, string='test')
+    x_studio_test = fields.One2many(
+        'account.move.line',
+        'x_studio_many2one_field_kiSUJ',
+        string='test',
+    )
