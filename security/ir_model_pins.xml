@@ -16,6 +16,8 @@
   <record id="model_x_lc_header" model="ir.model"><field name="name">X Lc Header</field><field name="model">x_lc_header</field></record>
   <record id="model_x_misc_charge_codes" model="ir.model"><field name="name">X Misc Charge Codes</field><field name="model">x_misc_charge_codes</field></record>
   <record id="model_x_rm_gross_margin_actu" model="ir.model"><field name="name">X Rm Gross Margin Actu</field><field name="model">x_rm_gross_margin_actu</field></record>
+  <record id="model_x_sales_report_model" model="ir.model"><field name="name">X Sales Report Model</field><field name="model">x_sales_report_model</field></record>
+  <record id="model_x_sales_report_type" model="ir.model"><field name="name">X Sales Report Type</field><field name="model">x_sales_report_type</field></record>
   <record id="model_x_temp_tp_invoice_head" model="ir.model"><field name="name">X Temp Tp Invoice Head</field><field name="model">x_temp_tp_invoice_head</field></record>
   <record id="model_x_tp_invoice_header" model="ir.model"><field name="name">X Tp Invoice Header</field><field name="model">x_tp_invoice_header</field></record>
 </odoo>
