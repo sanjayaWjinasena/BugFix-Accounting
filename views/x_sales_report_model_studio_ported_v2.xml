@@ -22,7 +22,7 @@
         <field name="arch" type="xml">
             <form>
               <header>  
-                <button type="action" name="1676" string="Clear Data" class="btn-primary" invisible="1"/>
+                <button type="action" name="%(BugFix-Accounting.srv_sales_report_sample_button)d" string="Clear Data" class="btn-primary" invisible="1"/>
               </header>
               <header/>
               <sheet string="Sales Report Model">
@@ -181,7 +181,7 @@
                           <field name="state" invisible="1"/>
                           <button name="edit" type="edit" icon="fa-edit" title="Edit"/>
                           <button name="action_post" icon="fa-check" title="Post" type="object" groups="account.group_account_invoice" invisible="state not in ['draft']"/>
-                          <button name="281" title="Reverse" icon="fa-refresh" type="action" groups="account.group_account_invoice" invisible="state not in ['posted']"/>
+                          <button name="%(account.action_view_account_move_reversal)d" title="Reverse" icon="fa-refresh" type="action" groups="account.group_account_invoice" invisible="state not in ['posted']"/>
                           <button name="action_duplicate" icon="fa-files-o" title="Duplicate" type="object" groups="account.group_account_invoice"/>
                         </groupby>
                         <header>

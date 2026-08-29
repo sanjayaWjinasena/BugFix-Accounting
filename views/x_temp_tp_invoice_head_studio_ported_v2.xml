@@ -44,7 +44,7 @@
                 </group>
                 <newline/>
                 <footer>
-                  <button name="1378" string="Apply" type="action" class="oe_highlight"/>
+                  <button name="%(BugFix-Accounting.srv_tp_invoice_apply_charges)d" string="Apply" type="action" class="oe_highlight"/>
                   <button special="cancel" string="Cancel" class="oe_link"/>
                 </footer>
             </form>

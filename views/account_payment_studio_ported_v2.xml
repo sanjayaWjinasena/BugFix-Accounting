@@ -23,7 +23,7 @@
         <field name="arch" type="xml">
             <data>
               <xpath expr="//button[@name='action_void_check']" position="after">
-                <button type="action" name="2739" string="Update Advance Payment Account" class="btn-primary" invisible="((x_studio_advance_payment_acc_updated == True) and (x_studio_type == 'Advance Payment')) or (x_studio_type != 'Advance Payment')"/>
+                <button type="action" name="%(BugFix-Accounting.srv_advance_payment_acc_update)d" string="Update Advance Payment Account" class="btn-primary" invisible="((x_studio_advance_payment_acc_updated == True) and (x_studio_type == 'Advance Payment')) or (x_studio_type != 'Advance Payment')"/>
               </xpath>
               <xpath expr="//button[@name='action_post']" position="attributes">
                 <attribute name="invisible">(state != 'draft') or ((x_studio_advance_payment_acc_updated == False) and (x_studio_type == 'Advance Payment'))</attribute></xpath>

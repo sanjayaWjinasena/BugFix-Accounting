@@ -121,4 +121,196 @@
         <field name="context">{'search_default_x_studio_created_from_vendor_bill_1': active_id, 'default_x_studio_created_from_vendor_bill_1': active_id}</field>
     </record>
 
+    <!-- ==================================================== -->
+    <!-- v0.0.24 additions: 4 more numeric action refs        -->
+    <!-- caught by a broader sweep than v0.0.20 did.          -->
+    <!--                                                      -->
+    <!-- Clear-DB id -> local xmlid:                          -->
+    <!--   2739 -> srv_advance_payment_acc_update (FULL PORT) -->
+    <!--   1310 -> act_custom_currency_rates                  -->
+    <!--   1676 -> srv_sales_report_sample_button (verbatim)  -->
+    <!--   1386 -> act_tp_invoice_vendor_bill                 -->
+    <!-- ==================================================== -->
+
+    <!-- 2739: Project - Update Advance Payment Account.
+         Full port of the Clear-DB Python — this is a real business
+         rule, not a stub. Referenced by
+         views/account_payment_studio_ported_v2.xml line 26. Depends
+         on x_advance_payment_acco model (already ported in v0.0.14). -->
+    <record id="srv_advance_payment_acc_update" model="ir.actions.server">
+        <field name="name">Project - Update Advance Payment Account</field>
+        <field name="model_id" ref="account.model_account_payment"/>
+        <field name="binding_view_types">list,form</field>
+        <field name="state">code</field>
+        <field name="usage">base_automation</field>
+        <field name="sequence">5</field>
+        <field name="code"><![CDATA[
+if record.x_studio_type == 'Advance Payment':
+    account = env['x_advance_payment_acco'].search([('id', '=', 1)], limit=1)
+    if account:
+        if record.partner_type == 'customer':
+            if account.x_studio_advance_payment_account_sales == False:
+                raise UserError('Advance Payment Account (Sales) must be Specified in Accounting Configuration')
+
+            journal_entry = env['account.move'].search([('payment_id', '=', record.id)], limit=1)
+            if journal_entry:
+                if record.payment_type == 'inbound':
+                    lines = env['account.move.line'].search([('move_id', '=', journal_entry.id), ('debit', '>', 0)], limit=1)
+                    if lines:
+                        lines.write({'account_id': account.x_studio_advance_payment_account_sales.id})
+                        record.write({'x_studio_advance_payment_acc_updated': True})
+                    else:
+                        raise UserError('There is no payment line to update.')
+                else:
+                    lines = env['account.move.line'].search([('move_id', '=', journal_entry.id), ('credit', '>', 0)], limit=1)
+                    if lines:
+                        lines.write({'account_id': account.x_studio_advance_payment_account_sales.id})
+                        record.write({'x_studio_advance_payment_acc_updated': True})
+                    else:
+                        raise UserError('There is no payment line to update.')
+            else:
+                raise UserError('There is no payment to update.')
+        else:
+            if account.x_studio_advance_payment_account_purchases_1 == False:
+                raise UserError('Advance Payment Account (Purchases) must be Specified in Accounting Configuration')
+
+            journal_entry = env['account.move'].search([('payment_id', '=', record.id)], limit=1)
+            if journal_entry:
+                if record.payment_type == 'inbound':
+                    lines = env['account.move.line'].search([('move_id', '=', journal_entry.id), ('debit', '>', 0)], limit=1)
+                    if lines:
+                        lines.write({'account_id': account.x_studio_advance_payment_account_purchases_1.id})
+                        record.write({'x_studio_advance_payment_acc_updated': True})
+                    else:
+                        raise UserError('There is no payment line to update.')
+                else:
+                    lines = env['account.move.line'].search([('move_id', '=', journal_entry.id), ('credit', '>', 0)], limit=1)
+                    if lines:
+                        lines.write({'account_id': account.x_studio_advance_payment_account_purchases_1.id})
+                        record.write({'x_studio_advance_payment_acc_updated': True})
+                    else:
+                        raise UserError('There is no payment line to update.')
+            else:
+                raise UserError('There is no payment to update.')
+    else:
+        raise UserError('Advance Payment Accounts have not been setup in Accounting Configuration')
+]]></field>
+    </record>
+
+    <!-- 1310: Rates. Window action opening x_custom_currency_rate
+         filtered by the parent currency. Referenced from
+         views/x_custom_currency_studio_ported_v2.xml line 43. -->
+    <record id="act_custom_currency_rates" model="ir.actions.act_window">
+        <field name="name">Rates</field>
+        <field name="res_model">x_custom_currency_rate</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('x_studio_custom_currency_id', '=', active_id)]</field>
+        <field name="context">{'search_default_x_studio_custom_currency_id': active_id, 'default_x_studio_custom_currency_id': active_id}</field>
+        <field name="binding_view_types">list,form</field>
+    </record>
+
+    <!-- 1676: RPT - Sample Button. Verbatim from Clear-DB — the code
+         is only comments (a no-op template). Button is invisible=1 on
+         the view arch anyway, so this record exists purely to resolve
+         the xmlid. Referenced from
+         views/x_sales_report_model_studio_ported_v2.xml line 25. -->
+    <record id="srv_sales_report_sample_button" model="ir.actions.server">
+        <field name="name">RPT - Sample Button</field>
+        <field name="model_id" ref="model_x_sales_report_model"/>
+        <field name="binding_view_types">list,form</field>
+        <field name="state">code</field>
+        <field name="usage">ir_actions_server</field>
+        <field name="sequence">5</field>
+        <field name="code">action = None  # No-op template action from Clear-DB (Studio scaffold).</field>
+    </record>
+
+    <!-- 1386: Vendor Bill. Window action opening account.move filtered
+         by parent TP invoice header. Referenced from
+         views/x_tp_invoice_header_studio_ported_v2.xml line 46 as a
+         stat button. -->
+    <record id="act_tp_invoice_vendor_bill" model="ir.actions.act_window">
+        <field name="name">Vendor Bill</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('x_studio_tp_id', '=', active_id)]</field>
+        <field name="context">{'search_default_x_studio_tp_id': active_id, 'default_x_studio_tp_id': active_id}</field>
+        <field name="binding_view_types">list,form</field>
+    </record>
+
+    <!-- 1378: IMP - Apply Selected Charge Lines to TP Invoice.
+         Full port of the Clear-DB Python — real workflow action
+         that creates an x_tp_invoice_header from selected consignment
+         charge lines on the temp header. Referenced from
+         views/x_temp_tp_invoice_head_studio_ported_v2.xml line 47.
+         Depends on x_consignment_header (model may not be on-disk yet
+         — the action will fail at click-time if so, but install
+         completes). -->
+    <record id="srv_tp_invoice_apply_charges" model="ir.actions.server">
+        <field name="name">IMP - Apply Selected Charge Lines to TP Invoice</field>
+        <field name="model_id" ref="model_x_temp_tp_invoice_head"/>
+        <field name="state">code</field>
+        <field name="usage">ir_actions_server</field>
+        <field name="sequence">5</field>
+        <field name="code"><![CDATA[
+lines = []
+select = 0
+
+for valid_line in record.x_studio_charge_line:
+    if valid_line.x_studio_select == True:
+        select += 1
+        lines.append([0, 0, {
+            'x_studio_consignment_charge_header_id': valid_line.x_studio_consignment_charge_header_id.id,
+            'x_studio_consignment_id': valid_line.x_studio_consignment_id.id,
+            'x_studio_charge_group': valid_line.x_studio_charge_group,
+            'x_studio_charge_name': valid_line.x_studio_charge_name,
+            'x_studio_basis': valid_line.x_studio_basis,
+            'x_studio_original_amount': valid_line.x_studio_amount,
+            'x_studio_invoice_amount': valid_line.x_studio_amount,
+        }])
+
+        charge_line = env['x_consignment_charge_h'].search([('id', '=', valid_line.x_studio_consignment_charge_header_id.id)])
+        if charge_line:
+            charge_line.write({'x_studio_tp_processed': True})
+
+if select == 0:
+    raise UserError("Atleast One Line Should be Selected to Proceed.")
+
+con_header = env['x_consignment_header'].search([('id', '=', record.x_studio_consignment_header_id.id)], limit=1)
+
+if con_header:
+    tp_invoice = env['x_tp_invoice_header'].create({
+        'x_studio_con_no': record.x_studio_consignment_header_id.id,
+        'x_studio_vendor': record.x_studio_supplier_id.id,
+        'x_studio_currency_id': record.x_studio_supplier_id.property_purchase_currency_id.id,
+        'x_studio_invoice_no': con_header.x_studio_supplier_invoice_number,
+        'x_studio_invoice_date': con_header.x_studio_invoice_date,
+        'x_studio_tp_lines': lines,
+    })
+else:
+    tp_invoice = env['x_tp_invoice_header'].create({
+        'x_studio_con_no': record.x_studio_consignment_header_id.id,
+        'x_studio_vendor': record.x_studio_supplier_id.id,
+        'x_studio_currency_id': record.x_studio_supplier_id.property_purchase_currency_id.id,
+        'x_studio_tp_lines': lines,
+    })
+
+if con_header:
+    con_header.write({'x_studio_status': 'TP Invoice', 'x_studio_status_bar': 'TP Invoice'})
+
+if record.id:
+    temp_rec = env['x_temp_tp_invoice_head'].search([('id', '=', record.id)], limit=1)
+    temp_rec.unlink()
+
+action = {
+    'name': 'TP Invoice',
+    'domain': [('id', '=', tp_invoice.id)],
+    'type': 'ir.actions.act_window',
+    'res_model': 'x_tp_invoice_header',
+    'view_mode': 'tree,form',
+    'view_id': False,
+    'context': False,
+}
+]]></field>
+    </record>
+
 </odoo>
