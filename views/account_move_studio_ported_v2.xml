@@ -27,23 +27,23 @@
                 <attribute name="delete">false</attribute>
               </xpath>
               <xpath expr="//form[1]/header[1]/button[@name='action_post']" position="before">
-                <button type="action" name="2176" string="Update RUG Account" class="btn-primary" invisible="((x_studio_rug_rejected == True) and (x_studio_rug_confirmed == True)) or ((x_studio_rug_acc_updated == True) or (x_studio_rug_confirmed == False))"/>
+                <button type="action" name="%(BugFix-Accounting.srv_rug_account_update_in_si)d" string="Update RUG Account" class="btn-primary" invisible="((x_studio_rug_rejected == True) and (x_studio_rug_confirmed == True)) or ((x_studio_rug_acc_updated == True) or (x_studio_rug_confirmed == False))"/>
               </xpath>
               <xpath expr="//form[1]/header[1]/button[@name='action_post']" position="attributes">
                 <attribute name="groups">account.group_account_invoice,__export__.res_groups_172_455e3f01</attribute>
                 <attribute name="invisible">(hide_post_button or move_type != 'entry') or ((payment_id != False) or ((move_type != 'entry') or ((auto_post == True) or (state != 'draft'))))</attribute>
               </xpath>
               <xpath expr="//form[1]/header[1]/button[@name='action_post']" position="after">
-                <button type="action" name="2762" string="Update Advance Account" class="btn-primary" invisible="(payment_id != False) or (((x_studio_advance_acc_updated == True) and (x_studio_type == 'Advance Payment')) or ((x_studio_type != 'Advance Payment') or ((state != 'draft') or (x_studio_valid_lines == True))))"/>
+                <button type="action" name="%(BugFix-Accounting.srv_update_advance_payment_account_vendor_bill)d" string="Update Advance Account" class="btn-primary" invisible="(payment_id != False) or (((x_studio_advance_acc_updated == True) and (x_studio_type == 'Advance Payment')) or ((x_studio_type != 'Advance Payment') or ((state != 'draft') or (x_studio_valid_lines == True))))"/>
                 <!--button type="action" name="1370" string="Update Consignment" class="btn-primary" attrs="{'invisible': [('x_studio_update_consignment', '=', True)]}"/-->
-                <button type="action" name="1370" string="Update Consignment" class="btn-primary" invisible="((x_studio_update_consignment == True) and (x_studio_purchase_type == 'Import')) or ((x_studio_purchase_type == False) or (x_studio_purchase_type == 'Local'))"/>
+                <button type="action" name="%(BugFix-Accounting.srv_imp_update_consignment_pi)d" string="Update Consignment" class="btn-primary" invisible="((x_studio_update_consignment == True) and (x_studio_purchase_type == 'Import')) or ((x_studio_purchase_type == False) or (x_studio_purchase_type == 'Local'))"/>
                 <!--button type="action" name="2366" string="Update Currency Rate" class="btn-primary" attrs="{'invisible': [('x_studio_update_consignment', '=', False)]}"/-->
-                <button type="action" name="2366" string="Update Currency Rate" class="btn-primary" invisible="((x_studio_update_consignment == False) and (x_studio_purchase_type == 'Import')) or (((x_studio_currency_rate_updated == True) and (x_studio_purchase_type == 'Import')) or ((x_studio_purchase_type == False) or (x_studio_purchase_type == 'Local')))"/>
-                <button type="action" name="1493" string="Request Credit Note Approval" class="btn-primary" invisible="(x_studio_credit_note_request_sent == True) or (move_type != 'out_refund')"/>
-                <button type="action" name="1495" string="Approve Credit Note" class="btn-primary" studio_approval="True" invisible="(x_studio_credit_note_approved == True) or ((x_studio_credit_note_request_sent == False) or (move_type != 'out_refund'))"/>
-                <button type="action" name="1854" string="View Credit Limit Overdue Details" class="btn-primary" invisible="(state == 'cancel') or ((state == 'posted') or (x_studio_credit_limit_validation != True))"/>
-                <button type="action" name="1851" string="Send Bank Guarantee Validity Notification" class="btn-primary" invisible="((x_studio_bg_sent == True) and (x_studio_bank_guarantee_notification == True)) or ((state == 'cancel') or ((x_studio_bank_guarantee_notification != True) or (state == 'posted')))"/>
-                <button type="action" name="1852" string="View Bank Guarantee Validity" class="btn-primary" invisible="(state == 'cancel') or ((x_studio_bank_guarantee_validation != True) or (state == 'posted'))"/>
+                <button type="action" name="%(BugFix-Accounting.srv_imp_vendor_bill_currency_rate)d" string="Update Currency Rate" class="btn-primary" invisible="((x_studio_update_consignment == False) and (x_studio_purchase_type == 'Import')) or (((x_studio_currency_rate_updated == True) and (x_studio_purchase_type == 'Import')) or ((x_studio_purchase_type == False) or (x_studio_purchase_type == 'Local')))"/>
+                <button type="action" name="%(BugFix-Accounting.srv_sls_request_credit_note_approval)d" string="Request Credit Note Approval" class="btn-primary" invisible="(x_studio_credit_note_request_sent == True) or (move_type != 'out_refund')"/>
+                <button type="action" name="%(BugFix-Accounting.srv_sls_credit_note_approval_main)d" string="Approve Credit Note" class="btn-primary" studio_approval="True" invisible="(x_studio_credit_note_approved == True) or ((x_studio_credit_note_request_sent == False) or (move_type != 'out_refund'))"/>
+                <button type="action" name="%(BugFix-Accounting.srv_sls_view_credit_limit_validation)d" string="View Credit Limit Overdue Details" class="btn-primary" invisible="(state == 'cancel') or ((state == 'posted') or (x_studio_credit_limit_validation != True))"/>
+                <button type="action" name="%(BugFix-Accounting.srv_sls_send_bank_guarantee_notification)d" string="Send Bank Guarantee Validity Notification" class="btn-primary" invisible="((x_studio_bg_sent == True) and (x_studio_bank_guarantee_notification == True)) or ((state == 'cancel') or ((x_studio_bank_guarantee_notification != True) or (state == 'posted')))"/>
+                <button type="action" name="%(BugFix-Accounting.srv_sls_view_bank_guarantee_validation)d" string="View Bank Guarantee Validity" class="btn-primary" invisible="(state == 'cancel') or ((x_studio_bank_guarantee_validation != True) or (state == 'posted'))"/>
               </xpath>
               <xpath expr="//form[1]/header[1]/button[@name='action_post'][2]" position="attributes">
                 <attribute name="groups">account.group_account_invoice,__export__.res_groups_246_295324b5,__export__.res_groups_227_f695d21c,__export__.res_groups_251_c8b4a865,__export__.res_groups_263_168d4e47</attribute>
@@ -56,10 +56,10 @@
                 <attribute name="groups">account.group_account_invoice,studio_customization.sales_credit_note_ap_ee96b839-2a01-48d8-9116-c110a15beb4e</attribute>
               </xpath>
               <xpath expr="//button[@name='action_view_landed_costs']" position="after">
-                <button class="oe_stat_button" icon="fa-folder-open" type="action" name="1371" studio-view-group-names="Administrator" studio-view-group-ids="21" invisible="x_x_studio_created_from_vendor_bill__account_move_count == 0">
+                <button class="oe_stat_button" icon="fa-folder-open" type="action" name="%(BugFix-Accounting.act_dispatch_reversal)d" studio-view-group-names="Administrator" studio-view-group-ids="21" invisible="x_x_studio_created_from_vendor_bill__account_move_count == 0">
                   <field widget="statinfo" name="x_x_studio_created_from_vendor_bill__account_move_count" string="Dispatch Reversal" studio-view-group-names="Administrator" studio-view-group-ids="21"/>
                 </button>
-                <button class="oe_stat_button" icon="fa-folder-open" type="action" name="1372" studio-view-group-names="Administrator" studio-view-group-ids="21" invisible="x_x_studio_created_from_vendor_bill_1__account_move_count == 0">
+                <button class="oe_stat_button" icon="fa-folder-open" type="action" name="%(BugFix-Accounting.act_custom_clearance_reversal)d" studio-view-group-names="Administrator" studio-view-group-ids="21" invisible="x_x_studio_created_from_vendor_bill_1__account_move_count == 0">
                   <field widget="statinfo" name="x_x_studio_created_from_vendor_bill_1__account_move_count" string="Custom Clearance Reversal" studio-view-group-names="Administrator" studio-view-group-ids="21"/>
                 </button>
               </xpath>

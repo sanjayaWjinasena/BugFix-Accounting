@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    v0.0.20: Placeholder ir.actions.server + ir.actions.act_window
+    records for the 11 Clear-DB actions referenced by numeric ID
+    (name="NNNN") in views/account_move_studio_ported_v2.xml.
+
+    Why placeholders instead of full ports:
+      The 9 Clear-DB server actions carry between 600 and 31,000 bytes
+      of Python code each. Porting all of them verbatim in a single
+      commit is high-risk (each has different depends chain into
+      other Studio artefacts). This commit provides STABLE XMLIDS so
+      the view arch can reference them via %(...)d interpolation
+      (unblocking install on fresh envs where Clear-DB's auto-assigned
+      ids don't match), while the actual code arrives per-action in
+      follow-up commits.
+
+    Each stub raises UserError so any operator clicking the button
+    immediately sees "action not yet fully ported" instead of a
+    silent no-op, making the port backlog visible in the UI.
+
+    Correspondence (Clear-DB id -> local xmlid):
+
+      2176 -> srv_rug_account_update_in_si
+      2762 -> srv_update_advance_payment_account_vendor_bill
+      1370 -> srv_imp_update_consignment_pi
+      2366 -> srv_imp_vendor_bill_currency_rate
+      1493 -> srv_sls_request_credit_note_approval
+      1495 -> srv_sls_credit_note_approval_main
+      1854 -> srv_sls_view_credit_limit_validation
+      1851 -> srv_sls_send_bank_guarantee_notification
+      1852 -> srv_sls_view_bank_guarantee_validation
+      1371 -> act_dispatch_reversal (window action, ported verbatim)
+      1372 -> act_custom_clearance_reversal (window action, ported verbatim)
+-->
+<odoo>
+
+    <!-- ==================================================== -->
+    <!-- Server action stubs (9)                              -->
+    <!-- ==================================================== -->
+
+    <record id="srv_rug_account_update_in_si" model="ir.actions.server">
+        <field name="name">RR - RUG Account Update in SI</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="state">code</field>
+        <field name="code">raise UserError("BugFix-Accounting: RUG Account Update action stub — full port pending. Clear-DB action id was 2176.")</field>
+    </record>
+
+    <record id="srv_update_advance_payment_account_vendor_bill" model="ir.actions.server">
+        <field name="name">Project - Update Advance Payment Account - Vendor Bill</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="state">code</field>
+        <field name="code">raise UserError("BugFix-Accounting: Update Advance Payment Account action stub — full port pending. Clear-DB action id was 2762.")</field>
+    </record>
+
+    <record id="srv_imp_update_consignment_pi" model="ir.actions.server">
+        <field name="name">IMP - Update Consignment - PI</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="state">code</field>
+        <field name="code">raise UserError("BugFix-Accounting: Update Consignment action stub — full port pending (31 KB of Studio Python). Clear-DB action id was 1370.")</field>
+    </record>
+
+    <record id="srv_imp_vendor_bill_currency_rate" model="ir.actions.server">
+        <field name="name">IMP - Vendor Bill Currency Rate</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="state">code</field>
+        <field name="code">raise UserError("BugFix-Accounting: Vendor Bill Currency Rate action stub — full port pending. Clear-DB action id was 2366.")</field>
+    </record>
+
+    <record id="srv_sls_request_credit_note_approval" model="ir.actions.server">
+        <field name="name">SLS - Request Credit Note Approval</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="state">code</field>
+        <field name="code">raise UserError("BugFix-Accounting: Request Credit Note Approval action stub — full port pending (state=multi with child actions on Clear-DB). Clear-DB action id was 1493.")</field>
+    </record>
+
+    <record id="srv_sls_credit_note_approval_main" model="ir.actions.server">
+        <field name="name">SLS - Credit Note Approval - Main</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="state">code</field>
+        <field name="code">raise UserError("BugFix-Accounting: Credit Note Approval action stub — full port pending. Clear-DB action id was 1495.")</field>
+    </record>
+
+    <record id="srv_sls_view_credit_limit_validation" model="ir.actions.server">
+        <field name="name">SLS - View Credit Limit Validation in Customer Invoice</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="state">code</field>
+        <field name="code">raise UserError("BugFix-Accounting: View Credit Limit Validation action stub — full port pending. Clear-DB action id was 1854.")</field>
+    </record>
+
+    <record id="srv_sls_send_bank_guarantee_notification" model="ir.actions.server">
+        <field name="name">SLS - Send Bank Guarantee Notification in Customer Invoice</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="state">code</field>
+        <field name="code">raise UserError("BugFix-Accounting: Send BG Notification action stub — full port pending. Clear-DB action id was 1851.")</field>
+    </record>
+
+    <record id="srv_sls_view_bank_guarantee_validation" model="ir.actions.server">
+        <field name="name">SLS - View Bank Guarantee Validation in Customer Invoice</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="state">code</field>
+        <field name="code">raise UserError("BugFix-Accounting: View BG Validation action stub — full port pending. Clear-DB action id was 1852.")</field>
+    </record>
+
+    <!-- ==================================================== -->
+    <!-- Window actions (2) — ported verbatim from Clear-DB   -->
+    <!-- ==================================================== -->
+
+    <record id="act_dispatch_reversal" model="ir.actions.act_window">
+        <field name="name">Dispatch Reversal</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('x_studio_created_from_vendor_bill', '=', active_id)]</field>
+        <field name="context">{'search_default_x_studio_created_from_vendor_bill': active_id, 'default_x_studio_created_from_vendor_bill': active_id}</field>
+    </record>
+
+    <record id="act_custom_clearance_reversal" model="ir.actions.act_window">
+        <field name="name">Custom Clearance Reversal</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('x_studio_created_from_vendor_bill_1', '=', active_id)]</field>
+        <field name="context">{'search_default_x_studio_created_from_vendor_bill_1': active_id, 'default_x_studio_created_from_vendor_bill_1': active_id}</field>
+    </record>
+
+</odoo>

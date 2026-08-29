@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Accounting',
-    'version': '17.0.0.0.19',
+    'version': '17.0.0.0.20',
     'summary': 'Studio-to-Python port for BugFix-Accounting',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Accounting',
@@ -63,6 +63,16 @@
         'security/ir_model_pins.xml',
         'security/ir.model.access.csv',
         'data/server_actions.xml',
+        # v0.0.20: 9 server-action stubs + 2 window actions needed by
+        # views/account_move_studio_ported_v2.xml (which was hitting
+        # "Action 2176 (id: 2176) does not exist" install failure
+        # because it referenced Clear-DB's auto-numbered ids by
+        # `name="NNNN"`). All 11 now have stable xmlids that the view
+        # arch references via %(BugFix-Accounting.xxx)d interpolation.
+        # Server-action stubs raise UserError with "port pending"
+        # until each is filled with the Clear-DB Python code in
+        # follow-up commits.
+        'data/server_actions_v2.xml',
         'data/automations.xml',
         'data/act_windows.xml',
         'views/x_advance_payment_acco_studio_ported.xml',
