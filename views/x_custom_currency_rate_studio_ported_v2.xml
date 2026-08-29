@@ -35,7 +35,7 @@
         <field name="type">form</field>
         <field name="priority">99</field>
         <field name="mode">extension</field>
-        <field name="inherit_id" ref="BugFix-Accounting.ported_view_2925_default_form_view_fo_f5872bac_d1f7_4709_a9b1_364b0db1710c"/>
+        <field name="inherit_id" ref="BugFix-Accounting.ported_default_form_view_fo_f5872bac_d1f7_4709_a9b1_364b0db1710c"/>
         <field name="arch" type="xml">
             <data>
               <xpath expr="//field[@name='x_name']" position="attributes">
@@ -56,7 +56,7 @@
         <field name="type">tree</field>
         <field name="priority">99</field>
         <field name="mode">extension</field>
-        <field name="inherit_id" ref="BugFix-Accounting.ported_view_2924_default_list_view_fo_ca009934_0cbf_4bef_b9a5_cc7156daa1a9"/>
+        <field name="inherit_id" ref="BugFix-Accounting.ported_default_list_view_fo_ca009934_0cbf_4bef_b9a5_cc7156daa1a9"/>
         <field name="arch" type="xml">
             <data>
               <xpath expr="//tree[1]" position="attributes">

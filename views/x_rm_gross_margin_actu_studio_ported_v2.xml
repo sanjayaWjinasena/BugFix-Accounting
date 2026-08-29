@@ -35,7 +35,7 @@
         <field name="type">tree</field>
         <field name="priority">99</field>
         <field name="mode">extension</field>
-        <field name="inherit_id" ref="BugFix-Accounting.ported_view_4873_default_list_view_fo_ff791a31_7daf_408c_acdc_7018fc44fd67"/>
+        <field name="inherit_id" ref="BugFix-Accounting.ported_default_list_view_fo_ff791a31_7daf_408c_acdc_7018fc44fd67"/>
         <field name="arch" type="xml">
             <data>
               <xpath expr="//tree[1]" position="attributes">

@@ -35,7 +35,7 @@
         <field name="type">form</field>
         <field name="priority">99</field>
         <field name="mode">extension</field>
-        <field name="inherit_id" ref="BugFix-Accounting.ported_view_3035_default_form_view_fo_8e00b755_fbe6_4921_925a_91bb567326d7"/>
+        <field name="inherit_id" ref="BugFix-Accounting.ported_default_form_view_fo_8e00b755_fbe6_4921_925a_91bb567326d7"/>
         <field name="arch" type="xml">
             <data>
               <xpath expr="//group[@name='studio_group_0b2b4a_left']" position="inside">

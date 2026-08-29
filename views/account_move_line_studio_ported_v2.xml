@@ -122,6 +122,62 @@
         </field>
     </record>
 
+    <!-- v0.0.22: ported_view_8293 (primary tree for EPF variant)
+         moved to load BEFORE the extension view at line ~148
+         (ported_view_8297) that inherits from it. Odoo processes
+         records top-down in the file and the extension's inherit_id
+         ref must resolve at record-parse time. -->
+    <record id="ported_view_8293_account_move_line_tr_53817dbe_1ae9_4977_93d2_844954e5538b" model="ir.ui.view">
+        <field name="name">account.move.line.tree-EPF</field>
+        <field name="model">account.move.line</field>
+        <field name="type">tree</field>
+        <field name="priority">100</field>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <tree string="Journal Items" create="false" edit="true" expand="context.get('expand', False)" multi_edit="1" sample="1">
+                <field name="move_id" column_invisible="True"/>
+                <field name="invoice_date" string="Invoice Date" optional="hide"/>
+                <field name="date" readonly="1"/>
+                <field name="company_id" column_invisible="True"/>
+                <field name="company_id" groups="base.group_multi_company" readonly="1" optional="hide"/>
+                <field name="journal_id" readonly="1" options="{&quot;no_open&quot;:True}" optional="hide"/>
+                <field name="move_name" string="Journal Entry" widget="open_move_widget"/>
+                <field name="account_id" options="{'no_open': True, 'no_create': True}" domain="[('company_id', 'parent_of', company_id), ('deprecated', '=', False)]" groups="account.group_account_readonly"/>
+                <field name="partner_id" optional="show" readonly="move_type != 'entry'"/>
+                <field name="ref" optional="hide" readonly="False"/>
+                <field name="product_id" readonly="1" optional="hide"/>
+                <field name="name" optional="show"/>
+                <field name="tax_ids" widget="many2many_tags" optional="hide" readonly="1"/>
+                <field name="amount_currency" groups="base.group_multi_currency" optional="show" readonly="1" invisible="is_same_currency"/>
+                <field name="currency_id" groups="base.group_multi_currency" optional="hide" string="Currency" readonly="1" invisible="is_same_currency"/>
+                <field name="debit" sum="Total Debit" readonly="1"/>
+                <field name="credit" sum="Total Credit" readonly="1"/>
+                <field name="tax_tag_ids" string="Tax Grids" options="{'no_create': True, 'no_create_edit': True}" domain="[('applicability', '=', 'taxes')]" widget="many2many_tags" optional="hide"/>
+                <field name="discount_date" string="Discount Date" optional="hide"/>
+                <field name="discount_amount_currency" string="Discount Amount" optional="hide"/>
+                <field name="tax_line_id" string="Originator Tax" optional="hide" readonly="1"/>
+                <field name="date_maturity" readonly="1" optional="hide"/>
+                <field name="balance" sum="Total Balance" optional="hide" readonly="1"/>
+                <field name="matching_number" readonly="1" optional="show"/>
+                <field name="amount_residual" sum="Total Residual" string="Residual" optional="hide" readonly="1" invisible="not is_account_reconcile"/>
+                <field name="amount_residual_currency" sum="Total Residual in Currency" string="Residual in Currency" optional="hide" readonly="1" invisible="is_same_currency or not is_account_reconcile"/>
+                <field name="analytic_distribution" widget="analytic_distribution" groups="analytic.group_analytic_accounting" optional="show" options="{'product_field': 'product_id', 'account_field': 'account_id', 'force_applicability': 'optional'}"/>
+
+                <field name="move_type" column_invisible="True"/>
+                <field name="parent_state" column_invisible="True"/>
+                <field name="account_type" column_invisible="True"/>
+                <field name="statement_line_id" column_invisible="True"/>
+                <field name="company_currency_id" column_invisible="True"/>
+                <field name="is_same_currency" column_invisible="True"/>
+                <field name="is_account_reconcile" column_invisible="True"/>
+                <field name="sequence" column_invisible="True"/>
+                <groupby name="partner_id">
+                    <button name="edit" type="edit" icon="fa-edit" title="Edit"/>
+                </groupby>
+            </tree>
+        </field>
+    </record>
+
     <record id="ported_view_3844_odoo_studio_account_8ae47aec_f33a_4a3d_b767_05cea96ec229" model="ir.ui.view">
         <field name="name">Odoo Studio: account.move.line.form customization</field>
         <field name="model">account.move.line</field>
@@ -363,57 +419,6 @@
                 <field name="distribution_analytic_account_ids" optional="show" widget="autosave_many2many_tags"/>
               </xpath>
             </data>
-        </field>
-    </record>
-
-    <record id="ported_view_8293_account_move_line_tr_53817dbe_1ae9_4977_93d2_844954e5538b" model="ir.ui.view">
-        <field name="name">account.move.line.tree-EPF</field>
-        <field name="model">account.move.line</field>
-        <field name="type">tree</field>
-        <field name="priority">100</field>
-        <field name="mode">primary</field>
-        <field name="arch" type="xml">
-            <tree string="Journal Items" create="false" edit="true" expand="context.get('expand', False)" multi_edit="1" sample="1">
-                                <field name="move_id" column_invisible="True"/>
-                                <field name="invoice_date" string="Invoice Date" optional="hide"/>
-                                <field name="date" readonly="1"/>
-                                <field name="company_id" column_invisible="True"/>
-                                <field name="company_id" groups="base.group_multi_company" readonly="1" optional="hide"/>
-                                <field name="journal_id" readonly="1" options="{&quot;no_open&quot;:True}" optional="hide"/>
-                                <field name="move_name" string="Journal Entry" widget="open_move_widget"/>
-                                <field name="account_id" options="{'no_open': True, 'no_create': True}" domain="[('company_id', 'parent_of', company_id), ('deprecated', '=', False)]" groups="account.group_account_readonly"/>
-                                <field name="partner_id" optional="show" readonly="move_type != 'entry'"/>
-                                <field name="ref" optional="hide" readonly="False"/>
-                                <field name="product_id" readonly="1" optional="hide"/>
-                                <field name="name" optional="show"/>
-                                <field name="tax_ids" widget="many2many_tags" optional="hide" readonly="1"/>
-                                <field name="amount_currency" groups="base.group_multi_currency" optional="show" readonly="1" invisible="is_same_currency"/>
-                                <field name="currency_id" groups="base.group_multi_currency" optional="hide" string="Currency" readonly="1" invisible="is_same_currency"/>
-                                <field name="debit" sum="Total Debit" readonly="1"/>
-                                <field name="credit" sum="Total Credit" readonly="1"/>
-                                <field name="tax_tag_ids" string="Tax Grids" options="{'no_create': True, 'no_create_edit': True}" domain="[('applicability', '=', 'taxes')]" widget="many2many_tags" optional="hide"/>
-                                <field name="discount_date" string="Discount Date" optional="hide"/>
-                                <field name="discount_amount_currency" string="Discount Amount" optional="hide"/>
-                                <field name="tax_line_id" string="Originator Tax" optional="hide" readonly="1"/>
-                                <field name="date_maturity" readonly="1" optional="hide"/>
-                                <field name="balance" sum="Total Balance" optional="hide" readonly="1"/>
-                                <field name="matching_number" readonly="1" optional="show"/>
-                                <field name="amount_residual" sum="Total Residual" string="Residual" optional="hide" readonly="1" invisible="not is_account_reconcile"/>
-                                <field name="amount_residual_currency" sum="Total Residual in Currency" string="Residual in Currency" optional="hide" readonly="1" invisible="is_same_currency or not is_account_reconcile"/>
-                                <field name="analytic_distribution" widget="analytic_distribution" groups="analytic.group_analytic_accounting" optional="show" options="{'product_field': 'product_id', 'account_field': 'account_id', 'force_applicability': 'optional'}"/>
-            
-                                <field name="move_type" column_invisible="True"/>
-                                <field name="parent_state" column_invisible="True"/>
-                                <field name="account_type" column_invisible="True"/>
-                                <field name="statement_line_id" column_invisible="True"/>
-                                <field name="company_currency_id" column_invisible="True"/>
-                                <field name="is_same_currency" column_invisible="True"/>
-                                <field name="is_account_reconcile" column_invisible="True"/>
-                                <field name="sequence" column_invisible="True"/>
-                                <groupby name="partner_id">
-                                    <button name="edit" type="edit" icon="fa-edit" title="Edit"/>
-                                </groupby>
-                            </tree>
         </field>
     </record>
 

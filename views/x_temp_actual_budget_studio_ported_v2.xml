@@ -35,7 +35,7 @@
         <field name="type">tree</field>
         <field name="priority">99</field>
         <field name="mode">extension</field>
-        <field name="inherit_id" ref="BugFix-Accounting.ported_view_4912_default_list_view_fo_bcc5f161_0ade_4995_9c51_35002b4f9d4d"/>
+        <field name="inherit_id" ref="BugFix-Accounting.ported_default_list_view_fo_bcc5f161_0ade_4995_9c51_35002b4f9d4d"/>
         <field name="arch" type="xml">
             <data>
               <xpath expr="//field[@name='x_studio_sequence']" position="after">
