@@ -10,7 +10,11 @@ class XSalesReportType(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     x_active = fields.Boolean(string='Active')
     x_name = fields.Char(string='Report Name')
-    # TODO: x_studio_journal_entry_id = fields.One2many('account.move', <inverse>, string='Journal Entry Id')
+    x_studio_journal_entry_id = fields.One2many(
+        'account.move',
+        'x_studio_report_type_s_cust_aging',
+        string='Journal Entry Id',
+    )
     x_studio_journal_items_id = fields.One2many(
         'account.move.line',
         'x_studio_sales_report_type',
@@ -20,7 +24,11 @@ class XSalesReportType(models.Model):
     # TODO: x_studio_production_order_id = fields.One2many('mrp.production', <inverse>, string='Production Order Id')
     # TODO: x_studio_production_variance_id = fields.One2many('stock.move', <inverse>, string='Production Variance Id')
     x_studio_report_code = fields.Selection([], string='Report Code')
-    # TODO: x_studio_sales_lines_id = fields.One2many('sale.order.line', <inverse>, string='Sales Lines Id')
+    x_studio_sales_lines_id = fields.One2many(
+        'sale.order.line',
+        'x_studio_sales_report_type',
+        string='Sales Lines Id',
+    )
     # TODO: x_studio_sales_prod_purch_id = fields.One2many('stock.move.line', <inverse>, string='Sales Prod. Purch. Id')
     x_studio_sequence = fields.Integer(string='Sequence')
     # TODO: x_studio_slow_moving_item_id = fields.One2many('stock.move.line', <inverse>, string='Slow Moving Item Id')
