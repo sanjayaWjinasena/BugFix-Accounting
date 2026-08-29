@@ -9,13 +9,19 @@
     <field name="mode">primary</field>
     <field name="arch" type="xml">
       <form>
-        <header>  
-          
+        <header>
+          <!-- Restored in v0.0.29 (auto-porter dropped it). Post button
+               referenced from v2 extension's positional xpath. Action
+               ported in data/server_actions_v2.xml (srv_tp_invoice_post). -->
+          <button type="action" name="%(BugFix-Accounting.srv_tp_invoice_post)d" string="Post" class="btn-primary" invisible="x_studio_status not in ['Draft']"/>
         </header>
         <header/>
         <sheet string="TP Invoice Header">
           <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="x_active == True"/>
           <field name="x_active" invisible="1"/>
+          <!-- v0.0.29: sentinel for the button's invisible modifier.
+               Full x_studio_status visibility comes from the extension view. -->
+          <field name="x_studio_status" invisible="1"/>
           <div class="oe_title">
                       <span class="o_form_label">Invoice Reference</span>
                       <h1>

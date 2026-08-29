@@ -38,7 +38,9 @@
         <field name="inherit_id" ref="BugFix-Accounting.ported_default_form_view_fo_b04274bb_8930_4e7e_a2cc_e65229996a48"/>
         <field name="arch" type="xml">
             <data>
-              <xpath expr="//button[@name='1384']" position="after">
+              <!-- v0.0.29: was //button[@name='1384'], switched to positional.
+                   Primary header now has Post button restored (v0.0.29). -->
+              <xpath expr="//header[1]/button[1]" position="after">
                 <field widget="statusbar" name="x_studio_pipeline_status_bar" string="Pipeline status bar"/>
               </xpath>
               <xpath expr="//widget[@name='web_ribbon']" position="before">

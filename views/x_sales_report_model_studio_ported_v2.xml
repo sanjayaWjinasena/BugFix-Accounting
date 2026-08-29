@@ -87,7 +87,9 @@
         <field name="inherit_id" ref="BugFix-Accounting.ported_view_3784_default_form_view_fo_d583be6a_921f_4205_94a7_603a2375ce6e"/>
         <field name="arch" type="xml">
             <data>
-              <xpath expr="//button[@name='1676']" position="after">
+              <!-- v0.0.29: was //button[@name='1676'], switched to positional.
+                   Primary header (line 25) has the Clear Data button. -->
+              <xpath expr="//header[1]/button[1]" position="after">
                 <field widget="statusbar" options="{}" name="x_studio_selection_field_Fbw0x"/>
               </xpath>
               <xpath expr="//field[@name='x_name']" position="attributes">

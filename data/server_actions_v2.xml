@@ -237,6 +237,173 @@ if record.x_studio_type == 'Advance Payment':
         <field name="binding_view_types">list,form</field>
     </record>
 
+    <!-- 1384: IMP - Post TP Invoice. Real workflow action - 8 KB.
+         Creates a TP-reversal account.move with cost-allocation lines
+         (by weight / by volume / by amount) based on
+         x_imports_ledger_setup config. Ported verbatim from Clear-DB.
+         Restored to the primary form header in v0.0.29 (auto-porter
+         had stripped it). Depends on x_consignment_header +
+         x_imports_ledger_setup + stock.valuation.layer - if any are
+         missing on-disk, the action fails at click-time only. -->
+    <record id="srv_tp_invoice_post" model="ir.actions.server">
+        <field name="name">IMP - Post TP Invoice</field>
+        <field name="model_id" ref="model_x_tp_invoice_header"/>
+        <field name="state">code</field>
+        <field name="usage">ir_actions_server</field>
+        <field name="sequence">5</field>
+        <field name="code"><![CDATA[
+if record.id:
+    company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
+    company = env['res.company'].browse(company_id)
+
+    invalid_lines = env['x_tp_invoice_line'].search([('x_studio_tp_invoice_header_id', '=', record.id)])
+    diff = 0
+    diff_found = False
+    if invalid_lines:
+        for val in invalid_lines:
+            if val.x_studio_invoice_amount == 0.0000:
+                raise UserError("Invoice Amount of Individual TP Lines Should be Greater than Zero!")
+            if val.x_studio_invoice_amount != val.x_studio_original_amount:
+                diff_found = True
+                diff += (val.x_studio_invoice_amount - val.x_studio_original_amount)
+
+    if record.x_studio_vendor.id == 0:
+        raise UserError("Vendor Account must be Specified!")
+    if record.x_studio_currency_id.id == 0:
+        raise UserError("Currency must be Specified!")
+    if record.x_studio_invoice_no == False:
+        raise UserError("Invoice No must be Specified!")
+    if record.x_studio_invoice_date == False:
+        raise UserError("Invoice Date must be Specified!")
+
+    tax_account = env['x_imports_ledger_setup'].search([('x_studio_company_id', '=', company.id)], limit=1)
+    if tax_account:
+        if tax_account.x_studio_tp_invoicing_tax_acc.id == 0:
+            raise UserError('TP Invoicing Tax Account must be Specified in Imports Ledger Setup')
+        if tax_account.x_studio_import_tp_vendor_account.id == 0:
+            raise UserError('Import TP Vendor Account must be Specified in Imports Ledger Setup')
+    else:
+        raise UserError('Imports Ledger Setup must be specified for the selected company ')
+
+    tp_lines = []
+
+    if diff_found == True:
+        qty = 0
+        con_lines = env['x_consignment_header'].search([('id', '=', record.x_studio_con_no.id)])
+        if con_lines:
+            qty = 1 if diff > 0 else -1
+
+            if tax_account.x_studio_cost_allocation_method == 'by_weight':
+                for diff_lines in con_lines.x_studio_consignment_line_ids:
+                    tp_lines.append([0, 0, {
+                        'product_id': diff_lines.x_studio_product_id.id,
+                        'quantity': qty,
+                        'currency_id': record.x_studio_currency_id.id,
+                        'name': diff_lines.x_studio_product_id.name,
+                        'product_uom_id': diff_lines.x_studio_product_id.uom_id.id,
+                        'price_unit': abs(diff) * (diff_lines.x_studio_weight / con_lines.x_studio_total_amount_cost_allocation_method),
+                        'price_subtotal': (abs(diff) * (diff_lines.x_studio_weight / con_lines.x_studio_total_amount_cost_allocation_method)) * qty,
+                        'account_id': diff_lines.x_studio_product_id.categ_id.property_stock_account_input_categ_id.id,
+                    }])
+                    value_entry = env['stock.valuation.layer'].search([('stock_move_id', '=', diff_lines.x_studio_stock_move_id.id)], limit=1)
+                    if value_entry:
+                        adj = (abs(diff) * (diff_lines.x_studio_weight / con_lines.x_studio_total_amount_cost_allocation_method)) * qty
+                        value_entry.write({
+                            'value': value_entry.value + adj,
+                            'unit_cost': (value_entry.value + adj) / value_entry.quantity,
+                            'remaining_value': (value_entry.value + adj) / value_entry.remaining_qty,
+                        })
+            elif tax_account.x_studio_cost_allocation_method == 'by_volume':
+                for diff_lines in con_lines.x_studio_consignment_line_ids:
+                    tp_lines.append([0, 0, {
+                        'product_id': diff_lines.x_studio_product_id.id,
+                        'quantity': qty,
+                        'currency_id': record.x_studio_currency_id.id,
+                        'name': diff_lines.x_studio_product_id.name,
+                        'product_uom_id': diff_lines.x_studio_product_id.uom_id.id,
+                        'price_unit': abs(diff) * (diff_lines.x_studio_volume / con_lines.x_studio_total_amount_cost_allocation_method),
+                        'price_subtotal': (abs(diff) * (diff_lines.x_studio_volume / con_lines.x_studio_total_amount_cost_allocation_method)) * qty,
+                        'account_id': diff_lines.x_studio_product_id.categ_id.property_stock_account_input_categ_id.id,
+                    }])
+                    value_entry = env['stock.valuation.layer'].search([('stock_move_id', '=', diff_lines.x_studio_stock_move_id.id)], limit=1)
+                    if value_entry:
+                        adj = (abs(diff) * (diff_lines.x_studio_volume / con_lines.x_studio_total_amount_cost_allocation_method)) * qty
+                        value_entry.write({
+                            'value': value_entry.value + adj,
+                            'unit_cost': (value_entry.value + adj) / value_entry.quantity,
+                            'remaining_value': (value_entry.value + adj) / value_entry.remaining_qty,
+                        })
+            else:
+                for diff_lines in con_lines.x_studio_consignment_line_ids:
+                    tp_lines.append([0, 0, {
+                        'product_id': diff_lines.x_studio_product_id.id,
+                        'quantity': qty,
+                        'currency_id': record.x_studio_currency_id.id,
+                        'name': diff_lines.x_studio_product_id.name,
+                        'product_uom_id': diff_lines.x_studio_product_id.uom_id.id,
+                        'price_unit': abs(diff) * (diff_lines.x_studio_amount / con_lines.x_studio_total_amount),
+                        'price_subtotal': (abs(diff) * (diff_lines.x_studio_amount / con_lines.x_studio_total_amount)) * qty,
+                        'account_id': diff_lines.x_studio_product_id.categ_id.property_stock_account_input_categ_id.id,
+                    }])
+                    value_entry = env['stock.valuation.layer'].search([('stock_move_id', '=', diff_lines.x_studio_stock_move_id.id)], limit=1)
+                    if value_entry:
+                        adj = (abs(diff) * (diff_lines.x_studio_amount / con_lines.x_studio_total_amount)) * qty
+                        value_entry.write({
+                            'value': value_entry.value + adj,
+                            'unit_cost': (value_entry.value + adj) / value_entry.quantity,
+                            'remaining_value': (value_entry.value + adj) / value_entry.remaining_qty,
+                        })
+
+    tp_lines.append([0, 0, {
+        'account_id': tax_account.x_studio_import_tp_vendor_account.id,
+        'name': 'Import TP Invoice - Reversal',
+        'quantity': 1.00,
+        'currency_id': record.x_studio_currency_id.id,
+        'price_unit': record.x_studio_total_original_invoice_amount,
+    }])
+
+    tp_lines.append([0, 0, {
+        'account_id': tax_account.x_studio_tp_invoicing_tax_acc.id,
+        'name': 'Total Tax',
+        'quantity': 1.00,
+        'currency_id': record.x_studio_currency_id.id,
+        'price_unit': record.x_studio_taxes_1,
+    }])
+
+    journal = env['account.journal'].search([('name', '=', 'TP Vendor Bills'), ('company_id', '=', company.id)], limit=1)
+    if not journal:
+        raise UserError('The required journal has not been setup. Process terminated.')
+
+    tp_reversal = env['account.move'].create({
+        'x_studio_tp_id': record.id,
+        'partner_id': record.x_studio_vendor.id,
+        'journal_id': journal.id,
+        'move_type': 'in_invoice',
+        'currency_id': record.x_studio_currency_id.id,
+        'x_studio_supplier_invoice_number': record.x_studio_invoice_no,
+        'invoice_date': record.x_studio_invoice_date,
+        'invoice_line_ids': tp_lines,
+    })
+
+    update_tp_reversal = env['account.move'].search([('id', '=', tp_reversal.id)], limit=1)
+    if update_tp_reversal:
+        update_tp_reversal.write({'state': 'posted'})
+
+    record['x_studio_status'] = 'Posted'
+    record['x_studio_pipeline_status_bar'] = 'Posted'
+
+    action = {
+        'name': 'Journal Entries',
+        'domain': [('id', '=', tp_reversal.id)],
+        'type': 'ir.actions.act_window',
+        'res_model': 'account.move',
+        'view_mode': 'tree,form',
+        'view_id': False,
+        'context': False,
+    }
+]]></field>
+    </record>
+
     <!-- 1404: IMP - Post LC. Sets x_studio_status/x_studio_selection_field_yo4qM
          to 'Posted' after validating LC amount. Referenced from the primary
          form view (restored in v0.0.26; auto-porter had dropped it). -->
