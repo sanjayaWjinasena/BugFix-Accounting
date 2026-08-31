@@ -75,11 +75,62 @@ if record.x_studio_rug_confirmed == True:
 ]]></field>
     </record>
 
+    <!-- 2762: Project - Update Advance Payment Account - Vendor Bill.
+         FULL PORT (v0.0.40). Companion to 2739 (already ported for
+         account.payment): rewrites either income (out_invoice) or
+         expense (in_invoice) journal lines to the per-project advance
+         account defined on x_advance_payment_acco singleton (id=1),
+         then flags x_studio_advance_acc_updated=True.
+
+         usage='base_automation' on Clear-DB - Studio uses this action
+         as an automation trigger, not manual click. We still expose
+         via binding_view_types="list,form" to match Clear-DB's
+         side-effect surface. -->
     <record id="srv_update_advance_payment_account_vendor_bill" model="ir.actions.server">
         <field name="name">Project - Update Advance Payment Account - Vendor Bill</field>
         <field name="model_id" ref="account.model_account_move"/>
+        <field name="binding_view_types">list,form</field>
         <field name="state">code</field>
-        <field name="code">raise UserError("BugFix-Accounting: Update Advance Payment Account action stub — full port pending. Clear-DB action id was 2762.")</field>
+        <field name="usage">base_automation</field>
+        <field name="sequence">5</field>
+        <field name="code"><![CDATA[
+if record.x_studio_type == 'Advance Payment':
+
+    val = False
+    for line in record.invoice_line_ids:
+        val = True
+
+    if val == False:
+        raise UserError('You need to add a line before updating the advance account.')
+
+    account = env['x_advance_payment_acco'].search([('id', '=', 1)], limit=1)
+    if account:
+        if account.x_studio_advance_account_project == False:
+            raise UserError('Advance Account (Project) must be Specified in Accounting Configuration')
+
+        if record.move_type == 'out_invoice':
+            lines = env['account.move.line'].search([
+                ('move_id', '=', record.id),
+                ('account_internal_group', '=', 'income'),
+            ], limit=1)
+            if lines:
+                for line in lines:
+                    line.write({'account_id': account.x_studio_advance_account_project.id})
+                    record.write({'x_studio_advance_acc_updated': True})
+        elif record.move_type == 'in_invoice':
+            lines = env['account.move.line'].search([
+                ('move_id', '=', record.id),
+                ('account_internal_group', '=', 'expense'),
+            ], limit=1)
+            if lines:
+                for line in lines:
+                    line.write({'account_id': account.x_studio_advance_account_project.id})
+                    record.write({'x_studio_advance_acc_updated': True})
+        else:
+            raise UserError('This feature is not supported.')
+    else:
+        raise UserError('Advance Payment Accounts have not been setup in Accounting Configuration')
+]]></field>
     </record>
 
     <record id="srv_imp_update_consignment_pi" model="ir.actions.server">
