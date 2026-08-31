@@ -40,7 +40,10 @@ class AccountMove(models.Model):
     x_studio_project_no_settle = fields.Many2one('project.project', string='Project No Settle')
     x_studio_purchase_id = fields.Many2one('purchase.order', string='Purchase Order')
     x_studio_purchase_type = fields.Selection([], string='PR Type', readonly=True)
-    x_studio_report_type_s_cust_aging = fields.Many2one('x_sales_report_type', string='Report Type (S - Cust Aging)')
+    # x_studio_report_type_s_cust_aging moved to
+    # Jinasena_Masterdata_Reporting/models/account_move.py so it lives
+    # in the same module as its O2M partner
+    # x_sales_report_type.x_studio_journal_entry_id.
     x_studio_rug_acc_updated = fields.Boolean(string='RUG Account Updated')
     x_studio_rug_confirmed = fields.Boolean(string='RUG Confirmed', readonly=True)
     x_studio_rug_rejected = fields.Boolean(string='RUG Rejected', readonly=True)

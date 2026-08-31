@@ -22,7 +22,7 @@ class AccountMoveLine(models.Model):
     x_studio_invoice_date = fields.Date(string='Invoice Date', readonly=True)
     x_studio_journal = fields.Many2one('account.move', string='Journal', readonly=True)
     x_studio_journal_type = fields.Selection([], string='Journal Type', readonly=True)
-    x_studio_many2one_field_kiSUJ = fields.Many2one('x_sales_report_type', string='Sales Report Type')
+    # x_studio_many2one_field_kiSUJ moved to Jinasena_Masterdata_Reporting.
     x_studio_members_contribution = fields.Float(string="Member's Contribution", readonly=True, store=False)
     x_studio_nic_number = fields.Char(string='NIC Number', readonly=True)
     x_studio_occupation_code = fields.Char(string='New Related Field', readonly=True)
@@ -51,7 +51,7 @@ class AccountMoveLine(models.Model):
     x_studio_related_field_kbp8y = fields.Char(string='New Related Field', readonly=True, store=False)
     x_studio_related_field_lBjdh = fields.Float(string='New Related Field', readonly=True, store=False)
     # TODO: x_studio_related_field_zy8mz = fields.One2many(...) -- Studio inverse name unknown; port from Clear-DB manually.
-    x_studio_sales_report_type = fields.Many2one('x_sales_report_type', string='Report Type (S- Incentive Calculation)')
+    # x_studio_sales_report_type moved to Jinasena_Masterdata_Reporting.
     x_studio_sales_team = fields.Many2one('crm.team', string='Sales Team', readonly=True)
     x_studio_status = fields.Selection([], string='Status', readonly=True)
     x_studio_status_1 = fields.Selection([], string='Status', readonly=True)

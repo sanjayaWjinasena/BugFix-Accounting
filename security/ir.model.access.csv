@@ -14,7 +14,5 @@ access_x_consignment_charge_h_user,x_consignment_charge_h user access,model_x_co
 access_x_lc_header_user,x_lc_header user access,model_x_lc_header,base.group_user,1,1,1,1
 access_x_misc_charge_codes_user,x_misc_charge_codes user access,model_x_misc_charge_codes,base.group_user,1,1,1,1
 access_x_rm_gross_margin_actu_user,x_rm_gross_margin_actu user access,model_x_rm_gross_margin_actu,base.group_user,1,1,1,1
-access_x_sales_report_model_user,x_sales_report_model user access,model_x_sales_report_model,base.group_user,1,1,1,1
-access_x_sales_report_type_user,x_sales_report_type user access,model_x_sales_report_type,base.group_user,1,1,1,1
 access_x_temp_tp_invoice_head_user,x_temp_tp_invoice_head user access,model_x_temp_tp_invoice_head,base.group_user,1,1,1,1
 access_x_tp_invoice_header_user,x_tp_invoice_header user access,model_x_tp_invoice_header,base.group_user,1,1,1,1
