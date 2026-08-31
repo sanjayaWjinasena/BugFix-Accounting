@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Accounting',
-    'version': '17.0.0.0.49',
+    'version': '17.0.0.0.51',
     'summary': 'Studio-to-Python port for BugFix-Accounting',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Accounting',
@@ -57,6 +57,26 @@
     #     srv_sls_credit_note_notify_tharaka child action which uses
     #     activity_user_id=seed_master_data_and_settings.user_146 (Tharaka
     #     Herath). No cycle: seed only depends on base/stock/hr/mail.
+    # v0.0.51: Close Studio Report cycle-break, take 2 (v0.0.50 reverted).
+    #   * NEW DEP: Jinasena_Masterdata_Reporting - owns x_sales_report_type
+    #     + x_sales_report_model + the 5 stock/mrp M2O inverses AND the 5
+    #     related-nav O2Ms (x_studio_related_field_NsCKm/PaCjA/XCKXu/
+    #     bCtVj/oeTJK). Adding the manifest dep gives us fresh-install
+    #     completeness without duplicating any field declarations.
+    #   * Views: 5 stripped tab strips restored in
+    #     x_sales_report_model_studio_ported_v2.xml + 5 stripped tree
+    #     columns restored in x_sales_report_type_studio_ported_v2.xml,
+    #     byte-verbatim from Clear-DB views 3786 and 3790.
+    #   * NO model changes: the 5 related-nav TODO comments in
+    #     models/x_sales_report_model.py are LEFT AS-IS. v0.0.50 tried to
+    #     replace them with real declarations and crashed - Jinasena_
+    #     Masterdata_Reporting already declares those fields, so a
+    #     downstream duplicate breaks _setup_related. Rule captured in
+    #     memory as feedback-setup-related-race.
+    #   * Closes INSTALL_JOURNEY.md items #4 (5 form tabs), #5 (5 tree
+    #     columns). Items #6 (O2Ms on x_sales_report_model) and #7 (O2Ms
+    #     on x_sales_report_type) already provided by
+    #     Jinasena_Masterdata_Reporting.
     # v0.0.49: Restore "Pump Price Costing" form tab on x_sales_report_model.
     #   * views/x_sales_report_model_studio_ported_v2.xml: the
     #     `<page name="studio_page_l5MQG" invisible="1"/>` stub added
@@ -145,6 +165,7 @@
         'studio_usermodel_migration', 'BugFix-Project',
         'BugFix-Sales', 'BugFix-Purchase', 'bank-data',
         'seed_master_data_and_settings',
+        'Jinasena_Masterdata_Reporting',
     ],
     # v0.0.2: data XMLs populated from Clear-DB snapshot via
     # scripts/populate_data_xmls.py (13 server actions, 22

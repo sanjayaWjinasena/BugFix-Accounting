@@ -202,31 +202,82 @@
                   <page string="SO Lines - All" name="studio_page_ysFdl" invisible="1">
                     <field name="x_studio_related_field_DqBBB"/>
                   </page>
-                  <!-- v0.0.31: MO - WIP page stripped. Referenced
-                       x_studio_related_field_oeTJK (One2many to mrp.production
-                       via x_studio_report_type.x_studio_production_order_id).
-                       Inverse M2O lives in BugFix-MRP which we can't dep on
-                       without creating a cycle (BugFix-MRP would then need
-                       x_sales_report_type which lives here). Restoring this
-                       tab requires upstreaming x_sales_report_type to
-                       studio_usermodel_migration. -->
-                  <page string="MO - WIP" name="studio_page_OErnS" invisible="1"/>
+                  <!-- v0.0.51: MO - WIP page restored. All 5 target O2Ms
+                       (x_studio_report_type.x_studio_production_order_id etc.)
+                       plus the x_sales_report_model related-nav wrappers
+                       (x_studio_related_field_oeTJK etc.) live in
+                       Jinasena_Masterdata_Reporting. Do NOT re-declare the
+                       related fields here - v0.0.50 tried and crashed with a
+                       spurious _setup_related KeyError
+                       (see [[feedback-setup-related-race]]). Arch byte-
+                       verbatim from Clear-DB view 3786. -->
+                  <page string="MO - WIP" name="studio_page_OErnS" invisible="1">
+                          <field name="x_studio_related_field_oeTJK">
+                            <tree string="Manufacturing Orders" default_order="priority desc, date_planned_start desc" multi_edit="1" sample="1">
+                              <header>
+                                <button name="button_plan" type="object" string="Plan"/>
+                                <button name="do_unreserve" type="object" string="Unreserve"/>
+                              </header>
+                              <field name="priority" optional="show" widget="priority" nolabel="1"/>
+                              <field name="message_needaction" column_invisible="1"/>
+                              <field name="name" decoration-bf="1"/>
+                              <field name="date_deadline" widget="remaining_days" optional="hide" invisible="state in ['done', 'cancel']"/>
+                              <field name="product_id" readonly="1" optional="show"/>
+                              <field name="product_uom_id" string="Unit of Measure" options="{'no_open':True,'no_create':True}" groups="uom.group_uom" optional="show"/>
+                              <field name="lot_producing_id" optional="hide"/>
+                              <field name="bom_id" readonly="1" optional="hide"/>
+                              <field name="origin" optional="show"/>
+                              <field name="user_id" optional="hide" widget="many2one_avatar_user"/>
+                              <field name="reservation_state" optional="show"/>
+                              <field name="product_qty" sum="Total Qty" string="Quantity" readonly="1" optional="show"/>
+                              <field name="company_id" readonly="1" groups="base.group_multi_company" optional="show"/>
+                              <field name="state" optional="show" widget="badge" decoration-success="state == 'done'" decoration-info="state not in ('done', 'cancel')"/>
+                              <field name="activity_exception_decoration" widget="activity_exception"/>
+                              <field name="x_studio_report_type_m_wip" string="Report Type (M-WIP)" column_invisible="1"/>
+                              <field name="delay_alert_date" column_invisible="1"/>
+                              <field string=" " name="json_popover" widget="stock_rescheduling_popover" invisible="delay_alert_date == False"/>
+                            </tree>
+                          </field>
+                        </page>
                   <page string="Customer Aging" name="studio_page_0K3qO" invisible="1">
                     <field name="x_studio_related_field_nfrkz"/>
                   </page>
-                  <!-- v0.0.31: 4 pages stripped (Slow Moving Items,
+                  <!-- v0.0.51: 4 pages restored (Slow Moving Items,
                        Sales-Prod-Purch, Prod. Summary Split, Production
-                       Variance). All referenced fields that resolve through
-                       x_studio_report_type to stock.move / stock.move.line
-                       inverse M2Os owned by BugFix-Stock. Adding BugFix-Stock
-                       as dep creates cycle (BugFix-Stock's M2O targets
-                       x_sales_report_type which is defined here). Restore
-                       plan: upstream x_sales_report_type to
-                       studio_usermodel_migration. -->
-                  <page string="Slow Moving Items" name="studio_page_zlXhw" invisible="1"/>
-                  <page string="Sales - Prod. - Purch." name="studio_page_P8SR6" invisible="1"/>
-                  <page string="Prod. Summary Split" name="studio_page_JXW6L" invisible="1"/>
-                  <page string="Production Variance" name="studio_page_bJioJ" invisible="1"/>
+                       Variance). All 8 target/nav fields owned by
+                       Jinasena_Masterdata_Reporting. Arch byte-verbatim
+                       from Clear-DB view 3786. -->
+                  <page string="Slow Moving Items" name="studio_page_zlXhw" invisible="1">
+                          <field name="x_studio_related_field_XCKXu"/>
+                        </page>
+                  <page string="Sales - Prod. - Purch." name="studio_page_P8SR6" invisible="1">
+                          <field name="x_studio_related_field_NsCKm"/>
+                        </page>
+                  <page string="Prod. Summary Split" name="studio_page_JXW6L" invisible="1">
+                          <field name="x_studio_related_field_bCtVj">
+                            <tree string="Move Lines" create="false" default_order="date" edit="false" delete="false">
+                              <field name="date"/>
+                              <field name="reference" string="Reference" invisible="context.get('no_reference', False)"/>
+                              <field name="product_id"/>
+                              <field name="lot_id" groups="stock.group_production_lot"/>
+                              <field name="location_id"/>
+                              <field name="location_dest_id"/>
+                              <field name="qty_done" string="Quantity Done"/>
+                              <field name="product_uom_id" options="{'no_open': True, 'no_create': True}" string="Unit of Measure" groups="uom.group_uom"/>
+                              <field name="company_id" groups="base.group_multi_company" force_save="1"/>
+                              <field name="state" widget="badge" decoration-success="state == 'done'" decoration-info="state not in ('done', 'cancel')"/>
+                              <field name="origin"/>
+                              <field name="picking_id"/>
+                              <field name="picking_code"/>
+                              <field name="x_studio_report_type_sales_prod_purch" string="Report Type - Sales prod. purch." column_invisible="1"/>
+                              <field name="x_studio_report_type_slow_moving_items" string="Report Type - Slow Moving Items" column_invisible="1"/>
+                              <field name="x_studio_report_type_production_summary_split" string="Report Type - Production Summary Split" column_invisible="1"/>
+                            </tree>
+                          </field>
+                        </page>
+                  <page string="Production Variance" name="studio_page_bJioJ" invisible="1">
+                          <field name="x_studio_related_field_PaCjA"/>
+                        </page>
                 </notebook>
                 <notebook name="studio_notebook_cA9iK">
                   <page string="Daily Sales Report" name="studio_page_cA9iK" invisible="1">
