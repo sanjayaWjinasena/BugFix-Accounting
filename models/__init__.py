@@ -1,3 +1,4 @@
+from . import account_analytic_distribution_model
 from . import account_analytic_line
 from . import account_analytic_plan
 from . import crossovered_budget

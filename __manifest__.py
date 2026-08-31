@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Accounting',
-    'version': '17.0.0.0.46',
+    'version': '17.0.0.0.47',
     'summary': 'Studio-to-Python port for BugFix-Accounting',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Accounting',
@@ -57,6 +57,21 @@
     #     srv_sls_credit_note_notify_tharaka child action which uses
     #     activity_user_id=seed_master_data_and_settings.user_146 (Tharaka
     #     Herath). No cycle: seed only depends on base/stock/hr/mail.
+    # v0.0.47: wired 18 base.automation stubs to their server actions.
+    #   * data/server_actions.xml grew from 13 -> 22 records with
+    #     byte-verbatim ports of the 9 previously-missing actions
+    #     (1144, 1368, 1408, 1409, 1720, 1733, 1766, 1847, 2417).
+    #     All state=code, usage=base_automation. Sizes: 239-1289 B.
+    #   * data/automations.xml: every TODO comment replaced by
+    #     <field name="action_server_ids" eval="[(6, 0, [ref('...')])]"/>
+    #     18/18 wires. base.automation records now actually invoke
+    #     their server actions on trigger.
+    #   * New models/account_analytic_distribution_model.py declares
+    #     x_studio_partner_mandatory (Bool) - required by action 2417
+    #     (Update Analytic Tag Parameters). Clear-DB has no on-disk
+    #     definition for this field either; we're the first Python
+    #     owner. account.analytic.distribution.model is standard Odoo,
+    #     transitively pulled by 'account'.
     # v0.0.46: reports/reports.xml ported from stub to full 6-report load:
     #   * report_payment_receipt (Clear-DB action 3455, "Jinasena Payment
     #     Receipt" on account.payment). Substantive A4-statement template

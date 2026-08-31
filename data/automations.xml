@@ -6,49 +6,49 @@
     <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;account.move&apos;)]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="active" eval="True"/>
-    <!-- TODO: wire action_server_ids to actual server_action xmlids: [1144] -->
+    <field name="action_server_ids" eval="[(6, 0, [ref('server_action_1144_work_center_costing_model_update_journal_entries')])]"/>
   </record>
   <record id="automation_60_imp_validate_from_to_dates_in_custom_rates" model="base.automation">
     <field name="name">IMP - Validate From To Dates in Custom Rates</field>
     <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;x_custom_currency_rate&apos;)]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="active" eval="True"/>
-    <!-- TODO: wire action_server_ids to actual server_action xmlids: [1311] -->
+    <field name="action_server_ids" eval="[(6, 0, [ref('server_action_1311_imp_validate_from_to_dates_in_custom_rates')])]"/>
   </record>
   <record id="automation_61_imp_pass_currency_information_to_custom_currency" model="base.automation">
     <field name="name">IMP - Pass Currency Information to Custom Currency</field>
     <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;x_custom_currency&apos;)]"/>
     <field name="trigger">on_change</field>
     <field name="active" eval="True"/>
-    <!-- TODO: wire action_server_ids to actual server_action xmlids: [1312] -->
+    <field name="action_server_ids" eval="[(6, 0, [ref('server_action_1312_imp_pass_currency_information_to_custom_currency')])]"/>
   </record>
   <record id="automation_64_imp_update_consignment_vendor_bill" model="base.automation">
     <field name="name">IMP - Update Consignment - Vendor Bill</field>
     <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;account.move&apos;)]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="active" eval="True"/>
-    <!-- TODO: wire action_server_ids to actual server_action xmlids: [1368] -->
+    <field name="action_server_ids" eval="[(6, 0, [ref('server_action_1368_imp_update_consignment_vendor_bill')])]"/>
   </record>
   <record id="automation_72_imp_update_lc_status_to_paid" model="base.automation">
     <field name="name">IMP - Update LC Status to Paid</field>
     <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;account.move&apos;)]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="active" eval="True"/>
-    <!-- TODO: wire action_server_ids to actual server_action xmlids: [1408] -->
+    <field name="action_server_ids" eval="[(6, 0, [ref('server_action_1408_imp_update_lc_status_to_paid')])]"/>
   </record>
   <record id="automation_73_imp_update_lc_status_to_paid_2" model="base.automation">
     <field name="name">IMP - Update LC Status to Paid - 2</field>
     <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;account.payment&apos;)]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="active" eval="True"/>
-    <!-- TODO: wire action_server_ids to actual server_action xmlids: [1409] -->
+    <field name="action_server_ids" eval="[(6, 0, [ref('server_action_1409_imp_update_lc_status_to_paid_2')])]"/>
   </record>
   <record id="automation_115_validate_journals_created_from_cp_npo" model="base.automation">
     <field name="name">Validate Journals Created from CP &amp; NPO</field>
     <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;account.move&apos;)]"/>
     <field name="trigger">on_unlink</field>
     <field name="active" eval="True"/>
-    <!-- TODO: wire action_server_ids to actual server_action xmlids: [1720] -->
+    <field name="action_server_ids" eval="[(6, 0, [ref('server_action_1720_validate_journals_created_from_cp_npo')])]"/>
   </record>
   
   <record id="automation_121_srm_update_sales_order_customer_invoice" model="base.automation">
@@ -56,35 +56,35 @@
     <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;account.move&apos;)]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="active" eval="True"/>
-    <!-- TODO: wire action_server_ids to actual server_action xmlids: [1733] -->
+    <field name="action_server_ids" eval="[(6, 0, [ref('server_action_1733_srm_update_sales_order_customer_invoice')])]"/>
   </record>
   <record id="automation_138_supplier_invoice_no_update_in_import_vendor_bill" model="base.automation">
     <field name="name">Supplier Invoice No Update in Import Vendor Bill</field>
     <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;account.move&apos;)]"/>
     <field name="trigger">on_change</field>
     <field name="active" eval="True"/>
-    <!-- TODO: wire action_server_ids to actual server_action xmlids: [1766] -->
+    <field name="action_server_ids" eval="[(6, 0, [ref('server_action_1766_supplier_invoice_no_update_in_import_vendor_bill')])]"/>
   </record>
   <record id="automation_145_sls_validate_bank_guarantee_in_customer_invoice" model="base.automation">
     <field name="name">SLS - Validate Bank Guarantee in Customer Invoice</field>
     <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;account.move&apos;)]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="active" eval="True"/>
-    <!-- TODO: wire action_server_ids to actual server_action xmlids: [1775] -->
+    <field name="action_server_ids" eval="[(6, 0, [ref('server_action_1775_sls_validate_bank_guarantee_in_customer_invoice')])]"/>
   </record>
   <record id="automation_170_supplier_invoice_no_update_in_import_vendor_bill_2" model="base.automation">
     <field name="name">Supplier Invoice No Update in Import Vendor Bill - 2</field>
     <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;account.move&apos;)]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="active" eval="True"/>
-    <!-- TODO: wire action_server_ids to actual server_action xmlids: [1847] -->
+    <field name="action_server_ids" eval="[(6, 0, [ref('server_action_1847_supplier_invoice_no_update_in_import_vendor_bill_2')])]"/>
   </record>
   <record id="automation_215_rr_validate_rug_in_customer_invoice" model="base.automation">
     <field name="name">RR - Validate RUG in Customer Invoice</field>
     <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;account.move&apos;)]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="active" eval="True"/>
-    <!-- TODO: wire action_server_ids to actual server_action xmlids: [2331] -->
+    <field name="action_server_ids" eval="[(6, 0, [ref('server_action_2331_rr_validate_rug_in_customer_invoice')])]"/>
   </record>
   
   <record id="automation_237_update_analytic_tag_parameters_sales_invoice_customer" model="base.automation">
@@ -92,42 +92,42 @@
     <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;account.move&apos;)]"/>
     <field name="trigger">on_change</field>
     <field name="active" eval="True"/>
-    <!-- TODO: wire action_server_ids to actual server_action xmlids: [2417] -->
+    <field name="action_server_ids" eval="[(6, 0, [ref('server_action_2417_update_analytic_tag_parameters_sales_invoice_customer')])]"/>
   </record>
   <record id="automation_241_rr_validate_payment" model="base.automation">
     <field name="name">RR - Validate Payment %</field>
     <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;account.payment&apos;)]"/>
     <field name="trigger">on_change</field>
     <field name="active" eval="True"/>
-    <!-- TODO: wire action_server_ids to actual server_action xmlids: [2427] -->
+    <field name="action_server_ids" eval="[(6, 0, [ref('server_action_2427_rr_validate_payment')])]"/>
   </record>
   <record id="automation_292_update_project_no_in_journal_entry" model="base.automation">
     <field name="name">Update Project No in Journal Entry</field>
     <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;account.payment&apos;)]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="active" eval="True"/>
-    <!-- TODO: wire action_server_ids to actual server_action xmlids: [2627] -->
+    <field name="action_server_ids" eval="[(6, 0, [ref('server_action_2627_update_project_no_in_journal_entry')])]"/>
   </record>
   <record id="automation_310_jin_company_id_in_custom_currency" model="base.automation">
     <field name="name">JIN - Company Id in Custom Currency</field>
     <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;x_custom_currency&apos;)]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="active" eval="True"/>
-    <!-- TODO: wire action_server_ids to actual server_action xmlids: [2674] -->
+    <field name="action_server_ids" eval="[(6, 0, [ref('server_action_2674_jin_company_id_in_custom_currency')])]"/>
   </record>
   <record id="automation_311_jin_company_id_in_custom_currency_rate" model="base.automation">
     <field name="name">JIN - Company Id in Custom Currency Rate</field>
     <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;x_custom_currency_rate&apos;)]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="active" eval="True"/>
-    <!-- TODO: wire action_server_ids to actual server_action xmlids: [2675] -->
+    <field name="action_server_ids" eval="[(6, 0, [ref('server_action_2675_jin_company_id_in_custom_currency_rate')])]"/>
   </record>
   <record id="automation_328_project_update_project_no_for_manual_transactions" model="base.automation">
     <field name="name">Project - Update Project No for Manual Transactions</field>
     <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;account.move&apos;)]"/>
     <field name="trigger">on_change</field>
     <field name="active" eval="True"/>
-    <!-- TODO: wire action_server_ids to actual server_action xmlids: [2738] -->
+    <field name="action_server_ids" eval="[(6, 0, [ref('server_action_2738_project_update_project_no_for_manual_transactions')])]"/>
   </record>
   
   

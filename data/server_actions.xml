@@ -53,20 +53,34 @@ record['x_studio_company_id'] = company.id]]></field>
     <field name="name">RR - RUG Account Update in SI</field>
     <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;account.move&apos;)]"/>
     <field name="state">code</field>
-    <field name="code"><![CDATA[if record.x_studio_rug_confirmed == True:
-  company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
-  company = env['res.company'].browse(company_id)
-  
-  rug_account = env['x_repair_accounts'].search([('x_studio_company_id', '=',  company.id)], limit=1)
-  if rug_account:
-    if rug_account.x_studio_rug_account == False:
-      raise UserError('RUG Account must be Specified in Repair Accounts')
-  
-  lines = env['account.move.line'].search([('move_id', '=', record.id),('account_id', '=', record.journal_id.default_account_id.id)])
-  #lines = env['account.move.line'].search([('move_id', '=', record.id),('account_id', '=', record.partner_id.property_account_receivable_id.id)])
-  for line in lines:
-    line.write({'account_id':rug_account.x_studio_rug_account.id}) 
-  
+    <field name="code"><![CDATA[if record.x_studio_rug_confirmed == True:
+
+  company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
+
+  company = env['res.company'].browse(company_id)
+
+  
+
+  rug_account = env['x_repair_accounts'].search([('x_studio_company_id', '=',  company.id)], limit=1)
+
+  if rug_account:
+
+    if rug_account.x_studio_rug_account == False:
+
+      raise UserError('RUG Account must be Specified in Repair Accounts')
+
+  
+
+  lines = env['account.move.line'].search([('move_id', '=', record.id),('account_id', '=', record.journal_id.default_account_id.id)])
+
+  #lines = env['account.move.line'].search([('move_id', '=', record.id),('account_id', '=', record.partner_id.property_account_receivable_id.id)])
+
+  for line in lines:
+
+    line.write({'account_id':rug_account.x_studio_rug_account.id}) 
+
+  
+
   record.write({'x_studio_rug_acc_updated': True})]]></field>
     <field name="usage">ir_actions_server</field>
   </record>
@@ -239,6 +253,200 @@ record['company_id'] = company.id]]></field>
     journal_entry.write({'x_studio_project_no':record.x_studio_project_no_1.id, 'x_studio_journal_type':'Payment', 'x_studio_project_no_issue':record.x_studio_project_no_1.id, 'x_studio_type':record.x_studio_type})
     
     ]]></field>
+    <field name="usage">base_automation</field>
+  </record>
+
+  <!-- =========================================================== -->
+  <!-- v0.0.47: 9 additional server actions ported byte-verbatim   -->
+  <!-- from Clear-DB. Referenced by data/automations.xml TODOs.    -->
+  <!-- =========================================================== -->
+
+  <!-- Clear-DB action 1144 -->
+  <record id="server_action_1144_work_center_costing_model_update_journal_entries" model="ir.actions.server">
+    <field name="name">Work Center Costing Model - Update Journal Entries</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;account.move&apos;)]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[if record.id:
+  stock_valuation = env['stock.valuation.layer'].search([('account_move_id', '=', record.id)],limit=1)
+  if stock_valuation.product_tmpl_id:
+    find_bom = env['mrp.bom'].search([('product_tmpl_id', '=', stock_valuation.product_tmpl_id.id)],limit=1)
+    if find_bom:
+      if stock_valuation.stock_move_id:
+        stock_move = env['stock.move'].search([('id', '=', stock_valuation.stock_move_id.id), ('product_tmpl_id', '=', stock_valuation.product_tmpl_id.id)],limit=1)
+        if stock_move:
+          prod_order = env['mrp.production'].search([('id', '=', stock_move.production_id.id)],limit=1)
+          if prod_order:
+            journal_lines = env['account.move.line'].search([('move_id', '=', record.id),('quantity', '!=', 0.00)])
+            if journal_lines:
+              record.write({'amount_total':prod_order.x_studio_prod_bom_total_actual_material_cost, 'amount_total_signed':prod_order.x_studio_prod_bom_total_actual_material_cost})
+              for update in journal_lines:
+                if update.credit == 0.00:  
+                  update.write({'debit':prod_order.x_studio_prod_bom_total_actual_material_cost})
+                if update.debit == 0.00:
+                  update.write({'credit':prod_order.x_studio_prod_bom_total_actual_material_cost})
+]]></field>
+    <field name="usage">base_automation</field>
+  </record>
+
+  <!-- Clear-DB action 1368 -->
+  <record id="server_action_1368_imp_update_consignment_vendor_bill" model="ir.actions.server">
+    <field name="name">IMP - Update Consignment - Vendor Bill</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;account.move&apos;)]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[record['x_studio_update_consignment'] = False
+record['x_studio_consignment_no'] = False
+
+if record.invoice_origin:
+  purchase = env['purchase.order'].search([('name', '=', record.invoice_origin)], limit=1)
+  if purchase:
+    record['x_studio_purchase_id'] = purchase.id
+    lc = env['x_lc_header'].search([('x_studio_created_from_purchase_order', '=', purchase.id)],limit=1,order='x_studio_version_no desc')
+    if lc:
+      record['x_studio_lc_no'] = lc.id
+  
+
+
+]]></field>
+    <field name="usage">base_automation</field>
+  </record>
+
+  <!-- Clear-DB action 1408 -->
+  <record id="server_action_1408_imp_update_lc_status_to_paid" model="ir.actions.server">
+    <field name="name">IMP - Update LC Status to Paid</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;account.move&apos;)]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[if record.state == 'posted':
+  if record.x_studio_lc_no != False:
+    lc_lines = env['x_lc_header'].search([('id', '=', record.x_studio_lc_no.id), ('x_studio_status', '=', 'Posted')],limit=1)
+    if lc_lines:
+      lc_lines.write({'x_studio_status':'Paid','x_studio_selection_field_yo4qM':'Paid','x_studio_paid_amount_lcy':record.amount_total})
+  
+  
+
+
+
+]]></field>
+    <field name="usage">base_automation</field>
+  </record>
+
+  <!-- Clear-DB action 1409 -->
+  <record id="server_action_1409_imp_update_lc_status_to_paid_2" model="ir.actions.server">
+    <field name="name">IMP - Update LC Status to Paid - 2</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;account.payment&apos;)]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[if record.state == 'posted':
+  amount_lcy = 0.00
+  if record.x_studio_lc_no_1 != False:
+    lc_lines = env['x_lc_header'].search([('id', '=', record.x_studio_lc_no_1.id), ('x_studio_status', '=', 'Posted')],limit=1)
+    if lc_lines:
+      currency = env['res.currency'].search([('id', '=', record.currency_id.id),('date', '<=', datetime.datetime.now().date()),('active', '=', True)],limit=1)
+      if currency:
+        amount_lcy = round((record.amount * currency.rate),2)
+      else:
+        amount_lcy = record.amount
+        
+      lc_lines.write({'x_studio_status':'Paid','x_studio_selection_field_yo4qM':'Paid','x_studio_paid_amount_lcy':amount_lcy})
+  
+  
+
+
+
+]]></field>
+    <field name="usage">base_automation</field>
+  </record>
+
+  <!-- Clear-DB action 1720 -->
+  <record id="server_action_1720_validate_journals_created_from_cp_npo" model="ir.actions.server">
+    <field name="name">Validate Journals Created from CP &amp; NPO</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;account.move&apos;)]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[if record.x_studio_cre.id != False:
+  raise UserError("The Journal is Liked with a Cash Purchase and can not be deleted.")
+  
+if record.x_studio_created_from_npo_no.id != False:
+  raise UserError("The Journal is Liked with a Non-Inventory Purchase Order and can not be deleted.")
+ 
+
+
+
+]]></field>
+    <field name="usage">base_automation</field>
+  </record>
+
+  <!-- Clear-DB action 1733 -->
+  <record id="server_action_1733_srm_update_sales_order_customer_invoice" model="ir.actions.server">
+    <field name="name">SRM - Update Sales Order - Customer Invoice</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;account.move&apos;)]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[# fix_repair:idempotent-v1
+if record.invoice_origin and not record.x_studio_sale_id:
+  sale = env['sale.order'].sudo().search(
+    [('name', '=', record.invoice_origin)], limit=1)
+  if sale:
+    record.write({'x_studio_sale_id': sale.id})
+]]></field>
+    <field name="usage">base_automation</field>
+  </record>
+
+  <!-- Clear-DB action 1766 -->
+  <record id="server_action_1766_supplier_invoice_no_update_in_import_vendor_bill" model="ir.actions.server">
+    <field name="name">Supplier Invoice No Update in Import Vendor Bill</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;account.move&apos;)]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[if record.x_studio_consignment_no:
+  consignment = env['x_consignment_header'].search([('id', '=', record.x_studio_consignment_no.id)],limit=1)
+  if consignment:
+    record['x_studio_supplier_invoice_number'] = consignment.x_studio_supplier_invoice_number
+    record['invoice_date'] = consignment.x_studio_invoice_date
+
+   
+
+
+
+
+]]></field>
+    <field name="usage">base_automation</field>
+  </record>
+
+  <!-- Clear-DB action 1847 -->
+  <record id="server_action_1847_supplier_invoice_no_update_in_import_vendor_bill_2" model="ir.actions.server">
+    <field name="name">Supplier Invoice No Update in Import Vendor Bill - 2</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;account.move&apos;)]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[if record.x_studio_consignment_no:
+  consignment = env['x_consignment_header'].search([('id', '=', record.x_studio_consignment_no.id)],limit=1)
+  if consignment:
+    record['x_studio_supplier_invoice_number'] = consignment.x_studio_supplier_invoice_number
+
+   
+
+
+
+
+]]></field>
+    <field name="usage">base_automation</field>
+  </record>
+
+  <!-- Clear-DB action 2417 -->
+  <record id="server_action_2417_update_analytic_tag_parameters_sales_invoice_customer" model="ir.actions.server">
+    <field name="name">Update Analytic Tag Parameters - Sales Invoice - Customer</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;account.move&apos;)]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[if record.partner_id:
+  tag_rule= env['account.analytic.distribution.model'].search([('partner_id', '=', record.partner_id.id)],limit=1)
+  if tag_rule:
+    record['x_studio_account_mandatory'] = tag_rule.x_studio_partner_mandatory
+  else:
+    record['x_studio_account_mandatory'] = False
+ 
+  
+    
+   
+
+
+
+
+]]></field>
     <field name="usage">base_automation</field>
   </record>
 </odoo>
