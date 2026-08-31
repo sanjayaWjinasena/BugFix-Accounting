@@ -123,6 +123,65 @@ Same cycle as tabs above. Same restore path.
 - `x_studio_prod_summary_split_id`
 - `x_studio_production_variance_id`
 
+### 9. VIEWS_TODO.md — 84 Studio views triage (v0.0.47 follow-up, 2026-08-31)
+
+Triage of the 84 Studio views listed in `VIEWS_TODO.md`. Result: no
+new view files to port.
+
+**Coverage breakdown (repair-test-101 v0.0.47 state):**
+
+| Source | Count |
+|---|---:|
+| Auto-ported via `_v2.xml` files (xmlid `ported_view_NNNN_*`) | 38 |
+| Primary view for (model, type) declared under alternate xmlid | 29 |
+| Truly missing but skippable Studio leftovers (see below) | 17 |
+| Feature-covered elsewhere in existing views | 1 (view 4017) |
+
+**The 17 skips + rationale.** All 17 have ZERO `ir.actions.act_window`
+references on Clear-DB (not attached to any menu/button), the strongest
+signal they were Studio-designer leftovers rather than load-bearing UI.
+
+* 2195 (account.account form inherit) — `<data></data>` empty stub.
+* 2549, 2943, 3118, 5075, 6033, 8350 (six tree inherits) — all add a
+  single `<field name="id"/>` (or `model_id`) column. Cosmetic only.
+  Easy to re-add later if needed.
+* 8579 (account.journal form inherit) — adds `id` column inside the
+  nested payment_method_line trees. Cosmetic.
+* 5905, 5906 (account.payment.method.line tree primary + inherit) —
+  Studio-invented primary tree (73b) + a 3-column overlay. Model has
+  no Odoo standard view; act_windows use inline tree fallbacks.
+* 5957 (account.tax search inherit) — adds 6 optional search-filter
+  fields. Odoo default search works without them.
+* 5073 (account.analytic.plan form inherit) — adds two stat-buttons
+  with hardcoded `name="2333"` / `name="2334"` numeric act_window
+  refs. Would trip [[feedback-hardcoded-action-ids]] on fresh install
+  — port would need id -> xmlid conversion AND those act_windows
+  ported first.
+* 6052 (account.payment.term form inherit) — locks company_id
+  readonly + redefines line_ids tree columns. Borderline useful but
+  no downstream breakage from skip.
+* 4122 (account.tax.group standalone search) — 0 refs, Odoo default
+  search suffices.
+* 4372 (account.tax.unit standalone form) — 0 refs, Odoo default
+  form suffices.
+* 4373 (account.tax.unit standalone tree) — 1 act_window ref
+  ("Tax Units" id 1941), but arch = `<tree><field name="name"/><field
+  name="country_id"/></tree>` — exactly what Odoo auto-generates
+  when no tree is declared. Skip is a no-op.
+* 4017 (account.move form buttons inherit, 4460b) — NOT a skip; the
+  arch was already ported into `views/account_move_studio_ported_v2.xml`
+  during the v0.0.18-v0.0.20 button-fix arc, with the hardcoded
+  numeric refs (2176, 1370, 2366, 1493, 1495) converted to
+  `%(BugFix-Accounting.xmlid)d`. Grep for "Update RUG Account"
+  confirms this.
+
+**Restore path (if any of the 17 later prove needed):** re-fetch
+arch from Clear-DB via RPC, port as an `<inherit_id ref="std.view_id"/>`
+with priority=99. For 5073 in particular, port act_windows 2333 and
+2334 first (or convert the button refs to xmlids).
+
+**Doc-only change; no code touched.**
+
 ### 8. HR menu on `bank-data` (sibling repo)
 
 `menu_employee_bank_accounts` under Payroll/Configuration preserved
