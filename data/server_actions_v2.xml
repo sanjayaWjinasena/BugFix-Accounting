@@ -38,11 +38,41 @@
     <!-- Server action stubs (9)                              -->
     <!-- ==================================================== -->
 
+    <!-- 2176: RR - RUG Account Update in SI. FULL PORT (v0.0.39).
+         When invoice's x_studio_rug_confirmed is True, rewrites all
+         account.move.line entries pointing at the journal's default
+         account to instead point at x_repair_accounts.x_studio_rug_account
+         (per-company), then marks x_studio_rug_acc_updated=True on
+         the invoice. Depends on env['x_repair_accounts'] which is
+         owned by Fix-repair (installed alongside on repair-test-101).
+         No install-time model dep needed - env[] resolution happens at
+         click time. -->
     <record id="srv_rug_account_update_in_si" model="ir.actions.server">
         <field name="name">RR - RUG Account Update in SI</field>
         <field name="model_id" ref="account.model_account_move"/>
+        <field name="binding_view_types">list,form</field>
         <field name="state">code</field>
-        <field name="code">raise UserError("BugFix-Accounting: RUG Account Update action stub — full port pending. Clear-DB action id was 2176.")</field>
+        <field name="usage">ir_actions_server</field>
+        <field name="sequence">5</field>
+        <field name="code"><![CDATA[
+if record.x_studio_rug_confirmed == True:
+    company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
+    company = env['res.company'].browse(company_id)
+
+    rug_account = env['x_repair_accounts'].search([('x_studio_company_id', '=', company.id)], limit=1)
+    if rug_account:
+        if rug_account.x_studio_rug_account == False:
+            raise UserError('RUG Account must be Specified in Repair Accounts')
+
+    lines = env['account.move.line'].search([
+        ('move_id', '=', record.id),
+        ('account_id', '=', record.journal_id.default_account_id.id),
+    ])
+    for line in lines:
+        line.write({'account_id': rug_account.x_studio_rug_account.id})
+
+    record.write({'x_studio_rug_acc_updated': True})
+]]></field>
     </record>
 
     <record id="srv_update_advance_payment_account_vendor_bill" model="ir.actions.server">
