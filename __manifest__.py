@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Accounting',
-    'version': '17.0.0.0.43',
+    'version': '17.0.0.0.44',
     'summary': 'Studio-to-Python port for BugFix-Accounting',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Accounting',
@@ -52,11 +52,17 @@
     #     Verified acyclic (bank-data depends on account/hr/hr_payroll/base
     #     only). Root cause of the v0.0.22 install failure — rule captured
     #     as feedback-pin-source-verification in project memory.
+    # v0.0.44 addition:
+    #   * seed_master_data_and_settings - needed for the
+    #     srv_sls_credit_note_notify_tharaka child action which uses
+    #     activity_user_id=seed_master_data_and_settings.user_146 (Tharaka
+    #     Herath). No cycle: seed only depends on base/stock/hr/mail.
     'depends': [
         'base_setup', 'account', 'account_budget', 'account_reports',
         'mrp', 'sale', 'crm', 'stock', 'project',
         'studio_usermodel_migration', 'BugFix-Project',
         'BugFix-Sales', 'BugFix-Purchase', 'bank-data',
+        'seed_master_data_and_settings',
     ],
     # v0.0.2: data XMLs populated from Clear-DB snapshot via
     # scripts/populate_data_xmls.py (13 server actions, 22

@@ -187,18 +187,96 @@ else:
 ]]></field>
     </record>
 
+    <!-- ==================================================== -->
+    <!-- 1493/1495 SLS Credit Note Approval multi-state pair  -->
+    <!-- FULL PORT (v0.0.44). Two multi actions orchestrating -->
+    <!-- 4 child actions:                                     -->
+    <!--                                                      -->
+    <!--   1493 Request Approval [children in order: 1491, 1489]  -->
+    <!--     1491 -> next_activity assigned to Tharaka H      -->
+    <!--     1489 -> object_write x_studio_credit_note_request_sent=True -->
+    <!--                                                      -->
+    <!--   1495 Approval Main [children in order: 2537, 2539] -->
+    <!--     2537 -> object_write x_studio_credit_note_approved=True -->
+    <!--     2539 -> next_activity generic (record.user_id)   -->
+    <!--                                                      -->
+    <!-- Tharaka reference uses seed_master_data_and_settings -->
+    <!-- .user_146 (stable xmlid on repair-test-101).         -->
+    <!-- ==================================================== -->
+
+    <record id="srv_sls_credit_note_notify_tharaka" model="ir.actions.server">
+        <field name="name">SLS - Request Credit Note Approval - Notify User</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="state">next_activity</field>
+        <field name="usage">ir_actions_server</field>
+        <field name="sequence">5</field>
+        <field name="activity_type_id" ref="mail.mail_activity_data_todo"/>
+        <field name="activity_summary">Approve Credit Note</field>
+        <field name="activity_note"><![CDATA[<p><br></p>]]></field>
+        <field name="activity_date_deadline_range">0</field>
+        <field name="activity_date_deadline_range_type">days</field>
+        <field name="activity_user_type">specific</field>
+        <field name="activity_user_id" ref="seed_master_data_and_settings.user_146"/>
+        <field name="activity_user_field_name">user_id</field>
+    </record>
+
+    <record id="srv_sls_credit_note_request_sent_flag" model="ir.actions.server">
+        <field name="name">SLS - Request Credit Note Approval Sent</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="state">object_write</field>
+        <field name="usage">ir_actions_server</field>
+        <field name="sequence">5</field>
+        <field name="update_path">x_studio_credit_note_request_sent</field>
+        <field name="update_field_id" ref="field_account_move__x_studio_credit_note_request_sent"/>
+        <field name="update_boolean_value">true</field>
+        <field name="value">Yes</field>
+    </record>
+
+    <record id="srv_sls_credit_note_approved_flag" model="ir.actions.server">
+        <field name="name">SLS - Credit Note Approval</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="state">object_write</field>
+        <field name="usage">ir_actions_server</field>
+        <field name="sequence">5</field>
+        <field name="update_path">x_studio_credit_note_approved</field>
+        <field name="update_field_id" ref="field_account_move__x_studio_credit_note_approved"/>
+        <field name="update_boolean_value">true</field>
+        <field name="value">Yes</field>
+    </record>
+
+    <record id="srv_sls_credit_note_confirm_activity" model="ir.actions.server">
+        <field name="name">SLS - Credit Note Approval - Confirm</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="state">next_activity</field>
+        <field name="usage">ir_actions_server</field>
+        <field name="sequence">5</field>
+        <field name="activity_type_id" ref="mail.mail_activity_data_todo"/>
+        <field name="activity_summary">Credit Note Approval - Confirm</field>
+        <field name="activity_note"><![CDATA[<p><br></p>]]></field>
+        <field name="activity_date_deadline_range">0</field>
+        <field name="activity_date_deadline_range_type">days</field>
+        <field name="activity_user_type">generic</field>
+        <field name="activity_user_field_name">user_id</field>
+    </record>
+
     <record id="srv_sls_request_credit_note_approval" model="ir.actions.server">
         <field name="name">SLS - Request Credit Note Approval</field>
         <field name="model_id" ref="account.model_account_move"/>
-        <field name="state">code</field>
-        <field name="code">raise UserError("BugFix-Accounting: Request Credit Note Approval action stub — full port pending (state=multi with child actions on Clear-DB). Clear-DB action id was 1493.")</field>
+        <field name="binding_view_types">list,form</field>
+        <field name="state">multi</field>
+        <field name="usage">ir_actions_server</field>
+        <field name="sequence">5</field>
+        <field name="child_ids" eval="[(6, 0, [ref('srv_sls_credit_note_notify_tharaka'), ref('srv_sls_credit_note_request_sent_flag')])]"/>
     </record>
 
     <record id="srv_sls_credit_note_approval_main" model="ir.actions.server">
         <field name="name">SLS - Credit Note Approval - Main</field>
         <field name="model_id" ref="account.model_account_move"/>
-        <field name="state">code</field>
-        <field name="code">raise UserError("BugFix-Accounting: Credit Note Approval action stub — full port pending. Clear-DB action id was 1495.")</field>
+        <field name="binding_view_types">list,form</field>
+        <field name="state">multi</field>
+        <field name="usage">ir_actions_server</field>
+        <field name="sequence">5</field>
+        <field name="child_ids" eval="[(6, 0, [ref('srv_sls_credit_note_approved_flag'), ref('srv_sls_credit_note_confirm_activity')])]"/>
     </record>
 
     <!-- 1854: SLS - View Credit Limit Validation in Customer Invoice.
