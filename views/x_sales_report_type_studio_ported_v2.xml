@@ -163,16 +163,11 @@
                 <field name="id"/>
                 <field name="x_studio_journal_items_id"/>
                 <field name="x_studio_test" string="test"/>
-                <!-- v0.0.52: 5 tree columns restored. All fields owned by
-                     Jinasena_Masterdata_Reporting (installed alongside on
-                     every real deployment). Byte-verbatim from Clear-DB
-                     view 3790. -->
-                <field name="x_studio_production_order_id" string="Production Order Id"/>
+                <!-- v0.0.32: 5 fields stripped (production_order_id [mrp cycle],
+                     slow_moving_item_id / sales_prod_purch_id / prod_summary_split_id /
+                     production_variance_id [stock cycle]). Restore path: upstream
+                     x_sales_report_type to studio_usermodel_migration. -->
                 <field name="x_studio_journal_entry_id" string="Journal Entry Id"/>
-                <field name="x_studio_slow_moving_item_id" string="Slow Moving Item Id"/>
-                <field name="x_studio_sales_prod_purch_id" string="Sales Prod. Purch. Id"/>
-                <field name="x_studio_prod_summary_split_id" string="Prod. Summary Split Id"/>
-                <field name="x_studio_production_variance_id" string="Production Variance Id"/>
                 <field name="x_studio_sales_lines_id" string="Sales Lines Id" column_invisible="1"/>
               </xpath>
             </data>

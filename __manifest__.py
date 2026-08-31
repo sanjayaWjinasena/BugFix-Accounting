@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Accounting',
-    'version': '17.0.0.0.52',
+    'version': '17.0.0.0.49',
     'summary': 'Studio-to-Python port for BugFix-Accounting',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Accounting',
@@ -57,25 +57,6 @@
     #     srv_sls_credit_note_notify_tharaka child action which uses
     #     activity_user_id=seed_master_data_and_settings.user_146 (Tharaka
     #     Herath). No cycle: seed only depends on base/stock/hr/mail.
-    # v0.0.52: Close Studio Report cycle-break, take 3 (view-arch only).
-    #   * v0.0.50 tried Python decl in BugFix-Accounting -> _setup_related
-    #     KeyError (double-declaration with Jinasena_Masterdata_Reporting).
-    #   * v0.0.51 tried adding Jinasena_Masterdata_Reporting to depends +
-    #     view arch restore -> view-validation KeyError (dep-order change
-    #     disturbed field visibility at validation moment).
-    #   * v0.0.52: view arch restore ONLY. No manifest dep change. No
-    #     Python field decl. Trusts that Jinasena_Masterdata_Reporting
-    #     is always installed alongside on real deployments (true on
-    #     repair-test-101 and the actual Jinasena SH environment).
-    #     Fresh-install compat NOT guaranteed for the hypothetical
-    #     "install BugFix-Accounting on a bare Odoo without JMR" case -
-    #     acceptable given deployment reality.
-    #   * Views restored: 5 tab strips in
-    #     x_sales_report_model_studio_ported_v2.xml + 5 tree columns in
-    #     x_sales_report_type_studio_ported_v2.xml, byte-verbatim from
-    #     Clear-DB views 3786 and 3790.
-    #   * Closes INSTALL_JOURNEY.md items #4 (5 tabs), #5 (5 tree cols)
-    #     if this attempt survives upgrade.
     # v0.0.49: Restore "Pump Price Costing" form tab on x_sales_report_model.
     #   * views/x_sales_report_model_studio_ported_v2.xml: the
     #     `<page name="studio_page_l5MQG" invisible="1"/>` stub added
