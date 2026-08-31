@@ -191,11 +191,33 @@ if record.partner_id.customer_rank > 0:
 ]]></field>
     </record>
 
+    <!-- 1851: SLS - Send Bank Guarantee Notification in Customer Invoice.
+         FULL PORT (v0.0.41). Non-blocking gate on customer invoices:
+         posts a chatter warning (does NOT raise) when the customer's
+         bank guarantee is expired or insufficient for the credit + this
+         invoice. Only fires for non-'General' customer groups where BG
+         is optional (x_studio_mandatory_bank_guarantee == False).
+         Marks x_studio_bg_sent=True after posting to avoid duplicates. -->
     <record id="srv_sls_send_bank_guarantee_notification" model="ir.actions.server">
         <field name="name">SLS - Send Bank Guarantee Notification in Customer Invoice</field>
         <field name="model_id" ref="account.model_account_move"/>
+        <field name="binding_view_types">list,form</field>
         <field name="state">code</field>
-        <field name="code">raise UserError("BugFix-Accounting: Send BG Notification action stub — full port pending. Clear-DB action id was 1851.")</field>
+        <field name="usage">ir_actions_server</field>
+        <field name="sequence">5</field>
+        <field name="code"><![CDATA[
+if record.partner_id.customer_rank > 0:
+    if record.move_type == 'out_invoice':
+        if record.partner_id.x_studio_customer_group.x_studio_group_type != 'General':
+            if record.partner_id.x_studio_mandatory_bank_guarantee == False:
+                if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():
+                    records.message_post(body="Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
+                    record['x_studio_bg_sent'] = True
+                else:
+                    if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_id.credit + record.amount_total):
+                        records.message_post(body="The credit limit is higher than the bank guarantee amount." + "\n" + "Customer: " + str(record.partner_id.name) + "\n" + " Sales Order: " + str(record.x_studio_sale_id.name) + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_id.credit + record.amount_total))
+                        record['x_studio_bg_sent'] = True
+]]></field>
     </record>
 
     <record id="srv_sls_view_bank_guarantee_validation" model="ir.actions.server">
