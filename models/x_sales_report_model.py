@@ -59,7 +59,11 @@ class XSalesReportModel(models.Model):
     x_studio_other_oh = fields.Float(string='Other OH')
     x_studio_profit_mark_up_ = fields.Float(string='Profit Mark Up %')
     x_studio_project_no = fields.Many2one('project.project', string='Project No')
-    # TODO: x_studio_pump_price_costing_ids = fields.One2many('x_pump_price_costing', <inverse>, string='Pump Price Costing Ids')
+    x_studio_pump_price_costing_ids = fields.One2many(
+        'x_pump_price_costing',
+        'x_studio_sales_report_model_id',
+        string='Pump Price Costing Ids',
+    )
     x_studio_related_field_DqBBB = fields.One2many(
         'sale.order.line',
         related='x_studio_report_type.x_studio_sales_lines_id',

@@ -18,3 +18,4 @@ access_x_sales_report_model_user,x_sales_report_model user access,model_x_sales_
 access_x_sales_report_type_user,x_sales_report_type user access,model_x_sales_report_type,base.group_user,1,1,1,1
 access_x_temp_tp_invoice_head_user,x_temp_tp_invoice_head user access,model_x_temp_tp_invoice_head,base.group_user,1,1,1,1
 access_x_tp_invoice_header_user,x_tp_invoice_header user access,model_x_tp_invoice_header,base.group_user,1,1,1,1
+access_x_pump_price_costing_user,x_pump_price_costing user access,model_x_pump_price_costing,base.group_user,1,1,1,1

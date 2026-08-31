@@ -19,6 +19,7 @@ from . import x_jinasena_paymaster_config
 from . import x_journal_types
 from . import x_lc_header
 from . import x_misc_charge_codes
+from . import x_pump_price_costing
 from . import x_rm_cust_invoice_s1
 from . import x_rm_customer_wise_inv
 from . import x_rm_daily_s1

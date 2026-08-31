@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Accounting',
-    'version': '17.0.0.0.47',
+    'version': '17.0.0.0.48',
     'summary': 'Studio-to-Python port for BugFix-Accounting',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Accounting',
@@ -57,6 +57,24 @@
     #     srv_sls_credit_note_notify_tharaka child action which uses
     #     activity_user_id=seed_master_data_and_settings.user_146 (Tharaka
     #     Herath). No cycle: seed only depends on base/stock/hr/mail.
+    # v0.0.48: x_pump_price_costing custom model port.
+    #   * models/x_pump_price_costing.py declares the 69 Studio x_*
+    #     fields from Clear-DB verbatim (0 rows on Clear-DB - schema-
+    #     only asset). Order: x_studio_sequence asc, id asc. Mixed with
+    #     mail.thread + mail.activity.mixin per the ir.model.data state.
+    #   * models/x_sales_report_model.py: TODO comment for
+    #     x_studio_pump_price_costing_ids O2M replaced with the real
+    #     declaration pointing at the new model via
+    #     x_studio_sales_report_model_id (the inverse M2O this file
+    #     declares).
+    #   * security/ir_model_pins.xml: added model_x_pump_price_costing
+    #     pin so cross-refs resolve on module load.
+    #   * security/ir.model.access.csv: base.group_user rw access.
+    #   * Views (form, tree, search) not ported this pass - the Studio
+    #     defaults on Clear-DB are auto-generated stubs, no
+    #     act_window references any of them.
+    #   * Unblocks INSTALL_JOURNEY.md item #4 "Pump Price Costing" tab
+    #     restoration on x_sales_report_model form (follow-up commit).
     # v0.0.47: wired 18 base.automation stubs to their server actions.
     #   * data/server_actions.xml grew from 13 -> 22 records with
     #     byte-verbatim ports of the 9 previously-missing actions
