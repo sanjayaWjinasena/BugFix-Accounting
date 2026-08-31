@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Accounting',
-    'version': '17.0.0.0.48',
+    'version': '17.0.0.0.49',
     'summary': 'Studio-to-Python port for BugFix-Accounting',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Accounting',
@@ -57,6 +57,20 @@
     #     srv_sls_credit_note_notify_tharaka child action which uses
     #     activity_user_id=seed_master_data_and_settings.user_146 (Tharaka
     #     Herath). No cycle: seed only depends on base/stock/hr/mail.
+    # v0.0.49: Restore "Pump Price Costing" form tab on x_sales_report_model.
+    #   * views/x_sales_report_model_studio_ported_v2.xml: the
+    #     `<page name="studio_page_l5MQG" invisible="1"/>` stub added
+    #     in v0.0.31 (stripped because x_pump_price_costing wasn't
+    #     on-disk) is replaced with the byte-verbatim 6994-byte page
+    #     block from Clear-DB view 3786. 65 field columns on the
+    #     nested x_pump_price_costing tree + parent.x_studio_actuals
+    #     column-invisible expressions + page-level invisible bound
+    #     to x_studio_report_code == 'Costing Work Sheet'.
+    #   * All 66 field refs (65 on x_pump_price_costing + the O2M on
+    #     x_sales_report_model) verified present on repair-test-101
+    #     before landing.
+    #   * INSTALL_JOURNEY.md item #4 "Pump Price Costing" restore
+    #     path complete.
     # v0.0.48: x_pump_price_costing custom model port.
     #   * models/x_pump_price_costing.py declares the 69 Studio x_*
     #     fields from Clear-DB verbatim (0 rows on Clear-DB - schema-

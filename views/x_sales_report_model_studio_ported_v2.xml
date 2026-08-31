@@ -631,14 +631,83 @@
                       </tree>
                     </field>
                   </page>
-                  <!-- v0.0.31: Pump Price Costing page stripped. Referenced
-                       x_studio_pump_price_costing_ids One2many to
-                       x_pump_price_costing model which doesn't exist on-disk
-                       (only lives on Clear-DB as an unported Studio model,
-                       not in BugFix-Accounting's port scope). Restore plan:
-                       port x_pump_price_costing model + add its fields, then
-                       restore this tab. -->
-                  <page string="Pump Price Costing" name="studio_page_l5MQG" invisible="1"/>
+                  <!-- v0.0.49: Pump Price Costing page restored (was stripped
+                       in v0.0.31 because x_pump_price_costing model was not
+                       yet on-disk). v0.0.48 ported the model; this restores
+                       the tab byte-verbatim from Clear-DB view 3786. All 66
+                       field refs verified present on repair-test-101 before
+                       landing. -->
+                  <page string="Pump Price Costing" name="studio_page_l5MQG" invisible="x_studio_report_code != 'Costing Work Sheet'">
+                          <field name="x_studio_pump_price_costing_ids" string="Pump Price Costing Ids" force_save="True" readonly="1">
+                            <tree editable="bottom">
+                              <field name="x_studio_sequence" widget="handle"/>
+                              <field name="x_name" column_invisible="1"/>
+                              <field optional="show" name="x_studio_product_id" string="Product Id" column_invisible="1"/>
+                              <field optional="show" name="x_studio_product_id_1" string="Product Id (Actual)"/>
+                              <field optional="show" name="x_studio_standard" string="Standard (Exc. Casting Hours)" column_invisible="parent.x_studio_actuals == True"/>
+                              <field optional="show" name="x_studio_idling_rate" string="Idling Rate (Exc. Casting Hours)" column_invisible="parent.x_studio_actuals == True"/>
+                              <field optional="show" name="x_studio_actual" string="Actual (Exc. Casting Hours)" column_invisible="parent.x_studio_actuals == True"/>
+                              <field optional="show" name="x_studio_standard_1" string="Standard (Tot. Labour Hours)" column_invisible="parent.x_studio_actuals == True"/>
+                              <field optional="show" name="x_studio_idling_rate_1" string="Idling Rate (Tot. Labour Hours)" column_invisible="parent.x_studio_actuals == True"/>
+                              <field optional="show" name="x_studio_actual_1" string="Actual (Tot. Labour Hours)" column_invisible="parent.x_studio_actuals == True"/>
+                              <field optional="show" name="x_studio_satd_discount" string="Satd. Discount"/>
+                              <field optional="show" name="x_studio_distributor_addition" string="Distributor Addition"/>
+                              <field optional="show" name="x_studio_max_discount" string="Max. Discount"/>
+                              <field optional="show" name="x_studio_date" string="Date"/>
+                              <field optional="show" name="x_studio_rs_1" string="Rs." column_invisible="1"/>
+                              <field optional="show" name="x_studio_rs" string="Rs."/>
+                              <field optional="show" name="x_studio_sscl" string="SSCL"/>
+                              <field optional="show" name="x_studio_system_cost" string="System Cost"/>
+                              <field optional="show" name="x_studio_total_material_cost_2" string="Total Material Cost"/>
+                              <field optional="show" name="x_studio_route_time" string="Route Time" widget="float_time"/>
+                              <field optional="show" name="x_studio_total_factory_cost_1" string="Total Factory Cost (Actual)" column_invisible="parent.x_studio_actuals == True"/>
+                              <field optional="hide" name="x_studio_total_actual_labour_cost" string="Total Actual Labour Cost"/>
+                              <field optional="hide" name="x_studio_total_actual_labour_cost_ot" string="Total Actual Labour Cost (OT)"/>
+                              <field optional="hide" name="x_studio_total_actual_labour_cost_without_ot" string="Total Actual Labour Cost (Without OT)"/>
+                              <field optional="show" name="x_studio_discount" string="Discount"/>
+                              <field optional="show" name="x_studio_net_selling_price" string="Net Selling Price"/>
+                              <field optional="show" name="x_studio_material_cost_imports" string="Material Cost (Imports)"/>
+                              <field optional="show" name="x_studio_material_cost_other" string="Material Cost (Other)"/>
+                              <field optional="show" name="x_studio_contingency_1" string="Contingency %"/>
+                              <field optional="show" name="x_studio_contingency_rs" string="Contingency (Rs.)"/>
+                              <field optional="show" name="x_studio_total_cost" string="Total Cost"/>
+                              <field optional="show" name="x_studio_labour_1" string="Labour" column_invisible="parent.x_studio_actuals == True"/>
+                              <field optional="show" name="x_studio_factory_oh" string="Factory OH" column_invisible="parent.x_studio_actuals == True"/>
+                              <field optional="show" name="x_studio_total_factory_cost" string="Total Factory Cost"/>
+                              <field optional="show" name="x_studio_contribution_rs" string="Contribution Rs."/>
+                              <field optional="show" name="x_studio_contribution_2" string="Contribution %"/>
+                              <field optional="show" name="x_studio_sales_oh" string="Sales OH"/>
+                              <field optional="show" name="x_studio_sales_oh_rs" string="Sales OH Rs."/>
+                              <field optional="show" name="x_studio_other_oh" string="Other OH"/>
+                              <field optional="show" name="x_studio_other_oh_rs" string="Other OH Rs."/>
+                              <field optional="show" name="x_studio_profitloss_as_of_net_sale" string="Profit/(Loss) As % of Net Sale"/>
+                              <field optional="show" name="x_studio_current_retail_price_vat_18" string="Current Retail Price (VAT 15%)"/>
+                              <field optional="show" name="x_studio_total_material_cost" string="Total Material Cost"/>
+                              <field optional="show" name="x_studio_oh_absorbed_factory" string="OH Absorbed Factory"/>
+                              <field optional="show" name="x_studio_oh_absorbed_sales" string="OH Absorbed Sales"/>
+                              <field optional="show" name="x_studio_oh_absorbed_other" string="OH Absorbed Other"/>
+                              <field optional="show" name="x_studio_profit_mark_up_" string="Profit Mark Up %"/>
+                              <field optional="show" name="x_studio_profit_mark_up_rs" string="Profit Mark Up Rs."/>
+                              <field optional="show" name="x_studio_net_selling_price_1" string="Net Selling Price"/>
+                              <field optional="show" name="x_studio_sscl_1" string="SSCL"/>
+                              <field optional="show" name="x_studio_max_discount_1" string="Max Discount"/>
+                              <field optional="show" name="x_studio_proposed_base_price" string="Proposed Base Price"/>
+                              <field optional="show" name="x_studio_current_base_price" string="Current Base Price"/>
+                              <field optional="show" name="x_studio_difference" string="Difference"/>
+                              <field optional="show" name="x_studio_total_material_cost_1" string="Total Material Cost"/>
+                              <field optional="show" name="x_studio_oh_absorbed_factory_1" string="OH Absorbed Factory"/>
+                              <field optional="show" name="x_studio_oh_absorbed_sales_1" string="OH Absorbed Sales"/>
+                              <field optional="show" name="x_studio_oh_absorbed_other_1" string="OH Absorbed Other"/>
+                              <field optional="show" name="x_studio_profit_mark_up_3" string="Profit Mark Up"/>
+                              <field optional="show" name="x_studio_profit_mark_up_rs_1" string="Profit Mark Up Rs."/>
+                              <field optional="show" name="x_studio_net_selling_price_2" string="Net Selling Price"/>
+                              <field optional="show" name="x_studio_sscl_2" string="SSCL"/>
+                              <field optional="show" name="x_studio_max_discount_2" string="Max Discount"/>
+                              <field optional="show" name="x_studio_proposed_base_price_1" string="Proposed Base Price"/>
+                              <field optional="show" name="x_studio_sales_report_model_id" string="Sales Report Model Id" column_invisible="1"/>
+                            </tree>
+                          </field>
+                        </page>
                 </notebook>
               </xpath>
             </data>
