@@ -220,11 +220,30 @@ if record.partner_id.customer_rank > 0:
 ]]></field>
     </record>
 
+    <!-- 1852: SLS - View Bank Guarantee Validation in Customer Invoice.
+         FULL PORT (v0.0.42). Blocking counterpart to 1851: raises
+         UserError (not chatter post) when BG is expired or insufficient
+         AND the customer's group requires mandatory BG
+         (x_studio_mandatory_bank_guarantee == True). Same field
+         dependencies as 1851; no new deps. -->
     <record id="srv_sls_view_bank_guarantee_validation" model="ir.actions.server">
         <field name="name">SLS - View Bank Guarantee Validation in Customer Invoice</field>
         <field name="model_id" ref="account.model_account_move"/>
+        <field name="binding_view_types">list,form</field>
         <field name="state">code</field>
-        <field name="code">raise UserError("BugFix-Accounting: View BG Validation action stub — full port pending. Clear-DB action id was 1852.")</field>
+        <field name="usage">ir_actions_server</field>
+        <field name="sequence">5</field>
+        <field name="code"><![CDATA[
+if record.partner_id.customer_rank > 0:
+    if record.move_type == 'out_invoice':
+        if record.partner_id.x_studio_customer_group.x_studio_group_type != 'General':
+            if record.partner_id.x_studio_mandatory_bank_guarantee == True:
+                if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():
+                    raise UserError("Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
+                else:
+                    if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_id.credit + record.amount_total):
+                        raise UserError("Insufficient bank guarantee." + "\n" + "Customer: " + record.partner_id.name + "\n" + "Sales Order: " + record.x_studio_sale_id.name + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_id.credit + record.amount_total))
+]]></field>
     </record>
 
     <!-- ==================================================== -->
