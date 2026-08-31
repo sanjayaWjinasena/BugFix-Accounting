@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Accounting',
-    'version': '17.0.0.0.45',
+    'version': '17.0.0.0.46',
     'summary': 'Studio-to-Python port for BugFix-Accounting',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Accounting',
@@ -57,6 +57,25 @@
     #     srv_sls_credit_note_notify_tharaka child action which uses
     #     activity_user_id=seed_master_data_and_settings.user_146 (Tharaka
     #     Herath). No cycle: seed only depends on base/stock/hr/mail.
+    # v0.0.46: reports/reports.xml ported from stub to full 6-report load:
+    #   * report_payment_receipt (Clear-DB action 3455, "Jinasena Payment
+    #     Receipt" on account.payment). Substantive A4-statement template
+    #     using the account.paperformat_euro_bank_statement paperformat.
+    #     Company header, receipt-no, customer info, amount + amount-in-words,
+    #     cheque details, stamp-duty footer with cashier signature block.
+    #   * report_journal_entry_1 (Clear-DB action 3469, "Journal Entry
+    #     Report" on account.move). Empty Studio stub, kept for
+    #     print-menu-binding parity.
+    #   * report_journal_entry_2 (Clear-DB action 3470, "Journal Entry
+    #     Report" on account.move). Full Pro-Forma-Invoice template
+    #     (~10 KB). Named "Journal Entry Report" in the print menu but
+    #     the body renders a pro forma invoice — Clear-DB mislabel
+    #     preserved for byte-parity.
+    #   * report_pro_forma_invoice (Clear-DB action 3468, "Pro forma
+    #     Invoice" on account.move). Empty Studio stub, real content
+    #     lives in report_journal_entry_2 (see above).
+    #   * report_account_payment_1 / _2 (Clear-DB actions 3454 / 3456,
+    #     both "account.payment Report"). Both empty stubs.
     # v0.0.45: last of the 9 server-action stubs ported byte-verbatim.
     #   * srv_imp_update_consignment_pi (Clear-DB action 1370, ~30 KB
     #     of Python). Reconciles vendor bill against consignment,
@@ -190,6 +209,10 @@
         'views/x_test_rm_gross_margin_studio_ported_v2.xml',
         'views/x_tp_invoice_header_studio_ported_v2.xml',
         'views/x_tp_invoice_line_studio_ported_v2.xml',
+        # v0.0.46: 6 Studio QWeb reports (2 substantive + 4 empty stubs).
+        # See the v0.0.46 comment block above for per-report notes and
+        # Clear-DB id -> local xmlid correspondence.
+        'reports/reports.xml',
     ],
     'installable': True,
     'auto_install': False,

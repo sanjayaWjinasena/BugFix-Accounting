@@ -1,10 +1,471 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    6 Studio QWeb reports ported from Clear-DB (v0.0.46).
+
+    Correspondence (Clear-DB action id -> local xmlid):
+      3455 -> action_report_payment_receipt  (Jinasena Payment Receipt on account.payment)
+      3469 -> action_report_journal_entry_1  (Journal Entry Report on account.move)
+      3470 -> action_report_journal_entry_2  (Journal Entry Report on account.move)
+      3468 -> action_report_pro_forma_invoice  (Pro forma Invoice on account.move)
+      3454 -> action_report_account_payment_1  (account.payment Report on account.payment)
+      3456 -> action_report_account_payment_2  (account.payment Report on account.payment)
+
+    Each report has two <template> records: a thin main wrapper
+    (used as report_name) and the _document body. The main wrapper
+    just iterates docs and t-calls into the _document; the body
+    holds the layout. Byte-verbatim from Clear-DB except:
+      * <t t-name="..."> wrappers replaced by <template id=...>
+        which auto-sets type=qweb.
+      * cross-template t-call refs rewritten from
+        "studio_customization.studio_report_docume_UUID_document"
+        to "BugFix-Accounting.report_SLUG_document".
+
+    Body-content notes:
+      * 3455 (payment_receipt): Full A4-statement receipt with company header, receipt no, customer info, amount, cheque, stamp-duty footer.
+      * 3469 (journal_entry_1): Empty Studio stub (128-byte body). Kept for parity because operators may still have the print binding wired to it.
+      * 3470 (journal_entry_2): Full Pro-Forma-Invoice template (~10 KB). Named "Journal Entry Report" in the print menu but the body renders a Pro-Forma Invoice; keep the mislabel for byte-parity.
+      * 3468 (pro_forma_invoice): Empty Studio stub (128-byte body). Real Pro-Forma content lives in journal_entry_2 (3470).
+      * 3454 (account_payment_1): Empty Studio stub (210-byte body, internal_layout wrapped).
+      * 3456 (account_payment_2): Empty Studio stub (210-byte body, internal_layout wrapped).
+-->
 <odoo>
-  <!-- TODO: 6 Studio reports need hand-porting. -->
-  <!-- Clear-DB id=3455: Jinasena Payment Receipt -->
-  <!-- Clear-DB id=3469: Journal Entry Report -->
-  <!-- Clear-DB id=3470: Journal Entry Report -->
-  <!-- Clear-DB id=3468: Pro forma Invoice -->
-  <!-- Clear-DB id=3454: account.payment Report -->
-  <!-- Clear-DB id=3456: account.payment Report -->
+
+    <!-- Clear-DB action 3455: Jinasena Payment Receipt -->
+    <template id="report_payment_receipt">
+                    <t t-call="web.html_container">
+                        <t t-foreach="docs" t-as="doc">
+                            <t t-call="BugFix-Accounting.report_payment_receipt_document"/>
+                        </t>
+                    </t>
+    </template>
+    <template id="report_payment_receipt_document"><t t-foreach="docs" t-as="doc">
+  <div class="page" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 10pt; height: 5.5in; width: 8.5in; padding: 20px 25px; box-sizing: border-box; background: white;">
+    
+    <!-- HEADER -->
+    <div class="report-header" style="padding-bottom: 12px; margin-bottom: 18px; border-bottom: 2px solid #333;">
+      <table style="width: 100%; border-collapse: collapse;" cellspacing="0" cellpadding="0">
+        <tr>
+          <td style="width: 90px; vertical-align: top; padding: 0;">
+            <img t-if="doc.company_id.logo" t-att-src="image_data_uri(doc.company_id.logo)" style="max-height: 85px; max-width: 85px; display: block;"/>
+          </td>
+          <td style="width: 3px; background: linear-gradient(to bottom, #1a1a1a, #4a4a4a); padding: 0; margin: 0 12px;"/>
+          <td style="padding-left: 12px; font-size: 8.5pt; line-height: 1.4; color: #333;">
+            <div style="font-weight: bold; font-size: 13pt; color: #000; margin-bottom: 4px;">JINASENA</div>
+            <div>No:186, Elvitigala Mawatha, Colombo 08. | Hotline: 0112688966, 0112684912 | Fax: 0112688969</div>
+            <div>Repair &amp; Service Hotline: 0740600700 | Sales &amp; Marketing Hotline: 0740600600</div>
+            <div>E-mail: jinasena@jinasena.com.lk | Web: www.jinasena.com</div>
+            <div>Business Reg.No: PV3568 | VAT Reg.No: 1040249557000 | SVAT Reg.No: 001873</div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    
+    <!-- TITLE -->
+    <div style="text-align: center; font-size: 16pt; font-weight: bold; margin-bottom: 15px; color: #1a1a1a; letter-spacing: 1px;">RECEIPT</div>
+    
+    <!-- RECEIPT NUMBER -->
+    <div style="font-size: 10pt; margin-bottom: 18px; background: #f8f9fa; padding: 8px 12px; border-left: 3px solid #333;">
+      <strong>Receipt No:</strong> <span t-esc="doc.name"/>
+    </div>
+    
+    <!-- CUSTOMER INFO -->
+    <table style="width: 100%; margin-bottom: 18px; font-size: 10pt; background: #f8f9fa; border-radius: 4px;">
+      <tr>
+        <td style="width: 35%; vertical-align: top; padding: 10px; font-weight: 600; color: #555;">Received with thanks from:</td>
+        <td style="width: 65%; vertical-align: top; padding: 10px; color: #333;">
+          <div style="font-weight: bold; font-size: 10.5pt; color: #000; margin-bottom: 3px;">
+            <t t-esc="doc.partner_id.name"/>
+          </div>
+          <t t-esc="doc.partner_id.street or ''"/><br/>
+          <t t-if="doc.partner_id.street2"><t t-esc="doc.partner_id.street2"/>,<br/></t>
+          <t t-if="doc.partner_id.city"><t t-esc="doc.partner_id.city"/></t>
+        </td>
+      </tr>
+    </table>
+    
+    <!-- AMOUNT -->
+    <table style="width: 100%; margin-bottom: 18px; font-size: 10pt; border: 2px solid #e0e0e0; border-radius: 4px; background: white;">
+      <tr>
+        <td style="width: 65%; padding: 12px; vertical-align: middle;">
+          <div style="color: #555; font-size: 9pt; margin-bottom: 2px;">Amount in words:</div>
+          <div style="font-weight: 600; color: #000;">
+            The sum of Rupees <span t-esc="(doc.amount_total_words or 'Zero') + ' Only'"/>
+          </div>
+        </td>
+        <td style="width: 35%; text-align: right; padding: 12px; background: #f8f9fa; border-left: 2px solid #e0e0e0; vertical-align: middle;">
+          <div style="color: #555; font-size: 9pt; margin-bottom: 2px;">Amount:</div>
+          <div style="font-size: 14pt; font-weight: bold; color: #000;">
+            Rs. <span t-esc="'{:,.2f}'.format(doc.amount_total)"/>
+          </div>
+        </td>
+      </tr>
+    </table>
+    
+    <!-- PAYMENT DETAILS -->
+    <div style="margin-bottom: 18px; font-size: 10pt; padding: 10px; background: #f8f9fa; border-radius: 4px;">
+      <div style="margin-bottom: 6px;">
+        <span style="display: inline-block; width: 120px; color: #555;">Cheque No:</span>
+        <span style="font-weight: 600; color: #000;" t-esc="doc.ref or ''"/>
+      </div>
+      <div>
+        <span style="display: inline-block; width: 120px; color: #555;">Cheque Date:</span>
+        <span style="font-weight: 600; color: #000;">___________________</span>
+      </div>
+    </div>
+    
+    <!-- NOTICE -->
+    <div style="font-size: 9pt; margin-bottom: 18px; padding: 10px; background: #fff8e1; border-left: 3px solid #ffc107; color: #333; line-height: 1.5;">
+      <strong style="color: #000;">Important:</strong> This receipt must be surrendered to us at the time of making final payment.
+      If this receipt is lost, a sworn affidavit must be submitted.
+    </div>
+    
+    <!-- FOOTER -->
+    <table style="width: 100%; font-size: 9pt;">
+      <tr>
+        <td style="width: 42%; vertical-align: top; border: 2px solid #333; padding: 12px; background: white; border-radius: 4px;">
+          <div style="text-align: center; font-weight: bold; margin-bottom: 8px; font-size: 10pt; color: #000;">JINASENA (PVT) LTD</div>
+          <div style="margin-bottom: 4px;">Stamp Duty Rs: _____________</div>
+          <div style="text-align: center; margin-top: 8px; font-weight: 600;">Compounded in Terms</div>
+          <div style="text-align: center; font-weight: 600;">SD (SPECIAL PROVISIONS)</div>
+          <div style="text-align: center; font-weight: 600;">Act No 12 OF 2006</div>
+        </td>
+        <td style="width: 58%; vertical-align: bottom; text-align: right; padding-left: 20px;">
+          <div style="margin-bottom: 6px; font-size: 10pt;">
+            <span style="color: #555;">REF No:</span> 
+            <span style="font-weight: 600; color: #000;" t-esc="doc.invoice_origin or ''"/>
+          </div>
+          <div style="margin-bottom: 45px; font-size: 10pt;">
+            <span style="color: #555;">DATE:</span> 
+            <span style="font-weight: 600; color: #000;" t-esc="doc.date" t-options="{'widget': 'date'}"/>
+          </div>
+          <div style="display: inline-block; min-width: 220px; text-align: center;">
+            <div style="border-top: 2px solid #333; padding-top: 6px; font-weight: 600; color: #000;">
+              Cashier Signature
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+    
+  </div>
+</t>
+    </template>
+    <record id="action_report_payment_receipt" model="ir.actions.report">
+        <field name="name">Jinasena Payment Receipt</field>
+        <field name="model">account.payment</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">BugFix-Accounting.report_payment_receipt</field>
+        <field name="report_file">BugFix-Accounting.report_payment_receipt</field>
+        <field name="binding_model_id" ref="account.model_account_payment"/>
+        <field name="binding_type">report</field>
+        <field name="binding_view_types">list,form</field>
+        <field name="paperformat_id" ref="account.paperformat_euro_bank_statement"/>
+    </record>
+
+    <!-- Clear-DB action 3469: Journal Entry Report -->
+    <template id="report_journal_entry_1">
+                    <t t-foreach="docs" t-as="doc">
+                        <t t-call="web.basic_layout">
+                            <t t-call="BugFix-Accounting.report_journal_entry_1_document"/>
+                            <p style="page-break-after: always;"/>
+                        </t>
+                    </t>
+    </template>
+    <template id="report_journal_entry_1_document">
+                    <div class="page"><div class="oe_structure"/></div>
+    </template>
+    <record id="action_report_journal_entry_1" model="ir.actions.report">
+        <field name="name">Journal Entry Report</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">BugFix-Accounting.report_journal_entry_1</field>
+        <field name="report_file">BugFix-Accounting.report_journal_entry_1</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+        <field name="binding_view_types">list,form</field>
+    </record>
+
+    <!-- Clear-DB action 3470: Journal Entry Report -->
+    <template id="report_journal_entry_2">
+                    <t t-call="web.html_container">
+                        <t t-foreach="docs" t-as="doc">
+                            <t t-call="BugFix-Accounting.report_journal_entry_2_document"/>
+                        </t>
+                    </t>
+    </template>
+    <template id="report_journal_entry_2_document"><t t-foreach="docs" t-as="doc">
+  <div class="page" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 10pt; height: 5.5in; width: 8.5in; padding: 20px 25px; box-sizing: border-box; background: white;">
+    
+    <!--<div class="report-header" style="padding-bottom: 12px; margin-bottom: 18px; border-bottom: 2px solid #333;">-->
+    <!--  <table style="width: 100%; border-collapse: collapse;" cellspacing="0" cellpadding="0">-->
+    <!--    <tr>-->
+    <!--      <td style="width: 90px; vertical-align: top; padding: 0;">-->
+    <!--        <img t-if="doc.company_id.logo" t-att-src="image_data_uri(doc.company_id.logo)" style="max-height: 85px; max-width: 85px; display: block;"/>-->
+    <!--      </td>-->
+    <!--      <td style="width: 3px; background: linear-gradient(to bottom, #1a1a1a, #4a4a4a); padding: 0; margin: 0 12px;"/>-->
+    <!--      <td style="padding-left: 12px; font-size: 8.5pt; line-height: 1.4; color: #333;">-->
+    <!--        <div style="font-weight: bold; font-size: 13pt; color: #000; margin-bottom: 4px;">-->
+    <!--            <span t-field="doc.company_id.name"/>-->
+    <!--        </div>-->
+    <!--        <div>-->
+    <!--            <span t-if="doc.company_id.street" t-esc="doc.company_id.street"/>-->
+    <!--            <span t-if="doc.company_id.street2">, <span t-esc="doc.company_id.street2"/></span>-->
+    <!--            <span t-if="doc.company_id.city">, <span t-esc="doc.company_id.city"/></span>-->
+    <!--            <span t-if="doc.company_id.state_id">, <span t-esc="doc.company_id.state_id.name"/></span>-->
+    <!--        </div>-->
+    <!--        <div>-->
+    <!--            Hotline: <span t-field="doc.company_id.phone"/> -->
+    <!--            <span t-if="doc.company_id.mobile"> | Mobile: <span t-field="doc.company_id.mobile"/></span>-->
+    <!--        </div>-->
+    <!--        <div>-->
+    <!--            E-mail: <span t-field="doc.company_id.email"/> | Web: <span t-field="doc.company_id.website"/>-->
+    <!--        </div>-->
+    <!--        <div>-->
+    <!--            <span t-if="doc.company_id.company_registry">Business Reg.No: <span t-field="doc.company_id.company_registry"/> | </span>-->
+    <!--            <span t-if="doc.company_id.vat">VAT Reg.No: <span t-field="doc.company_id.vat"/></span>-->
+    <!--        </div>-->
+    <!--      </td>-->
+    <!--    </tr>-->
+    <!--  </table>-->
+    <!--</div>-->
+    
+    <div style="text-align: center; font-size: 16pt; font-weight: bold; margin-bottom: 15px; color: #1a1a1a; letter-spacing: 1px;">Pro Forma Invoice</div>
+    
+    <div style="margin-bottom: 15px; font-size: 8pt;">
+      <table style="width: 100%; border-collapse: collapse;" cellspacing="0" cellpadding="2">
+        <tr>
+          <td style="width: 50%; vertical-align: top;">
+            <table style="width: 100%; border-collapse: collapse;" cellspacing="0" cellpadding="2">
+              <tr>
+                <td style="width: 35%; padding: 3px;"><strong>Customer Id:</strong></td>
+                <td style="width: 65%; padding: 3px; border: 1px solid #ccc;"><t t-esc="doc.partner_id.ref or ''"/></td>
+              </tr>
+              <tr>
+                <td style="padding: 3px;"><strong>Your ref:</strong></td>
+                <td style="padding: 3px; border: 1px solid #ccc;"><t t-esc="doc.ref or ''"/></td>
+              </tr>
+              <tr>
+                <td style="padding: 3px;"><strong>Cust. VAT Reg Nr:</strong></td>
+                <td style="padding: 3px; border: 1px solid #ccc;"><t t-esc="doc.partner_id.vat or ''"/></td>
+              </tr>
+            </table>
+          </td>
+          <td style="width: 50%; vertical-align: top;">
+            <table style="width: 100%; border-collapse: collapse;" cellspacing="0" cellpadding="2">
+              <tr>
+                <td style="width: 35%; padding: 3px;"><strong>Invoice Num:</strong></td>
+                <td style="width: 65%; padding: 3px; border: 1px solid #ccc;"><t t-esc="doc.name or ''"/></td>
+              </tr>
+              <tr>
+                <td style="padding: 3px;"><strong>Date:</strong></td>
+                <td style="padding: 3px; border: 1px solid #ccc;"><t t-esc="doc.invoice_date or ''" t-options="{&quot;widget&quot;: &quot;date&quot;}"/></td>
+              </tr>
+              <tr>
+                <td style="padding: 3px;"><strong>Sales order:</strong></td>
+                <td style="padding: 3px; border: 1px solid #ccc;"><t t-esc="doc.invoice_origin or ''"/></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <table style="width: 100%; border-collapse: collapse; margin-top: 5px;" cellspacing="0" cellpadding="2">
+        <tr>
+          <td style="width: 17.5%; padding: 3px;"><strong>Payment:</strong></td>
+          <td style="width: 32.5%; padding: 3px; border: 1px solid #ccc;"><t t-esc="doc.invoice_payment_term_id.name or ''"/></td>
+          <td style="width: 17.5%; padding: 3px;"><strong>Warehouse:</strong></td>
+          <td style="width: 32.5%; padding: 3px; border: 1px solid #ccc;"><t t-esc="doc.team_id.name or 'Retail Counter'"/></td>
+        </tr>
+      </table>
+    </div>
+    
+    <div style="margin-bottom: 15px;">
+      <table style="width: 100%; border-collapse: collapse; font-size: 9pt;" cellspacing="0" cellpadding="3">
+        <thead>
+          <tr style="background: #f0f0f0;">
+            <th style="border: 1px solid #000; text-align: left; padding: 5px 4px; font-weight: bold;">Item number</th>
+            <th style="border: 1px solid #000; text-align: left; padding: 5px 4px; font-weight: bold;">Description</th>
+            <th style="border: 1px solid #000; text-align: center; padding: 5px 4px; font-weight: bold;">Quantity</th>
+            <th style="border: 1px solid #000; text-align: center; padding: 5px 4px; font-weight: bold;">Unit</th>
+            <th style="border: 1px solid #000; text-align: right; padding: 5px 4px; font-weight: bold;">Unit price</th>
+            <th style="border: 1px solid #000; text-align: right; padding: 5px 4px; font-weight: bold;">Disc %</th>
+            <th style="border: 1px solid #000; text-align: right; padding: 5px 4px; font-weight: bold;">Discount</th>
+            <th style="border: 1px solid #000; text-align: right; padding: 5px 4px; font-weight: bold;">Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <t t-foreach="doc.invoice_line_ids" t-as="line">
+            <tr>
+              <td style="border: 1px solid #000; padding: 4px;"><t t-esc="line.product_id.default_code or ''"/></td>
+              <td style="border: 1px solid #000; padding: 4px;"><t t-esc="line.name or ''"/></td>
+              
+              <td style="border: 1px solid #000; text-align: center; padding: 4px;">
+                <t t-esc="'{:,.2f}'.format(line.quantity)"/>
+              </td>
+              
+              <td style="border: 1px solid #000; text-align: center; padding: 4px;"><t t-esc="line.product_uom_id.name or ''"/></td>
+              
+              <td style="border: 1px solid #000; text-align: right; padding: 4px;">
+                <t t-esc="'{:,.2f}'.format(line.price_unit)"/>
+              </td>
+              
+              <td style="border: 1px solid #000; text-align: right; padding: 4px;">
+                <t t-esc="'{:,.2f}'.format(line.discount)"/>
+              </td>
+              
+              <td style="border: 1px solid #000; text-align: right; padding: 4px;">
+                <t t-esc="'{:,.2f}'.format(line.price_unit * line.quantity * line.discount / 100)"/>
+              </td>
+              
+              <td style="border: 1px solid #000; text-align: right; padding: 4px;">
+                <t t-esc="'{:,.2f}'.format(line.price_subtotal)"/>
+              </td>
+            </tr>
+          </t>
+        </tbody>
+      </table>
+    </div>
+    
+    <div style="margin-bottom: 15px;">
+      <table style="width: 100%; border-collapse: collapse; font-size: 9pt;" cellspacing="0" cellpadding="3">
+        <tr>
+          <td style="width: 60%;"/>
+          <td style="width: 25%; text-align: right; padding: 4px;"><strong>TOTAL NET VALUE:</strong></td>
+          <td style="width: 15%; text-align: right; padding: 4px; border: 1px solid #000;">
+            <t t-esc="'{:,.2f}'.format(doc.amount_untaxed)"/>
+          </td>
+        </tr>
+        <tr>
+          <td/>
+          <td style="text-align: right; padding: 4px;"><strong>TOTAL VAT:</strong></td>
+          <td style="text-align: right; padding: 4px; border: 1px solid #000;">
+            <t t-esc="'{:,.2f}'.format(doc.amount_tax)"/>
+          </td>
+        </tr>
+        <tr>
+          <td/>
+          <td style="text-align: right; padding: 4px;"><strong>TOTAL INVOICE VALUE:</strong></td>
+          <td style="text-align: right; padding: 4px; border: 1px solid #000;">
+            <t t-esc="'{:,.2f}'.format(doc.amount_total)"/>
+          </td>
+        </tr>
+        <tr>
+          <td/>
+          <td style="text-align: right; padding: 4px;"><strong>BALANCE:</strong></td>
+          <td style="text-align: right; padding: 4px; border: 1px solid #000;">
+            <t t-esc="'{:,.2f}'.format(doc.amount_total)"/>
+          </td>
+        </tr>
+      </table>
+    </div>
+    
+    <div style="font-size: 9pt; margin-bottom: 25px; padding: 8px 0;">
+      <div style="margin-bottom: 6px; font-weight: bold;">Goods returns will not be accepted once sold, unless warranty conditions apply.</div>
+      <div style="margin-bottom: 6px;">GOODS RECEIVED INCORRECT QUANTITY AND IN GOOD CONDITION.</div>
+    </div>
+    
+    <div style="font-size: 9pt;">
+      <table style="width: 100%; border-collapse: collapse;" cellspacing="0" cellpadding="4">
+        <tr>
+          <td style="width: 25%; vertical-align: top; padding: 5px;">
+            <div style="border-top: 1px solid #000; margin-top: 40px; padding-top: 5px; text-align: center;">Prepared by</div>
+          </td>
+          <td style="width: 25%; vertical-align: top; padding: 5px;">
+            <div style="border-top: 1px solid #000; margin-top: 40px; padding-top: 5px; text-align: center;">Authorized by</div>
+          </td>
+          <td style="width: 5%;"/>
+          <td style="width: 22%; vertical-align: top; padding: 5px;">
+            <div style="border-top: 1px solid #000; margin-top: 40px; padding-top: 5px; text-align: center;">Customer's Name &amp; NIC No</div>
+          </td>
+          <td style="width: 23%; vertical-align: top; padding: 5px;">
+            <div style="border-top: 1px solid #000; margin-top: 40px; padding-top: 5px; text-align: center;">Customer's Signature</div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    
+  </div>
+</t>
+    </template>
+    <record id="action_report_journal_entry_2" model="ir.actions.report">
+        <field name="name">Journal Entry Report</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">BugFix-Accounting.report_journal_entry_2</field>
+        <field name="report_file">BugFix-Accounting.report_journal_entry_2</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+        <field name="binding_view_types">list,form</field>
+    </record>
+
+    <!-- Clear-DB action 3468: Pro forma Invoice -->
+    <template id="report_pro_forma_invoice">
+                    <t t-foreach="docs" t-as="doc">
+                        <t t-call="web.basic_layout">
+                            <t t-call="BugFix-Accounting.report_pro_forma_invoice_document"/>
+                            <p style="page-break-after: always;"/>
+                        </t>
+                    </t>
+    </template>
+    <template id="report_pro_forma_invoice_document">
+                    <div class="page"><div class="oe_structure"/></div>
+    </template>
+    <record id="action_report_pro_forma_invoice" model="ir.actions.report">
+        <field name="name">Pro forma Invoice</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">BugFix-Accounting.report_pro_forma_invoice</field>
+        <field name="report_file">BugFix-Accounting.report_pro_forma_invoice</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+        <field name="binding_view_types">list,form</field>
+    </record>
+
+    <!-- Clear-DB action 3454: account.payment Report -->
+    <template id="report_account_payment_1">
+                    <t t-call="web.html_container">
+                        <t t-foreach="docs" t-as="doc">
+                            <t t-call="BugFix-Accounting.report_account_payment_1_document"/>
+                        </t>
+                    </t>
+    </template>
+    <template id="report_account_payment_1_document">
+                    <t t-call="web.internal_layout">
+                        <div class="page"><div class="oe_structure"/></div>
+                    </t>
+    </template>
+    <record id="action_report_account_payment_1" model="ir.actions.report">
+        <field name="name">account.payment Report</field>
+        <field name="model">account.payment</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">BugFix-Accounting.report_account_payment_1</field>
+        <field name="report_file">BugFix-Accounting.report_account_payment_1</field>
+        <field name="binding_model_id" ref="account.model_account_payment"/>
+        <field name="binding_type">report</field>
+        <field name="binding_view_types">list,form</field>
+    </record>
+
+    <!-- Clear-DB action 3456: account.payment Report -->
+    <template id="report_account_payment_2">
+                    <t t-call="web.html_container">
+                        <t t-foreach="docs" t-as="doc">
+                            <t t-call="BugFix-Accounting.report_account_payment_2_document"/>
+                        </t>
+                    </t>
+    </template>
+    <template id="report_account_payment_2_document">
+                    <t t-call="web.internal_layout">
+                        <div class="page"><div class="oe_structure"/></div>
+                    </t>
+    </template>
+    <record id="action_report_account_payment_2" model="ir.actions.report">
+        <field name="name">account.payment Report</field>
+        <field name="model">account.payment</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">BugFix-Accounting.report_account_payment_2</field>
+        <field name="report_file">BugFix-Accounting.report_account_payment_2</field>
+        <field name="binding_model_id" ref="account.model_account_payment"/>
+        <field name="binding_type">report</field>
+        <field name="binding_view_types">list,form</field>
+    </record>
+
 </odoo>
