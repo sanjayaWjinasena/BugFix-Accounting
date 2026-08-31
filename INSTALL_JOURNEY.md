@@ -70,6 +70,45 @@ High business value, high effort. Not blocking install.
 **Restore:** Port each report as a proper `ir.actions.report` +
 `report.report_name` QWeb template. Prioritize by business use.
 
+### 4b. Cycle-break outcome (v0.0.50/v0.0.51/v0.0.52, 2026-08-31)
+
+**Result: 5 stripped tabs + 5 stripped tree columns REMAIN stripped.
+Item 4 (except "Pump Price Costing" which was fixed in v0.0.49) and
+item 5 are now definitively deferred.**
+
+Three attempts to restore them, all reverted:
+
+* **v0.0.50** — declared 5 related-nav O2Ms in BugFix-Accounting's
+  `x_sales_report_model.py` + restored view arch + added
+  `Jinasena_Masterdata_Reporting` manifest dep. Server crashed at
+  `_setup_related` on x_studio_sales_prod_purch_id. Root cause:
+  double-declaration with JMR (which already owns those 5 fields).
+
+* **v0.0.51** — kept the view arch + manifest dep, removed the
+  Python field decls. Server crashed at view-arch validation on
+  x_studio_related_field_oeTJK "does not exist in model
+  x_sales_report_model". The manifest dep reshuffled load order in
+  a way that hid JMR's field visibility at BugFix-Accounting's
+  validation moment.
+
+* **v0.0.52** — kept view arch, removed BOTH the Python decls AND
+  the manifest dep. Identical view-validation error to v0.0.51.
+
+**Verdict:** the failure is not about how BugFix-Accounting layers
+its changes on top of JMR — as soon as BugFix-Accounting references
+those 5 upstream-merged fields (via Python OR view arch), Odoo's
+data-load-time field visibility fails to include them, regardless
+of manifest deps. On repair-test-101 those fields persist as
+state='base' after successful boots, but during BugFix-Accounting's
+upgrade pass they're not resolvable.
+
+**Only working restore path:** move the 5 view tab/column definitions
+to Jinasena_Masterdata_Reporting itself, so both the field decl
+and the view arch are in the same module. That's a larger reorg
+touching JMR's data files. Not attempted this arc.
+
+**Rule captured as [[feedback-setup-related-race]] in project memory.**
+
 ### 4. Six form tabs stripped from `x_sales_report_model`
 
 | Tab | Field referenced | Cycle owner |
