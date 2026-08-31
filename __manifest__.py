@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Accounting',
-    'version': '17.0.0.0.35',
+    'version': '17.0.0.0.36',
     'summary': 'Studio-to-Python port for BugFix-Accounting',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Accounting',
@@ -52,22 +52,11 @@
     #     Verified acyclic (bank-data depends on account/hr/hr_payroll/base
     #     only). Root cause of the v0.0.22 install failure — rule captured
     #     as feedback-pin-source-verification in project memory.
-    # v0.0.35 addition:
-    #   * Jinasena_Masterdata_Reporting — owns x_sales_report_type +
-    #     x_sales_report_model + the inverse M2Os on account.move,
-    #     account.move.line, sale.order.line, stock.move, stock.move.line,
-    #     mrp.production. Our x_sales_report_type.py and x_sales_report_model.py
-    #     are now empty _inherit stubs; the 16 direct O2M fields to
-    #     x_rm_* still live in this repo (in x_sales_report_model.py)
-    #     because their inverse M2Os live on x_rm_* models declared
-    #     here. See BugFix-Accounting/INSTALL_JOURNEY.md follow-up item #1
-    #     for the full architectural context.
     'depends': [
         'base_setup', 'account', 'account_budget', 'account_reports',
         'mrp', 'sale', 'crm', 'stock', 'project',
         'studio_usermodel_migration', 'BugFix-Project',
         'BugFix-Sales', 'BugFix-Purchase', 'bank-data',
-        'Jinasena_Masterdata_Reporting',
     ],
     # v0.0.2: data XMLs populated from Clear-DB snapshot via
     # scripts/populate_data_xmls.py (13 server actions, 22
