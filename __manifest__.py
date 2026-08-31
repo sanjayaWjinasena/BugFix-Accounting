@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Accounting',
-    'version': '17.0.0.0.47',
+    'version': '17.0.0.0.48',
     'summary': 'Studio-to-Python port for BugFix-Accounting',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Accounting',
@@ -57,6 +57,21 @@
     #     srv_sls_credit_note_notify_tharaka child action which uses
     #     activity_user_id=seed_master_data_and_settings.user_146 (Tharaka
     #     Herath). No cycle: seed only depends on base/stock/hr/mail.
+    # v0.0.48: cleanup - x_sales_report_type / x_sales_report_model
+    # converted from _name-sentinels to _inherit-only stubs.
+    #   * studio_usermodel_migration is the canonical owner of both
+    #     models (declares _name + all base fields + 4 O2M navigations
+    #     through account.move / account.move.line / sale.order.line
+    #     with inverse M2Os also in that module). BugFix-Accounting
+    #     already depends on it, so the sentinel _name declarations
+    #     here were pure duplication.
+    #   * Every field in the old sentinels was already present upstream
+    #     - verified with side-by-side diff, no unique BugFix-Accounting
+    #     content lost.
+    #   * Stubs kept (rather than deleted) as the natural insertion
+    #     point for the 16 x_rm_* One2many navigations
+    #     (INSTALL_JOURNEY.md follow-up item #1). The x_rm_* target
+    #     models live in this repo so their inverse M2Os resolve here.
     # v0.0.47: wired 18 base.automation stubs to their server actions.
     #   * data/server_actions.xml grew from 13 -> 22 records with
     #     byte-verbatim ports of the 9 previously-missing actions
