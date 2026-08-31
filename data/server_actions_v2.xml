@@ -133,11 +133,617 @@ if record.x_studio_type == 'Advance Payment':
 ]]></field>
     </record>
 
+    <!-- 1370: IMP - Update Consignment - PI. FULL PORT (v0.0.45).
+         Byte-verbatim from Clear-DB (~30 KB Python). Reconciles the
+         current vendor bill (record = account.move) against a
+         consignment referenced by x_studio_consignment_no. For each
+         matching invoice line vs. x_consignment_line pair, aggregates
+         charge/duty/tax totals across four buckets (billable local,
+         non-billable local, billable custom-clearance, non-billable
+         custom-clearance) and rewrites invoice lines using ledger
+         accounts read from x_imports_ledger_setup. Also creates two
+         side journal entries (vendor-despatch reversal + custom-
+         clearance reversal) when the consignment header enables them.
+         Finally flags x_studio_update_consignment=True.
+
+         Cross-repo dependencies verified on-disk:
+           * x_consignment_header / x_consignment_line -> BugFix-Stock
+           * x_imports_ledger_setup -> BugFix-Purchase
+           * account.move / account.move.line / product.product /
+             res.company / res.config.settings / res.currency /
+             res.currency.rate / account.journal -> standard Odoo
+           * account.move fields x_studio_consignment_no /
+             x_studio_purchase_id / x_studio_created_from_vendor_bill /
+             x_studio_created_from_vendor_bill_1 / x_studio_update_consignment
+             -> models/account_move.py (already declared)
+           * account.move.line field x_studio_tags -> models/account_move_line.py
+           * v0.0.45 adds models/product_template.py declaring
+             x_studio_charge_type (selection Charge/Duty/Tax) and
+             x_studio_non_billable (bool) so the three
+             product.product.search() calls resolve via _inherits.
+    -->
     <record id="srv_imp_update_consignment_pi" model="ir.actions.server">
         <field name="name">IMP - Update Consignment - PI</field>
         <field name="model_id" ref="account.model_account_move"/>
+        <field name="binding_view_types">list,form</field>
         <field name="state">code</field>
-        <field name="code">raise UserError("BugFix-Accounting: Update Consignment action stub — full port pending (31 KB of Studio Python). Clear-DB action id was 1370.")</field>
+        <field name="usage">ir_actions_server</field>
+        <field name="sequence">5</field>
+        <field name="code"><![CDATA[if record.id:
+  
+  company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
+  company = env['res.company'].browse(company_id)
+
+  con_line = env['x_consignment_line'].search([('x_studio_consignment_header_id', '=', record.x_studio_consignment_no.id), ('x_studio_purchase_id', '=', record.x_studio_purchase_id.id)],limit=1)
+  if not con_line:
+    raise UserError('The Selected Consignment No is not linked with the Current PO.')
+  
+  ex_rate = 1
+
+  company_currency = env['res.config.settings'].search([('currency_id', '=', record.currency_id.id)],limit=1)
+  if company_currency:
+    ex_rate = 1
+  else:
+    custom_currency = env['res.currency'].search([('id', '=', record.currency_id.id),('active', '=', True)],limit=1)
+    if custom_currency:
+      custom_currency_rate = env['res.currency.rate'].search([('currency_id', '=', custom_currency.id),('name', '<=', datetime.datetime.today())],order='name desc',limit=1)
+      if custom_currency_rate.inverse_company_rate != 0:
+        ex_rate = custom_currency_rate.inverse_company_rate
+    
+    """custom_currency = env['res.currency'].search([('id', '=', record.currency_id.id),('active', '=', True)],limit=1)
+    if custom_currency.rate > 0:
+      ex_rate = custom_currency.rate"""
+
+  
+  done = 0  
+  select = 0
+  total_amount = 0
+  total_charge = 0
+  total_duty = 0
+  total_tax = 0
+  val_charge = False
+  val_duty = False
+  val_tax = False
+  total_charge_cd = 0
+  total_duty_cd = 0
+  total_tax_cd = 0
+  val_charge_cd = False
+  val_duty_cd = False
+  val_tax_cd = False
+  total_charge_ex = 0
+  total_duty_ex = 0
+  total_tax_ex = 0
+  val_charge_ex = False
+  val_duty_ex = False
+  val_tax_ex = False
+  total_charge_ex_cd = 0
+  total_duty_ex_cd = 0
+  total_tax_ex_cd = 0
+  val_charge_ex_cd = False
+  val_duty_ex_cd = False
+  val_tax_ex_cd = False
+  
+  tot_charge_ids = []
+  tot_duty_ids = []
+  tot_tax_ids = []
+  tot_final_ids = []
+  
+  tot_charge_ex_ids = []
+  tot_duty_ex_ids = []
+  tot_tax_ex_ids = []
+  tot_final_ex_ids = []
+  
+  tot_charge_cd_ids = []
+  tot_duty_cd_ids = []
+  tot_tax_cd_ids = []
+  tot_final_cd_ids = []
+  
+  tot_charge_ex_cd_ids = []
+  tot_duty_ex_cd_ids = []
+  tot_tax_ex_cd_ids = []
+  tot_final_ex_cd_ids = []
+  
+  for po_line in record.invoice_line_ids:
+    con_line_2 = env['x_consignment_line'].search([('x_studio_consignment_header_id', '=', record.x_studio_consignment_no.id), ('x_studio_purchase_id', '=', record.x_studio_purchase_id.id), ('x_studio_product_id', '=', po_line.product_id.id), ('x_studio_invoice_qty', '=', po_line.quantity), ('x_studio_purchase_line_id', '=', po_line.purchase_line_id.id)],limit=1)
+    if con_line_2:
+      select += 1
+      total_amount += po_line.quantity * (po_line.price_subtotal / po_line.quantity)
+      po_line.write({'quantity':con_line_2.x_studio_invoice_qty})
+          
+      if con_line_2.x_studio_valid_charge == True:
+        total_charge += con_line_2.x_studio_tot_charge
+        #tot_charge_ids = con_line_2.x_studio_tot_charge_ids
+        if con_line_2.x_studio_tot_charge_ids != []:
+          for ids in con_line_2.x_studio_tot_charge_ids:
+            tot_charge_ids.append(ids.id)
+            tot_final_ids.append(ids.id)
+      if con_line_2.x_studio_valid_duty == True:
+        total_duty += con_line_2.x_studio_tot_duty
+        #tot_duty_ids = con_line_2.x_studio_tot_duty_ids
+        if con_line_2.x_studio_tot_duty_ids != []:
+          for ids in con_line_2.x_studio_tot_duty_ids:
+            tot_duty_ids.append(ids.id)
+            tot_final_ids.append(ids.id)
+      if con_line_2.x_studio_valid_tax == True:
+        total_tax += con_line_2.x_studio_tot_tax
+        #tot_tax_ids = con_line_2.x_studio_tot_tax_ids
+        if con_line_2.x_studio_tot_tax_ids != []:
+          for ids in con_line_2.x_studio_tot_tax_ids:
+            tot_tax_ids.append(ids.id)
+            tot_final_ids.append(ids.id)
+        
+      if con_line_2.x_studio_valid_charge_cd == True:
+        total_charge_cd += con_line_2.x_studio_tot_charge_cd
+        #tot_charge_cd_ids = con_line_2.x_studio_tot_charge_cd_ids
+        if con_line_2.x_studio_tot_charge_cd_ids != []:
+          for ids in con_line_2.x_studio_tot_charge_cd_ids:
+            tot_charge_cd_ids.append(ids.id)
+            tot_final_cd_ids.append(ids.id)
+      if con_line_2.x_studio_valid_duty_cd == True:
+        total_duty_cd += con_line_2.x_studio_tot_duty_cd
+        #tot_duty_cd_ids = con_line_2.x_studio_tot_duty_cd_ids
+        if con_line_2.x_studio_tot_duty_cd_ids != []:
+          for ids in con_line_2.x_studio_tot_duty_cd_ids:
+            tot_duty_cd_ids.append(ids.id)
+            tot_final_cd_ids.append(ids.id)
+      if con_line_2.x_studio_valid_tax_cd == True:
+        total_tax_cd += con_line_2.x_studio_tot_tax_cd
+        #tot_tax_cd_ids = con_line_2.x_studio_tot_tax_cd_ids
+        if con_line_2.x_studio_tot_tax_cd_ids != []:
+          for ids in con_line_2.x_studio_tot_tax_cd_ids:
+            tot_tax_cd_ids.append(ids.id)
+            tot_final_cd_ids.append(ids.id)
+        
+      if con_line_2.x_studio_valid_charge_ex == True:
+        total_charge_ex += con_line_2.x_studio_tot_charge_ex
+        #tot_charge_ex_ids = con_line_2.x_studio_tot_charge_ex_ids
+        if con_line_2.x_studio_tot_charge_ex_ids != []:
+          for ids in con_line_2.x_studio_tot_charge_ex_ids:
+            tot_charge_ex_ids.append(ids.id)
+            tot_final_ex_ids.append(ids.id)
+      if con_line_2.x_studio_valid_duty_ex == True:
+        total_duty_ex += con_line_2.x_studio_tot_duty_ex
+        #tot_duty_ex_ids = con_line_2.x_studio_tot_duty_ex_ids
+        if con_line_2.x_studio_tot_duty_ex_ids != []:
+          for ids in con_line_2.x_studio_tot_duty_ex_ids:
+            tot_duty_ex_ids.append(ids.id)
+            tot_final_ex_ids.append(ids.id)
+      if con_line_2.x_studio_valid_tax_ex == True:
+        total_tax_ex += con_line_2.x_studio_tot_tax_ex
+        #tot_tax_ex_ids = con_line_2.x_studio_tot_tax_ex_ids
+        if con_line_2.x_studio_tot_tax_ex_ids != []:
+          for ids in con_line_2.x_studio_tot_tax_ex_ids:
+            tot_tax_ex_ids.append(ids.id)
+            tot_final_ex_ids.append(ids.id)
+        
+      if con_line_2.x_studio_valid_charge_ex_cd == True:
+        total_charge_ex_cd += con_line_2.x_studio_tot_charge_ex_cd
+        #tot_charge_ex_cd_ids = con_line_2.x_studio_tot_charge_ex_cd_ids
+        if con_line_2.x_studio_tot_charge_ex_cd_ids != []:
+          for ids in con_line_2.x_studio_tot_charge_ex_cd_ids:
+            tot_charge_ex_cd_ids.append(ids.id)
+            tot_final_ex_cd_ids.append(ids.id)
+      if con_line_2.x_studio_valid_duty_ex_cd == True:
+        total_duty_ex_cd += con_line_2.x_studio_tot_duty_ex_cd
+        #tot_duty_ex_cd_ids = con_line_2.x_studio_tot_duty_ex_cd_ids
+        if con_line_2.x_studio_tot_duty_ex_cd_ids != []:
+          for ids in con_line_2.x_studio_tot_duty_ex_cd_ids:
+            tot_duty_ex_cd_ids.append(ids.id)
+            tot_final_ex_cd_ids.append(ids.id)
+      if con_line_2.x_studio_valid_tax_ex_cd == True:
+        total_tax_ex_cd += con_line_2.x_studio_tot_tax_ex_cd
+        #tot_tax_ex_cd_ids = con_line_2.x_studio_tot_tax_ex_cd_ids
+        if con_line_2.x_studio_tot_tax_ex_cd_ids != []:
+          for ids in con_line_2.x_studio_tot_tax_ex_cd_ids:
+            tot_tax_ex_cd_ids.append(ids.id)
+            tot_final_ex_cd_ids.append(ids.id)
+  
+  for po_line_count in record.invoice_line_ids:
+    if po_line_count.quantity > 0.0000:
+      done += 1
+  
+  if done == 0:
+    raise UserError('You have not recorded done quantities yet, Atleast one done quantity should be recorded to proceed.') 
+  
+  if select == 0:
+    raise UserError('The Selected Consignment No is not linked with the Correct Items & Item Quantities in the Current PO.')
+
+  con_header = env['x_consignment_header'].search([('id', '=', record.x_studio_consignment_no.id)],limit=1)
+  grand_total_amount = 0
+  if con_header:
+    journal = env['account.journal'].search([('name', '=', 'Vendor Despatch'),('company_id', '=', company.id)], limit=1) 
+    if not journal:
+     raise UserError('The required journal has not been setup. Process terminated.')
+           
+    if con_header.x_studio_vendor_dispatch == True:
+      grand_total_amount = total_amount * con_header.x_studio_vendor_dispatch_exchange_rate
+      if grand_total_amount > 0.0000:
+        despatch_account = env['x_imports_ledger_setup'].search([('x_studio_company_id', '=', company.id)], limit=1)
+        if despatch_account:
+          if despatch_account.x_studio_vendor_despatch_debit_account.id == 0 or despatch_account.x_studio_vendor_despatch_credit_account.id == 0:
+            raise UserError('Vendor Despatch Accounts must be Specified in Imports Ledger Setup')
+            
+        despatch_lines=[]
+        despatch_lines.append([0,0,{
+          'account_id':despatch_account.x_studio_vendor_despatch_credit_account.id,
+          'partner_id':record.partner_id.id,
+          'name':'Vendor Despatch Reversal',
+          'debit':round(grand_total_amount,2)}])
+                  
+        despatch_lines.append([0,0,{
+          'account_id':despatch_account.x_studio_vendor_despatch_debit_account.id,
+          'partner_id':record.partner_id.id,
+          'name':'Vendor Despatch Reversal',
+          'credit':round(grand_total_amount,2)}])	
+        
+        vendor_despatch = env['account.move'].create({'x_studio_created_from_vendor_bill':record.id,'journal_id':journal.id,'move_type':'entry','line_ids':despatch_lines})
+              
+        update_vendor_despatch = env['account.move'].search([('id', '=', vendor_despatch.id)],limit=1)
+        if update_vendor_despatch:
+          update_vendor_despatch.write({'state':'posted'})
+        
+    if con_header.x_studio_custom_clearance == True: 
+      despatch_lines_2=[]
+      if total_charge > 0.0000:
+        despatch_lines_2.append([0,0,{
+        'account_id':con_header.x_studio_account_charge.id,
+        'name':'Purchase, Charge - Reversal',
+        'credit':round((total_charge * con_header.x_studio_custom_clearance_exchange_rate),2)}])
+          
+      if total_duty > 0.0000:  
+        despatch_lines_2.append([0,0,{
+        'account_id':con_header.x_studio_account_duty.id,
+        'name':'Purchase Misc. Charges Duty - Reversal',
+        'credit':round((total_duty * con_header.x_studio_custom_clearance_exchange_rate),2)}])
+          
+      if total_tax > 0.0000:  
+        despatch_lines_2.append([0,0,{
+        'account_id':con_header.x_studio_account_tax.id,
+        'name':'Purchase, Packing Slip Tax - Reversal',
+        'credit':round((total_tax * con_header.x_studio_custom_clearance_exchange_rate),2)}])
+      
+      if (total_charge + total_duty + total_tax) > 0.0000:    
+        despatch_lines_2.append([0,0,{
+        'account_id':con_header.x_studio_offset_account.id,
+        'name':'Purchase Packing Slip Offset - Reversal',
+        'debit':(round((total_charge * con_header.x_studio_custom_clearance_exchange_rate),2) + round((total_duty * con_header.x_studio_custom_clearance_exchange_rate),2) + round((total_tax * con_header.x_studio_custom_clearance_exchange_rate),2))}])	
+      
+      custom_clearance = env['account.move'].create({'x_studio_created_from_vendor_bill_1':record.id,'journal_id':journal.id,'move_type':'entry','line_ids':despatch_lines_2})
+          
+      update_custom_clearance = env['account.move'].search([('id', '=', custom_clearance.id)],limit=1)
+      if update_custom_clearance:
+        update_custom_clearance.write({'state':'posted'})
+        
+###############################################################################################################################################################        
+  invoice_lines=[]
+  
+  if total_charge > 0.0000:
+    product_charge = env['product.product'].search([('x_studio_charge_type', '=', 'Charge'),('type', '=', 'service'),('x_studio_non_billable', '=', False)], limit=1)
+    if product_charge:
+      val_charge = True
+      
+      invoice_lines.append([0,0,{
+        'move_id':record.id,
+        'partner_id':record.partner_id.id,
+        'product_id':product_charge.id,
+        'quantity':1,
+        'currency_id':record.currency_id.id,
+        'name':product_charge.name,
+        'product_uom_id':product_charge.uom_id.id,
+        'is_landed_costs_line':True,
+        'price_unit':round(total_charge/ex_rate,2),
+        'price_subtotal':round(total_charge/ex_rate,2),
+        'amount_currency':round(total_charge/ex_rate,2),
+        'debit':round(total_charge/ex_rate,2),
+        'x_studio_tags':[(6, 0, tot_charge_ids)],
+        'account_id':product_charge.categ_id.property_stock_account_input_categ_id.id}])
+      
+  if total_duty > 0.0000:    
+    product_duty = env['product.product'].search([('x_studio_charge_type', '=', 'Duty'),('type', '=', 'service'),('x_studio_non_billable', '=', False)], limit=1)
+    if product_duty:
+      val_duty = True
+      
+      invoice_lines.append([0,0,{
+        'move_id':record.id,
+        'partner_id':record.partner_id.id,
+        'product_id':product_duty.id,
+        'quantity':1,
+        'currency_id':record.currency_id.id,
+        'name':product_duty.name,
+        'product_uom_id':product_duty.uom_id.id,
+        'is_landed_costs_line':True,
+        'price_unit':round(total_duty/ex_rate,2),
+        'price_subtotal':round(total_duty/ex_rate,2),
+        'amount_currency':round(total_duty/ex_rate,2),
+        'debit':round(total_duty/ex_rate,2),
+        'x_studio_tags':[(6, 0, tot_duty_ids)],
+        'account_id':product_duty.categ_id.property_stock_account_input_categ_id.id}])
+      
+  if total_tax > 0.0000:
+    product_tax = env['product.product'].search([('x_studio_charge_type', '=', 'Tax'),('type', '=', 'service'),('x_studio_non_billable', '=', False)], limit=1)
+    if product_tax:
+      val_tax = True
+      
+      invoice_lines.append([0,0,{
+        'move_id':record.id,
+        'partner_id':record.partner_id.id,
+        'product_id':product_tax.id,
+        'quantity':1,
+        'currency_id':record.currency_id.id,
+        'name':product_tax.name,
+        'product_uom_id':product_tax.uom_id.id,
+        'is_landed_costs_line':True,
+        'price_unit':round(total_tax/ex_rate,2),
+        'price_subtotal':round(total_tax/ex_rate,2),
+        'amount_currency':round(total_tax/ex_rate,2),
+        'debit':round(total_tax/ex_rate,2),
+        'x_studio_tags':[(6, 0, tot_tax_ids)],
+        'account_id':product_tax.categ_id.property_stock_account_input_categ_id.id}])
+  ##########################
+  creditor_acc = env['account.move.line'].search([('move_id', '=', record.id), ('account_id', '=', record.partner_id.property_account_payable_id.id)],limit=1)
+  ##########################
+  #raise UserError(str(round(total_charge/ex_rate,2)) + "\n" + str(round(total_duty/ex_rate,2)) + "\n" + str(round(total_tax/ex_rate,2)) + "\n" + str((round(total_charge/ex_rate,2) + round(total_duty/ex_rate,2) + round(total_tax/ex_rate,2))))   
+  if val_charge == True or val_duty == True or val_tax == True:
+    tp_account = env['x_imports_ledger_setup'].search([('id', '=', 1)], limit=1)
+    if tp_account:
+      if tp_account.x_studio_import_tp_vendor_account.id == 0:
+        raise UserError('Import TP Vendor Account must be Specified in Imports Ledger Setup')
+      else:
+        invoice_lines.append([0,0,{
+          'move_id':record.id,
+          'partner_id':record.partner_id.id,
+          'quantity':1,
+          'date_maturity':creditor_acc.date_maturity,
+          'currency_id':record.currency_id.id,
+          'name':'Total - Billable Invoice Lines', #'name':tp_account.x_studio_import_tp_vendor_account.name,
+          'price_unit':-(round(total_charge/ex_rate,2) + round(total_duty/ex_rate,2) + round(total_tax/ex_rate,2)),
+          'price_subtotal':-(round(total_charge/ex_rate,2) + round(total_duty/ex_rate,2) + round(total_tax/ex_rate,2)),
+          'amount_currency':-(round(total_charge/ex_rate,2) + round(total_duty/ex_rate,2) + round(total_tax/ex_rate,2)),
+          'credit':(round(total_charge/ex_rate,2) + round(total_duty/ex_rate,2) + round(total_tax/ex_rate,2)),
+          'account_id':tp_account.x_studio_import_tp_vendor_account.id,
+          'x_studio_tags':[(6, 0, tot_final_ids)],
+          'exclude_from_invoice_tab':True}])
+      
+        record.with_context(check_move_validity = True).write({'line_ids':invoice_lines})
+        
+######################################################################-------Mod-1-------###################################################################################
+  invoice_lines_ex=[]
+  
+  if total_charge_ex > 0.0000:
+    product_charge_ex = env['product.product'].search([('x_studio_charge_type', '=', 'Charge'),('type', '=', 'service'),('x_studio_non_billable', '=', True)], limit=1)
+    if product_charge_ex:
+      val_charge_ex = True
+      
+      invoice_lines_ex.append([0,0,{
+        'move_id':record.id,
+        'partner_id':record.partner_id.id,
+        'product_id':product_charge_ex.id,
+        'quantity':1,
+        'currency_id':record.currency_id.id,
+        'name':product_charge_ex.name,
+        'product_uom_id':product_charge_ex.uom_id.id,
+        'is_landed_costs_line':True,
+        'price_unit':round(total_charge_ex/ex_rate,2),
+        'price_subtotal':round(total_charge_ex/ex_rate,2),
+        'amount_currency':round(total_charge_ex/ex_rate,2),
+        'debit':round(total_charge_ex/ex_rate,2),
+        'x_studio_tags':[(6, 0, tot_charge_ex_ids)],
+        'account_id':product_charge_ex.categ_id.property_stock_account_input_categ_id.id}])
+      
+  if total_duty_ex > 0.0000:    
+    product_duty_ex = env['product.product'].search([('x_studio_charge_type', '=', 'Duty'),('type', '=', 'service'),('x_studio_non_billable', '=', True)], limit=1)
+    if product_duty_ex:
+      val_duty_ex = True
+      
+      invoice_lines_ex.append([0,0,{
+        'move_id':record.id,
+        'partner_id':record.partner_id.id,
+        'product_id':product_duty_ex.id,
+        'quantity':1,
+        'currency_id':record.currency_id.id,
+        'name':product_duty_ex.name,
+        'product_uom_id':product_duty_ex.uom_id.id,
+        'is_landed_costs_line':True,
+        'price_unit':round(total_duty_ex/ex_rate,2),
+        'price_subtotal':round(total_duty_ex/ex_rate,2),
+        'amount_currency':round(total_duty_ex/ex_rate,2),
+        'debit':round(total_duty_ex/ex_rate,2),
+        'x_studio_tags':[(6, 0, tot_duty_ex_ids)],
+        'account_id':product_duty_ex.categ_id.property_stock_account_input_categ_id.id}])
+      
+  if total_tax_ex > 0.0000:
+    product_tax_ex = env['product.product'].search([('x_studio_charge_type', '=', 'Tax'),('type', '=', 'service'),('x_studio_non_billable', '=', True)], limit=1)
+    if product_tax_ex:
+      val_tax_ex = True
+      
+      invoice_lines_ex.append([0,0,{
+        'move_id':record.id,
+        'partner_id':record.partner_id.id,
+        'product_id':product_tax_ex.id,
+        'quantity':1,
+        'currency_id':record.currency_id.id,
+        'name':product_tax_ex.name,
+        'product_uom_id':product_tax_ex.uom_id.id,
+        'is_landed_costs_line':True,
+        'price_unit':round(total_tax_ex/ex_rate,2),
+        'price_subtotal':round(total_tax_ex/ex_rate,2),
+        'amount_currency':round(total_tax_ex/ex_rate,2),
+        'debit':round(total_tax_ex/ex_rate,2),
+        'x_studio_tags':[(6, 0, tot_tax_ex_ids)],
+        'account_id':product_tax_ex.categ_id.property_stock_account_input_categ_id.id}])
+  #raise UserError(str(round(total_charge_ex/ex_rate,2)) + "\n" + str(round(total_duty_ex/ex_rate,2)) + "\n" + str(round(total_tax_ex/ex_rate,2)) + "\n" + str((round(total_charge_ex/ex_rate,2) + round(total_duty_ex/ex_rate,2) + round(total_tax_ex/ex_rate,2))) + "\n" + str((round(total_charge_ex,2) + round(total_duty_ex,2) + round(total_tax_ex,2))))  
+  if val_charge_ex == True or val_duty_ex == True or val_tax_ex == True:
+    tp_account_ex = env['x_imports_ledger_setup'].search([('id', '=', 1)], limit=1)
+    if tp_account_ex:
+      if tp_account_ex.x_studio_import_tp_vend_acc_non_billable.id == 0:
+        raise UserError('Import TP Non Billable Vendor Account must be Specified in Imports Ledger Setup')
+      else:
+        invoice_lines_ex.append([0,0,{
+          'move_id':record.id,
+          'partner_id':record.partner_id.id,
+          'quantity':1,
+          'currency_id':record.currency_id.id,
+          'name':'Total - Non Billable Invoice Lines', #'name':tp_account_ex.x_studio_import_tp_vend_acc_non_billable.name,
+          'price_unit':-(round(total_charge_ex/ex_rate,2) + round(total_duty_ex/ex_rate,2) + round(total_tax_ex/ex_rate,2)),
+          'price_subtotal':-(round(total_charge_ex/ex_rate,2) + round(total_duty_ex/ex_rate,2) + round(total_tax_ex/ex_rate,2)),
+          'amount_currency':-(round(total_charge_ex/ex_rate,2) + round(total_duty_ex/ex_rate,2) + round(total_tax_ex/ex_rate,2)),
+          'credit':(round(total_charge_ex/ex_rate,2) + round(total_duty_ex/ex_rate,2) + round(total_tax_ex/ex_rate,2)),
+          'account_id':tp_account_ex.x_studio_import_tp_vend_acc_non_billable.id,
+          'x_studio_tags':[(6, 0, tot_final_ex_ids)],
+          'exclude_from_invoice_tab':True}])
+      
+        record.with_context(check_move_validity = True).write({'line_ids':invoice_lines_ex})
+######################################################################-------Mod-1-------###################################################################################
+
+######################################################################-------Mod-2-------###################################################################################
+  invoice_lines_cd=[]
+  
+  tp_account_debit = env['x_imports_ledger_setup'].search([('id', '=', 1)], limit=1)
+  if tp_account_debit:
+    if tp_account_debit.x_studio_import_tp_vendor_debit_acc.id == 0:
+      raise UserError('Import TP Vendor Debit Account must be Specified in Imports Ledger Setup')
+    else:
+      if total_charge_cd > 0.0000:
+        val_charge_cd = True
+            
+        invoice_lines_cd.append([0,0,{
+          'move_id':record.id,
+          'account_id':tp_account_debit.x_studio_import_tp_vendor_debit_acc.id,
+          'partner_id':record.partner_id.id,
+          'name':'Charge - TP Invoice Line', #'name':'Charge - TP Debit Account',
+          'currency_id':record.currency_id.id,
+          'amount_currency':round(total_charge_cd/ex_rate,2),
+          'x_studio_tags':[(6, 0, tot_charge_cd_ids)],
+          'debit':round(total_charge_cd/ex_rate,2)}])
+            
+      if total_duty_cd > 0.0000:    
+        val_duty_cd = True
+            
+        invoice_lines_cd.append([0,0,{
+          'move_id':record.id,
+          'account_id':tp_account_debit.x_studio_import_tp_vendor_debit_acc.id,
+          'partner_id':record.partner_id.id,
+          'name':'Duty - TP Invoice Line', #'name':'Duty - TP Debit Account',
+          'currency_id':record.currency_id.id,
+          'amount_currency':round(total_duty_cd/ex_rate,2),
+          'x_studio_tags':[(6, 0, tot_duty_cd_ids)],
+          'debit':round(total_duty_cd/ex_rate,2)}])
+            
+      if total_tax_cd > 0.0000:
+        val_tax_cd = True
+            
+        invoice_lines_cd.append([0,0,{
+          'move_id':record.id,
+          'account_id':tp_account_debit.x_studio_import_tp_vendor_debit_acc.id,
+          'partner_id':record.partner_id.id,
+          'name':'Tax - TP Invoice Line', #'name':'Tax - TP Debit Account',
+          'currency_id':record.currency_id.id,
+          'amount_currency':round(total_tax_cd/ex_rate,2),
+          'x_studio_tags':[(6, 0, tot_tax_cd_ids)],
+          'debit':round(total_tax_cd/ex_rate,2)}])
+      ##########################
+      creditor_acc = env['account.move.line'].search([('move_id', '=', record.id), ('account_id', '=', record.partner_id.property_account_payable_id.id)],limit=1)
+      ##########################
+      #raise UserError(str(round(total_charge_cd/ex_rate,2)) + "\n" + str(round(total_duty_cd/ex_rate,2)) + "\n" + str(round(total_tax_cd/ex_rate,2)) + "\n" + str((round(total_charge_cd/ex_rate,2) + round(total_duty_cd/ex_rate,2) + round(total_tax_cd/ex_rate,2))))    
+      if val_charge_cd == True or val_duty_cd == True or val_tax_cd == True:
+        tp_account_cd = env['x_imports_ledger_setup'].search([('id', '=', 1)], limit=1)
+        if tp_account_cd:
+          if tp_account_cd.x_studio_import_tp_vendor_account.id == 0:
+            raise UserError('Import TP Vendor Account must be Specified in Imports Ledger Setup')
+          else:
+            invoice_lines_cd.append([0,0,{
+              'move_id':record.id,
+              'partner_id':record.partner_id.id,
+              'date_maturity':creditor_acc.date_maturity,
+              'currency_id':record.currency_id.id,
+              'name':'Total - TP Invoice Lines', #'name':tp_account_cd.x_studio_import_tp_vendor_account.name,
+              'amount_currency':-(round(total_charge_cd/ex_rate,2) + round(total_duty_cd/ex_rate,2) + round(total_tax_cd/ex_rate,2)),
+              'credit':(round(total_charge_cd/ex_rate,2) + round(total_duty_cd/ex_rate,2) + round(total_tax_cd/ex_rate,2)),
+              'account_id':tp_account_cd.x_studio_import_tp_vendor_account.id,
+              'x_studio_tags':[(6, 0, tot_final_cd_ids)],
+              'exclude_from_invoice_tab':True}])
+            
+            record.with_context(check_move_validity = True).write({'line_ids':invoice_lines_cd})
+######################################################################-------Mod-2-------###################################################################################
+
+######################################################################-------Mod-3-------###################################################################################
+  invoice_lines_ex_cd=[]
+  
+  tp_account_non_billable_debit = env['x_imports_ledger_setup'].search([('id', '=', 1)], limit=1)
+  if tp_account_non_billable_debit:
+    if tp_account_non_billable_debit.x_studio_import_tp_vend_non_billable_debit_acc.id == 0:
+      raise UserError('Import TP Vendor Non Billable Debit Account must be Specified in Imports Ledger Setup')
+    else:
+      
+      if total_charge_ex_cd > 0.0000:
+        val_charge_ex_cd = True
+            
+        invoice_lines_ex_cd.append([0,0,{
+          'move_id':record.id,
+          'account_id':tp_account_non_billable_debit.x_studio_import_tp_vend_non_billable_debit_acc.id,
+          'partner_id':record.partner_id.id,
+          'name':'TP Charges - Non-Billable - Load to GL', #'name':'Charge - TP Non Billable Invoice Lines', #'name':'Charge - TP Non Billable Debit Account',
+          'currency_id':record.currency_id.id,
+          'amount_currency':round(total_charge_ex_cd/ex_rate,2),
+          'x_studio_tags':[(6, 0, tot_charge_ex_cd_ids)],
+          'debit':round(total_charge_ex_cd/ex_rate,2)}])
+            
+      if total_duty_ex_cd > 0.0000:    
+        val_duty_ex_cd = True
+            
+        invoice_lines_ex_cd.append([0,0,{
+          'move_id':record.id,
+          'account_id':tp_account_non_billable_debit.x_studio_import_tp_vend_non_billable_debit_acc.id,
+          'partner_id':record.partner_id.id,
+          'name':'Duty - TP Non Billable Invoice Lines', #'name':'Duty - TP Non Billable Debit Account',
+          'currency_id':record.currency_id.id,
+          'amount_currency':round(total_duty_ex_cd/ex_rate,2),
+          'x_studio_tags':[(6, 0, tot_duty_ex_cd_ids)],
+          'debit':round(total_duty_ex_cd/ex_rate,2)}])
+            
+      if total_tax_ex_cd > 0.0000:
+        val_tax_ex_cd = True
+            
+        invoice_lines_ex_cd.append([0,0,{
+          'move_id':record.id,
+          'account_id':tp_account_non_billable_debit.x_studio_import_tp_vend_non_billable_debit_acc.id,
+          'partner_id':record.partner_id.id,
+          'name':'TP Tax - Non-Billable - Load to GL', #'name':'Tax - TP Non Billable Invoice Lines', #'name':'Tax - TP Non Billable Debit Account',
+          'currency_id':record.currency_id.id,
+          'amount_currency':round(total_tax_ex_cd/ex_rate,2),
+          'x_studio_tags':[(6, 0, tot_tax_ex_cd_ids)],
+          'debit':round(total_tax_ex_cd/ex_rate,2)}])
+      
+      if val_charge_ex_cd == True or val_duty_ex_cd == True or val_tax_ex_cd == True:
+        tp_account_ex_cd = env['x_imports_ledger_setup'].search([('id', '=', 1)], limit=1)
+        if tp_account_ex_cd:
+          if tp_account_ex_cd.x_studio_import_tp_vend_acc_non_billable.id == 0:
+            raise UserError('Import TP Non Billable Vendor Account must be Specified in Imports Ledger Setup')
+          else:
+            #tot_final_ex_cd_ids = (tot_charge_ex_cd_ids + tot_duty_ex_cd_ids + tot_tax_ex_cd_ids)######
+            invoice_lines_ex_cd.append([0,0,{
+              'move_id':record.id,
+              'partner_id':record.partner_id.id,
+              'currency_id':record.currency_id.id,
+              'name':'Total - TP Non Billable Invoice Lines', #'name':tp_account_ex_cd.x_studio_import_tp_vend_acc_non_billable.name,
+              'amount_currency':-(round(total_charge_ex_cd/ex_rate,2) + round(total_duty_ex_cd/ex_rate,2) + round(total_tax_ex_cd/ex_rate,2)),
+              'credit':(round(total_charge_ex_cd/ex_rate,2) + round(total_duty_ex_cd/ex_rate,2) + round(total_tax_ex_cd/ex_rate,2)),
+              'account_id':tp_account_ex_cd.x_studio_import_tp_vend_acc_non_billable.id,
+              'x_studio_tags':[(6, 0, tot_final_ex_cd_ids)],
+              'exclude_from_invoice_tab':True}])
+        
+            record.with_context(check_move_validity = True).write({'line_ids':invoice_lines_ex_cd})
+######################################################################-------Mod-3-------###################################################################################
+
+#if (charge + duty + tax) > 0.0000:
+#    record.with_context(check_move_validity = False).write({'line_ids':invoice_lines}) 
+
+#    create_charges = env['account.move.line'].with_context(check_move_validity = False).create({'move_id':record.id,'partner_id':record.partner_id.id,'product_id':product_charge.id,'quantity':1,'currency_id':record.currency_id.id,'name':product_charge.name,'product_uom_id':product_charge.uom_id.id,'is_landed_costs_line':True,'price_unit':10.00,'price_subtotal':10.00,'account_id':4})
+#    payable_account = env['account.move.line'].with_context(check_move_validity = True).search([('move_id', '=', record.id), ('account_id', '=', record.partner_id.property_account_payable_id.id)], limit=1)
+#    if payable_account:
+#      payable_account.write({'credit':(payable_account.credit + (charge + duty + tax))})
+   
+  record['x_studio_update_consignment'] = True]]></field>
     </record>
 
     <!-- 2366: IMP - Vendor Bill Currency Rate. FULL PORT (v0.0.43).

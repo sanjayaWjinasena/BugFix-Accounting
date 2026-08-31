@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Accounting',
-    'version': '17.0.0.0.44',
+    'version': '17.0.0.0.45',
     'summary': 'Studio-to-Python port for BugFix-Accounting',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Accounting',
@@ -57,6 +57,22 @@
     #     srv_sls_credit_note_notify_tharaka child action which uses
     #     activity_user_id=seed_master_data_and_settings.user_146 (Tharaka
     #     Herath). No cycle: seed only depends on base/stock/hr/mail.
+    # v0.0.45: last of the 9 server-action stubs ported byte-verbatim.
+    #   * srv_imp_update_consignment_pi (Clear-DB action 1370, ~30 KB
+    #     of Python). Reconciles vendor bill against consignment,
+    #     aggregates charge/duty/tax across 4 billable buckets,
+    #     rewrites invoice lines against x_imports_ledger_setup, and
+    #     creates vendor-despatch + custom-clearance reversal journal
+    #     entries when the consignment header enables them. See the
+    #     comment block above the record in data/server_actions_v2.xml.
+    #   * New models/product_template.py adds x_studio_charge_type
+    #     (Selection Charge/Duty/Tax) + x_studio_non_billable (Bool)
+    #     to product.template. Clear-DB pins them as state='manual'
+    #     with pin.module='product'; on-disk we own them here because
+    #     BugFix-Accounting is the only consumer (three
+    #     product.product.search calls in the ported action, resolved
+    #     via _inherits). No new manifest dep needed - 'product' is
+    #     transitively pulled by 'account'/'sale'/'stock'.
     'depends': [
         'base_setup', 'account', 'account_budget', 'account_reports',
         'mrp', 'sale', 'crm', 'stock', 'project',
