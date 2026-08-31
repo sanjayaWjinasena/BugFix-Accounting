@@ -140,11 +140,51 @@ if record.x_studio_type == 'Advance Payment':
         <field name="code">raise UserError("BugFix-Accounting: Update Consignment action stub — full port pending (31 KB of Studio Python). Clear-DB action id was 1370.")</field>
     </record>
 
+    <!-- 2366: IMP - Vendor Bill Currency Rate. FULL PORT (v0.0.43).
+         Rewrites local-currency debit/credit on every ledger line of
+         the invoice using record.x_studio_currency_rate as the new
+         rate against each line's amount_currency. Uses
+         with_context(check_move_validity=False) so lines can be
+         updated individually without tripping Odoo's balance-check
+         mid-way. Then flags x_studio_currency_rate_updated=True.
+
+         Byte-verbatim port including Clear-DB's commented-out
+         docstring at the bottom (keeps parity - the docstring is
+         a memo they left for themselves). -->
     <record id="srv_imp_vendor_bill_currency_rate" model="ir.actions.server">
         <field name="name">IMP - Vendor Bill Currency Rate</field>
         <field name="model_id" ref="account.model_account_move"/>
+        <field name="binding_view_types">list,form</field>
         <field name="state">code</field>
-        <field name="code">raise UserError("BugFix-Accounting: Vendor Bill Currency Rate action stub — full port pending. Clear-DB action id was 2366.")</field>
+        <field name="usage">ir_actions_server</field>
+        <field name="sequence">5</field>
+        <field name="code"><![CDATA[
+if record.x_studio_currency_rate > 0.00:
+    tot_amount = 0
+
+    #record.with_context(check_move_validity = False)
+
+    for invoice_lines2 in record.line_ids:
+        if invoice_lines2.credit == 0.00:
+            invoice_lines2.with_context(check_move_validity=False).write({'debit': (record.x_studio_currency_rate * abs(invoice_lines2.amount_currency))})
+        if invoice_lines2.debit == 0.00:
+            invoice_lines2.with_context(check_move_validity=False).write({'credit': (record.x_studio_currency_rate * abs(invoice_lines2.amount_currency))})
+
+    record['x_studio_currency_rate_updated'] = True
+else:
+    raise UserError('Currency Rate must be defined!')
+
+#record.with_context(check_move_validity = True).write({'line_ids':invoice_lines_cd})
+
+"""  credit_line = self.env['account.move.line'].with_context(
+            check_move_validity=False).create({
+            'move_id': self.journal_entry.id,
+            'account_id': self.product.revenue_account,
+            'partner_id': self.container.partner.id,
+            'name': 'Finish '+self.job_name,
+            'credit': self.cost
+         })"""
+]]></field>
     </record>
 
     <record id="srv_sls_request_credit_note_approval" model="ir.actions.server">
