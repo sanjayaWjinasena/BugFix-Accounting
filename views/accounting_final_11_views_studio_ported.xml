@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BugFix-Accounting v0.0.56: final 11 priority=99 view ports
+     (2 primaries + 9 customization inherits). Closes view
+     coverage from 84% to 100%. -->
+<odoo>
+
+  <record id="ported_view_5422_default_list_x_pump_price_costing" model="ir.ui.view">
+    <field name="name">Default list view for x_pump_price_costing</field>
+    <field name="model">x_pump_price_costing</field>
+    <field name="type">tree</field>
+    <field name="mode">primary</field>
+    <field name="priority">16</field>
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+<tree>
+  <field name="x_studio_sequence" widget="handle"/>
+  <field name="x_name"/>
+</tree>
+    </field>
+  </record>
+
+  <record id="ported_view_5289_account_move_line_tree_grouped_test01" model="ir.ui.view">
+    <field name="name">account.move.line.tree.grouped_Test-01</field>
+    <field name="model">account.move.line</field>
+    <field name="type">tree</field>
+    <field name="mode">primary</field>
+    <field name="priority">99</field>
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+<tree string="Journal Items" create="false" expand="context.get('expand', False)" multi_edit="1">
+                    <field name="date" optional="show" readonly="1"/>
+                    <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}" optional="hide"/>
+                    <field name="journal_id" options="{'no_open': True, 'no_create': True}" optional="hide"/><field name="company_id" invisible="1"/>
+                    <field name="move_id" optional="show"/>
+                    <field name="account_id" optional="show" options="{'no_open': True, 'no_create': True}" domain="[('company_id', '=', company_id)]" groups="account.group_account_readonly"/>
+                    <field name="statement_id" column_invisible="1"/>
+                    <field name="partner_id" optional="hide" readonly="1"/>
+                    <field name="ref" optional="hide"/>
+                    <field name="name"/>
+                    <field name="reconciled" column_invisible="1"/>
+                    <field name="reconcile_model_id" column_invisible="1"/>
+                    <field name="date_maturity" optional="hide"/>
+                    <field name="amount_currency" readonly="1" groups="base.group_multi_currency"/>
+                    <field name="currency_id" readonly="1" groups="base.group_multi_currency" optional="hide" string="Original Currency"/>
+                    <field name="debit" sum="Total Debit" readonly="1"/>
+                    <field name="credit" sum="Total Credit" readonly="1"/>
+                    <field name="balance" sum="Total Balance" readonly="1" optional="hide"/>
+                    <field name="matching_number" string="Matching" optional="show"/>
+                    <field name="company_currency_id" column_invisible="1"/>
+                    <field name="parent_state" column_invisible="1"/>
+                    <field name="tax_ids" widget="many2many_tags" width="0.5" optional="hide" readonly="1"/>
+                    <field name="tax_tag_ids" widget="many2many_tags" width="0.5" optional="hide" string="Tax Grids" options="{'no_open': True, 'no_create': True}" domain="[('applicability', '=', 'taxes')]"/>
+                    <field name="product_id" optional="hide"/>
+                    <groupby name="move_id">
+                        <field name="state" invisible="1"/>
+                        <field name="move_type" invisible="1"/>
+                        <field name="statement_id" invisible="1"/>
+                        <field name="payment_id" invisible="1"/>
+                        <button name="edit" type="edit" icon="fa-edit" title="Edit" invisible="((payment_id != False) or (statement_id != False)) and (move_type == 'entry')"/>
+                        <button name="action_post" icon="fa-check" title="Post" type="object" groups="account.group_account_invoice" invisible="state not in ['draft']"/>
+                        <button name="281" title="Reverse" icon="fa-undo" type="action" groups="account.group_account_invoice" invisible="state not in ['posted']"/>
+                        <button name="action_duplicate" icon="fa-files-o" title="Duplicate" type="object" groups="account.group_account_invoice"/>
+                    </groupby>
+                </tree>
+    </field>
+  </record>
+
+  <record id="ported_view_6052_customization_account_payment_term_form" model="ir.ui.view">
+    <field name="name">Odoo Studio: account.payment.term.form customization</field>
+    <field name="model">account.payment.term</field>
+    <field name="type">form</field>
+    <field name="mode">extension</field>
+    <field name="priority">99</field>
+    <field name="active" eval="True"/>
+    <field name="inherit_id" ref="account.view_payment_term_form"/>
+    <field name="arch" type="xml">
+<data>
+  <xpath expr="//field[@name='company_id']" position="attributes">
+    <attribute name="force_save">True</attribute>
+    <attribute name="readonly">1</attribute></xpath>
+  <xpath expr="//field[@name='line_ids']" position="inside">
+    <tree string="Payment Terms">
+      <field name="value" string="Due Type"/>
+      <field name="value_amount" readonly="value == 'balance'"/>
+      <field name="nb_days"/>
+      </tree>
+  </xpath>
+</data>
+    </field>
+  </record>
+
+  <record id="ported_view_3118_customization_account_payment_term_tree" model="ir.ui.view">
+    <field name="name">Odoo Studio: account.payment.term.tree customization</field>
+    <field name="model">account.payment.term</field>
+    <field name="type">tree</field>
+    <field name="mode">extension</field>
+    <field name="priority">99</field>
+    <field name="active" eval="True"/>
+    <field name="inherit_id" ref="account.view_payment_term_tree"/>
+    <field name="arch" type="xml">
+<data>
+  <xpath expr="//tree[1]/field[@name='name']" position="after">
+    <field name="id"/>
+  </xpath>
+</data>
+    </field>
+  </record>
+
+  <record id="ported_view_2549_customization_account_journal_tree" model="ir.ui.view">
+    <field name="name">Odoo Studio: account.journal.tree customization</field>
+    <field name="model">account.journal</field>
+    <field name="type">tree</field>
+    <field name="mode">extension</field>
+    <field name="priority">99</field>
+    <field name="active" eval="True"/>
+    <field name="inherit_id" ref="account.view_account_journal_tree"/>
+    <field name="arch" type="xml">
+<data>
+  <xpath expr="//field[@name='type']" position="after">
+    <field name="id"/>
+  </xpath>
+</data>
+    </field>
+  </record>
+
+  <record id="ported_view_2195_customization_account_account_form" model="ir.ui.view">
+    <field name="name">Odoo Studio: account.account.form customization</field>
+    <field name="model">account.account</field>
+    <field name="type">form</field>
+    <field name="mode">extension</field>
+    <field name="priority">99</field>
+    <field name="active" eval="True"/>
+    <field name="inherit_id" ref="account.view_account_form"/>
+    <field name="arch" type="xml">
+<data>
+  </data>
+    </field>
+  </record>
+
+  <record id="ported_view_2943_customization_account_account_tree" model="ir.ui.view">
+    <field name="name">Odoo Studio: account.account.list customization</field>
+    <field name="model">account.account</field>
+    <field name="type">tree</field>
+    <field name="mode">extension</field>
+    <field name="priority">99</field>
+    <field name="active" eval="True"/>
+    <field name="inherit_id" ref="account.view_account_list"/>
+    <field name="arch" type="xml">
+<data>
+  <xpath expr="//field[@name='currency_id']" position="after">
+    <field name="id"/>
+  </xpath>
+</data>
+    </field>
+  </record>
+
+  <record id="ported_view_5075_customization_account_analytic_account_tree" model="ir.ui.view">
+    <field name="name">Odoo Studio: account.analytic.account.list customization</field>
+    <field name="model">account.analytic.account</field>
+    <field name="type">tree</field>
+    <field name="mode">extension</field>
+    <field name="priority">99</field>
+    <field name="active" eval="True"/>
+    <field name="inherit_id" ref="analytic.view_account_analytic_account_list"/>
+    <field name="arch" type="xml">
+<data>
+  <xpath expr="//field[@name='balance']" position="after">
+    <field name="id" optional="show"/>
+  </xpath>
+</data>
+    </field>
+  </record>
+
+  <record id="ported_view_5957_customization_account_tax_tree" model="ir.ui.view">
+    <field name="name">Odoo Studio: account.invoice.line.tax.search customization</field>
+    <field name="model">account.tax</field>
+    <field name="type">tree</field>
+    <field name="mode">extension</field>
+    <field name="priority">99</field>
+    <field name="active" eval="True"/>
+    <field name="inherit_id" ref="account.account_tax_view_tree"/>
+    <field name="arch" type="xml">
+<data>
+  <xpath expr="//field[@name='display_name']" position="after">
+    <field name="type_tax_use" optional="show"/>
+    <field name="tax_scope" optional="show"/>
+  </xpath>
+  <xpath expr="//field[@name='description']" position="after">
+    <field name="company_id" optional="show"/>
+    <field name="active" optional="show" widget="boolean_toggle"/>
+    <field name="create_uid" optional="show"/>
+    <field name="amount_type" optional="show"/>
+  </xpath>
+</data>
+    </field>
+  </record>
+
+  <record id="ported_view_8350_customization_account_asset_tree" model="ir.ui.view">
+    <field name="name">Odoo Studio: account.asset.tree customization</field>
+    <field name="model">account.asset</field>
+    <field name="type">tree</field>
+    <field name="mode">extension</field>
+    <field name="priority">99</field>
+    <field name="active" eval="True"/>
+    <field name="inherit_id" ref="account_asset.view_account_asset_tree"/>
+    <field name="arch" type="xml">
+<data>
+  <xpath expr="//tree[1]/field[@name='name']" position="after">
+    <field name="model_id" optional="show"/>
+  </xpath>
+</data>
+    </field>
+  </record>
+
+  <record id="ported_view_6033_customization_account_group_tree" model="ir.ui.view">
+    <field name="name">Odoo Studio: account.group.tree customization</field>
+    <field name="model">account.group</field>
+    <field name="type">tree</field>
+    <field name="mode">extension</field>
+    <field name="priority">99</field>
+    <field name="active" eval="True"/>
+    <field name="inherit_id" ref="account.view_account_group_tree"/>
+    <field name="arch" type="xml">
+<data>
+  <xpath expr="//field[@name='code_prefix_start']" position="before">
+    <field name="id" optional="show"/>
+  </xpath>
+</data>
+    </field>
+  </record>
+
+  <record id="ported_view_5425_customization_x_pump_price_costing_tree" model="ir.ui.view">
+    <field name="name">Odoo Studio: Default list view for x_pump_price_costing customization</field>
+    <field name="model">x_pump_price_costing</field>
+    <field name="type">tree</field>
+    <field name="mode">extension</field>
+    <field name="priority">99</field>
+    <field name="active" eval="True"/>
+    <field name="inherit_id" ref="BugFix-Accounting.ported_view_5422_default_list_x_pump_price_costing"/>
+    <field name="arch" type="xml">
+<data>
+  <xpath expr="//tree[1]" position="attributes">
+    <attribute name="create">false</attribute>
+    <attribute name="delete">false</attribute>
+    <attribute name="edit">false</attribute>
+    <attribute name="editable">bottom</attribute>
+  </xpath>
+  <xpath expr="//field[@name='x_studio_sequence']" position="after">
+    <field optional="show" name="x_studio_sales_report_model_id" string="Report Reference"/>
+    <field name="x_studio_product_id_1" optional="show"/>
+  </xpath>
+  <xpath expr="//field[@name='x_name']" position="attributes">
+    <attribute name="column_invisible">1</attribute></xpath>
+  <xpath expr="//field[@name='x_name']" position="after">
+    <field name="x_studio_satd_discount" optional="show"/>
+    <field name="x_studio_distributor_addition" optional="show"/>
+    <field name="x_studio_max_discount" optional="show"/>
+    <field name="x_studio_date" optional="show"/>
+    <field name="x_studio_rs" optional="show"/>
+    <field name="x_studio_sscl" optional="show"/>
+    <field name="x_studio_system_cost" optional="show"/>
+    <field name="x_studio_total_material_cost_2" optional="show"/>
+    <field name="x_studio_route_time" optional="show"/>
+    <field name="x_studio_discount" optional="show"/>
+    <field name="x_studio_net_selling_price" optional="show"/>
+    <field name="x_studio_material_cost_imports" optional="show"/>
+    <field name="x_studio_material_cost_other" optional="show"/>
+    <field name="x_studio_total_cost" optional="show"/>
+    <field name="x_studio_total_factory_cost" optional="show"/>
+    <field name="x_studio_contribution_rs" optional="show"/>
+    <field name="x_studio_contribution_2" optional="show"/>
+    <field name="x_studio_sales_oh" optional="show"/>
+    <field name="x_studio_sales_oh_rs" optional="show"/>
+    <field name="x_studio_other_oh" optional="show"/>
+    <field name="x_studio_other_oh_rs" optional="show"/>
+    <field name="x_studio_profitloss_as_of_net_sale" optional="show"/>
+    <field name="x_studio_current_retail_price_vat_18" optional="show"/>
+    <field name="x_studio_total_material_cost" optional="show"/>
+    <field name="x_studio_oh_absorbed_factory" optional="show"/>
+    <field name="x_studio_oh_absorbed_sales" optional="show"/>
+    <field name="x_studio_oh_absorbed_other" optional="show"/>
+    <field name="x_studio_profit_mark_up_" optional="show"/>
+    <field name="x_studio_profit_mark_up_rs" optional="show"/>
+    <field name="x_studio_net_selling_price_2" optional="show"/>
+    <field name="x_studio_sscl_2" optional="show"/>
+    <field name="x_studio_max_discount_2" optional="show"/>
+    <field name="x_studio_proposed_base_price_1" optional="show"/>
+  </xpath>
+</data>
+    </field>
+  </record>
+
+</odoo>

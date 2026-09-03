@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Accounting',
-    'version': '17.0.0.0.55',
+    'version': '17.0.0.0.56',
     'summary': 'Studio-to-Python port for BugFix-Accounting',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Accounting',
@@ -9,6 +9,11 @@
     # Do NOT depend on studio_customization -- Odoo SH does not ship
     # a manifest for it, listing it causes install skip.
     #
+    # v0.0.56: 12 view records to close the remaining priority=99 view
+    # gap (2 primaries + 9 customization inherits + 1 extra supporting
+    # primary for x_pump_price_costing). View coverage: 84% -> 100%
+    # (67/67 shipped). Uses same sentinel-injection + numeric-ref
+    # conversion pipeline as Purchase view arc.
     # v0.0.55: bulk-port 46 remaining act_window records. Skipped 61
     # as duplicates of standard Odoo actions on account.* models.
     # Window action coverage: 60/167 -> 106/167 = 63%.
@@ -300,6 +305,8 @@
         'views/x_test_rm_gross_margin_studio_ported_v2.xml',
         'views/x_tp_invoice_header_studio_ported_v2.xml',
         'views/x_tp_invoice_line_studio_ported_v2.xml',
+        # v0.0.56: final 11 view gaps (view coverage 84% -> 100%).
+        'views/accounting_final_11_views_studio_ported.xml',
         # v0.0.46: 6 Studio QWeb reports (2 substantive + 4 empty stubs).
         # See the v0.0.46 comment block above for per-report notes and
         # Clear-DB id -> local xmlid correspondence.
