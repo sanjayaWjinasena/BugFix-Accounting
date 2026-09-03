@@ -12,7 +12,12 @@ class AccountMove(models.Model):
     x_studio_bank_guarantee_validation = fields.Boolean(string='Bank Guarantee Validation', readonly=True, store=False)
     x_studio_bg_sent = fields.Boolean(string='BG Sent')
     x_studio_consignment_no = fields.Many2one('x_consignment_header', string='Consignment No')
-    x_studio_cre = fields.Many2one('x_purchase_request_cas', string='Created From CP No')
+    # store=False: x_purchase_request_cas lives in BugFix-Purchase.
+    # A stored M2O here would force BugFix-Accounting to dep on
+    # BugFix-Purchase, creating the mutual cycle
+    # Purchase -> Accounting -> Purchase. account_payment and
+    # account_bank_statement_line versions are already store=False.
+    x_studio_cre = fields.Many2one('x_purchase_request_cas', string='Created From CP No', store=False)
     x_studio_create_from_transfer_1 = fields.Many2one('stock.picking', string='Create From Transfer')
     x_studio_created_from_consignment = fields.Many2one('x_consignment_header', string='Created From Consignment')
     x_studio_created_from_consignment_1 = fields.Many2one('x_consignment_header', string='Created From Consignment')

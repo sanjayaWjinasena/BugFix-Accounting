@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Accounting',
-    'version': '17.0.0.0.49',
+    'version': '17.0.0.0.50',
     'summary': 'Studio-to-Python port for BugFix-Accounting',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Accounting',
@@ -9,6 +9,18 @@
     # Do NOT depend on studio_customization -- Odoo SH does not ship
     # a manifest for it, listing it causes install skip.
     #
+    # v0.0.50: break the 2-way cycle Purchase <-> Accounting that was
+    # silently blocking cross-module upgrades. Removed BugFix-Purchase
+    # from depends. Fix: account_move.x_studio_cre (the only STORED
+    # Many2one to x_purchase_request_cas in this module) is now
+    # store=False. The account_payment / account_bank_statement_line
+    # versions were already store=False. crossovered.budget compute
+    # traversals into x_purchase_request use env.get() which is
+    # runtime-guarded (returns None if model absent). No schema-time
+    # need for the dep anymore.
+    # Enables clean DAG: Sales -> Accounting -> Purchase (Purchase at
+    # top of stack), where Purchase can freely depend on Accounting
+    # for its own artifacts without creating a cycle.
     # v0.0.14 additions:
     #   * mrp — x_rm_production_orders / x_rm_production_varian
     #     m2o into mrp.production; without this dep the setup_nonrelated
@@ -143,7 +155,7 @@
         'base_setup', 'account', 'account_budget', 'account_reports',
         'mrp', 'sale', 'crm', 'stock', 'project',
         'studio_usermodel_migration', 'BugFix-Project',
-        'BugFix-Sales', 'BugFix-Purchase', 'bank-data',
+        'BugFix-Sales', 'bank-data',
         'seed_master_data_and_settings',
     ],
     # v0.0.2: data XMLs populated from Clear-DB snapshot via
