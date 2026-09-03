@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Accounting',
-    'version': '17.0.0.0.54',
+    'version': '17.0.0.0.55',
     'summary': 'Studio-to-Python port for BugFix-Accounting',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Accounting',
@@ -9,6 +9,9 @@
     # Do NOT depend on studio_customization -- Odoo SH does not ship
     # a manifest for it, listing it causes install skip.
     #
+    # v0.0.55: bulk-port 46 remaining act_window records. Skipped 61
+    # as duplicates of standard Odoo actions on account.* models.
+    # Window action coverage: 60/167 -> 106/167 = 63%.
     # v0.0.54: hotfix v0.0.53 - removed 2 "TEST - For Rohana" next_activity
     # records on account.account (model lacks mail.activity.mixin, install
     # crashed). They were leftover Studio test artifacts. Effective

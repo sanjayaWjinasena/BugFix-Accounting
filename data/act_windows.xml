@@ -352,4 +352,299 @@
     <field name="domain">[('x_studio_created_from_consignment', '=', active_id)]</field>
     <field name="context">{'search_default_x_studio_created_from_consignment': active_id,'default_x_studio_created_from_consignment': active_id}</field>
   </record>
+
+
+  <!-- v0.0.55: bulk-port remaining Accounting act_window records. -->
+
+  <record id="action_1172_misc_charge_codes" model="ir.actions.act_window">
+    <field name="name">Misc. Charge Codes</field>
+    <field name="res_model">x_misc_charge_codes</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <record id="action_1314_consignment_charge_header" model="ir.actions.act_window">
+    <field name="name">Consignment Charge Header</field>
+    <field name="res_model">x_consignment_charge_h</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <record id="action_1317_header_charges" model="ir.actions.act_window">
+    <field name="name">Header Charges</field>
+    <field name="res_model">x_consignment_charge_h</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_consignment_id', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_consignment_id': active_id,'default_x_studio_consignment_id': active_id,'group_by': 'x_studio_charge_group'}</field>
+  </record>
+
+  <record id="action_1375_temp_tp_invoice_header" model="ir.actions.act_window">
+    <field name="name">Temp TP Invoice Header</field>
+    <field name="res_model">x_temp_tp_invoice_head</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <record id="action_1379_tp_invoice_header" model="ir.actions.act_window">
+    <field name="name">TP Invoice Header</field>
+    <field name="res_model">x_tp_invoice_header</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <record id="action_1380_tp_invoice_line" model="ir.actions.act_window">
+    <field name="name">TP Invoice Line</field>
+    <field name="res_model">x_tp_invoice_line</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <record id="action_1382_tp_invoices" model="ir.actions.act_window">
+    <field name="name">TP Invoices</field>
+    <field name="res_model">x_tp_invoice_header</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_consignment_header_id', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_consignment_header_id': active_id,'default_x_studio_consignment_header_id': active_id}</field>
+  </record>
+
+  <record id="action_1383_tp_invoices" model="ir.actions.act_window">
+    <field name="name">TP Invoices</field>
+    <field name="res_model">x_tp_invoice_header</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_con_no', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_con_no': active_id,'default_x_studio_con_no': active_id}</field>
+  </record>
+
+  <record id="action_1401_lc_header" model="ir.actions.act_window">
+    <field name="name">LC Header</field>
+    <field name="res_model">x_lc_header</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <record id="action_1403_lc" model="ir.actions.act_window">
+    <field name="name">LC</field>
+    <field name="res_model">x_lc_header</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_created_from_purchase_order', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_created_from_purchase_order': active_id,'default_x_studio_created_from_purchase_order': active_id}</field>
+  </record>
+
+  <record id="action_1667_sales_report_model" model="ir.actions.act_window">
+    <field name="name">Sales Report Model</field>
+    <field name="res_model">x_sales_report_model</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <record id="action_1668_sales_report_type" model="ir.actions.act_window">
+    <field name="name">Sales Report Type</field>
+    <field name="res_model">x_sales_report_type</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <record id="action_1669_rm_daily_sales_report" model="ir.actions.act_window">
+    <field name="name">RM Daily Sales Report</field>
+    <field name="res_model">x_rm_daily_sales_repor</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <record id="action_1677_rm_daily_s1" model="ir.actions.act_window">
+    <field name="name">RM Daily S1</field>
+    <field name="res_model">x_rm_daily_s1</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_quantity', '=', 1)]</field>
+  </record>
+
+  <record id="action_1678_rm_daily_s2" model="ir.actions.act_window">
+    <field name="name">RM Daily S2</field>
+    <field name="res_model">x_rm_daily_s2</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <record id="action_1679_rm_daily_s3" model="ir.actions.act_window">
+    <field name="name">RM Daily S3</field>
+    <field name="res_model">x_rm_daily_s3</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <record id="action_1731_rm_sales_order_line" model="ir.actions.act_window">
+    <field name="name">RM Sales Order Line</field>
+    <field name="res_model">x_rm_sales_order_line</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <record id="action_1737_wip_production_orders" model="ir.actions.act_window">
+    <field name="name">WIP Production Orders</field>
+    <field name="res_model">x_rm_production_orders</field>
+    <field name="view_mode">pivot</field>
+  </record>
+
+  <record id="action_1741_slow_moving_items" model="ir.actions.act_window">
+    <field name="name">Slow Moving Items</field>
+    <field name="res_model">x_rm_none_moving</field>
+    <field name="view_mode">pivot</field>
+  </record>
+
+  <record id="action_1744_rm_date_test" model="ir.actions.act_window">
+    <field name="name">RM Date Test</field>
+    <field name="res_model">x_rm_date_test</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <record id="action_1745_pivot_views" model="ir.actions.act_window">
+    <field name="name">Pivot Views</field>
+    <field name="res_model">x_rm_production_orders</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <record id="action_1748_slow_moving_items" model="ir.actions.act_window">
+    <field name="name">Slow Moving Items</field>
+    <field name="res_model">x_rm_none_moving</field>
+    <field name="view_mode">pivot</field>
+  </record>
+
+  <record id="action_1753_rm_sales_prod_purch" model="ir.actions.act_window">
+    <field name="name">RM Sales Prod. Purch.</field>
+    <field name="res_model">x_rm_sales_prod_purch</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <record id="action_1754_rm_prod_summary_split" model="ir.actions.act_window">
+    <field name="name">RM Prod. Summary Split</field>
+    <field name="res_model">x_rm_prod_summary_spli</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <record id="action_1756_rm_production_variance" model="ir.actions.act_window">
+    <field name="name">RM Production Variance</field>
+    <field name="res_model">x_rm_production_varian</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <record id="action_2061_misc_charge_codes" model="ir.actions.act_window">
+    <field name="name">Misc. Charge Codes</field>
+    <field name="res_model">x_misc_charge_codes</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <record id="action_2071_letter_of_credit" model="ir.actions.act_window">
+    <field name="name">Letter of Credit</field>
+    <field name="res_model">x_lc_header</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <record id="action_2099_rm_gross_margin_estimated" model="ir.actions.act_window">
+    <field name="name">RM Gross Margin - Estimated</field>
+    <field name="res_model">x_rm_gross_margin_esti</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <record id="action_2100_rm_gross_margin_actuals" model="ir.actions.act_window">
+    <field name="name">RM Gross Margin - Actuals</field>
+    <field name="res_model">x_rm_gross_margin_actu</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <record id="action_2101_rm_gross_margin_invoice_details" model="ir.actions.act_window">
+    <field name="name">RM Gross Margin - Invoice Details</field>
+    <field name="res_model">x_rm_gross_margin_invo</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <record id="action_2115_gross_margin_reports" model="ir.actions.act_window">
+    <field name="name">Gross Margin Reports</field>
+    <field name="res_model">x_sales_report_model</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_project_no', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_project_no': active_id,'default_x_studio_project_no': active_id}</field>
+  </record>
+
+  <record id="action_2122_temp_estimated" model="ir.actions.act_window">
+    <field name="name">Temp_Estimated</field>
+    <field name="res_model">x_temp_estimated</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <record id="action_2180_budget" model="ir.actions.act_window">
+    <field name="name">Budget</field>
+    <field name="res_model">crossovered.budget</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_created_from_sales_order_1', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_created_from_sales_order_1': active_id,'default_x_studio_created_from_sales_order_1': active_id}</field>
+  </record>
+
+  <record id="action_2333_analytic_account" model="ir.actions.act_window">
+    <field name="name">Analytic Account</field>
+    <field name="res_model">account.analytic.account</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('plan_id', '=', active_id)]</field>
+    <field name="context">{'search_default_group_id': active_id,'default_group_id': active_id}</field>
+  </record>
+
+  <record id="action_2430_x_tp_invoice_header" model="ir.actions.act_window">
+    <field name="name">x_tp_invoice_header</field>
+    <field name="res_model">x_tp_invoice_header</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <record id="action_2447_journal_types" model="ir.actions.act_window">
+    <field name="name">Journal Types</field>
+    <field name="res_model">x_journal_types</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <record id="action_2491_pump_price_costing" model="ir.actions.act_window">
+    <field name="name">Pump Price Costing</field>
+    <field name="res_model">x_pump_price_costing</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <record id="action_2529_costing_worksheet" model="ir.actions.act_window">
+    <field name="name">Costing Worksheet</field>
+    <field name="res_model">x_pump_price_costing</field>
+    <field name="view_mode">tree,form,pivot</field>
+  </record>
+
+  <record id="action_2533_pump_costing_worksheet" model="ir.actions.act_window">
+    <field name="name">Pump Costing Worksheet</field>
+    <field name="res_model">x_pump_price_costing</field>
+    <field name="view_mode">tree,kanban,form,pivot,graph</field>
+  </record>
+
+  <record id="action_2848_consignment_charge_header" model="ir.actions.act_window">
+    <field name="name">Consignment Charge Header</field>
+    <field name="res_model">x_consignment_charge_h</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <record id="action_2858_consignment_charge_header" model="ir.actions.act_window">
+    <field name="name">Consignment Charge Header</field>
+    <field name="res_model">x_consignment_charge_h</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <record id="action_2864_tp_invoice_header" model="ir.actions.act_window">
+    <field name="name">TP Invoice Header</field>
+    <field name="res_model">x_tp_invoice_header</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <record id="action_2865_tp_invoice_line" model="ir.actions.act_window">
+    <field name="name">TP Invoice Line</field>
+    <field name="res_model">x_tp_invoice_line</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <record id="action_2885_purchase_invoices" model="ir.actions.act_window">
+    <field name="name">Purchase Invoices</field>
+    <field name="res_model">x_consignment_charge_h</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <record id="action_2889_letter_of_credit" model="ir.actions.act_window">
+    <field name="name">Letter of Credit</field>
+    <field name="res_model">x_lc_header</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <record id="action_3276_account_analytic_account" model="ir.actions.act_window">
+    <field name="name">account.analytic.account</field>
+    <field name="res_model">account.analytic.account</field>
+    <field name="view_mode">kanban,tree,form</field>
+  </record>
+
 </odoo>
