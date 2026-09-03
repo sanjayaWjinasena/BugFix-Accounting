@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Accounting',
-    'version': '17.0.0.0.50',
+    'version': '17.0.0.0.51',
     'summary': 'Studio-to-Python port for BugFix-Accounting',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Accounting',
@@ -9,6 +9,12 @@
     # Do NOT depend on studio_customization -- Odoo SH does not ship
     # a manifest for it, listing it causes install skip.
     #
+    # v0.0.51: 27 server actions appended to data/server_actions_v2.xml
+    # (was 19, now 46). These are the state=code base_automation actions
+    # referenced by the 27 unwired base.automation records to be shipped
+    # in v0.0.52. Actions cover x_sales_report_model (15), x_lc_header (3),
+    # x_tp_invoice_header (2), account.move.line (2), crossovered.budget (2),
+    # x_journal_types (1), x_misc_charge_codes (1), x_tp_invoice_line (1).
     # v0.0.50: break the 2-way cycle Purchase <-> Accounting that was
     # silently blocking cross-module upgrades. Removed BugFix-Purchase
     # from depends. Fix: account_move.x_studio_cre (the only STORED

@@ -1431,4 +1431,1662 @@ action = {
 ]]></field>
     </record>
 
+
+
+  <!-- v0.0.51: 27 missing server actions for base.automation triggers.
+       state=next_activity records (if any) come before state=multi
+       to satisfy Odoo XML load-order for child_ids refs. -->
+
+  <record id="server_action_2129_srm_rpt_project_gross_margin_notify_users" model="ir.actions.server">
+    <field name="name">SRM - RPT - Project Gross Margin - Notify Users</field>
+    <field name="model_id" search="[('model', '=', 'x_sales_report_model')]"/>
+    <field name="state">next_activity</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="activity_type_id" ref="mail.mail_activity_data_todo"/>
+    <field name="activity_user_type">specific</field>
+    <field name="activity_summary">Gross Margin Report Generated</field>
+    <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
+  </record>
+
+  <record id="server_action_1381_tp_invoice_seq_no" model="ir.actions.server">
+    <field name="name">TP Invoice Seq.No</field>
+    <field name="model_id" search="[('model', '=', 'x_tp_invoice_header')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[#record['x_name'] = env['ir.sequence'].next_by_code('purchase.request.seq')
+
+if record.x_name == 'New':
+ seq = env['ir.sequence'].next_by_code('tp.invoice.seq')
+ record.write({'x_name': seq})
+
+
+
+]]></field>
+  </record>
+
+  <record id="server_action_1402_lc_registration_seq_no" model="ir.actions.server">
+    <field name="name">LC Registration Seq.No</field>
+    <field name="model_id" search="[('model', '=', 'x_lc_header')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[#record['x_name'] = env['ir.sequence'].next_by_code('purchase.request.seq')
+
+if record.x_name == 'New':
+ seq = env['ir.sequence'].next_by_code('lc.registration.seq')
+ record.write({'x_name': seq})
+
+
+
+]]></field>
+  </record>
+
+  <record id="server_action_1407_imp_lc_amount_validation" model="ir.actions.server">
+    <field name="name">IMP - LC Amount Validation</field>
+    <field name="model_id" search="[('model', '=', 'x_lc_header')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.x_studio_issuing_bank.id != 0:
+  if record.x_studio_issuing_bank.x_studio_lc_limit != 0.00:
+    sum_lc = 0
+    lc_lines = env['x_lc_header'].search([('x_studio_issuing_bank', '=', record.x_studio_issuing_bank.id), ('x_studio_status', '=', 'Posted')])
+    if lc_lines:
+      for sum_lines in lc_lines:
+        sum_lc += sum_lines.x_studio_lc_amount_lcy
+    
+    if (record.x_studio_lc_amount_lcy + sum_lc) > record.x_studio_issuing_bank.x_studio_lc_limit:
+      raise UserError('Current LC Amount must be within the Available LC Balance.' + '\n' +
+                    'Current LC Amount (LCY): ' + str(record.x_studio_lc_amount_lcy) + '\n' + '\n' +
+                    'Bank LC Limit (LCY): ' + str(record.x_studio_issuing_bank.x_studio_lc_limit) + '\n' + 
+                    'Posted LC Amount (LCY): ' + str(sum_lc) + '\n' +
+                    'Available LC Balance (LCY): ' + str(record.x_studio_issuing_bank.x_studio_lc_limit - sum_lc))
+  else:
+    raise UserError('LC Limit of the Selected Issuing Bank must be Specified.')
+else:
+  raise UserError('Issuing Bank must be Specified.')
+
+
+]]></field>
+  </record>
+
+  <record id="server_action_1675_restrict_delete_in_sales_report_model" model="ir.actions.server">
+    <field name="name">Restrict Delete in Sales Report Model</field>
+    <field name="model_id" search="[('model', '=', 'x_sales_report_model')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.x_studio_selection_field_Fbw0x == 'Done':
+  raise UserError("You can only delete a report model if the report model is in done state.")
+ 
+
+
+
+
+]]></field>
+  </record>
+
+  <record id="server_action_1726_srm_auto_populate_data" model="ir.actions.server">
+    <field name="name">SRM - Auto Populate Data</field>
+    <field name="model_id" search="[('model', '=', 'x_sales_report_model')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.x_studio_report_type:
+  if record.x_studio_report_code == 'Production Overview - WIP':
+    report_type_lines = record.x_studio_report_type.x_studio_production_order_id
+  elif record.x_studio_report_code == 'Production Job Variance':
+    report_type_lines = record.x_studio_report_type.x_studio_production_variance_id
+  elif record.x_studio_report_code == 'Sales - Production - Purchase Report':
+    report_type_lines = record.x_studio_report_type.x_studio_sales_prod_purch_id
+  elif record.x_studio_report_code == 'Production Summary - Split':
+    report_type_lines = record.x_studio_report_type.x_studio_prod_summary_split_id
+  elif record.x_studio_report_code == 'Slow Moving Items':
+    report_type_lines = record.x_studio_report_type.x_studio_slow_moving_item_id
+    
+    currentdate = record.x_studio_as_on_date
+    
+    firstdayOfmonth = datetime.date(currentdate.year, currentdate.month, 1)
+    next_month = currentdate.replace(day=28) + datetime.timedelta(days=4)
+    lastdayOfmonth = next_month - datetime.timedelta(days=next_month.day)
+    
+    if firstdayOfmonth.month != 1:
+      firstdayOfmonth2 = datetime.date(firstdayOfmonth.year, firstdayOfmonth.month-1, 1)
+    else:
+      firstdayOfmonth2 = datetime.date(firstdayOfmonth.year-1, 12, 1)
+      
+    next_month2 = firstdayOfmonth2.replace(day=28) + datetime.timedelta(days=4)
+    lastdayOfmonth2 = next_month2 - datetime.timedelta(days=next_month2.day)
+    
+    if firstdayOfmonth.month > 2:
+      firstdayOfmonth3 = datetime.date(firstdayOfmonth.year, firstdayOfmonth.month-2, 1)
+    else:
+      if firstdayOfmonth.month == 2:
+        firstdayOfmonth3 = datetime.date(firstdayOfmonth.year-1, 12, 1)
+      else:
+        firstdayOfmonth3 = datetime.date(firstdayOfmonth.year-1, 11, 1)
+        
+    next_month3 = firstdayOfmonth3.replace(day=28) + datetime.timedelta(days=4)
+    lastdayOfmonth3 = next_month3 - datetime.timedelta(days=next_month3.day)
+    
+    if firstdayOfmonth.month > 3:
+      firstdayOfmonth4 = datetime.date(firstdayOfmonth.year, firstdayOfmonth.month-3, 1)
+    else:
+      if firstdayOfmonth.month == 3:
+        firstdayOfmonth4 = datetime.date(firstdayOfmonth.year-1, 12, 1)
+      elif firstdayOfmonth.month == 2:
+        firstdayOfmonth4 = datetime.date(firstdayOfmonth.year-1, 11, 1)
+      else:
+        firstdayOfmonth4 = datetime.date(firstdayOfmonth.year-1, 10, 1)
+        
+    next_month4 = firstdayOfmonth4.replace(day=28) + datetime.timedelta(days=4)
+    lastdayOfmonth4 = next_month4 - datetime.timedelta(days=next_month4.day)
+    
+  else:
+    report_type_lines = record.x_studio_report_type.x_studio_journal_items_id
+    
+  # filter area ------------------------------------------------------------------------------------------------------------------------------------------------
+  if record.x_studio_report_code == 'Production Overview - WIP':
+    report_type_lines = report_type_lines.filtered(lambda x: x.state == 'progress')
+  elif record.x_studio_report_code == 'Production Job Variance':
+    report_type_lines = report_type_lines.filtered(lambda x: (x.date.date() >= record.x_studio_from_date and x.date.date() <= record.x_studio_as_on_date and x.x_studio_variance != 0))
+  elif record.x_studio_report_code == 'Sales - Production - Purchase Report':
+    report_type_lines = report_type_lines.filtered(lambda x: (x.date.date() <= record.x_studio_as_on_date))
+  elif record.x_studio_report_code == 'Production Summary - Split':
+    report_type_lines = report_type_lines.filtered(lambda x: (x.date.date() <= record.x_studio_as_on_date))
+  elif record.x_studio_report_code == 'Slow Moving Items':
+    report_type_lines_receipt = report_type_lines.filtered(lambda x: (x.date.date() >= firstdayOfmonth and x.date.date() <= lastdayOfmonth and x.picking_code == 'incoming'))
+    report_type_lines_delivery = report_type_lines.filtered(lambda x: (x.date.date() >= firstdayOfmonth and x.date.date() <= lastdayOfmonth and x.picking_code == 'outgoing'))
+    
+    report_type_lines_receipt2 = report_type_lines.filtered(lambda x: (x.date.date() >= firstdayOfmonth2 and x.date.date() <= lastdayOfmonth2 and x.picking_code == 'incoming'))
+    report_type_lines_delivery2 = report_type_lines.filtered(lambda x: (x.date.date() >= firstdayOfmonth2 and x.date.date() <= lastdayOfmonth2 and x.picking_code == 'outgoing'))
+    
+    report_type_lines_receipt3 = report_type_lines.filtered(lambda x: (x.date.date() >= firstdayOfmonth3 and x.date.date() <= lastdayOfmonth3 and x.picking_code == 'incoming'))
+    report_type_lines_delivery3 = report_type_lines.filtered(lambda x: (x.date.date() >= firstdayOfmonth3 and x.date.date() <= lastdayOfmonth3 and x.picking_code == 'outgoing'))
+    
+    report_type_lines_receipt4 = report_type_lines.filtered(lambda x: (x.date.date() >= firstdayOfmonth4 and x.date.date() <= lastdayOfmonth4 and x.picking_code == 'incoming'))
+    report_type_lines_delivery4 = report_type_lines.filtered(lambda x: (x.date.date() >= firstdayOfmonth4 and x.date.date() <= lastdayOfmonth4 and x.picking_code == 'outgoing'))
+  else:
+    # filter by as on date
+    if record.x_studio_as_on_date:
+      report_type_lines = report_type_lines.filtered(lambda x: x.date == record.x_studio_as_on_date)
+    
+    if record.x_studio_report_type.x_studio_report_code == 'Daily Sales Summary':  
+    # filter by sales centre
+      if record.x_studio_sales_centre:
+        report_type_lines = report_type_lines.filtered(lambda x: x.x_studio_sales_team == record.x_studio_sales_centre)
+        
+    if record.x_studio_report_type.x_studio_report_code == 'Sales Details for Incentive Calc.':  
+    # filter by product
+      report_type_lines = report_type_lines.filtered(lambda x: x.product_id.id > 0)
+    # filter by internal group
+      report_type_lines = report_type_lines.filtered(lambda x: x.account_internal_group == 'income')
+    
+  # delete record area ----------------------------------------------------------------------------------------------------------------------------------------------  
+  # delete old record
+  
+  # Daily Sales Summary
+  temp_rec_1 = env['x_rm_daily_s1'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
+  if temp_rec_1:
+    for del_temp_rec_1 in temp_rec_1:
+      del_temp_rec_1.unlink()
+  
+  # Sales Details for Incentive Calculation     
+  temp_rec_2 = env['x_rm_sales_order_line'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
+  if temp_rec_2:
+    for del_temp_rec_2 in temp_rec_2:
+      del_temp_rec_2.unlink()
+      
+  # MO - WIP     
+  temp_rec_3 = env['x_rm_production_orders'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
+  if temp_rec_3:
+    for del_temp_rec_3 in temp_rec_3:
+      del_temp_rec_3.unlink()
+      
+  # Slow Moving Items     
+  temp_rec_4 = env['x_rm_none_moving'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
+  if temp_rec_4:
+    for del_temp_rec_4 in temp_rec_4:
+      del_temp_rec_4.unlink()
+      
+  # Production Variance     
+  temp_rec_5 = env['x_rm_production_varian'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
+  if temp_rec_5:
+    for del_temp_rec_5 in temp_rec_5:
+      del_temp_rec_5.unlink()
+      
+  # Sales - Production - Purchase Report     
+  temp_rec_6 = env['x_rm_sales_prod_purch'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
+  if temp_rec_6:
+    for del_temp_rec_6 in temp_rec_6:
+      del_temp_rec_6.unlink()
+  
+  # Production Summary - Split     
+  temp_rec_7 = env['x_rm_prod_summary_spli'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
+  if temp_rec_7:
+    for del_temp_rec_7 in temp_rec_7:
+      del_temp_rec_7.unlink()
+  # Business Logic --------------------------------------------------------------------------------------------------------------------------------------------   
+  # create new record 
+  
+  # Daily Sales Summary
+  if record.x_studio_report_type.x_studio_report_code == 'Daily Sales Summary':
+    for line in report_type_lines:
+      create_sub_model = env['x_rm_daily_s1'].create({'x_studio_sales_report_model_id':record.id,'x_studio_invoice_date':line.date,'x_studio_number':line.move_name,'x_studio_partner':line.partner_id.id,'x_studio_sales_centre':line.x_studio_sales_team.id,'x_studio_product_id':line.product_id.id,'x_studio_quantity':line.quantity,'x_studio_value':line.price_subtotal})
+  
+  # Sales Details for Incentive Calculation    
+  if record.x_studio_report_type.x_studio_report_code == 'Sales Details for Incentive Calc.':
+    for line in report_type_lines:
+      create_sub_model = env['x_rm_sales_order_line'].create({'x_studio_sales_report_model_id':record.id,'x_studio_date':line.date,'x_studio_customer_acc':line.partner_id.id,'x_studio_customer_group':line.partner_id.x_studio_customer_group.id,'x_studio_name':line.partner_id.name,'x_studio_sales_order':line.move_id.x_studio_sale_id.id,'x_studio_invoice':line.move_id.id,'x_studio_product_1':line.product_id.id,'x_studio_product_category':line.product_id.categ_id.id,'x_studio_quantity':line.quantity,'x_studio_unit_price':line.price_unit,'x_studio_net_value':line.price_total}) 
+      
+  # Production Overview - WIP
+  if record.x_studio_report_type.x_studio_report_code == 'Production Overview - WIP':
+    for line in report_type_lines:
+      create_sub_model = env['x_rm_production_orders'].create({'x_studio_sales_report_model_id':record.id,'x_studio_production_id':line.id,'x_studio_product_code':line.product_id.id,'x_studio_description':line.product_id.name,'x_studio_warehouse':line.location_dest_id.id,'x_studio_status':line.state,'x_studio_estimated':line.product_qty,'x_studio_started':line.qty_producing,'x_studio_start':line.date_start,'x_studio_header_reference': record.x_name,'x_studio_end':line.date_finished})
+      
+  # Slow Moving Items
+  if record.x_studio_report_type.x_studio_report_code == 'Slow Moving Items':
+    inhand = 0
+    issue = 0
+    inhand2 = 0
+    issue2 = 0
+    inhand3 = 0
+    issue3 = 0
+    inhand4 = 0
+    issue4 = 0
+    product = env['product.product'].search([('type', '!=', 'service')])
+    if product:
+     for products in product:
+      report_type_lines_receiptf = report_type_lines_receipt.filtered(lambda x: (x.product_id.id == products.id))
+      report_type_lines_deliveryf = report_type_lines_delivery.filtered(lambda x: (x.product_id.id == products.id))
+      
+      report_type_lines_receipt2f = report_type_lines_receipt2.filtered(lambda x: (x.product_id.id == products.id))
+      report_type_lines_delivery2f = report_type_lines_delivery2.filtered(lambda x: (x.product_id.id == products.id))
+      
+      report_type_lines_receipt3f = report_type_lines_receipt3.filtered(lambda x: (x.product_id.id == products.id))
+      report_type_lines_delivery3f = report_type_lines_delivery3.filtered(lambda x: (x.product_id.id == products.id))
+      
+      report_type_lines_receipt4f = report_type_lines_receipt4.filtered(lambda x: (x.product_id.id == products.id))
+      report_type_lines_delivery4f = report_type_lines_delivery4.filtered(lambda x: (x.product_id.id == products.id))
+      
+      for line_r in report_type_lines_receiptf:
+        inhand += line_r.qty_done
+      for line_d in report_type_lines_deliveryf:
+        issue += line_d.qty_done
+        
+      for line_r2 in report_type_lines_receipt2f:
+        inhand2 += line_r2.qty_done
+      for line_d2 in report_type_lines_delivery2f:
+        issue2 += line_d2.qty_done
+        
+      for line_r3 in report_type_lines_receipt3f:
+        inhand3 += line_r3.qty_done
+      for line_d3 in report_type_lines_delivery3f:
+        issue3 += line_d3.qty_done  
+        
+      for line_r4 in report_type_lines_receipt4f:
+        inhand4 += line_r4.qty_done
+      for line_d4 in report_type_lines_delivery4f:
+        issue4 += line_d4.qty_done
+        
+      create_sub_model = env['x_rm_none_moving'].create({'x_studio_sales_report_model_id':record.id,'x_studio_description':products.id,'x_studio_base_price':products.list_price,'x_studio_in_hand_1':inhand4,'x_studio_issue_1':issue4,'x_studio_in_hand_2':inhand3,'x_studio_issue_2':issue3,'x_studio_in_hand_3':inhand2,'x_studio_issue_3':issue2,'x_studio_in_hand_4':inhand,'x_studio_issue_4':issue,'x_studio_header_reference': record.x_name})
+       
+  # Production Variance
+  if record.x_studio_report_type.x_studio_report_code == 'Production Job Variance':
+    for line in report_type_lines:
+      create_sub_model = env['x_rm_production_varian'].create({'x_studio_sales_report_model_id':record.id,'x_studio_description':line.raw_material_production_id.product_id.id,'x_studio_production_id':line.raw_material_production_id.id,'x_studio_prod_qty':line.raw_material_production_id.product_qty,'x_studio_description_1':line.product_id.id,'x_studio_bom_qty':line.x_studio_original_qty,'x_studio_esti_qty':line.x_studio_original_qty,'x_studio_cons_qty':line.product_uom_qty,'x_studio_variance':line.x_studio_variance,'x_studio_avg_cost':line.price_unit,'x_studio_total_cost':(line.product_uom_qty*line.price_unit),'x_studio_header_reference': record.x_name})
+      
+  # Sales - Production - Purchase Report   
+  if record.x_studio_report_type.x_studio_report_code == 'Sales - Production - Purchase Report':
+    d = record.x_studio_as_on_date
+    #d1 = datetime.strftime(d, "%Y-%m-%d %H:%M:%S")
+    #d2 = datetime.strftime(d, "%Y-%m-%d 23:59:59")
+    d1 = datetime.strptime(d, "%Y-%m-%d %H:%M:%S")
+    d2 = datetime.strptime(d, "%Y-%m-%d 23:59:59")
+    product = env['product.product'].search([('type', '!=', 'service')])
+    if product:
+     for products in product:
+       project_qty = 0
+       so_qty = 0
+       prod_qty = 0
+       purch_qty = 0
+       
+       last_prod_purch = env['stock.valuation.layer'].search([('product_id', '=', products.id),('quantity', '>', 0),('create_date', '>=', d1),('create_date', '<=', d2)],order='create_date desc',limit=1)
+       
+       sales_qtys = env['sale.order.line'].search([('product_id', '=', products.id)])
+       sales_qtys = sales_qtys.filtered(lambda x: x.create_date.date() <= record.x_studio_as_on_date)
+       for qtys in sales_qtys:
+         so_qty += qtys.product_uom_qty 
+         
+       prod_qtys = env['mrp.production'].search([('product_id', '=', products.id)])
+       prod_qtys = prod_qtys.filtered(lambda x: x.date_planned_start.date() <= record.x_studio_as_on_date)
+       for prodqtys in prod_qtys: 
+         prod_qty += prodqtys.product_qty
+         
+       purch_qtys = env['purchase.order.line'].search([('product_id', '=', products.id)])
+       purch_qtys = purch_qtys.filtered(lambda x: x.create_date.date() <= record.x_studio_as_on_date)
+       for purchqtys in purch_qtys:
+         purch_qty += purchqtys.product_qty
+         
+       create_sub_model = env['x_rm_sales_prod_purch'].create({'x_studio_sales_report_model_id':record.id,'x_studio_description':products.id,'x_studio_base_price':products.list_price,'x_studio_product_type':products.type,'x_studio_date_1':last_prod_purch.create_date.date(),'x_studio_unit_cost':last_prod_purch.unit_cost,'x_studio_project_category':project_qty,'x_studio_sales_order':so_qty,'x_studio_production_qty':prod_qty,'x_studio_purchase_qty':purch_qty,'x_studio_header_reference': record.x_name})
+  
+  # Production Summary - Split 
+  if record.x_studio_report_type.x_studio_report_code == 'Production Summary - Split':
+    for line in report_type_lines:
+      create_sub_model = env['x_rm_prod_summary_spli'].create({'x_studio_sales_report_model_id':record.id,'x_studio_description':line.raw_material_production_id.product_id.id,'x_studio_production_id':line.raw_material_production_id.id,'x_studio_prod_qty':line.raw_material_production_id.product_qty,'x_studio_description_1':line.product_id.id,'x_studio_bom_qty':line.x_studio_original_qty,'x_studio_esti_qty':line.x_studio_original_qty,'x_studio_cons_qty':line.product_uom_qty,'x_studio_variance':line.x_studio_variance,'x_studio_avg_cost':line.price_unit,'x_studio_total_cost':(line.product_uom_qty*line.price_unit),'x_studio_header_reference': record.x_name})]]></field>
+  </record>
+
+  <record id="server_action_1732_srm_auto_populate_report_type_in_account_move_lines" model="ir.actions.server">
+    <field name="name">SRM - Auto Populate Report Type in Account Move Lines</field>
+    <field name="model_id" search="[('model', '=', 'account.move.line')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[# fix_repair:idempotent-v1
+if record.account_internal_group == 'income' and not record.x_studio_sales_report_type:
+  rpt = env['x_sales_report_type'].sudo().search(
+    [('x_studio_report_code', '=', 'Sales Details for Incentive Calc.')],
+    limit=1)
+  if rpt:
+    record.write({'x_studio_sales_report_type': rpt.id})
+]]></field>
+  </record>
+
+  <record id="server_action_1746_srm_auto_delete_sub_models" model="ir.actions.server">
+    <field name="name">SRM - Auto Delete Sub Models</field>
+    <field name="model_id" search="[('model', '=', 'x_sales_report_model')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.id:
+  temp_rec = env['x_rm_production_orders'].search([('x_studio_sales_report_model_id', '=', record.id)])
+  for del_record in temp_rec:
+    del_record.unlink()
+    
+  temp_rec2 = env['x_rm_none_moving'].search([('x_studio_sales_report_model_id', '=', record.id)])
+  for del_record2 in temp_rec2:
+    del_record2.unlink()
+    
+  temp_rec3 = env['x_rm_sales_prod_purch'].search([('x_studio_sales_report_model_id', '=', record.id)])
+  for del_record3 in temp_rec3:
+    del_record3.unlink()
+    
+  temp_rec4 = env['x_rm_prod_summary_spli'].search([('x_studio_sales_report_model_id', '=', record.id)])
+  for del_record4 in temp_rec4:
+    del_record4.unlink()
+    
+  temp_rec5 = env['x_rm_production_varian'].search([('x_studio_sales_report_model_id', '=', record.id)])
+  for del_record5 in temp_rec5:
+    del_record5.unlink()]]></field>
+  </record>
+
+  <record id="server_action_1747_report_model_seq_no" model="ir.actions.server">
+    <field name="name">Report Model Seq.No</field>
+    <field name="model_id" search="[('model', '=', 'x_sales_report_model')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[#record['x_name'] = env['ir.sequence'].next_by_code('purchase.request.seq')
+
+if record.x_name == 'New':
+    seq = env['ir.sequence'].next_by_code('report.model.seq')
+    record.write({'x_name': seq})
+
+
+
+
+
+
+]]></field>
+  </record>
+
+  <record id="server_action_1759_srm_rpt_daily_sales_summary" model="ir.actions.server">
+    <field name="name">SRM - RPT - Daily Sales Summary</field>
+    <field name="model_id" search="[('model', '=', 'x_sales_report_model')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.x_studio_report_type:
+  if record.x_studio_report_code == 'Daily Sales Summary':
+    report_type_lines = record.x_studio_report_type.x_studio_journal_items_id
+    
+    # filter area ------------------------------------------------------------------------------------------------------------------------------------------------
+    # filter by as on date
+    if record.x_studio_as_on_date:
+      report_type_lines = report_type_lines.filtered(lambda x: x.date == record.x_studio_as_on_date)
+      
+    # filter by sales centre
+      if record.x_studio_sales_centre:
+        report_type_lines = report_type_lines.filtered(lambda x: x.x_studio_sales_team == record.x_studio_sales_centre)
+          
+    # delete record area ----------------------------------------------------------------------------------------------------------------------------------------------  
+    # delete old record
+    
+    # Daily Sales Summary
+    temp_rec_1 = env['x_rm_daily_s1'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
+    if temp_rec_1:
+      for del_temp_rec_1 in temp_rec_1:
+        del_temp_rec_1.unlink()
+    
+    # Business Logic --------------------------------------------------------------------------------------------------------------------------------------------   
+    # create new record 
+    
+    # Daily Sales Summary
+    for line in report_type_lines:
+      create_sub_model = env['x_rm_daily_s1'].create({'x_studio_sales_report_model_id':record.id,'x_studio_invoice_date':line.date,'x_studio_number':line.move_name,'x_studio_partner':line.partner_id.id,'x_studio_sales_centre':line.x_studio_sales_team.id,'x_studio_product_id':line.product_id.id,'x_studio_quantity':line.quantity,'x_studio_value':line.price_subtotal})
+  
+  ]]></field>
+  </record>
+
+  <record id="server_action_1760_srm_rpt_sales_details_for_incentive_calc" model="ir.actions.server">
+    <field name="name">SRM - RPT - Sales Details for Incentive Calc.</field>
+    <field name="model_id" search="[('model', '=', 'x_sales_report_model')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.x_studio_report_type:
+  if record.x_studio_report_code == 'Sales Details for Incentive Calc.':
+    report_type_lines = record.x_studio_report_type.x_studio_journal_items_id
+    
+    # filter area ------------------------------------------------------------------------------------------------------------------------------------------------
+    # filter by as on date
+    if record.x_studio_as_on_date:
+      report_type_lines = report_type_lines.filtered(lambda x: x.date == record.x_studio_as_on_date)
+    # filter by product
+      report_type_lines = report_type_lines.filtered(lambda x: x.product_id.id > 0)
+    # filter by internal group
+      report_type_lines = report_type_lines.filtered(lambda x: x.account_internal_group == 'income')
+      
+    # delete record area ----------------------------------------------------------------------------------------------------------------------------------------------  
+    # delete old record
+    
+    # Sales Details for Incentive Calculation     
+    temp_rec_2 = env['x_rm_sales_order_line'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
+    if temp_rec_2:
+      for del_temp_rec_2 in temp_rec_2:
+        del_temp_rec_2.unlink()
+    
+    # Business Logic --------------------------------------------------------------------------------------------------------------------------------------------   
+    # create new record 
+    
+    # Sales Details for Incentive Calculation    
+    for line in report_type_lines:
+      create_sub_model = env['x_rm_sales_order_line'].create({'x_studio_sales_report_model_id':record.id,'x_studio_date':line.date,'x_studio_customer_acc':line.partner_id.id,'x_studio_customer_group':line.partner_id.x_studio_customer_group.id,'x_studio_name':line.partner_id.name,'x_studio_sales_order':line.move_id.x_studio_sale_id.id,'x_studio_invoice':line.move_id.id,'x_studio_product_1':line.product_id.id,'x_studio_product_category':line.product_id.categ_id.id,'x_studio_quantity':line.quantity,'x_studio_unit_price':line.price_unit,'x_studio_net_value':line.price_total}) 
+      
+  ]]></field>
+  </record>
+
+  <record id="server_action_1761_srm_rpt_production_overview_wip" model="ir.actions.server">
+    <field name="name">SRM - RPT - Production Overview - WIP</field>
+    <field name="model_id" search="[('model', '=', 'x_sales_report_model')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.x_studio_report_type:
+  if record.x_studio_report_code == 'Production Overview - WIP':
+    report_type_lines = record.x_studio_report_type.x_studio_production_order_id
+ 
+    # filter area ------------------------------------------------------------------------------------------------------------------------------------------------
+    report_type_lines = report_type_lines.filtered(lambda x: x.state == 'progress')
+    
+    # delete record area ----------------------------------------------------------------------------------------------------------------------------------------------  
+    # delete old record
+    
+    # MO - WIP     
+    temp_rec_3 = env['x_rm_production_orders'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
+    if temp_rec_3:
+      for del_temp_rec_3 in temp_rec_3:
+        del_temp_rec_3.unlink()
+    
+    # Business Logic --------------------------------------------------------------------------------------------------------------------------------------------   
+    # create new record 
+    
+    # Production Overview - WIP
+    for line in report_type_lines:
+      create_sub_model = env['x_rm_production_orders'].create({'x_studio_sales_report_model_id':record.id,'x_studio_production_id':line.id,'x_studio_product_code':line.product_id.id,'x_studio_description':line.product_id.name,'x_studio_warehouse':line.location_dest_id.id,'x_studio_status':line.state,'x_studio_estimated':line.product_qty,'x_studio_started':line.qty_producing,'x_studio_start':line.date_start,'x_studio_header_reference': record.x_name,'x_studio_end':line.date_finished})
+        
+  ]]></field>
+  </record>
+
+  <record id="server_action_1762_srm_rpt_slow_moving_items" model="ir.actions.server">
+    <field name="name">SRM - RPT - Slow Moving Items</field>
+    <field name="model_id" search="[('model', '=', 'x_sales_report_model')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.x_studio_report_type:
+  if record.x_studio_report_code == 'Slow Moving Items':
+    report_type_lines = record.x_studio_report_type.x_studio_slow_moving_item_id
+    
+    currentdate = record.x_studio_as_on_date
+    
+    firstdayOfmonth = datetime.date(currentdate.year, currentdate.month, 1)
+    next_month = currentdate.replace(day=28) + datetime.timedelta(days=4)
+    lastdayOfmonth = next_month - datetime.timedelta(days=next_month.day)
+    
+    if firstdayOfmonth.month != 1:
+      firstdayOfmonth2 = datetime.date(firstdayOfmonth.year, firstdayOfmonth.month-1, 1)
+    else:
+      firstdayOfmonth2 = datetime.date(firstdayOfmonth.year-1, 12, 1)
+      
+    next_month2 = firstdayOfmonth2.replace(day=28) + datetime.timedelta(days=4)
+    lastdayOfmonth2 = next_month2 - datetime.timedelta(days=next_month2.day)
+    
+    if firstdayOfmonth.month > 2:
+      firstdayOfmonth3 = datetime.date(firstdayOfmonth.year, firstdayOfmonth.month-2, 1)
+    else:
+      if firstdayOfmonth.month == 2:
+        firstdayOfmonth3 = datetime.date(firstdayOfmonth.year-1, 12, 1)
+      else:
+        firstdayOfmonth3 = datetime.date(firstdayOfmonth.year-1, 11, 1)
+        
+    next_month3 = firstdayOfmonth3.replace(day=28) + datetime.timedelta(days=4)
+    lastdayOfmonth3 = next_month3 - datetime.timedelta(days=next_month3.day)
+    
+    if firstdayOfmonth.month > 3:
+      firstdayOfmonth4 = datetime.date(firstdayOfmonth.year, firstdayOfmonth.month-3, 1)
+    else:
+      if firstdayOfmonth.month == 3:
+        firstdayOfmonth4 = datetime.date(firstdayOfmonth.year-1, 12, 1)
+      elif firstdayOfmonth.month == 2:
+        firstdayOfmonth4 = datetime.date(firstdayOfmonth.year-1, 11, 1)
+      else:
+        firstdayOfmonth4 = datetime.date(firstdayOfmonth.year-1, 10, 1)
+        
+    next_month4 = firstdayOfmonth4.replace(day=28) + datetime.timedelta(days=4)
+    lastdayOfmonth4 = next_month4 - datetime.timedelta(days=next_month4.day)
+    
+    # filter area ------------------------------------------------------------------------------------------------------------------------------------------------
+    report_type_lines_receipt = report_type_lines.filtered(lambda x: (x.date.date() >= firstdayOfmonth and x.date.date() <= lastdayOfmonth and x.picking_code == 'incoming'))
+    report_type_lines_delivery = report_type_lines.filtered(lambda x: (x.date.date() >= firstdayOfmonth and x.date.date() <= lastdayOfmonth and x.picking_code == 'outgoing'))
+      
+    report_type_lines_receipt2 = report_type_lines.filtered(lambda x: (x.date.date() >= firstdayOfmonth2 and x.date.date() <= lastdayOfmonth2 and x.picking_code == 'incoming'))
+    report_type_lines_delivery2 = report_type_lines.filtered(lambda x: (x.date.date() >= firstdayOfmonth2 and x.date.date() <= lastdayOfmonth2 and x.picking_code == 'outgoing'))
+    
+    report_type_lines_receipt3 = report_type_lines.filtered(lambda x: (x.date.date() >= firstdayOfmonth3 and x.date.date() <= lastdayOfmonth3 and x.picking_code == 'incoming'))
+    report_type_lines_delivery3 = report_type_lines.filtered(lambda x: (x.date.date() >= firstdayOfmonth3 and x.date.date() <= lastdayOfmonth3 and x.picking_code == 'outgoing'))
+      
+    report_type_lines_receipt4 = report_type_lines.filtered(lambda x: (x.date.date() >= firstdayOfmonth4 and x.date.date() <= lastdayOfmonth4 and x.picking_code == 'incoming'))
+    report_type_lines_delivery4 = report_type_lines.filtered(lambda x: (x.date.date() >= firstdayOfmonth4 and x.date.date() <= lastdayOfmonth4 and x.picking_code == 'outgoing'))
+    
+    # delete record area ----------------------------------------------------------------------------------------------------------------------------------------------  
+    # delete old record
+    
+    # Slow Moving Items     
+    temp_rec_4 = env['x_rm_none_moving'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
+    if temp_rec_4:
+      for del_temp_rec_4 in temp_rec_4:
+        del_temp_rec_4.unlink()
+        
+    # Business Logic --------------------------------------------------------------------------------------------------------------------------------------------   
+    # create new record 
+    
+    # Slow Moving Items
+    inhand = 0
+    issue = 0
+    inhand2 = 0
+    issue2 = 0
+    inhand3 = 0
+    issue3 = 0
+    inhand4 = 0
+    issue4 = 0
+    product = env['product.product'].search([('type', '!=', 'service')])
+    if product:
+     for products in product:
+      report_type_lines_receiptf = report_type_lines_receipt.filtered(lambda x: (x.product_id.id == products.id))
+      report_type_lines_deliveryf = report_type_lines_delivery.filtered(lambda x: (x.product_id.id == products.id))
+        
+      report_type_lines_receipt2f = report_type_lines_receipt2.filtered(lambda x: (x.product_id.id == products.id))
+      report_type_lines_delivery2f = report_type_lines_delivery2.filtered(lambda x: (x.product_id.id == products.id))
+        
+      report_type_lines_receipt3f = report_type_lines_receipt3.filtered(lambda x: (x.product_id.id == products.id))
+      report_type_lines_delivery3f = report_type_lines_delivery3.filtered(lambda x: (x.product_id.id == products.id))
+        
+      report_type_lines_receipt4f = report_type_lines_receipt4.filtered(lambda x: (x.product_id.id == products.id))
+      report_type_lines_delivery4f = report_type_lines_delivery4.filtered(lambda x: (x.product_id.id == products.id))
+        
+      for line_r in report_type_lines_receiptf:
+        inhand += line_r.qty_done
+      for line_d in report_type_lines_deliveryf:
+        issue += line_d.qty_done
+          
+      for line_r2 in report_type_lines_receipt2f:
+        inhand2 += line_r2.qty_done
+      for line_d2 in report_type_lines_delivery2f:
+        issue2 += line_d2.qty_done
+          
+      for line_r3 in report_type_lines_receipt3f:
+        inhand3 += line_r3.qty_done
+      for line_d3 in report_type_lines_delivery3f:
+        issue3 += line_d3.qty_done  
+          
+      for line_r4 in report_type_lines_receipt4f:
+        inhand4 += line_r4.qty_done
+      for line_d4 in report_type_lines_delivery4f:
+        issue4 += line_d4.qty_done
+          
+      create_sub_model = env['x_rm_none_moving'].create({'x_studio_sales_report_model_id':record.id,'x_studio_description':products.id,'x_studio_base_price':products.list_price,'x_studio_in_hand_1':inhand4,'x_studio_issue_1':issue4,'x_studio_in_hand_2':inhand3,'x_studio_issue_2':issue3,'x_studio_in_hand_3':inhand2,'x_studio_issue_3':issue2,'x_studio_in_hand_4':inhand,'x_studio_issue_4':issue,'x_studio_header_reference': record.x_name})
+       
+  ]]></field>
+  </record>
+
+  <record id="server_action_1763_srm_rpt_sales_production_purchase_report" model="ir.actions.server">
+    <field name="name">SRM - RPT - Sales - Production - Purchase Report</field>
+    <field name="model_id" search="[('model', '=', 'x_sales_report_model')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.x_studio_report_type:
+  if record.x_studio_report_code == 'Sales - Production - Purchase Report':
+    report_type_lines = record.x_studio_report_type.x_studio_sales_prod_purch_id
+  
+    # filter area ------------------------------------------------------------------------------------------------------------------------------------------------
+    report_type_lines = report_type_lines.filtered(lambda x: (x.date.date() <= record.x_studio_as_on_date))
+    
+    # delete record area ----------------------------------------------------------------------------------------------------------------------------------------------  
+    # delete old record
+    
+    # Sales - Production - Purchase Report     
+    temp_rec_6 = env['x_rm_sales_prod_purch'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
+    if temp_rec_6:
+      for del_temp_rec_6 in temp_rec_6:
+        del_temp_rec_6.unlink()
+    
+    # Business Logic --------------------------------------------------------------------------------------------------------------------------------------------   
+    # create new record 
+    
+    # Sales - Production - Purchase Report   
+    d = record.x_studio_as_on_date
+    #d1 = datetime.strftime(d, "%Y-%m-%d %H:%M:%S")
+    #d2 = datetime.strftime(d, "%Y-%m-%d 23:59:59")
+    d1 = datetime.strptime(d, "%Y-%m-%d %H:%M:%S")
+    d2 = datetime.strptime(d, "%Y-%m-%d 23:59:59")
+    product = env['product.product'].search([('type', '!=', 'service')])
+    if product:
+     for products in product:
+       project_qty = 0
+       so_qty = 0
+       prod_qty = 0
+       purch_qty = 0
+         
+       last_prod_purch = env['stock.valuation.layer'].search([('product_id', '=', products.id),('quantity', '>', 0),('create_date', '>=', d1),('create_date', '<=', d2)],order='create_date desc',limit=1)
+         
+       sales_qtys = env['sale.order.line'].search([('product_id', '=', products.id)])
+       sales_qtys = sales_qtys.filtered(lambda x: x.create_date.date() <= record.x_studio_as_on_date)
+       for qtys in sales_qtys:
+         so_qty += qtys.product_uom_qty 
+           
+       prod_qtys = env['mrp.production'].search([('product_id', '=', products.id)])
+       prod_qtys = prod_qtys.filtered(lambda x: x.date_planned_start.date() <= record.x_studio_as_on_date)
+       for prodqtys in prod_qtys: 
+         prod_qty += prodqtys.product_qty
+           
+       purch_qtys = env['purchase.order.line'].search([('product_id', '=', products.id)])
+       purch_qtys = purch_qtys.filtered(lambda x: x.create_date.date() <= record.x_studio_as_on_date)
+       for purchqtys in purch_qtys:
+         purch_qty += purchqtys.product_qty
+           
+       create_sub_model = env['x_rm_sales_prod_purch'].create({'x_studio_sales_report_model_id':record.id,'x_studio_description':products.id,'x_studio_base_price':products.list_price,'x_studio_product_type':products.type,'x_studio_date_1':last_prod_purch.create_date.date(),'x_studio_unit_cost':last_prod_purch.unit_cost,'x_studio_project_category':project_qty,'x_studio_sales_order':so_qty,'x_studio_production_qty':prod_qty,'x_studio_purchase_qty':purch_qty,'x_studio_header_reference': record.x_name})
+  
+  ]]></field>
+  </record>
+
+  <record id="server_action_1764_srm_rpt_production_summary_split" model="ir.actions.server">
+    <field name="name">SRM - RPT - Production Summary - Split</field>
+    <field name="model_id" search="[('model', '=', 'x_sales_report_model')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.x_studio_report_type:
+  if record.x_studio_report_code == 'Production Summary - Split':
+    report_type_lines = record.x_studio_report_type.x_studio_prod_summary_split_id
+  
+    # filter area ------------------------------------------------------------------------------------------------------------------------------------------------
+    report_type_lines = report_type_lines.filtered(lambda x: (x.date.date() <= record.x_studio_as_on_date))
+    
+    # delete record area ----------------------------------------------------------------------------------------------------------------------------------------------  
+    # delete old record
+    
+    # Production Summary - Split     
+    temp_rec_7 = env['x_rm_prod_summary_spli'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
+    if temp_rec_7:
+      for del_temp_rec_7 in temp_rec_7:
+        del_temp_rec_7.unlink()
+        
+    # Business Logic --------------------------------------------------------------------------------------------------------------------------------------------   
+    # create new record 
+    
+    # Production Summary - Split 
+    for line in report_type_lines:
+      create_sub_model = env['x_rm_prod_summary_spli'].create({'x_studio_sales_report_model_id':record.id,'x_studio_description':line.raw_material_production_id.product_id.id,'x_studio_production_id':line.raw_material_production_id.id,'x_studio_prod_qty':line.raw_material_production_id.product_qty,'x_studio_description_1':line.product_id.id,'x_studio_bom_qty':line.x_studio_original_qty,'x_studio_esti_qty':line.x_studio_original_qty,'x_studio_cons_qty':line.product_uom_qty,'x_studio_variance':line.x_studio_variance,'x_studio_avg_cost':line.price_unit,'x_studio_total_cost':(line.product_uom_qty*line.price_unit),'x_studio_header_reference': record.x_name})]]></field>
+  </record>
+
+  <record id="server_action_1765_srm_rpt_production_job_variance" model="ir.actions.server">
+    <field name="name">SRM - RPT - Production Job Variance</field>
+    <field name="model_id" search="[('model', '=', 'x_sales_report_model')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.x_studio_report_type:
+  if record.x_studio_report_code == 'Production Job Variance':
+    report_type_lines = record.x_studio_report_type.x_studio_production_variance_id
+  
+    # filter area ------------------------------------------------------------------------------------------------------------------------------------------------
+    report_type_lines = report_type_lines.filtered(lambda x: (x.date.date() >= record.x_studio_from_date and x.date.date() <= record.x_studio_as_on_date and x.x_studio_variance != 0))
+    
+    # delete record area ----------------------------------------------------------------------------------------------------------------------------------------------  
+    # delete old record
+    
+    # Production Variance     
+    temp_rec_5 = env['x_rm_production_varian'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
+    if temp_rec_5:
+      for del_temp_rec_5 in temp_rec_5:
+        del_temp_rec_5.unlink()
+        
+    # Business Logic --------------------------------------------------------------------------------------------------------------------------------------------   
+    # create new record 
+    
+    # Production Variance
+    for line in report_type_lines:
+      create_sub_model = env['x_rm_production_varian'].create({'x_studio_sales_report_model_id':record.id,'x_studio_description':line.raw_material_production_id.product_id.id,'x_studio_production_id':line.raw_material_production_id.id,'x_studio_prod_qty':line.raw_material_production_id.product_qty,'x_studio_description_1':line.product_id.id,'x_studio_bom_qty':line.x_studio_original_qty,'x_studio_esti_qty':line.x_studio_original_qty,'x_studio_cons_qty':line.product_uom_qty,'x_studio_variance':line.x_studio_variance,'x_studio_avg_cost':line.price_unit,'x_studio_total_cost':(line.product_uom_qty*line.price_unit),'x_studio_header_reference': record.x_name})
+      
+  ]]></field>
+  </record>
+
+  <record id="server_action_2102_srm_rpt_project_gross_margin" model="ir.actions.server">
+    <field name="name">SRM - RPT - Project Gross Margin</field>
+    <field name="model_id" search="[('model', '=', 'x_sales_report_model')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.x_studio_report_type:
+  if record.x_studio_report_code == 'Project Gross Margin':
+    tot_estimated_val = 0
+    tot_actual_val = 0
+    tot_balance_val = 0
+    tot_estimated_val_1 = 0
+    tot_actual_val_1 = 0
+    tot_balance_val_1 = 0
+    tot_estimated_val_2 = 0
+    tot_actual_val_2 = 0
+    tot_balance_val_2 = 0
+    tot_estimated_val_3 = 0
+    tot_actual_val_3 = 0
+    tot_balance_val_3 = 0
+    tot_estimated_val_4 = 0
+    tot_actual_val_4 = 0
+    tot_balance_val_4 = 0
+    tot_estimated_val_5 = 0
+    tot_actual_val_5 = 0
+    tot_balance_val_5 = 0
+    tot_estimated_val_6 = 0
+    tot_actual_val_6 = 0
+    tot_balance_val_6 = 0
+    tot_estimated_val_7 = 0
+    tot_actual_val_7 = 0
+    tot_balance_val_7 = 0
+    cat_count = 0
+    cat_count_2 = 0
+    cat_count_3 = 0
+    cat_count_4 = 0
+    cat_count_5 = 0
+    cat_count_6 = 0
+    cat_count_7 = 0
+    cat_grand_count = 0
+    invoice_count = 0
+    invoice_total = 0
+    on_account_val = 0
+    estimated_gp = 0
+    actual_gp = 0
+    outstanding_cash = 0
+    settlement_cash = 0
+    outstanding_cash_tot = 0
+    temp_actual_lines_2=[]
+    temp_actual_lines_3=[]
+    temp_actual_lines_4=[]
+    temp_actual_lines_5=[]
+    temp_actual_lines_6=[]
+    temp_actual_budget=[]
+    #report_type_lines = record.x_studio_report_type.x_studio_production_variance_id
+  
+    # filter area ------------------------------------------------------------------------------------------------------------------------------------------------
+    #report_type_lines = report_type_lines.filtered(lambda x: (x.date.date() >= record.x_studio_from_date and x.date.date() <= record.x_studio_as_on_date and x.x_studio_variance != 0))
+    
+    # delete record area ----------------------------------------------------------------------------------------------------------------------------------------------  
+    # delete old record
+    
+    # Project Gross Margin - Estimated    
+    temp_rec_1 = env['x_rm_gross_margin_esti'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
+    if temp_rec_1:
+      for del_temp_rec_1 in temp_rec_1:
+        del_temp_rec_1.unlink()
+        
+    # Project Gross Margin - Actuals    
+    temp_rec_2 = env['x_rm_gross_margin_actu'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
+    if temp_rec_2:
+      for del_temp_rec_2 in temp_rec_2:
+        del_temp_rec_2.unlink()
+    
+    # Project Gross Margin - Invoice Details    
+    temp_rec_3 = env['x_rm_gross_margin_invo'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
+    if temp_rec_3:
+      for del_temp_rec_3 in temp_rec_3:
+        del_temp_rec_3.unlink()
+        
+    # Project Gross Margin - Comparison Details    
+    temp_rec_3 = env['x_rm_gross_margin_comp'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
+    if temp_rec_3:
+      for del_temp_rec_3 in temp_rec_3:
+        del_temp_rec_3.unlink()
+        
+    # Business Logic --------------------------------------------------------------------------------------------------------------------------------------------   
+    cash_advance = env['account.payment'].search([('x_studio_project_no_1', '=', record.x_studio_project_no.id),('state', '=', 'posted')])
+    if cash_advance:
+      for cash_advances in cash_advance:
+        outstanding_cash += cash_advances.amount
+        
+    settlement = env['account.move.line'].search([('x_studio_project_no', '=', record.x_studio_project_no.id),('x_studio_journal_type', '=', 'Settlement'),('debit', '>', 0),('x_studio_status', '=', 'posted')])
+    if settlement:
+      for settlements in settlement:
+        settlement_cash += settlements.debit
+        
+    outstanding_cash_tot = outstanding_cash - settlement_cash
+        
+    
+    # Project Gross Margin
+    # Tab - 01 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    category_lines = env['x_project_category'].search([])
+    for cat_lines in category_lines:
+      # Find Main Sales Order Lines
+      main_estimated_lines = env['sale.order.line'].search([('order_id', '=', record.x_studio_project_no.sale_order_id.id),('x_studio_category', '=', cat_lines.id)])
+      
+      # Find Sub Sales Order Lines
+      estimated_lines = env['sale.order.line'].search([('x_studio_project_no', '=', record.x_studio_project_no.id),('x_studio_category', '=', cat_lines.id)])
+      
+      cat_count = 0
+      tot_estimated_val_1 = 0
+      tot_actual_val_1 = 0
+      tot_balance_val_1 = 0
+      temp_estimated_lines=[]
+      
+      # Loop Main Sales Order Lines - Begin
+      for main_lines in main_estimated_lines:
+        cat_count += 1
+        cat_grand_count += 1
+        tot_estimated_val += (main_lines.product_uom_qty * main_lines.price_unit)
+        tot_actual_val += (main_lines.qty_delivered * main_lines.price_unit)
+        tot_balance_val += ((main_lines.product_uom_qty * main_lines.price_unit) - (main_lines.qty_delivered * main_lines.price_unit))
+        
+        tot_estimated_val_1 += (main_lines.product_uom_qty * main_lines.price_unit)
+        tot_actual_val_1 += (main_lines.qty_delivered * main_lines.price_unit)
+        tot_balance_val_1 += ((main_lines.product_uom_qty * main_lines.price_unit) - (main_lines.qty_delivered * main_lines.price_unit))
+        
+        create_comparison_sub_model = env['x_rm_gross_margin_comp'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference':record.x_name,'x_studio_sales_order':main_lines.order_id.id,'x_studio_many2one_field_7fcuw':main_lines.product_id.id,'x_studio_estimated_amount':(main_lines.product_uom_qty * main_lines.price_unit),'x_studio_delivered_amount':(main_lines.qty_delivered * main_lines.price_unit),'x_studio_invoiced_amount':(main_lines.qty_invoiced * main_lines.price_unit),'x_studio_delivered_not_invoiced':(main_lines.qty_delivered * main_lines.price_unit)-(main_lines.qty_invoiced * main_lines.price_unit)})
+        
+        temp_estimated_lines.append([0,0,{
+          'x_studio_sales_order':main_lines.order_id.id,
+          'x_studio_customer':main_lines.order_partner_id.id,
+          'x_studio_sales_order_line_id':main_lines.id,
+          'x_studio_product_id':main_lines.product_id.id,
+          'x_studio_description':main_lines.name,
+          'x_studio_trans_type':main_lines.x_studio_trans_type,
+          'x_studio_category':main_lines.x_studio_category.id,
+          'x_studio_quantity':main_lines.product_uom_qty,
+          'x_studio_delivered_qty':main_lines.qty_delivered,
+          'x_studio_uom':main_lines.product_uom.id,
+          'x_studio_unit_price':main_lines.price_unit,
+          'x_studio_sub_total':main_lines.price_subtotal,
+          'x_studio_project_no':main_lines.x_studio_project_no.id,
+          'x_currency_id':main_lines.currency_id.id}])
+        
+        if cat_lines.x_studio_transaction_type == 'Fee':
+          cat_count_2 += 1
+          tot_estimated_val_2 += (main_lines.product_uom_qty * main_lines.price_unit)
+          tot_actual_val_2 += (main_lines.qty_delivered * main_lines.price_unit)
+          tot_balance_val_2 += ((main_lines.product_uom_qty * main_lines.price_unit) - (main_lines.qty_delivered * main_lines.price_unit))
+          
+          temp_actual_lines_2.append([0,0,{
+            'x_studio_sales_order':main_lines.order_id.id,
+            'x_studio_customer':main_lines.order_partner_id.id,
+            'x_studio_sales_order_line_id':main_lines.id,
+            'x_studio_product_id':main_lines.product_id.id,
+            'x_studio_description':main_lines.name,
+            'x_studio_trans_type':main_lines.x_studio_trans_type,
+            'x_studio_category':main_lines.x_studio_category.id,
+            'x_studio_quantity':main_lines.product_uom_qty,
+            'x_studio_delivered_qty':main_lines.qty_delivered,
+            'x_studio_uom':main_lines.product_uom.id,
+            'x_studio_unit_price':main_lines.price_unit,
+            'x_studio_sub_total':main_lines.price_subtotal,
+            'x_studio_project_no':main_lines.x_studio_project_no.id,
+            'x_currency_id':main_lines.currency_id.id}])
+          
+        if cat_lines.x_studio_transaction_type == 'Hour':
+          cat_count_3 += 1
+          tot_estimated_val_3 += (main_lines.product_uom_qty * main_lines.price_unit)
+          tot_actual_val_3 += (main_lines.qty_delivered * main_lines.price_unit)
+          tot_balance_val_3 += ((main_lines.product_uom_qty * main_lines.price_unit) - (main_lines.qty_delivered * main_lines.price_unit))
+          
+          temp_actual_lines_3.append([0,0,{
+            'x_studio_sales_order':main_lines.order_id.id,
+            'x_studio_customer':main_lines.order_partner_id.id,
+            'x_studio_sales_order_line_id':main_lines.id,
+            'x_studio_product_id':main_lines.product_id.id,
+            'x_studio_description':main_lines.name,
+            'x_studio_trans_type':main_lines.x_studio_trans_type,
+            'x_studio_category':main_lines.x_studio_category.id,
+            'x_studio_quantity':main_lines.product_uom_qty,
+            'x_studio_delivered_qty':main_lines.qty_delivered,
+            'x_studio_uom':main_lines.product_uom.id,
+            'x_studio_unit_price':main_lines.price_unit,
+            'x_studio_sub_total':main_lines.price_subtotal,
+            'x_studio_project_no':main_lines.x_studio_project_no.id,
+            'x_currency_id':main_lines.currency_id.id}])
+          
+        if cat_lines.x_studio_transaction_type == 'Item':
+          cat_count_4 += 1
+          tot_estimated_val_4 += (main_lines.product_uom_qty * main_lines.price_unit)
+          tot_actual_val_4 += (main_lines.qty_delivered * main_lines.price_unit)
+          tot_balance_val_4 += ((main_lines.product_uom_qty * main_lines.price_unit) - (main_lines.qty_delivered * main_lines.price_unit))
+          
+          temp_actual_lines_4.append([0,0,{
+            'x_studio_sales_order':main_lines.order_id.id,
+            'x_studio_customer':main_lines.order_partner_id.id,
+            'x_studio_sales_order_line_id':main_lines.id,
+            'x_studio_product_id':main_lines.product_id.id,
+            'x_studio_description':main_lines.name,
+            'x_studio_trans_type':main_lines.x_studio_trans_type,
+            'x_studio_category':main_lines.x_studio_category.id,
+            'x_studio_quantity':main_lines.product_uom_qty,
+            'x_studio_delivered_qty':main_lines.qty_delivered,
+            'x_studio_uom':main_lines.product_uom.id,
+            'x_studio_unit_price':main_lines.price_unit,
+            'x_studio_sub_total':main_lines.price_subtotal,
+            'x_studio_project_no':main_lines.x_studio_project_no.id,
+            'x_currency_id':main_lines.currency_id.id}])
+          
+        if cat_lines.x_studio_transaction_type == 'Expense':
+          cat_count_7 += 1
+          tot_estimated_val_7 += (main_lines.product_uom_qty * main_lines.price_unit)
+          tot_actual_val_7 += (main_lines.qty_delivered * main_lines.price_unit)
+          tot_balance_val_7 += ((main_lines.product_uom_qty * main_lines.price_unit) - (main_lines.qty_delivered * main_lines.price_unit))
+          
+          if cat_lines.x_studio_claimability == 'Claimable':
+            cat_count_5 += 1
+            tot_estimated_val_5 += (main_lines.product_uom_qty * main_lines.price_unit)
+            tot_actual_val_5 += (main_lines.qty_delivered * main_lines.price_unit)
+            tot_balance_val_5 += ((main_lines.product_uom_qty * main_lines.price_unit) - (main_lines.qty_delivered * main_lines.price_unit))
+            
+            temp_actual_lines_5.append([0,0,{
+              'x_studio_sales_order':main_lines.order_id.id,
+              'x_studio_customer':main_lines.order_partner_id.id,
+              'x_studio_sales_order_line_id':main_lines.id,
+              'x_studio_product_id':main_lines.product_id.id,
+              'x_studio_description':main_lines.name,
+              'x_studio_trans_type':main_lines.x_studio_trans_type,
+              'x_studio_category':main_lines.x_studio_category.id,
+              'x_studio_quantity':main_lines.product_uom_qty,
+              'x_studio_delivered_qty':main_lines.qty_delivered,
+              'x_studio_uom':main_lines.product_uom.id,
+              'x_studio_unit_price':main_lines.price_unit,
+              'x_studio_sub_total':main_lines.price_subtotal,
+              'x_studio_project_no':main_lines.x_studio_project_no.id,
+              'x_currency_id':main_lines.currency_id.id}])
+          
+          if cat_lines.x_studio_claimability == 'Non-Claimable':
+            cat_count_6 += 1
+            tot_estimated_val_6 += (main_lines.product_uom_qty * main_lines.price_unit)
+            tot_actual_val_6 += (main_lines.qty_delivered * main_lines.price_unit)
+            tot_balance_val_6 += ((main_lines.product_uom_qty * main_lines.price_unit) - (main_lines.qty_delivered * main_lines.price_unit))
+            
+            temp_actual_lines_6.append([0,0,{
+              'x_studio_sales_order':main_lines.order_id.id,
+              'x_studio_customer':main_lines.order_partner_id.id,
+              'x_studio_sales_order_line_id':main_lines.id,
+              'x_studio_product_id':main_lines.product_id.id,
+              'x_studio_description':main_lines.name,
+              'x_studio_trans_type':main_lines.x_studio_trans_type,
+              'x_studio_category':main_lines.x_studio_category.id,
+              'x_studio_quantity':main_lines.product_uom_qty,
+              'x_studio_delivered_qty':main_lines.qty_delivered,
+              'x_studio_uom':main_lines.product_uom.id,
+              'x_studio_unit_price':main_lines.price_unit,
+              'x_studio_sub_total':main_lines.price_subtotal,
+              'x_studio_project_no':main_lines.x_studio_project_no.id,
+              'x_currency_id':main_lines.currency_id.id}])
+      # Loop Main Sales Order Lines - End
+      
+      # Loop Sub Sales Order Lines - Begin
+      for lines in estimated_lines:
+        cat_count += 1
+        cat_grand_count += 1
+        tot_estimated_val += (lines.product_uom_qty * lines.price_unit)
+        tot_actual_val += (lines.qty_delivered * lines.price_unit)
+        tot_balance_val += ((lines.product_uom_qty * lines.price_unit) - (lines.qty_delivered * lines.price_unit))
+        
+        tot_estimated_val_1 += (lines.product_uom_qty * lines.price_unit)
+        tot_actual_val_1 += (lines.qty_delivered * lines.price_unit)
+        tot_balance_val_1 += ((lines.product_uom_qty * lines.price_unit) - (lines.qty_delivered * lines.price_unit))
+        
+        create_comparison_sub_model = env['x_rm_gross_margin_comp'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference':record.x_name,'x_studio_sales_order':lines.order_id.id,'x_studio_many2one_field_7fcuw':lines.product_id.id,'x_studio_estimated_amount':(lines.product_uom_qty * lines.price_unit),'x_studio_delivered_amount':(lines.qty_delivered * lines.price_unit),'x_studio_invoiced_amount':(lines.qty_invoiced * lines.price_unit),'x_studio_delivered_not_invoiced':(lines.qty_delivered * lines.price_unit)-(lines.qty_invoiced * lines.price_unit)})
+        
+        temp_estimated_lines.append([0,0,{
+          'x_studio_sales_order':lines.order_id.id,
+          'x_studio_customer':lines.order_partner_id.id,
+          'x_studio_sales_order_line_id':lines.id,
+          'x_studio_product_id':lines.product_id.id,
+          'x_studio_description':lines.name,
+          'x_studio_trans_type':lines.x_studio_trans_type,
+          'x_studio_category':lines.x_studio_category.id,
+          'x_studio_quantity':lines.product_uom_qty,
+          'x_studio_delivered_qty':lines.qty_delivered,
+          'x_studio_uom':lines.product_uom.id,
+          'x_studio_unit_price':lines.price_unit,
+          'x_studio_sub_total':lines.price_subtotal,
+          'x_studio_project_no':lines.x_studio_project_no.id,
+          'x_currency_id':lines.currency_id.id}])
+        
+        if cat_lines.x_studio_transaction_type == 'Fee':
+          cat_count_2 += 1
+          tot_estimated_val_2 += (lines.product_uom_qty * lines.price_unit)
+          tot_actual_val_2 += (lines.qty_delivered * lines.price_unit)
+          tot_balance_val_2 += ((lines.product_uom_qty * lines.price_unit) - (lines.qty_delivered * lines.price_unit))
+          
+          temp_actual_lines_2.append([0,0,{
+            'x_studio_sales_order':lines.order_id.id,
+            'x_studio_customer':lines.order_partner_id.id,
+            'x_studio_sales_order_line_id':lines.id,
+            'x_studio_product_id':lines.product_id.id,
+            'x_studio_description':lines.name,
+            'x_studio_trans_type':lines.x_studio_trans_type,
+            'x_studio_category':lines.x_studio_category.id,
+            'x_studio_quantity':lines.product_uom_qty,
+            'x_studio_delivered_qty':lines.qty_delivered,
+            'x_studio_uom':lines.product_uom.id,
+            'x_studio_unit_price':lines.price_unit,
+            'x_studio_sub_total':lines.price_subtotal,
+            'x_studio_project_no':lines.x_studio_project_no.id,
+            'x_currency_id':lines.currency_id.id}])
+          
+        if cat_lines.x_studio_transaction_type == 'Hour':
+          cat_count_3 += 1
+          tot_estimated_val_3 += (lines.product_uom_qty * lines.price_unit)
+          tot_actual_val_3 += (lines.qty_delivered * lines.price_unit)
+          tot_balance_val_3 += ((lines.product_uom_qty * lines.price_unit) - (lines.qty_delivered * lines.price_unit))
+          
+          temp_actual_lines_3.append([0,0,{
+            'x_studio_sales_order':lines.order_id.id,
+            'x_studio_customer':lines.order_partner_id.id,
+            'x_studio_sales_order_line_id':lines.id,
+            'x_studio_product_id':lines.product_id.id,
+            'x_studio_description':lines.name,
+            'x_studio_trans_type':lines.x_studio_trans_type,
+            'x_studio_category':lines.x_studio_category.id,
+            'x_studio_quantity':lines.product_uom_qty,
+            'x_studio_delivered_qty':lines.qty_delivered,
+            'x_studio_uom':lines.product_uom.id,
+            'x_studio_unit_price':lines.price_unit,
+            'x_studio_sub_total':lines.price_subtotal,
+            'x_studio_project_no':lines.x_studio_project_no.id,
+            'x_currency_id':lines.currency_id.id}])
+          
+        if cat_lines.x_studio_transaction_type == 'Item':
+          cat_count_4 += 1
+          tot_estimated_val_4 += (lines.product_uom_qty * lines.price_unit)
+          tot_actual_val_4 += (lines.qty_delivered * lines.price_unit)
+          tot_balance_val_4 += ((lines.product_uom_qty * lines.price_unit) - (lines.qty_delivered * lines.price_unit))
+          
+          temp_actual_lines_4.append([0,0,{
+            'x_studio_sales_order':lines.order_id.id,
+            'x_studio_customer':lines.order_partner_id.id,
+            'x_studio_sales_order_line_id':lines.id,
+            'x_studio_product_id':lines.product_id.id,
+            'x_studio_description':lines.name,
+            'x_studio_trans_type':lines.x_studio_trans_type,
+            'x_studio_category':lines.x_studio_category.id,
+            'x_studio_quantity':lines.product_uom_qty,
+            'x_studio_delivered_qty':lines.qty_delivered,
+            'x_studio_uom':lines.product_uom.id,
+            'x_studio_unit_price':lines.price_unit,
+            'x_studio_sub_total':lines.price_subtotal,
+            'x_studio_project_no':lines.x_studio_project_no.id,
+            'x_currency_id':lines.currency_id.id}])
+          
+        if cat_lines.x_studio_transaction_type == 'Expense':
+          cat_count_7 += 1
+          tot_estimated_val_7 += (lines.product_uom_qty * lines.price_unit)
+          tot_actual_val_7 += (lines.qty_delivered * lines.price_unit)
+          tot_balance_val_7 += ((lines.product_uom_qty * lines.price_unit) - (lines.qty_delivered * lines.price_unit))
+          
+          if cat_lines.x_studio_claimability == 'Claimable':
+            cat_count_5 += 1
+            tot_estimated_val_5 += (lines.product_uom_qty * lines.price_unit)
+            tot_actual_val_5 += (lines.qty_delivered * lines.price_unit)
+            tot_balance_val_5 += ((lines.product_uom_qty * lines.price_unit) - (lines.qty_delivered * lines.price_unit))
+            
+            temp_actual_lines_5.append([0,0,{
+              'x_studio_sales_order':lines.order_id.id,
+              'x_studio_customer':lines.order_partner_id.id,
+              'x_studio_sales_order_line_id':lines.id,
+              'x_studio_product_id':lines.product_id.id,
+              'x_studio_description':lines.name,
+              'x_studio_trans_type':lines.x_studio_trans_type,
+              'x_studio_category':lines.x_studio_category.id,
+              'x_studio_quantity':lines.product_uom_qty,
+              'x_studio_delivered_qty':lines.qty_delivered,
+              'x_studio_uom':lines.product_uom.id,
+              'x_studio_unit_price':lines.price_unit,
+              'x_studio_sub_total':lines.price_subtotal,
+              'x_studio_project_no':lines.x_studio_project_no.id,
+              'x_currency_id':lines.currency_id.id}])
+          
+          if cat_lines.x_studio_claimability == 'Non-Claimable':
+            cat_count_6 += 1
+            tot_estimated_val_6 += (lines.product_uom_qty * lines.price_unit)
+            tot_actual_val_6 += (lines.qty_delivered * lines.price_unit)
+            tot_balance_val_6 += ((lines.product_uom_qty * lines.price_unit) - (lines.qty_delivered * lines.price_unit)) 
+            
+            temp_actual_lines_6.append([0,0,{
+            'x_studio_sales_order':lines.order_id.id,
+            'x_studio_customer':lines.order_partner_id.id,
+            'x_studio_sales_order_line_id':lines.id,
+            'x_studio_product_id':lines.product_id.id,
+            'x_studio_description':lines.name,
+            'x_studio_trans_type':lines.x_studio_trans_type,
+            'x_studio_category':lines.x_studio_category.id,
+            'x_studio_quantity':lines.product_uom_qty,
+            'x_studio_delivered_qty':lines.qty_delivered,
+            'x_studio_uom':lines.product_uom.id,
+            'x_studio_unit_price':lines.price_unit,
+            'x_studio_sub_total':lines.price_subtotal,
+            'x_studio_project_no':lines.x_studio_project_no.id,
+            'x_currency_id':lines.currency_id.id}])
+      # Loop Sub Sales Order Lines - End
+        
+      if cat_count > 0:  
+        create_estimated_sub_model = env['x_rm_gross_margin_esti'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_transaction_type': cat_lines.x_studio_transaction_type,'x_studio_category': cat_lines.x_name,'x_studio_estimated_amt': tot_estimated_val_1,'x_studio_actual_cost': tot_actual_val_1,'x_studio_balance_cost': tot_balance_val_1,'x_studio_sales_order_line_ids':temp_estimated_lines})
+    
+    if cat_grand_count > 0:
+      create_estimated_sub_model = env['x_rm_gross_margin_esti'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_group_title': 'Total Estimated Value','x_studio_estimated_amt': tot_estimated_val,'x_studio_actual_cost': tot_actual_val,'x_studio_balance_cost': tot_balance_val,'x_studio_total': True})  
+    
+    # Tab - 02 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    main_so = env['sale.order'].search([('id', '=', record.x_studio_project_no.sale_order_id.id)])
+    if main_so:
+      on_account = env['crossovered.budget.lines'].search([('analytic_account_id', '=', main_so.analytic_account_id.id)])
+      for on_account_value in on_account:
+        on_account_val += on_account_value.planned_amount
+        
+        temp_actual_budget.append([0,0,{
+          'x_studio_crossovered_budget_id':on_account_value.crossovered_budget_id.id,
+          'x_studio_budget_line_ids':on_account_value.id,
+          'x_studio_analytic_account_id':on_account_value.analytic_account_id.id,
+          'x_studio_date_from':on_account_value.date_from,
+          'x_studio_date_to':on_account_value.date_to,
+          'x_studio_planned_amount':on_account_value.planned_amount,
+          'x_currency_id':on_account_value.currency_id.id}])
+    
+    if cat_count_2 > 0:  
+      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_transaction_type_1': 'Fee','x_studio_estimated_total': tot_estimated_val_2,'x_studio_cost_price': tot_actual_val_2,'x_studio_variance_est_act': tot_balance_val_2,'x_studio_normal_line':True,'x_studio_sales_order_line_ids':temp_actual_lines_2})
+    
+    if cat_count_3 > 0:  
+      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_transaction_type_1': 'Hour','x_studio_estimated_total': tot_estimated_val_3,'x_studio_cost_price': tot_actual_val_3,'x_studio_variance_est_act': tot_balance_val_3,'x_studio_normal_line':True,'x_studio_sales_order_line_ids':temp_actual_lines_3})
+    
+    if cat_count_4 > 0:  
+      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_transaction_type_1': 'Item','x_studio_estimated_total': tot_estimated_val_4,'x_studio_cost_price': tot_actual_val_4,'x_studio_variance_est_act': tot_balance_val_4,'x_studio_normal_line':True,'x_studio_sales_order_line_ids':temp_actual_lines_4})
+      
+    #if cat_count_7 > 0:  
+    #  create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_transaction_type_1': 'Expense'})
+    
+    if cat_count_5 > 0:  
+      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_transaction_type_1': 'Expense','x_studio_other_expenses': 'Claimable Expenses','x_studio_estimated_total': tot_estimated_val_5,'x_studio_cost_price': tot_actual_val_5,'x_studio_variance_est_act': tot_balance_val_5,'x_studio_normal_line':True,'x_studio_sales_order_line_ids':temp_actual_lines_5})
+    
+    if cat_count_6 > 0:  
+      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_transaction_type_1': 'Expense','x_studio_other_expenses': 'Non-Claimable Expenses','x_studio_estimated_total': tot_estimated_val_6,'x_studio_cost_price': tot_actual_val_6,'x_studio_variance_est_act': tot_balance_val_6,'x_studio_normal_line':True,'x_studio_sales_order_line_ids':temp_actual_lines_6})
+    
+    if cat_grand_count > 0:
+      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_other_expenses': 'Total Actual Cost','x_studio_estimated_total': tot_estimated_val,'x_studio_cost_price': tot_actual_val,'x_studio_variance_est_act': tot_balance_val})   
+      
+    create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_other_expenses': 'Outstanding Cash Advances','x_studio_estimated_total': outstanding_cash_tot})     
+    create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_other_expenses': 'Total planned amount of the budget','x_studio_estimated_total': on_account_val,'x_studio_budget_line':True,'x_studio_budget_line_ids':temp_actual_budget}) 
+    
+    # Tab - 03 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    # Find Main Sales Invoice Lines
+    main_invoices = env['sale.order'].search([('id', '=', record.x_studio_project_no.sale_order_id.id)])
+    
+    # Find Sub Sales Invoice Lines
+    invoices = env['sale.order'].search([('x_studio_project_no', '=', record.x_studio_project_no.id)])
+    
+    # Loop Main Sales Order Invoice Lines - Begin
+    for main_invoice_lines in main_invoices.invoice_ids:
+      invoice_count += 1
+      invoice_total += main_invoice_lines.amount_total_signed
+      create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_invoice_no':main_invoice_lines.id,'x_studio_invoice_date':main_invoice_lines.invoice_date,'x_studio_status':main_invoice_lines.state,'x_studio_payment_status':main_invoice_lines.payment_state,'x_studio_amount':main_invoice_lines.amount_total_signed}) 
+    # Loop Main Sales Order Invoice Lines - End
+    
+    # Loop Sub Sales Order Invoice Lines - Begin
+    for invoice_lines in invoices.invoice_ids:
+      invoice_count += 1
+      invoice_total += invoice_lines.amount_total_signed
+      create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_invoice_no':invoice_lines.id,'x_studio_invoice_date':invoice_lines.invoice_date,'x_studio_status':invoice_lines.state,'x_studio_payment_status':invoice_lines.payment_state,'x_studio_amount':invoice_lines.amount_total_signed}) 
+    # Loop Sub Sales Order Invoice Lines - End
+    
+    if invoice_count > 0:
+      create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_group_title':'Total Invoice Amount','x_studio_amount':invoice_total}) 
+    
+    if on_account_val > 0:
+      estimated_gp = ((tot_estimated_val_2/on_account_val)*100)
+    if invoice_total > 0:
+      actual_gp = (((invoice_total - tot_actual_val)/invoice_total)*100)
+    
+    create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_group_title':'Actual Gross Margin','x_studio_amount':(invoice_total - tot_actual_val)})
+    create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_group_title':'Estimated Gross Margin','x_studio_amount':tot_estimated_val_2}) 
+    create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_group_title':'Estimated GP%','x_studio_amount':estimated_gp})
+    create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_group_title':'Actual GP%','x_studio_amount':actual_gp}) ]]></field>
+  </record>
+
+  <record id="server_action_2112_tp_invoice_currency_update" model="ir.actions.server">
+    <field name="name">TP Invoice Currency Update</field>
+    <field name="model_id" search="[('model', '=', 'x_tp_invoice_header')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[record['x_studio_currency_id'] = record.x_studio_vendor.property_purchase_currency_id.id]]></field>
+  </record>
+
+  <record id="server_action_2126_report_model_created_date" model="ir.actions.server">
+    <field name="name">Report Model Created Date</field>
+    <field name="model_id" search="[('model', '=', 'x_sales_report_model')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[record['x_studio_created_date'] = datetime.datetime.today()
+
+
+]]></field>
+  </record>
+
+  <record id="server_action_2183_proj_validate_delete" model="ir.actions.server">
+    <field name="name">PROJ - Validate Delete</field>
+    <field name="model_id" search="[('model', '=', 'crossovered.budget')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.x_studio_created_from_sales_order_1.id != False:
+  raise UserError('Budgets created from SOs can not be deleted.')
+
+
+]]></field>
+  </record>
+
+  <record id="server_action_2344_update_analytic_tag_parameters_sales_invoice_line_product" model="ir.actions.server">
+    <field name="name">Update Analytic Tag Parameters - Sales Invoice Line - Product</field>
+    <field name="model_id" search="[('model', '=', 'account.move.line')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.product_id:
+  #record['x_studio_account_mandatory'] = True
+  tag_rule= env['account.analytic.distribution.model'].search([('product_id', '=', record.product_id.id)],limit=1)
+  if tag_rule:
+    record['x_studio_account_mandatory'] = tag_rule.x_studio_product_mandatory
+  else:
+    tag_rule2= env['account.analytic.distribution.model'].search([('partner_id.user_id', '=', uid)],limit=1)
+    if tag_rule2:
+      record['x_studio_account_mandatory'] = tag_rule2.x_studio_user_mandatory
+    else:
+      record['x_studio_account_mandatory'] = False]]></field>
+  </record>
+
+  <record id="server_action_2432_tp_invoice_linetax_update" model="ir.actions.server">
+    <field name="name">TP Invoice LineTAX Update</field>
+    <field name="model_id" search="[('model', '=', 'x_tp_invoice_line')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[#if record.x_studio_taxes.id:
+taxes = 0
+if record.x_studio_taxes != []:
+  for ids in record.x_studio_taxes:
+    tax= env['account.tax'].search([('id', '=', ids._origin.id)], limit=1)
+    if tax:
+      taxes += record.x_studio_invoice_amount * (tax.amount / 100)
+ 
+record.write({'x_studio_tax_amount':taxes})
+   
+
+
+
+
+]]></field>
+  </record>
+
+  <record id="server_action_2490_srm_rpt_costing_work_sheet" model="ir.actions.server">
+    <field name="name">SRM - RPT - Costing Work Sheet</field>
+    <field name="model_id" search="[('model', '=', 'x_sales_report_model')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.x_studio_report_type:
+  if record.x_studio_report_code == 'Costing Work Sheet':
+    
+    company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
+    company = env['res.company'].browse(company_id)
+    
+    # Project Gross Margin - Estimated    
+    temp_rec_1 = env['x_pump_price_costing'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
+    if temp_rec_1:
+      for del_temp_rec_1 in temp_rec_1:
+        del_temp_rec_1.unlink()
+    
+    # Business Logic --------------------------------------------------------------------------------------------------------------------------------------------   
+    # create new record 
+    
+    # Pump Price Costing
+    # Tab - 01 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    pump = env['product.template'].search([('x_studio_product_type', '=', 'Pump'),('company_id', '=', company.id)])
+    for pumps in pump:
+      standard_count = 0
+      standard_final = 0
+      standard_count2 = 0
+      standard_final2 = 0
+      current_base_price = 0
+      current_base_price_date = False
+      discount = 0
+      sscl = 0
+      cost_import = 0
+      cost_other = 0
+      contingency_rs = 0
+      total_cost = 0
+      labour = 0
+      factory_oh = 0
+      total_factory_cost = 0
+      total_factory_cost_a = 0
+      net_selling_price = 0
+      actual = 0
+      actual_1 = 0
+      #######
+      contribution_rs = 0
+      contribution_2 = 0
+      sales_oh = 0
+      sales_oh_rs = 0
+      other_oh = 0
+      other_oh_rs = 0
+      profitloss_as_of_net_sale = 0
+      current_retail_price_vat_18 = 0
+      total_material_cost = 0
+      oh_absorbed_factory = 0
+      oh_absorbed_sales = 0
+      oh_absorbed_other = 0
+      profit_mark_up_ = 0
+      profit_mark_up_rs = 0
+      net_selling_price_1 = 0
+      sscl_1 = 0
+      max_discount_1 = 0
+      proposed_base_price = 0
+      current_base_price = 0
+      difference = 0
+      total_material_cost_1 = 0
+      oh_absorbed_factory_1 = 0
+      oh_absorbed_sales_1 = 0
+      oh_absorbed_other_1 = 0
+      profit_mark_up_3 = 0
+      profit_mark_up_rs_1 = 0
+      net_selling_price_2 = 0
+      sscl_2 = 0
+      max_discount_2 = 0
+      proposed_base_price_1 = 0
+      markup = 0
+      sscl_temp = 0
+      labour = 0
+      labour_ot = 0
+      labour_without_ot = 0
+      avg_actual = 0
+      factory_cost = 0
+      prod_totals = 0
+      route_time = 0
+      material_cost = 0
+      bom = env['mrp.bom'].search([('product_tmpl_id', '=', pumps.id)])
+      if bom:
+        price_list = env['product.pricelist'].search([],limit=1)
+        price_list_item = env['product.pricelist.item'].search([('pricelist_id', '=', price_list.id),('product_tmpl_id', '=', pumps.id),('min_quantity', '>=', 1),('date_start', '<=', datetime.datetime.now().date()),('date_end', '>=', datetime.datetime.now().date())],order='date_start desc',limit=1)
+        if price_list_item:
+          current_base_price = price_list_item.fixed_price
+          current_base_price_date = price_list_item.date_start.date()
+        else:
+          price_list_item_2 = env['product.pricelist.item'].search([('pricelist_id', '=', price_list.id),('product_tmpl_id', '=', pumps.id),('min_quantity', '>=', 1),('date_start', '<=', datetime.datetime.now().date()),('date_end', '=', False)],order='date_start desc',limit=1)
+          if price_list_item_2:
+            current_base_price = price_list_item_2.fixed_price
+            current_base_price_date = price_list_item_2.date_start.date()
+            
+        discount = (current_base_price * (pumps.x_studio_maximum_discount + record.x_studio_distributor_addition)/100) 
+        sscl = ((record.x_studio_sscl/100) * (current_base_price - discount))
+        
+        
+        bom = env['mrp.bom'].search([('product_tmpl_id', '=', pumps.id),('active', '=', True)])
+        if bom:
+          for bom_lines in bom.bom_line_ids:
+            component_pump = env['product.template'].search([('product_variant_id', '=', bom_lines.product_id.id)],limit=1)
+            if component_pump:
+              component_bom = env['mrp.bom'].search([('product_tmpl_id', '=', component_pump.id),('active', '=', True)])
+              if component_bom:
+                for component_operation in component_bom.operation_ids:
+                  if bom_lines.product_id.categ_id.name != 'RM-GE-26':
+                    standard_count += component_operation.time_cycle
+                  else:
+                    standard_count2 += component_operation.time_cycle
+            
+        standard_final = standard_count/60
+        standard_final2 = (standard_count + standard_count2)/60 
+        
+        ####### Actuals - Begin
+        total_factory_cost_actual = env['mrp.production'].search([('product_id', '=', pumps.product_variant_id.id),('state', '=', 'done'),('date_finished', '>=', record.x_studio_as_on_date_1),('date_finished', '<=', record.x_studio_as_on_date_2)],order='date_finished desc')
+        avg_actual = 0
+        factory_cost = 0
+        prod_totals = 0
+        route_time = 0
+        material_cost = 0
+        if total_factory_cost_actual:
+          for actuals in total_factory_cost_actual:
+            if actuals.product_qty != 0:
+              factory_cost += actuals.x_studio_grand_total_actual_cost_1
+              route_time += actuals.production_real_duration
+              material_cost += actuals.x_studio_prod_bom_total_material_cost
+              prod_totals += actuals.product_qty
+            
+            labour += actuals.x_studio_prod_bom_total_actual_labour_cost
+            labour_ot += actuals.x_studio_prod_bom_total_actual_labour_cost_ot
+            labour_without_ot += actuals.x_studio_prod_bom_total_actual_labour_cost_without_ot
+        ####### Actuals - End
+        if prod_totals != 0:
+          total_factory_cost_a = factory_cost/prod_totals
+        #####
+        """bom_main = env['mrp.bom'].search([('product_tmpl_id', '=', pumps.id),('active', '=', True)])
+        if bom_main:
+          for bom_main_lines in bom_main.bom_line_ids:
+            component_pump_1 = env['product.template'].search([('product_variant_id', '=', bom_main_lines.product_id.id)],limit=1)
+            if component_pump_1:
+              component_bom_1 = env['mrp.bom'].search([('product_tmpl_id', '=', component_pump_1.id),('active', '=', True)])
+              if component_bom_1:
+                for component_bom_1_lines in component_bom_1.bom_line_ids:
+                  component_pump_2 = env['product.template'].search([('product_variant_id', '=', component_bom_1_lines.product_id.id)],limit=1)  
+                  if component_pump_2:
+                    component_bom_2 = env['mrp.bom'].search([('product_tmpl_id', '=', component_pump_2.id),('active', '=', True)])
+                    if component_bom_2:
+                      for component_bom_2_lines in component_bom_2.bom_line_ids:
+                        component_pump_3 = env['product.template'].search([('product_variant_id', '=', component_bom_2_lines.product_id.id)],limit=1)  
+                        if component_pump_3:
+                          component_bom_3 = env['mrp.bom'].search([('product_tmpl_id', '=', component_pump_3.id),('active', '=', True)])
+                          if component_bom_3:
+                            for component_bom_3_lines in component_bom_3.bom_line_ids: 
+                              component_pump_4 = env['product.template'].search([('product_variant_id', '=', component_bom_3_lines.product_id.id)],limit=1)
+                              if component_pump_4:
+                                component_bom_4 = env['mrp.bom'].search([('product_tmpl_id', '=', component_pump_4.id),('active', '=', True)])
+                                if component_bom_4:
+                                  for component_bom_4_lines in component_bom_4.bom_line_ids:
+                                    cost_4 = env['account.move.line'].search([('product_id', '=', component_bom_4_lines.product_id.id)])
+                                    for cost_4_lines in cost_4:
+                                      if cost_4_lines.x_studio_pr_type == 'Import':
+                                        cost_import += cost_4_lines.debit
+                                      else:
+                                        cost_other += cost_4_lines.debit
+                                else:
+                                  cost_3 = env['account.move.line'].search([('product_id', '=', component_bom_3_lines.product_id.id)])
+                                  for cost_3_lines in cost_3:
+                                    if cost_3_lines.x_studio_pr_type == 'Import':
+                                      cost_import += cost_3_lines.debit
+                                    else:
+                                      cost_other += cost_3_lines.debit
+                          else:
+                            cost_2 = env['account.move.line'].search([('product_id', '=', component_bom_2_lines.product_id.id)])
+                            for cost_2_lines in cost_2:
+                              if cost_2_lines.x_studio_pr_type == 'Import':
+                                cost_import += cost_2_lines.debit
+                              else:
+                                cost_other += cost_2_lines.debit
+                    else:
+                      cost_1 = env['account.move.line'].search([('product_id', '=', component_bom_1_lines.product_id.id)])
+                      for cost_1_lines in cost_1:
+                        if cost_1_lines.x_studio_pr_type == 'Import':
+                          cost_import += cost_1_lines.debit
+                        else:
+                          cost_other += cost_1_lines.debit
+              else:
+                cost_main = env['account.move.line'].search([('product_id', '=', bom_main_lines.product_id.id)])
+                for cost_main_lines in cost_main:
+                  if cost_main_lines.x_studio_pr_type == 'Import':
+                    cost_import += cost_main_lines.debit
+                  else:
+                    cost_other += cost_main_lines.debit"""
+        #####
+        cost_import = 6279.03
+        cost_other = 17243.55
+        
+        contingency_rs = (cost_other * record.x_studio_contingency_/100)
+        total_cost = cost_import + cost_other + contingency_rs
+        labour = (standard_final + (standard_final * (record.x_studio_idling_rate/100))) * record.x_studio_factory_oh_labour
+        factory_oh = (standard_final + (standard_final * (record.x_studio_idling_rate/100))) * record.x_studio_factory_oh
+        total_factory_cost = total_cost + factory_oh + labour
+        net_selling_price = round((current_base_price - sscl - discount),2)
+        actual = (standard_final + (standard_final * (record.x_studio_idling_rate/100)))
+        actual_1 = (standard_final2 + (standard_final2 * (record.x_studio_idling_rate/100)))
+        #####
+        contribution_rs = (net_selling_price - total_factory_cost)
+        if net_selling_price != 0:
+          contribution_2 = (contribution_rs/net_selling_price)*100
+        sales_oh = record.x_studio_sales_oh * actual_1
+        sales_oh_rs = contribution_rs - sales_oh
+        other_oh = record.x_studio_other_oh * actual_1
+        other_oh_rs = sales_oh_rs - other_oh
+        if net_selling_price != 0:
+          profitloss_as_of_net_sale = (other_oh_rs/net_selling_price)*100
+        current_retail_price_vat_18 = current_base_price * 1.18
+        total_material_cost = total_cost
+        oh_absorbed_factory = record.x_studio_oh_absorbed_factory * actual
+        oh_absorbed_sales = record.x_studio_oh_absorbed_sales * actual_1
+        oh_absorbed_other = record.x_studio_oh_absorbed_other * actual_1
+        profit_mark_up_ = record.x_studio_profit_mark_up_
+        
+        markup = profit_mark_up_/100
+        
+        profit_mark_up_rs = ((total_material_cost + oh_absorbed_other + oh_absorbed_factory + oh_absorbed_sales)/(1 - markup)) * markup
+        net_selling_price_1 = (total_material_cost + oh_absorbed_factory + oh_absorbed_sales + oh_absorbed_other + profit_mark_up_rs)
+        
+        sscl_temp = 97.5/100
+        
+        sscl_1 = (net_selling_price_1/sscl_temp) * (record.x_studio_sscl/100)
+        max_discount_1 = 0
+        proposed_base_price =  round((net_selling_price_1 + sscl_1 + max_discount_1),2)
+        current_base_price = current_base_price
+        difference = (proposed_base_price - current_base_price)
+        total_material_cost_1 = total_cost
+        oh_absorbed_factory_1 = record.x_studio_oh_absorbed_2_factory * actual
+        oh_absorbed_sales_1 = record.x_studio_oh_absorbed_2_sales * actual_1
+        oh_absorbed_other_1 = record.x_studio_oh_absorbed_2_other * actual_1
+        profit_mark_up_3 = record.x_studio_profit_mark_up_
+        if markup != 0:
+          profit_mark_up_rs_1 = ((total_material_cost_1 + oh_absorbed_other_1 + oh_absorbed_factory_1 + oh_absorbed_sales_1)/(1 - markup)) * markup
+        net_selling_price_2 = (total_material_cost_1 + oh_absorbed_factory_1 + oh_absorbed_sales_1 + oh_absorbed_other_1 + profit_mark_up_rs_1)
+        sscl_2 = (net_selling_price_2/sscl_temp) * (record.x_studio_sscl/100)
+        max_discount_2 = 0
+        proposed_base_price_1 = round((net_selling_price_2 + sscl_2 + max_discount_2),2)
+        
+        create_estimated_sub_model = env['x_pump_price_costing'].create({'x_studio_sales_report_model_id':record.id,'x_studio_product_id_1':pumps.id,'x_studio_standard':standard_final,'x_studio_idling_rate':(standard_final * (record.x_studio_idling_rate/100)),
+                                         'x_studio_actual':actual,'x_studio_standard_1':standard_final2,'x_studio_idling_rate_1':(standard_final2 * (record.x_studio_idling_rate/100)),
+                                         'x_studio_actual_1':actual_1, 'x_studio_total_material_cost_2':material_cost,
+                                         'x_studio_satd_discount':pumps.x_studio_maximum_discount,'x_studio_distributor_addition':record.x_studio_distributor_addition,'x_studio_max_discount':(pumps.x_studio_maximum_discount + record.x_studio_distributor_addition),
+                                         'x_studio_date':current_base_price_date,'x_studio_rs':current_base_price,'x_studio_sscl':round(sscl,2) ,'x_studio_discount':round(discount,2),'x_studio_net_selling_price':net_selling_price,
+                                         'x_studio_material_cost_imports':cost_import,'x_studio_material_cost_other':cost_other,
+                                         'x_studio_contingency_1':record.x_studio_contingency_,'x_studio_contingency_rs':contingency_rs,'x_studio_total_cost':total_cost,
+                                         'x_studio_labour_1':labour,'x_studio_factory_oh':factory_oh,'x_studio_total_factory_cost':total_factory_cost,'x_studio_total_factory_cost_1':total_factory_cost_a,'x_studio_route_time':route_time,
+                                         'x_studio_contribution_rs':contribution_rs,'x_studio_contribution_2':contribution_2,'x_studio_sales_oh':sales_oh,'x_studio_sales_oh_rs':sales_oh_rs,
+                                         'x_studio_other_oh':other_oh,'x_studio_other_oh_rs':other_oh_rs,'x_studio_profitloss_as_of_net_sale':profitloss_as_of_net_sale,'x_studio_current_retail_price_vat_18':current_retail_price_vat_18,
+                                         'x_studio_total_material_cost':total_material_cost,'x_studio_oh_absorbed_factory':oh_absorbed_factory,'x_studio_oh_absorbed_sales':oh_absorbed_sales,'x_studio_oh_absorbed_other':oh_absorbed_other,
+                                         'x_studio_profit_mark_up_':profit_mark_up_,'x_studio_profit_mark_up_rs':profit_mark_up_rs,'x_studio_net_selling_price_1':net_selling_price_1,'x_studio_sscl_1':sscl_1,
+                                         'x_studio_max_discount_1':max_discount_1,'x_studio_proposed_base_price':proposed_base_price,'x_studio_current_base_price':current_base_price,'x_studio_difference':difference,
+                                         'x_studio_total_material_cost_1':total_material_cost_1,'x_studio_oh_absorbed_factory_1':oh_absorbed_factory_1,'x_studio_oh_absorbed_sales_1':oh_absorbed_sales_1,'x_studio_oh_absorbed_other_1':oh_absorbed_other_1,
+                                         'x_studio_profit_mark_up_3':profit_mark_up_3,'x_studio_profit_mark_up_rs_1':profit_mark_up_rs_1,'x_studio_net_selling_price_2':net_selling_price_2,'x_studio_sscl_2':sscl_2,'x_studio_max_discount_2':max_discount_2,'x_studio_proposed_base_price_1':proposed_base_price_1,
+                                         'x_studio_total_actual_labour_cost':labour,'x_studio_total_actual_labour_cost_ot':labour_ot,'x_studio_total_actual_labour_cost_without_ot':labour_without_ot
+        })
+#operation_ids    ]]></field>
+  </record>
+
+  <record id="server_action_2570_proj_validate_confirm" model="ir.actions.server">
+    <field name="name">PROJ - Validate Confirm</field>
+    <field name="model_id" search="[('model', '=', 'crossovered.budget')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.state == 'confirm':
+  """if record.x_studio_created_from_sales_order_1.id != False:
+    if record.x_studio_valid_budget_lines == False:
+      raise UserError('At least one budget line should be available with value greater than zero when confirming.')"""
+  if record.x_studio_valid_budget_lines == False:
+    raise UserError('At least one budget line should be available with value greater than zero when confirming.')
+      
+    if record.x_studio_confirm_status == True:
+      raise UserError('Please finalize all the related RFQs.')
+
+]]></field>
+  </record>
+
+  <record id="server_action_2612_jin_company_id_in_lc_header" model="ir.actions.server">
+    <field name="name">JIN - Company Id in LC Header</field>
+    <field name="model_id" search="[('model', '=', 'x_lc_header')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
+company = env['res.company'].browse(company_id)
+
+record['x_studio_company_id'] = company.id]]></field>
+  </record>
+
+  <record id="server_action_2684_jin_company_id_in_misc_charge_codes" model="ir.actions.server">
+    <field name="name">JIN - Company Id in Misc Charge Codes</field>
+    <field name="model_id" search="[('model', '=', 'x_misc_charge_codes')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
+company = env['res.company'].browse(company_id)
+
+record['x_studio_company_id'] = company.id]]></field>
+  </record>
+
+  <record id="server_action_2871_jin_company_id_in_journal_types" model="ir.actions.server">
+    <field name="name">JIN - Company Id in Journal Types</field>
+    <field name="model_id" search="[('model', '=', 'x_journal_types')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
+company = env['res.company'].browse(company_id)
+
+record['x_studio_company_id'] = company.id]]></field>
+  </record>
+
 </odoo>
