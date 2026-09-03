@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Accounting',
-    'version': '17.0.0.0.52',
+    'version': '17.0.0.0.53',
     'summary': 'Studio-to-Python port for BugFix-Accounting',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Accounting',
@@ -9,6 +9,16 @@
     # Do NOT depend on studio_customization -- Odoo SH does not ship
     # a manifest for it, listing it causes install skip.
     #
+    # v0.0.53: 42 additional server actions bulk-ported (all remaining
+    # non-duplicate, non-ir_cron actions on Accounting-scoped models).
+    # Server actions coverage: 51/121 -> 93/121 = 77%.
+    # Skipped 25 as duplicates of standard Odoo actions (Send & Print,
+    # Register Payment, OCR crons, timesheet validation, asset compute,
+    # journal sync etc). Skipped 3 ir_cron (Project Gross Margin
+    # standalone runners).
+    # Actions ported: mixed state=code (33), state=object_write (4),
+    # state=next_activity (4, ordered first for child_ids resolution),
+    # state=multi (1).
     # v0.0.52: 48 base.automation trigger records appended to
     # data/automations.xml. Wires up ALL Accounting-scoped ba records
     # to their v0.0.51-shipped server actions. Brings ba coverage
