@@ -131,4 +131,457 @@
   </record>
   
   
+
+
+  <!-- v0.0.52: 48 base.automation trigger records -->
+
+  <record id="base_automation_43_work_center_costing_model_update_journal_entries" model="base.automation">
+    <field name="name">Work Center Costing Model - Update Journal Entries</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'account.move')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('account.field_account_move__create_date')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1144_work_center_costing_model_update_journal_entries')])]"/>
+  </record>
+
+  <record id="base_automation_64_imp_update_consignment_vendor_bill" model="base.automation">
+    <field name="name">IMP - Update Consignment - Vendor Bill</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'account.move')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('account.field_account_move__create_date')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1368_imp_update_consignment_vendor_bill')])]"/>
+  </record>
+
+  <record id="base_automation_72_imp_update_lc_status_to_paid" model="base.automation">
+    <field name="name">IMP - Update LC Status to Paid</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'account.move')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1408_imp_update_lc_status_to_paid')])]"/>
+  </record>
+
+  <record id="base_automation_115_validate_journals_created_from_cp_npo" model="base.automation">
+    <field name="name">Validate Journals Created from CP &amp; NPO</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'account.move')]"/>
+    <field name="trigger">on_unlink</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1720_validate_journals_created_from_cp_npo')])]"/>
+  </record>
+
+  <record id="base_automation_121_srm_update_sales_order_customer_invoice" model="base.automation">
+    <field name="name">SRM - Update Sales Order - Customer Invoice</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'account.move')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('account.field_account_move__create_date')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1733_srm_update_sales_order_customer_invoice')])]"/>
+  </record>
+
+  <record id="base_automation_138_supplier_invoice_no_update_in_import_vendor_bill" model="base.automation">
+    <field name="name">Supplier Invoice No Update in Import Vendor Bill</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'account.move')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_account_move__x_studio_consignment_no')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1766_supplier_invoice_no_update_in_import_vendor_bill')])]"/>
+  </record>
+
+  <record id="base_automation_145_sls_validate_bank_guarantee_in_customer_invoice" model="base.automation">
+    <field name="name">SLS - Validate Bank Guarantee in Customer Invoice</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'account.move')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1775_sls_validate_bank_guarantee_in_customer_invoice')])]"/>
+  </record>
+
+  <record id="base_automation_170_supplier_invoice_no_update_in_import_vendor_bill_2" model="base.automation">
+    <field name="name">Supplier Invoice No Update in Import Vendor Bill - 2</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'account.move')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1847_supplier_invoice_no_update_in_import_vendor_bill_2')])]"/>
+  </record>
+
+  <record id="base_automation_215_rr_validate_rug_in_customer_invoice" model="base.automation">
+    <field name="name">RR - Validate RUG in Customer Invoice</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'account.move')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2331_rr_validate_rug_in_customer_invoice')])]"/>
+  </record>
+
+  <record id="base_automation_237_update_analytic_tag_parameters_sales_invoice_customer" model="base.automation">
+    <field name="name">Update Analytic Tag Parameters - Sales Invoice - Customer</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'account.move')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('account.field_account_move__partner_id')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2417_update_analytic_tag_parameters_sales_invoice_customer')])]"/>
+  </record>
+
+  <record id="base_automation_328_project_update_project_no_for_manual_transactions" model="base.automation">
+    <field name="name">Project - Update Project No for Manual Transactions</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'account.move')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_account_move__x_studio_journal_type')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2738_project_update_project_no_for_manual_transactions')])]"/>
+  </record>
+
+  <record id="base_automation_120_srm_auto_populate_report_type_in_account_move_lines" model="base.automation">
+    <field name="name">SRM - Auto Populate Report Type in Account Move Lines</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'account.move.line')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_sales_report_model__x_studio_as_on_date')])]"/>
+    <field name="filter_domain">[]</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1732_srm_auto_populate_report_type_in_account_move_lines')])]"/>
+  </record>
+
+  <record id="base_automation_219_update_analytic_tag_parameters_sales_invoice_line_product" model="base.automation">
+    <field name="name">Update Analytic Tag Parameters - Sales Invoice Line - Product</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'account.move.line')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('account.field_account_move_line__product_id')])]"/>
+    <field name="filter_domain">[]</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2344_update_analytic_tag_parameters_sales_invoice_line_product')])]"/>
+  </record>
+
+  <record id="base_automation_343_etf_schedule_contract_id" model="base.automation">
+    <field name="name">ETF Schedule - Contract Id</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'account.move.line')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('account.field_account_move_line__create_date')])]"/>
+    <field name="filter_domain">[("distribution_analytic_account_ids", "!=", False)]</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_3278_execute_code')])]"/>
+  </record>
+
+  <record id="base_automation_73_imp_update_lc_status_to_paid_2" model="base.automation">
+    <field name="name">IMP - Update LC Status to Paid - 2</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'account.payment')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1409_imp_update_lc_status_to_paid_2')])]"/>
+  </record>
+
+  <record id="base_automation_241_rr_validate_payment" model="base.automation">
+    <field name="name">RR - Validate Payment %</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'account.payment')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('account.field_account_payment__amount')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2427_rr_validate_payment')])]"/>
+  </record>
+
+  <record id="base_automation_292_update_project_no_in_journal_entry" model="base.automation">
+    <field name="name">Update Project No in Journal Entry</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'account.payment')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2627_update_project_no_in_journal_entry')])]"/>
+  </record>
+
+  <record id="base_automation_335_jin_company_id_in_payment_terms" model="base.automation">
+    <field name="name">JIN - Company Id in Payment Terms</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'account.payment.term')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('account.field_account_payment_term__create_date')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2827_jin_company_id_in_payment_terms')])]"/>
+  </record>
+
+  <record id="base_automation_197_proj_validate_delete" model="base.automation">
+    <field name="name">PROJ - Validate Delete</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'crossovered.budget')]"/>
+    <field name="trigger">on_unlink</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2183_proj_validate_delete')])]"/>
+  </record>
+
+  <record id="base_automation_256_proj_validate_confirm" model="base.automation">
+    <field name="name">PROJ - Validate Confirm</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'crossovered.budget')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2570_proj_validate_confirm')])]"/>
+  </record>
+
+  <record id="base_automation_289_jin_company_id_in_consignment_charge_header" model="base.automation">
+    <field name="name">JIN - Company Id in Consignment Charge Header</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'x_consignment_charge_h')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_consignment_charge_h__create_date')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Stock.server_action_2617_jin_company_id_in_consignment_charge_header')])]"/>
+  </record>
+
+  <record id="base_automation_61_imp_pass_currency_information_to_custom_currency" model="base.automation">
+    <field name="name">IMP - Pass Currency Information to Custom Currency</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'x_custom_currency')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_custom_currency__x_studio_currency_id')])]"/>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_custom_currency__x_studio_currency_id')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1312_imp_pass_currency_information_to_custom_currency')])]"/>
+  </record>
+
+  <record id="base_automation_310_jin_company_id_in_custom_currency" model="base.automation">
+    <field name="name">JIN - Company Id in Custom Currency</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'x_custom_currency')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_custom_currency__create_date')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2674_jin_company_id_in_custom_currency')])]"/>
+  </record>
+
+  <record id="base_automation_60_imp_validate_from_to_dates_in_custom_rates" model="base.automation">
+    <field name="name">IMP - Validate From To Dates in Custom Rates</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'x_custom_currency_rate')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_custom_currency_rate__x_studio_end_date'), ref('BugFix-Accounting.field_x_custom_currency_rate__x_studio_start_date')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1311_imp_validate_from_to_dates_in_custom_rates')])]"/>
+  </record>
+
+  <record id="base_automation_311_jin_company_id_in_custom_currency_rate" model="base.automation">
+    <field name="name">JIN - Company Id in Custom Currency Rate</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'x_custom_currency_rate')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_custom_currency_rate__create_date')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2675_jin_company_id_in_custom_currency_rate')])]"/>
+  </record>
+
+  <record id="base_automation_337_jin_company_id_in_journal_types" model="base.automation">
+    <field name="name">JIN - Company Id in Journal Types</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'x_journal_types')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_journal_types__create_date')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2871_jin_company_id_in_journal_types')])]"/>
+  </record>
+
+  <record id="base_automation_70_jin_lc_registration_seq_no" model="base.automation">
+    <field name="name">JIN-LC Registration Seq.No</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'x_lc_header')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_lc_header__create_date')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1402_lc_registration_seq_no')])]"/>
+  </record>
+
+  <record id="base_automation_71_imp_lc_amount_validation" model="base.automation">
+    <field name="name">IMP - LC Amount Validation</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'x_lc_header')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_lc_header__x_studio_lc_amount')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1407_imp_lc_amount_validation')])]"/>
+  </record>
+
+  <record id="base_automation_284_jin_company_id_in_lc_header" model="base.automation">
+    <field name="name">JIN - Company Id in LC Header</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'x_lc_header')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_lc_header__create_date')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2612_jin_company_id_in_lc_header')])]"/>
+  </record>
+
+  <record id="base_automation_318_jin_company_id_in_misc_charge_codes" model="base.automation">
+    <field name="name">JIN - Company Id in Misc Charge Codes</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'x_misc_charge_codes')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_misc_charge_codes__create_date')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2684_jin_company_id_in_misc_charge_codes')])]"/>
+  </record>
+
+  <record id="base_automation_99_restrict_delete_in_sales_report_model" model="base.automation">
+    <field name="name">Restrict Delete in Sales Report Model</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'x_sales_report_model')]"/>
+    <field name="trigger">on_unlink</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1675_restrict_delete_in_sales_report_model')])]"/>
+  </record>
+
+  <record id="base_automation_116_srm_auto_populate_data" model="base.automation">
+    <field name="name">SRM - Auto Populate Data</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'x_sales_report_model')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_sales_report_model__x_studio_as_on_date')])]"/>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_sales_report_model__x_studio_as_on_date'), ref('BugFix-Accounting.field_x_sales_report_model__x_studio_from_date'), ref('BugFix-Accounting.field_x_sales_report_model__x_studio_report_type'), ref('BugFix-Accounting.field_x_sales_report_model__x_studio_sales_centre')])]"/>
+    <field name="filter_domain">[]</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1726_srm_auto_populate_data')])]"/>
+  </record>
+
+  <record id="base_automation_125_srm_auto_delete_sub_models" model="base.automation">
+    <field name="name">SRM - Auto Delete Sub Models</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'x_sales_report_model')]"/>
+    <field name="trigger">on_unlink</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_sales_report_model__x_studio_as_on_date')])]"/>
+    <field name="filter_domain">[]</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1746_srm_auto_delete_sub_models')])]"/>
+  </record>
+
+  <record id="base_automation_126_jin_report_model_seq_no" model="base.automation">
+    <field name="name">JIN-Report Model Seq.No</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'x_sales_report_model')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_sales_report_model__create_date')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1747_report_model_seq_no')])]"/>
+  </record>
+
+  <record id="base_automation_131_srm_rpt_daily_sales_summary" model="base.automation">
+    <field name="name">SRM - RPT - Daily Sales Summary</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'x_sales_report_model')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_sales_report_model__x_studio_as_on_date')])]"/>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_sales_report_model__x_studio_as_on_date'), ref('BugFix-Accounting.field_x_sales_report_model__x_studio_report_type'), ref('BugFix-Accounting.field_x_sales_report_model__x_studio_sales_centre')])]"/>
+    <field name="filter_domain">[]</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1759_srm_rpt_daily_sales_summary')])]"/>
+  </record>
+
+  <record id="base_automation_132_srm_rpt_sales_details_for_incentive_calc" model="base.automation">
+    <field name="name">SRM - RPT - Sales Details for Incentive Calc.</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'x_sales_report_model')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_sales_report_model__x_studio_as_on_date')])]"/>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_sales_report_model__x_studio_as_on_date'), ref('BugFix-Accounting.field_x_sales_report_model__x_studio_report_type')])]"/>
+    <field name="filter_domain">[]</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1760_srm_rpt_sales_details_for_incentive_calc')])]"/>
+  </record>
+
+  <record id="base_automation_133_srm_rpt_production_overview_wip" model="base.automation">
+    <field name="name">SRM - RPT - Production Overview - WIP</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'x_sales_report_model')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_sales_report_model__x_studio_as_on_date')])]"/>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_sales_report_model__x_studio_report_type')])]"/>
+    <field name="filter_domain">[]</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1761_srm_rpt_production_overview_wip')])]"/>
+  </record>
+
+  <record id="base_automation_134_srm_rpt_slow_moving_items" model="base.automation">
+    <field name="name">SRM - RPT - Slow Moving Items</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'x_sales_report_model')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_sales_report_model__x_studio_as_on_date')])]"/>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_sales_report_model__x_studio_as_on_date'), ref('BugFix-Accounting.field_x_sales_report_model__x_studio_report_type')])]"/>
+    <field name="filter_domain">[]</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1762_srm_rpt_slow_moving_items')])]"/>
+  </record>
+
+  <record id="base_automation_135_srm_rpt_sales_production_purchase_report" model="base.automation">
+    <field name="name">SRM - RPT - Sales - Production - Purchase Report</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'x_sales_report_model')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_sales_report_model__x_studio_as_on_date')])]"/>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_sales_report_model__x_studio_as_on_date'), ref('BugFix-Accounting.field_x_sales_report_model__x_studio_report_type')])]"/>
+    <field name="filter_domain">[]</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1763_srm_rpt_sales_production_purchase_report')])]"/>
+  </record>
+
+  <record id="base_automation_136_srm_rpt_production_summary_split" model="base.automation">
+    <field name="name">SRM - RPT - Production Summary - Split</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'x_sales_report_model')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_sales_report_model__x_studio_as_on_date')])]"/>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_sales_report_model__x_studio_as_on_date'), ref('BugFix-Accounting.field_x_sales_report_model__x_studio_report_type')])]"/>
+    <field name="filter_domain">[]</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1764_srm_rpt_production_summary_split')])]"/>
+  </record>
+
+  <record id="base_automation_137_srm_rpt_production_job_variance" model="base.automation">
+    <field name="name">SRM - RPT - Production Job Variance</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'x_sales_report_model')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_sales_report_model__x_studio_as_on_date')])]"/>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_sales_report_model__x_studio_as_on_date'), ref('BugFix-Accounting.field_x_sales_report_model__x_studio_from_date'), ref('BugFix-Accounting.field_x_sales_report_model__x_studio_report_type')])]"/>
+    <field name="filter_domain">[]</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1765_srm_rpt_production_job_variance')])]"/>
+  </record>
+
+  <record id="base_automation_182_srm_rpt_project_gross_margin" model="base.automation">
+    <field name="name">SRM - RPT - Project Gross Margin</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'x_sales_report_model')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_sales_report_model__x_studio_as_on_date')])]"/>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_sales_report_model__x_studio_report_type')])]"/>
+    <field name="filter_pre_domain">[["x_studio_report_code","=","Project Gross Margin"]]</field>
+    <field name="filter_domain">[["x_studio_report_code","=","Project Gross Margin"]]</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2102_srm_rpt_project_gross_margin')])]"/>
+  </record>
+
+  <record id="base_automation_188_report_model_created_date" model="base.automation">
+    <field name="name">Report Model Created Date</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'x_sales_report_model')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_sales_report_model__create_date')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2126_report_model_created_date')])]"/>
+  </record>
+
+  <record id="base_automation_189_srm_rpt_project_gross_margin_notify_users" model="base.automation">
+    <field name="name">SRM - RPT - Project Gross Margin - Notify Users</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'x_sales_report_model')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_sales_report_model__create_date')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2129_srm_rpt_project_gross_margin_notify_users')])]"/>
+  </record>
+
+  <record id="base_automation_248_srm_rpt_costing_work_sheet" model="base.automation">
+    <field name="name">SRM - RPT - Costing Work Sheet</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'x_sales_report_model')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_sales_report_model__x_studio_as_on_date')])]"/>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_sales_report_model__x_studio_as_on_date_1'), ref('BugFix-Accounting.field_x_sales_report_model__x_studio_contingency_'), ref('BugFix-Accounting.field_x_sales_report_model__x_studio_distributor_addition'), ref('BugFix-Accounting.field_x_sales_report_model__x_studio_factory_oh'), ref('BugFix-Accounting.field_x_sales_report_model__x_studio_factory_oh_labour'), ref('BugFix-Accounting.field_x_sales_report_model__x_studio_idling_rate'), ref('BugFix-Accounting.field_x_sales_report_model__x_studio_other_oh'), ref('BugFix-Accounting.field_x_sales_report_model__x_studio_report_type'), ref('BugFix-Accounting.field_x_sales_report_model__x_studio_sales_oh')])]"/>
+    <field name="filter_pre_domain">[["x_studio_report_code","=","Costing Work Sheet"]]</field>
+    <field name="filter_domain">[["x_studio_report_code","=","Costing Work Sheet"]]</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2490_srm_rpt_costing_work_sheet')])]"/>
+  </record>
+
+  <record id="base_automation_65_jin_third_party_tp_invoice_seq_no" model="base.automation">
+    <field name="name">JIN-Third Party(TP) Invoice Seq.No</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'x_tp_invoice_header')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_tp_invoice_header__create_date')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1381_tp_invoice_seq_no')])]"/>
+  </record>
+
+  <record id="base_automation_184_tp_invoice_currency_update" model="base.automation">
+    <field name="name">TP Invoice Currency Update</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'x_tp_invoice_header')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_tp_invoice_header__x_studio_vendor')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2112_tp_invoice_currency_update')])]"/>
+  </record>
+
+  <record id="base_automation_242_tp_invoice_linetax_update" model="base.automation">
+    <field name="name">TP Invoice LineTAX Update</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'x_tp_invoice_line')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_tp_invoice_line__x_studio_taxes')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2432_tp_invoice_linetax_update')])]"/>
+  </record>
+
 </odoo>

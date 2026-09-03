@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Accounting',
-    'version': '17.0.0.0.51',
+    'version': '17.0.0.0.52',
     'summary': 'Studio-to-Python port for BugFix-Accounting',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Accounting',
@@ -9,6 +9,15 @@
     # Do NOT depend on studio_customization -- Odoo SH does not ship
     # a manifest for it, listing it causes install skip.
     #
+    # v0.0.52: 48 base.automation trigger records appended to
+    # data/automations.xml. Wires up ALL Accounting-scoped ba records
+    # to their v0.0.51-shipped server actions. Brings ba coverage
+    # from 0/48 to 48/48 (100%).
+    # Trigger types (from Clear-DB):
+    #   * ~35 on_create_or_write, ~7 on_change, ~5 on_unlink, 1 next_activity
+    # Uses ref= for all action + field xmlid resolution; standard Odoo
+    # fields (create_date, partner_id, product_id) resolved via
+    # cross-module scan (account/mail/etc).
     # v0.0.51: 27 server actions appended to data/server_actions_v2.xml
     # (was 19, now 46). These are the state=code base_automation actions
     # referenced by the 27 unwired base.automation records to be shipped
