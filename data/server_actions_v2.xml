@@ -4396,29 +4396,11 @@ record['x_studio_company_id'] = company.id]]></field>
     <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
   </record>
 
-  <record id="server_action_2264_test_for_rohana" model="ir.actions.server">
-    <field name="name">TEST - For Rohana</field>
-    <field name="model_id" search="[('model', '=', 'account.account')]"/>
-    <field name="state">next_activity</field>
-    <field name="usage">base_automation</field>
-    <field name="binding_view_types">list,form</field>
-    <field name="activity_type_id" ref="mail.mail_activity_data_todo"/>
-    <field name="activity_user_type">specific</field>
-    <field name="activity_summary">User Groups have been changed0</field>
-    <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
-  </record>
-
-  <record id="server_action_2265_test_for_rohana" model="ir.actions.server">
-    <field name="name">TEST - For Rohana</field>
-    <field name="model_id" search="[('model', '=', 'account.account')]"/>
-    <field name="state">next_activity</field>
-    <field name="usage">base_automation</field>
-    <field name="binding_view_types">list,form</field>
-    <field name="activity_type_id" ref="mail.mail_activity_data_todo"/>
-    <field name="activity_user_type">specific</field>
-    <field name="activity_summary">User Groups have been changed0</field>
-    <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
-  </record>
+  <!-- SKIPPED (v0.0.54): actions 2264 + 2265 "TEST - For Rohana" are
+       state=next_activity on account.account, but that model lacks
+       mail.activity.mixin - install fails with "A next activity can
+       only be planned on models that use activities". These are
+       leftover Studio test artifacts named "TEST", safe to skip. -->
 
   <record id="server_action_2537_sls_credit_note_approval" model="ir.actions.server">
     <field name="name">SLS - Credit Note Approval</field>
@@ -4577,580 +4559,580 @@ record['x_studio_company_id'] = company.id]]></field>
     <field name="state">code</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.id:
-  
-  company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
-  company = env['res.company'].browse(company_id)
-
-  con_line = env['x_consignment_line'].search([('x_studio_consignment_header_id', '=', record.x_studio_consignment_no.id), ('x_studio_purchase_id', '=', record.x_studio_purchase_id.id)],limit=1)
-  if not con_line:
-    raise UserError('The Selected Consignment No is not linked with the Current PO.')
-  
-  ex_rate = 1
-
-  company_currency = env['res.config.settings'].search([('currency_id', '=', record.currency_id.id)],limit=1)
-  if company_currency:
-    ex_rate = 1
-  else:
-    custom_currency = env['res.currency'].search([('id', '=', record.currency_id.id),('active', '=', True)],limit=1)
-    if custom_currency:
-      custom_currency_rate = env['res.currency.rate'].search([('currency_id', '=', custom_currency.id),('name', '<=', datetime.datetime.today())],order='name desc',limit=1)
-      if custom_currency_rate.inverse_company_rate != 0:
-        ex_rate = custom_currency_rate.inverse_company_rate
-    
-    """custom_currency = env['res.currency'].search([('id', '=', record.currency_id.id),('active', '=', True)],limit=1)
-    if custom_currency.rate > 0:
-      ex_rate = custom_currency.rate"""
-
-  
-  done = 0  
-  select = 0
-  total_amount = 0
-  total_charge = 0
-  total_duty = 0
-  total_tax = 0
-  val_charge = False
-  val_duty = False
-  val_tax = False
-  total_charge_cd = 0
-  total_duty_cd = 0
-  total_tax_cd = 0
-  val_charge_cd = False
-  val_duty_cd = False
-  val_tax_cd = False
-  total_charge_ex = 0
-  total_duty_ex = 0
-  total_tax_ex = 0
-  val_charge_ex = False
-  val_duty_ex = False
-  val_tax_ex = False
-  total_charge_ex_cd = 0
-  total_duty_ex_cd = 0
-  total_tax_ex_cd = 0
-  val_charge_ex_cd = False
-  val_duty_ex_cd = False
-  val_tax_ex_cd = False
-  
-  tot_charge_ids = []
-  tot_duty_ids = []
-  tot_tax_ids = []
-  tot_final_ids = []
-  
-  tot_charge_ex_ids = []
-  tot_duty_ex_ids = []
-  tot_tax_ex_ids = []
-  tot_final_ex_ids = []
-  
-  tot_charge_cd_ids = []
-  tot_duty_cd_ids = []
-  tot_tax_cd_ids = []
-  tot_final_cd_ids = []
-  
-  tot_charge_ex_cd_ids = []
-  tot_duty_ex_cd_ids = []
-  tot_tax_ex_cd_ids = []
-  tot_final_ex_cd_ids = []
-  
-  for po_line in record.invoice_line_ids:
-    con_line_2 = env['x_consignment_line'].search([('x_studio_consignment_header_id', '=', record.x_studio_consignment_no.id), ('x_studio_purchase_id', '=', record.x_studio_purchase_id.id), ('x_studio_product_id', '=', po_line.product_id.id), ('x_studio_invoice_qty', '=', po_line.quantity), ('x_studio_purchase_line_id', '=', po_line.purchase_line_id.id)],limit=1)
-    if con_line_2:
-      select += 1
-      total_amount += po_line.quantity * (po_line.price_subtotal / po_line.quantity)
-      po_line.write({'quantity':con_line_2.x_studio_invoice_qty})
-          
-      if con_line_2.x_studio_valid_charge == True:
-        total_charge += con_line_2.x_studio_tot_charge
-        #tot_charge_ids = con_line_2.x_studio_tot_charge_ids
-        if con_line_2.x_studio_tot_charge_ids != []:
-          for ids in con_line_2.x_studio_tot_charge_ids:
-            tot_charge_ids.append(ids.id)
-            tot_final_ids.append(ids.id)
-      if con_line_2.x_studio_valid_duty == True:
-        total_duty += con_line_2.x_studio_tot_duty
-        #tot_duty_ids = con_line_2.x_studio_tot_duty_ids
-        if con_line_2.x_studio_tot_duty_ids != []:
-          for ids in con_line_2.x_studio_tot_duty_ids:
-            tot_duty_ids.append(ids.id)
-            tot_final_ids.append(ids.id)
-      if con_line_2.x_studio_valid_tax == True:
-        total_tax += con_line_2.x_studio_tot_tax
-        #tot_tax_ids = con_line_2.x_studio_tot_tax_ids
-        if con_line_2.x_studio_tot_tax_ids != []:
-          for ids in con_line_2.x_studio_tot_tax_ids:
-            tot_tax_ids.append(ids.id)
-            tot_final_ids.append(ids.id)
-        
-      if con_line_2.x_studio_valid_charge_cd == True:
-        total_charge_cd += con_line_2.x_studio_tot_charge_cd
-        #tot_charge_cd_ids = con_line_2.x_studio_tot_charge_cd_ids
-        if con_line_2.x_studio_tot_charge_cd_ids != []:
-          for ids in con_line_2.x_studio_tot_charge_cd_ids:
-            tot_charge_cd_ids.append(ids.id)
-            tot_final_cd_ids.append(ids.id)
-      if con_line_2.x_studio_valid_duty_cd == True:
-        total_duty_cd += con_line_2.x_studio_tot_duty_cd
-        #tot_duty_cd_ids = con_line_2.x_studio_tot_duty_cd_ids
-        if con_line_2.x_studio_tot_duty_cd_ids != []:
-          for ids in con_line_2.x_studio_tot_duty_cd_ids:
-            tot_duty_cd_ids.append(ids.id)
-            tot_final_cd_ids.append(ids.id)
-      if con_line_2.x_studio_valid_tax_cd == True:
-        total_tax_cd += con_line_2.x_studio_tot_tax_cd
-        #tot_tax_cd_ids = con_line_2.x_studio_tot_tax_cd_ids
-        if con_line_2.x_studio_tot_tax_cd_ids != []:
-          for ids in con_line_2.x_studio_tot_tax_cd_ids:
-            tot_tax_cd_ids.append(ids.id)
-            tot_final_cd_ids.append(ids.id)
-        
-      if con_line_2.x_studio_valid_charge_ex == True:
-        total_charge_ex += con_line_2.x_studio_tot_charge_ex
-        #tot_charge_ex_ids = con_line_2.x_studio_tot_charge_ex_ids
-        if con_line_2.x_studio_tot_charge_ex_ids != []:
-          for ids in con_line_2.x_studio_tot_charge_ex_ids:
-            tot_charge_ex_ids.append(ids.id)
-            tot_final_ex_ids.append(ids.id)
-      if con_line_2.x_studio_valid_duty_ex == True:
-        total_duty_ex += con_line_2.x_studio_tot_duty_ex
-        #tot_duty_ex_ids = con_line_2.x_studio_tot_duty_ex_ids
-        if con_line_2.x_studio_tot_duty_ex_ids != []:
-          for ids in con_line_2.x_studio_tot_duty_ex_ids:
-            tot_duty_ex_ids.append(ids.id)
-            tot_final_ex_ids.append(ids.id)
-      if con_line_2.x_studio_valid_tax_ex == True:
-        total_tax_ex += con_line_2.x_studio_tot_tax_ex
-        #tot_tax_ex_ids = con_line_2.x_studio_tot_tax_ex_ids
-        if con_line_2.x_studio_tot_tax_ex_ids != []:
-          for ids in con_line_2.x_studio_tot_tax_ex_ids:
-            tot_tax_ex_ids.append(ids.id)
-            tot_final_ex_ids.append(ids.id)
-        
-      if con_line_2.x_studio_valid_charge_ex_cd == True:
-        total_charge_ex_cd += con_line_2.x_studio_tot_charge_ex_cd
-        #tot_charge_ex_cd_ids = con_line_2.x_studio_tot_charge_ex_cd_ids
-        if con_line_2.x_studio_tot_charge_ex_cd_ids != []:
-          for ids in con_line_2.x_studio_tot_charge_ex_cd_ids:
-            tot_charge_ex_cd_ids.append(ids.id)
-            tot_final_ex_cd_ids.append(ids.id)
-      if con_line_2.x_studio_valid_duty_ex_cd == True:
-        total_duty_ex_cd += con_line_2.x_studio_tot_duty_ex_cd
-        #tot_duty_ex_cd_ids = con_line_2.x_studio_tot_duty_ex_cd_ids
-        if con_line_2.x_studio_tot_duty_ex_cd_ids != []:
-          for ids in con_line_2.x_studio_tot_duty_ex_cd_ids:
-            tot_duty_ex_cd_ids.append(ids.id)
-            tot_final_ex_cd_ids.append(ids.id)
-      if con_line_2.x_studio_valid_tax_ex_cd == True:
-        total_tax_ex_cd += con_line_2.x_studio_tot_tax_ex_cd
-        #tot_tax_ex_cd_ids = con_line_2.x_studio_tot_tax_ex_cd_ids
-        if con_line_2.x_studio_tot_tax_ex_cd_ids != []:
-          for ids in con_line_2.x_studio_tot_tax_ex_cd_ids:
-            tot_tax_ex_cd_ids.append(ids.id)
-            tot_final_ex_cd_ids.append(ids.id)
-  
-  for po_line_count in record.invoice_line_ids:
-    if po_line_count.quantity > 0.0000:
-      done += 1
-  
-  if done == 0:
-    raise UserError('You have not recorded done quantities yet, Atleast one done quantity should be recorded to proceed.') 
-  
-  if select == 0:
-    raise UserError('The Selected Consignment No is not linked with the Correct Items & Item Quantities in the Current PO.')
-
-  con_header = env['x_consignment_header'].search([('id', '=', record.x_studio_consignment_no.id)],limit=1)
-  grand_total_amount = 0
-  if con_header:
-    journal = env['account.journal'].search([('name', '=', 'Vendor Despatch'),('company_id', '=', company.id)], limit=1) 
-    if not journal:
-     raise UserError('The required journal has not been setup. Process terminated.')
-           
-    if con_header.x_studio_vendor_dispatch == True:
-      grand_total_amount = total_amount * con_header.x_studio_vendor_dispatch_exchange_rate
-      if grand_total_amount > 0.0000:
-        despatch_account = env['x_imports_ledger_setup'].search([('x_studio_company_id', '=', company.id)], limit=1)
-        if despatch_account:
-          if despatch_account.x_studio_vendor_despatch_debit_account.id == 0 or despatch_account.x_studio_vendor_despatch_credit_account.id == 0:
-            raise UserError('Vendor Despatch Accounts must be Specified in Imports Ledger Setup')
-            
-        despatch_lines=[]
-        despatch_lines.append([0,0,{
-          'account_id':despatch_account.x_studio_vendor_despatch_credit_account.id,
-          'partner_id':record.partner_id.id,
-          'name':'Vendor Despatch Reversal',
-          'debit':round(grand_total_amount,2)}])
-                  
-        despatch_lines.append([0,0,{
-          'account_id':despatch_account.x_studio_vendor_despatch_debit_account.id,
-          'partner_id':record.partner_id.id,
-          'name':'Vendor Despatch Reversal',
-          'credit':round(grand_total_amount,2)}])	
-        
-        vendor_despatch = env['account.move'].create({'x_studio_created_from_vendor_bill':record.id,'journal_id':journal.id,'move_type':'entry','line_ids':despatch_lines})
-              
-        update_vendor_despatch = env['account.move'].search([('id', '=', vendor_despatch.id)],limit=1)
-        if update_vendor_despatch:
-          update_vendor_despatch.write({'state':'posted'})
-        
-    if con_header.x_studio_custom_clearance == True: 
-      despatch_lines_2=[]
-      if total_charge > 0.0000:
-        despatch_lines_2.append([0,0,{
-        'account_id':con_header.x_studio_account_charge.id,
-        'name':'Purchase, Charge - Reversal',
-        'credit':round((total_charge * con_header.x_studio_custom_clearance_exchange_rate),2)}])
-          
-      if total_duty > 0.0000:  
-        despatch_lines_2.append([0,0,{
-        'account_id':con_header.x_studio_account_duty.id,
-        'name':'Purchase Misc. Charges Duty - Reversal',
-        'credit':round((total_duty * con_header.x_studio_custom_clearance_exchange_rate),2)}])
-          
-      if total_tax > 0.0000:  
-        despatch_lines_2.append([0,0,{
-        'account_id':con_header.x_studio_account_tax.id,
-        'name':'Purchase, Packing Slip Tax - Reversal',
-        'credit':round((total_tax * con_header.x_studio_custom_clearance_exchange_rate),2)}])
-      
-      if (total_charge + total_duty + total_tax) > 0.0000:    
-        despatch_lines_2.append([0,0,{
-        'account_id':con_header.x_studio_offset_account.id,
-        'name':'Purchase Packing Slip Offset - Reversal',
-        'debit':(round((total_charge * con_header.x_studio_custom_clearance_exchange_rate),2) + round((total_duty * con_header.x_studio_custom_clearance_exchange_rate),2) + round((total_tax * con_header.x_studio_custom_clearance_exchange_rate),2))}])	
-      
-      custom_clearance = env['account.move'].create({'x_studio_created_from_vendor_bill_1':record.id,'journal_id':journal.id,'move_type':'entry','line_ids':despatch_lines_2})
-          
-      update_custom_clearance = env['account.move'].search([('id', '=', custom_clearance.id)],limit=1)
-      if update_custom_clearance:
-        update_custom_clearance.write({'state':'posted'})
-        
-###############################################################################################################################################################        
-  invoice_lines=[]
-  
-  if total_charge > 0.0000:
-    product_charge = env['product.product'].search([('x_studio_charge_type', '=', 'Charge'),('type', '=', 'service'),('x_studio_non_billable', '=', False)], limit=1)
-    if product_charge:
-      val_charge = True
-      
-      invoice_lines.append([0,0,{
-        'move_id':record.id,
-        'partner_id':record.partner_id.id,
-        'product_id':product_charge.id,
-        'quantity':1,
-        'currency_id':record.currency_id.id,
-        'name':product_charge.name,
-        'product_uom_id':product_charge.uom_id.id,
-        'is_landed_costs_line':True,
-        'price_unit':round(total_charge/ex_rate,2),
-        'price_subtotal':round(total_charge/ex_rate,2),
-        'amount_currency':round(total_charge/ex_rate,2),
-        'debit':round(total_charge/ex_rate,2),
-        'x_studio_tags':[(6, 0, tot_charge_ids)],
-        'account_id':product_charge.categ_id.property_stock_account_input_categ_id.id}])
-      
-  if total_duty > 0.0000:    
-    product_duty = env['product.product'].search([('x_studio_charge_type', '=', 'Duty'),('type', '=', 'service'),('x_studio_non_billable', '=', False)], limit=1)
-    if product_duty:
-      val_duty = True
-      
-      invoice_lines.append([0,0,{
-        'move_id':record.id,
-        'partner_id':record.partner_id.id,
-        'product_id':product_duty.id,
-        'quantity':1,
-        'currency_id':record.currency_id.id,
-        'name':product_duty.name,
-        'product_uom_id':product_duty.uom_id.id,
-        'is_landed_costs_line':True,
-        'price_unit':round(total_duty/ex_rate,2),
-        'price_subtotal':round(total_duty/ex_rate,2),
-        'amount_currency':round(total_duty/ex_rate,2),
-        'debit':round(total_duty/ex_rate,2),
-        'x_studio_tags':[(6, 0, tot_duty_ids)],
-        'account_id':product_duty.categ_id.property_stock_account_input_categ_id.id}])
-      
-  if total_tax > 0.0000:
-    product_tax = env['product.product'].search([('x_studio_charge_type', '=', 'Tax'),('type', '=', 'service'),('x_studio_non_billable', '=', False)], limit=1)
-    if product_tax:
-      val_tax = True
-      
-      invoice_lines.append([0,0,{
-        'move_id':record.id,
-        'partner_id':record.partner_id.id,
-        'product_id':product_tax.id,
-        'quantity':1,
-        'currency_id':record.currency_id.id,
-        'name':product_tax.name,
-        'product_uom_id':product_tax.uom_id.id,
-        'is_landed_costs_line':True,
-        'price_unit':round(total_tax/ex_rate,2),
-        'price_subtotal':round(total_tax/ex_rate,2),
-        'amount_currency':round(total_tax/ex_rate,2),
-        'debit':round(total_tax/ex_rate,2),
-        'x_studio_tags':[(6, 0, tot_tax_ids)],
-        'account_id':product_tax.categ_id.property_stock_account_input_categ_id.id}])
-  ##########################
-  creditor_acc = env['account.move.line'].search([('move_id', '=', record.id), ('account_id', '=', record.partner_id.property_account_payable_id.id)],limit=1)
-  ##########################
-  #raise UserError(str(round(total_charge/ex_rate,2)) + "\n" + str(round(total_duty/ex_rate,2)) + "\n" + str(round(total_tax/ex_rate,2)) + "\n" + str((round(total_charge/ex_rate,2) + round(total_duty/ex_rate,2) + round(total_tax/ex_rate,2))))   
-  if val_charge == True or val_duty == True or val_tax == True:
-    tp_account = env['x_imports_ledger_setup'].search([('id', '=', 1)], limit=1)
-    if tp_account:
-      if tp_account.x_studio_import_tp_vendor_account.id == 0:
-        raise UserError('Import TP Vendor Account must be Specified in Imports Ledger Setup')
-      else:
-        invoice_lines.append([0,0,{
-          'move_id':record.id,
-          'partner_id':record.partner_id.id,
-          'quantity':1,
-          'date_maturity':creditor_acc.date_maturity,
-          'currency_id':record.currency_id.id,
-          'name':'Total - Billable Invoice Lines', #'name':tp_account.x_studio_import_tp_vendor_account.name,
-          'price_unit':-(round(total_charge/ex_rate,2) + round(total_duty/ex_rate,2) + round(total_tax/ex_rate,2)),
-          'price_subtotal':-(round(total_charge/ex_rate,2) + round(total_duty/ex_rate,2) + round(total_tax/ex_rate,2)),
-          'amount_currency':-(round(total_charge/ex_rate,2) + round(total_duty/ex_rate,2) + round(total_tax/ex_rate,2)),
-          'credit':(round(total_charge/ex_rate,2) + round(total_duty/ex_rate,2) + round(total_tax/ex_rate,2)),
-          'account_id':tp_account.x_studio_import_tp_vendor_account.id,
-          'x_studio_tags':[(6, 0, tot_final_ids)],
-          'exclude_from_invoice_tab':True}])
-      
-        record.with_context(check_move_validity = True).write({'line_ids':invoice_lines})
-        
-######################################################################-------Mod-1-------###################################################################################
-  invoice_lines_ex=[]
-  
-  if total_charge_ex > 0.0000:
-    product_charge_ex = env['product.product'].search([('x_studio_charge_type', '=', 'Charge'),('type', '=', 'service'),('x_studio_non_billable', '=', True)], limit=1)
-    if product_charge_ex:
-      val_charge_ex = True
-      
-      invoice_lines_ex.append([0,0,{
-        'move_id':record.id,
-        'partner_id':record.partner_id.id,
-        'product_id':product_charge_ex.id,
-        'quantity':1,
-        'currency_id':record.currency_id.id,
-        'name':product_charge_ex.name,
-        'product_uom_id':product_charge_ex.uom_id.id,
-        'is_landed_costs_line':True,
-        'price_unit':round(total_charge_ex/ex_rate,2),
-        'price_subtotal':round(total_charge_ex/ex_rate,2),
-        'amount_currency':round(total_charge_ex/ex_rate,2),
-        'debit':round(total_charge_ex/ex_rate,2),
-        'x_studio_tags':[(6, 0, tot_charge_ex_ids)],
-        'account_id':product_charge_ex.categ_id.property_stock_account_input_categ_id.id}])
-      
-  if total_duty_ex > 0.0000:    
-    product_duty_ex = env['product.product'].search([('x_studio_charge_type', '=', 'Duty'),('type', '=', 'service'),('x_studio_non_billable', '=', True)], limit=1)
-    if product_duty_ex:
-      val_duty_ex = True
-      
-      invoice_lines_ex.append([0,0,{
-        'move_id':record.id,
-        'partner_id':record.partner_id.id,
-        'product_id':product_duty_ex.id,
-        'quantity':1,
-        'currency_id':record.currency_id.id,
-        'name':product_duty_ex.name,
-        'product_uom_id':product_duty_ex.uom_id.id,
-        'is_landed_costs_line':True,
-        'price_unit':round(total_duty_ex/ex_rate,2),
-        'price_subtotal':round(total_duty_ex/ex_rate,2),
-        'amount_currency':round(total_duty_ex/ex_rate,2),
-        'debit':round(total_duty_ex/ex_rate,2),
-        'x_studio_tags':[(6, 0, tot_duty_ex_ids)],
-        'account_id':product_duty_ex.categ_id.property_stock_account_input_categ_id.id}])
-      
-  if total_tax_ex > 0.0000:
-    product_tax_ex = env['product.product'].search([('x_studio_charge_type', '=', 'Tax'),('type', '=', 'service'),('x_studio_non_billable', '=', True)], limit=1)
-    if product_tax_ex:
-      val_tax_ex = True
-      
-      invoice_lines_ex.append([0,0,{
-        'move_id':record.id,
-        'partner_id':record.partner_id.id,
-        'product_id':product_tax_ex.id,
-        'quantity':1,
-        'currency_id':record.currency_id.id,
-        'name':product_tax_ex.name,
-        'product_uom_id':product_tax_ex.uom_id.id,
-        'is_landed_costs_line':True,
-        'price_unit':round(total_tax_ex/ex_rate,2),
-        'price_subtotal':round(total_tax_ex/ex_rate,2),
-        'amount_currency':round(total_tax_ex/ex_rate,2),
-        'debit':round(total_tax_ex/ex_rate,2),
-        'x_studio_tags':[(6, 0, tot_tax_ex_ids)],
-        'account_id':product_tax_ex.categ_id.property_stock_account_input_categ_id.id}])
-  #raise UserError(str(round(total_charge_ex/ex_rate,2)) + "\n" + str(round(total_duty_ex/ex_rate,2)) + "\n" + str(round(total_tax_ex/ex_rate,2)) + "\n" + str((round(total_charge_ex/ex_rate,2) + round(total_duty_ex/ex_rate,2) + round(total_tax_ex/ex_rate,2))) + "\n" + str((round(total_charge_ex,2) + round(total_duty_ex,2) + round(total_tax_ex,2))))  
-  if val_charge_ex == True or val_duty_ex == True or val_tax_ex == True:
-    tp_account_ex = env['x_imports_ledger_setup'].search([('id', '=', 1)], limit=1)
-    if tp_account_ex:
-      if tp_account_ex.x_studio_import_tp_vend_acc_non_billable.id == 0:
-        raise UserError('Import TP Non Billable Vendor Account must be Specified in Imports Ledger Setup')
-      else:
-        invoice_lines_ex.append([0,0,{
-          'move_id':record.id,
-          'partner_id':record.partner_id.id,
-          'quantity':1,
-          'currency_id':record.currency_id.id,
-          'name':'Total - Non Billable Invoice Lines', #'name':tp_account_ex.x_studio_import_tp_vend_acc_non_billable.name,
-          'price_unit':-(round(total_charge_ex/ex_rate,2) + round(total_duty_ex/ex_rate,2) + round(total_tax_ex/ex_rate,2)),
-          'price_subtotal':-(round(total_charge_ex/ex_rate,2) + round(total_duty_ex/ex_rate,2) + round(total_tax_ex/ex_rate,2)),
-          'amount_currency':-(round(total_charge_ex/ex_rate,2) + round(total_duty_ex/ex_rate,2) + round(total_tax_ex/ex_rate,2)),
-          'credit':(round(total_charge_ex/ex_rate,2) + round(total_duty_ex/ex_rate,2) + round(total_tax_ex/ex_rate,2)),
-          'account_id':tp_account_ex.x_studio_import_tp_vend_acc_non_billable.id,
-          'x_studio_tags':[(6, 0, tot_final_ex_ids)],
-          'exclude_from_invoice_tab':True}])
-      
-        record.with_context(check_move_validity = True).write({'line_ids':invoice_lines_ex})
-######################################################################-------Mod-1-------###################################################################################
-
-######################################################################-------Mod-2-------###################################################################################
-  invoice_lines_cd=[]
-  
-  tp_account_debit = env['x_imports_ledger_setup'].search([('id', '=', 1)], limit=1)
-  if tp_account_debit:
-    if tp_account_debit.x_studio_import_tp_vendor_debit_acc.id == 0:
-      raise UserError('Import TP Vendor Debit Account must be Specified in Imports Ledger Setup')
-    else:
-      if total_charge_cd > 0.0000:
-        val_charge_cd = True
-            
-        invoice_lines_cd.append([0,0,{
-          'move_id':record.id,
-          'account_id':tp_account_debit.x_studio_import_tp_vendor_debit_acc.id,
-          'partner_id':record.partner_id.id,
-          'name':'Charge - TP Invoice Line', #'name':'Charge - TP Debit Account',
-          'currency_id':record.currency_id.id,
-          'amount_currency':round(total_charge_cd/ex_rate,2),
-          'x_studio_tags':[(6, 0, tot_charge_cd_ids)],
-          'debit':round(total_charge_cd/ex_rate,2)}])
-            
-      if total_duty_cd > 0.0000:    
-        val_duty_cd = True
-            
-        invoice_lines_cd.append([0,0,{
-          'move_id':record.id,
-          'account_id':tp_account_debit.x_studio_import_tp_vendor_debit_acc.id,
-          'partner_id':record.partner_id.id,
-          'name':'Duty - TP Invoice Line', #'name':'Duty - TP Debit Account',
-          'currency_id':record.currency_id.id,
-          'amount_currency':round(total_duty_cd/ex_rate,2),
-          'x_studio_tags':[(6, 0, tot_duty_cd_ids)],
-          'debit':round(total_duty_cd/ex_rate,2)}])
-            
-      if total_tax_cd > 0.0000:
-        val_tax_cd = True
-            
-        invoice_lines_cd.append([0,0,{
-          'move_id':record.id,
-          'account_id':tp_account_debit.x_studio_import_tp_vendor_debit_acc.id,
-          'partner_id':record.partner_id.id,
-          'name':'Tax - TP Invoice Line', #'name':'Tax - TP Debit Account',
-          'currency_id':record.currency_id.id,
-          'amount_currency':round(total_tax_cd/ex_rate,2),
-          'x_studio_tags':[(6, 0, tot_tax_cd_ids)],
-          'debit':round(total_tax_cd/ex_rate,2)}])
-      ##########################
-      creditor_acc = env['account.move.line'].search([('move_id', '=', record.id), ('account_id', '=', record.partner_id.property_account_payable_id.id)],limit=1)
-      ##########################
-      #raise UserError(str(round(total_charge_cd/ex_rate,2)) + "\n" + str(round(total_duty_cd/ex_rate,2)) + "\n" + str(round(total_tax_cd/ex_rate,2)) + "\n" + str((round(total_charge_cd/ex_rate,2) + round(total_duty_cd/ex_rate,2) + round(total_tax_cd/ex_rate,2))))    
-      if val_charge_cd == True or val_duty_cd == True or val_tax_cd == True:
-        tp_account_cd = env['x_imports_ledger_setup'].search([('id', '=', 1)], limit=1)
-        if tp_account_cd:
-          if tp_account_cd.x_studio_import_tp_vendor_account.id == 0:
-            raise UserError('Import TP Vendor Account must be Specified in Imports Ledger Setup')
-          else:
-            invoice_lines_cd.append([0,0,{
-              'move_id':record.id,
-              'partner_id':record.partner_id.id,
-              'date_maturity':creditor_acc.date_maturity,
-              'currency_id':record.currency_id.id,
-              'name':'Total - TP Invoice Lines', #'name':tp_account_cd.x_studio_import_tp_vendor_account.name,
-              'amount_currency':-(round(total_charge_cd/ex_rate,2) + round(total_duty_cd/ex_rate,2) + round(total_tax_cd/ex_rate,2)),
-              'credit':(round(total_charge_cd/ex_rate,2) + round(total_duty_cd/ex_rate,2) + round(total_tax_cd/ex_rate,2)),
-              'account_id':tp_account_cd.x_studio_import_tp_vendor_account.id,
-              'x_studio_tags':[(6, 0, tot_final_cd_ids)],
-              'exclude_from_invoice_tab':True}])
-            
-            record.with_context(check_move_validity = True).write({'line_ids':invoice_lines_cd})
-######################################################################-------Mod-2-------###################################################################################
-
-######################################################################-------Mod-3-------###################################################################################
-  invoice_lines_ex_cd=[]
-  
-  tp_account_non_billable_debit = env['x_imports_ledger_setup'].search([('id', '=', 1)], limit=1)
-  if tp_account_non_billable_debit:
-    if tp_account_non_billable_debit.x_studio_import_tp_vend_non_billable_debit_acc.id == 0:
-      raise UserError('Import TP Vendor Non Billable Debit Account must be Specified in Imports Ledger Setup')
-    else:
-      
-      if total_charge_ex_cd > 0.0000:
-        val_charge_ex_cd = True
-            
-        invoice_lines_ex_cd.append([0,0,{
-          'move_id':record.id,
-          'account_id':tp_account_non_billable_debit.x_studio_import_tp_vend_non_billable_debit_acc.id,
-          'partner_id':record.partner_id.id,
-          'name':'TP Charges - Non-Billable - Load to GL', #'name':'Charge - TP Non Billable Invoice Lines', #'name':'Charge - TP Non Billable Debit Account',
-          'currency_id':record.currency_id.id,
-          'amount_currency':round(total_charge_ex_cd/ex_rate,2),
-          'x_studio_tags':[(6, 0, tot_charge_ex_cd_ids)],
-          'debit':round(total_charge_ex_cd/ex_rate,2)}])
-            
-      if total_duty_ex_cd > 0.0000:    
-        val_duty_ex_cd = True
-            
-        invoice_lines_ex_cd.append([0,0,{
-          'move_id':record.id,
-          'account_id':tp_account_non_billable_debit.x_studio_import_tp_vend_non_billable_debit_acc.id,
-          'partner_id':record.partner_id.id,
-          'name':'Duty - TP Non Billable Invoice Lines', #'name':'Duty - TP Non Billable Debit Account',
-          'currency_id':record.currency_id.id,
-          'amount_currency':round(total_duty_ex_cd/ex_rate,2),
-          'x_studio_tags':[(6, 0, tot_duty_ex_cd_ids)],
-          'debit':round(total_duty_ex_cd/ex_rate,2)}])
-            
-      if total_tax_ex_cd > 0.0000:
-        val_tax_ex_cd = True
-            
-        invoice_lines_ex_cd.append([0,0,{
-          'move_id':record.id,
-          'account_id':tp_account_non_billable_debit.x_studio_import_tp_vend_non_billable_debit_acc.id,
-          'partner_id':record.partner_id.id,
-          'name':'TP Tax - Non-Billable - Load to GL', #'name':'Tax - TP Non Billable Invoice Lines', #'name':'Tax - TP Non Billable Debit Account',
-          'currency_id':record.currency_id.id,
-          'amount_currency':round(total_tax_ex_cd/ex_rate,2),
-          'x_studio_tags':[(6, 0, tot_tax_ex_cd_ids)],
-          'debit':round(total_tax_ex_cd/ex_rate,2)}])
-      
-      if val_charge_ex_cd == True or val_duty_ex_cd == True or val_tax_ex_cd == True:
-        tp_account_ex_cd = env['x_imports_ledger_setup'].search([('id', '=', 1)], limit=1)
-        if tp_account_ex_cd:
-          if tp_account_ex_cd.x_studio_import_tp_vend_acc_non_billable.id == 0:
-            raise UserError('Import TP Non Billable Vendor Account must be Specified in Imports Ledger Setup')
-          else:
-            #tot_final_ex_cd_ids = (tot_charge_ex_cd_ids + tot_duty_ex_cd_ids + tot_tax_ex_cd_ids)######
-            invoice_lines_ex_cd.append([0,0,{
-              'move_id':record.id,
-              'partner_id':record.partner_id.id,
-              'currency_id':record.currency_id.id,
-              'name':'Total - TP Non Billable Invoice Lines', #'name':tp_account_ex_cd.x_studio_import_tp_vend_acc_non_billable.name,
-              'amount_currency':-(round(total_charge_ex_cd/ex_rate,2) + round(total_duty_ex_cd/ex_rate,2) + round(total_tax_ex_cd/ex_rate,2)),
-              'credit':(round(total_charge_ex_cd/ex_rate,2) + round(total_duty_ex_cd/ex_rate,2) + round(total_tax_ex_cd/ex_rate,2)),
-              'account_id':tp_account_ex_cd.x_studio_import_tp_vend_acc_non_billable.id,
-              'x_studio_tags':[(6, 0, tot_final_ex_cd_ids)],
-              'exclude_from_invoice_tab':True}])
-        
-            record.with_context(check_move_validity = True).write({'line_ids':invoice_lines_ex_cd})
-######################################################################-------Mod-3-------###################################################################################
-
-#if (charge + duty + tax) > 0.0000:
-#    record.with_context(check_move_validity = False).write({'line_ids':invoice_lines}) 
-
-#    create_charges = env['account.move.line'].with_context(check_move_validity = False).create({'move_id':record.id,'partner_id':record.partner_id.id,'product_id':product_charge.id,'quantity':1,'currency_id':record.currency_id.id,'name':product_charge.name,'product_uom_id':product_charge.uom_id.id,'is_landed_costs_line':True,'price_unit':10.00,'price_subtotal':10.00,'account_id':4})
-#    payable_account = env['account.move.line'].with_context(check_move_validity = True).search([('move_id', '=', record.id), ('account_id', '=', record.partner_id.property_account_payable_id.id)], limit=1)
-#    if payable_account:
-#      payable_account.write({'credit':(payable_account.credit + (charge + duty + tax))})
-   
+    <field name="code"><![CDATA[if record.id:
+  
+  company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
+  company = env['res.company'].browse(company_id)
+
+  con_line = env['x_consignment_line'].search([('x_studio_consignment_header_id', '=', record.x_studio_consignment_no.id), ('x_studio_purchase_id', '=', record.x_studio_purchase_id.id)],limit=1)
+  if not con_line:
+    raise UserError('The Selected Consignment No is not linked with the Current PO.')
+  
+  ex_rate = 1
+
+  company_currency = env['res.config.settings'].search([('currency_id', '=', record.currency_id.id)],limit=1)
+  if company_currency:
+    ex_rate = 1
+  else:
+    custom_currency = env['res.currency'].search([('id', '=', record.currency_id.id),('active', '=', True)],limit=1)
+    if custom_currency:
+      custom_currency_rate = env['res.currency.rate'].search([('currency_id', '=', custom_currency.id),('name', '<=', datetime.datetime.today())],order='name desc',limit=1)
+      if custom_currency_rate.inverse_company_rate != 0:
+        ex_rate = custom_currency_rate.inverse_company_rate
+    
+    """custom_currency = env['res.currency'].search([('id', '=', record.currency_id.id),('active', '=', True)],limit=1)
+    if custom_currency.rate > 0:
+      ex_rate = custom_currency.rate"""
+
+  
+  done = 0  
+  select = 0
+  total_amount = 0
+  total_charge = 0
+  total_duty = 0
+  total_tax = 0
+  val_charge = False
+  val_duty = False
+  val_tax = False
+  total_charge_cd = 0
+  total_duty_cd = 0
+  total_tax_cd = 0
+  val_charge_cd = False
+  val_duty_cd = False
+  val_tax_cd = False
+  total_charge_ex = 0
+  total_duty_ex = 0
+  total_tax_ex = 0
+  val_charge_ex = False
+  val_duty_ex = False
+  val_tax_ex = False
+  total_charge_ex_cd = 0
+  total_duty_ex_cd = 0
+  total_tax_ex_cd = 0
+  val_charge_ex_cd = False
+  val_duty_ex_cd = False
+  val_tax_ex_cd = False
+  
+  tot_charge_ids = []
+  tot_duty_ids = []
+  tot_tax_ids = []
+  tot_final_ids = []
+  
+  tot_charge_ex_ids = []
+  tot_duty_ex_ids = []
+  tot_tax_ex_ids = []
+  tot_final_ex_ids = []
+  
+  tot_charge_cd_ids = []
+  tot_duty_cd_ids = []
+  tot_tax_cd_ids = []
+  tot_final_cd_ids = []
+  
+  tot_charge_ex_cd_ids = []
+  tot_duty_ex_cd_ids = []
+  tot_tax_ex_cd_ids = []
+  tot_final_ex_cd_ids = []
+  
+  for po_line in record.invoice_line_ids:
+    con_line_2 = env['x_consignment_line'].search([('x_studio_consignment_header_id', '=', record.x_studio_consignment_no.id), ('x_studio_purchase_id', '=', record.x_studio_purchase_id.id), ('x_studio_product_id', '=', po_line.product_id.id), ('x_studio_invoice_qty', '=', po_line.quantity), ('x_studio_purchase_line_id', '=', po_line.purchase_line_id.id)],limit=1)
+    if con_line_2:
+      select += 1
+      total_amount += po_line.quantity * (po_line.price_subtotal / po_line.quantity)
+      po_line.write({'quantity':con_line_2.x_studio_invoice_qty})
+          
+      if con_line_2.x_studio_valid_charge == True:
+        total_charge += con_line_2.x_studio_tot_charge
+        #tot_charge_ids = con_line_2.x_studio_tot_charge_ids
+        if con_line_2.x_studio_tot_charge_ids != []:
+          for ids in con_line_2.x_studio_tot_charge_ids:
+            tot_charge_ids.append(ids.id)
+            tot_final_ids.append(ids.id)
+      if con_line_2.x_studio_valid_duty == True:
+        total_duty += con_line_2.x_studio_tot_duty
+        #tot_duty_ids = con_line_2.x_studio_tot_duty_ids
+        if con_line_2.x_studio_tot_duty_ids != []:
+          for ids in con_line_2.x_studio_tot_duty_ids:
+            tot_duty_ids.append(ids.id)
+            tot_final_ids.append(ids.id)
+      if con_line_2.x_studio_valid_tax == True:
+        total_tax += con_line_2.x_studio_tot_tax
+        #tot_tax_ids = con_line_2.x_studio_tot_tax_ids
+        if con_line_2.x_studio_tot_tax_ids != []:
+          for ids in con_line_2.x_studio_tot_tax_ids:
+            tot_tax_ids.append(ids.id)
+            tot_final_ids.append(ids.id)
+        
+      if con_line_2.x_studio_valid_charge_cd == True:
+        total_charge_cd += con_line_2.x_studio_tot_charge_cd
+        #tot_charge_cd_ids = con_line_2.x_studio_tot_charge_cd_ids
+        if con_line_2.x_studio_tot_charge_cd_ids != []:
+          for ids in con_line_2.x_studio_tot_charge_cd_ids:
+            tot_charge_cd_ids.append(ids.id)
+            tot_final_cd_ids.append(ids.id)
+      if con_line_2.x_studio_valid_duty_cd == True:
+        total_duty_cd += con_line_2.x_studio_tot_duty_cd
+        #tot_duty_cd_ids = con_line_2.x_studio_tot_duty_cd_ids
+        if con_line_2.x_studio_tot_duty_cd_ids != []:
+          for ids in con_line_2.x_studio_tot_duty_cd_ids:
+            tot_duty_cd_ids.append(ids.id)
+            tot_final_cd_ids.append(ids.id)
+      if con_line_2.x_studio_valid_tax_cd == True:
+        total_tax_cd += con_line_2.x_studio_tot_tax_cd
+        #tot_tax_cd_ids = con_line_2.x_studio_tot_tax_cd_ids
+        if con_line_2.x_studio_tot_tax_cd_ids != []:
+          for ids in con_line_2.x_studio_tot_tax_cd_ids:
+            tot_tax_cd_ids.append(ids.id)
+            tot_final_cd_ids.append(ids.id)
+        
+      if con_line_2.x_studio_valid_charge_ex == True:
+        total_charge_ex += con_line_2.x_studio_tot_charge_ex
+        #tot_charge_ex_ids = con_line_2.x_studio_tot_charge_ex_ids
+        if con_line_2.x_studio_tot_charge_ex_ids != []:
+          for ids in con_line_2.x_studio_tot_charge_ex_ids:
+            tot_charge_ex_ids.append(ids.id)
+            tot_final_ex_ids.append(ids.id)
+      if con_line_2.x_studio_valid_duty_ex == True:
+        total_duty_ex += con_line_2.x_studio_tot_duty_ex
+        #tot_duty_ex_ids = con_line_2.x_studio_tot_duty_ex_ids
+        if con_line_2.x_studio_tot_duty_ex_ids != []:
+          for ids in con_line_2.x_studio_tot_duty_ex_ids:
+            tot_duty_ex_ids.append(ids.id)
+            tot_final_ex_ids.append(ids.id)
+      if con_line_2.x_studio_valid_tax_ex == True:
+        total_tax_ex += con_line_2.x_studio_tot_tax_ex
+        #tot_tax_ex_ids = con_line_2.x_studio_tot_tax_ex_ids
+        if con_line_2.x_studio_tot_tax_ex_ids != []:
+          for ids in con_line_2.x_studio_tot_tax_ex_ids:
+            tot_tax_ex_ids.append(ids.id)
+            tot_final_ex_ids.append(ids.id)
+        
+      if con_line_2.x_studio_valid_charge_ex_cd == True:
+        total_charge_ex_cd += con_line_2.x_studio_tot_charge_ex_cd
+        #tot_charge_ex_cd_ids = con_line_2.x_studio_tot_charge_ex_cd_ids
+        if con_line_2.x_studio_tot_charge_ex_cd_ids != []:
+          for ids in con_line_2.x_studio_tot_charge_ex_cd_ids:
+            tot_charge_ex_cd_ids.append(ids.id)
+            tot_final_ex_cd_ids.append(ids.id)
+      if con_line_2.x_studio_valid_duty_ex_cd == True:
+        total_duty_ex_cd += con_line_2.x_studio_tot_duty_ex_cd
+        #tot_duty_ex_cd_ids = con_line_2.x_studio_tot_duty_ex_cd_ids
+        if con_line_2.x_studio_tot_duty_ex_cd_ids != []:
+          for ids in con_line_2.x_studio_tot_duty_ex_cd_ids:
+            tot_duty_ex_cd_ids.append(ids.id)
+            tot_final_ex_cd_ids.append(ids.id)
+      if con_line_2.x_studio_valid_tax_ex_cd == True:
+        total_tax_ex_cd += con_line_2.x_studio_tot_tax_ex_cd
+        #tot_tax_ex_cd_ids = con_line_2.x_studio_tot_tax_ex_cd_ids
+        if con_line_2.x_studio_tot_tax_ex_cd_ids != []:
+          for ids in con_line_2.x_studio_tot_tax_ex_cd_ids:
+            tot_tax_ex_cd_ids.append(ids.id)
+            tot_final_ex_cd_ids.append(ids.id)
+  
+  for po_line_count in record.invoice_line_ids:
+    if po_line_count.quantity > 0.0000:
+      done += 1
+  
+  if done == 0:
+    raise UserError('You have not recorded done quantities yet, Atleast one done quantity should be recorded to proceed.') 
+  
+  if select == 0:
+    raise UserError('The Selected Consignment No is not linked with the Correct Items & Item Quantities in the Current PO.')
+
+  con_header = env['x_consignment_header'].search([('id', '=', record.x_studio_consignment_no.id)],limit=1)
+  grand_total_amount = 0
+  if con_header:
+    journal = env['account.journal'].search([('name', '=', 'Vendor Despatch'),('company_id', '=', company.id)], limit=1) 
+    if not journal:
+     raise UserError('The required journal has not been setup. Process terminated.')
+           
+    if con_header.x_studio_vendor_dispatch == True:
+      grand_total_amount = total_amount * con_header.x_studio_vendor_dispatch_exchange_rate
+      if grand_total_amount > 0.0000:
+        despatch_account = env['x_imports_ledger_setup'].search([('x_studio_company_id', '=', company.id)], limit=1)
+        if despatch_account:
+          if despatch_account.x_studio_vendor_despatch_debit_account.id == 0 or despatch_account.x_studio_vendor_despatch_credit_account.id == 0:
+            raise UserError('Vendor Despatch Accounts must be Specified in Imports Ledger Setup')
+            
+        despatch_lines=[]
+        despatch_lines.append([0,0,{
+          'account_id':despatch_account.x_studio_vendor_despatch_credit_account.id,
+          'partner_id':record.partner_id.id,
+          'name':'Vendor Despatch Reversal',
+          'debit':round(grand_total_amount,2)}])
+                  
+        despatch_lines.append([0,0,{
+          'account_id':despatch_account.x_studio_vendor_despatch_debit_account.id,
+          'partner_id':record.partner_id.id,
+          'name':'Vendor Despatch Reversal',
+          'credit':round(grand_total_amount,2)}])	
+        
+        vendor_despatch = env['account.move'].create({'x_studio_created_from_vendor_bill':record.id,'journal_id':journal.id,'move_type':'entry','line_ids':despatch_lines})
+              
+        update_vendor_despatch = env['account.move'].search([('id', '=', vendor_despatch.id)],limit=1)
+        if update_vendor_despatch:
+          update_vendor_despatch.write({'state':'posted'})
+        
+    if con_header.x_studio_custom_clearance == True: 
+      despatch_lines_2=[]
+      if total_charge > 0.0000:
+        despatch_lines_2.append([0,0,{
+        'account_id':con_header.x_studio_account_charge.id,
+        'name':'Purchase, Charge - Reversal',
+        'credit':round((total_charge * con_header.x_studio_custom_clearance_exchange_rate),2)}])
+          
+      if total_duty > 0.0000:  
+        despatch_lines_2.append([0,0,{
+        'account_id':con_header.x_studio_account_duty.id,
+        'name':'Purchase Misc. Charges Duty - Reversal',
+        'credit':round((total_duty * con_header.x_studio_custom_clearance_exchange_rate),2)}])
+          
+      if total_tax > 0.0000:  
+        despatch_lines_2.append([0,0,{
+        'account_id':con_header.x_studio_account_tax.id,
+        'name':'Purchase, Packing Slip Tax - Reversal',
+        'credit':round((total_tax * con_header.x_studio_custom_clearance_exchange_rate),2)}])
+      
+      if (total_charge + total_duty + total_tax) > 0.0000:    
+        despatch_lines_2.append([0,0,{
+        'account_id':con_header.x_studio_offset_account.id,
+        'name':'Purchase Packing Slip Offset - Reversal',
+        'debit':(round((total_charge * con_header.x_studio_custom_clearance_exchange_rate),2) + round((total_duty * con_header.x_studio_custom_clearance_exchange_rate),2) + round((total_tax * con_header.x_studio_custom_clearance_exchange_rate),2))}])	
+      
+      custom_clearance = env['account.move'].create({'x_studio_created_from_vendor_bill_1':record.id,'journal_id':journal.id,'move_type':'entry','line_ids':despatch_lines_2})
+          
+      update_custom_clearance = env['account.move'].search([('id', '=', custom_clearance.id)],limit=1)
+      if update_custom_clearance:
+        update_custom_clearance.write({'state':'posted'})
+        
+###############################################################################################################################################################        
+  invoice_lines=[]
+  
+  if total_charge > 0.0000:
+    product_charge = env['product.product'].search([('x_studio_charge_type', '=', 'Charge'),('type', '=', 'service'),('x_studio_non_billable', '=', False)], limit=1)
+    if product_charge:
+      val_charge = True
+      
+      invoice_lines.append([0,0,{
+        'move_id':record.id,
+        'partner_id':record.partner_id.id,
+        'product_id':product_charge.id,
+        'quantity':1,
+        'currency_id':record.currency_id.id,
+        'name':product_charge.name,
+        'product_uom_id':product_charge.uom_id.id,
+        'is_landed_costs_line':True,
+        'price_unit':round(total_charge/ex_rate,2),
+        'price_subtotal':round(total_charge/ex_rate,2),
+        'amount_currency':round(total_charge/ex_rate,2),
+        'debit':round(total_charge/ex_rate,2),
+        'x_studio_tags':[(6, 0, tot_charge_ids)],
+        'account_id':product_charge.categ_id.property_stock_account_input_categ_id.id}])
+      
+  if total_duty > 0.0000:    
+    product_duty = env['product.product'].search([('x_studio_charge_type', '=', 'Duty'),('type', '=', 'service'),('x_studio_non_billable', '=', False)], limit=1)
+    if product_duty:
+      val_duty = True
+      
+      invoice_lines.append([0,0,{
+        'move_id':record.id,
+        'partner_id':record.partner_id.id,
+        'product_id':product_duty.id,
+        'quantity':1,
+        'currency_id':record.currency_id.id,
+        'name':product_duty.name,
+        'product_uom_id':product_duty.uom_id.id,
+        'is_landed_costs_line':True,
+        'price_unit':round(total_duty/ex_rate,2),
+        'price_subtotal':round(total_duty/ex_rate,2),
+        'amount_currency':round(total_duty/ex_rate,2),
+        'debit':round(total_duty/ex_rate,2),
+        'x_studio_tags':[(6, 0, tot_duty_ids)],
+        'account_id':product_duty.categ_id.property_stock_account_input_categ_id.id}])
+      
+  if total_tax > 0.0000:
+    product_tax = env['product.product'].search([('x_studio_charge_type', '=', 'Tax'),('type', '=', 'service'),('x_studio_non_billable', '=', False)], limit=1)
+    if product_tax:
+      val_tax = True
+      
+      invoice_lines.append([0,0,{
+        'move_id':record.id,
+        'partner_id':record.partner_id.id,
+        'product_id':product_tax.id,
+        'quantity':1,
+        'currency_id':record.currency_id.id,
+        'name':product_tax.name,
+        'product_uom_id':product_tax.uom_id.id,
+        'is_landed_costs_line':True,
+        'price_unit':round(total_tax/ex_rate,2),
+        'price_subtotal':round(total_tax/ex_rate,2),
+        'amount_currency':round(total_tax/ex_rate,2),
+        'debit':round(total_tax/ex_rate,2),
+        'x_studio_tags':[(6, 0, tot_tax_ids)],
+        'account_id':product_tax.categ_id.property_stock_account_input_categ_id.id}])
+  ##########################
+  creditor_acc = env['account.move.line'].search([('move_id', '=', record.id), ('account_id', '=', record.partner_id.property_account_payable_id.id)],limit=1)
+  ##########################
+  #raise UserError(str(round(total_charge/ex_rate,2)) + "\n" + str(round(total_duty/ex_rate,2)) + "\n" + str(round(total_tax/ex_rate,2)) + "\n" + str((round(total_charge/ex_rate,2) + round(total_duty/ex_rate,2) + round(total_tax/ex_rate,2))))   
+  if val_charge == True or val_duty == True or val_tax == True:
+    tp_account = env['x_imports_ledger_setup'].search([('id', '=', 1)], limit=1)
+    if tp_account:
+      if tp_account.x_studio_import_tp_vendor_account.id == 0:
+        raise UserError('Import TP Vendor Account must be Specified in Imports Ledger Setup')
+      else:
+        invoice_lines.append([0,0,{
+          'move_id':record.id,
+          'partner_id':record.partner_id.id,
+          'quantity':1,
+          'date_maturity':creditor_acc.date_maturity,
+          'currency_id':record.currency_id.id,
+          'name':'Total - Billable Invoice Lines', #'name':tp_account.x_studio_import_tp_vendor_account.name,
+          'price_unit':-(round(total_charge/ex_rate,2) + round(total_duty/ex_rate,2) + round(total_tax/ex_rate,2)),
+          'price_subtotal':-(round(total_charge/ex_rate,2) + round(total_duty/ex_rate,2) + round(total_tax/ex_rate,2)),
+          'amount_currency':-(round(total_charge/ex_rate,2) + round(total_duty/ex_rate,2) + round(total_tax/ex_rate,2)),
+          'credit':(round(total_charge/ex_rate,2) + round(total_duty/ex_rate,2) + round(total_tax/ex_rate,2)),
+          'account_id':tp_account.x_studio_import_tp_vendor_account.id,
+          'x_studio_tags':[(6, 0, tot_final_ids)],
+          'exclude_from_invoice_tab':True}])
+      
+        record.with_context(check_move_validity = True).write({'line_ids':invoice_lines})
+        
+######################################################################-------Mod-1-------###################################################################################
+  invoice_lines_ex=[]
+  
+  if total_charge_ex > 0.0000:
+    product_charge_ex = env['product.product'].search([('x_studio_charge_type', '=', 'Charge'),('type', '=', 'service'),('x_studio_non_billable', '=', True)], limit=1)
+    if product_charge_ex:
+      val_charge_ex = True
+      
+      invoice_lines_ex.append([0,0,{
+        'move_id':record.id,
+        'partner_id':record.partner_id.id,
+        'product_id':product_charge_ex.id,
+        'quantity':1,
+        'currency_id':record.currency_id.id,
+        'name':product_charge_ex.name,
+        'product_uom_id':product_charge_ex.uom_id.id,
+        'is_landed_costs_line':True,
+        'price_unit':round(total_charge_ex/ex_rate,2),
+        'price_subtotal':round(total_charge_ex/ex_rate,2),
+        'amount_currency':round(total_charge_ex/ex_rate,2),
+        'debit':round(total_charge_ex/ex_rate,2),
+        'x_studio_tags':[(6, 0, tot_charge_ex_ids)],
+        'account_id':product_charge_ex.categ_id.property_stock_account_input_categ_id.id}])
+      
+  if total_duty_ex > 0.0000:    
+    product_duty_ex = env['product.product'].search([('x_studio_charge_type', '=', 'Duty'),('type', '=', 'service'),('x_studio_non_billable', '=', True)], limit=1)
+    if product_duty_ex:
+      val_duty_ex = True
+      
+      invoice_lines_ex.append([0,0,{
+        'move_id':record.id,
+        'partner_id':record.partner_id.id,
+        'product_id':product_duty_ex.id,
+        'quantity':1,
+        'currency_id':record.currency_id.id,
+        'name':product_duty_ex.name,
+        'product_uom_id':product_duty_ex.uom_id.id,
+        'is_landed_costs_line':True,
+        'price_unit':round(total_duty_ex/ex_rate,2),
+        'price_subtotal':round(total_duty_ex/ex_rate,2),
+        'amount_currency':round(total_duty_ex/ex_rate,2),
+        'debit':round(total_duty_ex/ex_rate,2),
+        'x_studio_tags':[(6, 0, tot_duty_ex_ids)],
+        'account_id':product_duty_ex.categ_id.property_stock_account_input_categ_id.id}])
+      
+  if total_tax_ex > 0.0000:
+    product_tax_ex = env['product.product'].search([('x_studio_charge_type', '=', 'Tax'),('type', '=', 'service'),('x_studio_non_billable', '=', True)], limit=1)
+    if product_tax_ex:
+      val_tax_ex = True
+      
+      invoice_lines_ex.append([0,0,{
+        'move_id':record.id,
+        'partner_id':record.partner_id.id,
+        'product_id':product_tax_ex.id,
+        'quantity':1,
+        'currency_id':record.currency_id.id,
+        'name':product_tax_ex.name,
+        'product_uom_id':product_tax_ex.uom_id.id,
+        'is_landed_costs_line':True,
+        'price_unit':round(total_tax_ex/ex_rate,2),
+        'price_subtotal':round(total_tax_ex/ex_rate,2),
+        'amount_currency':round(total_tax_ex/ex_rate,2),
+        'debit':round(total_tax_ex/ex_rate,2),
+        'x_studio_tags':[(6, 0, tot_tax_ex_ids)],
+        'account_id':product_tax_ex.categ_id.property_stock_account_input_categ_id.id}])
+  #raise UserError(str(round(total_charge_ex/ex_rate,2)) + "\n" + str(round(total_duty_ex/ex_rate,2)) + "\n" + str(round(total_tax_ex/ex_rate,2)) + "\n" + str((round(total_charge_ex/ex_rate,2) + round(total_duty_ex/ex_rate,2) + round(total_tax_ex/ex_rate,2))) + "\n" + str((round(total_charge_ex,2) + round(total_duty_ex,2) + round(total_tax_ex,2))))  
+  if val_charge_ex == True or val_duty_ex == True or val_tax_ex == True:
+    tp_account_ex = env['x_imports_ledger_setup'].search([('id', '=', 1)], limit=1)
+    if tp_account_ex:
+      if tp_account_ex.x_studio_import_tp_vend_acc_non_billable.id == 0:
+        raise UserError('Import TP Non Billable Vendor Account must be Specified in Imports Ledger Setup')
+      else:
+        invoice_lines_ex.append([0,0,{
+          'move_id':record.id,
+          'partner_id':record.partner_id.id,
+          'quantity':1,
+          'currency_id':record.currency_id.id,
+          'name':'Total - Non Billable Invoice Lines', #'name':tp_account_ex.x_studio_import_tp_vend_acc_non_billable.name,
+          'price_unit':-(round(total_charge_ex/ex_rate,2) + round(total_duty_ex/ex_rate,2) + round(total_tax_ex/ex_rate,2)),
+          'price_subtotal':-(round(total_charge_ex/ex_rate,2) + round(total_duty_ex/ex_rate,2) + round(total_tax_ex/ex_rate,2)),
+          'amount_currency':-(round(total_charge_ex/ex_rate,2) + round(total_duty_ex/ex_rate,2) + round(total_tax_ex/ex_rate,2)),
+          'credit':(round(total_charge_ex/ex_rate,2) + round(total_duty_ex/ex_rate,2) + round(total_tax_ex/ex_rate,2)),
+          'account_id':tp_account_ex.x_studio_import_tp_vend_acc_non_billable.id,
+          'x_studio_tags':[(6, 0, tot_final_ex_ids)],
+          'exclude_from_invoice_tab':True}])
+      
+        record.with_context(check_move_validity = True).write({'line_ids':invoice_lines_ex})
+######################################################################-------Mod-1-------###################################################################################
+
+######################################################################-------Mod-2-------###################################################################################
+  invoice_lines_cd=[]
+  
+  tp_account_debit = env['x_imports_ledger_setup'].search([('id', '=', 1)], limit=1)
+  if tp_account_debit:
+    if tp_account_debit.x_studio_import_tp_vendor_debit_acc.id == 0:
+      raise UserError('Import TP Vendor Debit Account must be Specified in Imports Ledger Setup')
+    else:
+      if total_charge_cd > 0.0000:
+        val_charge_cd = True
+            
+        invoice_lines_cd.append([0,0,{
+          'move_id':record.id,
+          'account_id':tp_account_debit.x_studio_import_tp_vendor_debit_acc.id,
+          'partner_id':record.partner_id.id,
+          'name':'Charge - TP Invoice Line', #'name':'Charge - TP Debit Account',
+          'currency_id':record.currency_id.id,
+          'amount_currency':round(total_charge_cd/ex_rate,2),
+          'x_studio_tags':[(6, 0, tot_charge_cd_ids)],
+          'debit':round(total_charge_cd/ex_rate,2)}])
+            
+      if total_duty_cd > 0.0000:    
+        val_duty_cd = True
+            
+        invoice_lines_cd.append([0,0,{
+          'move_id':record.id,
+          'account_id':tp_account_debit.x_studio_import_tp_vendor_debit_acc.id,
+          'partner_id':record.partner_id.id,
+          'name':'Duty - TP Invoice Line', #'name':'Duty - TP Debit Account',
+          'currency_id':record.currency_id.id,
+          'amount_currency':round(total_duty_cd/ex_rate,2),
+          'x_studio_tags':[(6, 0, tot_duty_cd_ids)],
+          'debit':round(total_duty_cd/ex_rate,2)}])
+            
+      if total_tax_cd > 0.0000:
+        val_tax_cd = True
+            
+        invoice_lines_cd.append([0,0,{
+          'move_id':record.id,
+          'account_id':tp_account_debit.x_studio_import_tp_vendor_debit_acc.id,
+          'partner_id':record.partner_id.id,
+          'name':'Tax - TP Invoice Line', #'name':'Tax - TP Debit Account',
+          'currency_id':record.currency_id.id,
+          'amount_currency':round(total_tax_cd/ex_rate,2),
+          'x_studio_tags':[(6, 0, tot_tax_cd_ids)],
+          'debit':round(total_tax_cd/ex_rate,2)}])
+      ##########################
+      creditor_acc = env['account.move.line'].search([('move_id', '=', record.id), ('account_id', '=', record.partner_id.property_account_payable_id.id)],limit=1)
+      ##########################
+      #raise UserError(str(round(total_charge_cd/ex_rate,2)) + "\n" + str(round(total_duty_cd/ex_rate,2)) + "\n" + str(round(total_tax_cd/ex_rate,2)) + "\n" + str((round(total_charge_cd/ex_rate,2) + round(total_duty_cd/ex_rate,2) + round(total_tax_cd/ex_rate,2))))    
+      if val_charge_cd == True or val_duty_cd == True or val_tax_cd == True:
+        tp_account_cd = env['x_imports_ledger_setup'].search([('id', '=', 1)], limit=1)
+        if tp_account_cd:
+          if tp_account_cd.x_studio_import_tp_vendor_account.id == 0:
+            raise UserError('Import TP Vendor Account must be Specified in Imports Ledger Setup')
+          else:
+            invoice_lines_cd.append([0,0,{
+              'move_id':record.id,
+              'partner_id':record.partner_id.id,
+              'date_maturity':creditor_acc.date_maturity,
+              'currency_id':record.currency_id.id,
+              'name':'Total - TP Invoice Lines', #'name':tp_account_cd.x_studio_import_tp_vendor_account.name,
+              'amount_currency':-(round(total_charge_cd/ex_rate,2) + round(total_duty_cd/ex_rate,2) + round(total_tax_cd/ex_rate,2)),
+              'credit':(round(total_charge_cd/ex_rate,2) + round(total_duty_cd/ex_rate,2) + round(total_tax_cd/ex_rate,2)),
+              'account_id':tp_account_cd.x_studio_import_tp_vendor_account.id,
+              'x_studio_tags':[(6, 0, tot_final_cd_ids)],
+              'exclude_from_invoice_tab':True}])
+            
+            record.with_context(check_move_validity = True).write({'line_ids':invoice_lines_cd})
+######################################################################-------Mod-2-------###################################################################################
+
+######################################################################-------Mod-3-------###################################################################################
+  invoice_lines_ex_cd=[]
+  
+  tp_account_non_billable_debit = env['x_imports_ledger_setup'].search([('id', '=', 1)], limit=1)
+  if tp_account_non_billable_debit:
+    if tp_account_non_billable_debit.x_studio_import_tp_vend_non_billable_debit_acc.id == 0:
+      raise UserError('Import TP Vendor Non Billable Debit Account must be Specified in Imports Ledger Setup')
+    else:
+      
+      if total_charge_ex_cd > 0.0000:
+        val_charge_ex_cd = True
+            
+        invoice_lines_ex_cd.append([0,0,{
+          'move_id':record.id,
+          'account_id':tp_account_non_billable_debit.x_studio_import_tp_vend_non_billable_debit_acc.id,
+          'partner_id':record.partner_id.id,
+          'name':'TP Charges - Non-Billable - Load to GL', #'name':'Charge - TP Non Billable Invoice Lines', #'name':'Charge - TP Non Billable Debit Account',
+          'currency_id':record.currency_id.id,
+          'amount_currency':round(total_charge_ex_cd/ex_rate,2),
+          'x_studio_tags':[(6, 0, tot_charge_ex_cd_ids)],
+          'debit':round(total_charge_ex_cd/ex_rate,2)}])
+            
+      if total_duty_ex_cd > 0.0000:    
+        val_duty_ex_cd = True
+            
+        invoice_lines_ex_cd.append([0,0,{
+          'move_id':record.id,
+          'account_id':tp_account_non_billable_debit.x_studio_import_tp_vend_non_billable_debit_acc.id,
+          'partner_id':record.partner_id.id,
+          'name':'Duty - TP Non Billable Invoice Lines', #'name':'Duty - TP Non Billable Debit Account',
+          'currency_id':record.currency_id.id,
+          'amount_currency':round(total_duty_ex_cd/ex_rate,2),
+          'x_studio_tags':[(6, 0, tot_duty_ex_cd_ids)],
+          'debit':round(total_duty_ex_cd/ex_rate,2)}])
+            
+      if total_tax_ex_cd > 0.0000:
+        val_tax_ex_cd = True
+            
+        invoice_lines_ex_cd.append([0,0,{
+          'move_id':record.id,
+          'account_id':tp_account_non_billable_debit.x_studio_import_tp_vend_non_billable_debit_acc.id,
+          'partner_id':record.partner_id.id,
+          'name':'TP Tax - Non-Billable - Load to GL', #'name':'Tax - TP Non Billable Invoice Lines', #'name':'Tax - TP Non Billable Debit Account',
+          'currency_id':record.currency_id.id,
+          'amount_currency':round(total_tax_ex_cd/ex_rate,2),
+          'x_studio_tags':[(6, 0, tot_tax_ex_cd_ids)],
+          'debit':round(total_tax_ex_cd/ex_rate,2)}])
+      
+      if val_charge_ex_cd == True or val_duty_ex_cd == True or val_tax_ex_cd == True:
+        tp_account_ex_cd = env['x_imports_ledger_setup'].search([('id', '=', 1)], limit=1)
+        if tp_account_ex_cd:
+          if tp_account_ex_cd.x_studio_import_tp_vend_acc_non_billable.id == 0:
+            raise UserError('Import TP Non Billable Vendor Account must be Specified in Imports Ledger Setup')
+          else:
+            #tot_final_ex_cd_ids = (tot_charge_ex_cd_ids + tot_duty_ex_cd_ids + tot_tax_ex_cd_ids)######
+            invoice_lines_ex_cd.append([0,0,{
+              'move_id':record.id,
+              'partner_id':record.partner_id.id,
+              'currency_id':record.currency_id.id,
+              'name':'Total - TP Non Billable Invoice Lines', #'name':tp_account_ex_cd.x_studio_import_tp_vend_acc_non_billable.name,
+              'amount_currency':-(round(total_charge_ex_cd/ex_rate,2) + round(total_duty_ex_cd/ex_rate,2) + round(total_tax_ex_cd/ex_rate,2)),
+              'credit':(round(total_charge_ex_cd/ex_rate,2) + round(total_duty_ex_cd/ex_rate,2) + round(total_tax_ex_cd/ex_rate,2)),
+              'account_id':tp_account_ex_cd.x_studio_import_tp_vend_acc_non_billable.id,
+              'x_studio_tags':[(6, 0, tot_final_ex_cd_ids)],
+              'exclude_from_invoice_tab':True}])
+        
+            record.with_context(check_move_validity = True).write({'line_ids':invoice_lines_ex_cd})
+######################################################################-------Mod-3-------###################################################################################
+
+#if (charge + duty + tax) > 0.0000:
+#    record.with_context(check_move_validity = False).write({'line_ids':invoice_lines}) 
+
+#    create_charges = env['account.move.line'].with_context(check_move_validity = False).create({'move_id':record.id,'partner_id':record.partner_id.id,'product_id':product_charge.id,'quantity':1,'currency_id':record.currency_id.id,'name':product_charge.name,'product_uom_id':product_charge.uom_id.id,'is_landed_costs_line':True,'price_unit':10.00,'price_subtotal':10.00,'account_id':4})
+#    payable_account = env['account.move.line'].with_context(check_move_validity = True).search([('move_id', '=', record.id), ('account_id', '=', record.partner_id.property_account_payable_id.id)], limit=1)
+#    if payable_account:
+#      payable_account.write({'credit':(payable_account.credit + (charge + duty + tax))})
+   
   record['x_studio_update_consignment'] = True]]></field>
   </record>
 
@@ -5179,32 +5161,32 @@ if record.invoice_origin:
     <field name="state">code</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.x_studio_currency_rate > 0.00:
-  tot_amount = 0
-  
-  #record.with_context(check_move_validity = False)
- 
-  for invoice_lines2 in record.line_ids:
-    if invoice_lines2.credit == 0.00:  
-      invoice_lines2.with_context(check_move_validity=False).write({'debit':(record.x_studio_currency_rate * abs(invoice_lines2.amount_currency))})
-    if invoice_lines2.debit == 0.00:
-      invoice_lines2.with_context(check_move_validity=False).write({'credit':(record.x_studio_currency_rate * abs(invoice_lines2.amount_currency))})
-    
-  record['x_studio_currency_rate_updated'] = True
-else:
-  raise UserError('Currency Rate must be defined!')
-  
-#record.with_context(check_move_validity = True).write({'line_ids':invoice_lines_cd})
-  
-"""  credit_line = self.env['account.move.line'].with_context(
-            check_move_validity=False).create({
-            'move_id': self.journal_entry.id,
-            'account_id': self.product.revenue_account,
-            'partner_id': self.container.partner.id,
-            'name': 'Finish '+self.job_name,
-            'credit': self.cost
-         })"""
-
+    <field name="code"><![CDATA[if record.x_studio_currency_rate > 0.00:
+  tot_amount = 0
+  
+  #record.with_context(check_move_validity = False)
+ 
+  for invoice_lines2 in record.line_ids:
+    if invoice_lines2.credit == 0.00:  
+      invoice_lines2.with_context(check_move_validity=False).write({'debit':(record.x_studio_currency_rate * abs(invoice_lines2.amount_currency))})
+    if invoice_lines2.debit == 0.00:
+      invoice_lines2.with_context(check_move_validity=False).write({'credit':(record.x_studio_currency_rate * abs(invoice_lines2.amount_currency))})
+    
+  record['x_studio_currency_rate_updated'] = True
+else:
+  raise UserError('Currency Rate must be defined!')
+  
+#record.with_context(check_move_validity = True).write({'line_ids':invoice_lines_cd})
+  
+"""  credit_line = self.env['account.move.line'].with_context(
+            check_move_validity=False).create({
+            'move_id': self.journal_entry.id,
+            'account_id': self.product.revenue_account,
+            'partner_id': self.container.partner.id,
+            'name': 'Finish '+self.job_name,
+            'credit': self.cost
+         })"""
+
  ]]></field>
   </record>
 
@@ -5394,21 +5376,21 @@ else:
     <field name="state">code</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.partner_id.customer_rank > 0:
-  if record.move_type == 'out_invoice':
-    if record.partner_id.x_studio_customer_group.x_studio_group_type != 'General':
-      if record.partner_id.x_studio_mandatory_bank_guarantee == False:
-        if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():
-          records.message_post(body="Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
-          record['x_studio_bg_sent'] = True
-        else:
-          if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_id.credit + record.amount_total):
-            records.message_post(body="The credit limit is higher than the bank guarantee amount." + "\n" + "Customer: " + str(record.partner_id.name) + "\n" + " Sales Order: " + str(record.x_studio_sale_id.name) + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_id.credit + record.amount_total))
-            record['x_studio_bg_sent'] = True
-  
-  
-
-
+    <field name="code"><![CDATA[if record.partner_id.customer_rank > 0:
+  if record.move_type == 'out_invoice':
+    if record.partner_id.x_studio_customer_group.x_studio_group_type != 'General':
+      if record.partner_id.x_studio_mandatory_bank_guarantee == False:
+        if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():
+          records.message_post(body="Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
+          record['x_studio_bg_sent'] = True
+        else:
+          if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_id.credit + record.amount_total):
+            records.message_post(body="The credit limit is higher than the bank guarantee amount." + "\n" + "Customer: " + str(record.partner_id.name) + "\n" + " Sales Order: " + str(record.x_studio_sale_id.name) + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_id.credit + record.amount_total))
+            record['x_studio_bg_sent'] = True
+  
+  
+
+
 ]]></field>
   </record>
 
@@ -5418,18 +5400,18 @@ else:
     <field name="state">code</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.partner_id.customer_rank > 0:
-  if record.move_type == 'out_invoice':
-    if record.partner_id.x_studio_customer_group.x_studio_group_type != 'General':
-      if record.partner_id.x_studio_mandatory_bank_guarantee == True:
-        if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():
-          raise UserError("Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
-            
-        else:
-          if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_id.credit + record.amount_total):
-            raise UserError("Insufficient bank guarantee." + "\n" + "Customer: " + record.partner_id.name + "\n" + "Sales Order: " + record.x_studio_sale_id.name + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_id.credit + record.amount_total))
-      
-
+    <field name="code"><![CDATA[if record.partner_id.customer_rank > 0:
+  if record.move_type == 'out_invoice':
+    if record.partner_id.x_studio_customer_group.x_studio_group_type != 'General':
+      if record.partner_id.x_studio_mandatory_bank_guarantee == True:
+        if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():
+          raise UserError("Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
+            
+        else:
+          if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_id.credit + record.amount_total):
+            raise UserError("Insufficient bank guarantee." + "\n" + "Customer: " + record.partner_id.name + "\n" + "Sales Order: " + record.x_studio_sale_id.name + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_id.credit + record.amount_total))
+      
+
 ]]></field>
   </record>
 
@@ -5439,11 +5421,11 @@ else:
     <field name="state">code</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.partner_id.customer_rank > 0:
-  if record.partner_id.id:
-    if record.x_studio_order_payment_method == 'Credit':
-      if (record.partner_id.credit + record.amount_total) > record.partner_id.credit_limit:
-        raise UserError("Customer's credit limit is exceeded." + "\n" + "Customer credit limit: " + str(record.partner_id.credit_limit) + "\n" + "Cust. Total Receivable: " + str(record.partner_id.credit) + "\n" + "Current Tot. Amount: " + str(record.amount_total) + "\n" + "Over Credit Amount: " + str((record.partner_id.credit + record.amount_total) - record.partner_id.credit_limit))
+    <field name="code"><![CDATA[if record.partner_id.customer_rank > 0:
+  if record.partner_id.id:
+    if record.x_studio_order_payment_method == 'Credit':
+      if (record.partner_id.credit + record.amount_total) > record.partner_id.credit_limit:
+        raise UserError("Customer's credit limit is exceeded." + "\n" + "Customer credit limit: " + str(record.partner_id.credit_limit) + "\n" + "Cust. Total Receivable: " + str(record.partner_id.credit) + "\n" + "Current Tot. Amount: " + str(record.amount_total) + "\n" + "Over Credit Amount: " + str((record.partner_id.credit + record.amount_total) - record.partner_id.credit_limit))
 ]]></field>
   </record>
 
@@ -5619,57 +5601,57 @@ if records:
     <field name="state">code</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.id:
-  lc = env['x_lc_header'].create({'x_studio_created_from_purchase_order':record.x_studio_created_from_purchase_order.id})
-  lc.write({'x_name':record.x_name,
-            'x_studio_indent_no':record.x_studio_indent_no,
-            'x_studio_additional_conditions':record.x_studio_additional_conditions,
-            'x_studio_available_with_by':record.x_studio_available_with_by,
-            'x_studio_bank_charges':record.x_studio_bank_charges,
-            'x_studio_beneficiary':record.x_studio_beneficiary,
-            'x_studio_confirmation_instructions':record.x_studio_confirmation_instructions,
-            'x_studio_currency_id':record.x_studio_currency_id,
-            'x_studio_date_of_expiry':record.x_studio_date_of_expiry,
-            'x_studio_date_of_issue':record.x_studio_date_of_issue,
-            'x_studio_date_of_receipt':record.x_studio_date_of_receipt,
-            'x_studio_deferred_days':record.x_studio_deferred_days,
-            'x_studio_description_of_goods':record.x_studio_description_of_goods,
-            'x_studio_document_required':record.x_studio_document_required,
-            'x_studio_draft':record.x_studio_draft,
-            'x_studio_instruction_remarks':record.x_studio_instruction_remarks,
-            'x_studio_issuing_bank':record.x_studio_issuing_bank.id,
-            'x_studio_issuing_bank_reference_no_1':record.x_studio_issuing_bank_reference_no_1,
-            'x_studio_latest_shipment_date':record.x_studio_latest_shipment_date,
-            'x_studio_lc_amount':record.x_studio_lc_amount,
-            'x_studio_lc_credit_sub_type':record.x_studio_lc_credit_sub_type,
-            'x_studio_lc_credit_type':record.x_studio_lc_credit_type,
-            'x_studio_lc_no':record.x_studio_lc_no,
-            'x_studio_loading_on_board':record.x_studio_loading_on_board,
-            'x_studio_partial_shipment':record.x_studio_partial_shipment,
-            'x_studio_period_for_presentation':record.x_studio_period_for_presentation,
-            'x_studio_place_of_expiry':record.x_studio_place_of_expiry,
-            'x_studio_revised_lc_amount':record.x_studio_revised_lc_amount,
-            'x_studio_tolerance':record.x_studio_tolerance,
-            'x_studio_tolerance_type':record.x_studio_tolerance_type,
-            'x_studio_transportation':record.x_studio_transportation,
-            'x_studio_transshipment':record.x_studio_transshipment,
-            'x_studio_vendor':record.x_studio_vendor.id,
-            'x_studio_version_no': (record.x_studio_version_no + 1)})
-
-  action = {
-            'name': 'Letter of Credit',
-            'domain': [('id', '=', lc.id)],
-            'type': 'ir.actions.act_window',
-            'res_model': 'x_lc_header',
-            'view_mode': 'tree,form',
-            'view_type': 'form',
-            'view_id': False,
-            'context': False,
-            } 
-    
- 
-  record['x_studio_status'] = 'Amended'
-  record['x_studio_selection_field_yo4qM'] = 'Amended'
+    <field name="code"><![CDATA[if record.id:
+  lc = env['x_lc_header'].create({'x_studio_created_from_purchase_order':record.x_studio_created_from_purchase_order.id})
+  lc.write({'x_name':record.x_name,
+            'x_studio_indent_no':record.x_studio_indent_no,
+            'x_studio_additional_conditions':record.x_studio_additional_conditions,
+            'x_studio_available_with_by':record.x_studio_available_with_by,
+            'x_studio_bank_charges':record.x_studio_bank_charges,
+            'x_studio_beneficiary':record.x_studio_beneficiary,
+            'x_studio_confirmation_instructions':record.x_studio_confirmation_instructions,
+            'x_studio_currency_id':record.x_studio_currency_id,
+            'x_studio_date_of_expiry':record.x_studio_date_of_expiry,
+            'x_studio_date_of_issue':record.x_studio_date_of_issue,
+            'x_studio_date_of_receipt':record.x_studio_date_of_receipt,
+            'x_studio_deferred_days':record.x_studio_deferred_days,
+            'x_studio_description_of_goods':record.x_studio_description_of_goods,
+            'x_studio_document_required':record.x_studio_document_required,
+            'x_studio_draft':record.x_studio_draft,
+            'x_studio_instruction_remarks':record.x_studio_instruction_remarks,
+            'x_studio_issuing_bank':record.x_studio_issuing_bank.id,
+            'x_studio_issuing_bank_reference_no_1':record.x_studio_issuing_bank_reference_no_1,
+            'x_studio_latest_shipment_date':record.x_studio_latest_shipment_date,
+            'x_studio_lc_amount':record.x_studio_lc_amount,
+            'x_studio_lc_credit_sub_type':record.x_studio_lc_credit_sub_type,
+            'x_studio_lc_credit_type':record.x_studio_lc_credit_type,
+            'x_studio_lc_no':record.x_studio_lc_no,
+            'x_studio_loading_on_board':record.x_studio_loading_on_board,
+            'x_studio_partial_shipment':record.x_studio_partial_shipment,
+            'x_studio_period_for_presentation':record.x_studio_period_for_presentation,
+            'x_studio_place_of_expiry':record.x_studio_place_of_expiry,
+            'x_studio_revised_lc_amount':record.x_studio_revised_lc_amount,
+            'x_studio_tolerance':record.x_studio_tolerance,
+            'x_studio_tolerance_type':record.x_studio_tolerance_type,
+            'x_studio_transportation':record.x_studio_transportation,
+            'x_studio_transshipment':record.x_studio_transshipment,
+            'x_studio_vendor':record.x_studio_vendor.id,
+            'x_studio_version_no': (record.x_studio_version_no + 1)})
+
+  action = {
+            'name': 'Letter of Credit',
+            'domain': [('id', '=', lc.id)],
+            'type': 'ir.actions.act_window',
+            'res_model': 'x_lc_header',
+            'view_mode': 'tree,form',
+            'view_type': 'form',
+            'view_id': False,
+            'context': False,
+            } 
+    
+ 
+  record['x_studio_status'] = 'Amended'
+  record['x_studio_selection_field_yo4qM'] = 'Amended'
 ]]></field>
   </record>
 
@@ -5679,11 +5661,11 @@ if records:
     <field name="state">code</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.x_studio_lc_amount == 0.00:
-  raise UserError('LC Amount must be Specified')
-  
-record['x_studio_status'] = 'Posted'
-record['x_studio_selection_field_yo4qM'] = 'Posted'
+    <field name="code"><![CDATA[if record.x_studio_lc_amount == 0.00:
+  raise UserError('LC Amount must be Specified')
+  
+record['x_studio_status'] = 'Posted'
+record['x_studio_selection_field_yo4qM'] = 'Posted'
 ]]></field>
   </record>
 
@@ -5844,25 +5826,25 @@ record['x_studio_selection_field_yo4qM'] = 'Posted'
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.x_studio_report_type:
-  count = 0
-  c=0
-  temp_rec_1 = env['x_rm_daily_s1'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
-  if temp_rec_1:
-    for del_temp_rec_1 in temp_rec_1:
-      c += 1
-      del_temp_rec_1.unlink() 
-  
-  for invoice_lines in record.x_studio_journal_item_ids:
-  #  if invoice_lines.date == record.x_studio_as_on_date:
-  #    count += 1
-    create_sub_model = env['x_rm_daily_s1'].create({'x_studio_sales_report_model_id':record.id,'x_studio_invoice_date':invoice_lines.date,'x_studio_number':invoice_lines.move_name,'x_studio_partner':invoice_lines.partner_id.id,'x_studio_sales_centre':invoice_lines.x_studio_sales_team.id,'x_studio_product_id':invoice_lines.product_id.id,'x_studio_quantity':invoice_lines.quantity,'x_studio_value':invoice_lines.price_subtotal})
-      
-  
- 
-  #if count == 0:
-    #raise UserError('No Data to Populate.')
-  
+    <field name="code"><![CDATA[if record.x_studio_report_type:
+  count = 0
+  c=0
+  temp_rec_1 = env['x_rm_daily_s1'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
+  if temp_rec_1:
+    for del_temp_rec_1 in temp_rec_1:
+      c += 1
+      del_temp_rec_1.unlink() 
+  
+  for invoice_lines in record.x_studio_journal_item_ids:
+  #  if invoice_lines.date == record.x_studio_as_on_date:
+  #    count += 1
+    create_sub_model = env['x_rm_daily_s1'].create({'x_studio_sales_report_model_id':record.id,'x_studio_invoice_date':invoice_lines.date,'x_studio_number':invoice_lines.move_name,'x_studio_partner':invoice_lines.partner_id.id,'x_studio_sales_centre':invoice_lines.x_studio_sales_team.id,'x_studio_product_id':invoice_lines.product_id.id,'x_studio_quantity':invoice_lines.quantity,'x_studio_value':invoice_lines.price_subtotal})
+      
+  
+ 
+  #if count == 0:
+    #raise UserError('No Data to Populate.')
+  
   #record['x_studio_selection_field_Fbw0x'] = 'Done']]></field>
   </record>
 
@@ -5872,12 +5854,12 @@ record['x_studio_selection_field_yo4qM'] = 'Posted'
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.x_studio_report_type:
-  temp_rec_1 = env['x_rm_daily_s1'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
-  if temp_rec_1:
-    for del_temp_rec_1 in temp_rec_1:
-      del_temp_rec_1.unlink() 
-  
+    <field name="code"><![CDATA[if record.x_studio_report_type:
+  temp_rec_1 = env['x_rm_daily_s1'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
+  if temp_rec_1:
+    for del_temp_rec_1 in temp_rec_1:
+      del_temp_rec_1.unlink() 
+  
   #record['x_studio_selection_field_Fbw0x'] = 'Done']]></field>
   </record>
 
@@ -5887,21 +5869,21 @@ record['x_studio_selection_field_yo4qM'] = 'Posted'
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.x_studio_report_type:
-  report_type_lines = record.x_studio_report_type.x_studio_journal_items_id
-  # filter by As on date
-  if record.x_studio_as_on_date:
-    report_type_lines = report_type_lines.filtered(lambda x: x.date == record.x_studio_as_on_date)
-  # filter by sales centre
-  if record.x_studio_sales_centre:
-    report_type_lines = report_type_lines.filtered(lambda x: x.x_studio_sales_team == record.x_studio_sales_centre)
-  # delete old record
-  temp_rec_1 = env['x_rm_daily_s1'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
-  if temp_rec_1:
-    for del_temp_rec_1 in temp_rec_1:
-      del_temp_rec_1.unlink()
-  # create new record
-  for line in report_type_lines:
+    <field name="code"><![CDATA[if record.x_studio_report_type:
+  report_type_lines = record.x_studio_report_type.x_studio_journal_items_id
+  # filter by As on date
+  if record.x_studio_as_on_date:
+    report_type_lines = report_type_lines.filtered(lambda x: x.date == record.x_studio_as_on_date)
+  # filter by sales centre
+  if record.x_studio_sales_centre:
+    report_type_lines = report_type_lines.filtered(lambda x: x.x_studio_sales_team == record.x_studio_sales_centre)
+  # delete old record
+  temp_rec_1 = env['x_rm_daily_s1'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
+  if temp_rec_1:
+    for del_temp_rec_1 in temp_rec_1:
+      del_temp_rec_1.unlink()
+  # create new record
+  for line in report_type_lines:
     create_sub_model = env['x_rm_daily_s1'].create({'x_studio_sales_report_model_id':record.id,'x_studio_invoice_date':line.date,'x_studio_number':line.move_name,'x_studio_partner':line.partner_id.id,'x_studio_sales_centre':line.x_studio_sales_team.id,'x_studio_product_id':line.product_id.id,'x_studio_quantity':line.quantity,'x_studio_value':line.price_subtotal})]]></field>
   </record>
 
@@ -5911,21 +5893,21 @@ record['x_studio_selection_field_yo4qM'] = 'Posted'
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.x_studio_report_type:
-  report_type_lines = record.x_studio_report_type.x_studio_journal_items_id
-  # filter by as on date
-  if record.x_studio_as_on_date:
-    report_type_lines = report_type_lines.filtered(lambda x: x.date == record.x_studio_as_on_date)
-  # filter by sales centre
-  if record.x_studio_sales_centre:
-    report_type_lines = report_type_lines.filtered(lambda x: x.x_studio_sales_team == record.x_studio_sales_centre)
-  # delete old record
-  temp_rec_1 = env['x_rm_daily_s1'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
-  if temp_rec_1:
-    for del_temp_rec_1 in temp_rec_1:
-      del_temp_rec_1.unlink()
-  # create new record (Business Logic)
-  for line in report_type_lines:
+    <field name="code"><![CDATA[if record.x_studio_report_type:
+  report_type_lines = record.x_studio_report_type.x_studio_journal_items_id
+  # filter by as on date
+  if record.x_studio_as_on_date:
+    report_type_lines = report_type_lines.filtered(lambda x: x.date == record.x_studio_as_on_date)
+  # filter by sales centre
+  if record.x_studio_sales_centre:
+    report_type_lines = report_type_lines.filtered(lambda x: x.x_studio_sales_team == record.x_studio_sales_centre)
+  # delete old record
+  temp_rec_1 = env['x_rm_daily_s1'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
+  if temp_rec_1:
+    for del_temp_rec_1 in temp_rec_1:
+      del_temp_rec_1.unlink()
+  # create new record (Business Logic)
+  for line in report_type_lines:
     create_sub_model = env['x_rm_daily_s1'].create({'x_studio_sales_report_model_id':record.id,'x_studio_invoice_date':line.date,'x_studio_number':line.move_name,'x_studio_partner':line.partner_id.id,'x_studio_sales_centre':line.x_studio_sales_team.id,'x_studio_product_id':line.product_id.id,'x_studio_quantity':line.quantity,'x_studio_value':line.price_subtotal})]]></field>
   </record>
 
@@ -5935,53 +5917,53 @@ record['x_studio_selection_field_yo4qM'] = 'Posted'
     <field name="state">code</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[lines=[]
-select = 0
-
-for valid_line in record.x_studio_charge_line:
-  if (valid_line.x_studio_select == True):
-    select += 1
-    lines.append([0,0,{
-      'x_studio_consignment_charge_header_id':valid_line.x_studio_consignment_charge_header_id.id,
-      'x_studio_consignment_id':valid_line.x_studio_consignment_id.id,
-      'x_studio_charge_group':valid_line.x_studio_charge_group,
-      'x_studio_charge_name':valid_line.x_studio_charge_name,
-      'x_studio_basis':valid_line.x_studio_basis,
-      'x_studio_original_amount':valid_line.x_studio_amount,
-      'x_studio_invoice_amount':valid_line.x_studio_amount}])
-      
-    charge_line = env['x_consignment_charge_h'].search([('id', '=', valid_line.x_studio_consignment_charge_header_id.id)])
-    if charge_line:
-      charge_line.write({'x_studio_tp_processed':True})
- 
-if select == 0:
- raise UserError("Atleast One Line Should be Selected to Proceed.")
-
-con_header = env['x_consignment_header'].search([('id', '=', record.x_studio_consignment_header_id.id)],limit=1)
-
-#tp_invoice = env['x_tp_invoice_header'].create({'x_studio_con_no':record.x_studio_consignment_header_id.id,'x_studio_vendor':record.x_studio_supplier_id.id,'x_studio_currency_id':record.x_studio_consignment_header_id.x_studio_currency_id.id,'x_studio_tp_lines':lines})
-if con_header:
-  tp_invoice = env['x_tp_invoice_header'].create({'x_studio_con_no':record.x_studio_consignment_header_id.id,'x_studio_vendor':record.x_studio_supplier_id.id,'x_studio_currency_id':record.x_studio_supplier_id.property_purchase_currency_id.id,'x_studio_invoice_no':con_header.x_studio_supplier_invoice_number,'x_studio_invoice_date':con_header.x_studio_invoice_date,'x_studio_tp_lines':lines})
-else:
-  tp_invoice = env['x_tp_invoice_header'].create({'x_studio_con_no':record.x_studio_consignment_header_id.id,'x_studio_vendor':record.x_studio_supplier_id.id,'x_studio_currency_id':record.x_studio_supplier_id.property_purchase_currency_id.id,'x_studio_tp_lines':lines})
-#con_header = env['x_consignment_header'].search([('id', '=', record.x_studio_consignment_header_id.id)],limit=1)
-if con_header:
-  con_header.write({'x_studio_status':'TP Invoice','x_studio_status_bar':'TP Invoice'})
-
-if record.id:
-  temp_rec = env['x_temp_tp_invoice_head'].search([('id', '=', record.id)],limit=1)
-  temp_rec.unlink()
-
-action = {
-          'name': 'TP Invoice',
-          'domain': [('id', '=', tp_invoice.id)],
-          'type': 'ir.actions.act_window',
-          'res_model': 'x_tp_invoice_header',
-          'view_mode': 'tree,form',
-          'view_type': 'form',
-          'view_id': False,
-          'context': False,
-          } 
+    <field name="code"><![CDATA[lines=[]
+select = 0
+
+for valid_line in record.x_studio_charge_line:
+  if (valid_line.x_studio_select == True):
+    select += 1
+    lines.append([0,0,{
+      'x_studio_consignment_charge_header_id':valid_line.x_studio_consignment_charge_header_id.id,
+      'x_studio_consignment_id':valid_line.x_studio_consignment_id.id,
+      'x_studio_charge_group':valid_line.x_studio_charge_group,
+      'x_studio_charge_name':valid_line.x_studio_charge_name,
+      'x_studio_basis':valid_line.x_studio_basis,
+      'x_studio_original_amount':valid_line.x_studio_amount,
+      'x_studio_invoice_amount':valid_line.x_studio_amount}])
+      
+    charge_line = env['x_consignment_charge_h'].search([('id', '=', valid_line.x_studio_consignment_charge_header_id.id)])
+    if charge_line:
+      charge_line.write({'x_studio_tp_processed':True})
+ 
+if select == 0:
+ raise UserError("Atleast One Line Should be Selected to Proceed.")
+
+con_header = env['x_consignment_header'].search([('id', '=', record.x_studio_consignment_header_id.id)],limit=1)
+
+#tp_invoice = env['x_tp_invoice_header'].create({'x_studio_con_no':record.x_studio_consignment_header_id.id,'x_studio_vendor':record.x_studio_supplier_id.id,'x_studio_currency_id':record.x_studio_consignment_header_id.x_studio_currency_id.id,'x_studio_tp_lines':lines})
+if con_header:
+  tp_invoice = env['x_tp_invoice_header'].create({'x_studio_con_no':record.x_studio_consignment_header_id.id,'x_studio_vendor':record.x_studio_supplier_id.id,'x_studio_currency_id':record.x_studio_supplier_id.property_purchase_currency_id.id,'x_studio_invoice_no':con_header.x_studio_supplier_invoice_number,'x_studio_invoice_date':con_header.x_studio_invoice_date,'x_studio_tp_lines':lines})
+else:
+  tp_invoice = env['x_tp_invoice_header'].create({'x_studio_con_no':record.x_studio_consignment_header_id.id,'x_studio_vendor':record.x_studio_supplier_id.id,'x_studio_currency_id':record.x_studio_supplier_id.property_purchase_currency_id.id,'x_studio_tp_lines':lines})
+#con_header = env['x_consignment_header'].search([('id', '=', record.x_studio_consignment_header_id.id)],limit=1)
+if con_header:
+  con_header.write({'x_studio_status':'TP Invoice','x_studio_status_bar':'TP Invoice'})
+
+if record.id:
+  temp_rec = env['x_temp_tp_invoice_head'].search([('id', '=', record.id)],limit=1)
+  temp_rec.unlink()
+
+action = {
+          'name': 'TP Invoice',
+          'domain': [('id', '=', tp_invoice.id)],
+          'type': 'ir.actions.act_window',
+          'res_model': 'x_tp_invoice_header',
+          'view_mode': 'tree,form',
+          'view_type': 'form',
+          'view_id': False,
+          'context': False,
+          } 
 ]]></field>
   </record>
 
@@ -5991,145 +5973,145 @@ action = {
     <field name="state">code</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.id:
-  company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
-  company = env['res.company'].browse(company_id)
-  
-  invalid_lines = env['x_tp_invoice_line'].search([('x_studio_tp_invoice_header_id', '=', record.id)])
-  if invalid_lines:
-    diff = 0
-    diff_found = False
-    for val in invalid_lines:
-      if val.x_studio_invoice_amount == 0.0000:
-        raise UserError("Invoice Amount of Individual TP Lines Should be Greater than Zero!")
-        
-      if val.x_studio_invoice_amount != val.x_studio_original_amount:
-        diff_found = True
-        diff += (val.x_studio_invoice_amount - val.x_studio_original_amount)
-        
-  if record.x_studio_vendor.id == 0:
-    raise UserError("Vendor Account must be Specified!")
-    
-  if record.x_studio_currency_id.id == 0:
-    raise UserError("Currency must be Specified!")
-    
-  if record.x_studio_invoice_no == False:
-    raise UserError("Invoice No must be Specified!")
-    
-  if record.x_studio_invoice_date == False:
-    raise UserError("Invoice Date must be Specified!")
-  
-  tax_account = env['x_imports_ledger_setup'].search([('x_studio_company_id', '=', company.id)], limit=1)
-  if tax_account:
-    if tax_account.x_studio_tp_invoicing_tax_acc.id == 0:
-      raise UserError('TP Invoicing Tax Account must be Specified in Imports Ledger Setup')
-      
-    if tax_account.x_studio_import_tp_vendor_account.id == 0:
-      raise UserError('Import TP Vendor Account must be Specified in Imports Ledger Setup')
-  else:
-    raise UserError('Imports Ledger Setup must be specified for the selected company ')
-   
-  tp_lines=[]
-
-  if diff_found == True:
-    qty = 0
-    con_lines = env['x_consignment_header'].search([('id', '=', record.x_studio_con_no.id)])
-    if con_lines:
-      if diff > 0:
-        qty = 1
-      else:
-        qty = -1
-      
-      if tax_account.x_studio_cost_allocation_method == 'by_weight':
-        for diff_lines in con_lines.x_studio_consignment_line_ids:
-          tp_lines.append([0,0,{
-            'product_id':diff_lines.x_studio_product_id.id,
-            'quantity':qty,
-            'currency_id':record.x_studio_currency_id.id,
-            'name':diff_lines.x_studio_product_id.name,
-            'product_uom_id':diff_lines.x_studio_product_id.uom_id.id,
-            'price_unit':abs(diff) * (diff_lines.x_studio_weight / con_lines.x_studio_total_amount_cost_allocation_method), 
-            'price_subtotal':(abs(diff) * (diff_lines.x_studio_weight / con_lines.x_studio_total_amount_cost_allocation_method)) * qty, 
-            'account_id':diff_lines.x_studio_product_id.categ_id.property_stock_account_input_categ_id.id}])
-            
-          value_entry = env['stock.valuation.layer'].search([('stock_move_id', '=', diff_lines.x_studio_stock_move_id.id)], limit=1)
-          if value_entry:
-            value_entry.write({'value':(value_entry.value + ((abs(diff) * (diff_lines.x_studio_weight / con_lines.x_studio_total_amount_cost_allocation_method)) * qty)),
-                               'unit_cost':(value_entry.value + ((abs(diff) * (diff_lines.x_studio_weight / con_lines.x_studio_total_amount_cost_allocation_method)) * qty)) / value_entry.quantity,
-                               'remaining_value':(value_entry.value + ((abs(diff) * (diff_lines.x_studio_weight / con_lines.x_studio_total_amount_cost_allocation_method)) * qty)) / value_entry.remaining_qty})
-      elif tax_account.x_studio_cost_allocation_method == 'by_volume':
-        for diff_lines in con_lines.x_studio_consignment_line_ids:
-          tp_lines.append([0,0,{
-            'product_id':diff_lines.x_studio_product_id.id,
-            'quantity':qty,
-            'currency_id':record.x_studio_currency_id.id,
-            'name':diff_lines.x_studio_product_id.name,
-            'product_uom_id':diff_lines.x_studio_product_id.uom_id.id,
-            'price_unit':abs(diff) * (diff_lines.x_studio_volume / con_lines.x_studio_total_amount_cost_allocation_method), 
-            'price_subtotal':(abs(diff) * (diff_lines.x_studio_volume / con_lines.x_studio_total_amount_cost_allocation_method)) * qty, 
-            'account_id':diff_lines.x_studio_product_id.categ_id.property_stock_account_input_categ_id.id}])
-            
-          value_entry = env['stock.valuation.layer'].search([('stock_move_id', '=', diff_lines.x_studio_stock_move_id.id)], limit=1)
-          if value_entry:
-            value_entry.write({'value':(value_entry.value + ((abs(diff) * (diff_lines.x_studio_volume / con_lines.x_studio_total_amount_cost_allocation_method)) * qty)),
-                               'unit_cost':(value_entry.value + ((abs(diff) * (diff_lines.x_studio_volume / con_lines.x_studio_total_amount_cost_allocation_method)) * qty)) / value_entry.quantity,
-                               'remaining_value':(value_entry.value + ((abs(diff) * (diff_lines.x_studio_volume / con_lines.x_studio_total_amount_cost_allocation_method)) * qty)) / value_entry.remaining_qty})
-      else: 
-        for diff_lines in con_lines.x_studio_consignment_line_ids:
-          tp_lines.append([0,0,{
-            'product_id':diff_lines.x_studio_product_id.id,
-            'quantity':qty,
-            'currency_id':record.x_studio_currency_id.id,
-            'name':diff_lines.x_studio_product_id.name,
-            'product_uom_id':diff_lines.x_studio_product_id.uom_id.id,
-            'price_unit':abs(diff) * (diff_lines.x_studio_amount / con_lines.x_studio_total_amount), 
-            'price_subtotal':(abs(diff) * (diff_lines.x_studio_amount / con_lines.x_studio_total_amount)) * qty, 
-            'account_id':diff_lines.x_studio_product_id.categ_id.property_stock_account_input_categ_id.id}])
-            
-          value_entry = env['stock.valuation.layer'].search([('stock_move_id', '=', diff_lines.x_studio_stock_move_id.id)], limit=1)
-          if value_entry:
-            value_entry.write({'value':(value_entry.value + ((abs(diff) * (diff_lines.x_studio_amount / con_lines.x_studio_total_amount)) * qty)),
-                               'unit_cost':(value_entry.value + ((abs(diff) * (diff_lines.x_studio_amount / con_lines.x_studio_total_amount)) * qty)) / value_entry.quantity,
-                               'remaining_value':(value_entry.value + ((abs(diff) * (diff_lines.x_studio_amount / con_lines.x_studio_total_amount)) * qty)) / value_entry.remaining_qty})
- 
-  tp_lines.append([0,0,{
-    'account_id':tax_account.x_studio_import_tp_vendor_account.id,
-    'name':'Import TP Invoice - Reversal',
-    'quantity':1.00,
-    'currency_id':record.x_studio_currency_id.id,
-    'price_unit':record.x_studio_total_original_invoice_amount}])
-    #'price_unit':record.x_studio_total_original_invoice_amount * currency_rate.x_studio_rate}])
-    
-  tp_lines.append([0,0,{
-    'account_id':tax_account.x_studio_tp_invoicing_tax_acc.id,
-    'name':'Total Tax',
-    'quantity':1.00,
-    'currency_id':record.x_studio_currency_id.id,
-    'price_unit':record.x_studio_taxes_1}])
- 
-  journal = env['account.journal'].search([('name', '=', 'TP Vendor Bills'),('company_id', '=', company.id)], limit=1) 
-  if not journal:
-     raise UserError('The required journal has not been setup. Process terminated.')
-                
-  tp_reversal = env['account.move'].create({'x_studio_tp_id':record.id,'partner_id':record.x_studio_vendor.id,'journal_id':journal.id,'move_type':'in_invoice','currency_id':record.x_studio_currency_id.id,'x_studio_supplier_invoice_number': record.x_studio_invoice_no,'invoice_date':record.x_studio_invoice_date,'invoice_line_ids':tp_lines})
-      
-  update_tp_reversal = env['account.move'].search([('id', '=', tp_reversal.id)],limit=1)
-  if update_tp_reversal:
-    update_tp_reversal.write({'state':'posted'})
-            
-  record['x_studio_status'] = 'Posted'
-  record['x_studio_pipeline_status_bar'] = 'Posted'
-              
-  action = {
-            'name': 'Journal Entries',
-            'domain': [('id', '=', tp_reversal.id)],
-            'type': 'ir.actions.act_window',
-            'res_model': 'account.move',
-            'view_mode': 'tree,form',
-            'view_type': 'form',
-            'view_id': False,
-            'context': False,
-            }
+    <field name="code"><![CDATA[if record.id:
+  company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
+  company = env['res.company'].browse(company_id)
+  
+  invalid_lines = env['x_tp_invoice_line'].search([('x_studio_tp_invoice_header_id', '=', record.id)])
+  if invalid_lines:
+    diff = 0
+    diff_found = False
+    for val in invalid_lines:
+      if val.x_studio_invoice_amount == 0.0000:
+        raise UserError("Invoice Amount of Individual TP Lines Should be Greater than Zero!")
+        
+      if val.x_studio_invoice_amount != val.x_studio_original_amount:
+        diff_found = True
+        diff += (val.x_studio_invoice_amount - val.x_studio_original_amount)
+        
+  if record.x_studio_vendor.id == 0:
+    raise UserError("Vendor Account must be Specified!")
+    
+  if record.x_studio_currency_id.id == 0:
+    raise UserError("Currency must be Specified!")
+    
+  if record.x_studio_invoice_no == False:
+    raise UserError("Invoice No must be Specified!")
+    
+  if record.x_studio_invoice_date == False:
+    raise UserError("Invoice Date must be Specified!")
+  
+  tax_account = env['x_imports_ledger_setup'].search([('x_studio_company_id', '=', company.id)], limit=1)
+  if tax_account:
+    if tax_account.x_studio_tp_invoicing_tax_acc.id == 0:
+      raise UserError('TP Invoicing Tax Account must be Specified in Imports Ledger Setup')
+      
+    if tax_account.x_studio_import_tp_vendor_account.id == 0:
+      raise UserError('Import TP Vendor Account must be Specified in Imports Ledger Setup')
+  else:
+    raise UserError('Imports Ledger Setup must be specified for the selected company ')
+   
+  tp_lines=[]
+
+  if diff_found == True:
+    qty = 0
+    con_lines = env['x_consignment_header'].search([('id', '=', record.x_studio_con_no.id)])
+    if con_lines:
+      if diff > 0:
+        qty = 1
+      else:
+        qty = -1
+      
+      if tax_account.x_studio_cost_allocation_method == 'by_weight':
+        for diff_lines in con_lines.x_studio_consignment_line_ids:
+          tp_lines.append([0,0,{
+            'product_id':diff_lines.x_studio_product_id.id,
+            'quantity':qty,
+            'currency_id':record.x_studio_currency_id.id,
+            'name':diff_lines.x_studio_product_id.name,
+            'product_uom_id':diff_lines.x_studio_product_id.uom_id.id,
+            'price_unit':abs(diff) * (diff_lines.x_studio_weight / con_lines.x_studio_total_amount_cost_allocation_method), 
+            'price_subtotal':(abs(diff) * (diff_lines.x_studio_weight / con_lines.x_studio_total_amount_cost_allocation_method)) * qty, 
+            'account_id':diff_lines.x_studio_product_id.categ_id.property_stock_account_input_categ_id.id}])
+            
+          value_entry = env['stock.valuation.layer'].search([('stock_move_id', '=', diff_lines.x_studio_stock_move_id.id)], limit=1)
+          if value_entry:
+            value_entry.write({'value':(value_entry.value + ((abs(diff) * (diff_lines.x_studio_weight / con_lines.x_studio_total_amount_cost_allocation_method)) * qty)),
+                               'unit_cost':(value_entry.value + ((abs(diff) * (diff_lines.x_studio_weight / con_lines.x_studio_total_amount_cost_allocation_method)) * qty)) / value_entry.quantity,
+                               'remaining_value':(value_entry.value + ((abs(diff) * (diff_lines.x_studio_weight / con_lines.x_studio_total_amount_cost_allocation_method)) * qty)) / value_entry.remaining_qty})
+      elif tax_account.x_studio_cost_allocation_method == 'by_volume':
+        for diff_lines in con_lines.x_studio_consignment_line_ids:
+          tp_lines.append([0,0,{
+            'product_id':diff_lines.x_studio_product_id.id,
+            'quantity':qty,
+            'currency_id':record.x_studio_currency_id.id,
+            'name':diff_lines.x_studio_product_id.name,
+            'product_uom_id':diff_lines.x_studio_product_id.uom_id.id,
+            'price_unit':abs(diff) * (diff_lines.x_studio_volume / con_lines.x_studio_total_amount_cost_allocation_method), 
+            'price_subtotal':(abs(diff) * (diff_lines.x_studio_volume / con_lines.x_studio_total_amount_cost_allocation_method)) * qty, 
+            'account_id':diff_lines.x_studio_product_id.categ_id.property_stock_account_input_categ_id.id}])
+            
+          value_entry = env['stock.valuation.layer'].search([('stock_move_id', '=', diff_lines.x_studio_stock_move_id.id)], limit=1)
+          if value_entry:
+            value_entry.write({'value':(value_entry.value + ((abs(diff) * (diff_lines.x_studio_volume / con_lines.x_studio_total_amount_cost_allocation_method)) * qty)),
+                               'unit_cost':(value_entry.value + ((abs(diff) * (diff_lines.x_studio_volume / con_lines.x_studio_total_amount_cost_allocation_method)) * qty)) / value_entry.quantity,
+                               'remaining_value':(value_entry.value + ((abs(diff) * (diff_lines.x_studio_volume / con_lines.x_studio_total_amount_cost_allocation_method)) * qty)) / value_entry.remaining_qty})
+      else: 
+        for diff_lines in con_lines.x_studio_consignment_line_ids:
+          tp_lines.append([0,0,{
+            'product_id':diff_lines.x_studio_product_id.id,
+            'quantity':qty,
+            'currency_id':record.x_studio_currency_id.id,
+            'name':diff_lines.x_studio_product_id.name,
+            'product_uom_id':diff_lines.x_studio_product_id.uom_id.id,
+            'price_unit':abs(diff) * (diff_lines.x_studio_amount / con_lines.x_studio_total_amount), 
+            'price_subtotal':(abs(diff) * (diff_lines.x_studio_amount / con_lines.x_studio_total_amount)) * qty, 
+            'account_id':diff_lines.x_studio_product_id.categ_id.property_stock_account_input_categ_id.id}])
+            
+          value_entry = env['stock.valuation.layer'].search([('stock_move_id', '=', diff_lines.x_studio_stock_move_id.id)], limit=1)
+          if value_entry:
+            value_entry.write({'value':(value_entry.value + ((abs(diff) * (diff_lines.x_studio_amount / con_lines.x_studio_total_amount)) * qty)),
+                               'unit_cost':(value_entry.value + ((abs(diff) * (diff_lines.x_studio_amount / con_lines.x_studio_total_amount)) * qty)) / value_entry.quantity,
+                               'remaining_value':(value_entry.value + ((abs(diff) * (diff_lines.x_studio_amount / con_lines.x_studio_total_amount)) * qty)) / value_entry.remaining_qty})
+ 
+  tp_lines.append([0,0,{
+    'account_id':tax_account.x_studio_import_tp_vendor_account.id,
+    'name':'Import TP Invoice - Reversal',
+    'quantity':1.00,
+    'currency_id':record.x_studio_currency_id.id,
+    'price_unit':record.x_studio_total_original_invoice_amount}])
+    #'price_unit':record.x_studio_total_original_invoice_amount * currency_rate.x_studio_rate}])
+    
+  tp_lines.append([0,0,{
+    'account_id':tax_account.x_studio_tp_invoicing_tax_acc.id,
+    'name':'Total Tax',
+    'quantity':1.00,
+    'currency_id':record.x_studio_currency_id.id,
+    'price_unit':record.x_studio_taxes_1}])
+ 
+  journal = env['account.journal'].search([('name', '=', 'TP Vendor Bills'),('company_id', '=', company.id)], limit=1) 
+  if not journal:
+     raise UserError('The required journal has not been setup. Process terminated.')
+                
+  tp_reversal = env['account.move'].create({'x_studio_tp_id':record.id,'partner_id':record.x_studio_vendor.id,'journal_id':journal.id,'move_type':'in_invoice','currency_id':record.x_studio_currency_id.id,'x_studio_supplier_invoice_number': record.x_studio_invoice_no,'invoice_date':record.x_studio_invoice_date,'invoice_line_ids':tp_lines})
+      
+  update_tp_reversal = env['account.move'].search([('id', '=', tp_reversal.id)],limit=1)
+  if update_tp_reversal:
+    update_tp_reversal.write({'state':'posted'})
+            
+  record['x_studio_status'] = 'Posted'
+  record['x_studio_pipeline_status_bar'] = 'Posted'
+              
+  action = {
+            'name': 'Journal Entries',
+            'domain': [('id', '=', tp_reversal.id)],
+            'type': 'ir.actions.act_window',
+            'res_model': 'account.move',
+            'view_mode': 'tree,form',
+            'view_type': 'form',
+            'view_id': False,
+            'context': False,
+            }
 ]]></field>
   </record>
 
