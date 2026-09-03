@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Accounting',
-    'version': '17.0.0.0.56',
+    'version': '17.0.0.0.57',
     'summary': 'Studio-to-Python port for BugFix-Accounting',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Accounting',
@@ -9,6 +9,15 @@
     # Do NOT depend on studio_customization -- Odoo SH does not ship
     # a manifest for it, listing it causes install skip.
     #
+    # v0.0.57: 2 look-alike act_windows (Gross Margin id=242, Assets
+    # id=537). Deep dedup check on remaining 52 candidates found:
+    #   * 50 true duplicates (identical domain+context) - correctly
+    #     skipped in v0.0.55.
+    #   * 2 look-alikes with distinct Studio-user-tweaked context
+    #     (Gross Margin adds default_auto_account_id to context;
+    #     Assets adds asset_type=purchase context) - shipped here.
+    # Window action final coverage: 108/167 = 65% (108 shipped +
+    # 59 documented as skipped duplicates).
     # v0.0.56: 12 view records to close the remaining priority=99 view
     # gap (2 primaries + 9 customization inherits + 1 extra supporting
     # primary for x_pump_price_costing). View coverage: 84% -> 100%
