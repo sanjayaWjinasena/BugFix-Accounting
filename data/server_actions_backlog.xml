@@ -1,36 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- BugFix-Accounting backlog: 3 server actions (0 skipped) -->
-<odoo>
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- BugFix-Accounting backlog: 3 server actions (0 skipped) --><odoo>
 
-  <record id="server_action_2264_test_for_rohana" model="ir.actions.server">
-    <field name="name">TEST - For Rohana</field>
-    <field name="model_id" search="[('model', '=', 'account.account')]"/>
-    <field name="state">next_activity</field>
-    <field name="usage">base_automation</field>
-    <field name="activity_type_id" ref="mail.mail_activity_data_todo"/>
-    <field name="activity_user_type">specific</field>
-    <field name="activity_summary">User Groups have been changed0</field>
-    <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
-  </record>
-
-  <record id="server_action_2265_test_for_rohana" model="ir.actions.server">
-    <field name="name">TEST - For Rohana</field>
-    <field name="model_id" search="[('model', '=', 'account.account')]"/>
-    <field name="state">next_activity</field>
-    <field name="usage">base_automation</field>
-    <field name="activity_type_id" ref="mail.mail_activity_data_todo"/>
-    <field name="activity_user_type">specific</field>
-    <field name="activity_summary">User Groups have been changed0</field>
-    <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
-  </record>
-
-  <record id="server_action_2184_proj_pass_analytic_account_to_lines" model="ir.actions.server">
+  <!-- STRIPPED server_action_2264_test_for_rohana: next_activity on account.account which lacks mail.activity.mixin --><!-- STRIPPED server_action_2265_test_for_rohana: next_activity on account.account which lacks mail.activity.mixin --><record id="server_action_2184_proj_pass_analytic_account_to_lines" model="ir.actions.server">
     <field name="name">PROJ - Pass Analytic Account to Lines</field>
     <field name="model_id" search="[('model', '=', 'crossovered.budget.lines')]"/>
     <field name="state">code</field>
     <field name="usage">base_automation</field>
-    <field name="code"><![CDATA[if record.crossovered_budget_id.x_studio_analytic_account.id != False:
-  record.write({'analytic_account_id': record.crossovered_budget_id.x_studio_analytic_account.id})]]></field>
+    <field name="code">if record.crossovered_budget_id.x_studio_analytic_account.id != False:
+
+  record.write({'analytic_account_id': record.crossovered_budget_id.x_studio_analytic_account.id})</field>
   </record>
 
 </odoo>
