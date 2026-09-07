@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BugFix-Accounting backlog: 1 base.automations -->
+<odoo>
+
+  <record id="base_automation_198_proj_pass_analytic_account_to_lines" model="base.automation">
+    <field name="name">PROJ - Pass Analytic Account to Lines</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'crossovered.budget.lines')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('account_budget.field_crossovered_budget_lines__create_date')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2184_proj_pass_analytic_account_to_lines')])]"/>
+  </record>
+
+</odoo>

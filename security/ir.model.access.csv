@@ -19,3 +19,192 @@ access_x_sales_report_type_user,x_sales_report_type user access,model_x_sales_re
 access_x_temp_tp_invoice_head_user,x_temp_tp_invoice_head user access,model_x_temp_tp_invoice_head,base.group_user,1,1,1,1
 access_x_tp_invoice_header_user,x_tp_invoice_header user access,model_x_tp_invoice_header,base.group_user,1,1,1,1
 access_x_pump_price_costing_user,x_pump_price_costing user access,model_x_pump_price_costing,base.group_user,1,1,1,1
+access_8613_access_account_account_rohana_read,access_account_account_rohana_read,account.model_account_account,,1,0,0,0
+access_6899_account_account_tag,account.account.tag,account.model_account_account_tag,,1,0,0,0
+access_6928_account_account_tag,account.account.tag,account.model_account_account_tag,,1,0,0,0
+access_7023_account_account_tag,account.account.tag,account.model_account_account_tag,,1,0,0,0
+access_6781_account_account_tag_sale_salesman,account.account.tag.sale.salesman,account.model_account_account_tag,,1,0,0,0
+access_8614_access_account_account_tag_rohana_read,access_account_account_tag_rohana_read,account.model_account_account_tag,,1,0,0,0
+access_6897_account_analytic_line,account.analytic.line,BugFix-Accounting.model_account_analytic_line,,1,0,0,0
+access_6923_account_analytic_line_invoice,account.analytic.line invoice,BugFix-Accounting.model_account_analytic_line,,1,1,1,1
+access_7018_account_analytic_line_invoice,account.analytic.line invoice,BugFix-Accounting.model_account_analytic_line,,1,1,1,1
+access_6076_analytic_line_helpdesk_user,analytic.line.helpdesk.user,BugFix-Accounting.model_account_analytic_line,,1,0,0,0
+access_6061_analytic_line_helpdesk_user,analytic.line.helpdesk.user,BugFix-Accounting.model_account_analytic_line,,1,0,0,0
+access_6147_analytic_line_helpdesk_user,analytic.line.helpdesk.user,BugFix-Accounting.model_account_analytic_line,,1,1,1,1
+access_6920_account_bank_statement_line_group_invoice,account.bank.statement.line.group.invoice,BugFix-Accounting.model_account_bank_statement_line,,1,0,0,0
+access_7015_account_bank_statement_line_group_invoice,account.bank.statement.line.group.invoice,BugFix-Accounting.model_account_bank_statement_line,,1,0,0,0
+access_6375_jin_bankrec___bank_statement_line_test,Jin-BankRec > bank.statement.line(Test),BugFix-Accounting.model_account_bank_statement_line,,0,0,0,0
+access_5660_proj__budgetary_position,Proj. Budgetary Position,account_budget.model_account_budget_post,,1,0,0,0
+access_6917_account_cash_rounding,account.cash.rounding,account.model_account_cash_rounding,,1,1,1,1
+access_7012_account_cash_rounding,account.cash.rounding,account.model_account_cash_rounding,,1,1,1,1
+access_6903_account_fiscal_position_purchase,account.fiscal.position purchase,account.model_account_fiscal_position,,1,1,0,0
+access_6935_account_full_reconcile_group_invoice,account.full.reconcile.group.invoice,account.model_account_full_reconcile,,1,1,1,1
+access_7030_account_full_reconcile_group_invoice,account.full.reconcile.group.invoice,account.model_account_full_reconcile,,1,1,1,1
+access_6918_account_invoice_report_billing,account.invoice.report_billing,account.model_account_invoice_report,,1,0,0,0
+access_7013_account_invoice_report_billing,account.invoice.report_billing,account.model_account_invoice_report,,1,0,0,0
+access_6887_account_journal,Account.journal,account.model_account_journal,,1,0,0,0
+access_6924_account_journal_invoice,account.journal invoice,account.model_account_journal,,1,1,1,1
+access_7019_account_journal_invoice,account.journal invoice,account.model_account_journal,,1,1,1,1
+access_6357_journal,Journal,account.model_account_journal,,1,1,0,0
+access_7007_account_journal_invoice,account.journal.invoice,account.model_account_journal,,1,1,1,0
+access_6771_account_journal_sale_order_user,account.journal sale order.user,account.model_account_journal,,1,0,0,0
+access_8616_access_account_journal_rohana_read,access_account_journal_rohana_read,account.model_account_journal,,1,0,0,0
+access_6889_account_move,account.move,BugFix-Accounting.model_account_move,,1,1,1,0
+access_6921_account_move,account.move,BugFix-Accounting.model_account_move,,1,1,1,1
+access_7016_account_move,account.move,BugFix-Accounting.model_account_move,,1,1,1,1
+access_6508_account_move,account.move,BugFix-Accounting.model_account_move,,1,1,1,0
+access_6676_account_move,account.move,BugFix-Accounting.model_account_move,,1,1,1,0
+access_6393_account_move,account.move,BugFix-Accounting.model_account_move,,1,1,1,1
+access_6395_account_move,account.move,BugFix-Accounting.model_account_move,,1,1,1,1
+access_6396_account_move,account.move,BugFix-Accounting.model_account_move,,1,1,1,0
+access_6586_account_move,account.move,BugFix-Accounting.model_account_move,,1,1,1,0
+access_6858_account_move,account.move,BugFix-Accounting.model_account_move,BugFix-Approvals.group_132_jin_sales_pos_users,1,1,1,1
+access_6772_account_move_salesman,account_move salesman,BugFix-Accounting.model_account_move,,1,0,0,0
+access_8617_access_account_move_rohana_read,access_account_move_rohana_read,BugFix-Accounting.model_account_move,,1,0,0,0
+access_6115_account_move_line,account.move.line,BugFix-Accounting.model_account_move_line,,1,1,1,0
+access_6922_account_move_line_invoice,account.move.line invoice,BugFix-Accounting.model_account_move_line,,1,1,1,1
+access_7017_account_move_line_invoice,account.move.line invoice,BugFix-Accounting.model_account_move_line,,1,1,1,1
+access_6509_account_move_line,account.move.line,BugFix-Accounting.model_account_move_line,,1,1,1,0
+access_6675_account_move_line,account.move.line,BugFix-Accounting.model_account_move_line,,1,1,1,0
+access_6392_account_move_line,account.move.line,BugFix-Accounting.model_account_move_line,,1,1,1,1
+access_6394_account_move_line,account.move.line,BugFix-Accounting.model_account_move_line,,1,1,1,1
+access_6397_account_move_line,account.move.line,BugFix-Accounting.model_account_move_line,,1,1,1,0
+access_6587_account_move_line,account.move.line,BugFix-Accounting.model_account_move_line,,1,1,1,0
+access_5574_journal_item,Journal Item,BugFix-Accounting.model_account_move_line,,1,0,0,0
+access_6848_account_move_line,account.move.line,BugFix-Accounting.model_account_move_line,,1,0,0,0
+access_6867_account_move_line,account.move.line,BugFix-Accounting.model_account_move_line,BugFix-Approvals.group_132_jin_sales_pos_users,1,1,1,1
+access_6803_account_move_line_salesman,account_move_line salesman,BugFix-Accounting.model_account_move_line,,1,0,0,0
+access_8618_access_account_move_line_rohana_read,access_account_move_line_rohana_read,BugFix-Accounting.model_account_move_line,,1,0,0,0
+access_6940_access_account_move_reversal,access.account.move.reversal,account.model_account_move_reversal,,1,1,1,0
+access_7035_access_account_move_reversal,access.account.move.reversal,account.model_account_move_reversal,,1,1,1,0
+access_8619_access_account_move_send_rohana_read,access_account_move_send_rohana_read,account.model_account_move_send,,1,0,0,0
+access_6900_account_partial_reconcile_purchase_user,account.partial.reconcile.purchase.user,account.model_account_partial_reconcile,,1,0,0,0
+access_6934_account_partial_reconcile_group_invoice,account.partial.reconcile.group.invoice,account.model_account_partial_reconcile,,1,1,1,1
+access_7029_account_partial_reconcile_group_invoice,account.partial.reconcile.group.invoice,account.model_account_partial_reconcile,,1,1,1,1
+access_6866_account_partial_reconcile,account.partial.reconcile,account.model_account_partial_reconcile,BugFix-Approvals.group_132_jin_sales_pos_users,1,0,0,0
+access_6808_account_partial_reconcile_salesman,account_partial_reconcile salesman,account.model_account_partial_reconcile,,1,0,0,0
+access_8620_access_account_partial_reconcile_rohana_read,access_account_partial_reconcile_rohana_read,account.model_account_partial_reconcile,,1,0,0,0
+access_6936_account_payment_method,account.payment.method,account.model_account_payment_method,,1,1,1,1
+access_7031_account_payment_method,account.payment.method,account.model_account_payment_method,,1,1,1,1
+access_6964_account_payment_method_line,account.payment.method.line,account.model_account_payment_method_line,,1,1,1,1
+access_7059_account_payment_method_line,account.payment.method.line,account.model_account_payment_method_line,,1,1,1,1
+access_6810_account_payment_term_salesman,account_payment_term salesman,account.model_account_payment_term,,1,0,0,0
+access_8621_access_account_payment_term_rohana_read,access_account_payment_term_rohana_read,account.model_account_payment_term,,1,0,0,0
+access_6931_account_reconcile_model_billing,account.reconcile.model.billing,account.model_account_reconcile_model,,1,0,1,0
+access_7026_account_reconcile_model_billing,account.reconcile.model.billing,account.model_account_reconcile_model,,1,0,1,0
+access_6932_account_reconcile_model_line_billing,account.reconcile.model.line.billing,account.model_account_reconcile_model_line,,1,0,1,0
+access_7027_account_reconcile_model_line_billing,account.reconcile.model.line.billing,account.model_account_reconcile_model_line,,1,0,1,0
+access_6933_account_reconcile_model_partner_mapping_billing,account.reconcile.model.partner.mapping.billing,account.model_account_reconcile_model_partner_mapping,,1,0,1,0
+access_7028_account_reconcile_model_partner_mapping_billing,account.reconcile.model.partner.mapping.billing,account.model_account_reconcile_model_partner_mapping,,1,0,1,0
+access_6955_account_report_footnote,account.report_footnote,account_reports.model_account_report_footnote,,1,0,0,0
+access_7050_account_report_footnote,account.report_footnote,account_reports.model_account_report_footnote,,1,0,0,0
+access_6909_account_tax,account.tax,account.model_account_tax,,1,0,0,0
+access_6927_account_tax,account.tax,account.model_account_tax,,1,0,0,0
+access_7022_account_tax,account.tax,account.model_account_tax,,1,0,0,0
+access_6559_account_tax,account.tax,account.model_account_tax,,1,0,0,0
+access_6445_account_tax,account.tax,account.model_account_tax,,1,0,0,0
+access_5710_account_tax,account.tax,account.model_account_tax,,1,0,0,0
+access_6832_account_tax_sale_manager,account.tax sale manager,account.model_account_tax,,1,0,0,0
+access_6833_account_tax_user,account.tax.user,account.model_account_tax,,1,0,0,0
+access_8622_access_account_tax_rohana_read,access_account_tax_rohana_read,account.model_account_tax,,1,0,0,0
+access_6930_account_tax_group,account.tax.group,BugFix-Accounting.model_account_tax_group,,1,0,0,0
+access_7025_account_tax_group,account.tax.group,BugFix-Accounting.model_account_tax_group,,1,0,0,0
+access_6834_account_tax_group_sale_manager,account.tax.group sale manager,BugFix-Accounting.model_account_tax_group,,1,0,0,0
+access_8623_access_account_tax_group_rohana_read,access_account_tax_group_rohana_read,BugFix-Accounting.model_account_tax_group,,1,0,0,0
+access_6929_account_tax_repartition_line_invoice,account.tax repartition.line.invoice,account.model_account_tax_repartition_line,,1,0,0,0
+access_7024_account_tax_repartition_line_invoice,account.tax repartition.line.invoice,account.model_account_tax_repartition_line,,1,0,0,0
+access_5658_proj__budget,Proj. Budget,BugFix-Accounting.model_crossovered_budget,,1,0,0,0
+access_6854_crossovered_budget,crossovered.budget,BugFix-Accounting.model_crossovered_budget,BugFix-Approvals.group_132_jin_sales_pos_users,1,0,0,0
+access_6839_crossovered_budget,crossovered.budget,BugFix-Accounting.model_crossovered_budget,,1,0,0,0
+access_5659_proj__budget_lines,Proj. Budget Lines,BugFix-Accounting.model_crossovered_budget_lines,,1,0,0,0
+access_6965_payment_refund_wizard,payment.refund.wizard,account_payment.model_payment_refund_wizard,,1,1,1,0
+access_7060_payment_refund_wizard,payment.refund.wizard,account_payment.model_payment_refund_wizard,,1,1,1,0
+access_6892_product_template_purchase_user,product.template purchase_user,BugFix-Accounting.model_product_template,,1,0,0,0
+access_6517_product_template_stock_user,product.template stock user,BugFix-Accounting.model_product_template,,0,0,0,0
+access_6403_product_template_stock_user,product.template stock user,BugFix-Accounting.model_product_template,,0,0,0,0
+access_5668_product_template_stock_user,product.template stock user,BugFix-Accounting.model_product_template,,0,0,0,0
+access_6677_product___templates,Product - Templates,BugFix-Accounting.model_product_template,,1,0,0,0
+access_6680_product___templates,Product - Templates,BugFix-Accounting.model_product_template,,1,0,0,0
+access_6775_product_template_sale_use,product.template sale use,BugFix-Accounting.model_product_template,,1,0,0,0
+access_8663_access_product_template_rohana_read,access_product_template_rohana_read,BugFix-Accounting.model_product_template,,1,0,0,0
+access_7204_advance_payment_account_group_user,Advance Payment Account group_user,BugFix-Accounting.model_x_advance_payment_acco,base.group_user,1,1,1,0
+access_7203_advance_payment_account_group_system,Advance Payment Account group_system,BugFix-Accounting.model_x_advance_payment_acco,base.group_system,1,1,1,1
+access_1334_consignment_charge_header_group_user,Consignment Charge Header group_user,BugFix-Accounting.model_x_consignment_charge_h,base.group_user,1,0,0,0
+access_6883_x_consignment_charge_h,x_consignment_charge_h,BugFix-Accounting.model_x_consignment_charge_h,,1,1,0,0
+access_6670_x_consignment_charge_h,x_consignment_charge_h,BugFix-Accounting.model_x_consignment_charge_h,,1,1,1,0
+access_1333_consignment_charge_header_group_system,Consignment Charge Header group_system,BugFix-Accounting.model_x_consignment_charge_h,base.group_system,1,1,1,1
+access_1330_custom_currency_group_user,Custom Currency group_user,BugFix-Accounting.model_x_custom_currency,base.group_user,1,0,0,0
+access_1329_custom_currency_group_system,Custom Currency group_system,BugFix-Accounting.model_x_custom_currency,base.group_system,1,1,1,1
+access_1332_custom_currency_rate_group_user,Custom Currency Rate group_user,BugFix-Accounting.model_x_custom_currency_rate,base.group_user,1,0,0,0
+access_1331_custom_currency_rate_group_system,Custom Currency Rate group_system,BugFix-Accounting.model_x_custom_currency_rate,base.group_system,1,1,1,1
+access_1118_customer_posting_profile_group_user,Customer Posting Profile group_user,BugFix-Accounting.model_x_customer_posting_pro,base.group_user,1,0,0,0
+access_1117_customer_posting_profile_group_system,Customer Posting Profile group_system,BugFix-Accounting.model_x_customer_posting_pro,base.group_system,1,1,1,1
+access_5951_journal_types_group_user,Journal Types group_user,BugFix-Accounting.model_x_journal_types,base.group_user,1,0,0,0
+access_5950_journal_types_group_system,Journal Types group_system,BugFix-Accounting.model_x_journal_types,base.group_system,1,1,1,1
+access_1377_lc_header_group_user,LC Header group_user,BugFix-Accounting.model_x_lc_header,base.group_user,1,0,0,0
+access_1376_lc_header_group_system,LC Header group_system,BugFix-Accounting.model_x_lc_header,base.group_system,1,1,1,1
+access_1240_misc_charge_codes_group_user,Misc Charge Codes group_user,BugFix-Accounting.model_x_misc_charge_codes,base.group_user,1,0,0,0
+access_1239_misc_charge_codes_group_system,Misc Charge Codes group_system,BugFix-Accounting.model_x_misc_charge_codes,base.group_system,1,1,1,1
+access_6391_pump_price_costing_group_user,Pump Price Costing group_user,BugFix-Accounting.model_x_pump_price_costing,base.group_user,1,1,1,0
+access_6390_pump_price_costing_group_system,Pump Price Costing group_system,BugFix-Accounting.model_x_pump_price_costing,base.group_system,1,1,1,1
+access_1513_rm_cust_invoice_s1_group_user,RM Cust Invoice S1 group_user,BugFix-Accounting.model_x_rm_cust_invoice_s1,base.group_user,1,0,0,0
+access_1512_rm_cust_invoice_s1_group_system,RM Cust Invoice S1 group_system,BugFix-Accounting.model_x_rm_cust_invoice_s1,base.group_system,1,1,1,1
+access_1511_rm_customer_wise_invoices_group_user,RM Customer wise Invoices group_user,BugFix-Accounting.model_x_rm_customer_wise_inv,base.group_user,1,0,0,0
+access_1510_rm_customer_wise_invoices_group_system,RM Customer wise Invoices group_system,BugFix-Accounting.model_x_rm_customer_wise_inv,base.group_system,1,1,1,1
+access_1505_rm_daily_s1_group_user,RM Daily S1 group_user,BugFix-Accounting.model_x_rm_daily_s1,base.group_user,1,0,0,0
+access_1504_rm_daily_s1_group_system,RM Daily S1 group_system,BugFix-Accounting.model_x_rm_daily_s1,base.group_system,1,1,1,1
+access_1507_rm_daily_s2_group_user,RM Daily S2 group_user,BugFix-Accounting.model_x_rm_daily_s2,base.group_user,1,0,0,0
+access_1506_rm_daily_s2_group_system,RM Daily S2 group_system,BugFix-Accounting.model_x_rm_daily_s2,base.group_system,1,1,1,1
+access_1509_rm_daily_s3_group_user,RM Daily S3 group_user,BugFix-Accounting.model_x_rm_daily_s3,base.group_user,1,0,0,0
+access_1508_rm_daily_s3_group_system,RM Daily S3 group_system,BugFix-Accounting.model_x_rm_daily_s3,base.group_system,1,1,1,1
+access_1503_rm_daily_sales_report_group_user,RM Daily Sales Report group_user,BugFix-Accounting.model_x_rm_daily_sales_repor,base.group_user,1,0,0,0
+access_1502_rm_daily_sales_report_group_system,RM Daily Sales Report group_system,BugFix-Accounting.model_x_rm_daily_sales_repor,base.group_system,1,1,1,1
+access_1530_rm_date_test_group_user,RM Date Test group_user,BugFix-Accounting.model_x_rm_date_test,base.group_user,1,0,0,0
+access_1529_rm_date_test_group_system,RM Date Test group_system,BugFix-Accounting.model_x_rm_date_test,base.group_system,1,1,1,1
+access_1734_rm_gross_margin___actuals_group_user,RM Gross Margin - Actuals group_user,BugFix-Accounting.model_x_rm_gross_margin_actu,base.group_user,1,0,0,0
+access_1733_rm_gross_margin___actuals_group_system,RM Gross Margin - Actuals group_system,BugFix-Accounting.model_x_rm_gross_margin_actu,base.group_system,1,1,1,1
+access_1777_rm_gross_margin___comparison_group_user,RM Gross Margin - Comparison group_user,BugFix-Accounting.model_x_rm_gross_margin_comp,base.group_user,1,0,0,0
+access_1776_rm_gross_margin___comparison_group_system,RM Gross Margin - Comparison group_system,BugFix-Accounting.model_x_rm_gross_margin_comp,base.group_system,1,1,1,1
+access_1732_rm_gross_margin___estimated_group_user,RM Gross Margin - Estimated group_user,BugFix-Accounting.model_x_rm_gross_margin_esti,base.group_user,1,0,0,0
+access_1731_rm_gross_margin___estimated_group_system,RM Gross Margin - Estimated group_system,BugFix-Accounting.model_x_rm_gross_margin_esti,base.group_system,1,1,1,1
+access_1750_rm_gross_margin_esti__lines_group_user,Rm Gross Margin Esti  Lines group_user,BugFix-Accounting.model_x_rm_gross_margin_esti_line_7e86d,base.group_user,1,0,0,0
+access_1752_rm_gross_margin_esti__lines_group_user,Rm Gross Margin Esti  Lines group_user,BugFix-Accounting.model_x_rm_gross_margin_esti_line_7e86d,base.group_user,1,0,0,0
+access_1749_rm_gross_margin_esti__lines_group_system,Rm Gross Margin Esti  Lines group_system,BugFix-Accounting.model_x_rm_gross_margin_esti_line_7e86d,base.group_system,1,1,1,1
+access_1751_rm_gross_margin_esti__lines_group_system,Rm Gross Margin Esti  Lines group_system,BugFix-Accounting.model_x_rm_gross_margin_esti_line_7e86d,base.group_system,1,1,1,1
+access_1736_rm_gross_margin___invoice_details_group_user,RM Gross Margin - Invoice Details group_user,BugFix-Accounting.model_x_rm_gross_margin_invo,base.group_user,1,0,0,0
+access_1735_rm_gross_margin___invoice_details_group_system,RM Gross Margin - Invoice Details group_system,BugFix-Accounting.model_x_rm_gross_margin_invo,base.group_system,1,1,1,1
+access_1528_rm_none_moving_group_user,RM None Moving group_user,BugFix-Accounting.model_x_rm_none_moving,base.group_user,1,0,0,0
+access_1527_rm_none_moving_group_system,RM None Moving group_system,BugFix-Accounting.model_x_rm_none_moving,base.group_system,1,1,1,1
+access_1538_rm_prod__summary_split_group_user,RM Prod. Summary Split group_user,BugFix-Accounting.model_x_rm_prod_summary_spli,base.group_user,1,0,0,0
+access_1537_rm_prod__summary_split_group_system,RM Prod. Summary Split group_system,BugFix-Accounting.model_x_rm_prod_summary_spli,base.group_system,1,1,1,1
+access_1526_rm_production_orders_group_user,RM Production Orders group_user,BugFix-Accounting.model_x_rm_production_orders,base.group_user,1,0,0,0
+access_1525_rm_production_orders_group_system,RM Production Orders group_system,BugFix-Accounting.model_x_rm_production_orders,base.group_system,1,1,1,1
+access_1540_rm_production_variance_group_user,RM Production Variance group_user,BugFix-Accounting.model_x_rm_production_varian,base.group_user,1,0,0,0
+access_1539_rm_production_variance_group_system,RM Production Variance group_system,BugFix-Accounting.model_x_rm_production_varian,base.group_system,1,1,1,1
+access_1524_rm_sales_order_line_group_user,RM Sales Order Line group_user,BugFix-Accounting.model_x_rm_sales_order_line,base.group_user,1,0,0,0
+access_1523_rm_sales_order_line_group_system,RM Sales Order Line group_system,BugFix-Accounting.model_x_rm_sales_order_line,base.group_system,1,1,1,1
+access_1536_rm_sales_prod__purch__group_user,RM Sales Prod. Purch. group_user,BugFix-Accounting.model_x_rm_sales_prod_purch,base.group_user,1,0,0,0
+access_1535_rm_sales_prod__purch__group_system,RM Sales Prod. Purch. group_system,BugFix-Accounting.model_x_rm_sales_prod_purch,base.group_system,1,1,1,1
+access_1499_sales_report_model_group_user,Sales Report Model group_user,BugFix-Accounting.model_x_sales_report_model,base.group_user,0,0,0,0
+access_1498_sales_report_model_group_system,Sales Report Model group_system,BugFix-Accounting.model_x_sales_report_model,base.group_system,1,1,1,1
+access_1501_sales_report_type_group_user,Sales Report Type group_user,BugFix-Accounting.model_x_sales_report_type,base.group_user,0,0,0,0
+access_1500_sales_report_type_group_system,Sales Report Type group_system,BugFix-Accounting.model_x_sales_report_type,base.group_system,1,1,1,1
+access_1754_temp_actual_budget_group_user,Temp_Actual_Budget group_user,BugFix-Accounting.model_x_temp_actual_budget,base.group_user,1,0,0,0
+access_5657_temp__budget,Temp. Budget,BugFix-Accounting.model_x_temp_actual_budget,,1,0,0,0
+access_1753_temp_actual_budget_group_system,Temp_Actual_Budget group_system,BugFix-Accounting.model_x_temp_actual_budget,base.group_system,1,1,1,1
+access_1748_temp_estimated_group_user,Temp_Estimated group_user,BugFix-Accounting.model_x_temp_estimated,base.group_user,1,0,0,0
+access_1747_temp_estimated_group_system,Temp_Estimated group_system,BugFix-Accounting.model_x_temp_estimated,base.group_system,1,1,1,1
+access_1367_temp_tp_invoice_header_group_user,Temp TP Invoice Header group_user,BugFix-Accounting.model_x_temp_tp_invoice_head,base.group_user,1,0,0,0
+access_6881_x_temp_tp_invoice_head,x_temp_tp_invoice_head,BugFix-Accounting.model_x_temp_tp_invoice_head,,1,1,1,1
+access_1366_temp_tp_invoice_header_group_system,Temp TP Invoice Header group_system,BugFix-Accounting.model_x_temp_tp_invoice_head,base.group_system,1,1,1,1
+access_1369_temp_tp_invoice_line_group_user,Temp TP Invoice Line group_user,BugFix-Accounting.model_x_temp_tp_invoice_line,base.group_user,1,0,0,0
+access_6882_x_temp_tp_invoice_line,x_temp_tp_invoice_line,BugFix-Accounting.model_x_temp_tp_invoice_line,,1,1,1,0
+access_1368_temp_tp_invoice_line_group_system,Temp TP Invoice Line group_system,BugFix-Accounting.model_x_temp_tp_invoice_line,base.group_system,1,1,1,1
+access_8577_test___rm_gross_margin___actuals_group_user,Test - RM Gross Margin - Actuals group_user,BugFix-Accounting.model_x_test_rm_gross_margin,base.group_user,1,1,1,0
+access_8576_test___rm_gross_margin___actuals_group_system,Test - RM Gross Margin - Actuals group_system,BugFix-Accounting.model_x_test_rm_gross_margin,base.group_system,1,1,1,1
+access_1371_tp_invoice_header_group_user,TP Invoice Header group_user,BugFix-Accounting.model_x_tp_invoice_header,base.group_user,1,0,0,0
+access_6884_x_tp_invoice_header,x_tp_invoice_header,BugFix-Accounting.model_x_tp_invoice_header,,1,1,1,0
+access_1370_tp_invoice_header_group_system,TP Invoice Header group_system,BugFix-Accounting.model_x_tp_invoice_header,base.group_system,1,1,1,1
+access_1373_tp_invoice_line_group_user,TP Invoice Line group_user,BugFix-Accounting.model_x_tp_invoice_line,base.group_user,1,0,0,0
+access_6885_x_tp_invoice_line,x_tp_invoice_line,BugFix-Accounting.model_x_tp_invoice_line,,1,1,1,0
+access_1372_tp_invoice_line_group_system,TP Invoice Line group_system,BugFix-Accounting.model_x_tp_invoice_line,base.group_system,1,1,1,1

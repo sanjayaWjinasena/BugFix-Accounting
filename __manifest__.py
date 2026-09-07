@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Accounting',
-    'version': '17.0.0.0.57',
+    'version': '17.0.0.0.58',
     'summary': 'Studio-to-Python port for BugFix-Accounting',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Accounting',
@@ -320,6 +320,10 @@
         # See the v0.0.46 comment block above for per-report notes and
         # Clear-DB id -> local xmlid correspondence.
         'reports/reports.xml',
+        'data/record_rules.xml',
+        'data/server_actions_backlog.xml',
+        'data/automations_backlog.xml',
+        'data/window_actions_backlog.xml',
     ],
     'installable': True,
     'auto_install': False,
