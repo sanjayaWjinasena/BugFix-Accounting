@@ -1,0 +1,518 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- BugFix-Accounting: 117 ir.default records routed from Phase D2 sweep --><odoo>
+  <data noupdate="1">
+
+    <record id="default_11_x_customer_posting_pro_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_customer_posting_pro__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+
+    <record id="default_12_x_customer_posting_pro_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_customer_posting_pro__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+
+    <record id="default_109_x_misc_charge_codes_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_misc_charge_codes__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+
+    <record id="default_110_x_misc_charge_codes_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_misc_charge_codes__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+
+    <record id="default_155_x_custom_currency_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_custom_currency__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+
+    <record id="default_156_x_custom_currency_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_custom_currency__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+
+    <record id="default_157_x_custom_currency_rate_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_custom_currency_rate__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+
+    <record id="default_158_x_custom_currency_rate_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_custom_currency_rate__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+
+    <record id="default_159_x_consignment_charge_h_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_consignment_charge_h__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+
+    <record id="default_160_x_consignment_charge_h_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_consignment_charge_h__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+
+    <!-- DROPPED default_161_x_consignment_charge_h_x_studio_charge_group: selection value 'None' not in field allowed set --><record id="default_162_x_consignment_charge_h_x_studio_structure_no" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_consignment_charge_h__x_studio_structure_no"/>
+      <field name="json_value">"0"</field>
+    </record>
+
+    <record id="default_165_x_consignment_charge_h_x_studio_ledger_post" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_consignment_charge_h__x_studio_ledger_post"/>
+      <field name="json_value">"1"</field>
+    </record>
+
+    <record id="default_170_x_temp_tp_invoice_head_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_temp_tp_invoice_head__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+
+    <record id="default_171_x_temp_tp_invoice_head_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_temp_tp_invoice_head__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+
+    <record id="default_172_x_temp_tp_invoice_line_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_temp_tp_invoice_line__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+
+    <record id="default_173_x_temp_tp_invoice_line_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_temp_tp_invoice_line__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+
+    <record id="default_174_x_tp_invoice_header_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_tp_invoice_header__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+
+    <record id="default_175_x_tp_invoice_header_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_tp_invoice_header__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+
+    <record id="default_176_x_tp_invoice_line_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_tp_invoice_line__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+
+    <record id="default_177_x_tp_invoice_line_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_tp_invoice_line__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+
+    <record id="default_178_x_tp_invoice_header_x_name" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_tp_invoice_header__x_name"/>
+      <field name="json_value">"New"</field>
+    </record>
+
+    <record id="default_179_x_tp_invoice_header_x_studio_pipeline_status_bar" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_tp_invoice_header__x_studio_pipeline_status_bar"/>
+      <field name="json_value">"Draft"</field>
+    </record>
+
+    <record id="default_180_x_tp_invoice_header_x_studio_status" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_tp_invoice_header__x_studio_status"/>
+      <field name="json_value">"Draft"</field>
+    </record>
+
+    <record id="default_185_x_lc_header_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+
+    <record id="default_186_x_lc_header_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+
+    <!-- DROPPED default_187_x_lc_header_x_studio_lc_credit_type: selection value 'Irrevocable' not in field allowed set --><!-- DROPPED default_188_x_lc_header_x_studio_lc_credit_sub_type: selection value 'Non Transferable' not in field allowed set --><!-- DROPPED default_189_x_lc_header_x_studio_status: selection value 'Draft' not in field allowed set --><!-- DROPPED default_190_x_lc_header_x_studio_tolerance_type: selection value 'Plus' not in field allowed set --><!-- DROPPED default_191_x_lc_header_x_studio_partial_shipment: selection value 'Allowed' not in field allowed set --><!-- DROPPED default_192_x_lc_header_x_studio_transshipment: selection value 'Allowed' not in field allowed set --><!-- DROPPED default_193_x_lc_header_x_studio_draft: selection value 'At Sight' not in field allowed set --><!-- DROPPED default_194_x_lc_header_x_studio_confirmation_instructions: selection value 'None' not in field allowed set --><record id="default_195_x_lc_header_x_name" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_name"/>
+      <field name="json_value">"New"</field>
+    </record>
+
+    <!-- DROPPED default_197_x_lc_header_x_studio_selection_field_yo4qM: selection value 'Draft' not in field allowed set --><record id="default_199_x_lc_header_x_studio_version_no" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_version_no"/>
+      <field name="json_value">"0"</field>
+    </record>
+
+    <record id="default_225_x_custom_currency_x_studio_currency_id" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_custom_currency__x_studio_currency_id"/>
+      <field name="json_value">145</field>
+    </record>
+
+    <record id="default_226_x_tp_invoice_header_x_studio_currency_id" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_tp_invoice_header__x_studio_currency_id"/>
+      <field name="json_value">145</field>
+    </record>
+
+    <record id="default_227_x_lc_header_x_studio_currency_id" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_currency_id"/>
+      <field name="json_value">145</field>
+    </record>
+
+    <record id="default_250_x_sales_report_model_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_sales_report_model__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+
+    <record id="default_251_x_sales_report_model_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_sales_report_model__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+
+    <record id="default_252_x_sales_report_type_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_sales_report_type__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+
+    <record id="default_253_x_sales_report_type_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_sales_report_type__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+
+    <record id="default_254_x_rm_daily_sales_repor_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_rm_daily_sales_repor__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+
+    <record id="default_255_x_rm_daily_sales_repor_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_rm_daily_sales_repor__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+
+    <!-- DROPPED default_256_x_sales_report_model_x_studio_selection_field_Fb: selection value 'Draft' not in field allowed set --><record id="default_257_x_rm_daily_s1_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_rm_daily_s1__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+
+    <record id="default_258_x_rm_daily_s1_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_rm_daily_s1__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+
+    <record id="default_259_x_rm_daily_s2_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_rm_daily_s2__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+
+    <record id="default_260_x_rm_daily_s2_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_rm_daily_s2__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+
+    <record id="default_261_x_rm_daily_s3_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_rm_daily_s3__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+
+    <record id="default_262_x_rm_daily_s3_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_rm_daily_s3__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+
+    <record id="default_263_x_rm_customer_wise_inv_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_rm_customer_wise_inv__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+
+    <record id="default_264_x_rm_customer_wise_inv_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_rm_customer_wise_inv__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+
+    <record id="default_265_x_rm_cust_invoice_s1_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_rm_cust_invoice_s1__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+
+    <record id="default_266_x_rm_cust_invoice_s1_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_rm_cust_invoice_s1__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+
+    <!-- DROPPED default_275_x_misc_charge_codes_x_studio_debit_acc_type: selection value 'Item' not in field allowed set --><!-- DROPPED default_276_x_misc_charge_codes_x_studio_credit_acc_type: selection value 'G/L Account' not in field allowed set --><record id="default_277_x_rm_sales_order_line_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_rm_sales_order_line__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+
+    <record id="default_278_x_rm_sales_order_line_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_rm_sales_order_line__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+
+    <record id="default_279_x_rm_production_orders_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_rm_production_orders__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+
+    <record id="default_280_x_rm_production_orders_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_rm_production_orders__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+
+    <record id="default_281_x_rm_none_moving_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_rm_none_moving__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+
+    <record id="default_282_x_rm_none_moving_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_rm_none_moving__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+
+    <record id="default_283_x_rm_date_test_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_rm_date_test__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+
+    <record id="default_284_x_rm_date_test_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_rm_date_test__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+
+    <record id="default_287_x_rm_sales_prod_purch_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_rm_sales_prod_purch__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+
+    <record id="default_288_x_rm_sales_prod_purch_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_rm_sales_prod_purch__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+
+    <record id="default_289_x_rm_prod_summary_spli_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_rm_prod_summary_spli__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+
+    <record id="default_290_x_rm_prod_summary_spli_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_rm_prod_summary_spli__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+
+    <record id="default_292_x_rm_production_varian_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_rm_production_varian__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+
+    <record id="default_293_x_rm_production_varian_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_rm_production_varian__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+
+    <record id="default_308_x_rm_gross_margin_esti_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_rm_gross_margin_esti__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+
+    <record id="default_309_x_rm_gross_margin_esti_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_rm_gross_margin_esti__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+
+    <record id="default_310_x_rm_gross_margin_actu_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_rm_gross_margin_actu__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+
+    <record id="default_311_x_rm_gross_margin_actu_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_rm_gross_margin_actu__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+
+    <record id="default_312_x_rm_gross_margin_invo_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_rm_gross_margin_invo__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+
+    <record id="default_313_x_rm_gross_margin_invo_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_rm_gross_margin_invo__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+
+    <record id="default_317_x_temp_estimated_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_temp_estimated__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+
+    <record id="default_318_x_temp_estimated_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_temp_estimated__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+
+    <record id="default_319_x_temp_estimated_x_currency_id" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_temp_estimated__x_currency_id"/>
+      <field name="json_value">145</field>
+    </record>
+
+    <record id="default_321_x_temp_actual_budget_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_temp_actual_budget__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+
+    <record id="default_322_x_temp_actual_budget_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_temp_actual_budget__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+
+    <record id="default_323_x_temp_actual_budget_x_currency_id" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_temp_actual_budget__x_currency_id"/>
+      <field name="json_value">145</field>
+    </record>
+
+    <record id="default_330_x_rm_gross_margin_comp_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_rm_gross_margin_comp__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+
+    <record id="default_331_x_rm_gross_margin_comp_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_rm_gross_margin_comp__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+
+    <record id="default_385_account_payment_x_studio_payment_validation_1" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_account_payment__x_studio_payment_validation_1"/>
+      <field name="json_value">"The Payment amount is less than the minimum % for repairs."</field>
+    </record>
+
+    <record id="default_386_x_tp_invoice_header_x_currency_id" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_tp_invoice_header__x_currency_id"/>
+      <field name="json_value">145</field>
+    </record>
+
+    <record id="default_390_x_journal_types_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_journal_types__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+
+    <record id="default_391_x_journal_types_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_journal_types__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+
+    <record id="default_393_x_pump_price_costing_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_pump_price_costing__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+
+    <record id="default_394_x_pump_price_costing_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_pump_price_costing__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+
+    <record id="default_395_x_sales_report_model_x_studio_idling_rate" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_sales_report_model__x_studio_idling_rate"/>
+      <field name="json_value">"155"</field>
+    </record>
+
+    <record id="default_396_x_sales_report_model_x_studio_distributor_additi" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_sales_report_model__x_studio_distributor_addition"/>
+      <field name="json_value">"18.5"</field>
+    </record>
+
+    <record id="default_397_x_sales_report_model_x_studio_sscl" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_sales_report_model__x_studio_sscl"/>
+      <field name="json_value">"2.5"</field>
+    </record>
+
+    <record id="default_398_x_sales_report_model_x_studio_contingency_" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_sales_report_model__x_studio_contingency_"/>
+      <field name="json_value">"30"</field>
+    </record>
+
+    <record id="default_399_x_sales_report_model_x_studio_factory_oh_labour" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_sales_report_model__x_studio_factory_oh_labour"/>
+      <field name="json_value">"350"</field>
+    </record>
+
+    <record id="default_400_x_sales_report_model_x_studio_factory_oh" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_sales_report_model__x_studio_factory_oh"/>
+      <field name="json_value">"418"</field>
+    </record>
+
+    <record id="default_401_x_sales_report_model_x_studio_sales_oh" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_sales_report_model__x_studio_sales_oh"/>
+      <field name="json_value">"467"</field>
+    </record>
+
+    <record id="default_402_x_sales_report_model_x_studio_other_oh" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_sales_report_model__x_studio_other_oh"/>
+      <field name="json_value">"510"</field>
+    </record>
+
+    <record id="default_403_x_sales_report_model_x_studio_oh_absorbed_factor" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_sales_report_model__x_studio_oh_absorbed_factory"/>
+      <field name="json_value">"768"</field>
+    </record>
+
+    <record id="default_404_x_sales_report_model_x_studio_profit_mark_up_" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_sales_report_model__x_studio_profit_mark_up_"/>
+      <field name="json_value">"20"</field>
+    </record>
+
+    <record id="default_405_x_sales_report_model_x_studio_oh_absorbed_2_fact" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_sales_report_model__x_studio_oh_absorbed_2_factory"/>
+      <field name="json_value">"1209"</field>
+    </record>
+
+    <record id="default_406_x_sales_report_model_x_studio_actuals" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_sales_report_model__x_studio_actuals"/>
+      <field name="json_value">"1"</field>
+    </record>
+
+    <record id="default_412_crossovered_budget_x_studio_confirm_validation" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_crossovered_budget__x_studio_confirm_validation"/>
+      <field name="json_value">"The project budget can't be confirmed until all the PRs are updated. "</field>
+    </record>
+
+    <record id="default_426_x_custom_currency_x_studio_currency_id" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_custom_currency__x_studio_currency_id"/>
+      <field name="json_value">145</field>
+    </record>
+
+    <record id="default_427_x_tp_invoice_header_x_studio_currency_id" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_tp_invoice_header__x_studio_currency_id"/>
+      <field name="json_value">145</field>
+    </record>
+
+    <record id="default_428_x_lc_header_x_studio_currency_id" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_currency_id"/>
+      <field name="json_value">145</field>
+    </record>
+
+    <!-- DROPPED default_451_account_payment_x_studio_type: selection value 'General' not in field allowed set --><record id="default_452_x_advance_payment_acco_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_advance_payment_acco__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+
+    <record id="default_453_x_advance_payment_acco_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_advance_payment_acco__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+
+    <!-- DROPPED default_473_account_move_x_studio_journal_type: selection value '' not in field allowed set --><record id="default_573_crossovered_budget_x_studio_total" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_crossovered_budget__x_studio_total"/>
+      <field name="json_value">"0"</field>
+      <field name="company_id" ref="seed_master_data_and_settings.company_jinasena_pvt_ltd"/>
+    </record>
+
+    <record id="default_574_crossovered_budget_x_currency_id" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_crossovered_budget__x_currency_id"/>
+      <field name="json_value">145</field>
+      <field name="company_id" ref="seed_master_data_and_settings.company_jinasena_pvt_ltd"/>
+    </record>
+
+    <record id="default_642_x_test_rm_gross_margin_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_test_rm_gross_margin__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+
+    <record id="default_643_x_test_rm_gross_margin_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_test_rm_gross_margin__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+
+  </data>
+</odoo>
