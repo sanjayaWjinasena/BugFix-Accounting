@@ -208,3 +208,22 @@ access_1370_tp_invoice_header_group_system,TP Invoice Header group_system,BugFix
 access_1373_tp_invoice_line_group_user,TP Invoice Line group_user,BugFix-Accounting.model_x_tp_invoice_line,base.group_user,1,0,0,0
 access_6885_x_tp_invoice_line,x_tp_invoice_line,BugFix-Accounting.model_x_tp_invoice_line,,1,1,1,0
 access_1372_tp_invoice_line_group_system,TP Invoice Line group_system,BugFix-Accounting.model_x_tp_invoice_line,base.group_system,1,1,1,1
+access_1734_rm_gross_margin_actuals_group_user,RM Gross Margin - Actuals group_user,BugFix-Accounting.model_x_rm_gross_margin_actu,base.group_user,1,0,0,0
+access_1733_rm_gross_margin_actuals_group_system,RM Gross Margin - Actuals group_system,BugFix-Accounting.model_x_rm_gross_margin_actu,base.group_system,1,1,1,1
+access_1777_rm_gross_margin_comparison_group_user,RM Gross Margin - Comparison group_user,BugFix-Accounting.model_x_rm_gross_margin_comp,base.group_user,1,0,0,0
+access_1776_rm_gross_margin_comparison_group_system,RM Gross Margin - Comparison group_system,BugFix-Accounting.model_x_rm_gross_margin_comp,base.group_system,1,1,1,1
+access_1732_rm_gross_margin_estimated_group_user,RM Gross Margin - Estimated group_user,BugFix-Accounting.model_x_rm_gross_margin_esti,base.group_user,1,0,0,0
+access_1731_rm_gross_margin_estimated_group_system,RM Gross Margin - Estimated group_system,BugFix-Accounting.model_x_rm_gross_margin_esti,base.group_system,1,1,1,1
+access_1736_rm_gross_margin_invoice_details_group_user,RM Gross Margin - Invoice Details group_user,BugFix-Accounting.model_x_rm_gross_margin_invo,base.group_user,1,0,0,0
+access_1735_rm_gross_margin_invoice_details_group_system,RM Gross Margin - Invoice Details group_system,BugFix-Accounting.model_x_rm_gross_margin_invo,base.group_system,1,1,1,1
+access_1538_rm_prod_summary_split_group_user,RM Prod. Summary Split group_user,BugFix-Accounting.model_x_rm_prod_summary_spli,base.group_user,1,0,0,0
+access_1537_rm_prod_summary_split_group_system,RM Prod. Summary Split group_system,BugFix-Accounting.model_x_rm_prod_summary_spli,base.group_system,1,1,1,1
+access_1536_rm_sales_prod_purch_group_user,RM Sales Prod. Purch. group_user,BugFix-Accounting.model_x_rm_sales_prod_purch,base.group_user,1,0,0,0
+access_1535_rm_sales_prod_purch_group_system,RM Sales Prod. Purch. group_system,BugFix-Accounting.model_x_rm_sales_prod_purch,base.group_system,1,1,1,1
+access_5657_temp_budget,Temp. Budget,BugFix-Accounting.model_x_temp_actual_budget,,1,0,0,0
+access_8577_test_rm_gross_margin_actuals_group_user,Test - RM Gross Margin - Actuals group_user,BugFix-Accounting.model_x_test_rm_gross_margin,base.group_user,1,1,1,0
+access_8576_test_rm_gross_margin_actuals_group_system,Test - RM Gross Margin - Actuals group_system,BugFix-Accounting.model_x_test_rm_gross_margin,base.group_system,1,1,1,1
+access_1750_rm_gross_margin_esti_lines_group_user,Rm Gross Margin Esti  Lines group_user,BugFix-Accounting.model_x_rm_gross_margin_esti_line_7e86d,base.group_user,1,0,0,0
+access_1752_rm_gross_margin_esti_lines_group_user,Rm Gross Margin Esti  Lines group_user,BugFix-Accounting.model_x_rm_gross_margin_esti_line_7e86d,base.group_user,1,0,0,0
+access_1749_rm_gross_margin_esti_lines_group_system,Rm Gross Margin Esti  Lines group_system,BugFix-Accounting.model_x_rm_gross_margin_esti_line_7e86d,base.group_system,1,1,1,1
+access_1751_rm_gross_margin_esti_lines_group_system,Rm Gross Margin Esti  Lines group_system,BugFix-Accounting.model_x_rm_gross_margin_esti_line_7e86d,base.group_system,1,1,1,1

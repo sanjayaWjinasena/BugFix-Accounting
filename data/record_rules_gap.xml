@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BugFix-Accounting: 3 gap record rules -->
+<odoo>
+  <data noupdate="0">
+
+    <record id="rule_570_jin_multi_company_misc_charge_codes" model="ir.rule">
+      <field name="name">JIN - Multi-Company - Misc Charge Codes</field>
+      <field name="model_id" ref="BugFix-Accounting.model_x_misc_charge_codes"/>
+      <field name="domain_force"> ['|', ('x_studio_company_id', 'in', company_ids), ('x_studio_company_id', '=', False)]</field>
+      <field name="perm_read" eval="True"/>
+      <field name="perm_write" eval="True"/>
+      <field name="perm_create" eval="True"/>
+      <field name="perm_unlink" eval="True"/>
+      <field name="active" eval="True"/>
+    </record>
+
+    <record id="rule_516_jin_multi_company_lc_header" model="ir.rule">
+      <field name="name">JIN - Multi-Company - LC Header</field>
+      <field name="model_id" ref="BugFix-Accounting.model_x_lc_header"/>
+      <field name="domain_force">['|', ('x_studio_company_id', 'in', company_ids), ('x_studio_company_id', '=', False)]</field>
+      <field name="perm_read" eval="True"/>
+      <field name="perm_write" eval="True"/>
+      <field name="perm_create" eval="True"/>
+      <field name="perm_unlink" eval="True"/>
+      <field name="active" eval="True"/>
+    </record>
+
+    <record id="rule_521_jin_multi_company_consignment_charge_header" model="ir.rule">
+      <field name="name">JIN - Multi-Company - Consignment Charge Header</field>
+      <field name="model_id" ref="BugFix-Accounting.model_x_consignment_charge_h"/>
+      <field name="domain_force"> ['|', ('x_studio_company_id', 'in', company_ids), ('x_studio_company_id', '=', False)]</field>
+      <field name="perm_read" eval="True"/>
+      <field name="perm_write" eval="True"/>
+      <field name="perm_create" eval="True"/>
+      <field name="perm_unlink" eval="True"/>
+      <field name="active" eval="True"/>
+    </record>
+
+  </data>
+</odoo>

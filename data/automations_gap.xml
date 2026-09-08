@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BugFix-Accounting: 8 gap automations -->
+<odoo>
+
+
+  <record id="base_automation_1_avoid_product_duplicate" model="base.automation">
+    <field name="name">Avoid Product Duplicate</field>
+    <field name="active" eval="False"/>
+    <field name="model_id" ref="product.model_product_template"/>
+    <field name="trigger">on_create_or_write</field>
+  </record>
+
+  <record id="base_automation_117_srm_auto_populate_data_tau" model="base.automation">
+    <field name="name">SRM - Auto Populate Data - TAU</field>
+    <field name="active" eval="False"/>
+    <field name="model_id" ref="BugFix-Accounting.model_x_sales_report_model"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="filter_domain">[]</field>
+  </record>
+
+  <record id="base_automation_119_srm_auto_populate_data_original" model="base.automation">
+    <field name="name">SRM - Auto Populate Data-Original</field>
+    <field name="active" eval="False"/>
+    <field name="model_id" ref="BugFix-Accounting.model_x_sales_report_model"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="filter_domain">[]</field>
+  </record>
+
+  <record id="base_automation_123_srm_auto_populate_report_type_in_account_move" model="base.automation">
+    <field name="name">SRM - Auto Populate Report Type in Account Move</field>
+    <field name="active" eval="False"/>
+    <field name="model_id" ref="account.model_account_move"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="filter_domain">[]</field>
+  </record>
+
+  <record id="base_automation_127_sls_validate_payment_in_customer_invoice" model="base.automation">
+    <field name="name">SLS - Validate Payment in Customer Invoice</field>
+    <field name="active" eval="False"/>
+    <field name="model_id" ref="account.model_account_move"/>
+    <field name="trigger">on_write</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1751_sls_validate_payment_in_customer_invoice')])]"/>
+  </record>
+
+  <record id="base_automation_238_update_analytic_tag_parameters_sales_invoice_user" model="base.automation">
+    <field name="name">Update Analytic Tag Parameters - Sales Invoice - User</field>
+    <field name="active" eval="False"/>
+    <field name="model_id" ref="account.model_account_move"/>
+    <field name="trigger">on_create_or_write</field>
+  </record>
+
+  <record id="base_automation_239_update_analytic_tag_parameters_sales_invoice_line_account" model="base.automation">
+    <field name="name">Update Analytic Tag Parameters - Sales Invoice Line - Account</field>
+    <field name="active" eval="False"/>
+    <field name="model_id" ref="account.model_account_move_line"/>
+    <field name="trigger">on_change</field>
+    <field name="filter_domain">[]</field>
+  </record>
+
+  <record id="base_automation_338_pr_validate_cash_issued_in_npo" model="base.automation">
+    <field name="name">PR - Validate Cash Issued in NPO</field>
+    <field name="active" eval="False"/>
+    <field name="model_id" ref="account.model_account_move"/>
+    <field name="trigger">on_create_or_write</field>
+  </record>
+
+</odoo>
