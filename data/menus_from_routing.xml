@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- BugFix-Accounting: menu sweep from routing audit (34 candidates) --><!-- Uses <menuitem> shortcut with dev-verified parent + action refs --><odoo>
+
+  <menuitem id="menu_785_tp_invoice_line" name="TP Invoice Line" action="BugFix-Accounting.action_1380_tp_invoice_line" sequence="11"/>
+  <menuitem id="menu_880_report_models" name="Report Models" parent="sale.sale_menu_root" action="BugFix-Accounting.action_1667_sales_report_model" sequence="10"/>
+  <menuitem id="menu_900_pivot_views" name="Pivot Views" parent="sale.sale_menu_root" action="BugFix-Accounting.action_1737_wip_production_orders" sequence="11"/>
+  <menuitem id="menu_1059_sales_invoices" name="Sales Invoices" parent="sale.sale_menu_root" action="BugFix-Accounting.action_2198_sales_invoices" sequence="12"/>
+  <menuitem id="menu_1171_aaaa" name="AAAA" parent="sale.sale_menu_root" action="BugFix-Accounting.action_2530_aaaa" sequence="14"/>
+  <menuitem id="menu_1340_taxes" name="Taxes" parent="account_accountant.menu_accounting" action="BugFix-Accounting.action_2758_taxes" sequence="36"/>
+  <menuitem id="menu_1690_invoice_wise_revenue_report" name="Invoice Wise Revenue Report" parent="account_accountant.menu_accounting" action="BugFix-Accounting.action_3271_invoice_wise_revenue_report" sequence="37"/>
+  <menuitem id="menu_901_production_overview_wip" name="Production Overview - WIP" parent="BugFix-Accounting.menu_900_pivot_views" action="BugFix-Accounting.action_1737_wip_production_orders" sequence="0"/>
+  <menuitem id="menu_902_slow_moving_items" name="Slow Moving Items" parent="BugFix-Accounting.menu_900_pivot_views" action="BugFix-Accounting.action_1741_slow_moving_items" sequence="1"/>
+  <menuitem id="menu_1221_miscellaneous" name="Miscellaneous" parent="account.menu_finance_entries" sequence="1"/>
+  <menuitem id="menu_833_invoices" name="Invoices" parent="sale.menu_sale_report" action="BugFix-Accounting.action_1569_invoices" sequence="2"/>
+  <menuitem id="menu_1191_credit_note" name="Credit Note" parent="account.menu_finance_receivables" action="account.action_move_out_refund_type" sequence="2"/>
+  <menuitem id="menu_836_sales_invoice_lines" name="Sales Invoice Lines" parent="sale.menu_sale_report" action="BugFix-Accounting.action_1572_sales_invoice_lines" sequence="3"/>
+  <menuitem id="menu_1224_ledgers" name="Ledgers" parent="account.menu_finance_entries" sequence="3"/>
+  <menuitem id="menu_1475_etf_schedule" name="ETF Schedule" parent="hr_payroll.menu_hr_payroll_report" action="BugFix-Accounting.action_2893_etf_schedule" sequence="3"/>
+  <menuitem id="menu_1476_epf_schedule" name="EPF Schedule" parent="hr_payroll.menu_hr_payroll_report" action="BugFix-Accounting.action_2894_epf_schedule" sequence="4"/>
+  <menuitem id="menu_1132_journal_types" name="Journal Types" parent="stock.menu_stock_config_settings" action="BugFix-Accounting.action_2447_journal_types" sequence="5"/>
+  <menuitem id="menu_881_sales_report_model" name="Sales Report Model" parent="BugFix-Accounting.menu_880_report_models" action="BugFix-Accounting.action_1667_sales_report_model" sequence="10"/>
+  <menuitem id="menu_882_sales_report_type" name="Sales Report Type" parent="BugFix-Accounting.menu_880_report_models" action="BugFix-Accounting.action_1668_sales_report_type" sequence="10"/>
+  <menuitem id="menu_1222_journal_entries" name="Journal Entries" parent="BugFix-Accounting.menu_1221_miscellaneous" action="BugFix-Accounting.action_2630_journal_entries" sequence="1"/>
+  <menuitem id="menu_1218_purchases" name="Purchases" parent="account.menu_finance_entries_accounting_miscellaneous" action="account.action_account_moves_journal_purchase" sequence="2"/>
+  <menuitem id="menu_1226_partner_ledger" name="Partner Ledger" parent="BugFix-Accounting.menu_1224_ledgers" action="account.action_account_moves_ledger_partner" sequence="2"/>
+  <menuitem id="menu_1219_bank_and_cash" name="Bank and Cash" parent="account.menu_finance_entries_accounting_miscellaneous" action="account.action_account_moves_journal_bank_cash" sequence="3"/>
+  <menuitem id="menu_1220_miscellaneous" name="Miscellaneous" parent="account.menu_finance_entries_accounting_miscellaneous" action="account.action_account_moves_journal_misc" sequence="4"/>
+  <menuitem id="menu_1323_advance_payment_account" name="Advance Payment Account" parent="account.root_payment_menu" action="BugFix-Accounting.action_2740_advance_payment_account" sequence="4"/>
+  <menuitem id="menu_1085_pump_product_costing" name="Pump Product Costing" parent="account.account_reports_management_menu" action="BugFix-Accounting.action_2285_pump_product_costing" sequence="6"/>
+  <menuitem id="menu_1173_pump_costing_worksheet" name="Pump Costing Worksheet" parent="account.account_reports_management_menu" action="BugFix-Accounting.action_2533_pump_costing_worksheet" sequence="7"/>
+  <menuitem id="menu_1217_sales" name="Sales" parent="account.menu_finance_entries_accounting_miscellaneous" action="account.action_account_moves_journal_sales" sequence="10"/>
+
+</odoo>
