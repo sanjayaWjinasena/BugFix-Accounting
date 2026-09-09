@@ -107,17 +107,7 @@
       <field name="json_value">"New"</field>
     </record>
 
-    <record id="default_179_x_tp_invoice_header_x_studio_pipeline_status_bar" model="ir.default">
-      <field name="field_id" ref="BugFix-Accounting.field_x_tp_invoice_header__x_studio_pipeline_status_bar"/>
-      <field name="json_value">"Draft"</field>
-    </record>
-
-    <record id="default_180_x_tp_invoice_header_x_studio_status" model="ir.default">
-      <field name="field_id" ref="BugFix-Accounting.field_x_tp_invoice_header__x_studio_status"/>
-      <field name="json_value">"Draft"</field>
-    </record>
-
-    <record id="default_185_x_lc_header_x_active" model="ir.default">
+    <!-- DROPPED default_179_x_tp_invoice_header_x_studio_pipeline_status_bar: selection default (defer to user via UI) --><!-- DROPPED default_180_x_tp_invoice_header_x_studio_status: selection default (defer to user via UI) --><record id="default_185_x_lc_header_x_active" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_active"/>
       <field name="json_value">true</field>
     </record>
