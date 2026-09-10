@@ -20,21 +20,13 @@
       <!-- STRIPPED action button aid=1370 unresolvable -->
     </xpath>
     
-    <xpath expr="//header/button[@name='1370']<!-- WARNING: xpath refs unresolvable action -->" position="after">
-      <!-- STRIPPED action button aid=2366 unresolvable -->
-    </xpath>
+    <!-- STRIPPED xpath: numeric button ref unresolvable -->
     
-    <xpath expr="//header/button[@name='2366']<!-- WARNING: xpath refs unresolvable action -->" position="after">
-      <!-- STRIPPED action button aid=1493 unresolvable -->
-    </xpath>
+    <!-- STRIPPED xpath: numeric button ref unresolvable -->
     
-    <xpath expr="//header/button[@name='1493']<!-- WARNING: xpath refs unresolvable action -->" position="after">
-      <!-- STRIPPED action button aid=1495 unresolvable -->
-    </xpath>
+    <!-- STRIPPED xpath: numeric button ref unresolvable -->
     
-    <xpath expr="//header/button[@name='1495']<!-- WARNING: xpath refs unresolvable action -->" position="attributes">
-    <attribute name="studio_approval">True</attribute>
-    </xpath>
+    <!-- STRIPPED xpath: numeric button ref unresolvable -->
     
     <xpath expr="//header/button[@name='action_post'][2]" position="attributes">
       <attribute name="invisible">((x_studio_rug_acc_updated == False) and ((x_studio_rug_rejected == False) and (x_studio_rug_confirmed == True))) or (((x_studio_bg_sent == False) and (x_studio_bank_guarantee_notification == True)) or (((x_studio_credit_note_approved == False) and (move_type == 'out_refund')) or (((x_studio_currency_rate_updated == False) and (x_studio_pr_type_1 == 'Import')) or (((x_studio_update_consignment == False) and (x_studio_pr_type_1 == 'Import')) or ((move_type == 'entry') or ((auto_post == True) or ((state != 'draft') or ((x_studio_bank_guarantee_validation == True) or (x_studio_credit_limit_validation == True)))))))))</attribute></xpath>
@@ -46,17 +38,11 @@
       <!-- STRIPPED action button aid=1852 unresolvable -->
     </xpath>
     
-    <xpath expr="//header/button[@name='1852']<!-- WARNING: xpath refs unresolvable action -->" position="before">
-      <!-- STRIPPED action button aid=1851 unresolvable -->
-    </xpath>  
+    <!-- STRIPPED xpath: numeric button ref unresolvable -->  
     
-    <xpath expr="//header/button[@name='1851']<!-- WARNING: xpath refs unresolvable action -->" position="before">
-      <!-- STRIPPED action button aid=1854 unresolvable -->
-    </xpath>
+    <!-- STRIPPED xpath: numeric button ref unresolvable -->
     
-    <!--xpath expr="//field[@name='analytic_account_id']" position="attributes">
-     <attribute name="domain">[["group_id","=",x_studio_analytic_group]]</attribute>
-    </xpath-->
+    <!-- STRIPPED malformed xpath comment block -->
     
     <xpath expr="//header/button[@name='action_register_payment']" position="attributes">
       <attribute name="invisible">(x_studio_cre != False) or (((x_studio_rug_acc_updated == True) and (x_studio_rug_confirmed == True)) or ((move_type not in ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt')) or ((payment_state not in ('not_paid', 'partial')) or (state != 'posted'))))</attribute></xpath>
