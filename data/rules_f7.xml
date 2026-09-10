@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BugFix-Accounting: Phase F7 - 2 record rules -->
+<odoo>
+  <record id="rule_f7_x_custom_currency_rate_jin_multi_company_custom_currency_rate" model="ir.rule">
+    <field name="name">JIN - Multi-Company - Custom Currency Rate</field>
+    <field name="model_id" search="[('model', '=', 'x_custom_currency_rate')]"/>
+    <field name="domain_force">['|', ('x_studio_company_id', 'in', company_ids), ('x_studio_company_id', '=', False)]</field>
+  </record>
+  <record id="rule_f7_x_custom_currency_jin_multi_company_custom_currency" model="ir.rule">
+    <field name="name">JIN - Multi-Company - Custom Currency</field>
+    <field name="model_id" search="[('model', '=', 'x_custom_currency')]"/>
+    <field name="domain_force">['|', ('x_studio_company_id', 'in', company_ids), ('x_studio_company_id', '=', False)]</field>
+  </record>
+</odoo>

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Accounting',
-    'version': '17.0.0.0.82',
+    'version': '17.0.0.0.83',
     'summary': 'Studio-to-Python port for BugFix-Accounting',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Accounting',
@@ -214,6 +214,7 @@
     #     as full QWeb templates + report actions.
     #   * views/ -- 84 view records need hand-porting (see VIEWS_TODO.md).
     'data': [
+        'data/rules_f7.xml',
         'data/menus_f6.xml',
         'data/server_actions_f5.xml',
         'data/window_actions_f4.xml',
