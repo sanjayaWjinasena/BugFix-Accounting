@@ -20,19 +20,19 @@
       <!-- STRIPPED action button aid=1370 unresolvable -->
     </xpath>
     
-    <xpath expr="//header/button[@name='1370']" position="after">
+    <xpath expr="//header/button[@name='1370']<!-- WARNING: xpath refs unresolvable action -->" position="after">
       <!-- STRIPPED action button aid=2366 unresolvable -->
     </xpath>
     
-    <xpath expr="//header/button[@name='2366']" position="after">
+    <xpath expr="//header/button[@name='2366']<!-- WARNING: xpath refs unresolvable action -->" position="after">
       <!-- STRIPPED action button aid=1493 unresolvable -->
     </xpath>
     
-    <xpath expr="//header/button[@name='1493']" position="after">
+    <xpath expr="//header/button[@name='1493']<!-- WARNING: xpath refs unresolvable action -->" position="after">
       <!-- STRIPPED action button aid=1495 unresolvable -->
     </xpath>
     
-    <xpath expr="//header/button[@name='1495']" position="attributes">
+    <xpath expr="//header/button[@name='1495']<!-- WARNING: xpath refs unresolvable action -->" position="attributes">
     <attribute name="studio_approval">True</attribute>
     </xpath>
     
@@ -46,11 +46,11 @@
       <!-- STRIPPED action button aid=1852 unresolvable -->
     </xpath>
     
-    <xpath expr="//header/button[@name='1852']" position="before">
+    <xpath expr="//header/button[@name='1852']<!-- WARNING: xpath refs unresolvable action -->" position="before">
       <!-- STRIPPED action button aid=1851 unresolvable -->
     </xpath>  
     
-    <xpath expr="//header/button[@name='1851']" position="before">
+    <xpath expr="//header/button[@name='1851']<!-- WARNING: xpath refs unresolvable action -->" position="before">
       <!-- STRIPPED action button aid=1854 unresolvable -->
     </xpath>
     

@@ -14,10 +14,10 @@
         <data>
   <xpath expr="//form[1]/sheet[1]/group[1]" position="before">
     <div name="button_box" class="oe_button_box">
-      <button class="oe_stat_button" icon="fa-diamond" type="action" name="2333">
+      <button class="oe_stat_button" icon="fa-diamond" type="action" name="%(BugFix-Accounting.action_2333_analytic_account)d">
         <field widget="statinfo" name="x_group_id_account_analytic_account_count" string="Analytic Account"/>
       </button>
-      <button class="oe_stat_button" icon="fa-diamond" type="action" name="2334">
+      <button class="oe_stat_button" icon="fa-diamond" type="action" name="%(BugFix-Accounting.act_window_2334_analytic_line)d">
         <field widget="statinfo" name="x_group_id_account_analytic_line_count" string="Analytic Line"/>
       </button>
     </div>
