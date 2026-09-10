@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BugFix-Accounting: Phase F1 - 104 selection options -->
+<odoo noupdate="1">
+  <record id="sel_BugFix-Accounting_x_customer_posting_pro_all" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_x_customer_posting_pro__x_studio_item_relation_type"/>
+    <field name="value">All</field>
+    <field name="name">All</field>
+  </record>
+  <record id="sel_BugFix-Stock_x_misc_charge_codes__x_stud_none" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Stock.field_x_misc_charge_codes__x_studio_charge_group"/>
+    <field name="value">None</field>
+    <field name="name">None</field>
+  </record>
+  <record id="sel_BugFix-Stock_x_consignment_charge_h__x_s_none" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Stock.field_x_consignment_charge_h__x_studio_charge_group"/>
+    <field name="value">None</field>
+    <field name="name">None</field>
+  </record>
+  <record id="sel_BugFix-Stock_x_consignment_charge_h__x_s_percentage" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Stock.field_x_consignment_charge_h__x_studio_basis"/>
+    <field name="value">Percentage</field>
+    <field name="name">Percentage</field>
+  </record>
+  <record id="sel_BugFix-Accounting_x_temp_tp_invoice_line_percentage" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_x_temp_tp_invoice_line__x_studio_basis"/>
+    <field name="value">Percentage</field>
+    <field name="name">Percentage</field>
+  </record>
+  <record id="sel_BugFix-Accounting_x_temp_tp_invoice_line_none" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_x_temp_tp_invoice_line__x_studio_charge_group"/>
+    <field name="value">None</field>
+    <field name="name">None</field>
+  </record>
+  <record id="sel_BugFix-Accounting_account_move_line__x_s_draft" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_account_move_line__x_studio_status"/>
+    <field name="value">draft</field>
+    <field name="name">Draft</field>
+  </record>
+  <record id="sel_BugFix-Accounting_x_lc_header__x_studio__irrevocable" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_lc_credit_type"/>
+    <field name="value">Irrevocable</field>
+    <field name="name">Irrevocable</field>
+  </record>
+  <record id="sel_BugFix-Accounting_x_lc_header__x_studio__non_transferable" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_lc_credit_sub_type"/>
+    <field name="value">Non Transferable</field>
+    <field name="name">Non Transferable</field>
+  </record>
+  <record id="sel_BugFix-Accounting_x_lc_header__x_studio__draft" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_status"/>
+    <field name="value">Draft</field>
+    <field name="name">Draft</field>
+  </record>
+  <record id="sel_BugFix-Accounting_x_lc_header__x_studio__plus" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_tolerance_type"/>
+    <field name="value">Plus</field>
+    <field name="name">Plus</field>
+  </record>
+  <record id="sel_BugFix-Accounting_x_lc_header__x_studio__allowed" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_partial_shipment"/>
+    <field name="value">Allowed</field>
+    <field name="name">Allowed</field>
+  </record>
+  <record id="sel_BugFix-Accounting_x_lc_header__x_studio__allowed_Allowed" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_transshipment"/>
+    <field name="value">Allowed</field>
+    <field name="name">Allowed</field>
+  </record>
+  <record id="sel_BugFix-Accounting_x_lc_header__x_studio__at_sight" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_draft"/>
+    <field name="value">At Sight</field>
+    <field name="name">At Sight</field>
+  </record>
+  <record id="sel_BugFix-Accounting_x_lc_header__x_studio__none" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_confirmation_instructions"/>
+    <field name="value">None</field>
+    <field name="name">None</field>
+  </record>
+  <record id="sel_BugFix-Accounting_x_lc_header__x_studio__draft_Draft" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_selection_field_yo4qM"/>
+    <field name="value">Draft</field>
+    <field name="name">Draft</field>
+  </record>
+  <record id="sel_Jinasena_Masterdata_Reporting_x_sales_re_draft" model="ir.model.fields.selection">
+    <field name="field_id" ref="Jinasena_Masterdata_Reporting.field_x_sales_report_model__x_studio_selection_field_Fbw0x"/>
+    <field name="value">Draft</field>
+    <field name="name">Draft</field>
+  </record>
+  <record id="sel_BugFix-Stock_x_misc_charge_codes__x_stud_item" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Stock.field_x_misc_charge_codes__x_studio_debit_acc_type"/>
+    <field name="value">Item</field>
+    <field name="name">Item</field>
+  </record>
+  <record id="sel_BugFix-Stock_x_misc_charge_codes__x_stud_item_Item" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Stock.field_x_misc_charge_codes__x_studio_credit_acc_type"/>
+    <field name="value">Item</field>
+    <field name="name">Item</field>
+  </record>
+  <record id="sel_Jinasena_Masterdata_Reporting_x_sales_re_daily_sales_summary" model="ir.model.fields.selection">
+    <field name="field_id" ref="Jinasena_Masterdata_Reporting.field_x_sales_report_type__x_studio_report_code"/>
+    <field name="value">Daily Sales Summary</field>
+    <field name="name">Daily Sales Summary</field>
+  </record>
+  <record id="sel_Jinasena_Masterdata_Reporting_x_sales_re_s_dailysales" model="ir.model.fields.selection">
+    <field name="field_id" ref="Jinasena_Masterdata_Reporting.field_x_sales_report_model__x_studio_report_code"/>
+    <field name="value">s-dailysales</field>
+    <field name="name">Daily Sales Summary</field>
+  </record>
+  <record id="sel_BugFix-Accounting_x_rm_sales_prod_purch__consu" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_x_rm_sales_prod_purch__x_studio_product_type"/>
+    <field name="value">consu</field>
+    <field name="name">Consumable</field>
+  </record>
+  <record id="sel_BugFix-Accounting_account_move__x_studio_cash" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_account_move__x_studio_order_payment_method"/>
+    <field name="value">Cash</field>
+    <field name="name">Cash</field>
+  </record>
+  <record id="sel_BugFix-Accounting_account_move_line__x_s_not_paid" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_account_move_line__x_studio_payment_status"/>
+    <field name="value">not_paid</field>
+    <field name="name">Not Paid</field>
+  </record>
+  <record id="sel_BugFix-Accounting_account_move_line__x_s_general" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_account_move_line__x_studio_customer_group_type"/>
+    <field name="value">General</field>
+    <field name="name">General</field>
+  </record>
+  <record id="sel_BugFix-Accounting_account_move_line__x_s_draft_draft" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_account_move_line__x_studio_status_1"/>
+    <field name="value">draft</field>
+    <field name="name">Draft</field>
+  </record>
+  <record id="sel_BugFix-Sales_product_template__x_studio__none" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Sales.field_product_template__x_studio_product_type"/>
+    <field name="value">None</field>
+    <field name="name">None</field>
+  </record>
+  <record id="sel_BugFix-Accounting_account_move_line__x_s_local" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_account_move_line__x_studio_pr_type"/>
+    <field name="value">Local</field>
+    <field name="name">Local</field>
+  </record>
+  <record id="sel_BugFix-Accounting_account_move__x_studio_local" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_account_move__x_studio_purchase_type"/>
+    <field name="value">Local</field>
+    <field name="name">Local</field>
+  </record>
+  <record id="sel_BugFix-Accounting_account_move__x_studio_one" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_account_move__x_studio_test_type"/>
+    <field name="value">One</field>
+    <field name="name">One</field>
+  </record>
+  <record id="sel_BugFix-Accounting_account_move__x_studio_bill" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_account_move__x_studio_journal_type"/>
+    <field name="value">Bill</field>
+    <field name="name">Bill</field>
+  </record>
+  <record id="sel_BugFix-Accounting_account_move_line__x_s_bill" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_account_move_line__x_studio_journal_type"/>
+    <field name="value">Bill</field>
+    <field name="name">Bill</field>
+  </record>
+  <record id="sel_BugFix-Accounting_account_payment__x_stu_general" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_account_payment__x_studio_type"/>
+    <field name="value">General</field>
+    <field name="name">General</field>
+  </record>
+  <record id="sel_BugFix-Accounting_account_move__x_studio_general" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_account_move__x_studio_type"/>
+    <field name="value">General</field>
+    <field name="name">General</field>
+  </record>
+  <record id="sel_BugFix-Accounting_x_customer_posting_pro_group" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_x_customer_posting_pro__x_studio_item_relation_type"/>
+    <field name="value">Group</field>
+    <field name="name">Group</field>
+    <field name="sequence">1</field>
+  </record>
+  <record id="sel_BugFix-Stock_x_misc_charge_codes__x_stud_charges" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Stock.field_x_misc_charge_codes__x_studio_charge_group"/>
+    <field name="value">Charges</field>
+    <field name="name">Charges</field>
+    <field name="sequence">1</field>
+  </record>
+  <record id="sel_BugFix-Stock_x_consignment_charge_h__x_s_charges" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Stock.field_x_consignment_charge_h__x_studio_charge_group"/>
+    <field name="value">Charges</field>
+    <field name="name">Charges</field>
+    <field name="sequence">1</field>
+  </record>
+  <record id="sel_BugFix-Stock_x_consignment_charge_h__x_s_fixed_per_document" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Stock.field_x_consignment_charge_h__x_studio_basis"/>
+    <field name="value">Fixed Per Document</field>
+    <field name="name">Fixed Per Document</field>
+    <field name="sequence">1</field>
+  </record>
+  <record id="sel_BugFix-Accounting_x_temp_tp_invoice_line_fixed_per_document" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_x_temp_tp_invoice_line__x_studio_basis"/>
+    <field name="value">Fixed Per Document</field>
+    <field name="name">Fixed Per Document</field>
+    <field name="sequence">1</field>
+  </record>
+  <record id="sel_BugFix-Accounting_x_temp_tp_invoice_line_charges" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_x_temp_tp_invoice_line__x_studio_charge_group"/>
+    <field name="value">Charges</field>
+    <field name="name">Charges</field>
+    <field name="sequence">1</field>
+  </record>
+  <record id="sel_BugFix-Accounting_account_move_line__x_s_posted" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_account_move_line__x_studio_status"/>
+    <field name="value">posted</field>
+    <field name="name">Posted</field>
+    <field name="sequence">1</field>
+  </record>
+  <record id="sel_BugFix-Accounting_x_lc_header__x_studio__revocable" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_lc_credit_type"/>
+    <field name="value">Revocable</field>
+    <field name="name">Revocable</field>
+    <field name="sequence">1</field>
+  </record>
+  <record id="sel_BugFix-Accounting_x_lc_header__x_studio__transferable" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_lc_credit_sub_type"/>
+    <field name="value">Transferable</field>
+    <field name="name">Transferable</field>
+    <field name="sequence">1</field>
+  </record>
+  <record id="sel_BugFix-Accounting_x_lc_header__x_studio__minus" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_tolerance_type"/>
+    <field name="value">Minus</field>
+    <field name="name">Minus</field>
+    <field name="sequence">1</field>
+  </record>
+  <record id="sel_BugFix-Accounting_x_lc_header__x_studio__not_allowed" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_partial_shipment"/>
+    <field name="value">Not Allowed</field>
+    <field name="name">Not Allowed</field>
+    <field name="sequence">1</field>
+  </record>
+  <record id="sel_BugFix-Accounting_x_lc_header__x_studio__not_allowed_Not Allowe" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_transshipment"/>
+    <field name="value">Not Allowed</field>
+    <field name="name">Not Allowed</field>
+    <field name="sequence">1</field>
+  </record>
+  <record id="sel_BugFix-Accounting_x_lc_header__x_studio__deferred_payment" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_draft"/>
+    <field name="value">Deferred Payment</field>
+    <field name="name">Deferred Payment</field>
+    <field name="sequence">1</field>
+  </record>
+  <record id="sel_BugFix-Accounting_x_lc_header__x_studio__a" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_confirmation_instructions"/>
+    <field name="value">A</field>
+    <field name="name">A</field>
+    <field name="sequence">1</field>
+  </record>
+  <record id="sel_BugFix-Accounting_x_lc_header__x_studio__posted" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_selection_field_yo4qM"/>
+    <field name="value">Posted</field>
+    <field name="name">Posted</field>
+    <field name="sequence">1</field>
+  </record>
+  <record id="sel_BugFix-Accounting_x_lc_header__x_studio__posted_Posted" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_status"/>
+    <field name="value">Posted</field>
+    <field name="name">Posted</field>
+    <field name="sequence">1</field>
+  </record>
+  <record id="sel_Jinasena_Masterdata_Reporting_x_sales_re_done" model="ir.model.fields.selection">
+    <field name="field_id" ref="Jinasena_Masterdata_Reporting.field_x_sales_report_model__x_studio_selection_field_Fbw0x"/>
+    <field name="value">Done</field>
+    <field name="name">Done</field>
+    <field name="sequence">1</field>
+  </record>
+  <record id="sel_BugFix-Stock_x_misc_charge_codes__x_stud_g_l_account" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Stock.field_x_misc_charge_codes__x_studio_debit_acc_type"/>
+    <field name="value">G/L Account</field>
+    <field name="name">G/L Account</field>
+    <field name="sequence">1</field>
+  </record>
+  <record id="sel_BugFix-Stock_x_misc_charge_codes__x_stud_g_l_account_G/L Accoun" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Stock.field_x_misc_charge_codes__x_studio_credit_acc_type"/>
+    <field name="value">G/L Account</field>
+    <field name="name">G/L Account</field>
+    <field name="sequence">1</field>
+  </record>
+  <record id="sel_Jinasena_Masterdata_Reporting_x_sales_re_sales_details_for_incentive_calc" model="ir.model.fields.selection">
+    <field name="field_id" ref="Jinasena_Masterdata_Reporting.field_x_sales_report_type__x_studio_report_code"/>
+    <field name="value">Sales Details for Incentive Calc.</field>
+    <field name="name">Sales Details for Incentive Calc.</field>
+    <field name="sequence">1</field>
+  </record>
+  <record id="sel_Jinasena_Masterdata_Reporting_x_sales_re_s_salesincentive" model="ir.model.fields.selection">
+    <field name="field_id" ref="Jinasena_Masterdata_Reporting.field_x_sales_report_model__x_studio_report_code"/>
+    <field name="value">s-salesincentive</field>
+    <field name="name">Sales Details for Incentive Calc.</field>
+    <field name="sequence">1</field>
+  </record>
+  <record id="sel_BugFix-Accounting_x_rm_sales_prod_purch__service" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_x_rm_sales_prod_purch__x_studio_product_type"/>
+    <field name="value">service</field>
+    <field name="name">Service</field>
+    <field name="sequence">1</field>
+  </record>
+  <record id="sel_BugFix-Accounting_account_move__x_studio_credit" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_account_move__x_studio_order_payment_method"/>
+    <field name="value">Credit</field>
+    <field name="name">Credit</field>
+    <field name="sequence">1</field>
+  </record>
+  <record id="sel_BugFix-Accounting_account_move_line__x_s_in_payment" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_account_move_line__x_studio_payment_status"/>
+    <field name="value">in_payment</field>
+    <field name="name">In Payment</field>
+    <field name="sequence">1</field>
+  </record>
+  <record id="sel_BugFix-Accounting_account_move_line__x_s_distributor" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_account_move_line__x_studio_customer_group_type"/>
+    <field name="value">Distributor</field>
+    <field name="name">Distributor</field>
+    <field name="sequence">1</field>
+  </record>
+  <record id="sel_BugFix-Accounting_account_move_line__x_s_posted_posted" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_account_move_line__x_studio_status_1"/>
+    <field name="value">posted</field>
+    <field name="name">Posted</field>
+    <field name="sequence">1</field>
+  </record>
+  <record id="sel_BugFix-Accounting_account_move_line__x_s_import" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_account_move_line__x_studio_pr_type"/>
+    <field name="value">Import</field>
+    <field name="name">Import</field>
+    <field name="sequence">1</field>
+  </record>
+  <record id="sel_BugFix-Accounting_account_move__x_studio_import" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_account_move__x_studio_purchase_type"/>
+    <field name="value">Import</field>
+    <field name="name">Import</field>
+    <field name="sequence">1</field>
+  </record>
+  <record id="sel_BugFix-Accounting_account_move__x_studio_two" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_account_move__x_studio_test_type"/>
+    <field name="value">Two</field>
+    <field name="name">Two</field>
+    <field name="sequence">1</field>
+  </record>
+  <record id="sel_BugFix-Accounting_account_move__x_studio_payment" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_account_move__x_studio_journal_type"/>
+    <field name="value">Payment</field>
+    <field name="name">Payment</field>
+    <field name="sequence">1</field>
+  </record>
+  <record id="sel_BugFix-Accounting_account_move_line__x_s_payment" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_account_move_line__x_studio_journal_type"/>
+    <field name="value">Payment</field>
+    <field name="name">Payment</field>
+    <field name="sequence">1</field>
+  </record>
+  <record id="sel_BugFix-Accounting_account_payment__x_stu_advance_payment" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_account_payment__x_studio_type"/>
+    <field name="value">Advance Payment</field>
+    <field name="name">Advance Payment</field>
+    <field name="sequence">1</field>
+  </record>
+  <record id="sel_BugFix-Accounting_account_move__x_studio_advance_payment" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_account_move__x_studio_type"/>
+    <field name="value">Advance Payment</field>
+    <field name="name">Advance Payment</field>
+    <field name="sequence">1</field>
+  </record>
+  <record id="sel_BugFix-Accounting_x_customer_posting_pro_table" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_x_customer_posting_pro__x_studio_item_relation_type"/>
+    <field name="value">Table</field>
+    <field name="name">Table</field>
+    <field name="sequence">2</field>
+  </record>
+  <record id="sel_BugFix-Stock_x_misc_charge_codes__x_stud_duty" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Stock.field_x_misc_charge_codes__x_studio_charge_group"/>
+    <field name="value">Duty</field>
+    <field name="name">Duty</field>
+    <field name="sequence">2</field>
+  </record>
+  <record id="sel_BugFix-Stock_x_consignment_charge_h__x_s_duty" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Stock.field_x_consignment_charge_h__x_studio_charge_group"/>
+    <field name="value">Duty</field>
+    <field name="name">Duty</field>
+    <field name="sequence">2</field>
+  </record>
+  <record id="sel_BugFix-Accounting_x_temp_tp_invoice_line_duty" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_x_temp_tp_invoice_line__x_studio_charge_group"/>
+    <field name="value">Duty</field>
+    <field name="name">Duty</field>
+    <field name="sequence">2</field>
+  </record>
+  <record id="sel_BugFix-Accounting_account_move_line__x_s_cancel" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_account_move_line__x_studio_status"/>
+    <field name="value">cancel</field>
+    <field name="name">Cancelled</field>
+    <field name="sequence">2</field>
+  </record>
+  <record id="sel_BugFix-Accounting_x_lc_header__x_studio__revolving" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_lc_credit_sub_type"/>
+    <field name="value">Revolving</field>
+    <field name="name">Revolving</field>
+    <field name="sequence">2</field>
+  </record>
+  <record id="sel_BugFix-Accounting_x_lc_header__x_studio__b" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_confirmation_instructions"/>
+    <field name="value">B</field>
+    <field name="name">B</field>
+    <field name="sequence">2</field>
+  </record>
+  <record id="sel_BugFix-Accounting_x_lc_header__x_studio__paid" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_status"/>
+    <field name="value">Paid</field>
+    <field name="name">Paid</field>
+    <field name="sequence">2</field>
+  </record>
+  <record id="sel_BugFix-Accounting_x_lc_header__x_studio__amended" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_selection_field_yo4qM"/>
+    <field name="value">Amended</field>
+    <field name="name">Amended</field>
+    <field name="sequence">2</field>
+  </record>
+  <record id="sel_Jinasena_Masterdata_Reporting_x_sales_re_production_overview_wip" model="ir.model.fields.selection">
+    <field name="field_id" ref="Jinasena_Masterdata_Reporting.field_x_sales_report_type__x_studio_report_code"/>
+    <field name="value">Production Overview - WIP</field>
+    <field name="name">Production Overview - WIP</field>
+    <field name="sequence">2</field>
+  </record>
+  <record id="sel_Jinasena_Masterdata_Reporting_x_sales_re_m_wip" model="ir.model.fields.selection">
+    <field name="field_id" ref="Jinasena_Masterdata_Reporting.field_x_sales_report_model__x_studio_report_code"/>
+    <field name="value">m-wip</field>
+    <field name="name">Production Overview - WIP</field>
+    <field name="sequence">2</field>
+  </record>
+  <record id="sel_BugFix-Accounting_x_rm_sales_prod_purch__product" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_x_rm_sales_prod_purch__x_studio_product_type"/>
+    <field name="value">product</field>
+    <field name="name">Storable Product</field>
+    <field name="sequence">2</field>
+  </record>
+  <record id="sel_BugFix-Accounting_account_move_line__x_s_paid" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_account_move_line__x_studio_payment_status"/>
+    <field name="value">paid</field>
+    <field name="name">Paid</field>
+    <field name="sequence">2</field>
+  </record>
+  <record id="sel_BugFix-Accounting_account_move_line__x_s_dealer" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_account_move_line__x_studio_customer_group_type"/>
+    <field name="value">Dealer</field>
+    <field name="name">Dealer</field>
+    <field name="sequence">2</field>
+  </record>
+  <record id="sel_BugFix-Accounting_account_move_line__x_s_cancel_cancel" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_account_move_line__x_studio_status_1"/>
+    <field name="value">cancel</field>
+    <field name="name">Cancelled</field>
+    <field name="sequence">2</field>
+  </record>
+  <record id="sel_BugFix-Accounting_account_move__x_studio_settlement" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_account_move__x_studio_journal_type"/>
+    <field name="value">Settlement</field>
+    <field name="name">Settlement</field>
+    <field name="sequence">2</field>
+  </record>
+  <record id="sel_BugFix-Accounting_account_move_line__x_s_settlement" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_account_move_line__x_studio_journal_type"/>
+    <field name="value">Settlement</field>
+    <field name="name">Settlement</field>
+    <field name="sequence">2</field>
+  </record>
+  <record id="sel_BugFix-Stock_x_misc_charge_codes__x_stud_taxes" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Stock.field_x_misc_charge_codes__x_studio_charge_group"/>
+    <field name="value">Taxes</field>
+    <field name="name">Taxes</field>
+    <field name="sequence">3</field>
+  </record>
+  <record id="sel_BugFix-Stock_x_consignment_charge_h__x_s_taxes" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Stock.field_x_consignment_charge_h__x_studio_charge_group"/>
+    <field name="value">Taxes</field>
+    <field name="name">Taxes</field>
+    <field name="sequence">3</field>
+  </record>
+  <record id="sel_BugFix-Accounting_x_temp_tp_invoice_line_taxes" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_x_temp_tp_invoice_line__x_studio_charge_group"/>
+    <field name="value">Taxes</field>
+    <field name="name">Taxes</field>
+    <field name="sequence">3</field>
+  </record>
+  <record id="sel_BugFix-Accounting_x_lc_header__x_studio__c" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_confirmation_instructions"/>
+    <field name="value">C</field>
+    <field name="name">C</field>
+    <field name="sequence">3</field>
+  </record>
+  <record id="sel_BugFix-Accounting_x_lc_header__x_studio__amended_Amended" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_status"/>
+    <field name="value">Amended</field>
+    <field name="name">Amended</field>
+    <field name="sequence">3</field>
+  </record>
+  <record id="sel_Jinasena_Masterdata_Reporting_x_sales_re_customer_aging_report" model="ir.model.fields.selection">
+    <field name="field_id" ref="Jinasena_Masterdata_Reporting.field_x_sales_report_type__x_studio_report_code"/>
+    <field name="value">Customer Aging Report</field>
+    <field name="name">Customer Aging Report</field>
+    <field name="sequence">3</field>
+  </record>
+  <record id="sel_BugFix-Accounting_x_lc_header__x_studio__paid_Paid" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_selection_field_yo4qM"/>
+    <field name="value">Paid</field>
+    <field name="name">Paid</field>
+    <field name="sequence">3</field>
+  </record>
+  <record id="sel_BugFix-Accounting_account_move_line__x_s_partial" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_account_move_line__x_studio_payment_status"/>
+    <field name="value">partial</field>
+    <field name="name">Partially Paid</field>
+    <field name="sequence">3</field>
+  </record>
+  <record id="sel_BugFix-Accounting_x_lc_header__x_studio__cancelled" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_status"/>
+    <field name="value">Cancelled</field>
+    <field name="name">Cancelled</field>
+    <field name="sequence">4</field>
+  </record>
+  <record id="sel_Jinasena_Masterdata_Reporting_x_sales_re_slow_moving_items" model="ir.model.fields.selection">
+    <field name="field_id" ref="Jinasena_Masterdata_Reporting.field_x_sales_report_type__x_studio_report_code"/>
+    <field name="value">Slow Moving Items</field>
+    <field name="name">Slow Moving Items</field>
+    <field name="sequence">4</field>
+  </record>
+  <record id="sel_BugFix-Accounting_x_lc_header__x_studio__cancelled_Cancelled" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_selection_field_yo4qM"/>
+    <field name="value">Cancelled</field>
+    <field name="name">Cancelled</field>
+    <field name="sequence">4</field>
+  </record>
+  <record id="sel_BugFix-Accounting_account_move_line__x_s_reversed" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_account_move_line__x_studio_payment_status"/>
+    <field name="value">reversed</field>
+    <field name="name">Reversed</field>
+    <field name="sequence">4</field>
+  </record>
+  <record id="sel_Jinasena_Masterdata_Reporting_x_sales_re_sales_production_purchase_report" model="ir.model.fields.selection">
+    <field name="field_id" ref="Jinasena_Masterdata_Reporting.field_x_sales_report_type__x_studio_report_code"/>
+    <field name="value">Sales - Production - Purchase Report</field>
+    <field name="name">Sales - Production - Purchase Report</field>
+    <field name="sequence">5</field>
+  </record>
+  <record id="sel_BugFix-Accounting_account_move_line__x_s_invoicing_legacy" model="ir.model.fields.selection">
+    <field name="field_id" ref="BugFix-Accounting.field_account_move_line__x_studio_payment_status"/>
+    <field name="value">invoicing_legacy</field>
+    <field name="name">Invoicing App Legacy</field>
+    <field name="sequence">5</field>
+  </record>
+  <record id="sel_Jinasena_Masterdata_Reporting_x_sales_re_production_summary_split" model="ir.model.fields.selection">
+    <field name="field_id" ref="Jinasena_Masterdata_Reporting.field_x_sales_report_type__x_studio_report_code"/>
+    <field name="value">Production Summary - Split</field>
+    <field name="name">Production Summary - Split</field>
+    <field name="sequence">6</field>
+  </record>
+  <record id="sel_Jinasena_Masterdata_Reporting_x_sales_re_production_job_variance" model="ir.model.fields.selection">
+    <field name="field_id" ref="Jinasena_Masterdata_Reporting.field_x_sales_report_type__x_studio_report_code"/>
+    <field name="value">Production Job Variance</field>
+    <field name="name">Production Job Variance</field>
+    <field name="sequence">7</field>
+  </record>
+  <record id="sel_Jinasena_Masterdata_Reporting_x_sales_re_casting_melt" model="ir.model.fields.selection">
+    <field name="field_id" ref="Jinasena_Masterdata_Reporting.field_x_sales_report_type__x_studio_report_code"/>
+    <field name="value">Casting Melt</field>
+    <field name="name">Casting Melt</field>
+    <field name="sequence">8</field>
+  </record>
+  <record id="sel_Jinasena_Masterdata_Reporting_x_sales_re_import_transaction" model="ir.model.fields.selection">
+    <field name="field_id" ref="Jinasena_Masterdata_Reporting.field_x_sales_report_type__x_studio_report_code"/>
+    <field name="value">Import Transaction</field>
+    <field name="name">Import Transaction</field>
+    <field name="sequence">9</field>
+  </record>
+  <record id="sel_Jinasena_Masterdata_Reporting_x_sales_re_project_gross_margin" model="ir.model.fields.selection">
+    <field name="field_id" ref="Jinasena_Masterdata_Reporting.field_x_sales_report_type__x_studio_report_code"/>
+    <field name="value">Project Gross Margin</field>
+    <field name="name">Project Gross Margin</field>
+  </record>
+  <record id="sel_Jinasena_Masterdata_Reporting_x_sales_re_costing_work_sheet" model="ir.model.fields.selection">
+    <field name="field_id" ref="Jinasena_Masterdata_Reporting.field_x_sales_report_type__x_studio_report_code"/>
+    <field name="value">Costing Work Sheet</field>
+    <field name="name">Costing Work Sheet</field>
+    <field name="sequence">11</field>
+  </record>
+</odoo>
