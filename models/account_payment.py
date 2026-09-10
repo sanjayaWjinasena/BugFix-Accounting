@@ -119,7 +119,7 @@ class AccountPayment(models.Model):
     x_studio_test_type = fields.Selection([], string='Test Type', store=False)
     x_studio_tp_id = fields.Many2one('x_tp_invoice_header', string='Created From TP Invoice', store=False)
     x_studio_tp_invoice_no = fields.Many2one('x_tp_invoice_header', string='TP Invoice No')
-    x_studio_type = fields.Selection([], string='Type')
+    x_studio_type = fields.Selection([('General', 'General'), ('Advance Payment', 'Advance Payment')], string='Type')
     x_studio_update_consignment = fields.Boolean(string='Update Consignment', store=False)
     x_studio_valid_lines = fields.Boolean(string='Valid Lines', readonly=True, store=False)
     x_x_studio_created_from_vendor_bill_1__account_move_count = fields.Integer(string='Created From Vendor Bill count', store=False)
