@@ -16,25 +16,7 @@
       <!-- STRIPPED action button aid=2176 unresolvable -->
     </xpath>
     
-    <xpath expr="//header/button[@name='action_post']" position="after">
-      <!-- STRIPPED action button aid=1370 unresolvable -->
-    </xpath>
-    
-    <xpath expr="//header/button[@name='1370']<!-- WARNING: xpath refs unresolvable action -->" position="after">
-      <!-- STRIPPED action button aid=2366 unresolvable -->
-    </xpath>
-    
-    <xpath expr="//header/button[@name='2366']<!-- WARNING: xpath refs unresolvable action -->" position="after">
-      <!-- STRIPPED action button aid=1493 unresolvable -->
-    </xpath>
-    
-    <xpath expr="//header/button[@name='1493']<!-- WARNING: xpath refs unresolvable action -->" position="after">
-      <!-- STRIPPED action button aid=1495 unresolvable -->
-    </xpath>
-    
-    <xpath expr="//header/button[@name='1495']<!-- WARNING: xpath refs unresolvable action -->" position="attributes">
-    <attribute name="studio_approval">True</attribute>
-    </xpath>
+    <!-- STRIPPED: action buttons aid=1370,2366,1493,1495 — unresolvable Studio action IDs, no parent buttons exist -->
     
     <xpath expr="//header/button[@name='action_post'][2]" position="attributes">
       <attribute name="invisible">((x_studio_rug_acc_updated == False) and ((x_studio_rug_rejected == False) and (x_studio_rug_confirmed == True))) or (((x_studio_bg_sent == False) and (x_studio_bank_guarantee_notification == True)) or (((x_studio_credit_note_approved == False) and (move_type == 'out_refund')) or (((x_studio_currency_rate_updated == False) and (x_studio_pr_type_1 == 'Import')) or (((x_studio_update_consignment == False) and (x_studio_pr_type_1 == 'Import')) or ((move_type == 'entry') or ((auto_post == True) or ((state != 'draft') or ((x_studio_bank_guarantee_validation == True) or (x_studio_credit_limit_validation == True)))))))))</attribute></xpath>
@@ -42,17 +24,7 @@
     <xpath expr="//sheet/notebook/page/field[@name='invoice_line_ids']" position="attributes">
       <attribute name="readonly">((x_studio_update_consignment == True) and (x_studio_pr_type_1 == 'Import')) or (state == 'posted')</attribute></xpath>
     
-    <xpath expr="//header/button[@name='action_post'][2]" position="before">
-      <!-- STRIPPED action button aid=1852 unresolvable -->
-    </xpath>
-    
-    <xpath expr="//header/button[@name='1852']<!-- WARNING: xpath refs unresolvable action -->" position="before">
-      <!-- STRIPPED action button aid=1851 unresolvable -->
-    </xpath>  
-    
-    <xpath expr="//header/button[@name='1851']<!-- WARNING: xpath refs unresolvable action -->" position="before">
-      <!-- STRIPPED action button aid=1854 unresolvable -->
-    </xpath>
+    <!-- STRIPPED: action buttons aid=1852,1851,1854 — unresolvable Studio action IDs, no parent buttons exist -->
     
     <!--xpath expr="//field[@name='analytic_account_id']" position="attributes">
      <attribute name="domain">[["group_id","=",x_studio_analytic_group]]</attribute>
