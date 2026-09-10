@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BugFix-Accounting: Phase F6 - 26 menus -->
+<odoo>
+  <menuitem id="menu_f6_production_overview_wip" name="Production Overview - WIP" parent="BugFix-Accounting.menu_900_pivot_views" action="BugFix-Accounting.action_1737_wip_production_orders" sequence="0"/>
+  <menuitem id="menu_f6_slow_moving_items" name="Slow Moving Items" parent="BugFix-Accounting.menu_900_pivot_views" action="BugFix-Accounting.action_1741_slow_moving_items" sequence="1"/>
+  <menuitem id="menu_f6_invoices" name="Invoices" parent="sale.menu_sale_report" action="BugFix-Accounting.act_window_1569_invoices" sequence="2"/>
+  <menuitem id="menu_f6_sales_invoice_lines" name="Sales Invoice Lines" parent="sale.menu_sale_report" action="BugFix-Accounting.act_window_1572_sales_invoice_lines" sequence="3"/>
+  <menuitem id="menu_f6_etf_schedule" name="ETF Schedule" parent="hr_payroll.menu_hr_payroll_report" action="BugFix-Accounting.act_window_2893_etf_schedule" sequence="3"/>
+  <menuitem id="menu_f6_advance_payment_account" name="Advance Payment Account" parent="account.root_payment_menu" action="BugFix-Accounting.action_2740_advance_payment_account" sequence="4"/>
+  <menuitem id="menu_f6_epf_schedule" name="EPF Schedule" parent="hr_payroll.menu_hr_payroll_report" action="BugFix-Accounting.action_2894_epf_schedule" sequence="4"/>
+  <menuitem id="menu_f6_tax_groups" name="Tax Groups" parent="account.account_account_menu" action="BugFix-Accounting.action_1891_tax_groups" sequence="5"/>
+  <menuitem id="menu_f6_journal_types" name="Journal Types" parent="stock.menu_stock_config_settings" action="BugFix-Accounting.action_2447_journal_types" sequence="5"/>
+  <menuitem id="menu_f6_pump_product_costing" name="Pump Product Costing" parent="account.account_reports_management_menu" action="BugFix-Accounting.action_2285_pump_product_costing" sequence="6"/>
+  <menuitem id="menu_f6_pump_costing_worksheet" name="Pump Costing Worksheet" parent="account.account_reports_management_menu" action="BugFix-Accounting.action_2533_pump_costing_worksheet" sequence="7"/>
+  <menuitem id="menu_f6_report_models" name="Report Models" parent="sale.sale_menu_root" action="BugFix-Accounting.action_1667_sales_report_model"/>
+  <menuitem id="menu_f6_sales_report_model" name="Sales Report Model" parent="BugFix-Accounting.menu_880_report_models" action="BugFix-Accounting.action_1667_sales_report_model"/>
+  <menuitem id="menu_f6_sales_report_type" name="Sales Report Type" parent="BugFix-Accounting.menu_880_report_models" action="BugFix-Accounting.action_1668_sales_report_type"/>
+  <menuitem id="menu_f6_tp_invoice_line" name="TP Invoice Line" action="BugFix-Accounting.action_2865_tp_invoice_line" sequence="11"/>
+  <menuitem id="menu_f6_pivot_views" name="Pivot Views" parent="sale.sale_menu_root" action="BugFix-Accounting.action_1737_wip_production_orders" sequence="11"/>
+  <menuitem id="menu_f6_sales_invoices" name="Sales Invoices" parent="sale.sale_menu_root" action="BugFix-Accounting.action_2198_sales_invoices" sequence="12"/>
+  <menuitem id="menu_f6_journal_item_testing" name="Journal Item Testing" parent="BugFix-Purchase.menu_541_purchase_requisition" action="BugFix-Accounting.action_2378_journal_item_testing" sequence="12"/>
+  <menuitem id="menu_f6_journal_item_testing_02" name="Journal Item Testing - 02" parent="BugFix-Purchase.menu_541_purchase_requisition" action="BugFix-Accounting.aw_f4_account_move_line_journal_item_testing_02" sequence="13"/>
+  <menuitem id="menu_f6_aaaa" name="AAAA" parent="sale.sale_menu_root" action="BugFix-Accounting.aw_f4_account_move_line_aaaa" sequence="14"/>
+  <menuitem id="menu_f6_invoice_wise_revenue_report" name="Invoice Wise Revenue Report" parent="account_accountant.menu_accounting" action="BugFix-Accounting.action_3271_invoice_wise_revenue_report" sequence="37"/>
+  <menuitem id="menu_f6_invoice_wise_revenue_report_1" name="Invoice Wise Revenue Report" parent="account_accountant.menu_accounting" action="BugFix-Accounting.act_window_3268_invoice_wise_revenue_report" sequence="37"/>
+  <menuitem id="menu_f6_rm_daily_sales_report" name="RM Daily Sales Report" parent="sale.sale_menu_root" action="BugFix-Accounting.action_1669_rm_daily_sales_report" sequence="11"/>
+  <menuitem id="menu_f6_sales_invoice_lines_1" name="Sales Invoice lines" parent="sale.menu_sale_report" action="BugFix-Accounting.act_window_1571_sales_invoice_lines" sequence="2"/>
+  <menuitem id="menu_f6_sales_report_model_1" name="Sales Report Model" parent="sale.sale_menu_root" action="BugFix-Accounting.action_1667_sales_report_model" sequence="5"/>
+  <menuitem id="menu_f6_sales_report_type_1" name="Sales Report Type" parent="sale.sale_menu_root" action="BugFix-Accounting.action_1668_sales_report_type" sequence="6"/>
+</odoo>
