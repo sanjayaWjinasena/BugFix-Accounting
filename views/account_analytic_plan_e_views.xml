@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BugFix-Accounting: Phase E - 1 views for account.analytic.plan -->
+<odoo>
+  <data>
+    <record id="view_5073_odoo_studio_account_analytic_group_form_customization_e" model="ir.ui.view">
+      <field name="name">Odoo Studio: account.analytic.group.form customization</field>
+      <field name="model">account.analytic.plan</field>
+      <field name="type">form</field>
+      <field name="priority">99</field>
+      <field name="active" eval="False"/>
+      <field name="inherit_id" ref="analytic.account_analytic_plan_form_view"/>
+      <field name="mode">extension</field>
+      <field name="arch" type="xml">
+        <data>
+  <xpath expr="//form[1]/sheet[1]/group[1]" position="before">
+    <div name="button_box" class="oe_button_box">
+      <button class="oe_stat_button" icon="fa-diamond" type="action" name="2333">
+        <field widget="statinfo" name="x_group_id_account_analytic_account_count" string="Analytic Account"/>
+      </button>
+      <button class="oe_stat_button" icon="fa-diamond" type="action" name="2334">
+        <field widget="statinfo" name="x_group_id_account_analytic_line_count" string="Analytic Line"/>
+      </button>
+    </div>
+  </xpath>
+</data>
+      </field>
+    </record>
+
+  </data>
+</odoo>

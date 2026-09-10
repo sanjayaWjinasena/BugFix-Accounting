@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BugFix-Accounting: Phase E - 2 views for account.move -->
+<odoo>
+  <data>
+    <record id="view_4017_odoo_studio_account_move_form_customization_button_e" model="ir.ui.view">
+      <field name="name">Odoo Studio: account.move.form customization_button</field>
+      <field name="model">account.move</field>
+      <field name="type">form</field>
+      <field name="priority">99</field>
+      <field name="active" eval="False"/>
+      <field name="inherit_id" ref="account.view_move_form"/>
+      <field name="mode">extension</field>
+      <field name="arch" type="xml">
+        <data>
+    <xpath expr="//header/button[@name='action_post']" position="before">
+      <button type="action" name="2176" string="Update RUG Account" class="btn-primary" invisible="((x_studio_rug_rejected == True) and (x_studio_rug_confirmed == True)) or ((x_studio_rug_acc_updated == True) or (x_studio_rug_confirmed == False))"/>
+    </xpath>
+    
+    <xpath expr="//header/button[@name='action_post']" position="after">
+      <button type="action" name="1370" string="Update Consignment" class="btn-primary" invisible="((x_studio_update_consignment == True) and (x_studio_pr_type_1 == 'Import')) or ((x_studio_pr_type_1 == False) or (x_studio_pr_type_1 == 'Local'))"/>
+    </xpath>
+    
+    <xpath expr="//header/button[@name='1370']" position="after">
+      <button type="action" name="2366" string="Update Currency Rate" class="btn-primary" invisible="((x_studio_update_consignment == False) and (x_studio_pr_type_1 == 'Import')) or (((x_studio_currency_rate_updated == True) and (x_studio_pr_type_1 == 'Import')) or ((x_studio_pr_type_1 == False) or (x_studio_pr_type_1 == 'Local')))"/>
+    </xpath>
+    
+    <xpath expr="//header/button[@name='2366']" position="after">
+      <button type="action" name="1493" string="Request Credit Note Approval" class="btn-primary" invisible="(x_studio_credit_note_request_sent == True) or (move_type != 'out_refund')"/>
+    </xpath>
+    
+    <xpath expr="//header/button[@name='1493']" position="after">
+      <button type="action" name="1495" string="Approve Credit Note" class="btn-primary" invisible="(x_studio_credit_note_approved == True) or ((x_studio_credit_note_request_sent == False) or (move_type != 'out_refund'))"/>
+    </xpath>
+    
+    <xpath expr="//header/button[@name='1495']" position="attributes">
+    <attribute name="studio_approval">True</attribute>
+    </xpath>
+    
+    <xpath expr="//header/button[@name='action_post'][2]" position="attributes">
+      <attribute name="invisible">((x_studio_rug_acc_updated == False) and ((x_studio_rug_rejected == False) and (x_studio_rug_confirmed == True))) or (((x_studio_bg_sent == False) and (x_studio_bank_guarantee_notification == True)) or (((x_studio_credit_note_approved == False) and (move_type == 'out_refund')) or (((x_studio_currency_rate_updated == False) and (x_studio_pr_type_1 == 'Import')) or (((x_studio_update_consignment == False) and (x_studio_pr_type_1 == 'Import')) or ((move_type == 'entry') or ((auto_post == True) or ((state != 'draft') or ((x_studio_bank_guarantee_validation == True) or (x_studio_credit_limit_validation == True)))))))))</attribute></xpath>
+    
+    <xpath expr="//sheet/notebook/page/field[@name='invoice_line_ids']" position="attributes">
+      <attribute name="readonly">((x_studio_update_consignment == True) and (x_studio_pr_type_1 == 'Import')) or (state == 'posted')</attribute></xpath>
+    
+    <xpath expr="//header/button[@name='action_post'][2]" position="before">
+      <button type="action" name="1852" string="View Bank Guarantee Validity" class="btn-primary" invisible="(state == 'cancel') or ((x_studio_bank_guarantee_validation != True) or (state == 'posted'))"/>
+    </xpath>
+    
+    <xpath expr="//header/button[@name='1852']" position="before">
+      <button type="action" name="1851" string="Send Bank Guarantee Validity Notification" class="btn-primary" invisible="((x_studio_bg_sent == True) and (x_studio_bank_guarantee_notification == True)) or ((state == 'cancel') or ((x_studio_bank_guarantee_notification != True) or (state == 'posted')))"/>
+    </xpath>  
+    
+    <xpath expr="//header/button[@name='1851']" position="before">
+      <button type="action" name="1854" string="View Credit Limit Overdue Details" class="btn-primary" invisible="(state == 'cancel') or ((state == 'posted') or (x_studio_credit_limit_validation != True))"/>
+    </xpath>
+    
+    <!--xpath expr="//field[@name='analytic_account_id']" position="attributes">
+     <attribute name="domain">[["group_id","=",x_studio_analytic_group]]</attribute>
+    </xpath-->
+    
+    <xpath expr="//header/button[@name='action_register_payment']" position="attributes">
+      <attribute name="invisible">(x_studio_cre != False) or (((x_studio_rug_acc_updated == True) and (x_studio_rug_confirmed == True)) or ((move_type not in ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt')) or ((payment_state not in ('not_paid', 'partial')) or (state != 'posted'))))</attribute></xpath>
+  </data>
+      </field>
+    </record>
+
+    <record id="view_3261_default_pivot_view_for_ir_model_446_e" model="ir.ui.view">
+      <field name="name">Default pivot view for ir.model(446,)</field>
+      <field name="model">account.move</field>
+      <field name="type">pivot</field>
+      <field name="arch" type="xml">
+        <pivot string="Journal Entry"/>
+      </field>
+    </record>
+
+  </data>
+</odoo>

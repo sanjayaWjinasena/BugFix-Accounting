@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BugFix-Accounting: Phase E - 1 views for product.template -->
+<odoo>
+  <data>
+    <record id="view_5061_product_template_product_form_button_e" model="ir.ui.view">
+      <field name="name">product.template.product.form_button</field>
+      <field name="model">product.template</field>
+      <field name="type">form</field>
+      <field name="priority">99</field>
+      <field name="active" eval="False"/>
+      <field name="inherit_id" ref="product.product_template_only_form_view"/>
+      <field name="mode">extension</field>
+      <field name="arch" type="xml">
+        <data>
+    <xpath expr="//button[@name='action_open_label_layout']" position="before">
+      <button type="action" name="2293" string="Request Item Approval" invisible="(x_studio_item_approved == True) or (x_studio_item_approval_request_sent == True)"/>
+    </xpath>
+    
+    <xpath expr="//button[@name='2293']" position="before">
+      <button type="action" name="2301" string="Approve Item" invisible="(x_studio_item_approval_request_sent == False) or (x_studio_item_approved == True)"/>
+    </xpath>
+  </data>
+      </field>
+    </record>
+
+  </data>
+</odoo>
