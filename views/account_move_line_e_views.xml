@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- BugFix-Accounting: Phase E - 3 views for account.move.line -->
-<odoo>
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- BugFix-Accounting: Phase E - 3 views for account.move.line --><odoo>
   <data>
     <record id="view_5291_odoo_studio_account_move_line_tree_grouped_test_01_customiza_e" model="ir.ui.view">
       <field name="name">Odoo Studio: account.move.line.tree.grouped_Test-01 customization</field>
@@ -69,54 +68,5 @@
       </field>
     </record>
 
-    <record id="view_5044_account_move_line_tree_grouped_1_e" model="ir.ui.view">
-      <field name="name">account.move.line.tree.grouped_1</field>
-      <field name="model">account.move.line</field>
-      <field name="type">tree</field>
-      <field name="priority">1</field>
-      <field name="active" eval="False"/>
-      <field name="arch" type="xml">
-        <tree string="Journal Items" create="false" expand="context.get('expand', False)" multi_edit="1">
-                    <field name="date" optional="show" readonly="1"/>
-                    <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}" optional="hide"/>
-                    <field name="journal_id" options="{'no_open': True, 'no_create': True}" optional="hide"/>
-                    <field name="move_id" optional="show"/>
-                    <field name="account_id" optional="show" options="{'no_open': True, 'no_create': True}" domain="[('company_id', '=', company_id)]" groups="account.group_account_readonly"/>
-                    <field name="statement_id" column_invisible="1"/>
-                    <field name="partner_id" optional="hide" readonly="1"/>
-                    <field name="ref" optional="hide"/>
-                    <field name="name"/>
-                    <field name="reconciled" column_invisible="1"/>
-                    <field name="reconcile_model_id" column_invisible="1"/>
-                    <field name="date_maturity" optional="hide"/>
-                    <!-- STRIPPED field analytic_account_id not on account.move.line -->
-                    <!-- STRIPPED field analytic_tag_ids not on account.move.line -->
-                    <field name="amount_currency" readonly="1" groups="base.group_multi_currency"/>
-                    <field name="currency_id" readonly="1" groups="base.group_multi_currency" optional="hide" string="Original Currency"/>
-                    <field name="debit" sum="Total Debit" readonly="1"/>
-                    <field name="credit" sum="Total Credit" readonly="1"/>
-                    <field name="balance" sum="Total Balance" readonly="1" optional="hide"/>
-                    <field name="matching_number" string="Matching" optional="show"/>
-                    <field name="company_currency_id" column_invisible="1"/>
-                    <field name="parent_state" column_invisible="1"/>
-                    <field name="tax_ids" widget="many2many_tags" width="0.5" optional="hide" readonly="1"/>
-                    <field name="tax_tag_ids" widget="many2many_tags" width="0.5" optional="hide" string="Tax Grids" options="{'no_open': True, 'no_create': True}" domain="[('applicability', '=', 'taxes')]"/>
-                    <field name="product_id" optional="hide"/>
-                    <groupby name="move_id">
-                        <!-- STRIPPED field state not on account.move.line -->
-                        <field name="move_type" invisible="1"/>
-                        <field name="statement_id" invisible="1"/>
-                        <field name="payment_id" invisible="1"/>
-                        <button name="edit" type="edit" icon="fa-edit" title="Edit" invisible="((payment_id != False) or (statement_id != False)) and (move_type == 'entry')"/>
-                        <button name="open_bank_statement_view" type="object" icon="fa-edit" title="Edit" invisible="(statement_id == False) or (move_type != 'entry')"/>
-                        <button name="open_payment_view" type="object" icon="fa-edit" title="Edit" invisible="(payment_id == False) or (move_type != 'entry')"/>
-                        <button name="action_post" icon="fa-check" title="Post" type="object" groups="account.group_account_invoice" invisible="state not in ['draft']"/>
-                        <button name="281" title="Reverse" icon="fa-undo" type="action" groups="account.group_account_invoice" invisible="state not in ['posted']"/>
-                        <button name="action_duplicate" icon="fa-files-o" title="Duplicate" type="object" groups="account.group_account_invoice"/>
-                    </groupby>
-                </tree>
-      </field>
-    </record>
-
-  </data>
+    <!-- DROPPED view_5044_account_move_line_tree_grouped_1_e: button open_bank_statement_view not valid on account.move --></data>
 </odoo>
