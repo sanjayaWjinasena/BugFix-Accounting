@@ -227,3 +227,4 @@ access_1750_rm_gross_margin_esti_lines_group_user,Rm Gross Margin Esti  Lines gr
 access_1752_rm_gross_margin_esti_lines_group_user,Rm Gross Margin Esti  Lines group_user,BugFix-Accounting.model_x_rm_gross_margin_esti_line_7e86d,base.group_user,1,0,0,0
 access_1749_rm_gross_margin_esti_lines_group_system,Rm Gross Margin Esti  Lines group_system,BugFix-Accounting.model_x_rm_gross_margin_esti_line_7e86d,base.group_system,1,1,1,1
 access_1751_rm_gross_margin_esti_lines_group_system,Rm Gross Margin Esti  Lines group_system,BugFix-Accounting.model_x_rm_gross_margin_esti_line_7e86d,base.group_system,1,1,1,1
+access_f3_access_account_tax_group_rohana_read,access_account_tax_group_rohana_read,model_account_tax_group,studio_usermodel_migration.group_studio_518_rohana,1,0,0,0
