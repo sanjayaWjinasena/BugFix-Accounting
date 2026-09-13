@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BugFix-Accounting: Approval Rules - 1 -->
+<odoo noupdate="1">
+  <record id="ar_final_journal_entry_sls_credit_note_approval_sales_credit_note_app" model="studio.approval.rule">
+    <field name="name">Journal Entry/SLS - Credit Note Approval (Sales / Credit Note Approver) (25)</field>
+    <field name="model_id" search="[('model', '=', 'account.move')]"/>
+    <field name="action_id" ref="BugFix-Accounting.srv_sls_credit_note_approval_main"/>
+    <field name="group_id" ref="BugFix-Approvals.group_129_jin_sales_credit_note_approvers"/>
+  </record>
+</odoo>
