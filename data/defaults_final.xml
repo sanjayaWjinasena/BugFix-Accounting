@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BugFix-Accounting: Defaults final - 15 defaults -->
+<odoo noupdate="1">
+  <record id="default_final_bugfix_accounting_field_x_consignment_charge_h_x_studio_char_none" model="ir.default">
+    <field name="field_id" ref="BugFix-Accounting.field_x_consignment_charge_h__x_studio_charge_group"/>
+    <field name="json_value">"None"</field>
+  </record>
+  <record id="default_final_bugfix_accounting_field_x_lc_header_x_studio_lc_credit_type_irrevocable" model="ir.default">
+    <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_lc_credit_type"/>
+    <field name="json_value">"Irrevocable"</field>
+  </record>
+  <record id="default_final_bugfix_accounting_field_x_lc_header_x_studio_lc_credit_sub_t_non_transferabl" model="ir.default">
+    <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_lc_credit_sub_type"/>
+    <field name="json_value">"Non Transferable"</field>
+  </record>
+  <record id="default_final_bugfix_accounting_field_x_lc_header_x_studio_status_draft" model="ir.default">
+    <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_status"/>
+    <field name="json_value">"Draft"</field>
+  </record>
+  <record id="default_final_bugfix_accounting_field_x_lc_header_x_studio_tolerance_type_plus" model="ir.default">
+    <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_tolerance_type"/>
+    <field name="json_value">"Plus"</field>
+  </record>
+  <record id="default_final_bugfix_accounting_field_x_lc_header_x_studio_partial_shipmen_allowed" model="ir.default">
+    <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_partial_shipment"/>
+    <field name="json_value">"Allowed"</field>
+  </record>
+  <record id="default_final_bugfix_accounting_field_x_lc_header_x_studio_transshipment_allowed" model="ir.default">
+    <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_transshipment"/>
+    <field name="json_value">"Allowed"</field>
+  </record>
+  <record id="default_final_bugfix_accounting_field_x_lc_header_x_studio_draft_at_sight" model="ir.default">
+    <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_draft"/>
+    <field name="json_value">"At Sight"</field>
+  </record>
+  <record id="default_final_bugfix_accounting_field_x_lc_header_x_studio_confirmation_in_none" model="ir.default">
+    <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_confirmation_instructions"/>
+    <field name="json_value">"None"</field>
+  </record>
+  <record id="default_final_bugfix_accounting_field_x_lc_header_x_studio_selection_field_draft" model="ir.default">
+    <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_selection_field_yo4qM"/>
+    <field name="json_value">"Draft"</field>
+  </record>
+  <record id="default_final_bugfix_accounting_field_x_sales_report_model_x_studio_select_draft" model="ir.default">
+    <field name="field_id" ref="BugFix-Accounting.field_x_sales_report_model__x_studio_selection_field_Fbw0x"/>
+    <field name="json_value">"Draft"</field>
+  </record>
+  <record id="default_final_bugfix_accounting_field_x_misc_charge_codes_x_studio_debit_a_item" model="ir.default">
+    <field name="field_id" ref="BugFix-Accounting.field_x_misc_charge_codes__x_studio_debit_acc_type"/>
+    <field name="json_value">"Item"</field>
+  </record>
+  <record id="default_final_bugfix_accounting_field_x_misc_charge_codes_x_studio_credit__g_l_account" model="ir.default">
+    <field name="field_id" ref="BugFix-Accounting.field_x_misc_charge_codes__x_studio_credit_acc_type"/>
+    <field name="json_value">"G/L Account"</field>
+  </record>
+  <record id="default_final_bugfix_accounting_field_account_payment_x_studio_type_general" model="ir.default">
+    <field name="field_id" ref="BugFix-Accounting.field_account_payment__x_studio_type"/>
+    <field name="json_value">"General"</field>
+  </record>
+  <record id="default_final_bugfix_accounting_field_account_move_x_studio_journal_type_" model="ir.default">
+    <field name="field_id" ref="BugFix-Accounting.field_account_move__x_studio_journal_type"/>
+    <field name="json_value">""</field>
+  </record>
+</odoo>
