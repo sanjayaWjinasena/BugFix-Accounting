@@ -5,6 +5,7 @@ from odoo import fields, models
 
 class XLcHeader(models.Model):
     _name = 'x_lc_header'
+    _inherit = ['mail.activity.mixin']
     _description = 'X Lc Header'
 
     x_active = fields.Boolean(string='Active')

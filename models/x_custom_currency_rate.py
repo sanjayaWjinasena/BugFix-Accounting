@@ -5,6 +5,7 @@ from odoo import fields, models
 class XCustomCurrencyRate(models.Model):
     """Studio-ported custom model x_custom_currency_rate."""
     _name = 'x_custom_currency_rate'
+    _inherit = ['mail.activity.mixin']
     _description = 'Custom Currency Rate'
 
     x_active = fields.Boolean(string='Active')

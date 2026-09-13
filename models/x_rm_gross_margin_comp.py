@@ -5,6 +5,7 @@ from odoo import fields, models
 class XRmGrossMarginComp(models.Model):
     """Studio-ported custom model x_rm_gross_margin_comp."""
     _name = 'x_rm_gross_margin_comp'
+    _inherit = ['mail.activity.mixin']
     _description = 'Rm Gross Margin Comp'
 
     x_active = fields.Boolean(string='Active')

@@ -5,6 +5,7 @@ from odoo import fields, models
 class XTempActualBudget(models.Model):
     """Studio-ported custom model x_temp_actual_budget."""
     _name = 'x_temp_actual_budget'
+    _inherit = ['mail.activity.mixin']
     _description = 'Temp Actual Budget'
 
     x_active = fields.Boolean(string='Active')

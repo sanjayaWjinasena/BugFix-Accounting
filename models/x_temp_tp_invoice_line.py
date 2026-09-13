@@ -5,6 +5,7 @@ from odoo import fields, models
 class XTempTpInvoiceLine(models.Model):
     """Studio-ported custom model x_temp_tp_invoice_line."""
     _name = 'x_temp_tp_invoice_line'
+    _inherit = ['mail.activity.mixin']
     _description = 'Temp Tp Invoice Line'
 
     x_active = fields.Boolean(string='Active')

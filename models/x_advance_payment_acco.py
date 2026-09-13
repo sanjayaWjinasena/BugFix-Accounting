@@ -5,6 +5,7 @@ from odoo import fields, models
 class XAdvancePaymentAcco(models.Model):
     """Studio-ported custom model x_advance_payment_acco."""
     _name = 'x_advance_payment_acco'
+    _inherit = ['mail.activity.mixin']
     _description = 'Advance Payment Acco'
 
     x_active = fields.Boolean(string='Active')

@@ -14,6 +14,7 @@ from odoo import fields, models
 
 class XTempTpInvoiceHead(models.Model):
     _name = 'x_temp_tp_invoice_head'
+    _inherit = ['mail.activity.mixin']
     _description = 'Temp TP Invoice Header'
     _order = 'x_studio_sequence, id'
     _rec_name = 'x_name'
