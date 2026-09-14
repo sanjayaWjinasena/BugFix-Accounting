@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BugFix-Accounting: Approval Rules relaxed - 1 -->
+<odoo noupdate="1">
+  <record id="ar_relaxed_journal_entry_sls_overdue_approval_sales_credit_note_approve" model="studio.approval.rule">
+    <field name="name">Journal Entry/SLS - Overdue Approval (Sales / Credit Note Approver) (24)</field>
+    <field name="model_id" search="[('model', '=', 'account.move')]"/>
+    <field name="action_id" ref="BugFix-Sales.server_action_1478_sls_overdue_approval"/>
+    <field name="group_id" ref="BugFix-Approvals.group_129_jin_sales_credit_note_approvers"/>
+  </record>
+</odoo>
