@@ -5,7 +5,7 @@ from odoo import fields, models
 
 class XMiscChargeCodes(models.Model):
     _name = 'x_misc_charge_codes'
-    _description = 'X Misc Charge Codes'
+    _description = 'Misc Charge Codes'
 
     _inherit = ['mail.thread', 'mail.activity.mixin']
     x_active = fields.Boolean(string='Active')

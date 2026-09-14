@@ -6,7 +6,7 @@ class XTempActualBudget(models.Model):
     """Studio-ported custom model x_temp_actual_budget."""
     _name = 'x_temp_actual_budget'
     _inherit = ['mail.activity.mixin']
-    _description = 'Temp Actual Budget'
+    _description = 'Temp_Actual_Budget'
 
     x_active = fields.Boolean(string='Active')
     x_currency_id = fields.Many2one('res.currency', string='Currency')

@@ -6,7 +6,7 @@ class XRmCustInvoiceS1(models.Model):
     """Studio-ported custom model x_rm_cust_invoice_s1."""
     _name = 'x_rm_cust_invoice_s1'
     _inherit = ['mail.activity.mixin']
-    _description = 'Rm Cust Invoice S1'
+    _description = 'RM Cust Invoice S1'
 
     x_active = fields.Boolean(string='Active')
     x_name = fields.Char(string='Name')

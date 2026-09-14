@@ -11,7 +11,7 @@ from odoo import fields, models
 
 class XRmProdSummarySpli(models.Model):
     _name = 'x_rm_prod_summary_spli'
-    _description = 'Production Summary Split Reporting Row'
+    _description = 'RM Prod. Summary Split'
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'x_studio_sequence, id'
     _rec_name = 'x_name'

@@ -6,7 +6,7 @@ class XRmCustomerWiseInv(models.Model):
     """Studio-ported custom model x_rm_customer_wise_inv."""
     _name = 'x_rm_customer_wise_inv'
     _inherit = ['mail.activity.mixin']
-    _description = 'Rm Customer Wise Inv'
+    _description = 'RM Customer wise Invoices'
 
     x_active = fields.Boolean(string='Active')
     x_name = fields.Char(string='Name')

@@ -14,7 +14,7 @@ from odoo import fields, models
 class XRmGrossMarginActu(models.Model):
     _name = 'x_rm_gross_margin_actu'
     _inherit = ['mail.activity.mixin']
-    _description = 'Gross Margin Actual Row'
+    _description = 'RM Gross Margin - Actuals'
     _order = 'x_studio_sequence, id'
     _rec_name = 'x_name'
 

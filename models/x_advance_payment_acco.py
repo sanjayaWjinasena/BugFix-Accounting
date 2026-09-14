@@ -6,7 +6,7 @@ class XAdvancePaymentAcco(models.Model):
     """Studio-ported custom model x_advance_payment_acco."""
     _name = 'x_advance_payment_acco'
     _inherit = ['mail.activity.mixin']
-    _description = 'Advance Payment Acco'
+    _description = 'Advance Payment Account'
 
     x_active = fields.Boolean(string='Active')
     x_name = fields.Char(string='Name')

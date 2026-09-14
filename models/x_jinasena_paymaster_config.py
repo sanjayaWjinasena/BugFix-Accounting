@@ -5,7 +5,7 @@ from odoo import fields, models
 class XJinasenaPaymasterConfig(models.Model):
     """Studio-ported custom model x_jinasena_paymaster_config."""
     _name = 'x_jinasena_paymaster_config'
-    _description = 'Jinasena Paymaster Config'
+    _description = 'CBC Paymaster Config'
 
     x_cr_dr_code = fields.Char(string='Cr/Dr Code (H)')
     x_currency_code = fields.Char(string='Currency Code (K)')

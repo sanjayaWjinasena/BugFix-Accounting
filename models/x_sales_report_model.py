@@ -5,7 +5,7 @@ from odoo import fields, models
 
 class XSalesReportModel(models.Model):
     _name = 'x_sales_report_model'
-    _description = 'X Sales Report Model'
+    _description = 'Sales Report Model'
 
     _inherit = ['mail.thread', 'mail.activity.mixin']
     x_active = fields.Boolean(string='Active')

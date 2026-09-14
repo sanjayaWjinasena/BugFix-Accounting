@@ -5,7 +5,7 @@ from odoo import fields, models
 
 class XConsignmentChargeH(models.Model):
     _name = 'x_consignment_charge_h'
-    _description = 'X Consignment Charge H'
+    _description = 'Consignment Charge Header'
 
     _inherit = ['mail.thread', 'mail.activity.mixin']
     x_active = fields.Boolean(string='Active')

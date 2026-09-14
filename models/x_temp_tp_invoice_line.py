@@ -6,7 +6,7 @@ class XTempTpInvoiceLine(models.Model):
     """Studio-ported custom model x_temp_tp_invoice_line."""
     _name = 'x_temp_tp_invoice_line'
     _inherit = ['mail.activity.mixin']
-    _description = 'Temp Tp Invoice Line'
+    _description = 'Temp TP Invoice Line'
 
     x_active = fields.Boolean(string='Active')
     x_name = fields.Char(string='Name')
