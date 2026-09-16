@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Visual-Migration_fixes: Sales-app extras created by BugFix-Accounting
+     that don't exist on CDB. Deactivate to match CDB launcher. -->
+<odoo>
+  <data>
+    <!-- 'Sales/RM Daily Sales Report' — extra at Sales root, not on CDB. -->
+    <record id="menu_f6_rm_daily_sales_report" model="ir.ui.menu">
+      <field name="active" eval="False"/>
+    </record>
+
+    <!-- 'Sales/Reporting/Sales Invoice lines' — extra reporting menu, not on CDB. -->
+    <record id="menu_f6_sales_invoice_lines_1" model="ir.ui.menu">
+      <field name="active" eval="False"/>
+    </record>
+
+    <!-- 'Sales/Sales Report Model' — extra at Sales root, not on CDB. -->
+    <record id="menu_f6_sales_report_model_1" model="ir.ui.menu">
+      <field name="active" eval="False"/>
+    </record>
+
+    <!-- 'Sales/Sales Report Type' — extra at Sales root, not on CDB. -->
+    <record id="menu_f6_sales_report_type_1" model="ir.ui.menu">
+      <field name="active" eval="False"/>
+    </record>
+  </data>
+</odoo>
