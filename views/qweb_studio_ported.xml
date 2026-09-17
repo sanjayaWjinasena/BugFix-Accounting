@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- QWeb Studio customizations ported from CDB. Parent inherits
+     resolve to standard Odoo or our own already-shipped views. -->
+<odoo>
+  <data>
+    <record id="report_invoice_studio_customization" model="ir.ui.view">
+      <field name="name">Odoo Studio: report_invoice_document customization</field>
+      <field name="type">qweb</field>
+      <field name="mode">extension</field>
+      <field name="inherit_id" ref="account.report_invoice_document"/>
+      <field name="key">gen_key.1bc765</field>
+      <field name="arch" type="xml">
+        <data><xpath expr="/t/t/div/h2/span[1]" position="replace">
+    <span t-if="o.move_type == 'out_invoice' and o.state == 'posted'">
+      <p>Tax Invoice</p>
+    </span>
+  </xpath>
+  <xpath expr="/t[1]/t[1]/div[1]/h2[1]/span[1]/p[1]" position="attributes">
+    <attribute name="t-if">o.partner_id.x_studio_vat_registration_status == "VAT Registered"</attribute>
+  </xpath>
+  <xpath expr="/t/t/div/h2" position="before">
+    <div class="row">
+      <div class="col">
+        <span>New Text Block</span>
+      </div>
+    </div>
+  </xpath>
+  <xpath expr="/t/t/div/div[1]/div/span" position="replace">
+    <span>
+      <span style="color: rgb(68, 75, 90);">Normal Invoice</span>
+    </span>
+  </xpath>
+  <xpath expr="/t/t/div/div[1]/div/span/span" position="replace">
+    <span style="color: rgb(68, 75, 90);">
+      <font style="font-size: 18px;">Normal Invoice</font>
+    </span>
+  </xpath>
+  <xpath expr="/t/t/div/div[1]/div/span/span/font" position="replace">
+    <font style="font-size: 18px;">
+      <font style="font-size: 18px;">Normal Invoice</font>
+    </font>
+  </xpath>
+  <xpath expr="/t/t/div/div[1]/div/span/span/font" position="replace">
+    <font style="font-size: 18px;">
+      <font style="font-size: 24px;">Normal Invoice</font>
+    </font>
+  </xpath>
+  <xpath expr="/t/t/div/div[1]/div/span/span/font/font" position="replace">
+    <font style="font-size: 24px;">
+      <font style="background-color: rgb(8, 82, 148);">Normal Invoice</font>
+    </font>
+  </xpath>
+  <xpath expr="/t/t/div/div[1]/div/span/span/font/font/font" position="replace">
+    <font style="background-color: rgb(8, 82, 148);">
+      <font class="bg-white">Normal Invoice</font>
+    </font>
+  </xpath>
+  <xpath expr="/t/t/div/div[1]/div/span/span/font/font/font/font" position="replace">
+    <font class="bg-white">
+      <font style="color: rgb(8, 82, 148);">Normal Invoice</font>
+    </font>
+  </xpath>
+  <xpath expr="/t/t/div/div[1]/div/span/span/font/font/font/font" position="replace">
+    <font class="bg-white">
+      <font style="color: rgb(8, 82, 148);">Normal Invoice</font>
+    </font>
+  </xpath>
+  <xpath expr="/t/t/div/div[1]/div/span/span/font/font/font/font/font" position="replace">
+    <font style="color: rgb(8, 82, 148);">
+      <font style="color: rgb(0, 49, 99);">Normal Invoice</font>
+    </font>
+  </xpath>
+  <xpath expr="/t[1]/t[1]/div[1]/div[1]/div[1]/span[1]/span[1]/font[1]/font[1]/font[1]/font[1]/font[1]/font[1]" position="attributes">
+    <attribute name="t-if">o.partner_id.x_studio_vat_registration_status == "VAT Not Registered"</attribute>
+  </xpath>
+  <xpath expr="/t[1]/t[1]/div[1]/h2[1]/span[1]/p[1]" position="attributes">
+    <attribute name="t-if">o.partner_id.x_studio_vat_registration_status == "VAT Registered" and o.partner_id.x_studio_svat_registration_status == "SVAT Nor Registered"</attribute>
+  </xpath>
+  <xpath expr="/t/t/div/div[1]" position="after">
+    <div class="row">
+      <div class="col">
+        <span>New Text Block</span>
+      </div>
+    </div>
+  </xpath>
+  <xpath expr="/t/t/div/div[2]/div/span" position="replace">
+    <span>
+      <span style="color: rgb(68, 75, 90);">Suspended Tax Invoice</span>
+    </span>
+  </xpath>
+  <xpath expr="/t/t/div/div[2]/div/span" position="replace">
+    <span>
+      <span style="color: rgb(68, 75, 90); font-size: 24px;">Suspended Tax Invoice</span>
+    </span>
+  </xpath>
+  <xpath expr="/t/t/div/div[2]/div/span/span" position="replace">
+    <span style="color: rgb(68, 75, 90); font-size: 24px;">
+      <font style="color: rgb(0, 49, 99);">Suspended Tax Invoice</font>
+    </span>
+  </xpath>
+  <xpath expr="/t[1]/t[1]/div[1]/div[2]/div[1]/span[1]/span[1]/font[1]" position="attributes">
+    <attribute name="t-if">o.partner_id.x_studio_vat_registration_status == "VAT Registered" and o.partner_id.x_studio_svat_registration_status == "SVAT Registered"</attribute>
+  </xpath>
+  <xpath expr="/t/t/div/h2" position="after">
+    <div class="row">
+      <div class="col">
+        <span t-field="o.partner_id.x_studio_vat_registration_number"/>
+      </div>
+    </div>
+  </xpath>
+  <xpath expr="/t/t/div/div[1]/div/span/span/font/font/font/font/font/font" position="replace">
+    <font style="color: rgb(0, 49, 99);" t-if="o.partner_id.x_studio_vat_registration_status == &quot;VAT Not Registered&quot;">
+      <p>Invoice</p>
+    </font>
+  </xpath>
+  <xpath expr="/t[1]/t[1]/div[1]/div[1]/div[1]/span[1]/span[1]/font[1]/font[1]/font[1]/font[1]/font[1]/font[1]/p[1]" position="attributes">
+    <attribute name="t-if">o.move_type == "out_invoice" and o.state == "posted"</attribute>
+  </xpath>
+  <xpath expr="/t[1]/t[1]/div[1]/div[2]/div[1]/span[1]/span[1]/font[1]" position="attributes">
+    <attribute name="t-if">o.partner_id.x_studio_vat_registration_status == "VAT Registered" and o.partner_id.x_studio_svat_registration_status == "SVAT Registered" and o.move_type == "out_invoice" and o.state == "posted"</attribute>
+  </xpath>
+  <xpath expr="/t[1]/t[1]/div[1]/h2[1]/span[1]/p[1]" position="attributes">
+    <attribute name="t-if">o.partner_id.x_studio_vat_registration_status == "VAT Registered" and o.partner_id.x_studio_svat_registration_status == "SVAT Nor Registered" and o.move_type == "out_invoice" and o.state == "posted"</attribute>
+  </xpath>
+  <xpath expr="/t/t/div/div[3]/div/span" position="attributes">
+    <attribute name="style" separator=";" add="margin-top:10px"/>
+  </xpath>
+  <xpath expr="/t/t/div/div[3]/div/span" position="attributes">
+    <attribute name="style" separator=";" add="margin-right:100px"/>
+  </xpath>
+  <xpath expr="/t/t/div/div[3]/div/span" position="attributes">
+    <attribute name="style" separator=";" add="margin-right:500px" remove="margin-right:100px"/>
+  </xpath>
+  <xpath expr="/t/t/div/div[3]/div/span" position="attributes">
+    <attribute name="style" separator=";" remove="margin-right:500px"/>
+  </xpath>
+  <xpath expr="/t/t/div/div[3]/div/span" position="attributes">
+    <attribute name="style" separator=";" remove="margin-top:10px"/>
+  </xpath>
+  <xpath expr="/t[1]/t[1]/div[1]/div[3]/div[1]" position="replace"/>
+  <xpath expr="/t[1]/t[1]/div[1]/div[5]/div[1]" position="replace"/>
+  <xpath expr="/t/t/div/div[3]" position="after">
+    <div class="row">
+      <div class="col">
+        <span t-field="o.partner_id.x_studio_vat_registration_number"/>
+      </div>
+    </div>
+  </xpath>
+  <xpath expr="/t/t/div/div[4]/div/span" position="attributes">
+    <attribute name="style" separator=";" add="margin-top:1000px"/>
+  </xpath>
+  <xpath expr="/t/t/div/div[3]" position="after">
+    <div class="row">
+      <div class="col">
+        <span>New Text Block</span>
+      </div>
+    </div>
+  </xpath>
+  <xpath expr="/t/t/div/div[3]" position="after">
+    <div class="row">
+      <div class="col">
+        <span>New Text Block</span>
+      </div>
+    </div>
+  </xpath>
+  <xpath expr="/t[1]/t[1]/div[1]/div[4]/div[1]" position="replace"/>
+</data>
+      </field>
+    </record>
+    <record id="report_invoice_studio_customization_2" model="ir.ui.view">
+      <field name="name">Odoo Studio: report_invoice_document customization-2</field>
+      <field name="type">qweb</field>
+      <field name="mode">extension</field>
+      <field name="inherit_id" ref="account.report_invoice_document"/>
+      <field name="key">gen_key.1bc765</field>
+      <field name="arch" type="xml">
+        <data><xpath expr="/t/t/div/h2/span[1]" position="replace">
+    <span t-if="o.move_type == 'out_invoice' and o.state == 'posted'">
+      <p>Tax Invoice</p>
+    </span>
+  </xpath>
+  <xpath expr="/t[1]/t[1]/div[1]/h2[1]/span[1]/p[1]" position="attributes">
+    <attribute name="t-if">o.partner_id.x_studio_vat_registration_status == "VAT Registered"</attribute>
+  </xpath>
+  <xpath expr="/t/t/div/h2" position="before">
+    <div class="row">
+      <div class="col">
+        <span>New Text Block</span>
+      </div>
+    </div>
+  </xpath>
+  <xpath expr="/t/t/div/div[1]/div/span" position="replace">
+    <span>
+      <span style="color: rgb(68, 75, 90);">Normal Invoice</span>
+    </span>
+  </xpath>
+  <xpath expr="/t/t/div/div[1]/div/span/span" position="replace">
+    <span style="color: rgb(68, 75, 90);">
+      <font style="font-size: 18px;">Normal Invoice</font>
+    </span>
+  </xpath>
+  <xpath expr="/t/t/div/div[1]/div/span/span/font" position="replace">
+    <font style="font-size: 18px;">
+      <font style="font-size: 18px;">Normal Invoice</font>
+    </font>
+  </xpath>
+  <xpath expr="/t/t/div/div[1]/div/span/span/font" position="replace">
+    <font style="font-size: 18px;">
+      <font style="font-size: 24px;">Normal Invoice</font>
+    </font>
+  </xpath>
+  <xpath expr="/t/t/div/div[1]/div/span/span/font/font" position="replace">
+    <font style="font-size: 24px;">
+      <font style="background-color: rgb(8, 82, 148);">Normal Invoice</font>
+    </font>
+  </xpath>
+  <xpath expr="/t/t/div/div[1]/div/span/span/font/font/font" position="replace">
+    <font style="background-color: rgb(8, 82, 148);">
+      <font class="bg-white">Normal Invoice</font>
+    </font>
+  </xpath>
+  <xpath expr="/t/t/div/div[1]/div/span/span/font/font/font/font" position="replace">
+    <font class="bg-white">
+      <font style="color: rgb(8, 82, 148);">Normal Invoice</font>
+    </font>
+  </xpath>
+  <xpath expr="/t/t/div/div[1]/div/span/span/font/font/font/font" position="replace">
+    <font class="bg-white">
+      <font style="color: rgb(8, 82, 148);">Normal Invoice</font>
+    </font>
+  </xpath>
+  <xpath expr="/t/t/div/div[1]/div/span/span/font/font/font/font/font" position="replace">
+    <font style="color: rgb(8, 82, 148);">
+      <font style="color: rgb(0, 49, 99);">Normal Invoice</font>
+    </font>
+  </xpath>
+  <xpath expr="/t[1]/t[1]/div[1]/div[1]/div[1]/span[1]/span[1]/font[1]/font[1]/font[1]/font[1]/font[1]/font[1]" position="attributes">
+    <attribute name="t-if">o.partner_id.x_studio_vat_registration_status == "VAT Not Registered"</attribute>
+  </xpath>
+  <xpath expr="/t[1]/t[1]/div[1]/h2[1]/span[1]/p[1]" position="attributes">
+    <attribute name="t-if">o.partner_id.x_studio_vat_registration_status == "VAT Registered" and o.partner_id.x_studio_svat_registration_status == "SVAT Nor Registered"</attribute>
+  </xpath>
+  <xpath expr="/t/t/div/div[1]" position="after">
+    <div class="row">
+      <div class="col">
+        <span>New Text Block</span>
+      </div>
+    </div>
+  </xpath>
+  <xpath expr="/t/t/div/div[2]/div/span" position="replace">
+    <span>
+      <span style="color: rgb(68, 75, 90);">Suspended Tax Invoice</span>
+    </span>
+  </xpath>
+  <xpath expr="/t/t/div/div[2]/div/span" position="replace">
+    <span>
+      <span style="color: rgb(68, 75, 90); font-size: 24px;">Suspended Tax Invoice</span>
+    </span>
+  </xpath>
+  <xpath expr="/t/t/div/div[2]/div/span/span" position="replace">
+    <span style="color: rgb(68, 75, 90); font-size: 24px;">
+      <font style="color: rgb(0, 49, 99);">Suspended Tax Invoice</font>
+    </span>
+  </xpath>
+  <xpath expr="/t[1]/t[1]/div[1]/div[2]/div[1]/span[1]/span[1]/font[1]" position="attributes">
+    <attribute name="t-if">o.partner_id.x_studio_vat_registration_status == "VAT Registered" and o.partner_id.x_studio_svat_registration_status == "SVAT Registered"</attribute>
+  </xpath>
+  <xpath expr="/t/t/div/h2" position="after">
+    <div class="row">
+      <div class="col">
+        <span t-field="o.partner_id.x_studio_vat_registration_number"/>
+      </div>
+    </div>
+  </xpath>
+  <xpath expr="/t/t/div/div[1]/div/span/span/font/font/font/font/font/font" position="replace">
+    <font style="color: rgb(0, 49, 99);" t-if="o.partner_id.x_studio_vat_registration_status == &quot;VAT Not Registered&quot;">
+      <p>Invoice</p>
+    </font>
+  </xpath>
+  <xpath expr="/t[1]/t[1]/div[1]/div[1]/div[1]/span[1]/span[1]/font[1]/font[1]/font[1]/font[1]/font[1]/font[1]/p[1]" position="attributes">
+    <attribute name="t-if">o.move_type == "out_invoice" and o.state == "posted"</attribute>
+  </xpath>
+  <xpath expr="/t[1]/t[1]/div[1]/div[2]/div[1]/span[1]/span[1]/font[1]" position="attributes">
+    <attribute name="t-if">o.partner_id.x_studio_vat_registration_status == "VAT Registered" and o.partner_id.x_studio_svat_registration_status == "SVAT Registered" and o.move_type == "out_invoice" and o.state == "posted"</attribute>
+  </xpath>
+  <xpath expr="/t[1]/t[1]/div[1]/h2[1]/span[1]/p[1]" position="attributes">
+    <attribute name="t-if">o.partner_id.x_studio_vat_registration_status == "VAT Registered" and o.partner_id.x_studio_svat_registration_status == "SVAT Nor Registered" and o.move_type == "out_invoice" and o.state == "posted"</attribute>
+  </xpath>
+  <xpath expr="/t/t/div/div[3]/div/span" position="attributes">
+    <attribute name="style" separator=";" add="margin-top:10px"/>
+  </xpath>
+  <xpath expr="/t/t/div/div[3]/div/span" position="attributes">
+    <attribute name="style" separator=";" add="margin-right:100px"/>
+  </xpath>
+  <xpath expr="/t/t/div/div[3]/div/span" position="attributes">
+    <attribute name="style" separator=";" add="margin-right:500px" remove="margin-right:100px"/>
+  </xpath>
+  <xpath expr="/t/t/div/div[3]/div/span" position="attributes">
+    <attribute name="style" separator=";" remove="margin-right:500px"/>
+  </xpath>
+  <xpath expr="/t/t/div/div[3]/div/span" position="attributes">
+    <attribute name="style" separator=";" remove="margin-top:10px"/>
+  </xpath>
+  <xpath expr="/t[1]/t[1]/div[1]/div[3]/div[1]" position="replace"/>
+</data>
+      </field>
+    </record>
+  </data>
+</odoo>

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Accounting',
-    'version': '17.0.0.0.100',
+    'version': '17.0.0.0.101',
     'summary': 'Studio-to-Python port for BugFix-Accounting',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Accounting',
@@ -316,6 +316,7 @@
         'data/menus_from_routing.xml',
         'data/menus_f6.xml',
         'data/menus_visual_fixes.xml',
+        'views/qweb_studio_ported.xml',
     ],
     'installable': True,
     'auto_install': False,
