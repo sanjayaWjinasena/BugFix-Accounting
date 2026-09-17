@@ -1,36 +1,6 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='UTF-8'?>
 <odoo>
   <data noupdate="1">
-    <record id="sel_x_misc_charge_codes_activity_exception_decoration_danger" model="ir.model.fields.selection">
-      <field name="field_id" search="[('model','=','x_misc_charge_codes'),('name','=','activity_exception_decoration')]"/>
-      <field name="value">danger</field>
-      <field name="name">Error</field>
-      <field name="sequence" eval="1"/>
-    </record>
-    <record id="sel_x_misc_charge_codes_activity_exception_decoration_warning" model="ir.model.fields.selection">
-      <field name="field_id" search="[('model','=','x_misc_charge_codes'),('name','=','activity_exception_decoration')]"/>
-      <field name="value">warning</field>
-      <field name="name">Alert</field>
-      <field name="sequence" eval="10"/>
-    </record>
-    <record id="sel_x_misc_charge_codes_activity_state_overdue" model="ir.model.fields.selection">
-      <field name="field_id" search="[('model','=','x_misc_charge_codes'),('name','=','activity_state')]"/>
-      <field name="value">overdue</field>
-      <field name="name">Overdue</field>
-      <field name="sequence" eval="10"/>
-    </record>
-    <record id="sel_x_misc_charge_codes_activity_state_planned" model="ir.model.fields.selection">
-      <field name="field_id" search="[('model','=','x_misc_charge_codes'),('name','=','activity_state')]"/>
-      <field name="value">planned</field>
-      <field name="name">Planned</field>
-      <field name="sequence" eval="2"/>
-    </record>
-    <record id="sel_x_misc_charge_codes_activity_state_today" model="ir.model.fields.selection">
-      <field name="field_id" search="[('model','=','x_misc_charge_codes'),('name','=','activity_state')]"/>
-      <field name="value">today</field>
-      <field name="name">Today</field>
-      <field name="sequence" eval="1"/>
-    </record>
     <record id="sel_x_misc_charge_codes_x_studio_charge_group_None" model="ir.model.fields.selection">
       <field name="field_id" search="[('model','=','x_misc_charge_codes'),('name','=','x_studio_charge_group')]"/>
       <field name="value">None</field>
