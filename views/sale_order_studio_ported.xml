@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!--
+    sale.order form Studio port — Accounting-owned Slice B-Acc (v0.0.106).
+    Companion to BugFix-Sales's sale_order_studio_ported.xml which owns
+    the Overdue / Commission / Margin / Credit / BankGuarantee / Transfer
+    slices. This file adds the 4 Accounting-owned artifacts that couldn't
+    live in BugFix-Sales because 2 of them (act_window_2180 Budget,
+    act_window_2342 Payments) are pinned to BugFix-Accounting and adding
+    BugFix-Accounting as a Sales dep would cycle
+    (Accounting -> Sales -> Accounting).
+
+    Landed here because BugFix-Accounting already depends on BugFix-Sales,
+    so it can reach:
+      * BugFix-Sales.server_action_2178_proj_create_budget_entries
+      * BugFix-Sales.server_action_2337_sls_validate_sales
+      * BugFix-Accounting.act_window_2180_budget (own)
+      * BugFix-Accounting.act_window_2342_payments (own)
+
+    Buttons for Purchase-side artifacts (Create PR 2188, Update RFQ 2192,
+    PRs smart button 2189, Subcontracting POs smart button 2238) belong
+    in BugFix-Purchase (which depends transitively on this repo).
+  -->
+  <record id="ported_odoo_studio_sale_ord_acct" model="ir.ui.view">
+    <field name="name">Odoo Studio: sale.order.form Accounting slice B-Acc</field>
+    <field name="model">sale.order</field>
+    <field name="type">form</field>
+    <field name="priority">100</field>
+    <field name="mode">extension</field>
+    <field name="inherit_id" ref="sale.view_order_form"/>
+    <field name="arch" type="xml">
+      <data>
+
+        <!-- Sentinels for header-button modifiers.
+             Smart-button count fields are NOT sentinelled here because they
+             appear as <field widget="statinfo"> inside the smart button
+             itself further down, which satisfies Odoo's arch validator.  -->
+        <xpath expr="//sheet" position="inside">
+          <field name="x_studio_budget_created" invisible="1"/>
+        </xpath>
+
+        <!-- Header buttons: Create Budget + Validate Sales -->
+        <xpath expr="//header" position="inside">
+          <button type="action"
+                  name="%(BugFix-Sales.server_action_2178_proj_create_budget_entries)d"
+                  string="Create Budget"
+                  class="btn-primary"
+                  invisible="(state == 'cancel') or (x_studio_budget_created == True)"/>
+          <button type="action"
+                  name="%(BugFix-Sales.server_action_2337_sls_validate_sales)d"
+                  string="Validate Sales"
+                  class="btn-primary"
+                  invisible="state not in ('sale', 'done')"/>
+        </xpath>
+
+        <!-- Smart buttons: Budget count + Payments count.
+             `type="action"` targets act_window xmlids; the <field
+             widget="statinfo"> renders the count as the button label.
+             Double-x prefix (x_x_studio_...) is Studio's convention for
+             smart-button count computes — see BugFix-Sales/models/
+             sale_order.py lines 30-33.  -->
+        <xpath expr="//div[@name='button_box']" position="inside">
+          <button type="action"
+                  name="%(BugFix-Accounting.act_window_2180_budget)d"
+                  class="oe_stat_button"
+                  icon="fa-usd"
+                  invisible="x_x_studio_created_from_sales_order_1_crossovered_budget_count == 0">
+            <field name="x_x_studio_created_from_sales_order_1_crossovered_budget_count"
+                   widget="statinfo" string="Budgets"/>
+          </button>
+          <button type="action"
+                  name="%(BugFix-Accounting.act_window_2342_payments)d"
+                  class="oe_stat_button"
+                  icon="fa-credit-card"
+                  invisible="x_x_studio_sales_order_account_payment_count == 0">
+            <field name="x_x_studio_sales_order_account_payment_count"
+                   widget="statinfo" string="Payments"/>
+          </button>
+        </xpath>
+
+      </data>
+    </field>
+  </record>
+</odoo>
