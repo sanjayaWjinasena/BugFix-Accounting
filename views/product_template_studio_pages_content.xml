@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Injects the 2 Accounting-owned x_studio fields into the Sri Lanka
+    Localization tab's studio_group_zujMt_right group.
+
+    BugFix-Sales v0.1.0.151 ships the tab skeleton with only tariff_code
+    populated. It cannot populate charge_type + non_billable because those
+    fields are declared in this module (BugFix-Accounting), which loads
+    AFTER BugFix-Sales — so at Sales install time the fields don't yet
+    exist on product.template.
+
+    Companion pattern to Fix-repair/views/res_partner_studio_pages_content.xml
+    which handles the same load-order trap for res.partner Studio pages.
+-->
+<odoo>
+  <record id="product_template_form_bugfix_accounting_field_content" model="ir.ui.view">
+    <field name="name">product.template.form.bugfix.accounting.field.content</field>
+    <field name="model">product.template</field>
+    <field name="inherit_id" ref="BugFix-Sales.ported_product_template_studio_2551"/>
+    <field name="priority">100</field>
+    <field name="arch" type="xml">
+      <xpath expr="//group[@name='studio_group_zujMt_right']" position="inside">
+        <field name="x_studio_charge_type" string="Charge Type" widget="radio" readonly="type != 'service'"/>
+        <field name="x_studio_non_billable" string="Non Billable" readonly="type != 'service'"/>
+      </xpath>
+    </field>
+  </record>
+</odoo>
