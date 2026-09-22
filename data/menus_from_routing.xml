@@ -2,10 +2,10 @@
 <!-- BugFix-Accounting: menu sweep from routing audit (34 candidates) --><!-- Uses <menuitem> shortcut with dev-verified parent + action refs --><odoo>
 
   <menuitem id="menu_785_tp_invoice_line" name="TP Invoice Line" action="BugFix-Accounting.action_1380_tp_invoice_line" sequence="11"/>
-  <menuitem id="menu_880_report_models" name="Report Models" parent="sale.sale_menu_root" action="BugFix-Accounting.action_1667_sales_report_model" sequence="10"/>
-  <menuitem id="menu_900_pivot_views" name="Pivot Views" parent="sale.sale_menu_root" action="BugFix-Accounting.action_1737_wip_production_orders" sequence="11"/>
-  <menuitem id="menu_1059_sales_invoices" name="Sales Invoices" parent="sale.sale_menu_root" action="BugFix-Accounting.action_2198_sales_invoices" sequence="12"/>
-  <menuitem id="menu_1171_aaaa" name="AAAA" parent="sale.sale_menu_root" action="BugFix-Accounting.action_2530_aaaa" sequence="14"/>
+  <menuitem id="menu_880_report_models" name="Report Models" parent="sale.sale_menu_root" action="BugFix-Accounting.action_1667_sales_report_model" sequence="60"/>
+  <menuitem id="menu_900_pivot_views" name="Pivot Views" parent="sale.sale_menu_root" action="BugFix-Accounting.action_1737_wip_production_orders" sequence="61"/>
+  <menuitem id="menu_1059_sales_invoices" name="Sales Invoices" parent="sale.sale_menu_root" action="BugFix-Accounting.action_2198_sales_invoices" sequence="62"/>
+  <menuitem id="menu_1171_aaaa" name="AAAA" parent="sale.sale_menu_root" action="BugFix-Accounting.action_2530_aaaa" sequence="64"/>
   <menuitem id="menu_1340_taxes" name="Taxes" parent="account_accountant.menu_accounting" action="BugFix-Accounting.action_2758_taxes" sequence="36"/>
   <menuitem id="menu_1690_invoice_wise_revenue_report" name="Invoice Wise Revenue Report" parent="account_accountant.menu_accounting" action="BugFix-Accounting.action_3271_invoice_wise_revenue_report" sequence="37"/>
   <menuitem id="menu_901_production_overview_wip" name="Production Overview - WIP" parent="BugFix-Accounting.menu_900_pivot_views" action="BugFix-Accounting.action_1737_wip_production_orders" sequence="0"/>
