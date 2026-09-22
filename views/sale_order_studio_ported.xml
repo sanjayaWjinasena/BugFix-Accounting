@@ -48,7 +48,7 @@
                   invisible="(state == 'cancel') or (x_studio_budget_created == True)"/>
           <button type="action"
                   name="%(BugFix-Sales.server_action_2337_sls_validate_sales)d"
-                  string="Validate Sales"
+                  string="Validate Sales Lines"
                   class="btn-primary"
                   invisible="state not in ('sale', 'done')"/>
         </xpath>
