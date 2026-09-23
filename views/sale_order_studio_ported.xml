@@ -45,12 +45,12 @@
                   name="%(BugFix-Sales.server_action_2178_proj_create_budget_entries)d"
                   string="Create Budget"
                   class="btn-primary"
-                  invisible="(state == 'cancel') or (x_studio_budget_created == True)"/>
+                  invisible="(state in ['sale', 'done', 'cancel']) or ((x_studio_valid_order_lines == False) or ((x_studio_budget_created == True) or (x_studio_quotation_type != 'Project')))"/>
           <button type="action"
                   name="%(BugFix-Sales.server_action_2337_sls_validate_sales)d"
                   string="Validate Sales Lines"
                   class="btn-primary"
-                  invisible="state not in ('sale', 'done')"/>
+                  invisible="x_studio_clear_free_items == False"/>
         </xpath>
 
         <!-- Smart buttons: Budget count + Payments count.
