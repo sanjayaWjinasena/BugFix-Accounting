@@ -22,5 +22,37 @@
     <record id="menu_f6_sales_report_type_1" model="ir.ui.menu">
       <field name="active" eval="False"/>
     </record>
+
+    <!-- ============================================================
+         v0.0.112 Accounting-app menu cleanup: kill 6 duplicates
+         owned by BugFix-Accounting. Keep menu_<CDB_ID>_* twins that
+         match CDB verbatim; drop menu_f6_* older Studio-routing stubs.
+    ============================================================ -->
+    <record id="menu_f6_pump_product_costing" model="ir.ui.menu">
+      <field name="active" eval="False"/>
+    </record>
+    <record id="menu_f6_pump_costing_worksheet" model="ir.ui.menu">
+      <field name="active" eval="False"/>
+    </record>
+    <record id="menu_f6_advance_payment_account" model="ir.ui.menu">
+      <field name="active" eval="False"/>
+    </record>
+    <record id="menu_f6_invoice_wise_revenue_report" model="ir.ui.menu">
+      <field name="active" eval="False"/>
+    </record>
+    <record id="menu_f6_invoice_wise_revenue_report_1" model="ir.ui.menu">
+      <field name="active" eval="False"/>
+    </record>
+
+    <!-- 'Credit Note' (BugFix-Accounting.menu_1191_credit_note) is a
+         second Credit-Notes menu that duplicates core Odoo's
+         account.menu_action_move_out_refund_type. On CDB the two
+         appear under DIFFERENT Customers parents (one real, one dup)
+         so both exist there. On Dev they're both under the SAME
+         Customers parent, so it renders as a duplicate. Kill the
+         menu_1191_ one — the core-Odoo menu remains and functions. -->
+    <record id="menu_1191_credit_note" model="ir.ui.menu">
+      <field name="active" eval="False"/>
+    </record>
   </data>
 </odoo>
