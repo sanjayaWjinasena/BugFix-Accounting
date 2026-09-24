@@ -13,7 +13,7 @@ class AccountMoveLine(models.Model):
     x_studio_category = fields.Many2one('x_project_category', string='Category')
     x_studio_contract_id = fields.Many2one('hr.contract', string='Contract Id')
     x_studio_credit_limit = fields.Float(string='Credit Limit', related='partner_id.credit_limit', store=True, readonly=True)
-    x_studio_credit_limit_2 = fields.Float(string='Credit Limit 2', readonly=True)
+    x_studio_credit_limit_2 = fields.Float(string='Credit Limit 2', compute='_compute_x_studio_credit_limit_2', store=False, readonly=True)
     x_studio_customer_group_type = fields.Selection([('General', 'General'), ('Distributor', 'Distributor'), ('Dealer', 'Dealer')], string='Customer Group Type', related='partner_id.x_studio_customer_group.x_studio_group_type', store=True, readonly=True)
     x_studio_employers_contribution = fields.Float(string="Employer's Contribution", compute='_compute_x_studio_employers_contribution', store=True, readonly=True)
     x_studio_epf_number = fields.Char(string='EPF Number', related='x_studio_contract_id.employee_id.x_studio_epf_no', store=True, readonly=True)
@@ -29,14 +29,14 @@ class AccountMoveLine(models.Model):
     x_studio_partner = fields.Many2one('res.partner', string='Partner', related='move_id.partner_id', store=True, readonly=True)
     x_studio_payment_status = fields.Selection([('not_paid', 'Not Paid'), ('in_payment', 'In Payment'), ('paid', 'Paid'), ('partial', 'Partially Paid'), ('reversed', 'Reversed'), ('invoicing_legacy', 'Invoicing App Legacy')], string='Payment Status', related='move_id.payment_state', store=True, readonly=True)
     x_studio_pr_type = fields.Selection([('Local', 'Local'), ('Import', 'Import')], string='PR Type', related='move_id.x_studio_purchase_type', store=True, readonly=True)
-    x_studio_product_category = fields.Many2one('product.category', string='Product Category', readonly=True, store=False)
+    x_studio_product_category = fields.Many2one('product.category', string='Product Category', related='product_id.categ_id', store=False, readonly=True)
     x_studio_project_no = fields.Many2one('project.project', string='Project No', related='move_id.x_studio_project_no', store=True, readonly=True)
-    x_studio_purchase_order = fields.Char(string='Purchase Order', readonly=True)
+    x_studio_purchase_order = fields.Char(string='Purchase Order', related='purchase_order_id.name', store=True, readonly=True)
     x_studio_purpose_code = fields.Char(string='Purpose Code', related='x_studio_contract_id.employee_id.x_studio_purpose_code', store=True, readonly=True)
     x_studio_related_field_5LBku = fields.Char(string='New Related Field', readonly=True, store=False)
     x_studio_related_field_5j5_1isv2aad6 = fields.Char(string='New Related Field', related='x_studio_contract_id.employee_id.x_studio_occupation_code', store=True, readonly=True)
-    x_studio_related_field_CQ41C = fields.Many2one('product.product', string='New Related Field', readonly=True, store=False)
-    x_studio_related_field_CvPMn = fields.Char(string='New Related Field', readonly=True, store=False)
+    x_studio_related_field_CQ41C = fields.Many2one('product.product', string='New Related Field', related='product_id.product_variant_id.product_variant_id', store=False, readonly=True)
+    x_studio_related_field_CvPMn = fields.Char(string='New Related Field', related='product_id.x_studio_many2one_field_8eWzY.item_ids.price', store=False, readonly=True)
     x_studio_related_field_FWW4G = fields.Float(string='New Related Field', readonly=True)
     x_studio_related_field_HFHrh = fields.Char(string='New Related Field', readonly=True, store=False)
     x_studio_related_field_HO3gE = fields.Char(string='New Related Field', readonly=True, store=False)
@@ -44,12 +44,12 @@ class AccountMoveLine(models.Model):
     x_studio_related_field_Nf3SX = fields.Float(string='New Related Field', readonly=True)
     x_studio_related_field_SORzX = fields.Integer(string='New Related Field', related='move_id.journal_id.id', store=True, readonly=True)
     x_studio_related_field_VzwUx = fields.Integer(string='New Related Field', related='move_id.journal_id.id', store=True, readonly=True)
-    x_studio_related_field_WVIs6 = fields.Char(string='New Related Field', readonly=True)
-    x_studio_related_field_X2pdt = fields.Float(string='New Related Field', readonly=True)
-    x_studio_related_field_aD9tj = fields.Float(string='New Related Field', readonly=True)
+    x_studio_related_field_WVIs6 = fields.Char(string='New Related Field', compute='_compute_x_studio_related_field_WVIs6', store=False, readonly=True)
+    x_studio_related_field_X2pdt = fields.Float(string='New Related Field', related='product_id.x_studio_many2one_field_8eWzY.item_ids.fixed_price', store=True, readonly=True)
+    x_studio_related_field_aD9tj = fields.Float(string='New Related Field', related='product_id.x_studio_many2one_field_8eWzY.item_ids.fixed_price', store=True, readonly=True)
     x_studio_related_field_e9NHB = fields.Char(string='New Related Field', readonly=True)
-    x_studio_related_field_kbp8y = fields.Char(string='New Related Field', readonly=True, store=False)
-    x_studio_related_field_lBjdh = fields.Float(string='New Related Field', readonly=True, store=False)
+    x_studio_related_field_kbp8y = fields.Char(string='New Related Field', related='product_id.product_variant_id.display_name', store=False, readonly=True)
+    x_studio_related_field_lBjdh = fields.Float(string='New Related Field', related='product_id.list_price', store=False, readonly=True)
     # TODO: x_studio_related_field_zy8mz = fields.One2many(...) -- Studio inverse name unknown; port from Clear-DB manually.
     x_studio_sales_report_type = fields.Many2one('x_sales_report_type', string='Report Type (S- Incentive Calculation)')
     x_studio_sales_team = fields.Many2one('crm.team', string='Sales Team', related='move_id.team_id', store=True, readonly=True)
@@ -102,3 +102,30 @@ class AccountMoveLine(models.Model):
         for rec in self:
             rec.x_studio_total_contribution = (
                 rec.x_studio_members_contribution + rec.x_studio_employers_contribution)
+
+    @api.depends('purchase_order_id')
+    def _compute_x_studio_related_field_WVIs6(self):
+        # CDB related target: purchase_order_id.order_line.x_studio_indent_no
+        # x_studio_indent_no on purchase.order.line is BugFix-Purchase-owned,
+        # loads AFTER Accounting - can't use related at setup time. Runtime
+        # hasattr guard reads first order line's indent_no if available.
+        for rec in self:
+            value = False
+            po = rec.purchase_order_id
+            if po and po.order_line and 'x_studio_indent_no' in po.order_line._fields:
+                first_line = po.order_line[:1]
+                if first_line:
+                    value = first_line.x_studio_indent_no or False
+            rec.x_studio_related_field_WVIs6 = value
+
+    def _compute_x_studio_credit_limit_2(self):
+        # CDB compute calls self._fix_repair_compute_credit_limit_2() which
+        # is a Fix-repair-added method. Fix-repair loads AFTER Accounting,
+        # so at Accounting-load time the method doesn't exist. Guard at
+        # runtime with hasattr. If Fix-repair not installed, field stays 0.
+        for rec in self:
+            if hasattr(rec, '_fix_repair_compute_credit_limit_2'):
+                rec._fix_repair_compute_credit_limit_2()
+            else:
+                rec.x_studio_credit_limit_2 = 0
+
