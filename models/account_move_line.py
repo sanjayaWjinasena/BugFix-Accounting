@@ -20,7 +20,7 @@ class AccountMoveLine(models.Model):
     x_studio_etf_number = fields.Char(string='ETF Number', related='x_studio_contract_id.employee_id.x_studio_etf_no', store=True, readonly=True)
     x_studio_initials = fields.Char(string='Initials', related='x_studio_contract_id.x_studio_initial', store=True, readonly=True)
     x_studio_invoice_date = fields.Date(string='Invoice Date', related='move_id.invoice_date', store=True, readonly=True)
-    x_studio_journal = fields.Many2one('account.move', string='Journal', readonly=True)
+    x_studio_journal = fields.Many2one('account.move', string='Journal', readonly=True, related='move_id', store=True)
     x_studio_journal_type = fields.Selection([('Bill', 'Bill'), ('Payment', 'Payment'), ('Settlement', 'Settlement')], string='Journal Type', related='move_id.x_studio_journal_type', store=True, readonly=True)
     x_studio_many2one_field_kiSUJ = fields.Many2one('x_sales_report_type', string='Sales Report Type')
     x_studio_members_contribution = fields.Float(string="Member's Contribution", compute='_compute_x_studio_members_contribution', store=True, readonly=True)
@@ -58,10 +58,10 @@ class AccountMoveLine(models.Model):
     x_studio_surname = fields.Char(string='Surname', related='x_studio_contract_id.x_studio_surname', store=True, readonly=True)
     x_studio_swift_code = fields.Char(string='Swift Code', related='x_studio_contract_id.employee_id.bank_account_id.x_studio_swift_code', store=True, readonly=True)
     x_studio_tags = fields.Many2many('x_misc_charge_codes', 'account_move_line_x_studio_tags_rel', 'account_id', 'x_misc_charge_codes_id', string='Tags')
-    x_studio_tax = fields.Float(string='Tax', readonly=True)  # was Monetary (no currency_field)
+    x_studio_tax = fields.Monetary(string='Tax', readonly=True, currency_field='currency_id', related='move_id.amount_tax', store=True)
     x_studio_to_account = fields.Char(string='To Account', related='x_studio_contract_id.employee_id.bank_account_id.acc_number', store=True, readonly=True)
     x_studio_total_contribution = fields.Float(string='Total Contribution', compute='_compute_x_studio_total_contribution', store=True, readonly=True)
-    x_studio_total_earnings = fields.Float(string='Total Earnings', readonly=True)  # was Monetary (no currency_field)
+    x_studio_total_earnings = fields.Monetary(string='Total Earnings', readonly=True, currency_field='currency_id', related='x_studio_contract_id.wage', store=True)
 
     @api.depends('distribution_analytic_account_ids', 'journal_id', 'name', 'date')
     def _compute_x_studio_employers_contribution(self):
