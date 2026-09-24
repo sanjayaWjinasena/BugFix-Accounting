@@ -54,5 +54,16 @@
     <record id="menu_1191_credit_note" model="ir.ui.menu">
       <field name="active" eval="False"/>
     </record>
+
+    <!-- ============================================================
+         v0.0.131 Inventory-app cleanup: 'Inventory > Configuration >
+         Journal Types' duplicated. menu_1132_journal_types (from_
+         routing, action_2447) is the CDB-matching twin — keep.
+         menu_f6_journal_types (same parent + name + action, older
+         f6 stub) is the dup.
+    ============================================================ -->
+    <record id="menu_f6_journal_types" model="ir.ui.menu">
+      <field name="active" eval="False"/>
+    </record>
   </data>
 </odoo>
