@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Sentinel declaration for x_lc_header so cross-references resolve."""
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class XLcHeader(models.Model):
@@ -31,7 +31,9 @@ class XLcHeader(models.Model):
     x_studio_issuing_bank_reference_no_1 = fields.Char(string='Issuing Bank Reference No')
     x_studio_latest_shipment_date = fields.Date(string='Latest Shipment Date (44C)')
     x_studio_lc_amount = fields.Float(string='LC Amount (32B)')
-    x_studio_lc_amount_lcy = fields.Float(string='LC Amount (LCY)')
+    x_studio_lc_amount_lcy = fields.Float(
+        string='LC Amount (LCY)',
+        compute='_compute_x_studio_lc_amount_lcy', store=True, readonly=True)
     x_studio_lc_credit_sub_type = fields.Selection([('Non Transferable', 'Non Transferable'), ('Transferable', 'Transferable'), ('Revolving', 'Revolving')], string='Documentary Credit Sub Type (40A)')
     x_studio_lc_credit_type = fields.Selection([('Irrevocable', 'Irrevocable'), ('Revocable', 'Revocable')], string='Documentary Credit Type (40A)')
     x_studio_lc_no = fields.Char(string='Documentatry Credit Number (20)')
@@ -40,7 +42,35 @@ class XLcHeader(models.Model):
     x_studio_partial_shipment = fields.Selection([('Allowed', 'Allowed'), ('Not Allowed', 'Not Allowed')], string='Partial Shipment (43P)')
     x_studio_period_for_presentation = fields.Float(string='Period for Presentation (48)')
     x_studio_place_of_expiry = fields.Char(string='Place of Expiry (31D)')
-    x_studio_revised_lc_amount = fields.Float(string='Revised Amount')
+    x_studio_revised_lc_amount = fields.Float(
+        string='Revised Amount',
+        compute='_compute_x_studio_revised_lc_amount', store=True, readonly=True)
+
+    @api.depends('x_studio_currency_id', 'x_studio_currency_id.rate', 'x_studio_lc_amount')
+    def _compute_x_studio_lc_amount_lcy(self):
+        # Ported from CDB Studio compute. Original did a res.currency search
+        # with a non-existent 'date' filter (schema-invalid); rewritten to
+        # use the standard currency.rate field which is auto-updated per
+        # company's currency conversion date.
+        for rec in self:
+            cur = rec.x_studio_currency_id
+            if cur and cur.rate:
+                rec.x_studio_lc_amount_lcy = round((rec.x_studio_lc_amount or 0) / cur.rate, 2)
+            else:
+                rec.x_studio_lc_amount_lcy = 0
+
+    @api.depends('x_studio_lc_amount', 'x_studio_tolerance_type', 'x_studio_tolerance')
+    def _compute_x_studio_revised_lc_amount(self):
+        for record in self:
+            amount = record.x_studio_lc_amount or 0
+            tolerance = record.x_studio_tolerance or 0
+            adjustment = amount * tolerance / 100
+            if record.x_studio_tolerance_type == 'Plus':
+                record.x_studio_revised_lc_amount = amount + adjustment
+            elif record.x_studio_tolerance_type == 'Minus':
+                record.x_studio_revised_lc_amount = amount - adjustment
+            else:
+                record.x_studio_revised_lc_amount = amount
     x_studio_selection_field_yo4qM = fields.Selection([('Draft', 'Draft'), ('Posted', 'Posted'), ('Amended', 'Amended'), ('Paid', 'Paid'), ('Cancelled', 'Cancelled')], string='Pipeline status bar')
     x_studio_sequence = fields.Integer(string='Sequence')
     x_studio_status = fields.Selection([('Draft', 'Draft'), ('Posted', 'Posted'), ('Paid', 'Paid'), ('Amended', 'Amended'), ('Cancelled', 'Cancelled')], string='Status')
