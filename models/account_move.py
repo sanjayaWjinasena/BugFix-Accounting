@@ -20,6 +20,17 @@ class AccountMove(models.Model):
         compute='_compute_x_studio_bank_guarantee_validation', store=True)
     x_studio_bg_sent = fields.Boolean(string='BG Sent')
     x_studio_consignment_no = fields.Many2one('x_consignment_header', string='Consignment No')
+    # v0.0.129 recovery — declared here as plain M2O so account.payment
+    # can relate to them via move_id.X. On CDB these existed only as
+    # state='manual' on account.move; the v0.0.113 orphan filter skipped
+    # them but audit v129 showed they have 100+ view refs so users need
+    # them functional. store=True except x_studio_created_from_pr_no
+    # which targets a BugFix-Purchase-owned comodel (downstream, needs
+    # store=False to avoid _auto_init cycle at Accounting load time).
+    x_studio_co = fields.Many2one('x_consignment_header', string='Co')
+    x_studio_create_from_transfer = fields.Many2one('stock.picking', string='Create From Transfer')
+    x_studio_created_from_pr_no = fields.Many2one(
+        'x_po_non_inventory', string='Created From PR No', store=False)
     # store=False: x_purchase_request_cas lives in BugFix-Purchase.
     # A stored M2O here would force BugFix-Accounting to dep on
     # BugFix-Purchase, creating the mutual cycle
