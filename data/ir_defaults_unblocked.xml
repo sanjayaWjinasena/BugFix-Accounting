@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<!-- BugFix-Accounting: 14 previously-DROPPED ir.default records now re-shippable (selection options ported since original drop) -->
+<!-- BugFix-Accounting: 17 ir.default records ported from CDB. -->
 <odoo>
   <data noupdate="1">
 
@@ -13,9 +13,14 @@
       <field name="json_value">"None"</field>
     </record>
 
-    <record id="default_188_x_lc_header_x_studio_lc_credit_sub_type" model="ir.default">
-      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_lc_credit_sub_type"/>
-      <field name="json_value">"Non Transferable"</field>
+    <record id="default_275_x_misc_charge_codes_x_studio_debit_acc_type" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_misc_charge_codes__x_studio_debit_acc_type"/>
+      <field name="json_value">"Item"</field>
+    </record>
+
+    <record id="default_276_x_misc_charge_codes_x_studio_credit_acc_type" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_misc_charge_codes__x_studio_credit_acc_type"/>
+      <field name="json_value">"G/L Account"</field>
     </record>
 
     <record id="default_187_x_lc_header_x_studio_lc_credit_type" model="ir.default">
@@ -23,38 +28,13 @@
       <field name="json_value">"Irrevocable"</field>
     </record>
 
-    <record id="default_193_x_lc_header_x_studio_draft" model="ir.default">
-      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_draft"/>
-      <field name="json_value">"At Sight"</field>
-    </record>
-
-    <record id="default_191_x_lc_header_x_studio_partial_shipment" model="ir.default">
-      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_partial_shipment"/>
-      <field name="json_value">"Allowed"</field>
-    </record>
-
-    <record id="default_179_x_tp_invoice_header_x_studio_pipeline_status_bar" model="ir.default">
-      <field name="field_id" ref="BugFix-Accounting.field_x_tp_invoice_header__x_studio_pipeline_status_bar"/>
-      <field name="json_value">"Draft"</field>
-    </record>
-
-    <record id="default_256_x_sales_report_model_x_studio_selection_field_Fbw0x" model="ir.default">
-      <field name="field_id" ref="BugFix-Accounting.field_x_sales_report_model__x_studio_selection_field_Fbw0x"/>
-      <field name="json_value">"Draft"</field>
-    </record>
-
-    <record id="default_197_x_lc_header_x_studio_selection_field_yo4qM" model="ir.default">
-      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_selection_field_yo4qM"/>
-      <field name="json_value">"Draft"</field>
+    <record id="default_188_x_lc_header_x_studio_lc_credit_sub_type" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_lc_credit_sub_type"/>
+      <field name="json_value">"Non Transferable"</field>
     </record>
 
     <record id="default_189_x_lc_header_x_studio_status" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_status"/>
-      <field name="json_value">"Draft"</field>
-    </record>
-
-    <record id="default_180_x_tp_invoice_header_x_studio_status" model="ir.default">
-      <field name="field_id" ref="BugFix-Accounting.field_x_tp_invoice_header__x_studio_status"/>
       <field name="json_value">"Draft"</field>
     </record>
 
@@ -63,10 +43,49 @@
       <field name="json_value">"Plus"</field>
     </record>
 
+    <record id="default_191_x_lc_header_x_studio_partial_shipment" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_partial_shipment"/>
+      <field name="json_value">"Allowed"</field>
+    </record>
+
     <record id="default_192_x_lc_header_x_studio_transshipment" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_transshipment"/>
       <field name="json_value">"Allowed"</field>
     </record>
-    <!-- SKIPPED default_451_account_payment_x_studio_type: target field declared as fields.Selection([]) in Python; runtime-only options can be transiently absent during registry rebuild, causing default validation to fail. -->
+
+    <record id="default_193_x_lc_header_x_studio_draft" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_draft"/>
+      <field name="json_value">"At Sight"</field>
+    </record>
+
+    <record id="default_197_x_lc_header_x_studio_selection_field_yo4qM" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_selection_field_yo4qM"/>
+      <field name="json_value">"Draft"</field>
+    </record>
+
+    <record id="default_473_account_move_x_studio_journal_type" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_account_move__x_studio_journal_type"/>
+      <field name="json_value">""</field>
+    </record>
+
+    <record id="default_179_x_tp_invoice_header_x_studio_pipeline_status_bar" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_tp_invoice_header__x_studio_pipeline_status_bar"/>
+      <field name="json_value">"Draft"</field>
+    </record>
+
+    <record id="default_180_x_tp_invoice_header_x_studio_status" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_tp_invoice_header__x_studio_status"/>
+      <field name="json_value">"Draft"</field>
+    </record>
+
+    <record id="default_256_x_sales_report_model_x_studio_selection_field_Fbw0x" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_sales_report_model__x_studio_selection_field_Fbw0x"/>
+      <field name="json_value">"Draft"</field>
+    </record>
+
+    <record id="default_451_account_payment_x_studio_type" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_account_payment__x_studio_type"/>
+      <field name="json_value">"General"</field>
+    </record>
   </data>
 </odoo>
