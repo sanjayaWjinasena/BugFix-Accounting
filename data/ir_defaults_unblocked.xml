@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- BugFix-Accounting: 14 previously-DROPPED ir.default records now re-shippable (selection options ported since original drop) -->
+<odoo>
+  <data noupdate="1">
+
+    <record id="default_161_x_consignment_charge_h_x_studio_charge_group" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_consignment_charge_h__x_studio_charge_group"/>
+      <field name="json_value">"None"</field>
+    </record>
+
+    <record id="default_194_x_lc_header_x_studio_confirmation_instructions" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_confirmation_instructions"/>
+      <field name="json_value">"None"</field>
+    </record>
+
+    <record id="default_188_x_lc_header_x_studio_lc_credit_sub_type" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_lc_credit_sub_type"/>
+      <field name="json_value">"Non Transferable"</field>
+    </record>
+
+    <record id="default_187_x_lc_header_x_studio_lc_credit_type" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_lc_credit_type"/>
+      <field name="json_value">"Irrevocable"</field>
+    </record>
+
+    <record id="default_193_x_lc_header_x_studio_draft" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_draft"/>
+      <field name="json_value">"At Sight"</field>
+    </record>
+
+    <record id="default_191_x_lc_header_x_studio_partial_shipment" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_partial_shipment"/>
+      <field name="json_value">"Allowed"</field>
+    </record>
+
+    <record id="default_179_x_tp_invoice_header_x_studio_pipeline_status_bar" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_tp_invoice_header__x_studio_pipeline_status_bar"/>
+      <field name="json_value">"Draft"</field>
+    </record>
+
+    <record id="default_256_x_sales_report_model_x_studio_selection_field_Fbw0x" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_sales_report_model__x_studio_selection_field_Fbw0x"/>
+      <field name="json_value">"Draft"</field>
+    </record>
+
+    <record id="default_197_x_lc_header_x_studio_selection_field_yo4qM" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_selection_field_yo4qM"/>
+      <field name="json_value">"Draft"</field>
+    </record>
+
+    <record id="default_189_x_lc_header_x_studio_status" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_status"/>
+      <field name="json_value">"Draft"</field>
+    </record>
+
+    <record id="default_180_x_tp_invoice_header_x_studio_status" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_tp_invoice_header__x_studio_status"/>
+      <field name="json_value">"Draft"</field>
+    </record>
+
+    <record id="default_190_x_lc_header_x_studio_tolerance_type" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_tolerance_type"/>
+      <field name="json_value">"Plus"</field>
+    </record>
+
+    <record id="default_192_x_lc_header_x_studio_transshipment" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_transshipment"/>
+      <field name="json_value">"Allowed"</field>
+    </record>
+
+    <record id="default_451_account_payment_x_studio_type" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_account_payment__x_studio_type"/>
+      <field name="json_value">"General"</field>
+    </record>
+  </data>
+</odoo>
