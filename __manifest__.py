@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Accounting',
-    'version': '17.0.0.0.135',
+    'version': '17.0.0.0.136',
     'summary': 'Studio-to-Python port for BugFix-Accounting',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Accounting',
@@ -321,6 +321,7 @@
         'views/sale_order_studio_ported.xml',
         'views/product_template_studio_pages_content.xml',
     ],
+    'post_init_hook': 'post_init_hook',
     'installable': True,
     'auto_install': False,
     'application': True,
