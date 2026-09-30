@@ -67,10 +67,6 @@
       <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_transshipment"/>
       <field name="json_value">"Allowed"</field>
     </record>
-
-    <record id="default_451_account_payment_x_studio_type" model="ir.default">
-      <field name="field_id" ref="BugFix-Accounting.field_account_payment__x_studio_type"/>
-      <field name="json_value">"General"</field>
-    </record>
+    <!-- SKIPPED default_451_account_payment_x_studio_type: target field declared as fields.Selection([]) in Python; runtime-only options can be transiently absent during registry rebuild, causing default validation to fail. -->
   </data>
 </odoo>
