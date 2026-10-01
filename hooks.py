@@ -72,8 +72,13 @@ _FIELD_SELECTIONS = [
     ('x_lc_header', 'x_studio_selection_field_yo4qM', 'Posted', 'Posted', 1),
     ('x_lc_header', 'x_studio_status', 'Posted', 'Posted', 1),
     ('x_sales_report_model', 'x_studio_selection_field_Fbw0x', 'Done', 'Done', 1),
-    ('x_misc_charge_codes', 'x_studio_debit_acc_type', 'G/L Account', 'G/L Account', 1),
-    ('x_misc_charge_codes', 'x_studio_credit_acc_type', 'G/L Account', 'G/L Account', 1),
+    # The 'G/L Account' selection options for these 2 fields are declared
+    # in models/x_misc_charge_codes.py; _update_selection doesn't need to
+    # re-add them. Commented out because they were historically here but
+    # the sibling ir.default records (now removed) were failing CSV import
+    # in Jinasena_MasterData_Purchase.
+    # ('x_misc_charge_codes', 'x_studio_debit_acc_type', 'G/L Account', 'G/L Account', 1),
+    # ('x_misc_charge_codes', 'x_studio_credit_acc_type', 'G/L Account', 'G/L Account', 1),
     ('x_sales_report_type', 'x_studio_report_code', 'Sales Details for Incentive Calc.', 'Sales Details for Incentive Calc.', 1),
     ('x_sales_report_model', 'x_studio_report_code', 's-salesincentive', 'Sales Details for Incentive Calc.', 1),
     ('x_rm_sales_prod_purch', 'x_studio_product_type', 'service', 'Service', 1),
