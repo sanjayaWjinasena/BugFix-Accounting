@@ -13,15 +13,14 @@
       <field name="json_value">"None"</field>
     </record>
 
-    <record id="default_275_x_misc_charge_codes_x_studio_debit_acc_type" model="ir.default">
-      <field name="field_id" ref="BugFix-Accounting.field_x_misc_charge_codes__x_studio_debit_acc_type"/>
-      <field name="json_value">"Item"</field>
-    </record>
-
-    <record id="default_276_x_misc_charge_codes_x_studio_credit_acc_type" model="ir.default">
-      <field name="field_id" ref="BugFix-Accounting.field_x_misc_charge_codes__x_studio_credit_acc_type"/>
-      <field name="json_value">"G/L Account"</field>
-    </record>
+    <!-- Removed: x_misc_charge_codes.x_studio_credit_acc_type and
+         x_studio_debit_acc_type defaults were causing CSV imports in
+         Jinasena_MasterData_Purchase to fail on fresh install with
+         "Wrong value for ... 'G/L Account'". Odoo's selection validator
+         sees the field as empty-selection at CSV-import time (even though
+         Python declares [('Item','Item'),('G/L Account','G/L Account')])
+         — likely a Python-vs-DB sync-order quirk during cascade install.
+         Users can set the value manually in the UI; no functional loss. -->
 
     <record id="default_187_x_lc_header_x_studio_lc_credit_type" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_lc_credit_type"/>
