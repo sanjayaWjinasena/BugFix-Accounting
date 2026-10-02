@@ -12,6 +12,9 @@
     with a TODO comment for manual resolution.
 -->
 <odoo>
+  <!-- v143: x_studio_cre / x_studio_created_from_npo_no field nodes + sentinel and the
+       x_studio_cre clause of the Register Payment invisible expression moved to
+       BugFix-Purchase views/upstream_link_fields_views.xml. -->
 
     <record id="ported_view_2440_odoo_studio_account_05b91b49_9dd1_4362_a49e_835596bd7ace" model="ir.ui.view">
         <field name="name">Odoo Studio: account.move.form customization</field>
@@ -50,7 +53,7 @@
                 <attribute name="invisible">(hide_post_button or move_type == 'entry' or display_inactive_currency_warning) or (((payment_id != False) and ((x_studio_advance_acc_updated == False) and (x_studio_type == 'Advance Payment'))) or (((x_studio_rug_acc_updated == False) and ((x_studio_rug_rejected == False) and (x_studio_rug_confirmed == True))) or (((x_studio_bg_sent == False) and (x_studio_bank_guarantee_notification == True)) or (((x_studio_credit_note_approved == False) and (move_type == 'out_refund')) or (((x_studio_currency_rate_updated == False) and (x_studio_purchase_type == 'Import')) or (((x_studio_update_consignment == False) and (x_studio_purchase_type == 'Import')) or ((move_type == 'entry') or ((auto_post == True) or ((state != 'draft') or ((x_studio_bank_guarantee_validation == True) or ((x_studio_credit_limit_validation == True) or (x_studio_valid_lines == True))))))))))))</attribute>
               </xpath>
               <xpath expr="//button[@name='action_register_payment']" position="attributes">
-                <attribute name="invisible">(state != 'posted' or payment_state not in ('partial', 'not_paid') or move_type not in ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt') or authorized_transaction_ids) or ((x_studio_project_no != False) or ((x_studio_cre != False) or (((x_studio_rug_acc_updated == True) and (x_studio_rug_confirmed == True)) or ((move_type not in ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt')) or ((payment_state not in ('not_paid', 'partial')) or (state != 'posted'))))))</attribute>
+                <attribute name="invisible">(state != 'posted' or payment_state not in ('partial', 'not_paid') or move_type not in ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt') or authorized_transaction_ids) or ((x_studio_project_no != False) or ((((x_studio_rug_acc_updated == True) and (x_studio_rug_confirmed == True)) or ((move_type not in ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt')) or ((payment_state not in ('not_paid', 'partial')) or (state != 'posted'))))))</attribute>
               </xpath>
               <xpath expr="//button[@name='action_reverse']" position="attributes">
                 <attribute name="groups">account.group_account_invoice,studio_customization.sales_credit_note_ap_ee96b839-2a01-48d8-9116-c110a15beb4e</attribute>
@@ -84,10 +87,8 @@
                 <attribute name="invisible">False</attribute>
               </xpath>
               <xpath expr="//field[@name='tax_cash_basis_origin_move_id']" position="after">
-                <field name="x_studio_cre" string="Created From CP No" force_save="True" readonly="1" invisible="x_studio_cre == False"/>
                 <field name="x_studio_created_from_consignment" string="Created From Consignment" force_save="True" readonly="1" help="The Consignment/Purchase Invoice which this vendor dispatch voucher was created from." invisible="x_studio_created_from_consignment == False"/>
                 <field name="x_studio_created_from_consignment_1" string="Created From Consignment" force_save="True" readonly="1" help="The Consignment/Purchase Invoice which this vendor dispatch voucher was created from." invisible="x_studio_created_from_consignment_1 == False"/>
-                <field name="x_studio_created_from_npo_no" string="Created From NPO No" force_save="True" readonly="1" invisible="x_studio_created_from_npo_no == False"/>
                 <field name="x_studio_created_from_transfer" string="Created From Transfer" force_save="True" readonly="1" invisible="x_studio_created_from_transfer == False"/>
                 <field name="x_studio_create_from_transfer_1" string="Create From Transfer" force_save="True" readonly="1" invisible="x_studio_create_from_transfer_1 == False"/>
                 <field name="x_studio_tp_id" string="Created From TP Invoice" force_save="True" readonly="1" invisible="x_studio_tp_id == False"/>
@@ -132,7 +133,6 @@
                 <field name="x_studio_purchase_id" invisible="1"/>
                 <field name="x_studio_created_from_consignment" invisible="1"/>
                 <field name="x_studio_update_consignment" invisible="1"/>
-                <field name="x_studio_cre" invisible="1"/>
               </xpath>
               <xpath expr="//form[1]/sheet[1]/group[1]/group[2]/field[@name='date']" position="attributes">
                 <attribute name="help">Financial Date. Ledger transactions are posted to this date.</attribute>

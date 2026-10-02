@@ -29,18 +29,13 @@ class AccountMove(models.Model):
     # store=False to avoid _auto_init cycle at Accounting load time).
     x_studio_co = fields.Many2one('x_consignment_header', string='Co')
     x_studio_create_from_transfer = fields.Many2one('stock.picking', string='Create From Transfer')
-    x_studio_created_from_pr_no = fields.Many2one(
-        'x_po_non_inventory', string='Created From PR No', store=False)
-    # store=False: x_purchase_request_cas lives in BugFix-Purchase.
-    # A stored M2O here would force BugFix-Accounting to dep on
-    # BugFix-Purchase, creating the mutual cycle
-    # Purchase -> Accounting -> Purchase. account_payment and
-    # account_bank_statement_line versions are already store=False.
-    x_studio_cre = fields.Many2one('x_purchase_request_cas', string='Created From CP No', store=False)
+    # v0.0.143: x_studio_created_from_pr_no, x_studio_cre and
+    # x_studio_created_from_npo_no MOVED to BugFix-Purchase (models/account_move.py).
+    # Their comodels (x_po_non_inventory, x_purchase_request_cas) are owned by
+    # BugFix-Purchase, downstream of this module -> sticky `_unknown` here.
     x_studio_create_from_transfer_1 = fields.Many2one('stock.picking', string='Create From Transfer')
     x_studio_created_from_consignment = fields.Many2one('x_consignment_header', string='Created From Consignment')
     x_studio_created_from_consignment_1 = fields.Many2one('x_consignment_header', string='Created From Consignment')
-    x_studio_created_from_npo_no = fields.Many2one('x_po_non_inventory', string='Created From NPO No')
     x_studio_created_from_project = fields.Boolean(string='Created From Project')
     x_studio_created_from_project_no = fields.Many2one('project.project', string='Created From Project No')
     x_studio_created_from_transfer = fields.Many2one('stock.picking', string='Created From Transfer')

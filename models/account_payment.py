@@ -2,6 +2,12 @@
 from odoo import api, fields, models
 
 
+# NOTE (v0.0.143): the Many2one(s) x_studio_cre / x_studio_created_from_npo_no / x_studio_created_from_pr_no (related
+#   mirrors of account.move) / x_studio_many2one_field_4CPvU / x_studio_many2one_field_rpsBC were MOVED to BugFix-Purchase v0.1.0.178.
+# Their comodel is owned by a DOWNSTREAM module; declared here they were
+# `_unknown` for the whole upgrade-mode registry build (see BugFix-Purchase
+# models/upstream_link_fields.py). Do NOT re-add them here.
+
 class AccountPayment(models.Model):
     _inherit = 'account.payment'
 
@@ -28,14 +34,11 @@ class AccountPayment(models.Model):
     x_studio_char_field_FnRNH = fields.Char(string='New Text', store=False)
     x_studio_co = fields.Many2one('x_consignment_header', string='Co', store=False, related='move_id.x_studio_co', readonly=True)
     x_studio_consignment_no = fields.Many2one('x_consignment_header', string='Consignment No', related='move_id.x_studio_consignment_no', store=True, readonly=True)
-    x_studio_cre = fields.Many2one('x_purchase_request_cas', string='Created From CP No', related='move_id.x_studio_cre', store=False, readonly=True)
     x_studio_create_from_transfer = fields.Many2one('stock.picking', string='Create From Transfer', store=False, related='move_id.x_studio_create_from_transfer', readonly=True)
     x_studio_create_from_transfer_1 = fields.Many2one('stock.picking', string='Create From Transfer', related='move_id.x_studio_create_from_transfer_1', store=True, readonly=True)
     x_studio_created_from_consignment = fields.Many2one('x_consignment_header', string='Created From Consignment', related='move_id.x_studio_created_from_consignment', store=True, readonly=True)
     x_studio_created_from_consignment_1 = fields.Many2one('x_consignment_header', string='Created From Consignment', related='move_id.x_studio_created_from_consignment_1', store=True, readonly=True)
     x_studio_created_from_consignment_2 = fields.Many2one('x_consignment_header', string='Created From Consignment 2', store=False)
-    x_studio_created_from_npo_no = fields.Many2one('x_po_non_inventory', string='Created From NPO No', related='move_id.x_studio_created_from_npo_no', store=False, readonly=True)
-    x_studio_created_from_pr_no = fields.Many2one('x_po_non_inventory', string='Created From PR No', store=False, related='move_id.x_studio_created_from_pr_no', readonly=True)
     x_studio_created_from_project = fields.Boolean(string='Created From Project', related='move_id.x_studio_created_from_project', store=True, readonly=True)
     x_studio_created_from_project_1 = fields.Boolean(string='Created From Project')
     x_studio_created_from_project_no = fields.Many2one('project.project', string='Created From Project No', related='move_id.x_studio_created_from_project_no', store=True, readonly=True)
@@ -56,7 +59,6 @@ class AccountPayment(models.Model):
     x_studio_lc_no = fields.Many2one('x_lc_header', string='LC No', related='move_id.x_studio_lc_no', store=True, readonly=True)
     x_studio_lc_no_1 = fields.Many2one('x_lc_header', string='LC No')
     x_studio_lc_test1 = fields.Boolean(string='LC - test1', related='move_id.x_studio_lc_test1', store=True, readonly=True)
-    x_studio_many2one_field_4CPvU = fields.Many2one('x_purchase_request_cas', string='Purchase  Request Cash', store=False)
     x_studio_many2one_field_6HjHy = fields.Many2one('account.move', string='Journal Entry', store=False)
     x_studio_many2one_field_6Sjmv = fields.Many2one('stock.picking', string='Transfer', store=False)
     x_studio_many2one_field_A197A = fields.Many2one('x_consignment_header', string='Consignment Header', store=False)
@@ -74,7 +76,6 @@ class AccountPayment(models.Model):
     x_studio_many2one_field_mULOh = fields.Many2one('account.move', string='Journal Entry', store=False)
     x_studio_many2one_field_mucWu = fields.Many2one('x_consignment_header', string='Consignment Header', store=False)
     x_studio_many2one_field_re1H2 = fields.Many2one('sale.order', string='Sales Order', store=False)
-    x_studio_many2one_field_rpsBC = fields.Many2one('x_po_non_inventory', string='Purchase Order (Non-Inventory)', store=False)
     x_studio_many2one_field_tpCkS = fields.Many2one('project.project', string='Project', store=False)
     x_studio_many2one_field_vAeTQ = fields.Many2one('project.project', string='Project', store=False)
     x_studio_many2one_field_xkSx5 = fields.Many2one('account.move', string='Journal Entry', store=False)
