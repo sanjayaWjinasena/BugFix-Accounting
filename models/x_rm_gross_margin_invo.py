@@ -39,7 +39,7 @@ class XRmGrossMarginInvo(models.Model):
         string='Payment Status',
     )
     x_studio_sales_report_model_id = fields.Many2one(
-        'x_sales_report_model', string='Sales Report Model Id',
+        'x_sales_report_model', string='Sales Report Model Id', ondelete='cascade',
     )
     x_studio_sequence = fields.Integer(string='Sequence', default=10)
     x_studio_status = fields.Selection(

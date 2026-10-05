@@ -28,10 +28,10 @@ class XTempEstimated(models.Model):
 
     # Parent-pointer m2os (inverse for the header's one2many).
     x_studio_actual_line_ids = fields.Many2one(
-        'x_rm_gross_margin_actu', string='Actual Line Ids',
+        'x_rm_gross_margin_actu', string='Actual Line Ids', ondelete='cascade',
     )
     x_studio_estimated_line_ids = fields.Many2one(
-        'x_rm_gross_margin_esti', string='Estimated Line Ids',
+        'x_rm_gross_margin_esti', string='Estimated Line Ids', ondelete='cascade',
     )
 
     x_studio_category = fields.Many2one(

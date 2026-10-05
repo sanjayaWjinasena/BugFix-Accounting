@@ -12,7 +12,7 @@ class XTempActualBudget(models.Model):
     x_active = fields.Boolean(string='Active')
     x_currency_id = fields.Many2one('res.currency', string='Currency')
     x_name = fields.Char(string='Name')
-    x_studio_actual_line_ids = fields.Many2one('x_rm_gross_margin_actu', string='Actual Line Ids')
+    x_studio_actual_line_ids = fields.Many2one('x_rm_gross_margin_actu', string='Actual Line Ids', ondelete='cascade')
     x_studio_analytic_account_id = fields.Many2one('account.analytic.account', string='Analytic Account')
     x_studio_budget_line_ids = fields.Many2one('crossovered.budget.lines', string='Budget Line Ids')
     x_studio_crossovered_budget_id = fields.Many2one('crossovered.budget', string='Budget')

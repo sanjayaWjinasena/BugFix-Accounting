@@ -47,5 +47,5 @@ class XTpInvoiceLine(models.Model):
     x_studio_tax_amount = fields.Float(string='Tax Amount')
     x_studio_taxes = fields.Many2many('account.tax', string='Taxes')
     x_studio_tp_invoice_header_id = fields.Many2one(
-        'x_tp_invoice_header', string='TP Invoice Header Id',
+        'x_tp_invoice_header', string='TP Invoice Header Id', ondelete='cascade',
     )

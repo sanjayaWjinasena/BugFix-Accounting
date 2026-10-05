@@ -19,4 +19,4 @@ class XTempTpInvoiceLine(models.Model):
     x_studio_consignment_id = fields.Many2one('x_consignment_header', string='Consignment Id')
     x_studio_select = fields.Boolean(string='Select')
     x_studio_sequence = fields.Integer(string='Sequence')
-    x_studio_temp_tp_invoice_header_id = fields.Many2one('x_temp_tp_invoice_head', string='Temp TP Invoice Header Id')
+    x_studio_temp_tp_invoice_header_id = fields.Many2one('x_temp_tp_invoice_head', string='Temp TP Invoice Header Id', ondelete='cascade')
