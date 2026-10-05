@@ -321,6 +321,8 @@
         'views/sale_order_studio_ported.xml',
         'views/product_template_studio_pages_content.xml',
     ],
+    # Staging_Migration: adopt existing Studio models for the ir.model pins.
+    'pre_init_hook': 'pre_init_hook',
     'post_init_hook': 'post_init_hook',
 'installable': True,
     'auto_install': False,
