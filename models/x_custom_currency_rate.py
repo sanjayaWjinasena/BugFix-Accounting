@@ -5,6 +5,7 @@ from odoo import fields, models
 class XCustomCurrencyRate(models.Model):
     """Studio-ported custom model x_custom_currency_rate."""
     _name = 'x_custom_currency_rate'
+    _rec_name = 'x_name'  # Clear-DB Studio model: records are named by x_name
     _inherit = ['mail.activity.mixin']
     _description = 'Custom Currency Rate'
 

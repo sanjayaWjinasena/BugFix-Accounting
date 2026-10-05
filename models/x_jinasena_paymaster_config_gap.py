@@ -3,6 +3,7 @@ from odoo import models, fields
 
 class XJinasenaPaymasterConfigGap(models.Model):
     _inherit = 'x_jinasena_paymaster_config'
+    _rec_name = 'x_name'  # Clear-DB Studio model: records are named by x_name
 
     x_cr_dr_code = fields.Char(string='Cr/Dr Code (H)')
     x_currency_code = fields.Char(string='Currency Code (K)')

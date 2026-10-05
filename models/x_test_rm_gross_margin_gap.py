@@ -3,6 +3,7 @@ from odoo import models, fields
 
 class XTestRmGrossMarginGap(models.Model):
     _inherit = 'x_test_rm_gross_margin'
+    _rec_name = 'x_name'  # Clear-DB Studio model: records are named by x_name
 
     x_active = fields.Boolean(string='Active')
     x_name = fields.Char(string='Description', required=True)

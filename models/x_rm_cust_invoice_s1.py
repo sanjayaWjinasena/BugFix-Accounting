@@ -5,6 +5,7 @@ from odoo import fields, models
 class XRmCustInvoiceS1(models.Model):
     """Studio-ported custom model x_rm_cust_invoice_s1."""
     _name = 'x_rm_cust_invoice_s1'
+    _rec_name = 'x_name'  # Clear-DB Studio model: records are named by x_name
     _inherit = ['mail.activity.mixin']
     _description = 'RM Cust Invoice S1'
 

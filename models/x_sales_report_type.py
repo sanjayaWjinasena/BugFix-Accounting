@@ -5,6 +5,7 @@ from odoo import fields, models
 
 class XSalesReportType(models.Model):
     _name = 'x_sales_report_type'
+    _rec_name = 'x_name'  # Clear-DB Studio model: records are named by x_name
     _description = 'Sales Report Type'
 
     _inherit = ['mail.thread', 'mail.activity.mixin']

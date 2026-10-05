@@ -5,6 +5,7 @@ from odoo import api, fields, models
 
 class XLcHeader(models.Model):
     _name = 'x_lc_header'
+    _rec_name = 'x_name'  # Clear-DB Studio model: records are named by x_name
     _inherit = ['mail.activity.mixin']
     _description = 'LC Header'
 

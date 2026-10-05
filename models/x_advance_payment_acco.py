@@ -5,6 +5,7 @@ from odoo import fields, models
 class XAdvancePaymentAcco(models.Model):
     """Studio-ported custom model x_advance_payment_acco."""
     _name = 'x_advance_payment_acco'
+    _rec_name = 'x_name'  # Clear-DB Studio model: records are named by x_name
     _inherit = ['mail.activity.mixin']
     _description = 'Advance Payment Account'
 

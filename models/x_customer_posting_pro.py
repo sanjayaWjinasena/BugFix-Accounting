@@ -5,6 +5,7 @@ from odoo import fields, models
 class XCustomerPostingPro(models.Model):
     """Studio-ported custom model x_customer_posting_pro."""
     _name = 'x_customer_posting_pro'
+    _rec_name = 'x_name'  # Clear-DB Studio model: records are named by x_name
     _inherit = ['mail.activity.mixin']
     _description = 'Customer Posting Profile'
 

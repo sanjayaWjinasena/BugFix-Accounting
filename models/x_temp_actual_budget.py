@@ -5,6 +5,7 @@ from odoo import fields, models
 class XTempActualBudget(models.Model):
     """Studio-ported custom model x_temp_actual_budget."""
     _name = 'x_temp_actual_budget'
+    _rec_name = 'x_name'  # Clear-DB Studio model: records are named by x_name
     _inherit = ['mail.activity.mixin']
     _description = 'Temp_Actual_Budget'
 

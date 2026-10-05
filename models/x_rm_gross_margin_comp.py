@@ -5,6 +5,7 @@ from odoo import fields, models
 class XRmGrossMarginComp(models.Model):
     """Studio-ported custom model x_rm_gross_margin_comp."""
     _name = 'x_rm_gross_margin_comp'
+    _rec_name = 'x_name'  # Clear-DB Studio model: records are named by x_name
     _inherit = ['mail.activity.mixin']
     _description = 'RM Gross Margin - Comparison'
 
