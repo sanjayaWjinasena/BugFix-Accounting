@@ -1,0 +1,1348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BugFix-Accounting: access rights removed on 2026-10-06. They were entered by hand on production (Settings > Technical > Access Rights), which makes them environment data, not repo functionality; the port had also dropped their group, so they applied to every user. Kept here, commented out, so any of them can be brought back. Nothing in this file is loaded. -->
+<odoo>
+<!-- REMOVED access_8613_access_account_account_rohana_read (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Rohana". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_8613_access_account_account_rohana_read" model="ir.model.access">
+    <field name="name">access_account_account_rohana_read</field>
+    <field name="model_id" ref="account.model_account_account"/>
+    <field name="group_id" ref="SET_GROUP"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6899_account_account_tag (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Purchase / # Jin - PO Invoicing & Payment - Inventory Credit". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6899_account_account_tag" model="ir.model.access">
+    <field name="name">account.account.tag</field>
+    <field name="model_id" ref="account.model_account_account_tag"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_purchase_jin_po_invoicing_payment_inventory_credit"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6928_account_account_tag (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing Limited (archived)". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6928_account_account_tag" model="ir.model.access">
+    <field name="name">account.account.tag</field>
+    <field name="model_id" ref="account.model_account_account_tag"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_archived"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_7023_account_account_tag (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing limited - Cashier". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_7023_account_account_tag" model="ir.model.access">
+    <field name="name">account.account.tag</field>
+    <field name="model_id" ref="account.model_account_account_tag"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_cashier"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6781_account_account_tag_sale_salesman (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Sales / Jin - Sales - View Only". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6781_account_account_tag_sale_salesman" model="ir.model.access">
+    <field name="name">account.account.tag.sale.salesman</field>
+    <field name="model_id" ref="account.model_account_account_tag"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_sales_jin_sales_view_only"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_8614_access_account_account_tag_rohana_read (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Rohana". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_8614_access_account_account_tag_rohana_read" model="ir.model.access">
+    <field name="name">access_account_account_tag_rohana_read</field>
+    <field name="model_id" ref="account.model_account_account_tag"/>
+    <field name="group_id" ref="SET_GROUP"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6897_account_analytic_line (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Purchase / # Jin - PO Invoicing & Payment - Inventory Credit". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6897_account_analytic_line" model="ir.model.access">
+    <field name="name">account.analytic.line</field>
+    <field name="model_id" ref="BugFix-Accounting.model_account_analytic_line"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_purchase_jin_po_invoicing_payment_inventory_credit"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6923_account_analytic_line_invoice (1111): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing Limited (archived)". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6923_account_analytic_line_invoice" model="ir.model.access">
+    <field name="name">account.analytic.line invoice</field>
+    <field name="model_id" ref="BugFix-Accounting.model_account_analytic_line"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_archived"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+  </record>
+  -->
+<!-- REMOVED access_7018_account_analytic_line_invoice (1111): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing limited - Cashier". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_7018_account_analytic_line_invoice" model="ir.model.access">
+    <field name="name">account.analytic.line invoice</field>
+    <field name="model_id" ref="BugFix-Accounting.model_account_analytic_line"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_cashier"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+  </record>
+  -->
+<!-- REMOVED access_6076_analytic_line_helpdesk_user (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Helpdesk / Jin - Repair - Full Rights". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6076_analytic_line_helpdesk_user" model="ir.model.access">
+    <field name="name">analytic.line.helpdesk.user</field>
+    <field name="model_id" ref="BugFix-Accounting.model_account_analytic_line"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_helpdesk_jin_repair_full_rights"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6061_analytic_line_helpdesk_user (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Helpdesk / Jin - Repair - Minimum Rights". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6061_analytic_line_helpdesk_user" model="ir.model.access">
+    <field name="name">analytic.line.helpdesk.user</field>
+    <field name="model_id" ref="BugFix-Accounting.model_account_analytic_line"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_helpdesk_jin_repair_minimum_rights"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6147_analytic_line_helpdesk_user (1111): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Helpdesk / Jin - Repair - Ticket Creater". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6147_analytic_line_helpdesk_user" model="ir.model.access">
+    <field name="name">analytic.line.helpdesk.user</field>
+    <field name="model_id" ref="BugFix-Accounting.model_account_analytic_line"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_helpdesk_jin_repair_ticket_creater"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+  </record>
+  -->
+<!-- REMOVED access_6920_account_bank_statement_line_group_invoice (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing Limited (archived)". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6920_account_bank_statement_line_group_invoice" model="ir.model.access">
+    <field name="name">account.bank.statement.line.group.invoice</field>
+    <field name="model_id" ref="BugFix-Accounting.model_account_bank_statement_line"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_archived"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_7015_account_bank_statement_line_group_invoice (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing limited - Cashier". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_7015_account_bank_statement_line_group_invoice" model="ir.model.access">
+    <field name="name">account.bank.statement.line.group.invoice</field>
+    <field name="model_id" ref="BugFix-Accounting.model_account_bank_statement_line"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_cashier"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6375_jin_bankrec___bank_statement_line_test (0000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Jin - BankRec". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6375_jin_bankrec___bank_statement_line_test" model="ir.model.access">
+    <field name="name">Jin-BankRec &gt; bank.statement.line(Test)</field>
+    <field name="model_id" ref="BugFix-Accounting.model_account_bank_statement_line"/>
+    <field name="group_id" ref="SET_GROUP"/>
+    <field name="perm_read" eval="False"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_5660_proj__budgetary_position (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Jin - ProjectInvoice". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_5660_proj__budgetary_position" model="ir.model.access">
+    <field name="name">Proj. Budgetary Position</field>
+    <field name="model_id" ref="account_budget.model_account_budget_post"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_jin_projectinvoice"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6917_account_cash_rounding (1111): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing Limited (archived)". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6917_account_cash_rounding" model="ir.model.access">
+    <field name="name">account.cash.rounding</field>
+    <field name="model_id" ref="account.model_account_cash_rounding"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_archived"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+  </record>
+  -->
+<!-- REMOVED access_7012_account_cash_rounding (1111): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing limited - Cashier". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_7012_account_cash_rounding" model="ir.model.access">
+    <field name="name">account.cash.rounding</field>
+    <field name="model_id" ref="account.model_account_cash_rounding"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_cashier"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+  </record>
+  -->
+<!-- REMOVED access_6903_account_fiscal_position_purchase (1100): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Purchase / # Jin - PO Invoicing & Payment - Inventory Credit". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6903_account_fiscal_position_purchase" model="ir.model.access">
+    <field name="name">account.fiscal.position purchase</field>
+    <field name="model_id" ref="account.model_account_fiscal_position"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_purchase_jin_po_invoicing_payment_inventory_credit"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6935_account_full_reconcile_group_invoice (1111): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing Limited (archived)". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6935_account_full_reconcile_group_invoice" model="ir.model.access">
+    <field name="name">account.full.reconcile.group.invoice</field>
+    <field name="model_id" ref="account.model_account_full_reconcile"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_archived"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+  </record>
+  -->
+<!-- REMOVED access_7030_account_full_reconcile_group_invoice (1111): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing limited - Cashier". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_7030_account_full_reconcile_group_invoice" model="ir.model.access">
+    <field name="name">account.full.reconcile.group.invoice</field>
+    <field name="model_id" ref="account.model_account_full_reconcile"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_cashier"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+  </record>
+  -->
+<!-- REMOVED access_6918_account_invoice_report_billing (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing Limited (archived)". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6918_account_invoice_report_billing" model="ir.model.access">
+    <field name="name">account.invoice.report_billing</field>
+    <field name="model_id" ref="account.model_account_invoice_report"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_archived"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_7013_account_invoice_report_billing (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing limited - Cashier". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_7013_account_invoice_report_billing" model="ir.model.access">
+    <field name="name">account.invoice.report_billing</field>
+    <field name="model_id" ref="account.model_account_invoice_report"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_cashier"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6887_account_journal (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Purchase / # Jin - PO Invoicing & Payment - Inventory Credit". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6887_account_journal" model="ir.model.access">
+    <field name="name">Account.journal</field>
+    <field name="model_id" ref="account.model_account_journal"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_purchase_jin_po_invoicing_payment_inventory_credit"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6924_account_journal_invoice (1111): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing Limited (archived)". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6924_account_journal_invoice" model="ir.model.access">
+    <field name="name">account.journal invoice</field>
+    <field name="model_id" ref="account.model_account_journal"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_archived"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+  </record>
+  -->
+<!-- REMOVED access_7019_account_journal_invoice (1111): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing limited - Cashier". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_7019_account_journal_invoice" model="ir.model.access">
+    <field name="name">account.journal invoice</field>
+    <field name="model_id" ref="account.model_account_journal"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_cashier"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+  </record>
+  -->
+<!-- REMOVED access_6357_journal (1100): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Jin - BankRec". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6357_journal" model="ir.model.access">
+    <field name="name">Journal</field>
+    <field name="model_id" ref="account.model_account_journal"/>
+    <field name="group_id" ref="SET_GROUP"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_7007_account_journal_invoice (1110): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Jin - Cashier". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_7007_account_journal_invoice" model="ir.model.access">
+    <field name="name">account.journal.invoice</field>
+    <field name="model_id" ref="account.model_account_journal"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_jin_cashier"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6771_account_journal_sale_order_user (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Sales / Jin - Sales - View Only". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6771_account_journal_sale_order_user" model="ir.model.access">
+    <field name="name">account.journal sale order.user</field>
+    <field name="model_id" ref="account.model_account_journal"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_sales_jin_sales_view_only"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_8616_access_account_journal_rohana_read (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Rohana". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_8616_access_account_journal_rohana_read" model="ir.model.access">
+    <field name="name">access_account_journal_rohana_read</field>
+    <field name="model_id" ref="account.model_account_journal"/>
+    <field name="group_id" ref="SET_GROUP"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6889_account_move (1110): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Purchase / # Jin - PO Invoicing & Payment - Inventory Credit". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6889_account_move" model="ir.model.access">
+    <field name="name">account.move</field>
+    <field name="model_id" ref="BugFix-Accounting.model_account_move"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_purchase_jin_po_invoicing_payment_inventory_credit"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6921_account_move (1111): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing Limited (archived)". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6921_account_move" model="ir.model.access">
+    <field name="name">account.move</field>
+    <field name="model_id" ref="BugFix-Accounting.model_account_move"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_archived"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+  </record>
+  -->
+<!-- REMOVED access_7016_account_move (1111): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing limited - Cashier". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_7016_account_move" model="ir.model.access">
+    <field name="name">account.move</field>
+    <field name="model_id" ref="BugFix-Accounting.model_account_move"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_cashier"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+  </record>
+  -->
+<!-- REMOVED access_6508_account_move (1110): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Purchase / Jin - Create NI Invoice Journal for NI Ca PO". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6508_account_move" model="ir.model.access">
+    <field name="name">account.move</field>
+    <field name="model_id" ref="BugFix-Accounting.model_account_move"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_purchase_jin_create_ni_invoice_journal_for_ni_ca_po"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6676_account_move (1110): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Purchase / Jin - PO Invoicing & Payment - Imports". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6676_account_move" model="ir.model.access">
+    <field name="name">account.move</field>
+    <field name="model_id" ref="BugFix-Accounting.model_account_move"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_purchase_jin_po_invoicing_payment_imports"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6393_account_move (1111): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Purchase / Jin - PO Invoicing & Payment - Inventory Cash". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6393_account_move" model="ir.model.access">
+    <field name="name">account.move</field>
+    <field name="model_id" ref="BugFix-Accounting.model_account_move"/>
+    <field name="group_id" ref="SET_GROUP"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+  </record>
+  -->
+<!-- REMOVED access_6395_account_move (1111): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Purchase / Jin - PO Invoicing & Payment - Non-Inventory Cash". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6395_account_move" model="ir.model.access">
+    <field name="name">account.move</field>
+    <field name="model_id" ref="BugFix-Accounting.model_account_move"/>
+    <field name="group_id" ref="SET_GROUP"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+  </record>
+  -->
+<!-- REMOVED access_6396_account_move (1110): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Purchase / Jin - PO Invoicing & Payment - Non-Inventory Credit". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6396_account_move" model="ir.model.access">
+    <field name="name">account.move</field>
+    <field name="model_id" ref="BugFix-Accounting.model_account_move"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_purchase_jin_po_invoicing_payment_non_inventory_credit"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6586_account_move (1110): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Purchase / Jin - PO Invoicing & Payment - Non-Inventory Credit (copy)". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6586_account_move" model="ir.model.access">
+    <field name="name">account.move</field>
+    <field name="model_id" ref="BugFix-Accounting.model_account_move"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_purchase_jin_po_invoicing_payment_non_inventory_credit_copy"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6772_account_move_salesman (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Sales / Jin - Sales - View Only". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6772_account_move_salesman" model="ir.model.access">
+    <field name="name">account_move salesman</field>
+    <field name="model_id" ref="BugFix-Accounting.model_account_move"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_sales_jin_sales_view_only"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_8617_access_account_move_rohana_read (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Rohana". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_8617_access_account_move_rohana_read" model="ir.model.access">
+    <field name="name">access_account_move_rohana_read</field>
+    <field name="model_id" ref="BugFix-Accounting.model_account_move"/>
+    <field name="group_id" ref="SET_GROUP"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6115_account_move_line (1110): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Purchase / # Jin - PO Invoicing & Payment - Inventory Credit". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6115_account_move_line" model="ir.model.access">
+    <field name="name">account.move.line</field>
+    <field name="model_id" ref="BugFix-Accounting.model_account_move_line"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_purchase_jin_po_invoicing_payment_inventory_credit"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6922_account_move_line_invoice (1111): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing Limited (archived)". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6922_account_move_line_invoice" model="ir.model.access">
+    <field name="name">account.move.line invoice</field>
+    <field name="model_id" ref="BugFix-Accounting.model_account_move_line"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_archived"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+  </record>
+  -->
+<!-- REMOVED access_7017_account_move_line_invoice (1111): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing limited - Cashier". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_7017_account_move_line_invoice" model="ir.model.access">
+    <field name="name">account.move.line invoice</field>
+    <field name="model_id" ref="BugFix-Accounting.model_account_move_line"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_cashier"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+  </record>
+  -->
+<!-- REMOVED access_6509_account_move_line (1110): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Purchase / Jin - Create NI Invoice Journal for NI Ca PO". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6509_account_move_line" model="ir.model.access">
+    <field name="name">account.move.line</field>
+    <field name="model_id" ref="BugFix-Accounting.model_account_move_line"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_purchase_jin_create_ni_invoice_journal_for_ni_ca_po"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6675_account_move_line (1110): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Purchase / Jin - PO Invoicing & Payment - Imports". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6675_account_move_line" model="ir.model.access">
+    <field name="name">account.move.line</field>
+    <field name="model_id" ref="BugFix-Accounting.model_account_move_line"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_purchase_jin_po_invoicing_payment_imports"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6392_account_move_line (1111): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Purchase / Jin - PO Invoicing & Payment - Inventory Cash". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6392_account_move_line" model="ir.model.access">
+    <field name="name">account.move.line</field>
+    <field name="model_id" ref="BugFix-Accounting.model_account_move_line"/>
+    <field name="group_id" ref="SET_GROUP"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+  </record>
+  -->
+<!-- REMOVED access_6394_account_move_line (1111): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Purchase / Jin - PO Invoicing & Payment - Non-Inventory Cash". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6394_account_move_line" model="ir.model.access">
+    <field name="name">account.move.line</field>
+    <field name="model_id" ref="BugFix-Accounting.model_account_move_line"/>
+    <field name="group_id" ref="SET_GROUP"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+  </record>
+  -->
+<!-- REMOVED access_6397_account_move_line (1110): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Purchase / Jin - PO Invoicing & Payment - Non-Inventory Credit". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6397_account_move_line" model="ir.model.access">
+    <field name="name">account.move.line</field>
+    <field name="model_id" ref="BugFix-Accounting.model_account_move_line"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_purchase_jin_po_invoicing_payment_non_inventory_credit"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6587_account_move_line (1110): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Purchase / Jin - PO Invoicing & Payment - Non-Inventory Credit (copy)". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6587_account_move_line" model="ir.model.access">
+    <field name="name">account.move.line</field>
+    <field name="model_id" ref="BugFix-Accounting.model_account_move_line"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_purchase_jin_po_invoicing_payment_non_inventory_credit_copy"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_5574_journal_item (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Purchase / Jin - PR View Only". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_5574_journal_item" model="ir.model.access">
+    <field name="name">Journal Item</field>
+    <field name="model_id" ref="BugFix-Accounting.model_account_move_line"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_purchase_jin_pr_view_only"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6848_account_move_line (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Sales / Jin - Sales - Add/Edit/Del Ca Customers". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6848_account_move_line" model="ir.model.access">
+    <field name="name">account.move.line</field>
+    <field name="model_id" ref="BugFix-Accounting.model_account_move_line"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_sales_jin_sales_add_edit_del_ca_customers"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6803_account_move_line_salesman (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Sales / Jin - Sales - View Only". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6803_account_move_line_salesman" model="ir.model.access">
+    <field name="name">account_move_line salesman</field>
+    <field name="model_id" ref="BugFix-Accounting.model_account_move_line"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_sales_jin_sales_view_only"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_8618_access_account_move_line_rohana_read (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Rohana". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_8618_access_account_move_line_rohana_read" model="ir.model.access">
+    <field name="name">access_account_move_line_rohana_read</field>
+    <field name="model_id" ref="BugFix-Accounting.model_account_move_line"/>
+    <field name="group_id" ref="SET_GROUP"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6940_access_account_move_reversal (1110): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing Limited (archived)". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6940_access_account_move_reversal" model="ir.model.access">
+    <field name="name">access.account.move.reversal</field>
+    <field name="model_id" ref="account.model_account_move_reversal"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_archived"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_7035_access_account_move_reversal (1110): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing limited - Cashier". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_7035_access_account_move_reversal" model="ir.model.access">
+    <field name="name">access.account.move.reversal</field>
+    <field name="model_id" ref="account.model_account_move_reversal"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_cashier"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_8619_access_account_move_send_rohana_read (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Rohana". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_8619_access_account_move_send_rohana_read" model="ir.model.access">
+    <field name="name">access_account_move_send_rohana_read</field>
+    <field name="model_id" ref="account.model_account_move_send"/>
+    <field name="group_id" ref="SET_GROUP"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6900_account_partial_reconcile_purchase_user (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Purchase / # Jin - PO Invoicing & Payment - Inventory Credit". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6900_account_partial_reconcile_purchase_user" model="ir.model.access">
+    <field name="name">account.partial.reconcile.purchase.user</field>
+    <field name="model_id" ref="account.model_account_partial_reconcile"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_purchase_jin_po_invoicing_payment_inventory_credit"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6934_account_partial_reconcile_group_invoice (1111): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing Limited (archived)". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6934_account_partial_reconcile_group_invoice" model="ir.model.access">
+    <field name="name">account.partial.reconcile.group.invoice</field>
+    <field name="model_id" ref="account.model_account_partial_reconcile"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_archived"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+  </record>
+  -->
+<!-- REMOVED access_7029_account_partial_reconcile_group_invoice (1111): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing limited - Cashier". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_7029_account_partial_reconcile_group_invoice" model="ir.model.access">
+    <field name="name">account.partial.reconcile.group.invoice</field>
+    <field name="model_id" ref="account.model_account_partial_reconcile"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_cashier"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+  </record>
+  -->
+<!-- REMOVED access_6808_account_partial_reconcile_salesman (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Sales / Jin - Sales - View Only". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6808_account_partial_reconcile_salesman" model="ir.model.access">
+    <field name="name">account_partial_reconcile salesman</field>
+    <field name="model_id" ref="account.model_account_partial_reconcile"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_sales_jin_sales_view_only"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_8620_access_account_partial_reconcile_rohana_read (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Rohana". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_8620_access_account_partial_reconcile_rohana_read" model="ir.model.access">
+    <field name="name">access_account_partial_reconcile_rohana_read</field>
+    <field name="model_id" ref="account.model_account_partial_reconcile"/>
+    <field name="group_id" ref="SET_GROUP"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6936_account_payment_method (1111): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing Limited (archived)". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6936_account_payment_method" model="ir.model.access">
+    <field name="name">account.payment.method</field>
+    <field name="model_id" ref="account.model_account_payment_method"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_archived"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+  </record>
+  -->
+<!-- REMOVED access_7031_account_payment_method (1111): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing limited - Cashier". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_7031_account_payment_method" model="ir.model.access">
+    <field name="name">account.payment.method</field>
+    <field name="model_id" ref="account.model_account_payment_method"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_cashier"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+  </record>
+  -->
+<!-- REMOVED access_6964_account_payment_method_line (1111): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing Limited (archived)". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6964_account_payment_method_line" model="ir.model.access">
+    <field name="name">account.payment.method.line</field>
+    <field name="model_id" ref="account.model_account_payment_method_line"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_archived"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+  </record>
+  -->
+<!-- REMOVED access_7059_account_payment_method_line (1111): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing limited - Cashier". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_7059_account_payment_method_line" model="ir.model.access">
+    <field name="name">account.payment.method.line</field>
+    <field name="model_id" ref="account.model_account_payment_method_line"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_cashier"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+  </record>
+  -->
+<!-- REMOVED access_6810_account_payment_term_salesman (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Sales / Jin - Sales - View Only". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6810_account_payment_term_salesman" model="ir.model.access">
+    <field name="name">account_payment_term salesman</field>
+    <field name="model_id" ref="account.model_account_payment_term"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_sales_jin_sales_view_only"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_8621_access_account_payment_term_rohana_read (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Rohana". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_8621_access_account_payment_term_rohana_read" model="ir.model.access">
+    <field name="name">access_account_payment_term_rohana_read</field>
+    <field name="model_id" ref="account.model_account_payment_term"/>
+    <field name="group_id" ref="SET_GROUP"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6931_account_reconcile_model_billing (1010): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing Limited (archived)". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6931_account_reconcile_model_billing" model="ir.model.access">
+    <field name="name">account.reconcile.model.billing</field>
+    <field name="model_id" ref="account.model_account_reconcile_model"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_archived"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_7026_account_reconcile_model_billing (1010): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing limited - Cashier". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_7026_account_reconcile_model_billing" model="ir.model.access">
+    <field name="name">account.reconcile.model.billing</field>
+    <field name="model_id" ref="account.model_account_reconcile_model"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_cashier"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6932_account_reconcile_model_line_billing (1010): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing Limited (archived)". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6932_account_reconcile_model_line_billing" model="ir.model.access">
+    <field name="name">account.reconcile.model.line.billing</field>
+    <field name="model_id" ref="account.model_account_reconcile_model_line"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_archived"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_7027_account_reconcile_model_line_billing (1010): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing limited - Cashier". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_7027_account_reconcile_model_line_billing" model="ir.model.access">
+    <field name="name">account.reconcile.model.line.billing</field>
+    <field name="model_id" ref="account.model_account_reconcile_model_line"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_cashier"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6933_account_reconcile_model_partner_mapping_billing (1010): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing Limited (archived)". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6933_account_reconcile_model_partner_mapping_billing" model="ir.model.access">
+    <field name="name">account.reconcile.model.partner.mapping.billing</field>
+    <field name="model_id" ref="account.model_account_reconcile_model_partner_mapping"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_archived"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_7028_account_reconcile_model_partner_mapping_billing (1010): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing limited - Cashier". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_7028_account_reconcile_model_partner_mapping_billing" model="ir.model.access">
+    <field name="name">account.reconcile.model.partner.mapping.billing</field>
+    <field name="model_id" ref="account.model_account_reconcile_model_partner_mapping"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_cashier"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6955_account_report_footnote (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing Limited (archived)". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6955_account_report_footnote" model="ir.model.access">
+    <field name="name">account.report_footnote</field>
+    <field name="model_id" ref="account_reports.model_account_report_footnote"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_archived"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_7050_account_report_footnote (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing limited - Cashier". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_7050_account_report_footnote" model="ir.model.access">
+    <field name="name">account.report_footnote</field>
+    <field name="model_id" ref="account_reports.model_account_report_footnote"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_cashier"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6909_account_tax (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Purchase / # Jin - PO Invoicing & Payment - Inventory Credit". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6909_account_tax" model="ir.model.access">
+    <field name="name">account.tax</field>
+    <field name="model_id" ref="account.model_account_tax"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_purchase_jin_po_invoicing_payment_inventory_credit"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6927_account_tax (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing Limited (archived)". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6927_account_tax" model="ir.model.access">
+    <field name="name">account.tax</field>
+    <field name="model_id" ref="account.model_account_tax"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_archived"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_7022_account_tax (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing limited - Cashier". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_7022_account_tax" model="ir.model.access">
+    <field name="name">account.tax</field>
+    <field name="model_id" ref="account.model_account_tax"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_cashier"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6559_account_tax (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Manufacturing / Jin - Manufacturing - MO Operator". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6559_account_tax" model="ir.model.access">
+    <field name="name">account.tax</field>
+    <field name="model_id" ref="account.model_account_tax"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_manufacturing_jin_manufacturing_mo_operator"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6445_account_tax (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Manufacturing / Jin - Manufacturing - Production Orders Dismantler". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6445_account_tax" model="ir.model.access">
+    <field name="name">account.tax</field>
+    <field name="model_id" ref="account.model_account_tax"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_manufacturing_jin_manufacturing_production_orders_dismantler"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_5710_account_tax (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Manufacturing / Jin - Manufacturing - Those with only view Rights". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_5710_account_tax" model="ir.model.access">
+    <field name="name">account.tax</field>
+    <field name="model_id" ref="account.model_account_tax"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_manufacturing_jin_manufacturing_those_with_only_view_rights"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6832_account_tax_sale_manager (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Sales / Jin - Sales - View Only". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6832_account_tax_sale_manager" model="ir.model.access">
+    <field name="name">account.tax sale manager</field>
+    <field name="model_id" ref="account.model_account_tax"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_sales_jin_sales_view_only"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6833_account_tax_user (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Sales / Jin - Sales - View Only". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6833_account_tax_user" model="ir.model.access">
+    <field name="name">account.tax.user</field>
+    <field name="model_id" ref="account.model_account_tax"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_sales_jin_sales_view_only"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_8622_access_account_tax_rohana_read (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Rohana". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_8622_access_account_tax_rohana_read" model="ir.model.access">
+    <field name="name">access_account_tax_rohana_read</field>
+    <field name="model_id" ref="account.model_account_tax"/>
+    <field name="group_id" ref="SET_GROUP"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6930_account_tax_group (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing Limited (archived)". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6930_account_tax_group" model="ir.model.access">
+    <field name="name">account.tax.group</field>
+    <field name="model_id" ref="BugFix-Accounting.model_account_tax_group"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_archived"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_7025_account_tax_group (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing limited - Cashier". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_7025_account_tax_group" model="ir.model.access">
+    <field name="name">account.tax.group</field>
+    <field name="model_id" ref="BugFix-Accounting.model_account_tax_group"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_cashier"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6834_account_tax_group_sale_manager (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Sales / Jin - Sales - View Only". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6834_account_tax_group_sale_manager" model="ir.model.access">
+    <field name="name">account.tax.group sale manager</field>
+    <field name="model_id" ref="BugFix-Accounting.model_account_tax_group"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_sales_jin_sales_view_only"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_8623_access_account_tax_group_rohana_read (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Rohana". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_8623_access_account_tax_group_rohana_read" model="ir.model.access">
+    <field name="name">access_account_tax_group_rohana_read</field>
+    <field name="model_id" ref="BugFix-Accounting.model_account_tax_group"/>
+    <field name="group_id" ref="SET_GROUP"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6929_account_tax_repartition_line_invoice (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing Limited (archived)". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6929_account_tax_repartition_line_invoice" model="ir.model.access">
+    <field name="name">account.tax repartition.line.invoice</field>
+    <field name="model_id" ref="account.model_account_tax_repartition_line"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_archived"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_7024_account_tax_repartition_line_invoice (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing limited - Cashier". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_7024_account_tax_repartition_line_invoice" model="ir.model.access">
+    <field name="name">account.tax repartition.line.invoice</field>
+    <field name="model_id" ref="account.model_account_tax_repartition_line"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_cashier"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_5658_proj__budget (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Jin - ProjectInvoice". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_5658_proj__budget" model="ir.model.access">
+    <field name="name">Proj. Budget</field>
+    <field name="model_id" ref="BugFix-Accounting.model_crossovered_budget"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_jin_projectinvoice"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6839_crossovered_budget (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Sales / Jin - Sales - View Only". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6839_crossovered_budget" model="ir.model.access">
+    <field name="name">crossovered.budget</field>
+    <field name="model_id" ref="BugFix-Accounting.model_crossovered_budget"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_sales_jin_sales_view_only"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_5659_proj__budget_lines (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Jin - ProjectInvoice". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_5659_proj__budget_lines" model="ir.model.access">
+    <field name="name">Proj. Budget Lines</field>
+    <field name="model_id" ref="BugFix-Accounting.model_crossovered_budget_lines"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_jin_projectinvoice"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6965_payment_refund_wizard (1110): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing Limited (archived)". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6965_payment_refund_wizard" model="ir.model.access">
+    <field name="name">payment.refund.wizard</field>
+    <field name="model_id" ref="account_payment.model_payment_refund_wizard"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_archived"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_7060_payment_refund_wizard (1110): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Billing limited - Cashier". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_7060_payment_refund_wizard" model="ir.model.access">
+    <field name="name">payment.refund.wizard</field>
+    <field name="model_id" ref="account_payment.model_payment_refund_wizard"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_billing_limited_cashier"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6892_product_template_purchase_user (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Purchase / # Jin - PO Invoicing & Payment - Inventory Credit". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6892_product_template_purchase_user" model="ir.model.access">
+    <field name="name">product.template purchase_user</field>
+    <field name="model_id" ref="BugFix-Accounting.model_product_template"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_purchase_jin_po_invoicing_payment_inventory_credit"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6517_product_template_stock_user (0000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Manufacturing / Jin - Manufacturing - MO Operator". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6517_product_template_stock_user" model="ir.model.access">
+    <field name="name">product.template stock user</field>
+    <field name="model_id" ref="BugFix-Accounting.model_product_template"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_manufacturing_jin_manufacturing_mo_operator"/>
+    <field name="perm_read" eval="False"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6403_product_template_stock_user (0000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Manufacturing / Jin - Manufacturing - Production Orders Dismantler". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6403_product_template_stock_user" model="ir.model.access">
+    <field name="name">product.template stock user</field>
+    <field name="model_id" ref="BugFix-Accounting.model_product_template"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_manufacturing_jin_manufacturing_production_orders_dismantler"/>
+    <field name="perm_read" eval="False"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_5668_product_template_stock_user (0000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Manufacturing / Jin - Manufacturing - Those with only view Rights". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_5668_product_template_stock_user" model="ir.model.access">
+    <field name="name">product.template stock user</field>
+    <field name="model_id" ref="BugFix-Accounting.model_product_template"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_manufacturing_jin_manufacturing_those_with_only_view_rights"/>
+    <field name="perm_read" eval="False"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6677_product___templates (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Sales / Jin - Sales - Edit All Customers (Ca/Cr/Dlr/Dstb/SVAT)". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6677_product___templates" model="ir.model.access">
+    <field name="name">Product - Templates</field>
+    <field name="model_id" ref="BugFix-Accounting.model_product_template"/>
+    <field name="group_id" ref="SET_GROUP"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6680_product___templates (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Sales / Jin - Sales - Edit All Customers Limits (Cr/Dealer)". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6680_product___templates" model="ir.model.access">
+    <field name="name">Product - Templates</field>
+    <field name="model_id" ref="BugFix-Accounting.model_product_template"/>
+    <field name="group_id" ref="SET_GROUP"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6775_product_template_sale_use (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Sales / Jin - Sales - View Only". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6775_product_template_sale_use" model="ir.model.access">
+    <field name="name">product.template sale use</field>
+    <field name="model_id" ref="BugFix-Accounting.model_product_template"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_sales_jin_sales_view_only"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_8663_access_product_template_rohana_read (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Rohana". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_8663_access_product_template_rohana_read" model="ir.model.access">
+    <field name="name">access_product_template_rohana_read</field>
+    <field name="model_id" ref="BugFix-Accounting.model_product_template"/>
+    <field name="group_id" ref="SET_GROUP"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6883_x_consignment_charge_h (1100): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Purchase / Jin - PO Invoicing & Payment - Imports". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6883_x_consignment_charge_h" model="ir.model.access">
+    <field name="name">x_consignment_charge_h</field>
+    <field name="model_id" ref="BugFix-Accounting.model_x_consignment_charge_h"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_purchase_jin_po_invoicing_payment_imports"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6670_x_consignment_charge_h (1110): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Purchase / Jin - Procurement - End User - Imports". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6670_x_consignment_charge_h" model="ir.model.access">
+    <field name="name">x_consignment_charge_h</field>
+    <field name="model_id" ref="BugFix-Accounting.model_x_consignment_charge_h"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_purchase_jin_procurement_end_user_imports"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_5657_temp__budget (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Jin - ProjectInvoice". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_5657_temp__budget" model="ir.model.access">
+    <field name="name">Temp. Budget</field>
+    <field name="model_id" ref="BugFix-Accounting.model_x_temp_actual_budget"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_jin_projectinvoice"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6881_x_temp_tp_invoice_head (1111): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Purchase / Jin - PO Invoicing & Payment - Imports". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6881_x_temp_tp_invoice_head" model="ir.model.access">
+    <field name="name">x_temp_tp_invoice_head</field>
+    <field name="model_id" ref="BugFix-Accounting.model_x_temp_tp_invoice_head"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_purchase_jin_po_invoicing_payment_imports"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+  </record>
+  -->
+<!-- REMOVED access_6882_x_temp_tp_invoice_line (1110): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Purchase / Jin - PO Invoicing & Payment - Imports". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6882_x_temp_tp_invoice_line" model="ir.model.access">
+    <field name="name">x_temp_tp_invoice_line</field>
+    <field name="model_id" ref="BugFix-Accounting.model_x_temp_tp_invoice_line"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_purchase_jin_po_invoicing_payment_imports"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6884_x_tp_invoice_header (1110): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Purchase / Jin - PO Invoicing & Payment - Imports". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6884_x_tp_invoice_header" model="ir.model.access">
+    <field name="name">x_tp_invoice_header</field>
+    <field name="model_id" ref="BugFix-Accounting.model_x_tp_invoice_header"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_purchase_jin_po_invoicing_payment_imports"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_6885_x_tp_invoice_line (1110): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Purchase / Jin - PO Invoicing & Payment - Imports". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_6885_x_tp_invoice_line" model="ir.model.access">
+    <field name="name">x_tp_invoice_line</field>
+    <field name="model_id" ref="BugFix-Accounting.model_x_tp_invoice_line"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_purchase_jin_po_invoicing_payment_imports"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+<!-- REMOVED access_5657_temp_budget (1000): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Accounting / Jin - ProjectInvoice". Uncomment (and set the group) to bring it back. -->
+  <!--
+  <record id="access_5657_temp_budget" model="ir.model.access">
+    <field name="name">Temp. Budget</field>
+    <field name="model_id" ref="BugFix-Accounting.model_x_temp_actual_budget"/>
+    <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_jin_projectinvoice"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="False"/>
+    <field name="perm_create" eval="False"/>
+    <field name="perm_unlink" eval="False"/>
+  </record>
+  -->
+</odoo>
