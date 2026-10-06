@@ -1,0 +1,8266 @@
+{
+"access_1117_customer_posting_profile_group_system": {
+"ir.model.access": [
+[
+1117,
+"2021-05-10 04:59:57"
+]
+]
+},
+"access_1118_customer_posting_profile_group_user": {
+"ir.model.access": [
+[
+1118,
+"2021-05-10 04:59:57"
+]
+]
+},
+"access_1239_misc_charge_codes_group_system": {
+"ir.model.access": [
+[
+1239,
+"2021-08-25 05:18:29"
+]
+]
+},
+"access_1240_misc_charge_codes_group_user": {
+"ir.model.access": [
+[
+1240,
+"2021-08-25 05:18:29"
+]
+]
+},
+"access_1329_custom_currency_group_system": {
+"ir.model.access": [
+[
+1329,
+"2021-10-05 02:27:32"
+]
+]
+},
+"access_1330_custom_currency_group_user": {
+"ir.model.access": [
+[
+1330,
+"2021-10-05 02:27:32"
+]
+]
+},
+"access_1331_custom_currency_rate_group_system": {
+"ir.model.access": [
+[
+1331,
+"2021-10-05 02:27:53"
+]
+]
+},
+"access_1332_custom_currency_rate_group_user": {
+"ir.model.access": [
+[
+1332,
+"2021-10-05 02:27:53"
+]
+]
+},
+"access_1333_consignment_charge_header_group_system": {
+"ir.model.access": [
+[
+1333,
+"2021-10-06 02:25:38"
+]
+]
+},
+"access_1334_consignment_charge_header_group_user": {
+"ir.model.access": [
+[
+1334,
+"2021-10-06 02:25:38"
+]
+]
+},
+"access_1366_temp_tp_invoice_header_group_system": {
+"ir.model.access": [
+[
+1366,
+"2021-10-27 07:39:35"
+]
+]
+},
+"access_1367_temp_tp_invoice_header_group_user": {
+"ir.model.access": [
+[
+1367,
+"2021-10-27 07:39:35"
+]
+]
+},
+"access_1368_temp_tp_invoice_line_group_system": {
+"ir.model.access": [
+[
+1368,
+"2021-10-27 07:40:27"
+]
+]
+},
+"access_1369_temp_tp_invoice_line_group_user": {
+"ir.model.access": [
+[
+1369,
+"2021-10-27 07:40:27"
+]
+]
+},
+"access_1370_tp_invoice_header_group_system": {
+"ir.model.access": [
+[
+1370,
+"2021-10-27 09:45:32"
+]
+]
+},
+"access_1371_tp_invoice_header_group_user": {
+"ir.model.access": [
+[
+1371,
+"2021-10-27 09:45:32"
+]
+]
+},
+"access_1372_tp_invoice_line_group_system": {
+"ir.model.access": [
+[
+1372,
+"2021-10-27 09:56:57"
+]
+]
+},
+"access_1373_tp_invoice_line_group_user": {
+"ir.model.access": [
+[
+1373,
+"2021-10-27 09:56:57"
+]
+]
+},
+"access_1376_lc_header_group_system": {
+"ir.model.access": [
+[
+1376,
+"2021-11-03 07:34:17"
+]
+]
+},
+"access_1377_lc_header_group_user": {
+"ir.model.access": [
+[
+1377,
+"2021-11-03 07:34:17"
+]
+]
+},
+"access_1498_sales_report_model_group_system": {
+"ir.model.access": [
+[
+1498,
+"2022-03-29 07:43:19"
+]
+]
+},
+"access_1499_sales_report_model_group_user": {
+"ir.model.access": [
+[
+1499,
+"2022-03-29 07:43:19"
+]
+]
+},
+"access_1500_sales_report_type_group_system": {
+"ir.model.access": [
+[
+1500,
+"2022-03-29 07:54:05"
+]
+]
+},
+"access_1501_sales_report_type_group_user": {
+"ir.model.access": [
+[
+1501,
+"2022-03-29 07:54:05"
+]
+]
+},
+"access_1502_rm_daily_sales_report_group_system": {
+"ir.model.access": [
+[
+1502,
+"2022-03-29 09:04:09"
+]
+]
+},
+"access_1503_rm_daily_sales_report_group_user": {
+"ir.model.access": [
+[
+1503,
+"2022-03-29 09:04:09"
+]
+]
+},
+"access_1504_rm_daily_s1_group_system": {
+"ir.model.access": [
+[
+1504,
+"2022-04-07 01:41:42"
+]
+]
+},
+"access_1505_rm_daily_s1_group_user": {
+"ir.model.access": [
+[
+1505,
+"2022-04-07 01:41:42"
+]
+]
+},
+"access_1506_rm_daily_s2_group_system": {
+"ir.model.access": [
+[
+1506,
+"2022-04-07 01:41:59"
+]
+]
+},
+"access_1507_rm_daily_s2_group_user": {
+"ir.model.access": [
+[
+1507,
+"2022-04-07 01:41:59"
+]
+]
+},
+"access_1508_rm_daily_s3_group_system": {
+"ir.model.access": [
+[
+1508,
+"2022-04-07 01:42:14"
+]
+]
+},
+"access_1509_rm_daily_s3_group_user": {
+"ir.model.access": [
+[
+1509,
+"2022-04-07 01:42:14"
+]
+]
+},
+"access_1510_rm_customer_wise_invoices_group_system": {
+"ir.model.access": [
+[
+1510,
+"2022-04-07 03:29:31"
+]
+]
+},
+"access_1511_rm_customer_wise_invoices_group_user": {
+"ir.model.access": [
+[
+1511,
+"2022-04-07 03:29:31"
+]
+]
+},
+"access_1512_rm_cust_invoice_s1_group_system": {
+"ir.model.access": [
+[
+1512,
+"2022-04-07 04:20:55"
+]
+]
+},
+"access_1513_rm_cust_invoice_s1_group_user": {
+"ir.model.access": [
+[
+1513,
+"2022-04-07 04:20:55"
+]
+]
+},
+"access_1523_rm_sales_order_line_group_system": {
+"ir.model.access": [
+[
+1523,
+"2022-08-04 04:28:18"
+]
+]
+},
+"access_1524_rm_sales_order_line_group_user": {
+"ir.model.access": [
+[
+1524,
+"2022-08-04 04:28:18"
+]
+]
+},
+"access_1525_rm_production_orders_group_system": {
+"ir.model.access": [
+[
+1525,
+"2022-08-11 10:44:56"
+]
+]
+},
+"access_1526_rm_production_orders_group_user": {
+"ir.model.access": [
+[
+1526,
+"2022-08-11 10:44:56"
+]
+]
+},
+"access_1527_rm_none_moving_group_system": {
+"ir.model.access": [
+[
+1527,
+"2022-08-24 04:00:56"
+]
+]
+},
+"access_1528_rm_none_moving_group_user": {
+"ir.model.access": [
+[
+1528,
+"2022-08-24 04:00:56"
+]
+]
+},
+"access_1529_rm_date_test_group_system": {
+"ir.model.access": [
+[
+1529,
+"2022-08-25 03:12:12"
+]
+]
+},
+"access_1530_rm_date_test_group_user": {
+"ir.model.access": [
+[
+1530,
+"2022-08-25 03:12:12"
+]
+]
+},
+"access_1535_rm_sales_prod__purch__group_system": {
+"ir.model.access": [
+[
+1535,
+"2022-09-27 04:44:28"
+]
+]
+},
+"access_1535_rm_sales_prod_purch_group_system": {
+"ir.model.access": [
+[
+1535,
+"2022-09-27 04:44:28"
+]
+]
+},
+"access_1536_rm_sales_prod__purch__group_user": {
+"ir.model.access": [
+[
+1536,
+"2022-09-27 04:44:28"
+]
+]
+},
+"access_1536_rm_sales_prod_purch_group_user": {
+"ir.model.access": [
+[
+1536,
+"2022-09-27 04:44:28"
+]
+]
+},
+"access_1537_rm_prod__summary_split_group_system": {
+"ir.model.access": [
+[
+1537,
+"2022-09-27 06:22:23"
+]
+]
+},
+"access_1537_rm_prod_summary_split_group_system": {
+"ir.model.access": [
+[
+1537,
+"2022-09-27 06:22:23"
+]
+]
+},
+"access_1538_rm_prod__summary_split_group_user": {
+"ir.model.access": [
+[
+1538,
+"2022-09-27 06:22:23"
+]
+]
+},
+"access_1538_rm_prod_summary_split_group_user": {
+"ir.model.access": [
+[
+1538,
+"2022-09-27 06:22:23"
+]
+]
+},
+"access_1539_rm_production_variance_group_system": {
+"ir.model.access": [
+[
+1539,
+"2022-09-28 05:46:35"
+]
+]
+},
+"access_1540_rm_production_variance_group_user": {
+"ir.model.access": [
+[
+1540,
+"2022-09-28 05:46:35"
+]
+]
+},
+"access_1731_rm_gross_margin___estimated_group_system": {
+"ir.model.access": [
+[
+1731,
+"2023-03-16 03:25:48"
+]
+]
+},
+"access_1731_rm_gross_margin_estimated_group_system": {
+"ir.model.access": [
+[
+1731,
+"2023-03-16 03:25:48"
+]
+]
+},
+"access_1732_rm_gross_margin___estimated_group_user": {
+"ir.model.access": [
+[
+1732,
+"2023-03-16 03:25:48"
+]
+]
+},
+"access_1732_rm_gross_margin_estimated_group_user": {
+"ir.model.access": [
+[
+1732,
+"2023-03-16 03:25:48"
+]
+]
+},
+"access_1733_rm_gross_margin___actuals_group_system": {
+"ir.model.access": [
+[
+1733,
+"2023-03-16 03:26:59"
+]
+]
+},
+"access_1733_rm_gross_margin_actuals_group_system": {
+"ir.model.access": [
+[
+1733,
+"2023-03-16 03:26:59"
+]
+]
+},
+"access_1734_rm_gross_margin___actuals_group_user": {
+"ir.model.access": [
+[
+1734,
+"2023-03-16 03:26:59"
+]
+]
+},
+"access_1734_rm_gross_margin_actuals_group_user": {
+"ir.model.access": [
+[
+1734,
+"2023-03-16 03:26:59"
+]
+]
+},
+"access_1735_rm_gross_margin___invoice_details_group_system": {
+"ir.model.access": [
+[
+1735,
+"2023-03-16 03:29:06"
+]
+]
+},
+"access_1735_rm_gross_margin_invoice_details_group_system": {
+"ir.model.access": [
+[
+1735,
+"2023-03-16 03:29:06"
+]
+]
+},
+"access_1736_rm_gross_margin___invoice_details_group_user": {
+"ir.model.access": [
+[
+1736,
+"2023-03-16 03:29:06"
+]
+]
+},
+"access_1736_rm_gross_margin_invoice_details_group_user": {
+"ir.model.access": [
+[
+1736,
+"2023-03-16 03:29:06"
+]
+]
+},
+"access_1747_temp_estimated_group_system": {
+"ir.model.access": [
+[
+1747,
+"2023-03-28 14:52:18"
+]
+]
+},
+"access_1748_temp_estimated_group_user": {
+"ir.model.access": [
+[
+1748,
+"2023-03-28 14:52:18"
+]
+]
+},
+"access_1749_rm_gross_margin_esti__lines_group_system": {
+"ir.model.access": [
+[
+1749,
+"2023-03-28 15:22:14"
+],
+[
+1751,
+"2023-03-28 15:22:14"
+]
+]
+},
+"access_1749_rm_gross_margin_esti_lines_group_system": {
+"ir.model.access": [
+[
+1749,
+"2023-03-28 15:22:14"
+]
+]
+},
+"access_1750_rm_gross_margin_esti__lines_group_user": {
+"ir.model.access": [
+[
+1750,
+"2023-03-28 15:22:14"
+],
+[
+1752,
+"2023-03-28 15:22:14"
+]
+]
+},
+"access_1750_rm_gross_margin_esti_lines_group_user": {
+"ir.model.access": [
+[
+1750,
+"2023-03-28 15:22:14"
+]
+]
+},
+"access_1751_rm_gross_margin_esti__lines_group_system": {
+"ir.model.access": [
+[
+1751,
+"2023-03-28 15:22:14"
+]
+]
+},
+"access_1751_rm_gross_margin_esti_lines_group_system": {
+"ir.model.access": [
+[
+1751,
+"2023-03-28 15:22:14"
+]
+]
+},
+"access_1752_rm_gross_margin_esti__lines_group_user": {
+"ir.model.access": [
+[
+1752,
+"2023-03-28 15:22:14"
+]
+]
+},
+"access_1752_rm_gross_margin_esti_lines_group_user": {
+"ir.model.access": [
+[
+1752,
+"2023-03-28 15:22:14"
+]
+]
+},
+"access_1753_temp_actual_budget_group_system": {
+"ir.model.access": [
+[
+1753,
+"2023-03-29 03:31:44"
+]
+]
+},
+"access_1754_temp_actual_budget_group_user": {
+"ir.model.access": [
+[
+1754,
+"2023-03-29 03:31:44"
+]
+]
+},
+"access_1776_rm_gross_margin___comparison_group_system": {
+"ir.model.access": [
+[
+1776,
+"2023-05-10 09:32:50"
+]
+]
+},
+"access_1776_rm_gross_margin_comparison_group_system": {
+"ir.model.access": [
+[
+1776,
+"2023-05-10 09:32:50"
+]
+]
+},
+"access_1777_rm_gross_margin___comparison_group_user": {
+"ir.model.access": [
+[
+1777,
+"2023-05-10 09:32:50"
+]
+]
+},
+"access_1777_rm_gross_margin_comparison_group_user": {
+"ir.model.access": [
+[
+1777,
+"2023-05-10 09:32:50"
+]
+]
+},
+"access_5574_journal_item": {
+"ir.model.access": [
+[
+5574,
+"2023-11-23 04:06:35"
+]
+]
+},
+"access_5657_temp__budget": {
+"ir.model.access": [
+[
+5657,
+"2023-11-23 07:10:34"
+]
+]
+},
+"access_5657_temp_budget": {
+"ir.model.access": [
+[
+5657,
+"2023-11-23 07:10:34"
+]
+]
+},
+"access_5658_proj__budget": {
+"ir.model.access": [
+[
+5658,
+"2023-11-23 07:10:34"
+]
+]
+},
+"access_5659_proj__budget_lines": {
+"ir.model.access": [
+[
+5659,
+"2023-11-23 07:11:00"
+]
+]
+},
+"access_5660_proj__budgetary_position": {
+"ir.model.access": [
+[
+5660,
+"2023-11-23 07:11:39"
+]
+]
+},
+"access_5668_product_template_stock_user": {
+"ir.model.access": [
+[
+5668,
+"2023-11-27 04:27:47"
+]
+]
+},
+"access_5710_account_tax": {
+"ir.model.access": [
+[
+5710,
+"2023-11-27 04:27:47"
+]
+]
+},
+"access_5950_journal_types_group_system": {
+"ir.model.access": [
+[
+5950,
+"2023-11-30 04:00:55"
+]
+]
+},
+"access_5951_journal_types_group_user": {
+"ir.model.access": [
+[
+5951,
+"2023-11-30 04:00:55"
+]
+]
+},
+"access_6061_analytic_line_helpdesk_user": {
+"ir.model.access": [
+[
+6061,
+"2023-12-06 05:51:23"
+]
+]
+},
+"access_6076_analytic_line_helpdesk_user": {
+"ir.model.access": [
+[
+6076,
+"2023-12-06 06:07:17"
+]
+]
+},
+"access_6115_account_move_line": {
+"ir.model.access": [
+[
+6115,
+"2023-12-13 11:36:49"
+]
+]
+},
+"access_6147_analytic_line_helpdesk_user": {
+"ir.model.access": [
+[
+6147,
+"2023-12-14 07:54:11"
+]
+]
+},
+"access_6357_journal": {
+"ir.model.access": [
+[
+6357,
+"2024-01-10 22:53:49"
+]
+]
+},
+"access_6375_jin_bankrec___bank_statement_line_test": {
+"ir.model.access": [
+[
+6375,
+"2024-01-17 08:38:09"
+]
+]
+},
+"access_6390_pump_price_costing_group_system": {
+"ir.model.access": [
+[
+6390,
+"2024-02-01 01:47:17"
+]
+]
+},
+"access_6391_pump_price_costing_group_user": {
+"ir.model.access": [
+[
+6391,
+"2024-02-01 01:47:17"
+]
+]
+},
+"access_6392_account_move_line": {
+"ir.model.access": [
+[
+6392,
+"2024-02-07 10:38:56"
+]
+]
+},
+"access_6393_account_move": {
+"ir.model.access": [
+[
+6393,
+"2024-02-07 10:38:56"
+]
+]
+},
+"access_6394_account_move_line": {
+"ir.model.access": [
+[
+6394,
+"2024-02-09 09:36:26"
+]
+]
+},
+"access_6395_account_move": {
+"ir.model.access": [
+[
+6395,
+"2024-02-09 09:36:26"
+]
+]
+},
+"access_6396_account_move": {
+"ir.model.access": [
+[
+6396,
+"2024-02-09 09:36:56"
+]
+]
+},
+"access_6397_account_move_line": {
+"ir.model.access": [
+[
+6397,
+"2024-02-09 09:36:56"
+]
+]
+},
+"access_6403_product_template_stock_user": {
+"ir.model.access": [
+[
+6403,
+"2024-02-13 08:22:17"
+]
+]
+},
+"access_6445_account_tax": {
+"ir.model.access": [
+[
+6445,
+"2024-02-13 08:22:17"
+]
+]
+},
+"access_6508_account_move": {
+"ir.model.access": [
+[
+6508,
+"2024-02-14 09:08:59"
+]
+]
+},
+"access_6509_account_move_line": {
+"ir.model.access": [
+[
+6509,
+"2024-02-14 09:08:59"
+]
+]
+},
+"access_6517_product_template_stock_user": {
+"ir.model.access": [
+[
+6517,
+"2024-02-14 09:10:51"
+]
+]
+},
+"access_6559_account_tax": {
+"ir.model.access": [
+[
+6559,
+"2024-02-14 09:10:51"
+]
+]
+},
+"access_6586_account_move": {
+"ir.model.access": [
+[
+6586,
+"2024-02-14 09:21:44"
+]
+]
+},
+"access_6587_account_move_line": {
+"ir.model.access": [
+[
+6587,
+"2024-02-14 09:21:44"
+]
+]
+},
+"access_6670_x_consignment_charge_h": {
+"ir.model.access": [
+[
+6670,
+"2024-02-28 10:08:49"
+]
+]
+},
+"access_6675_account_move_line": {
+"ir.model.access": [
+[
+6675,
+"2024-02-28 12:35:04"
+]
+]
+},
+"access_6676_account_move": {
+"ir.model.access": [
+[
+6676,
+"2024-02-28 12:35:04"
+]
+]
+},
+"access_6677_product___templates": {
+"ir.model.access": [
+[
+6677,
+"2024-02-29 04:32:56"
+]
+]
+},
+"access_6680_product___templates": {
+"ir.model.access": [
+[
+6680,
+"2024-03-14 04:24:47"
+]
+]
+},
+"access_6771_account_journal_sale_order_user": {
+"ir.model.access": [
+[
+6771,
+"2024-03-20 06:21:14"
+]
+]
+},
+"access_6772_account_move_salesman": {
+"ir.model.access": [
+[
+6772,
+"2024-03-20 06:21:14"
+]
+]
+},
+"access_6775_product_template_sale_use": {
+"ir.model.access": [
+[
+6775,
+"2024-03-20 06:21:14"
+]
+]
+},
+"access_6781_account_account_tag_sale_salesman": {
+"ir.model.access": [
+[
+6781,
+"2024-03-20 06:21:14"
+]
+]
+},
+"access_6803_account_move_line_salesman": {
+"ir.model.access": [
+[
+6803,
+"2024-03-20 06:21:14"
+]
+]
+},
+"access_6808_account_partial_reconcile_salesman": {
+"ir.model.access": [
+[
+6808,
+"2024-03-20 06:21:14"
+]
+]
+},
+"access_6810_account_payment_term_salesman": {
+"ir.model.access": [
+[
+6810,
+"2024-03-20 06:21:14"
+]
+]
+},
+"access_6832_account_tax_sale_manager": {
+"ir.model.access": [
+[
+6832,
+"2024-03-20 06:21:14"
+]
+]
+},
+"access_6833_account_tax_user": {
+"ir.model.access": [
+[
+6833,
+"2024-03-20 06:21:14"
+]
+]
+},
+"access_6834_account_tax_group_sale_manager": {
+"ir.model.access": [
+[
+6834,
+"2024-03-20 06:21:14"
+]
+]
+},
+"access_6839_crossovered_budget": {
+"ir.model.access": [
+[
+6839,
+"2024-03-20 09:20:19"
+]
+]
+},
+"access_6848_account_move_line": {
+"ir.model.access": [
+[
+6848,
+"2024-03-21 06:28:26"
+]
+]
+},
+"access_6854_crossovered_budget": {
+"ir.model.access": [
+[
+6854,
+"2024-03-21 07:58:01"
+]
+]
+},
+"access_6858_account_move": {
+"ir.model.access": [
+[
+6858,
+"2024-03-21 08:08:35"
+]
+]
+},
+"access_6866_account_partial_reconcile": {
+"ir.model.access": [
+[
+6866,
+"2024-03-21 08:23:59"
+]
+]
+},
+"access_6867_account_move_line": {
+"ir.model.access": [
+[
+6867,
+"2024-03-21 08:33:39"
+]
+]
+},
+"access_6881_x_temp_tp_invoice_head": {
+"ir.model.access": [
+[
+6881,
+"2024-04-03 15:09:31"
+]
+]
+},
+"access_6882_x_temp_tp_invoice_line": {
+"ir.model.access": [
+[
+6882,
+"2024-04-03 15:11:59"
+]
+]
+},
+"access_6883_x_consignment_charge_h": {
+"ir.model.access": [
+[
+6883,
+"2024-04-03 15:12:23"
+]
+]
+},
+"access_6884_x_tp_invoice_header": {
+"ir.model.access": [
+[
+6884,
+"2024-04-03 15:13:10"
+]
+]
+},
+"access_6885_x_tp_invoice_line": {
+"ir.model.access": [
+[
+6885,
+"2024-04-03 15:14:20"
+]
+]
+},
+"access_6887_account_journal": {
+"ir.model.access": [
+[
+6887,
+"2024-04-10 06:38:32"
+]
+]
+},
+"access_6889_account_move": {
+"ir.model.access": [
+[
+6889,
+"2024-04-10 06:39:10"
+]
+]
+},
+"access_6892_product_template_purchase_user": {
+"ir.model.access": [
+[
+6892,
+"2024-04-10 06:52:15"
+]
+]
+},
+"access_6897_account_analytic_line": {
+"ir.model.access": [
+[
+6897,
+"2024-04-10 06:54:31"
+]
+]
+},
+"access_6899_account_account_tag": {
+"ir.model.access": [
+[
+6899,
+"2024-04-10 06:54:31"
+]
+]
+},
+"access_6900_account_partial_reconcile_purchase_user": {
+"ir.model.access": [
+[
+6900,
+"2024-04-10 14:01:33"
+]
+]
+},
+"access_6903_account_fiscal_position_purchase": {
+"ir.model.access": [
+[
+6903,
+"2024-04-10 14:01:33"
+]
+]
+},
+"access_6909_account_tax": {
+"ir.model.access": [
+[
+6909,
+"2024-04-10 14:13:59"
+]
+]
+},
+"access_6917_account_cash_rounding": {
+"ir.model.access": [
+[
+6917,
+"2024-04-22 09:03:43"
+]
+]
+},
+"access_6918_account_invoice_report_billing": {
+"ir.model.access": [
+[
+6918,
+"2024-04-22 09:03:43"
+]
+]
+},
+"access_6920_account_bank_statement_line_group_invoice": {
+"ir.model.access": [
+[
+6920,
+"2024-04-22 09:03:43"
+]
+]
+},
+"access_6921_account_move": {
+"ir.model.access": [
+[
+6921,
+"2024-04-22 09:03:43"
+]
+]
+},
+"access_6922_account_move_line_invoice": {
+"ir.model.access": [
+[
+6922,
+"2024-04-22 09:03:43"
+]
+]
+},
+"access_6923_account_analytic_line_invoice": {
+"ir.model.access": [
+[
+6923,
+"2024-04-22 09:03:43"
+]
+]
+},
+"access_6924_account_journal_invoice": {
+"ir.model.access": [
+[
+6924,
+"2024-04-22 09:03:43"
+]
+]
+},
+"access_6927_account_tax": {
+"ir.model.access": [
+[
+6927,
+"2024-04-22 09:03:43"
+]
+]
+},
+"access_6928_account_account_tag": {
+"ir.model.access": [
+[
+6928,
+"2024-04-22 09:03:43"
+]
+]
+},
+"access_6929_account_tax_repartition_line_invoice": {
+"ir.model.access": [
+[
+6929,
+"2024-04-22 09:03:43"
+]
+]
+},
+"access_6930_account_tax_group": {
+"ir.model.access": [
+[
+6930,
+"2024-04-22 09:03:43"
+]
+]
+},
+"access_6931_account_reconcile_model_billing": {
+"ir.model.access": [
+[
+6931,
+"2024-04-22 09:03:43"
+]
+]
+},
+"access_6932_account_reconcile_model_line_billing": {
+"ir.model.access": [
+[
+6932,
+"2024-04-22 09:03:43"
+]
+]
+},
+"access_6933_account_reconcile_model_partner_mapping_billing": {
+"ir.model.access": [
+[
+6933,
+"2024-04-22 09:03:43"
+]
+]
+},
+"access_6934_account_partial_reconcile_group_invoice": {
+"ir.model.access": [
+[
+6934,
+"2024-04-22 09:03:43"
+]
+]
+},
+"access_6935_account_full_reconcile_group_invoice": {
+"ir.model.access": [
+[
+6935,
+"2024-04-22 09:03:43"
+]
+]
+},
+"access_6936_account_payment_method": {
+"ir.model.access": [
+[
+6936,
+"2024-04-22 09:03:43"
+]
+]
+},
+"access_6940_access_account_move_reversal": {
+"ir.model.access": [
+[
+6940,
+"2024-04-22 09:03:43"
+]
+]
+},
+"access_6955_account_report_footnote": {
+"ir.model.access": [
+[
+6955,
+"2024-04-22 09:03:43"
+]
+]
+},
+"access_6964_account_payment_method_line": {
+"ir.model.access": [
+[
+6964,
+"2024-04-22 09:03:43"
+]
+]
+},
+"access_6965_payment_refund_wizard": {
+"ir.model.access": [
+[
+6965,
+"2024-04-22 09:03:43"
+]
+]
+},
+"access_7007_account_journal_invoice": {
+"ir.model.access": [
+[
+7007,
+"2024-05-03 05:22:34"
+]
+]
+},
+"access_7012_account_cash_rounding": {
+"ir.model.access": [
+[
+7012,
+"2024-05-03 10:19:19"
+]
+]
+},
+"access_7013_account_invoice_report_billing": {
+"ir.model.access": [
+[
+7013,
+"2024-05-03 10:19:19"
+]
+]
+},
+"access_7015_account_bank_statement_line_group_invoice": {
+"ir.model.access": [
+[
+7015,
+"2024-05-03 10:19:19"
+]
+]
+},
+"access_7016_account_move": {
+"ir.model.access": [
+[
+7016,
+"2024-05-03 10:19:19"
+]
+]
+},
+"access_7017_account_move_line_invoice": {
+"ir.model.access": [
+[
+7017,
+"2024-05-03 10:19:19"
+]
+]
+},
+"access_7018_account_analytic_line_invoice": {
+"ir.model.access": [
+[
+7018,
+"2024-05-03 10:19:19"
+]
+]
+},
+"access_7019_account_journal_invoice": {
+"ir.model.access": [
+[
+7019,
+"2024-05-03 10:19:19"
+]
+]
+},
+"access_7022_account_tax": {
+"ir.model.access": [
+[
+7022,
+"2024-05-03 10:19:19"
+]
+]
+},
+"access_7023_account_account_tag": {
+"ir.model.access": [
+[
+7023,
+"2024-05-03 10:19:19"
+]
+]
+},
+"access_7024_account_tax_repartition_line_invoice": {
+"ir.model.access": [
+[
+7024,
+"2024-05-03 10:19:19"
+]
+]
+},
+"access_7025_account_tax_group": {
+"ir.model.access": [
+[
+7025,
+"2024-05-03 10:19:19"
+]
+]
+},
+"access_7026_account_reconcile_model_billing": {
+"ir.model.access": [
+[
+7026,
+"2024-05-03 10:19:19"
+]
+]
+},
+"access_7027_account_reconcile_model_line_billing": {
+"ir.model.access": [
+[
+7027,
+"2024-05-03 10:19:19"
+]
+]
+},
+"access_7028_account_reconcile_model_partner_mapping_billing": {
+"ir.model.access": [
+[
+7028,
+"2024-05-03 10:19:19"
+]
+]
+},
+"access_7029_account_partial_reconcile_group_invoice": {
+"ir.model.access": [
+[
+7029,
+"2024-05-03 10:19:19"
+]
+]
+},
+"access_7030_account_full_reconcile_group_invoice": {
+"ir.model.access": [
+[
+7030,
+"2024-05-03 10:19:19"
+]
+]
+},
+"access_7031_account_payment_method": {
+"ir.model.access": [
+[
+7031,
+"2024-05-03 10:19:19"
+]
+]
+},
+"access_7035_access_account_move_reversal": {
+"ir.model.access": [
+[
+7035,
+"2024-05-03 10:19:19"
+]
+]
+},
+"access_7050_account_report_footnote": {
+"ir.model.access": [
+[
+7050,
+"2024-05-03 10:19:19"
+]
+]
+},
+"access_7059_account_payment_method_line": {
+"ir.model.access": [
+[
+7059,
+"2024-05-03 10:19:19"
+]
+]
+},
+"access_7060_payment_refund_wizard": {
+"ir.model.access": [
+[
+7060,
+"2024-05-03 10:19:19"
+]
+]
+},
+"access_7203_advance_payment_account_group_system": {
+"ir.model.access": [
+[
+7203,
+"2024-07-25 09:43:57"
+]
+]
+},
+"access_7204_advance_payment_account_group_user": {
+"ir.model.access": [
+[
+7204,
+"2024-07-25 09:43:57"
+]
+]
+},
+"access_8576_test___rm_gross_margin___actuals_group_system": {
+"ir.model.access": [
+[
+8576,
+"2026-03-17 06:05:24"
+]
+]
+},
+"access_8576_test_rm_gross_margin_actuals_group_system": {
+"ir.model.access": [
+[
+8576,
+"2026-03-17 06:05:24"
+]
+]
+},
+"access_8577_test___rm_gross_margin___actuals_group_user": {
+"ir.model.access": [
+[
+8577,
+"2026-03-17 06:05:24"
+]
+]
+},
+"access_8577_test_rm_gross_margin_actuals_group_user": {
+"ir.model.access": [
+[
+8577,
+"2026-03-17 06:05:24"
+]
+]
+},
+"access_8613_access_account_account_rohana_read": {
+"ir.model.access": [
+[
+8613,
+"2026-05-20 02:54:10"
+]
+]
+},
+"access_8614_access_account_account_tag_rohana_read": {
+"ir.model.access": [
+[
+8614,
+"2026-05-20 02:54:10"
+]
+]
+},
+"access_8616_access_account_journal_rohana_read": {
+"ir.model.access": [
+[
+8616,
+"2026-05-20 02:54:10"
+]
+]
+},
+"access_8617_access_account_move_rohana_read": {
+"ir.model.access": [
+[
+8617,
+"2026-05-20 02:54:10"
+]
+]
+},
+"access_8618_access_account_move_line_rohana_read": {
+"ir.model.access": [
+[
+8618,
+"2026-05-20 02:54:10"
+]
+]
+},
+"access_8619_access_account_move_send_rohana_read": {
+"ir.model.access": [
+[
+8619,
+"2026-05-20 02:54:10"
+]
+]
+},
+"access_8620_access_account_partial_reconcile_rohana_read": {
+"ir.model.access": [
+[
+8620,
+"2026-05-20 02:54:10"
+]
+]
+},
+"access_8621_access_account_payment_term_rohana_read": {
+"ir.model.access": [
+[
+8621,
+"2026-05-20 02:54:10"
+]
+]
+},
+"access_8622_access_account_tax_rohana_read": {
+"ir.model.access": [
+[
+8622,
+"2026-05-20 02:54:10"
+]
+]
+},
+"access_8623_access_account_tax_group_rohana_read": {
+"ir.model.access": [
+[
+8623,
+"2026-05-20 02:54:10"
+]
+]
+},
+"access_8663_access_product_template_rohana_read": {
+"ir.model.access": [
+[
+8663,
+"2026-05-20 02:54:10"
+]
+]
+},
+"access_f3_access_account_tax_group_rohana_read": {
+"ir.model.access": [
+[
+8623,
+"2026-05-20 02:54:10"
+]
+]
+},
+"act_custom_clearance_reversal": {
+"ir.actions.act_window": [
+[
+1372,
+"2021-10-25 05:57:49"
+],
+[
+1363,
+"2021-10-14 09:00:28"
+]
+]
+},
+"act_custom_currency_rates": {
+"ir.actions.act_window": [
+[
+1310,
+"2021-10-05 02:55:23"
+]
+]
+},
+"act_dispatch_reversal": {
+"ir.actions.act_window": [
+[
+1371,
+"2021-10-25 05:57:05"
+]
+]
+},
+"act_tp_invoice_vendor_bill": {
+"ir.actions.act_window": [
+[
+1385,
+"2021-10-28 05:21:35"
+],
+[
+1386,
+"2021-10-28 05:55:24"
+]
+]
+},
+"act_window_1145_account_move_line": {
+"ir.actions.act_window": [
+[
+1145,
+"2021-08-16 10:55:07"
+]
+]
+},
+"act_window_1306_vendor_despatch": {
+"ir.actions.act_window": [
+[
+1306,
+"2021-10-04 05:49:37"
+]
+]
+},
+"act_window_1322_custom_clearance": {
+"ir.actions.act_window": [
+[
+1322,
+"2021-10-07 05:15:16"
+]
+]
+},
+"act_window_1362_vend_dispatch_reversal": {
+"ir.actions.act_window": [
+[
+1362,
+"2021-10-14 02:26:10"
+]
+]
+},
+"act_window_1363_custom_clearance_reversal": {
+"ir.actions.act_window": [
+[
+1363,
+"2021-10-14 09:00:28"
+]
+]
+},
+"act_window_1371_dispatch_reversal": {
+"ir.actions.act_window": [
+[
+1371,
+"2021-10-25 05:57:05"
+]
+]
+},
+"act_window_1372_custom_clearance_reversal": {
+"ir.actions.act_window": [
+[
+1372,
+"2021-10-25 05:57:49"
+]
+]
+},
+"act_window_1385_vendor_bill": {
+"ir.actions.act_window": [
+[
+1385,
+"2021-10-28 05:21:35"
+]
+]
+},
+"act_window_1386_vendor_bill": {
+"ir.actions.act_window": [
+[
+1386,
+"2021-10-28 05:55:24"
+]
+]
+},
+"act_window_1442_account_payment": {
+"ir.actions.act_window": [
+[
+1442,
+"2021-11-24 09:23:50"
+]
+]
+},
+"act_window_1569_invoices": {
+"ir.actions.act_window": [
+[
+1569,
+"2022-02-15 14:05:06"
+]
+]
+},
+"act_window_1571_sales_invoice_lines": {
+"ir.actions.act_window": [
+[
+1571,
+"2022-02-15 14:55:37"
+]
+]
+},
+"act_window_1572_sales_invoice_lines": {
+"ir.actions.act_window": [
+[
+1572,
+"2022-02-15 14:58:53"
+]
+]
+},
+"act_window_2120_month_end_entries": {
+"ir.actions.act_window": [
+[
+2120,
+"2023-03-23 03:56:38"
+]
+]
+},
+"act_window_2180_budget": {
+"ir.actions.act_window": [
+[
+2180,
+"2023-05-10 01:52:14"
+]
+]
+},
+"act_window_2198_sales_invoices": {
+"ir.actions.act_window": [
+[
+2198,
+"2023-05-26 06:05:57"
+]
+]
+},
+"act_window_2278_pump_price_costing": {
+"ir.actions.act_window": [
+[
+2278,
+"2023-07-12 16:59:43"
+]
+]
+},
+"act_window_2285_pump_product_costing": {
+"ir.actions.act_window": [
+[
+2285,
+"2023-07-18 16:40:45"
+]
+]
+},
+"act_window_2288_product_template": {
+"ir.actions.act_window": [
+[
+2288,
+"2023-08-01 08:03:30"
+]
+]
+},
+"act_window_2334_analytic_line": {
+"ir.actions.act_window": [
+[
+2334,
+"2023-08-15 07:44:29"
+]
+]
+},
+"act_window_2342_payments": {
+"ir.actions.act_window": [
+[
+2342,
+"2023-08-17 00:52:55"
+],
+[
+2629,
+"2024-07-16 10:22:34"
+]
+]
+},
+"act_window_2371_journal_item": {
+"ir.actions.act_window": [
+[
+2371,
+"2023-09-11 08:57:38"
+]
+]
+},
+"act_window_2377_journal_item_2": {
+"ir.actions.act_window": [
+[
+2377,
+"2023-09-18 02:09:51"
+]
+]
+},
+"act_window_2378_journal_item_testing": {
+"ir.actions.act_window": [
+[
+2378,
+"2023-09-20 04:55:10"
+]
+]
+},
+"act_window_2379_journal_item_testing_02": {
+"ir.actions.act_window": [
+[
+2379,
+"2023-09-20 05:55:43"
+]
+]
+},
+"act_window_2422_advance_payments": {
+"ir.actions.act_window": [
+[
+2422,
+"2023-10-12 00:55:47"
+]
+]
+},
+"act_window_2530_aaaa": {
+"ir.actions.act_window": [
+[
+2530,
+"2024-04-04 06:38:10"
+]
+]
+},
+"act_window_2622_product_template": {
+"ir.actions.act_window": [
+[
+2622,
+"2024-07-14 02:24:36"
+]
+]
+},
+"act_window_2628_account_move": {
+"ir.actions.act_window": [
+[
+2628,
+"2024-07-16 10:11:14"
+]
+]
+},
+"act_window_2629_payments": {
+"ir.actions.act_window": [
+[
+2629,
+"2024-07-16 10:22:34"
+]
+]
+},
+"act_window_2630_journal_entries": {
+"ir.actions.act_window": [
+[
+2630,
+"2024-07-16 10:24:39"
+]
+]
+},
+"act_window_2631_journal_items": {
+"ir.actions.act_window": [
+[
+2631,
+"2024-07-16 10:25:12"
+]
+]
+},
+"act_window_2734_cash_advance_bills": {
+"ir.actions.act_window": [
+[
+2734,
+"2024-07-25 06:22:41"
+]
+]
+},
+"act_window_2735_issued_cash_advances": {
+"ir.actions.act_window": [
+[
+2735,
+"2024-07-25 06:23:41"
+]
+]
+},
+"act_window_2736_settled_cash_advances": {
+"ir.actions.act_window": [
+[
+2736,
+"2024-07-25 06:33:04"
+]
+]
+},
+"act_window_2737_all_journal_items": {
+"ir.actions.act_window": [
+[
+2737,
+"2024-07-25 06:34:36"
+]
+]
+},
+"act_window_2741_account_payment_method_line": {
+"ir.actions.act_window": [
+[
+2741,
+"2024-07-31 08:06:27"
+]
+]
+},
+"act_window_2742_account_analytic_line": {
+"ir.actions.act_window": [
+[
+2742,
+"2024-08-01 06:03:12"
+]
+]
+},
+"act_window_2893_etf_schedule": {
+"ir.actions.act_window": [
+[
+2893,
+"2025-03-10 05:59:29"
+]
+]
+},
+"act_window_2894_epf_schedule": {
+"ir.actions.act_window": [
+[
+2894,
+"2025-03-10 06:00:36"
+]
+]
+},
+"act_window_3268_invoice_wise_revenue_report": {
+"ir.actions.act_window": [
+[
+3268,
+"2025-07-02 05:29:37"
+]
+]
+},
+"act_window_3271_invoice_wise_revenue_report": {
+"ir.actions.act_window": [
+[
+3271,
+"2025-07-02 05:54:25"
+]
+]
+},
+"act_window_3277_account_analytic_plan": {
+"ir.actions.act_window": [
+[
+3277,
+"2025-07-14 17:10:25"
+]
+]
+},
+"act_window_339_accounting_dashboard": {
+"ir.actions.act_window": [
+[
+339,
+"2021-02-03 05:30:53"
+]
+]
+},
+"act_window_900_cash_issued": {
+"ir.actions.act_window": [
+[
+900,
+"2021-07-08 14:42:29"
+]
+]
+},
+"act_window_989_related_invoice_journal": {
+"ir.actions.act_window": [
+[
+989,
+"2021-07-21 05:36:26"
+]
+]
+},
+"action_1145_account_move_line": {
+"ir.actions.act_window": [
+[
+1145,
+"2021-08-16 10:55:07"
+]
+]
+},
+"action_1172_misc_charge_codes": {
+"ir.actions.act_window": [
+[
+1172,
+"2021-08-25 05:18:29"
+]
+]
+},
+"action_1306_vendor_despatch": {
+"ir.actions.act_window": [
+[
+1306,
+"2021-10-04 05:49:37"
+]
+]
+},
+"action_1308_custom_currency": {
+"ir.actions.act_window": [
+[
+1308,
+"2021-10-05 02:27:32"
+]
+]
+},
+"action_1309_custom_currency_rate": {
+"ir.actions.act_window": [
+[
+1309,
+"2021-10-05 02:27:53"
+]
+]
+},
+"action_1310_rates": {
+"ir.actions.act_window": [
+[
+1310,
+"2021-10-05 02:55:23"
+]
+]
+},
+"action_1314_consignment_charge_header": {
+"ir.actions.act_window": [
+[
+1314,
+"2021-10-06 02:25:38"
+]
+]
+},
+"action_1317_header_charges": {
+"ir.actions.act_window": [
+[
+1317,
+"2021-10-06 03:30:06"
+]
+]
+},
+"action_1322_custom_clearance": {
+"ir.actions.act_window": [
+[
+1322,
+"2021-10-07 05:15:16"
+]
+]
+},
+"action_1362_vend_dispatch_reversal": {
+"ir.actions.act_window": [
+[
+1362,
+"2021-10-14 02:26:10"
+]
+]
+},
+"action_1363_custom_clearance_reversal": {
+"ir.actions.act_window": [
+[
+1363,
+"2021-10-14 09:00:28"
+]
+]
+},
+"action_1371_dispatch_reversal": {
+"ir.actions.act_window": [
+[
+1371,
+"2021-10-25 05:57:05"
+]
+]
+},
+"action_1372_custom_clearance_reversal": {
+"ir.actions.act_window": [
+[
+1372,
+"2021-10-25 05:57:49"
+]
+]
+},
+"action_1375_temp_tp_invoice_header": {
+"ir.actions.act_window": [
+[
+1375,
+"2021-10-27 07:39:35"
+]
+]
+},
+"action_1376_temp_tp_invoice_line": {
+"ir.actions.act_window": [
+[
+1376,
+"2021-10-27 07:40:27"
+]
+]
+},
+"action_1379_tp_invoice_header": {
+"ir.actions.act_window": [
+[
+2864,
+"2024-10-23 12:27:57"
+],
+[
+1379,
+"2021-10-27 09:45:32"
+]
+]
+},
+"action_1380_tp_invoice_line": {
+"ir.actions.act_window": [
+[
+2865,
+"2024-10-23 12:28:33"
+],
+[
+1380,
+"2021-10-27 09:56:57"
+]
+]
+},
+"action_1382_tp_invoices": {
+"ir.actions.act_window": [
+[
+1383,
+"2021-10-28 02:56:12"
+],
+[
+1382,
+"2021-10-27 10:31:02"
+]
+]
+},
+"action_1383_tp_invoices": {
+"ir.actions.act_window": [
+[
+1383,
+"2021-10-28 02:56:12"
+]
+]
+},
+"action_1385_vendor_bill": {
+"ir.actions.act_window": [
+[
+1385,
+"2021-10-28 05:21:35"
+]
+]
+},
+"action_1386_vendor_bill": {
+"ir.actions.act_window": [
+[
+1386,
+"2021-10-28 05:55:24"
+]
+]
+},
+"action_1401_lc_header": {
+"ir.actions.act_window": [
+[
+1401,
+"2021-11-03 07:34:17"
+]
+]
+},
+"action_1403_lc": {
+"ir.actions.act_window": [
+[
+1403,
+"2021-11-03 09:30:41"
+]
+]
+},
+"action_1442_account_payment": {
+"ir.actions.act_window": [
+[
+1442,
+"2021-11-24 09:23:50"
+]
+]
+},
+"action_1569_invoices": {
+"ir.actions.act_window": [
+[
+1569,
+"2022-02-15 14:05:06"
+]
+]
+},
+"action_1571_sales_invoice_lines": {
+"ir.actions.act_window": [
+[
+1571,
+"2022-02-15 14:55:37"
+]
+]
+},
+"action_1572_sales_invoice_lines": {
+"ir.actions.act_window": [
+[
+1572,
+"2022-02-15 14:58:53"
+]
+]
+},
+"action_1667_sales_report_model": {
+"ir.actions.act_window": [
+[
+1667,
+"2022-03-29 07:43:19"
+]
+]
+},
+"action_1668_sales_report_type": {
+"ir.actions.act_window": [
+[
+1668,
+"2022-03-29 07:54:05"
+]
+]
+},
+"action_1669_rm_daily_sales_report": {
+"ir.actions.act_window": [
+[
+1669,
+"2022-03-29 09:04:09"
+]
+]
+},
+"action_1677_rm_daily_s1": {
+"ir.actions.act_window": [
+[
+1677,
+"2022-04-07 01:41:42"
+]
+]
+},
+"action_1678_rm_daily_s2": {
+"ir.actions.act_window": [
+[
+1678,
+"2022-04-07 01:41:59"
+]
+]
+},
+"action_1679_rm_daily_s3": {
+"ir.actions.act_window": [
+[
+1679,
+"2022-04-07 01:42:14"
+]
+]
+},
+"action_1682_rm_customer_wise_invoices": {
+"ir.actions.act_window": [
+[
+1682,
+"2022-04-07 03:29:31"
+]
+]
+},
+"action_1683_rm_cust_invoice_s1": {
+"ir.actions.act_window": [
+[
+1683,
+"2022-04-07 04:20:55"
+]
+]
+},
+"action_1731_rm_sales_order_line": {
+"ir.actions.act_window": [
+[
+1731,
+"2022-08-04 04:28:18"
+]
+]
+},
+"action_1737_wip_production_orders": {
+"ir.actions.act_window": [
+[
+1737,
+"2022-08-11 10:44:56"
+]
+]
+},
+"action_1741_slow_moving_items": {
+"ir.actions.act_window": [
+[
+1748,
+"2022-09-07 08:08:13"
+],
+[
+1741,
+"2022-08-24 04:00:56"
+]
+]
+},
+"action_1744_rm_date_test": {
+"ir.actions.act_window": [
+[
+1744,
+"2022-08-25 03:12:12"
+]
+]
+},
+"action_1745_pivot_views": {
+"ir.actions.act_window": [
+[
+1745,
+"2022-09-07 03:42:36"
+]
+]
+},
+"action_1748_slow_moving_items": {
+"ir.actions.act_window": [
+[
+1748,
+"2022-09-07 08:08:13"
+]
+]
+},
+"action_1753_rm_sales_prod_purch": {
+"ir.actions.act_window": [
+[
+1753,
+"2022-09-27 04:44:28"
+]
+]
+},
+"action_1754_rm_prod_summary_split": {
+"ir.actions.act_window": [
+[
+1754,
+"2022-09-27 06:22:23"
+]
+]
+},
+"action_1756_rm_production_variance": {
+"ir.actions.act_window": [
+[
+1756,
+"2022-09-28 05:46:35"
+]
+]
+},
+"action_1891_tax_groups": {
+"ir.actions.act_window": [
+[
+1891,
+"2023-02-02 11:27:11"
+]
+]
+},
+"action_1977_stock_picking": {
+"ir.actions.act_window": [
+[
+1977,
+"2023-02-07 10:36:29"
+]
+]
+},
+"action_2061_misc_charge_codes": {
+"ir.actions.act_window": [
+[
+2061,
+"2023-02-16 06:21:56"
+],
+[
+1172,
+"2021-08-25 05:18:29"
+]
+]
+},
+"action_2063_custom_currency_rates": {
+"ir.actions.act_window": [
+[
+2063,
+"2023-02-16 06:23:45"
+]
+]
+},
+"action_2071_letter_of_credit": {
+"ir.actions.act_window": [
+[
+2071,
+"2023-02-20 14:00:27"
+],
+[
+2889,
+"2025-01-27 08:07:47"
+]
+]
+},
+"action_2099_rm_gross_margin_estimated": {
+"ir.actions.act_window": [
+[
+2099,
+"2023-03-16 03:25:48"
+]
+]
+},
+"action_2100_rm_gross_margin_actuals": {
+"ir.actions.act_window": [
+[
+2100,
+"2023-03-16 03:26:59"
+]
+]
+},
+"action_2101_rm_gross_margin_invoice_details": {
+"ir.actions.act_window": [
+[
+2101,
+"2023-03-16 03:29:06"
+]
+]
+},
+"action_2115_gross_margin_reports": {
+"ir.actions.act_window": [
+[
+2115,
+"2023-03-21 15:02:27"
+]
+]
+},
+"action_2120_month_end_entries": {
+"ir.actions.act_window": [
+[
+2120,
+"2023-03-23 03:56:38"
+]
+]
+},
+"action_2122_temp_estimated": {
+"ir.actions.act_window": [
+[
+2122,
+"2023-03-28 14:52:18"
+]
+]
+},
+"action_2123_temp_actual_budget": {
+"ir.actions.act_window": [
+[
+2123,
+"2023-03-29 03:31:44"
+]
+]
+},
+"action_2180_budget": {
+"ir.actions.act_window": [
+[
+2180,
+"2023-05-10 01:52:14"
+]
+]
+},
+"action_2186_rm_gross_margin_comparison": {
+"ir.actions.act_window": [
+[
+2186,
+"2023-05-10 09:32:50"
+]
+]
+},
+"action_2190_project_budgeted_cash_flow": {
+"ir.actions.act_window": [
+[
+2190,
+"2023-05-17 10:39:14"
+],
+[
+2191,
+"2023-05-17 10:52:48"
+]
+]
+},
+"action_2191_project_budgeted_cash_flow": {
+"ir.actions.act_window": [
+[
+2191,
+"2023-05-17 10:52:48"
+]
+]
+},
+"action_2198_sales_invoices": {
+"ir.actions.act_window": [
+[
+2198,
+"2023-05-26 06:05:57"
+]
+]
+},
+"action_2278_pump_price_costing": {
+"ir.actions.act_window": [
+[
+2278,
+"2023-07-12 16:59:43"
+]
+]
+},
+"action_2285_pump_product_costing": {
+"ir.actions.act_window": [
+[
+2285,
+"2023-07-18 16:40:45"
+]
+]
+},
+"action_2333_analytic_account": {
+"ir.actions.act_window": [
+[
+2333,
+"2023-08-15 07:42:40"
+]
+]
+},
+"action_2334_analytic_line": {
+"ir.actions.act_window": [
+[
+2334,
+"2023-08-15 07:44:29"
+]
+]
+},
+"action_2342_payments": {
+"ir.actions.act_window": [
+[
+2342,
+"2023-08-17 00:52:55"
+]
+]
+},
+"action_2371_journal_item": {
+"ir.actions.act_window": [
+[
+2371,
+"2023-09-11 08:57:38"
+]
+]
+},
+"action_2377_journal_item_2": {
+"ir.actions.act_window": [
+[
+2377,
+"2023-09-18 02:09:51"
+]
+]
+},
+"action_2378_journal_item_testing": {
+"ir.actions.act_window": [
+[
+2378,
+"2023-09-20 04:55:10"
+]
+]
+},
+"action_2379_journal_item_testing_02": {
+"ir.actions.act_window": [
+[
+2379,
+"2023-09-20 05:55:43"
+]
+]
+},
+"action_2422_advance_payments": {
+"ir.actions.act_window": [
+[
+2422,
+"2023-10-12 00:55:47"
+]
+]
+},
+"action_2430_x_tp_invoice_header": {
+"ir.actions.act_window": [
+[
+2430,
+"2023-10-26 06:04:19"
+]
+]
+},
+"action_2447_journal_types": {
+"ir.actions.act_window": [
+[
+2447,
+"2023-11-30 04:00:55"
+]
+]
+},
+"action_2491_pump_price_costing": {
+"ir.actions.act_window": [
+[
+2491,
+"2024-02-01 01:47:17"
+]
+]
+},
+"action_2529_costing_worksheet": {
+"ir.actions.act_window": [
+[
+2529,
+"2024-03-22 08:34:22"
+]
+]
+},
+"action_2530_aaaa": {
+"ir.actions.act_window": [
+[
+2530,
+"2024-04-04 06:38:10"
+]
+]
+},
+"action_2533_pump_costing_worksheet": {
+"ir.actions.act_window": [
+[
+2533,
+"2024-04-16 10:03:18"
+]
+]
+},
+"action_2628_account_move": {
+"ir.actions.act_window": [
+[
+2628,
+"2024-07-16 10:11:14"
+]
+]
+},
+"action_2629_payments": {
+"ir.actions.act_window": [
+[
+2629,
+"2024-07-16 10:22:34"
+]
+]
+},
+"action_2630_journal_entries": {
+"ir.actions.act_window": [
+[
+2630,
+"2024-07-16 10:24:39"
+]
+]
+},
+"action_2631_journal_items": {
+"ir.actions.act_window": [
+[
+2631,
+"2024-07-16 10:25:12"
+]
+]
+},
+"action_2678_x_customer_posting_pro": {
+"ir.actions.act_window": [
+[
+2678,
+"2024-07-17 16:36:07"
+]
+]
+},
+"action_2734_cash_advance_bills": {
+"ir.actions.act_window": [
+[
+2734,
+"2024-07-25 06:22:41"
+]
+]
+},
+"action_2735_issued_cash_advances": {
+"ir.actions.act_window": [
+[
+2735,
+"2024-07-25 06:23:41"
+]
+]
+},
+"action_2736_settled_cash_advances": {
+"ir.actions.act_window": [
+[
+2736,
+"2024-07-25 06:33:04"
+]
+]
+},
+"action_2737_all_journal_items": {
+"ir.actions.act_window": [
+[
+2737,
+"2024-07-25 06:34:36"
+]
+]
+},
+"action_2740_advance_payment_account": {
+"ir.actions.act_window": [
+[
+2740,
+"2024-07-25 09:43:57"
+]
+]
+},
+"action_2742_account_analytic_line": {
+"ir.actions.act_window": [
+[
+2742,
+"2024-08-01 06:03:12"
+]
+]
+},
+"action_2758_taxes": {
+"ir.actions.act_window": [
+[
+2758,
+"2024-08-06 02:45:02"
+]
+]
+},
+"action_2815_account_bank_statement": {
+"ir.actions.act_window": [
+[
+2815,
+"2024-10-09 05:01:38"
+]
+]
+},
+"action_2848_consignment_charge_header": {
+"ir.actions.act_window": [
+[
+1314,
+"2021-10-06 02:25:38"
+],
+[
+2848,
+"2024-10-23 09:13:31"
+],
+[
+2858,
+"2024-10-23 12:24:27"
+]
+]
+},
+"action_2858_consignment_charge_header": {
+"ir.actions.act_window": [
+[
+2858,
+"2024-10-23 12:24:27"
+]
+]
+},
+"action_2864_tp_invoice_header": {
+"ir.actions.act_window": [
+[
+2864,
+"2024-10-23 12:27:57"
+]
+]
+},
+"action_2865_tp_invoice_line": {
+"ir.actions.act_window": [
+[
+2865,
+"2024-10-23 12:28:33"
+]
+]
+},
+"action_2885_purchase_invoices": {
+"ir.actions.act_window": [
+[
+2885,
+"2025-01-27 08:04:50"
+]
+]
+},
+"action_2889_letter_of_credit": {
+"ir.actions.act_window": [
+[
+2889,
+"2025-01-27 08:07:47"
+]
+]
+},
+"action_2893_etf_schedule": {
+"ir.actions.act_window": [
+[
+2893,
+"2025-03-10 05:59:29"
+]
+]
+},
+"action_2894_epf_schedule": {
+"ir.actions.act_window": [
+[
+2894,
+"2025-03-10 06:00:36"
+]
+]
+},
+"action_3268_invoice_wise_revenue_report": {
+"ir.actions.act_window": [
+[
+3268,
+"2025-07-02 05:29:37"
+]
+]
+},
+"action_3271_invoice_wise_revenue_report": {
+"ir.actions.act_window": [
+[
+3271,
+"2025-07-02 05:54:25"
+]
+]
+},
+"action_3275_journal": {
+"ir.actions.act_window": [
+[
+3275,
+"2025-07-11 02:32:41"
+]
+]
+},
+"action_3276_account_analytic_account": {
+"ir.actions.act_window": [
+[
+3276,
+"2025-07-14 16:48:44"
+]
+]
+},
+"action_3277_account_analytic_plan": {
+"ir.actions.act_window": [
+[
+3277,
+"2025-07-14 17:10:25"
+]
+]
+},
+"action_3623_test_rm_gross_margin_actuals": {
+"ir.actions.act_window": [
+[
+3623,
+"2026-03-17 06:05:24"
+]
+]
+},
+"action_779_customer_posting_profile": {
+"ir.actions.act_window": [
+[
+779,
+"2021-05-10 04:59:57"
+]
+]
+},
+"action_900_cash_issued": {
+"ir.actions.act_window": [
+[
+900,
+"2021-07-08 14:42:29"
+]
+]
+},
+"action_989_related_invoice_journal": {
+"ir.actions.act_window": [
+[
+989,
+"2021-07-21 05:36:26"
+]
+]
+},
+"action_report_account_payment_1": {
+"ir.actions.report": [
+[
+3454,
+"2025-11-18 02:50:37"
+],
+[
+3456,
+"2025-11-18 02:50:37"
+]
+]
+},
+"action_report_journal_entry_1": {
+"ir.actions.report": [
+[
+3469,
+"2025-11-19 05:50:04"
+],
+[
+3470,
+"2025-11-19 05:50:18"
+]
+]
+},
+"action_report_payment_receipt": {
+"ir.actions.report": [
+[
+3455,
+"2025-11-18 02:50:37"
+]
+]
+},
+"action_report_pro_forma_invoice": {
+"ir.actions.report": [
+[
+3468,
+"2025-11-19 05:25:53"
+]
+]
+},
+"automation_115_validate_journals_created_from_cp_npo": {
+"base.automation": [
+[
+115,
+"2022-07-21 02:35:13"
+]
+]
+},
+"automation_121_srm_update_sales_order_customer_invoice": {
+"base.automation": [
+[
+121,
+"2022-08-06 08:55:19"
+]
+]
+},
+"automation_138_supplier_invoice_no_update_in_import_vendor_bill": {
+"base.automation": [
+[
+138,
+"2022-10-19 05:50:41"
+]
+]
+},
+"automation_145_sls_validate_bank_guarantee_in_customer_invoice": {
+"base.automation": [
+[
+145,
+"2022-10-20 03:45:35"
+]
+]
+},
+"automation_170_supplier_invoice_no_update_in_import_vendor_bill_2": {
+"base.automation": [
+[
+170,
+"2023-01-03 06:27:51"
+]
+]
+},
+"automation_215_rr_validate_rug_in_customer_invoice": {
+"base.automation": [
+[
+215,
+"2023-08-14 15:02:33"
+]
+]
+},
+"automation_237_update_analytic_tag_parameters_sales_invoice_customer": {
+"base.automation": [
+[
+237,
+"2023-10-05 00:57:29"
+]
+]
+},
+"automation_241_rr_validate_payment": {
+"base.automation": [
+[
+241,
+"2023-10-17 06:47:40"
+]
+]
+},
+"automation_292_update_project_no_in_journal_entry": {
+"base.automation": [
+[
+292,
+"2024-07-16 10:01:00"
+]
+]
+},
+"automation_310_jin_company_id_in_custom_currency": {
+"base.automation": [
+[
+310,
+"2024-07-17 16:24:56"
+]
+]
+},
+"automation_311_jin_company_id_in_custom_currency_rate": {
+"base.automation": [
+[
+311,
+"2024-07-17 16:27:30"
+]
+]
+},
+"automation_328_project_update_project_no_for_manual_transactions": {
+"base.automation": [
+[
+328,
+"2024-07-25 07:54:05"
+]
+]
+},
+"automation_43_work_center_costing_model_update_journal_entries": {
+"base.automation": [
+[
+43,
+"2021-08-16 09:40:57"
+]
+]
+},
+"automation_60_imp_validate_from_to_dates_in_custom_rates": {
+"base.automation": [
+[
+60,
+"2021-10-05 04:15:19"
+]
+]
+},
+"automation_61_imp_pass_currency_information_to_custom_currency": {
+"base.automation": [
+[
+61,
+"2021-10-05 04:45:38"
+]
+]
+},
+"automation_64_imp_update_consignment_vendor_bill": {
+"base.automation": [
+[
+64,
+"2021-10-25 03:14:58"
+]
+]
+},
+"automation_72_imp_update_lc_status_to_paid": {
+"base.automation": [
+[
+72,
+"2021-11-08 06:02:14"
+]
+]
+},
+"automation_73_imp_update_lc_status_to_paid_2": {
+"base.automation": [
+[
+73,
+"2021-11-11 03:18:48"
+]
+]
+},
+"aw_f4_product_template_product_template_1": {
+"ir.actions.act_window": [
+[
+1,
+"2021-02-03 05:30:53"
+]
+]
+},
+"base_automation_115_validate_journals_created_from_cp_npo": {
+"base.automation": [
+[
+115,
+"2022-07-21 02:35:13"
+]
+]
+},
+"base_automation_116_srm_auto_populate_data": {
+"base.automation": [
+[
+110,
+"2022-06-15 13:47:44"
+],
+[
+116,
+"2022-07-25 02:45:51"
+]
+]
+},
+"base_automation_117_srm_auto_populate_data_tau": {
+"base.automation": [
+[
+117,
+"2022-07-29 02:13:01"
+]
+]
+},
+"base_automation_119_srm_auto_populate_data_original": {
+"base.automation": [
+[
+119,
+"2022-08-04 04:23:13"
+]
+]
+},
+"base_automation_120_srm_auto_populate_report_type_in_account_move_lines": {
+"base.automation": [
+[
+120,
+"2022-08-06 07:13:42"
+]
+]
+},
+"base_automation_121_srm_update_sales_order_customer_invoice": {
+"base.automation": [
+[
+121,
+"2022-08-06 08:55:19"
+]
+]
+},
+"base_automation_123_srm_auto_populate_report_type_in_account_move": {
+"base.automation": [
+[
+123,
+"2022-08-11 15:09:07"
+]
+]
+},
+"base_automation_125_srm_auto_delete_sub_models": {
+"base.automation": [
+[
+125,
+"2022-09-07 04:28:23"
+]
+]
+},
+"base_automation_126_jin_report_model_seq_no": {
+"base.automation": [
+[
+126,
+"2022-09-07 04:43:39"
+]
+]
+},
+"base_automation_127_sls_validate_payment_in_customer_invoice": {
+"base.automation": [
+[
+127,
+"2022-09-14 06:37:02"
+]
+]
+},
+"base_automation_131_srm_rpt_daily_sales_summary": {
+"base.automation": [
+[
+131,
+"2022-10-07 00:42:30"
+]
+]
+},
+"base_automation_132_srm_rpt_sales_details_for_incentive_calc": {
+"base.automation": [
+[
+132,
+"2022-10-07 00:56:10"
+]
+]
+},
+"base_automation_133_srm_rpt_production_overview_wip": {
+"base.automation": [
+[
+133,
+"2022-10-07 01:01:50"
+]
+]
+},
+"base_automation_134_srm_rpt_slow_moving_items": {
+"base.automation": [
+[
+134,
+"2022-10-07 01:04:30"
+]
+]
+},
+"base_automation_135_srm_rpt_sales_production_purchase_report": {
+"base.automation": [
+[
+135,
+"2022-10-07 01:12:58"
+]
+]
+},
+"base_automation_136_srm_rpt_production_summary_split": {
+"base.automation": [
+[
+136,
+"2022-10-07 01:19:53"
+]
+]
+},
+"base_automation_137_srm_rpt_production_job_variance": {
+"base.automation": [
+[
+137,
+"2022-10-07 01:24:04"
+]
+]
+},
+"base_automation_138_supplier_invoice_no_update_in_import_vendor_bill": {
+"base.automation": [
+[
+138,
+"2022-10-19 05:50:41"
+]
+]
+},
+"base_automation_145_sls_validate_bank_guarantee_in_customer_invoice": {
+"base.automation": [
+[
+145,
+"2022-10-20 03:45:35"
+]
+]
+},
+"base_automation_170_supplier_invoice_no_update_in_import_vendor_bill_2": {
+"base.automation": [
+[
+170,
+"2023-01-03 06:27:51"
+]
+]
+},
+"base_automation_182_srm_rpt_project_gross_margin": {
+"base.automation": [
+[
+182,
+"2023-03-16 04:44:11"
+]
+]
+},
+"base_automation_184_tp_invoice_currency_update": {
+"base.automation": [
+[
+184,
+"2023-03-21 06:04:08"
+]
+]
+},
+"base_automation_188_report_model_created_date": {
+"base.automation": [
+[
+188,
+"2023-03-30 02:40:46"
+]
+]
+},
+"base_automation_189_srm_rpt_project_gross_margin_notify_users": {
+"base.automation": [
+[
+189,
+"2023-03-30 04:09:42"
+]
+]
+},
+"base_automation_197_proj_validate_delete": {
+"base.automation": [
+[
+197,
+"2023-05-10 05:02:57"
+]
+]
+},
+"base_automation_198_proj_pass_analytic_account_to_lines": {
+"base.automation": [
+[
+198,
+"2023-05-10 05:38:07"
+]
+]
+},
+"base_automation_1_avoid_product_duplicate": {
+"base.automation": [
+[
+1,
+"2021-06-09 08:11:23"
+]
+]
+},
+"base_automation_215_rr_validate_rug_in_customer_invoice": {
+"base.automation": [
+[
+215,
+"2023-08-14 15:02:33"
+]
+]
+},
+"base_automation_219_update_analytic_tag_parameters_sales_invoice_line_product": {
+"base.automation": [
+[
+219,
+"2023-08-23 15:43:25"
+]
+]
+},
+"base_automation_237_update_analytic_tag_parameters_sales_invoice_customer": {
+"base.automation": [
+[
+237,
+"2023-10-05 00:57:29"
+]
+]
+},
+"base_automation_238_update_analytic_tag_parameters_sales_invoice_user": {
+"base.automation": [
+[
+238,
+"2023-10-05 01:04:42"
+]
+]
+},
+"base_automation_239_update_analytic_tag_parameters_sales_invoice_line_account": {
+"base.automation": [
+[
+239,
+"2023-10-05 01:06:01"
+]
+]
+},
+"base_automation_241_rr_validate_payment": {
+"base.automation": [
+[
+241,
+"2023-10-17 06:47:40"
+]
+]
+},
+"base_automation_242_tp_invoice_linetax_update": {
+"base.automation": [
+[
+242,
+"2023-10-26 07:51:16"
+]
+]
+},
+"base_automation_248_srm_rpt_costing_work_sheet": {
+"base.automation": [
+[
+248,
+"2024-02-01 01:39:19"
+]
+]
+},
+"base_automation_256_proj_validate_confirm": {
+"base.automation": [
+[
+256,
+"2024-06-04 09:11:08"
+]
+]
+},
+"base_automation_284_jin_company_id_in_lc_header": {
+"base.automation": [
+[
+284,
+"2024-07-11 08:11:58"
+]
+]
+},
+"base_automation_289_jin_company_id_in_consignment_charge_header": {
+"base.automation": [
+[
+289,
+"2024-07-11 09:26:41"
+]
+]
+},
+"base_automation_292_update_project_no_in_journal_entry": {
+"base.automation": [
+[
+292,
+"2024-07-16 10:01:00"
+]
+]
+},
+"base_automation_310_jin_company_id_in_custom_currency": {
+"base.automation": [
+[
+310,
+"2024-07-17 16:24:56"
+]
+]
+},
+"base_automation_311_jin_company_id_in_custom_currency_rate": {
+"base.automation": [
+[
+311,
+"2024-07-17 16:27:30"
+]
+]
+},
+"base_automation_318_jin_company_id_in_misc_charge_codes": {
+"base.automation": [
+[
+318,
+"2024-07-18 02:28:00"
+]
+]
+},
+"base_automation_328_project_update_project_no_for_manual_transactions": {
+"base.automation": [
+[
+328,
+"2024-07-25 07:54:05"
+]
+]
+},
+"base_automation_335_jin_company_id_in_payment_terms": {
+"base.automation": [
+[
+335,
+"2024-10-15 10:07:17"
+]
+]
+},
+"base_automation_337_jin_company_id_in_journal_types": {
+"base.automation": [
+[
+337,
+"2024-10-30 08:36:44"
+]
+]
+},
+"base_automation_338_pr_validate_cash_issued_in_npo": {
+"base.automation": [
+[
+338,
+"2024-12-19 06:43:29"
+]
+]
+},
+"base_automation_343_etf_schedule_contract_id": {
+"base.automation": [
+[
+343,
+"2025-07-24 01:59:50"
+]
+]
+},
+"base_automation_43_work_center_costing_model_update_journal_entries": {
+"base.automation": [
+[
+43,
+"2021-08-16 09:40:57"
+]
+]
+},
+"base_automation_60_imp_validate_from_to_dates_in_custom_rates": {
+"base.automation": [
+[
+60,
+"2021-10-05 04:15:19"
+]
+]
+},
+"base_automation_61_imp_pass_currency_information_to_custom_currency": {
+"base.automation": [
+[
+61,
+"2021-10-05 04:45:38"
+]
+]
+},
+"base_automation_64_imp_update_consignment_vendor_bill": {
+"base.automation": [
+[
+64,
+"2021-10-25 03:14:58"
+]
+]
+},
+"base_automation_65_jin_third_party_tp_invoice_seq_no": {
+"base.automation": [
+[
+65,
+"2021-10-27 10:21:43"
+]
+]
+},
+"base_automation_70_jin_lc_registration_seq_no": {
+"base.automation": [
+[
+70,
+"2021-11-03 09:22:43"
+]
+]
+},
+"base_automation_71_imp_lc_amount_validation": {
+"base.automation": [
+[
+71,
+"2021-11-08 03:36:49"
+]
+]
+},
+"base_automation_72_imp_update_lc_status_to_paid": {
+"base.automation": [
+[
+72,
+"2021-11-08 06:02:14"
+]
+]
+},
+"base_automation_73_imp_update_lc_status_to_paid_2": {
+"base.automation": [
+[
+73,
+"2021-11-11 03:18:48"
+]
+]
+},
+"base_automation_99_restrict_delete_in_sales_report_model": {
+"base.automation": [
+[
+99,
+"2022-03-30 04:16:47"
+]
+]
+},
+"default_109_x_misc_charge_codes_x_active": {
+"ir.default": [
+[
+109,
+"2021-08-25 05:18:29"
+]
+]
+},
+"default_110_x_misc_charge_codes_x_studio_sequence": {
+"ir.default": [
+[
+110,
+"2021-08-25 05:18:29"
+]
+]
+},
+"default_11_x_customer_posting_pro_x_active": {
+"ir.default": [
+[
+11,
+"2021-05-10 04:59:57"
+]
+]
+},
+"default_12_x_customer_posting_pro_x_studio_sequence": {
+"ir.default": [
+[
+12,
+"2021-05-10 04:59:57"
+]
+]
+},
+"default_155_x_custom_currency_x_active": {
+"ir.default": [
+[
+155,
+"2021-10-05 02:27:32"
+]
+]
+},
+"default_156_x_custom_currency_x_studio_sequence": {
+"ir.default": [
+[
+156,
+"2021-10-05 02:27:32"
+]
+]
+},
+"default_157_x_custom_currency_rate_x_active": {
+"ir.default": [
+[
+157,
+"2021-10-05 02:27:53"
+]
+]
+},
+"default_158_x_custom_currency_rate_x_studio_sequence": {
+"ir.default": [
+[
+158,
+"2021-10-05 02:27:53"
+]
+]
+},
+"default_159_x_consignment_charge_h_x_active": {
+"ir.default": [
+[
+159,
+"2021-10-06 02:25:38"
+]
+]
+},
+"default_160_x_consignment_charge_h_x_studio_sequence": {
+"ir.default": [
+[
+160,
+"2021-10-06 02:25:38"
+]
+]
+},
+"default_161_x_consignment_charge_h_x_studio_charge_group": {
+"ir.default": [
+[
+161,
+"2021-10-06 02:28:55"
+]
+]
+},
+"default_162_x_consignment_charge_h_x_studio_structure_no": {
+"ir.default": [
+[
+162,
+"2021-10-06 02:35:13"
+]
+]
+},
+"default_165_x_consignment_charge_h_x_studio_ledger_post": {
+"ir.default": [
+[
+165,
+"2021-10-06 02:41:47"
+]
+]
+},
+"default_170_x_temp_tp_invoice_head_x_active": {
+"ir.default": [
+[
+170,
+"2021-10-27 07:39:35"
+]
+]
+},
+"default_171_x_temp_tp_invoice_head_x_studio_sequence": {
+"ir.default": [
+[
+171,
+"2021-10-27 07:39:35"
+]
+]
+},
+"default_172_x_temp_tp_invoice_line_x_active": {
+"ir.default": [
+[
+172,
+"2021-10-27 07:40:27"
+]
+]
+},
+"default_173_x_temp_tp_invoice_line_x_studio_sequence": {
+"ir.default": [
+[
+173,
+"2021-10-27 07:40:27"
+]
+]
+},
+"default_174_x_tp_invoice_header_x_active": {
+"ir.default": [
+[
+174,
+"2021-10-27 09:45:32"
+]
+]
+},
+"default_175_x_tp_invoice_header_x_studio_sequence": {
+"ir.default": [
+[
+175,
+"2021-10-27 09:45:32"
+]
+]
+},
+"default_176_x_tp_invoice_line_x_active": {
+"ir.default": [
+[
+176,
+"2021-10-27 09:56:57"
+]
+]
+},
+"default_177_x_tp_invoice_line_x_studio_sequence": {
+"ir.default": [
+[
+177,
+"2021-10-27 09:56:57"
+]
+]
+},
+"default_178_x_tp_invoice_header_x_name": {
+"ir.default": [
+[
+178,
+"2021-10-27 10:18:50"
+]
+]
+},
+"default_179_x_tp_invoice_header_x_studio_pipeline_status_bar": {
+"ir.default": [
+[
+179,
+"2021-10-28 03:53:33"
+]
+]
+},
+"default_180_x_tp_invoice_header_x_studio_status": {
+"ir.default": [
+[
+180,
+"2021-10-28 03:59:59"
+]
+]
+},
+"default_185_x_lc_header_x_active": {
+"ir.default": [
+[
+185,
+"2021-11-03 07:34:17"
+]
+]
+},
+"default_186_x_lc_header_x_studio_sequence": {
+"ir.default": [
+[
+186,
+"2021-11-03 07:34:17"
+]
+]
+},
+"default_187_x_lc_header_x_studio_lc_credit_type": {
+"ir.default": [
+[
+187,
+"2021-11-03 09:09:16"
+]
+]
+},
+"default_188_x_lc_header_x_studio_lc_credit_sub_type": {
+"ir.default": [
+[
+188,
+"2021-11-03 09:09:39"
+]
+]
+},
+"default_189_x_lc_header_x_studio_status": {
+"ir.default": [
+[
+189,
+"2021-11-03 09:09:57"
+]
+]
+},
+"default_190_x_lc_header_x_studio_tolerance_type": {
+"ir.default": [
+[
+190,
+"2021-11-03 09:10:28"
+]
+]
+},
+"default_191_x_lc_header_x_studio_partial_shipment": {
+"ir.default": [
+[
+191,
+"2021-11-03 09:10:50"
+]
+]
+},
+"default_192_x_lc_header_x_studio_transshipment": {
+"ir.default": [
+[
+192,
+"2021-11-03 09:10:52"
+]
+]
+},
+"default_193_x_lc_header_x_studio_draft": {
+"ir.default": [
+[
+193,
+"2021-11-03 09:11:06"
+]
+]
+},
+"default_194_x_lc_header_x_studio_confirmation_instructions": {
+"ir.default": [
+[
+194,
+"2021-11-03 09:11:10"
+]
+]
+},
+"default_195_x_lc_header_x_name": {
+"ir.default": [
+[
+195,
+"2021-11-03 09:23:34"
+]
+]
+},
+"default_197_x_lc_header_x_studio_selection_field_yo4qM": {
+"ir.default": [
+[
+197,
+"2021-11-04 02:33:49"
+]
+]
+},
+"default_199_x_lc_header_x_studio_version_no": {
+"ir.default": [
+[
+199,
+"2021-11-04 04:02:14"
+]
+]
+},
+"default_225_x_custom_currency_x_studio_currency_id": {
+"ir.default": [
+[
+225,
+"2021-11-29 06:49:51"
+]
+]
+},
+"default_226_x_tp_invoice_header_x_studio_currency_id": {
+"ir.default": [
+[
+226,
+"2021-11-29 06:49:51"
+]
+]
+},
+"default_227_x_lc_header_x_studio_currency_id": {
+"ir.default": [
+[
+227,
+"2021-11-29 06:49:51"
+]
+]
+},
+"default_250_x_sales_report_model_x_active": {
+"ir.default": [
+[
+250,
+"2022-03-29 07:43:19"
+]
+]
+},
+"default_251_x_sales_report_model_x_studio_sequence": {
+"ir.default": [
+[
+251,
+"2022-03-29 07:43:19"
+]
+]
+},
+"default_252_x_sales_report_type_x_active": {
+"ir.default": [
+[
+252,
+"2022-03-29 07:54:05"
+]
+]
+},
+"default_253_x_sales_report_type_x_studio_sequence": {
+"ir.default": [
+[
+253,
+"2022-03-29 07:54:05"
+]
+]
+},
+"default_254_x_rm_daily_sales_repor_x_active": {
+"ir.default": [
+[
+254,
+"2022-03-29 09:04:09"
+]
+]
+},
+"default_255_x_rm_daily_sales_repor_x_studio_sequence": {
+"ir.default": [
+[
+255,
+"2022-03-29 09:04:09"
+]
+]
+},
+"default_256_x_sales_report_model_x_studio_selection_field_Fbw0x": {
+"ir.default": [
+[
+256,
+"2022-03-30 02:18:06"
+]
+]
+},
+"default_257_x_rm_daily_s1_x_active": {
+"ir.default": [
+[
+257,
+"2022-04-07 01:41:42"
+]
+]
+},
+"default_258_x_rm_daily_s1_x_studio_sequence": {
+"ir.default": [
+[
+258,
+"2022-04-07 01:41:42"
+]
+]
+},
+"default_259_x_rm_daily_s2_x_active": {
+"ir.default": [
+[
+259,
+"2022-04-07 01:41:59"
+]
+]
+},
+"default_260_x_rm_daily_s2_x_studio_sequence": {
+"ir.default": [
+[
+260,
+"2022-04-07 01:41:59"
+]
+]
+},
+"default_261_x_rm_daily_s3_x_active": {
+"ir.default": [
+[
+261,
+"2022-04-07 01:42:14"
+]
+]
+},
+"default_262_x_rm_daily_s3_x_studio_sequence": {
+"ir.default": [
+[
+262,
+"2022-04-07 01:42:14"
+]
+]
+},
+"default_263_x_rm_customer_wise_inv_x_active": {
+"ir.default": [
+[
+263,
+"2022-04-07 03:29:31"
+]
+]
+},
+"default_264_x_rm_customer_wise_inv_x_studio_sequence": {
+"ir.default": [
+[
+264,
+"2022-04-07 03:29:31"
+]
+]
+},
+"default_265_x_rm_cust_invoice_s1_x_active": {
+"ir.default": [
+[
+265,
+"2022-04-07 04:20:55"
+]
+]
+},
+"default_266_x_rm_cust_invoice_s1_x_studio_sequence": {
+"ir.default": [
+[
+266,
+"2022-04-07 04:20:55"
+]
+]
+},
+"default_277_x_rm_sales_order_line_x_active": {
+"ir.default": [
+[
+277,
+"2022-08-04 04:28:18"
+]
+]
+},
+"default_278_x_rm_sales_order_line_x_studio_sequence": {
+"ir.default": [
+[
+278,
+"2022-08-04 04:28:18"
+]
+]
+},
+"default_279_x_rm_production_orders_x_active": {
+"ir.default": [
+[
+279,
+"2022-08-11 10:44:56"
+]
+]
+},
+"default_280_x_rm_production_orders_x_studio_sequence": {
+"ir.default": [
+[
+280,
+"2022-08-11 10:44:56"
+]
+]
+},
+"default_281_x_rm_none_moving_x_active": {
+"ir.default": [
+[
+281,
+"2022-08-24 04:00:56"
+]
+]
+},
+"default_282_x_rm_none_moving_x_studio_sequence": {
+"ir.default": [
+[
+282,
+"2022-08-24 04:00:56"
+]
+]
+},
+"default_283_x_rm_date_test_x_active": {
+"ir.default": [
+[
+283,
+"2022-08-25 03:12:12"
+]
+]
+},
+"default_284_x_rm_date_test_x_studio_sequence": {
+"ir.default": [
+[
+284,
+"2022-08-25 03:12:12"
+]
+]
+},
+"default_287_x_rm_sales_prod_purch_x_active": {
+"ir.default": [
+[
+287,
+"2022-09-27 04:44:28"
+]
+]
+},
+"default_288_x_rm_sales_prod_purch_x_studio_sequence": {
+"ir.default": [
+[
+288,
+"2022-09-27 04:44:28"
+]
+]
+},
+"default_289_x_rm_prod_summary_spli_x_active": {
+"ir.default": [
+[
+289,
+"2022-09-27 06:22:23"
+]
+]
+},
+"default_290_x_rm_prod_summary_spli_x_studio_sequence": {
+"ir.default": [
+[
+290,
+"2022-09-27 06:22:23"
+]
+]
+},
+"default_292_x_rm_production_varian_x_active": {
+"ir.default": [
+[
+292,
+"2022-09-28 05:46:35"
+]
+]
+},
+"default_293_x_rm_production_varian_x_studio_sequence": {
+"ir.default": [
+[
+293,
+"2022-09-28 05:46:35"
+]
+]
+},
+"default_308_x_rm_gross_margin_esti_x_active": {
+"ir.default": [
+[
+308,
+"2023-03-16 03:25:48"
+]
+]
+},
+"default_309_x_rm_gross_margin_esti_x_studio_sequence": {
+"ir.default": [
+[
+309,
+"2023-03-16 03:25:48"
+]
+]
+},
+"default_310_x_rm_gross_margin_actu_x_active": {
+"ir.default": [
+[
+310,
+"2023-03-16 03:26:59"
+]
+]
+},
+"default_311_x_rm_gross_margin_actu_x_studio_sequence": {
+"ir.default": [
+[
+311,
+"2023-03-16 03:26:59"
+]
+]
+},
+"default_312_x_rm_gross_margin_invo_x_active": {
+"ir.default": [
+[
+312,
+"2023-03-16 03:29:06"
+]
+]
+},
+"default_313_x_rm_gross_margin_invo_x_studio_sequence": {
+"ir.default": [
+[
+313,
+"2023-03-16 03:29:06"
+]
+]
+},
+"default_317_x_temp_estimated_x_active": {
+"ir.default": [
+[
+317,
+"2023-03-28 14:52:18"
+]
+]
+},
+"default_318_x_temp_estimated_x_studio_sequence": {
+"ir.default": [
+[
+318,
+"2023-03-28 14:52:18"
+]
+]
+},
+"default_319_x_temp_estimated_x_currency_id": {
+"ir.default": [
+[
+319,
+"2023-03-28 15:03:34"
+]
+]
+},
+"default_321_x_temp_actual_budget_x_active": {
+"ir.default": [
+[
+321,
+"2023-03-29 03:31:44"
+]
+]
+},
+"default_322_x_temp_actual_budget_x_studio_sequence": {
+"ir.default": [
+[
+322,
+"2023-03-29 03:31:44"
+]
+]
+},
+"default_323_x_temp_actual_budget_x_currency_id": {
+"ir.default": [
+[
+323,
+"2023-03-29 03:41:30"
+]
+]
+},
+"default_330_x_rm_gross_margin_comp_x_active": {
+"ir.default": [
+[
+330,
+"2023-05-10 09:32:50"
+]
+]
+},
+"default_331_x_rm_gross_margin_comp_x_studio_sequence": {
+"ir.default": [
+[
+331,
+"2023-05-10 09:32:50"
+]
+]
+},
+"default_385_account_payment_x_studio_payment_validation_1": {
+"ir.default": [
+[
+385,
+"2023-10-17 07:00:58"
+]
+]
+},
+"default_386_x_tp_invoice_header_x_currency_id": {
+"ir.default": [
+[
+386,
+"2023-10-26 07:05:35"
+]
+]
+},
+"default_390_x_journal_types_x_active": {
+"ir.default": [
+[
+390,
+"2023-11-30 04:00:55"
+]
+]
+},
+"default_391_x_journal_types_x_studio_sequence": {
+"ir.default": [
+[
+391,
+"2023-11-30 04:00:55"
+]
+]
+},
+"default_393_x_pump_price_costing_x_active": {
+"ir.default": [
+[
+393,
+"2024-02-01 01:47:17"
+]
+]
+},
+"default_394_x_pump_price_costing_x_studio_sequence": {
+"ir.default": [
+[
+394,
+"2024-02-01 01:47:17"
+]
+]
+},
+"default_395_x_sales_report_model_x_studio_idling_rate": {
+"ir.default": [
+[
+395,
+"2024-02-07 05:51:41"
+]
+]
+},
+"default_396_x_sales_report_model_x_studio_distributor_additi": {
+"ir.default": [
+[
+396,
+"2024-02-08 01:40:13"
+]
+]
+},
+"default_397_x_sales_report_model_x_studio_sscl": {
+"ir.default": [
+[
+397,
+"2024-02-08 02:55:55"
+]
+]
+},
+"default_398_x_sales_report_model_x_studio_contingency_": {
+"ir.default": [
+[
+398,
+"2024-02-15 07:25:47"
+]
+]
+},
+"default_399_x_sales_report_model_x_studio_factory_oh_labour": {
+"ir.default": [
+[
+399,
+"2024-02-15 07:26:12"
+]
+]
+},
+"default_400_x_sales_report_model_x_studio_factory_oh": {
+"ir.default": [
+[
+400,
+"2024-02-15 07:26:27"
+]
+]
+},
+"default_401_x_sales_report_model_x_studio_sales_oh": {
+"ir.default": [
+[
+401,
+"2024-02-19 09:40:49"
+]
+]
+},
+"default_402_x_sales_report_model_x_studio_other_oh": {
+"ir.default": [
+[
+402,
+"2024-02-19 09:40:57"
+]
+]
+},
+"default_403_x_sales_report_model_x_studio_oh_absorbed_factor": {
+"ir.default": [
+[
+403,
+"2024-02-22 00:24:10"
+]
+]
+},
+"default_404_x_sales_report_model_x_studio_profit_mark_up_": {
+"ir.default": [
+[
+404,
+"2024-02-22 00:31:01"
+]
+]
+},
+"default_405_x_sales_report_model_x_studio_oh_absorbed_2_fact": {
+"ir.default": [
+[
+405,
+"2024-02-22 00:54:33"
+]
+]
+},
+"default_406_x_sales_report_model_x_studio_actuals": {
+"ir.default": [
+[
+406,
+"2024-03-20 01:11:07"
+]
+]
+},
+"default_412_crossovered_budget_x_studio_confirm_validation": {
+"ir.default": [
+[
+412,
+"2024-06-04 08:51:29"
+]
+]
+},
+"default_426_x_custom_currency_x_studio_currency_id": {
+"ir.default": [
+[
+426,
+"2024-06-28 04:48:08"
+]
+]
+},
+"default_427_x_tp_invoice_header_x_studio_currency_id": {
+"ir.default": [
+[
+427,
+"2024-06-28 04:48:08"
+]
+]
+},
+"default_428_x_lc_header_x_studio_currency_id": {
+"ir.default": [
+[
+428,
+"2024-06-28 04:48:08"
+]
+]
+},
+"default_451_account_payment_x_studio_type": {
+"ir.default": [
+[
+451,
+"2024-07-25 08:06:24"
+]
+]
+},
+"default_452_x_advance_payment_acco_x_active": {
+"ir.default": [
+[
+452,
+"2024-07-25 09:43:57"
+]
+]
+},
+"default_453_x_advance_payment_acco_x_studio_sequence": {
+"ir.default": [
+[
+453,
+"2024-07-25 09:43:57"
+]
+]
+},
+"default_473_account_move_x_studio_journal_type": {
+"ir.default": [
+[
+473,
+"2024-08-08 07:09:46"
+]
+]
+},
+"default_573_crossovered_budget_x_studio_total": {
+"ir.default": [
+[
+573,
+"2024-09-24 05:18:14"
+]
+]
+},
+"default_574_crossovered_budget_x_currency_id": {
+"ir.default": [
+[
+574,
+"2024-09-30 04:48:48"
+]
+]
+},
+"default_642_x_test_rm_gross_margin_x_active": {
+"ir.default": [
+[
+642,
+"2026-03-17 06:05:24"
+]
+]
+},
+"default_643_x_test_rm_gross_margin_x_studio_sequence": {
+"ir.default": [
+[
+643,
+"2026-03-17 06:05:24"
+]
+]
+},
+"menu_1059_sales_invoices": {
+"ir.ui.menu": [
+[
+1059,
+"2023-05-26 06:05:57"
+]
+]
+},
+"menu_1085_pump_product_costing": {
+"ir.ui.menu": [
+[
+1085,
+"2023-07-18 16:40:45"
+]
+]
+},
+"menu_1132_journal_types": {
+"ir.ui.menu": [
+[
+1132,
+"2023-11-30 04:00:55"
+]
+]
+},
+"menu_1171_aaaa": {
+"ir.ui.menu": [
+[
+1171,
+"2024-04-04 06:38:10"
+]
+]
+},
+"menu_1173_pump_costing_worksheet": {
+"ir.ui.menu": [
+[
+1173,
+"2024-04-16 10:03:18"
+]
+]
+},
+"menu_1191_credit_note": {
+"ir.ui.menu": [
+[
+1191,
+"2024-05-07 08:55:19"
+]
+]
+},
+"menu_1217_sales": {
+"ir.ui.menu": [
+[
+1217,
+"2024-05-07 09:25:27"
+]
+]
+},
+"menu_1218_purchases": {
+"ir.ui.menu": [
+[
+1218,
+"2024-05-07 09:25:27"
+]
+]
+},
+"menu_1219_bank_and_cash": {
+"ir.ui.menu": [
+[
+1219,
+"2024-05-07 09:25:27"
+]
+]
+},
+"menu_1220_miscellaneous": {
+"ir.ui.menu": [
+[
+1220,
+"2024-05-07 09:25:27"
+]
+]
+},
+"menu_1221_miscellaneous": {
+"ir.ui.menu": [
+[
+1221,
+"2024-05-07 09:25:27"
+]
+]
+},
+"menu_1222_journal_entries": {
+"ir.ui.menu": [
+[
+1222,
+"2024-05-07 09:25:27"
+]
+]
+},
+"menu_1224_ledgers": {
+"ir.ui.menu": [
+[
+1224,
+"2024-05-07 09:25:27"
+]
+]
+},
+"menu_1226_partner_ledger": {
+"ir.ui.menu": [
+[
+1226,
+"2024-05-07 09:25:27"
+]
+]
+},
+"menu_1323_advance_payment_account": {
+"ir.ui.menu": [
+[
+1323,
+"2024-07-25 09:43:57"
+]
+]
+},
+"menu_1340_taxes": {
+"ir.ui.menu": [
+[
+1340,
+"2024-08-06 02:45:02"
+]
+]
+},
+"menu_1475_etf_schedule": {
+"ir.ui.menu": [
+[
+1475,
+"2025-03-10 05:59:29"
+]
+]
+},
+"menu_1476_epf_schedule": {
+"ir.ui.menu": [
+[
+1476,
+"2025-03-10 06:00:36"
+]
+]
+},
+"menu_1690_invoice_wise_revenue_report": {
+"ir.ui.menu": [
+[
+1690,
+"2025-07-02 05:54:25"
+],
+[
+1688,
+"2025-07-02 05:29:37"
+]
+]
+},
+"menu_785_tp_invoice_line": {
+"ir.ui.menu": [
+[
+785,
+"2021-10-27 09:56:57"
+]
+]
+},
+"menu_833_invoices": {
+"ir.ui.menu": [
+[
+833,
+"2022-02-15 14:05:06"
+]
+]
+},
+"menu_836_sales_invoice_lines": {
+"ir.ui.menu": [
+[
+836,
+"2022-02-15 14:58:53"
+]
+]
+},
+"menu_880_report_models": {
+"ir.ui.menu": [
+[
+880,
+"2022-03-29 07:58:08"
+]
+]
+},
+"menu_881_sales_report_model": {
+"ir.ui.menu": [
+[
+881,
+"2022-03-29 08:13:33"
+]
+]
+},
+"menu_882_sales_report_type": {
+"ir.ui.menu": [
+[
+882,
+"2022-03-29 08:13:33"
+]
+]
+},
+"menu_900_pivot_views": {
+"ir.ui.menu": [
+[
+900,
+"2022-09-07 03:42:36"
+]
+]
+},
+"menu_901_production_overview_wip": {
+"ir.ui.menu": [
+[
+901,
+"2022-09-07 03:48:46"
+]
+]
+},
+"menu_902_slow_moving_items": {
+"ir.ui.menu": [
+[
+902,
+"2022-09-07 08:08:13"
+]
+]
+},
+"menu_f6_rm_daily_sales_report": {
+"ir.ui.menu": [
+[
+883,
+"2022-03-29 09:04:09"
+]
+]
+},
+"menu_f6_sales_invoice_lines_1": {
+"ir.ui.menu": [
+[
+835,
+"2022-02-15 14:55:37"
+]
+]
+},
+"menu_f6_sales_report_model_1": {
+"ir.ui.menu": [
+[
+878,
+"2022-03-29 07:43:19"
+]
+]
+},
+"menu_f6_sales_report_type_1": {
+"ir.ui.menu": [
+[
+879,
+"2022-03-29 07:54:05"
+]
+]
+},
+"menu_f6_tax_groups": {
+"ir.ui.menu": [
+[
+942,
+"2023-02-02 11:27:11"
+]
+]
+},
+"ported_default_form_view_fo_0505f2ad_156e_4774_9f56_2c28078f71bc": {
+"ir.ui.view": [
+[
+3061,
+"2021-11-03 07:34:17"
+]
+]
+},
+"ported_default_form_view_fo_0ffb1e86_7941_430a_b63f_3b5a8738be2d": {
+"ir.ui.view": [
+[
+4874,
+"2023-03-16 03:26:59"
+]
+]
+},
+"ported_default_form_view_fo_28459b2e_d60c_4b3a_9ee2_68b375f0d598": {
+"ir.ui.view": [
+[
+3816,
+"2022-04-07 03:29:31"
+]
+]
+},
+"ported_default_form_view_fo_2c4ff7a9_7c71_4304_a9eb_f205aa6d9c48": {
+"ir.ui.view": [
+[
+4944,
+"2023-05-10 09:32:50"
+]
+]
+},
+"ported_default_form_view_fo_741643ee_ca4d_4aa5_a8e3_76dfefa6c8c1": {
+"ir.ui.view": [
+[
+4913,
+"2023-03-29 03:31:44"
+]
+]
+},
+"ported_default_form_view_fo_7a09d097_0d14_4d92_aaab_95b003fbf75f": {
+"ir.ui.view": [
+[
+3820,
+"2022-04-07 04:20:55"
+]
+]
+},
+"ported_default_form_view_fo_8a4b6def_7c88_4ab2_9f17_96bd901a9f4e": {
+"ir.ui.view": [
+[
+2922,
+"2021-10-05 02:27:32"
+]
+]
+},
+"ported_default_form_view_fo_8e00b755_fbe6_4921_925a_91bb567326d7": {
+"ir.ui.view": [
+[
+3035,
+"2021-10-27 07:40:27"
+]
+]
+},
+"ported_default_form_view_fo_b04274bb_8930_4e7e_a2cc_e65229996a48": {
+"ir.ui.view": [
+[
+3043,
+"2021-10-27 09:45:32"
+]
+]
+},
+"ported_default_form_view_fo_c97b1ccb_8539_4035_a437_f09e7ab96775": {
+"ir.ui.view": [
+[
+5901,
+"2024-07-25 09:43:57"
+]
+]
+},
+"ported_default_form_view_fo_e77232e4_e7f3_4769_97c0_439ce924b337": {
+"ir.ui.view": [
+[
+9490,
+"2026-03-17 06:05:24"
+]
+]
+},
+"ported_default_form_view_fo_f49a8f85_9bb2_43ef_8f4f_8b962b411265": {
+"ir.ui.view": [
+[
+2311,
+"2021-05-10 04:59:57"
+]
+]
+},
+"ported_default_form_view_fo_f5872bac_d1f7_4709_a9b1_364b0db1710c": {
+"ir.ui.view": [
+[
+2925,
+"2021-10-05 02:27:53"
+]
+]
+},
+"ported_default_list_view_fo_051fc709_c824_40ce_92e9_91a84d268510": {
+"ir.ui.view": [
+[
+3815,
+"2022-04-07 03:29:31"
+]
+]
+},
+"ported_default_list_view_fo_3031fe1e_398f_4098_9918_014ea6ba462f": {
+"ir.ui.view": [
+[
+2310,
+"2021-05-10 04:59:57"
+]
+]
+},
+"ported_default_list_view_fo_631d132b_10b2_4e4a_b9e3_a90375e170a1": {
+"ir.ui.view": [
+[
+5900,
+"2024-07-25 09:43:57"
+]
+]
+},
+"ported_default_list_view_fo_87762a20_9628_4266_a414_8bb858fd9746": {
+"ir.ui.view": [
+[
+3042,
+"2021-10-27 09:45:32"
+]
+]
+},
+"ported_default_list_view_fo_a6e6b3ad_20ca_4271_b887_d78bf98e2073": {
+"ir.ui.view": [
+[
+3034,
+"2021-10-27 07:40:27"
+]
+]
+},
+"ported_default_list_view_fo_a916dec6_fd01_439b_b5cc_5936bca48af2": {
+"ir.ui.view": [
+[
+3060,
+"2021-11-03 07:34:17"
+]
+]
+},
+"ported_default_list_view_fo_a92a9962_4949_4660_bc6a_de4d9d6d0eea": {
+"ir.ui.view": [
+[
+4943,
+"2023-05-10 09:32:50"
+]
+]
+},
+"ported_default_list_view_fo_bcc5f161_0ade_4995_9c51_35002b4f9d4d": {
+"ir.ui.view": [
+[
+4912,
+"2023-03-29 03:31:44"
+]
+]
+},
+"ported_default_list_view_fo_c10f81e8_0461_45dc_bca4_c7824d05528e": {
+"ir.ui.view": [
+[
+2921,
+"2021-10-05 02:27:32"
+]
+]
+},
+"ported_default_list_view_fo_ca009934_0cbf_4bef_b9a5_cc7156daa1a9": {
+"ir.ui.view": [
+[
+2924,
+"2021-10-05 02:27:53"
+]
+]
+},
+"ported_default_list_view_fo_e0a7e6f6_d908_4a20_91b6_3b7c31955737": {
+"ir.ui.view": [
+[
+3031,
+"2021-10-27 07:39:35"
+]
+]
+},
+"ported_default_list_view_fo_ebc1fec3_02e8_4e3a_a42a_8a43aeef04c4": {
+"ir.ui.view": [
+[
+9489,
+"2026-03-17 06:05:24"
+]
+]
+},
+"ported_default_list_view_fo_ec66ddc5_7ff8_42ac_8238_bdb020f850a2": {
+"ir.ui.view": [
+[
+3819,
+"2022-04-07 04:20:55"
+]
+]
+},
+"ported_default_list_view_fo_ff791a31_7daf_408c_acdc_7018fc44fd67": {
+"ir.ui.view": [
+[
+4873,
+"2023-03-16 03:26:59"
+]
+]
+},
+"ported_default_pivot_view_f_579a1e20_d982_4b37_be90_ad2cefa0aef5": {
+"ir.ui.view": [
+[
+3261,
+"2022-02-15 14:11:33"
+]
+]
+},
+"ported_default_pivot_view_f_e6b5ae70_5837_410f_a7ec_43da4ff64f33": {
+"ir.ui.view": [
+[
+7979,
+"2025-03-25 10:03:15"
+]
+]
+},
+"ported_default_search_view__008371aa_6777_483b_a35b_55bb47e097eb": {
+"ir.ui.view": [
+[
+2926,
+"2021-10-05 02:27:53"
+]
+]
+},
+"ported_default_search_view__0e667438_cb9e_47fc_a925_bb838c4999b2": {
+"ir.ui.view": [
+[
+5902,
+"2024-07-25 09:43:57"
+]
+]
+},
+"ported_default_search_view__12511c2f_92e3_4ad8_a81a_9adf7a7e038f": {
+"ir.ui.view": [
+[
+3044,
+"2021-10-27 09:45:32"
+]
+]
+},
+"ported_default_search_view__1ca0ea84_3938_4f26_ad80_7824d77d00f2": {
+"ir.ui.view": [
+[
+9491,
+"2026-03-17 06:05:24"
+]
+]
+},
+"ported_default_search_view__262de343_80f0_46e9_b0a4_3cbfe09d933f": {
+"ir.ui.view": [
+[
+3036,
+"2021-10-27 07:40:27"
+]
+]
+},
+"ported_default_search_view__49a7dbb3_8287_49cd_8415_ee80c4cf86ad": {
+"ir.ui.view": [
+[
+3817,
+"2022-04-07 03:29:31"
+]
+]
+},
+"ported_default_search_view__57a6d70d_a772_4194_afbe_241836e855ac": {
+"ir.ui.view": [
+[
+3821,
+"2022-04-07 04:20:55"
+]
+]
+},
+"ported_default_search_view__5d9028dc_d96e_4d44_a869_146eb1842773": {
+"ir.ui.view": [
+[
+4875,
+"2023-03-16 03:26:59"
+]
+]
+},
+"ported_default_search_view__65bb7bb5_0341_4946_8b0e_8040521503cf": {
+"ir.ui.view": [
+[
+4914,
+"2023-03-29 03:31:44"
+]
+]
+},
+"ported_default_search_view__75c14789_fbd8_4c3b_9714_053aebf3de17": {
+"ir.ui.view": [
+[
+2312,
+"2021-05-10 04:59:57"
+]
+]
+},
+"ported_default_search_view__7a379603_7a3e_4f48_9edf_8ef493282a72": {
+"ir.ui.view": [
+[
+3033,
+"2021-10-27 07:39:35"
+]
+]
+},
+"ported_default_search_view__a298038c_e955_424c_892e_bd176971bcc1": {
+"ir.ui.view": [
+[
+2923,
+"2021-10-05 02:27:32"
+]
+]
+},
+"ported_default_search_view__b401215c_a31a_436a_8006_25d5733275fa": {
+"ir.ui.view": [
+[
+3062,
+"2021-11-03 07:34:17"
+]
+]
+},
+"ported_default_search_view__d0a55d20_9864_48d4_8206_1aa5273904ef": {
+"ir.ui.view": [
+[
+4945,
+"2023-05-10 09:32:50"
+]
+]
+},
+"ported_imp_copy_charges_to__02d06147_ff91_4ff4_bb53_489854bb1ddd": {
+"ir.ui.view": [
+[
+3041,
+"2021-10-27 08:40:36"
+]
+]
+},
+"ported_odoo_studio_account__05b91b49_9dd1_4362_a49e_835596bd7ace": {
+"ir.ui.view": [
+[
+2440,
+"2021-07-08 14:20:36"
+]
+]
+},
+"ported_odoo_studio_account__29c77b7b_16f2_4af0_a17b_5aa40c932833": {
+"ir.ui.view": [
+[
+2442,
+"2021-07-08 16:17:02"
+]
+]
+},
+"ported_odoo_studio_account__3d938809_4b3e_4ad9_aff4_9c2a2e2b0eb5": {
+"ir.ui.view": [
+[
+3906,
+"2022-08-11 15:05:09"
+],
+[
+3907,
+"2022-08-15 09:17:11"
+]
+]
+},
+"ported_odoo_studio_default__20735bbc_d408_4d7a_8c04_a3bf6b3dfcd9": {
+"ir.ui.view": [
+[
+3063,
+"2021-11-03 07:36:20"
+]
+]
+},
+"ported_odoo_studio_default__3d5acdf8_7c5e_4d86_bee2_d071d148e8e7": {
+"ir.ui.view": [
+[
+2930,
+"2021-10-05 02:53:32"
+]
+]
+},
+"ported_odoo_studio_default__41a634d6_2040_4c1a_aca8_66e1b57d1cfa": {
+"ir.ui.view": [
+[
+5903,
+"2024-07-25 09:46:06"
+]
+]
+},
+"ported_odoo_studio_default__8d552af8_bee4_4f69_8ea3_22ed514dfbca": {
+"ir.ui.view": [
+[
+4946,
+"2023-05-10 09:34:09"
+]
+]
+},
+"ported_odoo_studio_default__a61f262f_36fb_4249_a2be_011d2c858898": {
+"ir.ui.view": [
+[
+3064,
+"2021-11-03 09:16:04"
+]
+]
+},
+"ported_odoo_studio_default__c572715b_284c_469b_9b41_7a04b3431fc6": {
+"ir.ui.view": [
+[
+3050,
+"2021-10-28 03:04:24"
+]
+]
+},
+"ported_odoo_studio_default__fc4b2707_e1d3_4e84_9239_9cbf0d789b47": {
+"ir.ui.view": [
+[
+4880,
+"2023-03-16 03:41:14"
+]
+]
+},
+"ported_view_2195_customization_account_account_form": {
+"ir.ui.view": [
+[
+2195,
+"2021-03-16 03:00:24"
+]
+]
+},
+"ported_view_2312_default_search_view_75c14789_fbd8_4c3b_9714_053aebf3de17": {
+"ir.ui.view": [
+[
+2312,
+"2021-05-10 04:59:57"
+]
+]
+},
+"ported_view_2313_odoo_studio_default_48b939b5_01fe_4c2d_8fb8_dbabd7799b2f": {
+"ir.ui.view": [
+[
+2313,
+"2021-05-10 05:00:18"
+]
+]
+},
+"ported_view_2314_odoo_studio_default_92045e29_920d_457c_8bbc_c4568805914e": {
+"ir.ui.view": [
+[
+2314,
+"2021-05-10 06:20:27"
+]
+]
+},
+"ported_view_2440_odoo_studio_account_05b91b49_9dd1_4362_a49e_835596bd7ace": {
+"ir.ui.view": [
+[
+2440,
+"2021-07-08 14:20:36"
+]
+]
+},
+"ported_view_2442_odoo_studio_account_29c77b7b_16f2_4af0_a17b_5aa40c932833": {
+"ir.ui.view": [
+[
+2442,
+"2021-07-08 16:17:02"
+]
+]
+},
+"ported_view_2549_customization_account_journal_tree": {
+"ir.ui.view": [
+[
+2549,
+"2021-07-21 05:16:23"
+]
+]
+},
+"ported_view_2591_odoo_studio_account_3930e1f6_bbbf_41d4_a35e_9eb18e292f43": {
+"ir.ui.view": [
+[
+2591,
+"2021-08-16 06:17:30"
+]
+]
+},
+"ported_view_2681_default_list_view_fo_d3bfc8f6_5ce5_4404_9e14_e4e077d23300": {
+"ir.ui.view": [
+[
+2681,
+"2021-08-25 05:18:29"
+]
+]
+},
+"ported_view_2682_default_form_view_fo_79d2000d_8484_4cdb_befd_2dbcf0fb6a69": {
+"ir.ui.view": [
+[
+2682,
+"2021-08-25 05:18:29"
+]
+]
+},
+"ported_view_2683_default_search_view_26c03071_07d8_4292_934f_fd75e2f5f6db": {
+"ir.ui.view": [
+[
+2683,
+"2021-08-25 05:18:29"
+]
+]
+},
+"ported_view_2684_odoo_studio_default_2389c30f_1a37_4097_87d2_180fcdcddcb0": {
+"ir.ui.view": [
+[
+2684,
+"2021-08-25 05:35:25"
+]
+]
+},
+"ported_view_2685_odoo_studio_default_f4328649_f0ce_4d1a_9a3b_45e7f1c2e802": {
+"ir.ui.view": [
+[
+2685,
+"2021-08-25 05:44:30"
+]
+]
+},
+"ported_view_2923_default_search_view_a298038c_e955_424c_892e_bd176971bcc1": {
+"ir.ui.view": [
+[
+2923,
+"2021-10-05 02:27:32"
+]
+]
+},
+"ported_view_2926_default_search_view_008371aa_6777_483b_a35b_55bb47e097eb": {
+"ir.ui.view": [
+[
+2926,
+"2021-10-05 02:27:53"
+]
+]
+},
+"ported_view_2927_odoo_studio_default_d6e426ae_1b5c_4bbd_b6cf_aaab9463d6cb": {
+"ir.ui.view": [
+[
+2927,
+"2021-10-05 02:32:56"
+]
+]
+},
+"ported_view_2929_odoo_studio_default_98249da6_8d85_410b_8ba9_952472bdd50c": {
+"ir.ui.view": [
+[
+2929,
+"2021-10-05 02:48:59"
+]
+]
+},
+"ported_view_2930_odoo_studio_default_3d5acdf8_7c5e_4d86_bee2_d071d148e8e7": {
+"ir.ui.view": [
+[
+2930,
+"2021-10-05 02:53:32"
+]
+]
+},
+"ported_view_2931_odoo_studio_default_527d6591_4b52_40f4_a210_0cfd294b2cf0": {
+"ir.ui.view": [
+[
+2931,
+"2021-10-05 03:02:28"
+]
+]
+},
+"ported_view_2932_default_list_view_fo_66cf53c7_1e15_4a6b_b733_c7571ac71a02": {
+"ir.ui.view": [
+[
+2932,
+"2021-10-06 02:25:38"
+]
+]
+},
+"ported_view_2933_default_form_view_fo_6b5f65f9_e9e6_48d2_a1cf_f0ede8a5353b": {
+"ir.ui.view": [
+[
+2933,
+"2021-10-06 02:25:38"
+]
+]
+},
+"ported_view_2934_default_search_view_3c397656_7f61_48f0_a2f4_97463f10e99e": {
+"ir.ui.view": [
+[
+2934,
+"2021-10-06 02:25:38"
+]
+]
+},
+"ported_view_2936_odoo_studio_default_f7a79ca0_c28b_426a_9cee_c3ad87d51662": {
+"ir.ui.view": [
+[
+2936,
+"2021-10-06 02:28:34"
+]
+]
+},
+"ported_view_2940_odoo_studio_default_c78a0618_af64_45b3_83da_c3a75d23a5d5": {
+"ir.ui.view": [
+[
+2940,
+"2021-10-06 02:40:14"
+]
+]
+},
+"ported_view_2943_customization_account_account_tree": {
+"ir.ui.view": [
+[
+2943,
+"2021-10-07 05:25:41"
+]
+]
+},
+"ported_view_3033_default_search_view_7a379603_7a3e_4f48_9edf_8ef493282a72": {
+"ir.ui.view": [
+[
+3033,
+"2021-10-27 07:39:35"
+]
+]
+},
+"ported_view_3036_default_search_view_262de343_80f0_46e9_b0a4_3cbfe09d933f": {
+"ir.ui.view": [
+[
+3036,
+"2021-10-27 07:40:27"
+]
+]
+},
+"ported_view_3038_odoo_studio_default_cb099adf_20d3_4e33_8500_801e1c815b1f": {
+"ir.ui.view": [
+[
+3038,
+"2021-10-27 07:51:09"
+]
+]
+},
+"ported_view_3041_imp_copy_charges_to_02d06147_ff91_4ff4_bb53_489854bb1ddd": {
+"ir.ui.view": [
+[
+3041,
+"2021-10-27 08:40:36"
+]
+]
+},
+"ported_view_3044_default_search_view_12511c2f_92e3_4ad8_a81a_9adf7a7e038f": {
+"ir.ui.view": [
+[
+3044,
+"2021-10-27 09:45:32"
+]
+]
+},
+"ported_view_3045_odoo_studio_default_fc4d9ef7_2d23_4a16_911c_66cf2185de9b": {
+"ir.ui.view": [
+[
+3045,
+"2021-10-27 09:49:24"
+]
+]
+},
+"ported_view_3046_default_list_view_fo_811781bc_7da3_4aa1_bd02_ffa9f7ab171e": {
+"ir.ui.view": [
+[
+3046,
+"2021-10-27 09:56:57"
+]
+]
+},
+"ported_view_3047_default_form_view_fo_38c3a46a_3d2b_47c5_8a5e_88963b4b2366": {
+"ir.ui.view": [
+[
+3047,
+"2021-10-27 09:56:57"
+]
+]
+},
+"ported_view_3048_default_search_view_7b413959_fb76_4b31_a287_eed100601331": {
+"ir.ui.view": [
+[
+3048,
+"2021-10-27 09:56:57"
+]
+]
+},
+"ported_view_3049_odoo_studio_default_69a9a02d_2a83_4c80_90bb_89810d018792": {
+"ir.ui.view": [
+[
+3049,
+"2021-10-27 09:59:10"
+]
+]
+},
+"ported_view_3050_odoo_studio_default_c572715b_284c_469b_9b41_7a04b3431fc6": {
+"ir.ui.view": [
+[
+3050,
+"2021-10-28 03:04:24"
+]
+]
+},
+"ported_view_3062_default_search_view_b401215c_a31a_436a_8006_25d5733275fa": {
+"ir.ui.view": [
+[
+3062,
+"2021-11-03 07:34:17"
+]
+]
+},
+"ported_view_3063_odoo_studio_default_20735bbc_d408_4d7a_8c04_a3bf6b3dfcd9": {
+"ir.ui.view": [
+[
+3063,
+"2021-11-03 07:36:20"
+]
+]
+},
+"ported_view_3064_odoo_studio_default_a61f262f_36fb_4249_a2be_011d2c858898": {
+"ir.ui.view": [
+[
+3064,
+"2021-11-03 09:16:04"
+]
+]
+},
+"ported_view_3066_odoo_studio_account_b5367f7f_470f_43eb_bfb4_583117888f1f": {
+"ir.ui.view": [
+[
+3066,
+"2021-11-11 03:15:40"
+]
+]
+},
+"ported_view_3112_odoo_studio_account_260c28c3_3477_4c4a_a023_77f402c5dabf": {
+"ir.ui.view": [
+[
+3112,
+"2021-11-24 09:11:00"
+]
+]
+},
+"ported_view_3118_customization_account_payment_term_tree": {
+"ir.ui.view": [
+[
+3118,
+"2021-11-25 04:51:08"
+]
+]
+},
+"ported_view_3783_default_list_view_fo_8853c5be_dc14_48d4_82c4_f209d820d16a": {
+"ir.ui.view": [
+[
+3783,
+"2022-03-29 07:43:19"
+]
+]
+},
+"ported_view_3784_default_form_view_fo_d583be6a_921f_4205_94a7_603a2375ce6e": {
+"ir.ui.view": [
+[
+3784,
+"2022-03-29 07:43:19"
+]
+]
+},
+"ported_view_3785_default_search_view_36b50122_6852_4842_9718_7d6fbf0c90e3": {
+"ir.ui.view": [
+[
+3785,
+"2022-03-29 07:43:19"
+]
+]
+},
+"ported_view_3786_odoo_studio_default_ff0f5f4b_41b6_49a0_9acc_cb410e663b5b": {
+"ir.ui.view": [
+[
+3786,
+"2022-03-29 07:45:32"
+]
+]
+},
+"ported_view_3787_default_list_view_fo_097c53a2_58b7_4922_9d81_9eb5887b31fd": {
+"ir.ui.view": [
+[
+3787,
+"2022-03-29 07:54:05"
+]
+]
+},
+"ported_view_3788_default_form_view_fo_4e292064_7f8d_4862_a87b_be052bafea00": {
+"ir.ui.view": [
+[
+3788,
+"2022-03-29 07:54:05"
+]
+]
+},
+"ported_view_3789_default_search_view_002b6e85_950e_4cfb_91eb_cfa5150f8b3a": {
+"ir.ui.view": [
+[
+3789,
+"2022-03-29 07:54:05"
+]
+]
+},
+"ported_view_3790_odoo_studio_default_580edcb5_cd6d_4864_84a8_400ec50c07b5": {
+"ir.ui.view": [
+[
+3790,
+"2022-03-29 08:16:35"
+]
+]
+},
+"ported_view_3791_odoo_studio_default_25244692_8d9f_4fba_9286_7f16ca6d45f1": {
+"ir.ui.view": [
+[
+3791,
+"2022-03-29 08:33:19"
+]
+]
+},
+"ported_view_3792_default_list_view_fo_2e2d264d_b130_40f7_a4b3_2d6c0c9e123d": {
+"ir.ui.view": [
+[
+3792,
+"2022-03-29 09:04:09"
+]
+]
+},
+"ported_view_3793_default_form_view_fo_f256f423_cc0e_4e76_8f35_2007e4720e58": {
+"ir.ui.view": [
+[
+3793,
+"2022-03-29 09:04:09"
+]
+]
+},
+"ported_view_3794_default_search_view_2b244fc7_26c1_4c0f_bc8d_70d61268bb2c": {
+"ir.ui.view": [
+[
+3794,
+"2022-03-29 09:04:09"
+]
+]
+},
+"ported_view_3795_odoo_studio_default_f26fd96a_1773_4b01_a68c_57e4ab481f65": {
+"ir.ui.view": [
+[
+3795,
+"2022-03-29 09:06:04"
+]
+]
+},
+"ported_view_3803_default_list_view_fo_c009a5e0_f9aa_4f61_b77d_356308a596f6": {
+"ir.ui.view": [
+[
+3803,
+"2022-04-07 01:41:42"
+]
+]
+},
+"ported_view_3804_default_form_view_fo_1df86405_c612_4f9a_9ea8_130a32849e00": {
+"ir.ui.view": [
+[
+3804,
+"2022-04-07 01:41:42"
+]
+]
+},
+"ported_view_3805_default_search_view_5f2b9feb_97fa_4ed3_a129_e8d07b584e06": {
+"ir.ui.view": [
+[
+3805,
+"2022-04-07 01:41:42"
+]
+]
+},
+"ported_view_3806_default_list_view_fo_cebc590b_b82c_4b30_bb38_97b220ed78bc": {
+"ir.ui.view": [
+[
+3806,
+"2022-04-07 01:41:59"
+]
+]
+},
+"ported_view_3807_default_form_view_fo_18055896_921a_49a4_8b2c_6c3d9900ad82": {
+"ir.ui.view": [
+[
+3807,
+"2022-04-07 01:41:59"
+]
+]
+},
+"ported_view_3808_default_search_view_f56a2ce8_0eec_4ff7_8ee1_74b090ccc94b": {
+"ir.ui.view": [
+[
+3808,
+"2022-04-07 01:41:59"
+]
+]
+},
+"ported_view_3809_default_list_view_fo_bb0154ee_5685_4655_a271_a89ac8597200": {
+"ir.ui.view": [
+[
+3809,
+"2022-04-07 01:42:14"
+]
+]
+},
+"ported_view_3810_default_form_view_fo_a5dfdae0_6aa5_4ccc_9466_84fde1363927": {
+"ir.ui.view": [
+[
+3810,
+"2022-04-07 01:42:14"
+]
+]
+},
+"ported_view_3811_default_search_view_caa9a3e6_5a95_452d_b66f_aeaa32017275": {
+"ir.ui.view": [
+[
+3811,
+"2022-04-07 01:42:14"
+]
+]
+},
+"ported_view_3812_odoo_studio_default_049aeb37_371b_43df_bbbe_39ffbf21db9b": {
+"ir.ui.view": [
+[
+3812,
+"2022-04-07 01:43:54"
+]
+]
+},
+"ported_view_3813_odoo_studio_default_663c9404_1fd7_48f3_b9a1_bf61cdb779fb": {
+"ir.ui.view": [
+[
+3813,
+"2022-04-07 01:44:59"
+]
+]
+},
+"ported_view_3814_odoo_studio_default_bbdb4d27_c755_4b18_a675_1142c0001aa0": {
+"ir.ui.view": [
+[
+3814,
+"2022-04-07 01:45:42"
+]
+]
+},
+"ported_view_3817_default_search_view_49a7dbb3_8287_49cd_8415_ee80c4cf86ad": {
+"ir.ui.view": [
+[
+3817,
+"2022-04-07 03:29:31"
+]
+]
+},
+"ported_view_3818_odoo_studio_default_461f7504_2101_403c_880e_62b0d141b1b4": {
+"ir.ui.view": [
+[
+3818,
+"2022-04-07 03:30:22"
+]
+]
+},
+"ported_view_3821_default_search_view_57a6d70d_a772_4194_afbe_241836e855ac": {
+"ir.ui.view": [
+[
+3821,
+"2022-04-07 04:20:55"
+]
+]
+},
+"ported_view_3823_odoo_studio_default_b7f83450_d158_4b53_ab6a_3722eac4db7f": {
+"ir.ui.view": [
+[
+3823,
+"2022-04-07 04:21:57"
+]
+]
+},
+"ported_view_3844_odoo_studio_account_8ae47aec_f33a_4a3d_b767_05cea96ec229": {
+"ir.ui.view": [
+[
+3844,
+"2022-04-19 04:41:50"
+]
+]
+},
+"ported_view_3846_odoo_studio_default_88b50a43_20bf_4dc4_9dca_97b90bb0be4f": {
+"ir.ui.view": [
+[
+3846,
+"2022-04-21 07:35:11"
+]
+]
+},
+"ported_view_3892_default_list_view_fo_ce8e1fd9_9851_4dbb_9241_b23919424fdb": {
+"ir.ui.view": [
+[
+3892,
+"2022-08-04 04:28:18"
+]
+]
+},
+"ported_view_3893_default_form_view_fo_05d35025_f438_4646_b323_0819b22a05cd": {
+"ir.ui.view": [
+[
+3893,
+"2022-08-04 04:28:18"
+]
+]
+},
+"ported_view_3894_default_search_view_2b5238c5_779f_41da_8845_ccb436c5d7d7": {
+"ir.ui.view": [
+[
+3894,
+"2022-08-04 04:28:18"
+]
+]
+},
+"ported_view_3895_odoo_studio_default_8fc07dc9_9134_4aa0_b899_7fc87ef854cf": {
+"ir.ui.view": [
+[
+3895,
+"2022-08-04 04:31:47"
+]
+]
+},
+"ported_view_3899_default_list_view_fo_fbf09a9f_0dc9_473b_9b62_84c53b338217": {
+"ir.ui.view": [
+[
+3899,
+"2022-08-11 10:44:56"
+]
+]
+},
+"ported_view_3900_default_form_view_fo_2e0357df_6cb4_436f_b62f_f15c8fd55cde": {
+"ir.ui.view": [
+[
+3900,
+"2022-08-11 10:44:56"
+]
+]
+},
+"ported_view_3901_default_search_view_b4661ac0_4ee2_4d8b_9ee3_d62cb8a3cf0a": {
+"ir.ui.view": [
+[
+3901,
+"2022-08-11 10:44:56"
+]
+]
+},
+"ported_view_3902_odoo_studio_default_cbe89251_52fd_4882_a708_fda7b4132347": {
+"ir.ui.view": [
+[
+3902,
+"2022-08-11 11:47:08"
+]
+]
+},
+"ported_view_3906_odoo_studio_account_3d938809_4b3e_4ad9_aff4_9c2a2e2b0eb5": {
+"ir.ui.view": [
+[
+3906,
+"2022-08-11 15:05:09"
+]
+]
+},
+"ported_view_3907_odoo_studio_account_53334ddd_2d0c_4baa_a85d_f090510fcdc6": {
+"ir.ui.view": [
+[
+3907,
+"2022-08-15 09:17:11"
+]
+]
+},
+"ported_view_3908_default_list_view_fo_8c1b45f2_eaaf_40ba_81b9_5e2d83c10b2b": {
+"ir.ui.view": [
+[
+3908,
+"2022-08-24 04:00:56"
+]
+]
+},
+"ported_view_3909_default_form_view_fo_f4f032d0_7a46_4579_89a2_7de2a53f1691": {
+"ir.ui.view": [
+[
+3909,
+"2022-08-24 04:00:56"
+]
+]
+},
+"ported_view_3910_default_search_view_a20617eb_c233_4ef7_841d_76333d4511b1": {
+"ir.ui.view": [
+[
+3910,
+"2022-08-24 04:00:56"
+]
+]
+},
+"ported_view_3911_odoo_studio_default_b8bde084_af8f_4e6e_9c44_c57b4da44228": {
+"ir.ui.view": [
+[
+3911,
+"2022-08-24 04:06:34"
+]
+]
+},
+"ported_view_3914_default_list_view_fo_77a72e54_ec9a_410e_8cec_7eb0098c24da": {
+"ir.ui.view": [
+[
+3914,
+"2022-08-25 03:12:12"
+]
+]
+},
+"ported_view_3915_default_form_view_fo_d88777b5_8251_4e43_ad64_0e506e49f9fb": {
+"ir.ui.view": [
+[
+3915,
+"2022-08-25 03:12:12"
+]
+]
+},
+"ported_view_3916_default_search_view_e7a99ab7_8776_4f92_acf1_7409a5917f9d": {
+"ir.ui.view": [
+[
+3916,
+"2022-08-25 03:12:12"
+]
+]
+},
+"ported_view_3917_odoo_studio_default_6f8232ab_b685_499c_a92e_e1f0a6371c68": {
+"ir.ui.view": [
+[
+3917,
+"2022-08-25 03:13:52"
+]
+]
+},
+"ported_view_3931_default_list_view_fo_971f3310_0e31_4c66_8f32_11bbb51d4576": {
+"ir.ui.view": [
+[
+3931,
+"2022-09-27 04:44:28"
+]
+]
+},
+"ported_view_3932_default_form_view_fo_52e990fa_e355_47f9_9cb1_9be71892a34b": {
+"ir.ui.view": [
+[
+3932,
+"2022-09-27 04:44:28"
+]
+]
+},
+"ported_view_3933_default_search_view_b017dd1c_861a_489e_8cfe_83fc4b2c11b6": {
+"ir.ui.view": [
+[
+3933,
+"2022-09-27 04:44:28"
+]
+]
+},
+"ported_view_3934_odoo_studio_default_1173b94f_3524_4e9c_b3fe_6f80310e9207": {
+"ir.ui.view": [
+[
+3934,
+"2022-09-27 04:46:18"
+]
+]
+},
+"ported_view_3935_default_list_view_fo_f2b77645_4d95_4aa1_83c9_0622d79dcc78": {
+"ir.ui.view": [
+[
+3935,
+"2022-09-27 06:22:23"
+]
+]
+},
+"ported_view_3936_default_form_view_fo_9f2ff4db_10ca_4848_aa31_d452c05bc15c": {
+"ir.ui.view": [
+[
+3936,
+"2022-09-27 06:22:23"
+]
+]
+},
+"ported_view_3937_default_search_view_b3fbef6a_5931_490b_8ee6_9cf0ea636639": {
+"ir.ui.view": [
+[
+3937,
+"2022-09-27 06:22:23"
+]
+]
+},
+"ported_view_3938_odoo_studio_default_06d8db89_39f8_4f7c_ad81_ffb70a49da31": {
+"ir.ui.view": [
+[
+3938,
+"2022-09-27 06:23:08"
+]
+]
+},
+"ported_view_3939_default_list_view_fo_54c3870a_8080_4a73_86a5_23507b151146": {
+"ir.ui.view": [
+[
+3939,
+"2022-09-28 05:46:35"
+]
+]
+},
+"ported_view_3940_default_form_view_fo_b960f711_4334_4247_888f_a7bf47b12755": {
+"ir.ui.view": [
+[
+3940,
+"2022-09-28 05:46:35"
+]
+]
+},
+"ported_view_3941_default_search_view_53ee3395_a792_4568_9ab4_6867545c5b63": {
+"ir.ui.view": [
+[
+3941,
+"2022-09-28 05:46:35"
+]
+]
+},
+"ported_view_3942_odoo_studio_default_52c137d2_4c27_495d_a758_67d01f1f34de": {
+"ir.ui.view": [
+[
+3942,
+"2022-09-28 05:52:39"
+]
+]
+},
+"ported_view_4870_default_list_view_fo_a37b2709_b9dd_4ac5_8f02_4efcd329d6d2": {
+"ir.ui.view": [
+[
+4870,
+"2023-03-16 03:25:48"
+]
+]
+},
+"ported_view_4871_default_form_view_fo_6233055b_75ed_47bf_8232_4667a7f9d72b": {
+"ir.ui.view": [
+[
+4871,
+"2023-03-16 03:25:48"
+]
+]
+},
+"ported_view_4872_default_search_view_aca1482c_811f_4aff_ade3_0748ad1ac819": {
+"ir.ui.view": [
+[
+4872,
+"2023-03-16 03:25:48"
+]
+]
+},
+"ported_view_4875_default_search_view_5d9028dc_d96e_4d44_a869_146eb1842773": {
+"ir.ui.view": [
+[
+4875,
+"2023-03-16 03:26:59"
+]
+]
+},
+"ported_view_4876_default_list_view_fo_5ee2720c_e640_430c_b388_f0c18670a0af": {
+"ir.ui.view": [
+[
+4876,
+"2023-03-16 03:29:06"
+]
+]
+},
+"ported_view_4877_default_form_view_fo_d2fa0d19_9847_4cd2_9bbd_066ff3ff0ce3": {
+"ir.ui.view": [
+[
+4877,
+"2023-03-16 03:29:06"
+]
+]
+},
+"ported_view_4878_default_search_view_3a48e801_a15e_4382_aa23_6a04fb951085": {
+"ir.ui.view": [
+[
+4878,
+"2023-03-16 03:29:06"
+]
+]
+},
+"ported_view_4879_odoo_studio_default_711ca605_7b7e_469e_9a40_a8a43ffb4176": {
+"ir.ui.view": [
+[
+4879,
+"2023-03-16 03:29:56"
+]
+]
+},
+"ported_view_4880_odoo_studio_default_fc4b2707_e1d3_4e84_9239_9cbf0d789b47": {
+"ir.ui.view": [
+[
+4880,
+"2023-03-16 03:41:14"
+]
+]
+},
+"ported_view_4881_odoo_studio_default_953053c9_c9ab_407c_97a4_2f534781a36d": {
+"ir.ui.view": [
+[
+4881,
+"2023-03-16 03:50:03"
+]
+]
+},
+"ported_view_4902_default_list_view_fo_cc637f5f_a4e7_4817_b179_6e0729f60644": {
+"ir.ui.view": [
+[
+4902,
+"2023-03-28 14:52:18"
+]
+]
+},
+"ported_view_4903_default_form_view_fo_42bb817f_40d0_41af_aa71_7138b5c321e5": {
+"ir.ui.view": [
+[
+4903,
+"2023-03-28 14:52:18"
+]
+]
+},
+"ported_view_4904_default_search_view_351dd6de_0dcf_478f_81af_897f479a9ac2": {
+"ir.ui.view": [
+[
+4904,
+"2023-03-28 14:52:18"
+]
+]
+},
+"ported_view_4905_odoo_studio_default_38889867_2068_4538_8a83_e98d387a8822": {
+"ir.ui.view": [
+[
+4905,
+"2023-03-28 14:54:44"
+]
+]
+},
+"ported_view_4906_default_list_view_fo_b9016b82_f925_4499_95cb_16cf6742f25d": {
+"ir.ui.view": [
+[
+4906,
+"2023-03-28 15:22:14"
+],
+[
+4909,
+"2023-03-28 15:22:14"
+]
+]
+},
+"ported_view_4907_default_form_view_fo_39a7a263_33fd_4e79_847c_0718bde4f6b5": {
+"ir.ui.view": [
+[
+4907,
+"2023-03-28 15:22:14"
+],
+[
+4910,
+"2023-03-28 15:22:14"
+]
+]
+},
+"ported_view_4908_default_search_view_7d163442_ff51_45ed_9906_ed8405211391": {
+"ir.ui.view": [
+[
+4908,
+"2023-03-28 15:22:14"
+],
+[
+4911,
+"2023-03-28 15:22:14"
+]
+]
+},
+"ported_view_4909_default_list_view_fo_e690196a_6de2_4b2a_82fd_cf9e11b09610": {
+"ir.ui.view": [
+[
+4909,
+"2023-03-28 15:22:14"
+]
+]
+},
+"ported_view_4910_default_form_view_fo_4c81dc72_e412_414e_bf17_a5524b2251be": {
+"ir.ui.view": [
+[
+4910,
+"2023-03-28 15:22:14"
+]
+]
+},
+"ported_view_4911_default_search_view_fafce8d5_8b53_4663_a8ed_bf587c9a23cf": {
+"ir.ui.view": [
+[
+4911,
+"2023-03-28 15:22:14"
+]
+]
+},
+"ported_view_4914_default_search_view_65bb7bb5_0341_4946_8b0e_8040521503cf": {
+"ir.ui.view": [
+[
+4914,
+"2023-03-29 03:31:44"
+]
+]
+},
+"ported_view_4915_odoo_studio_default_4d82d10a_a936_4ed9_b0f0_c50c40f19759": {
+"ir.ui.view": [
+[
+4915,
+"2023-03-29 03:33:34"
+]
+]
+},
+"ported_view_4942_odoo_studio_crossove_a555672e_6698_4232_9115_1daaed24a1bb": {
+"ir.ui.view": [
+[
+4942,
+"2023-05-10 01:48:00"
+]
+]
+},
+"ported_view_4945_default_search_view_d0a55d20_9864_48d4_8206_1aa5273904ef": {
+"ir.ui.view": [
+[
+4945,
+"2023-05-10 09:32:50"
+]
+]
+},
+"ported_view_4946_odoo_studio_default_8d552af8_bee4_4f69_8ea3_22ed514dfbca": {
+"ir.ui.view": [
+[
+4946,
+"2023-05-10 09:34:09"
+]
+]
+},
+"ported_view_5060_odoo_studio_account_5a7d6bc9_4155_413c_8dc4_92a2e77e71c5": {
+"ir.ui.view": [
+[
+5060,
+"2023-07-18 18:01:36"
+]
+]
+},
+"ported_view_5075_customization_account_analytic_account_tree": {
+"ir.ui.view": [
+[
+5075,
+"2023-08-22 10:27:22"
+]
+]
+},
+"ported_view_5289_account_move_line_tree_grouped_test01": {
+"ir.ui.view": [
+[
+5289,
+"2023-09-20 05:52:04"
+]
+]
+},
+"ported_view_5320_default_list_view_fo_02152264_7fd7_4b5e_8a84_ca3714db9fad": {
+"ir.ui.view": [
+[
+5320,
+"2023-11-30 04:00:55"
+]
+]
+},
+"ported_view_5321_default_form_view_fo_dbddc8a1_ea9d_47ba_8335_c08e4a53fc5c": {
+"ir.ui.view": [
+[
+5321,
+"2023-11-30 04:00:55"
+]
+]
+},
+"ported_view_5322_default_search_view_d3c181ad_9bc3_4cfc_9d60_2500bd38fe9f": {
+"ir.ui.view": [
+[
+5322,
+"2023-11-30 04:00:55"
+]
+]
+},
+"ported_view_5326_odoo_studio_default_7879380a_9ecc_4ca6_bfd3_fa82b991c3ce": {
+"ir.ui.view": [
+[
+5326,
+"2023-11-30 04:05:49"
+]
+]
+},
+"ported_view_5422_default_list_x_pump_price_costing": {
+"ir.ui.view": [
+[
+5422,
+"2024-02-01 01:47:17"
+]
+]
+},
+"ported_view_5425_customization_x_pump_price_costing_tree": {
+"ir.ui.view": [
+[
+5425,
+"2024-02-01 01:50:54"
+]
+]
+},
+"ported_view_5902_default_search_view_0e667438_cb9e_47fc_a925_bb838c4999b2": {
+"ir.ui.view": [
+[
+5902,
+"2024-07-25 09:43:57"
+]
+]
+},
+"ported_view_5903_odoo_studio_default_41a634d6_2040_4c1a_aca8_66e1b57d1cfa": {
+"ir.ui.view": [
+[
+5903,
+"2024-07-25 09:46:06"
+]
+]
+},
+"ported_view_5904_odoo_studio_default_d44ef857_6f61_4cce_b760_cde110a7cae9": {
+"ir.ui.view": [
+[
+5904,
+"2024-07-25 09:47:38"
+]
+]
+},
+"ported_view_5911_odoo_studio_account_b0ebdb96_c367_4044_8e3c_c00f0a925a60": {
+"ir.ui.view": [
+[
+5911,
+"2024-08-01 06:06:23"
+]
+]
+},
+"ported_view_5912_odoo_studio_crossove_b4e03115_c663_4324_8258_dcddf1e8a51d": {
+"ir.ui.view": [
+[
+5912,
+"2024-08-01 09:15:27"
+]
+]
+},
+"ported_view_5957_customization_account_tax_tree": {
+"ir.ui.view": [
+[
+5957,
+"2024-08-06 02:45:58"
+]
+]
+},
+"ported_view_6033_customization_account_group_tree": {
+"ir.ui.view": [
+[
+6033,
+"2024-08-29 02:08:12"
+]
+]
+},
+"ported_view_6052_customization_account_payment_term_form": {
+"ir.ui.view": [
+[
+6052,
+"2024-09-10 06:38:15"
+]
+]
+},
+"ported_view_8293_account_move_line_tr_53817dbe_1ae9_4977_93d2_844954e5538b": {
+"ir.ui.view": [
+[
+8293,
+"2025-06-05 01:01:04"
+]
+]
+},
+"ported_view_8294_account_move_line_tree_etf": {
+"ir.ui.view": [
+[
+8294,
+"2025-06-05 01:03:16"
+]
+]
+},
+"ported_view_8295_account_move_line_tree_bankdata": {
+"ir.ui.view": [
+[
+8295,
+"2025-06-05 01:03:40"
+]
+]
+},
+"ported_view_8296_odoo_studio_account_f98f01b8_9602_45c2_84d1_544bc1cb35e1": {
+"ir.ui.view": [
+[
+8296,
+"2025-06-05 01:27:44"
+]
+]
+},
+"ported_view_8297_odoo_studio_account_2b60683f_0721_4535_be69_13afddd1797f": {
+"ir.ui.view": [
+[
+8297,
+"2025-06-05 03:16:13"
+]
+]
+},
+"ported_view_8298_odoo_studio_account_f3188d65_e758_4804_b43d_4c9da8c1cb68": {
+"ir.ui.view": [
+[
+8298,
+"2025-06-05 03:51:42"
+]
+]
+},
+"ported_view_8350_customization_account_asset_tree": {
+"ir.ui.view": [
+[
+8350,
+"2025-07-22 16:31:08"
+]
+]
+},
+"ported_view_8351_odoo_studio_account_5cd728e1_bb59_4dc0_a7ac_7e4cbb0b2297": {
+"ir.ui.view": [
+[
+8351,
+"2025-07-24 00:07:28"
+],
+[
+5044,
+"2023-07-13 04:53:47"
+]
+]
+},
+"ported_view_9491_default_search_view_1ca0ea84_3938_4f26_ad80_7824d77d00f2": {
+"ir.ui.view": [
+[
+9491,
+"2026-03-17 06:05:24"
+]
+]
+},
+"report_account_payment_1": {
+"ir.ui.view": [
+[
+1,
+"2021-02-03 05:30:53"
+]
+]
+},
+"report_account_payment_1_document": {
+"ir.ui.view": [
+[
+1,
+"2021-02-03 05:30:53"
+]
+]
+},
+"report_account_payment_2": {
+"ir.ui.view": [
+[
+2,
+"2021-02-03 05:30:53"
+]
+]
+},
+"report_account_payment_2_document": {
+"ir.ui.view": [
+[
+2,
+"2021-02-03 05:30:53"
+]
+]
+},
+"report_invoice_studio_customization": {
+"ir.ui.view": [
+[
+3143,
+"2021-12-28 08:13:19"
+],
+[
+4862,
+"2023-03-02 04:36:58"
+],
+[
+4865,
+"2023-03-02 05:27:07"
+]
+]
+},
+"report_invoice_studio_customization_2": {
+"ir.ui.view": [
+[
+3152,
+"2022-01-21 05:30:03"
+]
+]
+},
+"report_journal_entry_1": {
+"ir.ui.view": [
+[
+1,
+"2021-02-03 05:30:53"
+]
+]
+},
+"report_journal_entry_1_document": {
+"ir.ui.view": [
+[
+1,
+"2021-02-03 05:30:53"
+]
+]
+},
+"report_journal_entry_2": {
+"ir.ui.view": [
+[
+2,
+"2021-02-03 05:30:53"
+]
+]
+},
+"report_journal_entry_2_document": {
+"ir.ui.view": [
+[
+2,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_100_readonly_move_line": {
+"ir.rule": [
+[
+100,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_135_account_analytic_line_timesheet_user": {
+"ir.rule": [
+[
+135,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_136_account_analytic_line_timesheet_approver": {
+"ir.rule": [
+[
+136,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_137_account_analytic_line_timesheet_manager": {
+"ir.rule": [
+[
+137,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_141_purchase_user_account_move_line": {
+"ir.rule": [
+[
+141,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_142_purchase_user_account_move": {
+"ir.rule": [
+[
+142,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_146_point_of_sale_bank_statement_pos_user": {
+"ir.rule": [
+[
+146,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_147_point_of_sale_bank_statement_accountant": {
+"ir.rule": [
+[
+147,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_148_point_of_sale_bank_statement_line_pos_user": {
+"ir.rule": [
+[
+148,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_149_point_of_sale_bank_statement_line_accountant": {
+"ir.rule": [
+[
+149,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_170_personal_invoices_analysis": {
+"ir.rule": [
+[
+170,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_171_all_invoices_analysis": {
+"ir.rule": [
+[
+171,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_172_personal_invoices": {
+"ir.rule": [
+[
+172,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_173_all_invoices": {
+"ir.rule": [
+[
+173,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_174_personal_invoice_lines": {
+"ir.rule": [
+[
+174,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_175_all_invoice_lines": {
+"ir.rule": [
+[
+175,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_181_account_analytic_line_timesheet_user_update_unlink": {
+"ir.rule": [
+[
+181,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_270_test_access_rights": {
+"ir.rule": [
+[
+270,
+"2021-05-17 04:27:57"
+]
+]
+},
+"rule_329_expense_team_approver_account_move_line": {
+"ir.rule": [
+[
+329,
+"2021-09-28 17:58:14"
+]
+]
+},
+"rule_330_budget_post_multi_company": {
+"ir.rule": [
+[
+330,
+"2021-10-11 03:57:35"
+]
+]
+},
+"rule_331_budget_multi_company": {
+"ir.rule": [
+[
+331,
+"2021-10-11 03:57:35"
+]
+]
+},
+"rule_332_budget_lines_multi_company": {
+"ir.rule": [
+[
+332,
+"2021-10-11 03:57:35"
+]
+]
+},
+"rule_39_product_multi_company": {
+"ir.rule": [
+[
+39,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_430_account_analytic_line_helpdesk_user": {
+"ir.rule": [
+[
+430,
+"2023-02-22 10:02:36"
+]
+]
+},
+"rule_431_account_analytic_line_timesheet_manager": {
+"ir.rule": [
+[
+431,
+"2023-02-22 10:02:36"
+]
+]
+},
+"rule_445_public_product_template": {
+"ir.rule": [
+[
+445,
+"2023-08-25 05:59:35"
+]
+]
+},
+"rule_516_jin_multi_company_lc_header": {
+"ir.rule": [
+[
+516,
+"2024-07-11 08:12:51"
+]
+]
+},
+"rule_521_jin_multi_company_consignment_charge_header": {
+"ir.rule": [
+[
+521,
+"2024-07-11 09:27:32"
+]
+]
+},
+"rule_562_jin_multi_company_custom_currency": {
+"ir.rule": [
+[
+562,
+"2024-07-17 16:25:55"
+]
+]
+},
+"rule_563_jin_multi_company_custom_currency_rate": {
+"ir.rule": [
+[
+563,
+"2024-07-17 16:28:15"
+]
+]
+},
+"rule_570_jin_multi_company_misc_charge_codes": {
+"ir.rule": [
+[
+570,
+"2024-07-18 02:28:32"
+]
+]
+},
+"rule_629_jin_multi_company_journal_types": {
+"ir.rule": [
+[
+629,
+"2024-10-30 08:37:39"
+]
+]
+},
+"rule_631_tax_repartition_multi_company": {
+"ir.rule": [
+[
+631,
+"2025-03-03 04:07:52"
+]
+]
+},
+"rule_634_expense_team_approver_account_move": {
+"ir.rule": [
+[
+634,
+"2025-03-03 04:10:49"
+]
+]
+},
+"rule_636_point_of_sale_account_move_line": {
+"ir.rule": [
+[
+636,
+"2025-03-03 04:12:27"
+]
+]
+},
+"rule_637_point_of_sale_account_move": {
+"ir.rule": [
+[
+637,
+"2025-03-03 04:12:27"
+]
+]
+},
+"rule_64_analytic_line_multi_company_rule": {
+"ir.rule": [
+[
+64,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_675_account_analytic_line_readonly_user": {
+"ir.rule": [
+[
+675,
+"2025-03-18 10:04:04"
+]
+]
+},
+"rule_768_tax_group_multi_company": {
+"ir.rule": [
+[
+768,
+"2025-03-18 10:22:22"
+]
+]
+},
+"rule_769_readonly_invoice_send_and_print": {
+"ir.rule": [
+[
+769,
+"2025-03-18 10:22:22"
+]
+]
+},
+"rule_76_account_analytic_line_billing_user": {
+"ir.rule": [
+[
+76,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_776_invoice_pos_user": {
+"ir.rule": [
+[
+776,
+"2025-03-18 10:24:20"
+]
+]
+},
+"rule_777_personal_invoice_send_and_print": {
+"ir.rule": [
+[
+777,
+"2025-03-18 10:24:39"
+]
+]
+},
+"rule_778_all_invoice_send_and_print": {
+"ir.rule": [
+[
+778,
+"2025-03-18 10:24:39"
+]
+]
+},
+"rule_77_account_entry": {
+"ir.rule": [
+[
+77,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_78_entry_lines": {
+"ir.rule": [
+[
+78,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_79_journal_group_multi_company": {
+"ir.rule": [
+[
+79,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_80_journal_multi_company": {
+"ir.rule": [
+[
+80,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_81_account_multi_company": {
+"ir.rule": [
+[
+81,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_84_tax_multi_company": {
+"ir.rule": [
+[
+84,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_85_invoice_analysis_multi_company": {
+"ir.rule": [
+[
+85,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_86_account_fiscal_mapping_company_rule": {
+"ir.rule": [
+[
+86,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_87_account_bank_statement_company_rule": {
+"ir.rule": [
+[
+87,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_88_account_bank_statement_line_company_rule": {
+"ir.rule": [
+[
+88,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_89_account_reconcile_model_template_company_rule": {
+"ir.rule": [
+[
+89,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_90_account_reconcile_model_line_template_company_rule": {
+"ir.rule": [
+[
+90,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_91_account_payment_company_rule": {
+"ir.rule": [
+[
+91,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_92_account_payment_term_company_rule": {
+"ir.rule": [
+[
+92,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_93_all_journal_entries": {
+"ir.rule": [
+[
+93,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_94_all_journal_items": {
+"ir.rule": [
+[
+94,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_95_portal_personal_account_invoices": {
+"ir.rule": [
+[
+95,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_96_portal_invoice_lines": {
+"ir.rule": [
+[
+96,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_97_readonly_move": {
+"ir.rule": [
+[
+97,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_98_readonly_move_line": {
+"ir.rule": [
+[
+98,
+"2021-02-03 05:30:53"
+]
+]
+},
+"rule_99_readonly_move": {
+"ir.rule": [
+[
+99,
+"2021-02-03 05:30:53"
+]
+]
+},
+"sa_f5_account_move_project_update_project_no_for_manual_transactions": {
+"ir.actions.server": [
+[
+2738,
+"2024-07-25 07:54:05"
+]
+]
+},
+"sa_f5_account_move_rr_validate_rug_in_customer_invoice": {
+"ir.actions.server": [
+[
+2331,
+"2023-08-14 15:02:33"
+]
+]
+},
+"sa_f5_account_move_sls_validate_bank_guarantee_in_customer_invoice": {
+"ir.actions.server": [
+[
+1775,
+"2022-10-20 03:45:35"
+]
+]
+},
+"sa_f5_account_move_sls_validate_payment_in_customer_invoice": {
+"ir.actions.server": [
+[
+1751,
+"2022-09-14 06:37:02"
+]
+]
+},
+"sa_f5_account_payment_rr_validate_payment": {
+"ir.actions.server": [
+[
+2427,
+"2023-10-17 06:47:40"
+]
+]
+},
+"sa_f5_account_payment_update_project_no_in_journal_entry": {
+"ir.actions.server": [
+[
+2627,
+"2024-07-16 10:01:00"
+]
+]
+},
+"sa_f5_crossovered_budget_proj_validate_confirm": {
+"ir.actions.server": [
+[
+2570,
+"2024-06-04 09:11:08"
+]
+]
+},
+"sa_f5_crossovered_budget_proj_validate_delete": {
+"ir.actions.server": [
+[
+2183,
+"2023-05-10 05:02:57"
+]
+]
+},
+"sa_f5_x_custom_currency_imp_pass_currency_information_to_custom_currency": {
+"ir.actions.server": [
+[
+1312,
+"2021-10-05 04:45:38"
+]
+]
+},
+"sa_f5_x_custom_currency_jin_company_id_in_custom_currency": {
+"ir.actions.server": [
+[
+2674,
+"2024-07-17 16:24:56"
+]
+]
+},
+"sa_f5_x_custom_currency_rate_imp_validate_from_to_dates_in_custom_rates": {
+"ir.actions.server": [
+[
+1311,
+"2021-10-05 04:15:19"
+]
+]
+},
+"sa_f5_x_custom_currency_rate_jin_company_id_in_custom_currency_rate": {
+"ir.actions.server": [
+[
+2675,
+"2024-07-17 16:27:30"
+]
+]
+},
+"sa_f5_x_journal_types_jin_company_id_in_journal_types": {
+"ir.actions.server": [
+[
+2871,
+"2024-10-30 08:36:44"
+]
+]
+},
+"sa_f5_x_lc_header_imp_lc_amount_validation": {
+"ir.actions.server": [
+[
+1407,
+"2021-11-08 03:36:49"
+]
+]
+},
+"sa_f5_x_lc_header_jin_company_id_in_lc_header": {
+"ir.actions.server": [
+[
+2612,
+"2024-07-11 08:11:58"
+]
+]
+},
+"sa_f5_x_lc_header_lc_registration_seq_no": {
+"ir.actions.server": [
+[
+1402,
+"2021-11-03 09:22:43"
+]
+]
+},
+"sa_f5_x_misc_charge_codes_jin_company_id_in_misc_charge_codes": {
+"ir.actions.server": [
+[
+2684,
+"2024-07-18 02:28:00"
+]
+]
+},
+"sa_f5_x_sales_report_model_report_model_created_date": {
+"ir.actions.server": [
+[
+2126,
+"2023-03-30 02:40:46"
+]
+]
+},
+"sa_f5_x_sales_report_model_report_model_seq_no": {
+"ir.actions.server": [
+[
+1747,
+"2022-09-07 04:43:39"
+]
+]
+},
+"sa_f5_x_sales_report_model_restrict_delete_in_sales_report_model": {
+"ir.actions.server": [
+[
+1675,
+"2022-03-30 04:16:47"
+]
+]
+},
+"sa_f5_x_sales_report_model_srm_auto_delete_sub_models": {
+"ir.actions.server": [
+[
+1746,
+"2022-09-07 04:28:23"
+]
+]
+},
+"sa_f5_x_sales_report_model_srm_rpt_costing_work_sheet": {
+"ir.actions.server": [
+[
+2490,
+"2024-02-01 01:39:19"
+]
+]
+},
+"sa_f5_x_sales_report_model_srm_rpt_daily_sales_summary": {
+"ir.actions.server": [
+[
+1759,
+"2022-10-07 00:42:30"
+]
+]
+},
+"sa_f5_x_sales_report_model_srm_rpt_production_job_variance": {
+"ir.actions.server": [
+[
+1765,
+"2022-10-07 01:24:04"
+]
+]
+},
+"sa_f5_x_sales_report_model_srm_rpt_production_overview_wip": {
+"ir.actions.server": [
+[
+1761,
+"2022-10-07 01:01:50"
+]
+]
+},
+"sa_f5_x_sales_report_model_srm_rpt_production_summary_split": {
+"ir.actions.server": [
+[
+1764,
+"2022-10-07 01:19:53"
+]
+]
+},
+"sa_f5_x_sales_report_model_srm_rpt_project_gross_margin": {
+"ir.actions.server": [
+[
+2102,
+"2023-03-16 04:44:11"
+]
+]
+},
+"sa_f5_x_sales_report_model_srm_rpt_project_gross_margin_notify_users": {
+"ir.actions.server": [
+[
+2129,
+"2023-03-30 04:09:42"
+]
+]
+},
+"sa_f5_x_sales_report_model_srm_rpt_sales_details_for_incentive_calc": {
+"ir.actions.server": [
+[
+1760,
+"2022-10-07 00:56:10"
+]
+]
+},
+"sa_f5_x_sales_report_model_srm_rpt_sales_production_purchase_report": {
+"ir.actions.server": [
+[
+1763,
+"2022-10-07 01:12:58"
+]
+]
+},
+"sa_f5_x_sales_report_model_srm_rpt_slow_moving_items": {
+"ir.actions.server": [
+[
+1762,
+"2022-10-07 01:04:30"
+]
+]
+},
+"sa_f5_x_tp_invoice_header_tp_invoice_currency_update": {
+"ir.actions.server": [
+[
+2112,
+"2023-03-21 06:04:08"
+]
+]
+},
+"sa_f5_x_tp_invoice_header_tp_invoice_seq_no": {
+"ir.actions.server": [
+[
+1381,
+"2021-10-27 10:21:43"
+]
+]
+},
+"sa_f5_x_tp_invoice_line_tp_invoice_linetax_update": {
+"ir.actions.server": [
+[
+2432,
+"2023-10-26 07:51:16"
+]
+]
+},
+"server_action_1144_work_center_costing_model_update_journal_entries": {
+"ir.actions.server": [
+[
+1144,
+"2021-08-16 09:40:57"
+]
+]
+},
+"server_action_1311_imp_validate_from_to_dates_in_custom_rates": {
+"ir.actions.server": [
+[
+1311,
+"2021-10-05 04:15:19"
+]
+]
+},
+"server_action_1312_imp_pass_currency_information_to_custom_currency": {
+"ir.actions.server": [
+[
+1312,
+"2021-10-05 04:45:38"
+]
+]
+},
+"server_action_1368_imp_update_consignment_vendor_bill": {
+"ir.actions.server": [
+[
+1368,
+"2021-10-25 03:14:58"
+]
+]
+},
+"server_action_1370_imp_update_consignment_pi": {
+"ir.actions.server": [
+[
+1370,
+"2021-10-25 05:12:33"
+]
+]
+},
+"server_action_1374_imp_testing": {
+"ir.actions.server": [
+[
+1374,
+"2021-10-26 06:27:02"
+]
+]
+},
+"server_action_1378_imp_apply_selected_charge_lines_to_tp_invoice": {
+"ir.actions.server": [
+[
+1378,
+"2021-10-27 09:35:55"
+]
+]
+},
+"server_action_1381_tp_invoice_seq_no": {
+"ir.actions.server": [
+[
+1381,
+"2021-10-27 10:21:43"
+]
+]
+},
+"server_action_1384_imp_post_tp_invoice": {
+"ir.actions.server": [
+[
+1384,
+"2021-10-28 04:10:54"
+]
+]
+},
+"server_action_1387_imp_service_item_charge_duty_tax": {
+"ir.actions.server": [
+[
+1387,
+"2021-10-29 04:32:52"
+]
+]
+},
+"server_action_1396_imp_update_consignment_vendor_bill": {
+"ir.actions.server": [
+[
+1396,
+"2021-11-02 09:53:47"
+]
+]
+},
+"server_action_1402_lc_registration_seq_no": {
+"ir.actions.server": [
+[
+1402,
+"2021-11-03 09:22:43"
+]
+]
+},
+"server_action_1404_imp_post_lc": {
+"ir.actions.server": [
+[
+1404,
+"2021-11-04 02:15:47"
+]
+]
+},
+"server_action_1405_imp_amend_lc": {
+"ir.actions.server": [
+[
+1405,
+"2021-11-04 02:48:49"
+]
+]
+},
+"server_action_1407_imp_lc_amount_validation": {
+"ir.actions.server": [
+[
+1407,
+"2021-11-08 03:36:49"
+]
+]
+},
+"server_action_1408_imp_update_lc_status_to_paid": {
+"ir.actions.server": [
+[
+1408,
+"2021-11-08 06:02:14"
+]
+]
+},
+"server_action_1409_imp_update_lc_status_to_paid_2": {
+"ir.actions.server": [
+[
+1409,
+"2021-11-11 03:18:48"
+]
+]
+},
+"server_action_1441_test_22": {
+"ir.actions.server": [
+[
+1441,
+"2021-11-24 08:59:04"
+]
+]
+},
+"server_action_1489_sls_request_credit_note_approval_sent": {
+"ir.actions.server": [
+[
+1489,
+"2021-12-09 04:02:13"
+]
+]
+},
+"server_action_1491_sls_request_credit_note_approval_notify_user": {
+"ir.actions.server": [
+[
+1491,
+"2021-12-09 04:03:11"
+]
+]
+},
+"server_action_1493_sls_request_credit_note_approval": {
+"ir.actions.server": [
+[
+1493,
+"2021-12-09 04:03:49"
+]
+]
+},
+"server_action_1495_sls_credit_note_approval_main": {
+"ir.actions.server": [
+[
+1495,
+"2021-12-09 04:06:14"
+]
+]
+},
+"server_action_1519_sls_payment_reconciliation_automate": {
+"ir.actions.server": [
+[
+1519,
+"2021-12-17 04:35:21"
+]
+]
+},
+"server_action_1670_rpt_daily_sales_report_generate": {
+"ir.actions.server": [
+[
+1670,
+"2022-03-30 02:34:43"
+]
+]
+},
+"server_action_1671_rpt_daily_sales_report_clear": {
+"ir.actions.server": [
+[
+1671,
+"2022-03-30 02:36:40"
+]
+]
+},
+"server_action_1675_restrict_delete_in_sales_report_model": {
+"ir.actions.server": [
+[
+1675,
+"2022-03-30 04:16:47"
+]
+]
+},
+"server_action_1676_rpt_sample_button": {
+"ir.actions.server": [
+[
+1676,
+"2022-04-05 08:19:46"
+]
+]
+},
+"server_action_1680_rpt_customer_wise_invoices_generate": {
+"ir.actions.server": [
+[
+1680,
+"2022-04-07 03:18:10"
+]
+]
+},
+"server_action_1681_rpt_customer_wise_invoices_clear": {
+"ir.actions.server": [
+[
+1681,
+"2022-04-07 03:19:13"
+]
+]
+},
+"server_action_1704_test_to_delete": {
+"ir.actions.server": [
+[
+1704,
+"2022-05-25 06:06:58"
+]
+]
+},
+"server_action_1706_test2": {
+"ir.actions.server": [
+[
+1706,
+"2022-05-25 07:39:21"
+]
+]
+},
+"server_action_1709_srm_auto_populate_data": {
+"ir.actions.server": [
+[
+1726,
+"2022-07-25 02:45:51"
+],
+[
+1709,
+"2022-06-15 13:47:44"
+]
+]
+},
+"server_action_1710_rpt_daily_sales_report_clear_test": {
+"ir.actions.server": [
+[
+1710,
+"2022-06-16 02:18:37"
+]
+]
+},
+"server_action_1711_srm_auto_populate_data_2": {
+"ir.actions.server": [
+[
+1711,
+"2022-06-16 04:17:42"
+]
+]
+},
+"server_action_1715_imp_validate_debit_acc_type": {
+"ir.actions.server": [
+[
+1715,
+"2022-07-06 14:27:46"
+]
+]
+},
+"server_action_1716_print_checks": {
+"ir.actions.server": [
+[
+1716,
+"2022-07-14 12:25:59"
+]
+]
+},
+"server_action_1720_validate_journals_created_from_cp_npo": {
+"ir.actions.server": [
+[
+1720,
+"2022-07-21 02:35:13"
+]
+]
+},
+"server_action_1726_srm_auto_populate_data": {
+"ir.actions.server": [
+[
+1726,
+"2022-07-25 02:45:51"
+]
+]
+},
+"server_action_1727_srm_auto_populate_data_tau": {
+"ir.actions.server": [
+[
+1727,
+"2022-07-29 02:13:01"
+]
+]
+},
+"server_action_1730_srm_auto_populate_data_original": {
+"ir.actions.server": [
+[
+1730,
+"2022-08-04 04:23:13"
+]
+]
+},
+"server_action_1732_srm_auto_populate_report_type_in_account_move_lines": {
+"ir.actions.server": [
+[
+3278,
+"2025-07-24 01:59:50"
+]
+]
+},
+"server_action_1733_srm_update_sales_order_customer_invoice": {
+"ir.actions.server": [
+[
+1733,
+"2022-08-06 08:55:19"
+]
+]
+},
+"server_action_1740_srm_auto_populate_report_type_in_account_move": {
+"ir.actions.server": [
+[
+1740,
+"2022-08-11 15:09:07"
+]
+]
+},
+"server_action_1746_srm_auto_delete_sub_models": {
+"ir.actions.server": [
+[
+1746,
+"2022-09-07 04:28:23"
+]
+]
+},
+"server_action_1747_report_model_seq_no": {
+"ir.actions.server": [
+[
+1747,
+"2022-09-07 04:43:39"
+]
+]
+},
+"server_action_1751_sls_validate_payment_in_customer_invoice": {
+"ir.actions.server": [
+[
+1751,
+"2022-09-14 06:37:02"
+]
+]
+},
+"server_action_1759_srm_rpt_daily_sales_summary": {
+"ir.actions.server": [
+[
+1759,
+"2022-10-07 00:42:30"
+]
+]
+},
+"server_action_1760_srm_rpt_sales_details_for_incentive_calc": {
+"ir.actions.server": [
+[
+1760,
+"2022-10-07 00:56:10"
+]
+]
+},
+"server_action_1761_srm_rpt_production_overview_wip": {
+"ir.actions.server": [
+[
+1761,
+"2022-10-07 01:01:50"
+]
+]
+},
+"server_action_1762_srm_rpt_slow_moving_items": {
+"ir.actions.server": [
+[
+1762,
+"2022-10-07 01:04:30"
+]
+]
+},
+"server_action_1763_srm_rpt_sales_production_purchase_report": {
+"ir.actions.server": [
+[
+1763,
+"2022-10-07 01:12:58"
+]
+]
+},
+"server_action_1764_srm_rpt_production_summary_split": {
+"ir.actions.server": [
+[
+1764,
+"2022-10-07 01:19:53"
+]
+]
+},
+"server_action_1765_srm_rpt_production_job_variance": {
+"ir.actions.server": [
+[
+1765,
+"2022-10-07 01:24:04"
+]
+]
+},
+"server_action_1766_supplier_invoice_no_update_in_import_vendor_bill": {
+"ir.actions.server": [
+[
+1766,
+"2022-10-19 05:50:41"
+]
+]
+},
+"server_action_1775_sls_validate_bank_guarantee_in_customer_invoice": {
+"ir.actions.server": [
+[
+1775,
+"2022-10-20 03:45:35"
+]
+]
+},
+"server_action_1847_supplier_invoice_no_update_in_import_vendor_bill_2": {
+"ir.actions.server": [
+[
+1847,
+"2023-01-03 06:27:51"
+]
+]
+},
+"server_action_1851_sls_send_bank_guarantee_notification_in_customer_invoice": {
+"ir.actions.server": [
+[
+1851,
+"2023-01-09 03:21:40"
+]
+]
+},
+"server_action_1852_sls_view_bank_guarantee_validation_in_customer_invoice": {
+"ir.actions.server": [
+[
+1852,
+"2023-01-09 03:26:46"
+]
+]
+},
+"server_action_1854_sls_view_credit_limit_validation_in_customer_invoice": {
+"ir.actions.server": [
+[
+1854,
+"2023-01-11 06:59:37"
+]
+]
+},
+"server_action_2102_srm_rpt_project_gross_margin": {
+"ir.actions.server": [
+[
+2102,
+"2023-03-16 04:44:11"
+]
+]
+},
+"server_action_2112_tp_invoice_currency_update": {
+"ir.actions.server": [
+[
+2112,
+"2023-03-21 06:04:08"
+]
+]
+},
+"server_action_2116_project_gross_margin_report": {
+"ir.actions.server": [
+[
+2116,
+"2023-03-21 15:18:07"
+]
+]
+},
+"server_action_2126_report_model_created_date": {
+"ir.actions.server": [
+[
+2126,
+"2023-03-30 02:40:46"
+]
+]
+},
+"server_action_2127_project_gross_margin_delete_reports": {
+"ir.actions.server": [
+[
+2127,
+"2023-03-30 03:20:53"
+]
+]
+},
+"server_action_2128_project_gross_margin_report_management_purpose": {
+"ir.actions.server": [
+[
+2128,
+"2023-03-30 04:04:11"
+]
+]
+},
+"server_action_2129_srm_rpt_project_gross_margin_notify_users": {
+"ir.actions.server": [
+[
+2129,
+"2023-03-30 04:09:42"
+]
+]
+},
+"server_action_2176_rr_rug_account_update_in_si": {
+"ir.actions.server": [
+[
+2176,
+"2023-05-04 02:45:48"
+]
+]
+},
+"server_action_2183_proj_validate_delete": {
+"ir.actions.server": [
+[
+2183,
+"2023-05-10 05:02:57"
+]
+]
+},
+"server_action_2184_proj_pass_analytic_account_to_lines": {
+"ir.actions.server": [
+[
+2184,
+"2023-05-10 05:38:07"
+]
+]
+},
+"server_action_2331_rr_validate_rug_in_customer_invoice": {
+"ir.actions.server": [
+[
+2331,
+"2023-08-14 15:02:33"
+]
+]
+},
+"server_action_2344_update_analytic_tag_parameters_sales_invoice_line_product": {
+"ir.actions.server": [
+[
+2344,
+"2023-08-23 15:43:25"
+]
+]
+},
+"server_action_2366_imp_vendor_bill_currency_rate": {
+"ir.actions.server": [
+[
+2366,
+"2023-08-31 00:21:55"
+]
+]
+},
+"server_action_2417_update_analytic_tag_parameters_sales_invoice_customer": {
+"ir.actions.server": [
+[
+2417,
+"2023-10-05 00:57:29"
+]
+]
+},
+"server_action_2418_update_analytic_tag_parameters_sales_invoice_user": {
+"ir.actions.server": [
+[
+2418,
+"2023-10-05 01:04:42"
+]
+]
+},
+"server_action_2419_update_analytic_tag_parameters_sales_invoice_line_account": {
+"ir.actions.server": [
+[
+2419,
+"2023-10-05 01:06:01"
+]
+]
+},
+"server_action_2427_rr_validate_payment": {
+"ir.actions.server": [
+[
+2427,
+"2023-10-17 06:47:40"
+]
+]
+},
+"server_action_2432_tp_invoice_linetax_update": {
+"ir.actions.server": [
+[
+2432,
+"2023-10-26 07:51:16"
+]
+]
+},
+"server_action_2490_srm_rpt_costing_work_sheet": {
+"ir.actions.server": [
+[
+2490,
+"2024-02-01 01:39:19"
+]
+]
+},
+"server_action_2537_sls_credit_note_approval": {
+"ir.actions.server": [
+[
+2537,
+"2024-04-18 03:58:30"
+]
+]
+},
+"server_action_2539_sls_credit_note_approval_confirm": {
+"ir.actions.server": [
+[
+2539,
+"2024-04-18 04:00:23"
+]
+]
+},
+"server_action_2570_proj_validate_confirm": {
+"ir.actions.server": [
+[
+2570,
+"2024-06-04 09:11:08"
+]
+]
+},
+"server_action_2587_jin_company_id_in_product": {
+"ir.actions.server": [
+[
+2587,
+"2024-07-08 14:57:57"
+]
+]
+},
+"server_action_2612_jin_company_id_in_lc_header": {
+"ir.actions.server": [
+[
+2612,
+"2024-07-11 08:11:58"
+]
+]
+},
+"server_action_2617_jin_company_id_in_consignment_charge_header": {
+"ir.actions.server": [
+[
+2617,
+"2024-07-11 09:26:41"
+]
+]
+},
+"server_action_2627_update_project_no_in_journal_entry": {
+"ir.actions.server": [
+[
+2627,
+"2024-07-16 10:01:00"
+]
+]
+},
+"server_action_2674_jin_company_id_in_custom_currency": {
+"ir.actions.server": [
+[
+2674,
+"2024-07-17 16:24:56"
+]
+]
+},
+"server_action_2675_jin_company_id_in_custom_currency_rate": {
+"ir.actions.server": [
+[
+2675,
+"2024-07-17 16:27:30"
+]
+]
+},
+"server_action_2684_jin_company_id_in_misc_charge_codes": {
+"ir.actions.server": [
+[
+2684,
+"2024-07-18 02:28:00"
+]
+]
+},
+"server_action_2738_project_update_project_no_for_manual_transactions": {
+"ir.actions.server": [
+[
+2738,
+"2024-07-25 07:54:05"
+]
+]
+},
+"server_action_2739_project_update_advance_payment_account": {
+"ir.actions.server": [
+[
+2739,
+"2024-07-25 08:34:10"
+]
+]
+},
+"server_action_2762_project_update_advance_payment_account_vendor_bill": {
+"ir.actions.server": [
+[
+2762,
+"2024-08-08 08:26:09"
+]
+]
+},
+"server_action_278_post_payments": {
+"ir.actions.server": [
+[
+278,
+"2021-02-03 05:30:53"
+]
+]
+},
+"server_action_2827_jin_company_id_in_payment_terms": {
+"ir.actions.server": [
+[
+2827,
+"2024-10-15 10:07:17"
+]
+]
+},
+"server_action_2871_jin_company_id_in_journal_types": {
+"ir.actions.server": [
+[
+2871,
+"2024-10-30 08:36:44"
+]
+]
+},
+"server_action_2884_pr_validate_cash_issued_in_npo": {
+"ir.actions.server": [
+[
+2884,
+"2024-12-19 06:43:29"
+]
+]
+},
+"server_action_3278_execute_code": {
+"ir.actions.server": [
+[
+3278,
+"2025-07-24 01:59:50"
+]
+]
+},
+"srv_lc_amend_lc": {
+"ir.actions.server": [
+[
+1405,
+"2021-11-04 02:48:49"
+]
+]
+},
+"srv_lc_post_lc": {
+"ir.actions.server": [
+[
+1404,
+"2021-11-04 02:15:47"
+]
+]
+},
+"srv_rug_account_update_in_si": {
+"ir.actions.server": [
+[
+2176,
+"2023-05-04 02:45:48"
+]
+]
+},
+"srv_sales_report_sample_button": {
+"ir.actions.server": [
+[
+1676,
+"2022-04-05 08:19:46"
+]
+]
+},
+"srv_tp_invoice_apply_charges": {
+"ir.actions.server": [
+[
+1378,
+"2021-10-27 09:35:55"
+]
+]
+},
+"view_3261_default_pivot_view_for_ir_model_446_e": {
+"ir.ui.view": [
+[
+3261,
+"2022-02-15 14:11:33"
+]
+]
+},
+"view_4017_odoo_studio_account_move_form_customization_button_e": {
+"ir.ui.view": [
+[
+4017,
+"2023-01-06 05:33:32"
+]
+]
+},
+"view_5061_product_template_product_form_button_e": {
+"ir.ui.view": [
+[
+5061,
+"2023-08-01 08:35:40"
+]
+]
+},
+"view_5073_odoo_studio_account_analytic_group_form_customization_e": {
+"ir.ui.view": [
+[
+5073,
+"2023-08-15 07:42:40"
+]
+]
+},
+"view_5291_odoo_studio_account_move_line_tree_grouped_test_01_customiza_e": {
+"ir.ui.view": [
+[
+5291,
+"2023-09-20 05:57:37"
+]
+]
+},
+"view_5423_default_form_view_for_x_pump_price_costing_e": {
+"ir.ui.view": [
+[
+5423,
+"2024-02-01 01:47:17"
+]
+]
+},
+"view_5424_default_search_view_for_x_pump_price_costing_e": {
+"ir.ui.view": [
+[
+5424,
+"2024-02-01 01:47:17"
+]
+]
+},
+"view_8293_account_move_line_tree_epf_e": {
+"ir.ui.view": [
+[
+8293,
+"2025-06-05 01:01:04"
+]
+]
+}
+}
