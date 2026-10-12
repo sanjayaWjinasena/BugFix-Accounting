@@ -822,7 +822,7 @@ else:
         <field name="activity_date_deadline_range">0</field>
         <field name="activity_date_deadline_range_type">days</field>
         <field name="activity_user_type">specific</field>
-        <field name="activity_user_id" ref="seed_master_data_and_settings.user_146"/>
+        <!-- upgrade-testing: seeded user not shipped: <field name="activity_user_id" ref="seed_master_data_and_settings.user_146"/> -->
         <field name="activity_user_field_name">user_id</field>
     </record>
 

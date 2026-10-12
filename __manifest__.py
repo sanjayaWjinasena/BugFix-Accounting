@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 {
+    # upgrade-testing branch: data files below are commented out - this branch installs functions only, no data is seeded.
     'name': 'Jinasena : Module : Accounting',
     'version': '17.0.0.0.146',
     'summary': 'Studio-to-Python port for BugFix-Accounting',
@@ -308,8 +309,8 @@
         'data/server_actions_gap.xml',
         'data/automations_gap.xml',
         'data/window_actions_gap.xml',
-        'data/ir_defaults_gap.xml',
-        'data/ir_defaults_unblocked.xml',
+        # 'data/ir_defaults_gap.xml',  # upgrade-testing: data, not shipped
+        # 'data/ir_defaults_unblocked.xml',  # upgrade-testing: data, not shipped
         'views/account_analytic_plan_e_views.xml',
         'views/account_move_e_views.xml',
         'views/account_move_line_e_views.xml',
