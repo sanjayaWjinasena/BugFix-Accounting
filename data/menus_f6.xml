@@ -17,9 +17,11 @@
   <record id="menu_f6_sales_invoice_lines" model="ir.ui.menu">
     <field name="active" eval="False"/>
   </record>
-  <menuitem id="menu_f6_etf_schedule" name="ETF Schedule" parent="hr_payroll.menu_hr_payroll_report" action="BugFix-Accounting.act_window_2893_etf_schedule" sequence="3"/>
+  <!-- upgrade-testing/VM02 2026-10-12: duplicate of the same Clear-DB menu ported twice; switched off, the other copy is kept -->
+  <menuitem id="menu_f6_etf_schedule" name="ETF Schedule" parent="hr_payroll.menu_hr_payroll_report" action="BugFix-Accounting.act_window_2893_etf_schedule" sequence="3" active="False"/>
   <menuitem id="menu_f6_advance_payment_account" name="Advance Payment Account" parent="account.root_payment_menu" action="BugFix-Accounting.action_2740_advance_payment_account" sequence="4"/>
-  <menuitem id="menu_f6_epf_schedule" name="EPF Schedule" parent="hr_payroll.menu_hr_payroll_report" action="BugFix-Accounting.action_2894_epf_schedule" sequence="4"/>
+  <!-- upgrade-testing/VM02 2026-10-12: duplicate of the same Clear-DB menu ported twice; switched off, the other copy is kept -->
+  <menuitem id="menu_f6_epf_schedule" name="EPF Schedule" parent="hr_payroll.menu_hr_payroll_report" action="BugFix-Accounting.action_2894_epf_schedule" sequence="4" active="False"/>
   <menuitem id="menu_f6_tax_groups" name="Tax Groups" parent="account.account_account_menu" action="BugFix-Accounting.action_1891_tax_groups" sequence="5"/>
   <menuitem id="menu_f6_journal_types" name="Journal Types" parent="stock.menu_stock_config_settings" action="BugFix-Accounting.action_2447_journal_types" sequence="5"/>
   <menuitem id="menu_f6_pump_product_costing" name="Pump Product Costing" parent="account.account_reports_management_menu" action="BugFix-Accounting.action_2285_pump_product_costing" sequence="6"/>
@@ -36,7 +38,8 @@
   <record id="menu_f6_sales_report_type" model="ir.ui.menu">
     <field name="active" eval="False"/>
   </record>
-  <menuitem id="menu_f6_tp_invoice_line" name="TP Invoice Line" action="BugFix-Accounting.action_2865_tp_invoice_line" sequence="11"/>
+  <!-- upgrade-testing/VM02 2026-10-12: duplicate of the same Clear-DB menu ported twice; switched off, the other copy is kept -->
+  <menuitem id="menu_f6_tp_invoice_line" name="TP Invoice Line" action="BugFix-Accounting.action_2865_tp_invoice_line" sequence="11" active="False"/>
   <menuitem id="menu_f6_pivot_views" name="Pivot Views" parent="sale.sale_menu_root" action="BugFix-Accounting.action_1737_wip_production_orders" sequence="11"/>
   <record id="menu_f6_pivot_views" model="ir.ui.menu">
     <field name="active" eval="False"/>
