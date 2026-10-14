@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """x_rm_production_orders — Production-order reporting row.
 
 Per-MO row capturing product code, start/end, estimated and started

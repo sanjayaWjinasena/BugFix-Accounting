@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """v0.0.142: drop the two STALE Studio extension views of x_misc_charge_codes
 so the v141 file (trio fields removed) can load.
 
@@ -30,7 +29,7 @@ installs (version is None) and when the views are already gone.
 """
 import logging
 
-from odoo import api, SUPERUSER_ID
+from odoo import SUPERUSER_ID, api
 
 _logger = logging.getLogger(__name__)
 

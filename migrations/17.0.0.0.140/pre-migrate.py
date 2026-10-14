@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """v17.0.0.0.140: delete stale ir.default rows for
 x_misc_charge_codes.x_studio_credit_acc_type and x_studio_debit_acc_type.
 
@@ -13,7 +12,7 @@ when rows don't exist).
 """
 import logging
 
-from odoo import api, SUPERUSER_ID
+from odoo import SUPERUSER_ID, api
 
 _logger = logging.getLogger(__name__)
 

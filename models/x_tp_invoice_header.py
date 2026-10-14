@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """x_tp_invoice_header — Transfer-Price (TP) invoice header.
 
 Vendor bill created from an import consignment. Each header carries

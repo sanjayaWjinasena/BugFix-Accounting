@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """v0.0.141: detach this module's ir.model.data pointers for the three
 x_misc_charge_codes link fields that moved to BugFix-Purchase v0.1.0.176.
 
@@ -17,7 +16,7 @@ when the rows are already gone.
 """
 import logging
 
-from odoo import api, SUPERUSER_ID
+from odoo import SUPERUSER_ID, api
 
 _logger = logging.getLogger(__name__)
 

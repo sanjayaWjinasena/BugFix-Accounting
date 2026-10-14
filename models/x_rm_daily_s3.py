@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """x_rm_daily_s3 — Daily-sales reporting row, variant 3.
 
 Same shape as s1 / s2 EXCEPT the partner reference is named

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """x_temp_tp_invoice_head — transient/staging header for TP invoices.
 
 Used by the Studio-designed wizard flow to accumulate charge lines

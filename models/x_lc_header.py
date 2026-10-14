@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Sentinel declaration for x_lc_header so cross-references resolve."""
 from odoo import api, fields, models
 

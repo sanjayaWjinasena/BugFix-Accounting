@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-from odoo import models, fields
+from odoo import fields, models
+
 
 class XRmNoneMovingGap(models.Model):
     _inherit = 'x_rm_none_moving'

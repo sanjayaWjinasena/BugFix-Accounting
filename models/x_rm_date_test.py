@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """x_rm_date_test — Studio-created test reporting model.
 
 Small catchall reporting row keyed off x_sales_report_model_id (the

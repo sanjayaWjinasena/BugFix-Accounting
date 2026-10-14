@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-from odoo import models, fields
+from odoo import fields, models
+
 
 class XRmDailySalesReporGap(models.Model):
     _inherit = 'x_rm_daily_sales_repor'

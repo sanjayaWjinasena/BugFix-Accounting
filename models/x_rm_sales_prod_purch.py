@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """x_rm_sales_prod_purch — Sales vs production vs purchase reporting row.
 
 Per-product summary of production quantity, purchase quantity,

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """x_rm_gross_margin_esti_line_7e86d — sub-line under a gross-margin
 estimate row.
 
@@ -18,6 +17,6 @@ class XRmGrossMarginEstiLine(models.Model):
 
     x_name = fields.Char(string='Description', required=True)
     x_rm_gross_margin_esti_id = fields.Many2one(
-        'x_rm_gross_margin_esti', string='X Rm Gross Margin Esti',
+        'x_rm_gross_margin_esti',
     )
     x_studio_sequence = fields.Integer(string='Sequence', default=10)

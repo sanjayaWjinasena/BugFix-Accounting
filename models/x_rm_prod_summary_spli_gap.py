@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-from odoo import models, fields
+from odoo import fields, models
+
 
 class XRmProdSummarySpliGap(models.Model):
     _inherit = 'x_rm_prod_summary_spli'

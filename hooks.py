@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """BugFix-Accounting: post-install hooks.
 
 Seeds ir.model.fields.selection rows Studio populated in CDB but Odoo 17

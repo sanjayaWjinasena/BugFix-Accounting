@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """x_tp_invoice_line — Transfer-Price (TP) invoice line.
 
 Child of x_tp_invoice_header via inverse `x_studio_tp_invoice_header_id`.

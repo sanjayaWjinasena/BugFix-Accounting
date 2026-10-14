@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """x_rm_gross_margin_esti — Gross-margin ESTIMATE header row.
 
 Per-category estimate row under a x_sales_report_model. Bundles a

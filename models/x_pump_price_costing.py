@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """x_pump_price_costing - pump price costing worksheet.
 
 Studio-created custom model. Each row records a pump product's

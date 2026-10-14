@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """x_rm_production_varian — Production-variance reporting row.
 
 Compares BOM planned vs actual for a single production step:

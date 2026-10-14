@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """x_rm_gross_margin_actu — Gross-margin ACTUAL header row.
 
 Actual counterpart to x_rm_gross_margin_esti. Same shape plus

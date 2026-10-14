@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-from odoo import models, fields
+from odoo import fields, models
+
 
 class XRmCustomerWiseInvGap(models.Model):
     _inherit = 'x_rm_customer_wise_inv'

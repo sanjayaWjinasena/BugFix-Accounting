@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """x_rm_daily_s1 — Daily-sales reporting row, variant 1.
 
 One of three near-identical daily-sales row models (s1/s2/s3) that

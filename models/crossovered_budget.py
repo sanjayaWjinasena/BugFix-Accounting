@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """crossovered.budget — Studio extensions for project-budget management.
 
 Extends the standard-Odoo (account_budget) `crossovered.budget` model

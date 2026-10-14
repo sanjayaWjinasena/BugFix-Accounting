@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """x_temp_estimated — line-level detail behind both estimated + actual
 gross-margin reporting.
 

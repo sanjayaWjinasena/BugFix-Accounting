@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-from odoo import models, fields
+from odoo import fields, models
+
 
 class XTempTpInvoiceLineGap(models.Model):
     _inherit = 'x_temp_tp_invoice_line'

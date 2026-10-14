@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-from odoo import models, fields
+from odoo import fields, models
+
 
 class XRmDateTestGap(models.Model):
     _inherit = 'x_rm_date_test'

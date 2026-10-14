@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """x_rm_daily_s2 — Daily-sales reporting row, variant 2.
 
 Identical field shape to x_rm_daily_s1. Studio created these as

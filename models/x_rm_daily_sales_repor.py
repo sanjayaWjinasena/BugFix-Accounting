@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """x_rm_daily_sales_repor — Daily sales KPI reporting row.
 
 Per-sales-centre row storing monthly targets, daily / month /

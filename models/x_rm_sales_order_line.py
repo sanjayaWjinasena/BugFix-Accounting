@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """x_rm_sales_order_line — Sales-order-line reporting row.
 
 Snapshot of a sale.order.line (product, quantity, unit price,

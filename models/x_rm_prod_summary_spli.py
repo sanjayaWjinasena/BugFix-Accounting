@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """x_rm_prod_summary_spli — Production-summary split-quantity row.
 
 Per-job-per-product row splitting a production quantity across two

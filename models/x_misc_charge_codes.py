@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Sentinel declaration for x_misc_charge_codes so cross-references resolve.
 
 NOTE (v0.0.141): the three link Many2ones to x_trf_charges / x_trf_duty /

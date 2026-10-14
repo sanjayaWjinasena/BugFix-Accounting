@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """x_rm_none_moving — None-moving stock reporting row.
 
 Per-product line under a x_sales_report_model header, capturing

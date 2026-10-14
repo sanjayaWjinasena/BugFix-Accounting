@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """x_rm_gross_margin_invo — Gross-margin invoice reporting row.
 
 Per-invoice line under a gross-margin report showing invoice date,

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Ported declaration for x_journal_types (Studio custom model).
 
 Clear-DB has this model with 6 user fields plus mail.thread +
