@@ -20,7 +20,8 @@
   <menuitem id="menu_1132_journal_types" name="Journal Types" parent="stock.menu_stock_config_settings" action="BugFix-Accounting.action_2447_journal_types" sequence="5"/>
   <menuitem id="menu_881_sales_report_model" name="Sales Report Model" parent="BugFix-Accounting.menu_880_report_models" action="BugFix-Accounting.action_1667_sales_report_model" sequence="10"/>
   <menuitem id="menu_882_sales_report_type" name="Sales Report Type" parent="BugFix-Accounting.menu_880_report_models" action="BugFix-Accounting.action_1668_sales_report_type" sequence="10"/>
-  <menuitem id="menu_1222_journal_entries" name="Journal Entries" parent="BugFix-Accounting.menu_1221_miscellaneous" action="BugFix-Accounting.action_2630_journal_entries" sequence="1"/>
+  <!-- 2026-10-14: Clear-DB menu 1222 opens the standard Journal Entries action (account.action_move_journal_line). The port pointed it at action_2630 - the project smart-button action filtered on active_id - which errors when opened from a menu ("Name 'active_id' is not defined"). -->
+  <menuitem id="menu_1222_journal_entries" name="Journal Entries" parent="BugFix-Accounting.menu_1221_miscellaneous" action="account.action_move_journal_line" sequence="1"/>
   <menuitem id="menu_1218_purchases" name="Purchases" parent="account.menu_finance_entries_accounting_miscellaneous" action="account.action_account_moves_journal_purchase" sequence="2"/>
   <menuitem id="menu_1226_partner_ledger" name="Partner Ledger" parent="BugFix-Accounting.menu_1224_ledgers" action="account.action_account_moves_ledger_partner" sequence="2"/>
   <menuitem id="menu_1219_bank_and_cash" name="Bank and Cash" parent="account.menu_finance_entries_accounting_miscellaneous" action="account.action_account_moves_journal_bank_cash" sequence="3"/>
