@@ -69,11 +69,10 @@ Miscellaneous import charge code master (created by BugFix-Stock) that this repo
   <details><summary>code (5 lines)</summary>
 
 ```python
+company_id = env.context.get("allowed_company_ids", [env.user.company_id.id])[0]
+company = env["res.company"].browse(company_id)
 
-company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
-company = env['res.company'].browse(company_id)
-
-record['x_studio_company_id'] = company.id
+record["x_studio_company_id"] = company.id
 ```
   </details>
 - **IMP - Validate Debit Acc Type** (`server_action_1715_imp_validate_debit_acc_type`, type `code`)
@@ -83,8 +82,8 @@ record['x_studio_company_id'] = company.id
   <details><summary>code (2 lines)</summary>
 
 ```python
-if record.x_studio_debit_acc_type == 'Item':
-  record['x_studio_debit_account'] = 0
+if record.x_studio_debit_acc_type == "Item":
+    record["x_studio_debit_account"] = 0
 ```
   </details>
 - **JIN - Company Id in Misc Charge Codes** (`sa_f5_x_misc_charge_codes_jin_company_id_in_misc_charge_codes`, type `code`)
@@ -94,10 +93,10 @@ if record.x_studio_debit_acc_type == 'Item':
   <details><summary>code (4 lines)</summary>
 
 ```python
-company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
-company = env['res.company'].browse(company_id)
+company_id = env.context.get("allowed_company_ids", [env.user.company_id.id])[0]
+company = env["res.company"].browse(company_id)
 
-record['x_studio_company_id'] = company.id
+record["x_studio_company_id"] = company.id
 ```
   </details>
 **Automations (1):**

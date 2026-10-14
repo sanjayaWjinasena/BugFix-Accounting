@@ -148,23 +148,31 @@ This repo adds 114 fields to payments. Most are read-only mirrors of the Studio 
   <details><summary>code (17 lines)</summary>
 
 ```python
-
 # bugfix_sales:config-cutover-v22
-if record.state == 'draft':
-  if record.x_studio_quotation_type == 'Repair':
-    sum_total = 0
-    so_value = 0
-    payment = env['account.payment'].search([('x_studio_sales_order', '=', record.x_studio_sales_order.id),('state', '=', 'posted')])
-    if payment:
-      for total in payment:
-        sum_total += total.amount
-          
-    min_magin = record.company_id
-    if min_magin:
-      so_value = round(record.x_studio_sales_order.amount_total * (min_magin.x_studio_advance_payment_/100),2)
-        
-    if so_value > (record.amount + sum_total):
-      raise UserError('Payment is not within the minimum precentage.')
+if record.state == "draft":
+    if record.x_studio_quotation_type == "Repair":
+        sum_total = 0
+        so_value = 0
+        payment = env["account.payment"].search(
+            [
+                ("x_studio_sales_order", "=", record.x_studio_sales_order.id),
+                ("state", "=", "posted"),
+            ]
+        )
+        if payment:
+            for total in payment:
+                sum_total += total.amount
+
+        min_magin = record.company_id
+        if min_magin:
+            so_value = round(
+                record.x_studio_sales_order.amount_total
+                * (min_magin.x_studio_advance_payment_ / 100),
+                2,
+            )
+
+        if so_value > (record.amount + sum_total):
+            raise UserError("Payment is not within the minimum precentage.")
 ```
   </details>
 - **Execute Code** (`server_action_2627_update_project_no_in_journal_entry`, type `code`)
@@ -174,11 +182,19 @@ if record.state == 'draft':
   <details><summary>code (5 lines)</summary>
 
 ```python
-
 if record.x_studio_project_no_1 != False:
-  journal_entry = env['account.move'].search([('payment_id', '=', record.id)],limit=1)
-  if journal_entry:
-    journal_entry.write({'x_studio_project_no':record.x_studio_project_no_1.id, 'x_studio_journal_type':'Payment', 'x_studio_project_no_issue':record.x_studio_project_no_1.id, 'x_studio_type':record.x_studio_type})
+    journal_entry = env["account.move"].search(
+        [("payment_id", "=", record.id)], limit=1
+    )
+    if journal_entry:
+        journal_entry.write(
+            {
+                "x_studio_project_no": record.x_studio_project_no_1.id,
+                "x_studio_journal_type": "Payment",
+                "x_studio_project_no_issue": record.x_studio_project_no_1.id,
+                "x_studio_type": record.x_studio_type,
+            }
+        )
 ```
   </details>
 - **IMP - Update LC Status to Paid - 2** (`server_action_1409_imp_update_lc_status_to_paid_2`, type `code`)
@@ -188,18 +204,37 @@ if record.x_studio_project_no_1 != False:
   <details><summary>code (12 lines)</summary>
 
 ```python
-if record.state == 'posted':
-  amount_lcy = 0.00
-  if record.x_studio_lc_no_1 != False:
-    lc_lines = env['x_lc_header'].search([('id', '=', record.x_studio_lc_no_1.id), ('x_studio_status', '=', 'Posted')],limit=1)
-    if lc_lines:
-      currency = env['res.currency'].search([('id', '=', record.currency_id.id),('date', '<=', datetime.datetime.now().date()),('active', '=', True)],limit=1)
-      if currency:
-        amount_lcy = round((record.amount * currency.rate),2)
-      else:
-        amount_lcy = record.amount
-        
-      lc_lines.write({'x_studio_status':'Paid','x_studio_selection_field_yo4qM':'Paid','x_studio_paid_amount_lcy':amount_lcy})
+if record.state == "posted":
+    amount_lcy = 0.00
+    if record.x_studio_lc_no_1 != False:
+        lc_lines = env["x_lc_header"].search(
+            [
+                ("id", "=", record.x_studio_lc_no_1.id),
+                ("x_studio_status", "=", "Posted"),
+            ],
+            limit=1,
+        )
+        if lc_lines:
+            currency = env["res.currency"].search(
+                [
+                    ("id", "=", record.currency_id.id),
+                    ("date", "<=", datetime.datetime.now().date()),
+                    ("active", "=", True),
+                ],
+                limit=1,
+            )
+            if currency:
+                amount_lcy = round((record.amount * currency.rate), 2)
+            else:
+                amount_lcy = record.amount
+
+            lc_lines.write(
+                {
+                    "x_studio_status": "Paid",
+                    "x_studio_selection_field_yo4qM": "Paid",
+                    "x_studio_paid_amount_lcy": amount_lcy,
+                }
+            )
 ```
   </details>
 - **Post Payments** (`server_action_278_post_payments`, type `code`)
@@ -209,8 +244,7 @@ if record.state == 'posted':
   <details><summary>code (2 lines)</summary>
 
 ```python
-
-                records.action_post()
+records.action_post()
 ```
   </details>
 - **Print Checks** (`server_action_1716_print_checks`, type `code`)
@@ -220,7 +254,6 @@ if record.state == 'posted':
   <details><summary>code (3 lines)</summary>
 
 ```python
-
 if records:
     action = records.print_checks()
 ```
@@ -232,56 +265,91 @@ if records:
   <details><summary>code (50 lines)</summary>
 
 ```python
-
-if record.x_studio_type == 'Advance Payment':
-    account = env['x_advance_payment_acco'].search([('id', '=', 1)], limit=1)
+if record.x_studio_type == "Advance Payment":
+    account = env["x_advance_payment_acco"].search([("id", "=", 1)], limit=1)
     if account:
-        if record.partner_type == 'customer':
+        if record.partner_type == "customer":
             if account.x_studio_advance_payment_account_sales == False:
-                raise UserError('Advance Payment Account (Sales) must be Specified in Accounting Configuration')
+                raise UserError(
+                    "Advance Payment Account (Sales) must be Specified in Accounting Configuration"
+                )
 
-            journal_entry = env['account.move'].search([('payment_id', '=', record.id)], limit=1)
+            journal_entry = env["account.move"].search(
+                [("payment_id", "=", record.id)], limit=1
+            )
             if journal_entry:
-                if record.payment_type == 'inbound':
-                    lines = env['account.move.line'].search([('move_id', '=', journal_entry.id), ('debit', '>', 0)], limit=1)
+                if record.payment_type == "inbound":
+                    lines = env["account.move.line"].search(
+                        [("move_id", "=", journal_entry.id), ("debit", ">", 0)], limit=1
+                    )
                     if lines:
-                        lines.write({'account_id': account.x_studio_advance_payment_account_sales.id})
-                        record.write({'x_studio_advance_payment_acc_updated': True})
+                        lines.write(
+                            {
+                                "account_id": account.x_studio_advance_payment_account_sales.id
+                            }
+                        )
+                        record.write({"x_studio_advance_payment_acc_updated": True})
                     else:
-                        raise UserError('There is no payment line to update.')
+                        raise UserError("There is no payment line to update.")
                 else:
-                    lines = env['account.move.line'].search([('move_id', '=', journal_entry.id), ('credit', '>', 0)], limit=1)
+                    lines = env["account.move.line"].search(
+                        [("move_id", "=", journal_entry.id), ("credit", ">", 0)],
+                        limit=1,
+                    )
                     if lines:
-                        lines.write({'account_id': account.x_studio_advance_payment_account_sales.id})
-                        record.write({'x_studio_advance_payment_acc_updated': True})
+                        lines.write(
+                            {
+                                "account_id": account.x_studio_advance_payment_account_sales.id
+                            }
+                        )
+                        record.write({"x_studio_advance_payment_acc_updated": True})
                     else:
-                        raise UserError('There is no payment line to update.')
+                        raise UserError("There is no payment line to update.")
             else:
-                raise UserError('There is no payment to update.')
+                raise UserError("There is no payment to update.")
         else:
             if account.x_studio_advance_payment_account_purchases_1 == False:
-                raise UserError('Advance Payment Account (Purchases) must be Specified in Accounting Configuration')
+                raise UserError(
+                    "Advance Payment Account (Purchases) must be Specified in Accounting Configuration"
+                )
 
-            journal_entry = env['account.move'].search([('payment_id', '=', record.id)], limit=1)
+            journal_entry = env["account.move"].search(
+                [("payment_id", "=", record.id)], limit=1
+            )
             if journal_entry:
-                if record.payment_type == 'inbound':
-                    lines = env['account.move.line'].search([('move_id', '=', journal_entry.id), ('debit', '>', 0)], limit=1)
+                if record.payment_type == "inbound":
+                    lines = env["account.move.line"].search(
+                        [("move_id", "=", journal_entry.id), ("debit", ">", 0)], limit=1
+                    )
                     if lines:
-                        lines.write({'account_id': account.x_studio_advance_payment_account_purchases_1.id})
-                        record.write({'x_studio_advance_payment_acc_updated': True})
+                        lines.write(
+                            {
+                                "account_id": account.x_studio_advance_payment_account_purchases_1.id
+                            }
+                        )
+                        record.write({"x_studio_advance_payment_acc_updated": True})
                     else:
-                        raise UserError('There is no payment line to update.')
+                        raise UserError("There is no payment line to update.")
                 else:
-                    lines = env['account.move.line'].search([('move_id', '=', journal_entry.id), ('credit', '>', 0)], limit=1)
+                    lines = env["account.move.line"].search(
+                        [("move_id", "=", journal_entry.id), ("credit", ">", 0)],
+                        limit=1,
+                    )
                     if lines:
-                        lines.write({'account_id': account.x_studio_advance_payment_account_purchases_1.id})
-                        record.write({'x_studio_advance_payment_acc_updated': True})
+                        lines.write(
+                            {
+                                "account_id": account.x_studio_advance_payment_account_purchases_1.id
+                            }
+                        )
+                        record.write({"x_studio_advance_payment_acc_updated": True})
                     else:
-                        raise UserError('There is no payment line to update.')
+                        raise UserError("There is no payment line to update.")
             else:
-                raise UserError('There is no payment to update.')
+                raise UserError("There is no payment to update.")
     else:
-        raise UserError('Advance Payment Accounts have not been setup in Accounting Configuration')
+        raise UserError(
+            "Advance Payment Accounts have not been setup in Accounting Configuration"
+        )
 ```
   </details>
 - **Project - Update Advance Payment Account** (`server_action_2739_project_update_advance_payment_account`, type `code`)
@@ -291,55 +359,91 @@ if record.x_studio_type == 'Advance Payment':
   <details><summary>code (49 lines)</summary>
 
 ```python
-if record.x_studio_type == 'Advance Payment':
-  account = env['x_advance_payment_acco'].search([('id', '=', 1)], limit=1)
-  if account:
-    if record.partner_type == 'customer':
-      if account.x_studio_advance_payment_account_sales == False:
-        raise UserError('Advance Payment Account (Sales) must be Specified in Accounting Configuration')
-      
-      journal_entry = env['account.move'].search([('payment_id', '=', record.id)], limit=1)
-      if journal_entry:
-        if record.payment_type == 'inbound':
-          lines = env['account.move.line'].search([('move_id', '=', journal_entry.id),('debit', '>', 0)], limit=1)
-          if lines:
-            lines.write({'account_id':account.x_studio_advance_payment_account_sales.id}) 
-            record.write({'x_studio_advance_payment_acc_updated': True})
-          else:
-            raise UserError('There is no payment line to update.') 
+if record.x_studio_type == "Advance Payment":
+    account = env["x_advance_payment_acco"].search([("id", "=", 1)], limit=1)
+    if account:
+        if record.partner_type == "customer":
+            if account.x_studio_advance_payment_account_sales == False:
+                raise UserError(
+                    "Advance Payment Account (Sales) must be Specified in Accounting Configuration"
+                )
+
+            journal_entry = env["account.move"].search(
+                [("payment_id", "=", record.id)], limit=1
+            )
+            if journal_entry:
+                if record.payment_type == "inbound":
+                    lines = env["account.move.line"].search(
+                        [("move_id", "=", journal_entry.id), ("debit", ">", 0)], limit=1
+                    )
+                    if lines:
+                        lines.write(
+                            {
+                                "account_id": account.x_studio_advance_payment_account_sales.id
+                            }
+                        )
+                        record.write({"x_studio_advance_payment_acc_updated": True})
+                    else:
+                        raise UserError("There is no payment line to update.")
+                else:
+                    lines = env["account.move.line"].search(
+                        [("move_id", "=", journal_entry.id), ("credit", ">", 0)],
+                        limit=1,
+                    )
+                    if lines:
+                        lines.write(
+                            {
+                                "account_id": account.x_studio_advance_payment_account_sales.id
+                            }
+                        )
+                        record.write({"x_studio_advance_payment_acc_updated": True})
+                    else:
+                        raise UserError("There is no payment line to update.")
+            else:
+                raise UserError("There is no payment to update.")
         else:
-          lines = env['account.move.line'].search([('move_id', '=', journal_entry.id),('credit', '>', 0)], limit=1)
-          if lines:
-            lines.write({'account_id':account.x_studio_advance_payment_account_sales.id}) 
-            record.write({'x_studio_advance_payment_acc_updated': True})
-          else:
-            raise UserError('There is no payment line to update.')
-      else:
-        raise UserError('There is no payment to update.')
+            if account.x_studio_advance_payment_account_purchases_1 == False:
+                raise UserError(
+                    "Advance Payment Account (Purchases) must be Specified in Accounting Configuration"
+                )
+
+            journal_entry = env["account.move"].search(
+                [("payment_id", "=", record.id)], limit=1
+            )
+            if journal_entry:
+                if record.payment_type == "inbound":
+                    lines = env["account.move.line"].search(
+                        [("move_id", "=", journal_entry.id), ("debit", ">", 0)], limit=1
+                    )
+                    if lines:
+                        lines.write(
+                            {
+                                "account_id": account.x_studio_advance_payment_account_purchases_1.id
+                            }
+                        )
+                        record.write({"x_studio_advance_payment_acc_updated": True})
+                    else:
+                        raise UserError("There is no payment line to update.")
+                else:
+                    lines = env["account.move.line"].search(
+                        [("move_id", "=", journal_entry.id), ("credit", ">", 0)],
+                        limit=1,
+                    )
+                    if lines:
+                        lines.write(
+                            {
+                                "account_id": account.x_studio_advance_payment_account_purchases_1.id
+                            }
+                        )
+                        record.write({"x_studio_advance_payment_acc_updated": True})
+                    else:
+                        raise UserError("There is no payment line to update.")
+            else:
+                raise UserError("There is no payment to update.")
     else:
-      if account.x_studio_advance_payment_account_purchases_1 == False:
-        raise UserError('Advance Payment Account (Purchases) must be Specified in Accounting Configuration')
-      
-      journal_entry = env['account.move'].search([('payment_id', '=', record.id)], limit=1)
-      if journal_entry:
-        if record.payment_type == 'inbound':
-          lines = env['account.move.line'].search([('move_id', '=', journal_entry.id),('debit', '>', 0)], limit=1)
-          if lines:
-            lines.write({'account_id':account.x_studio_advance_payment_account_purchases_1.id}) 
-            record.write({'x_studio_advance_payment_acc_updated': True})
-          else:
-            raise UserError('There is no payment line to update.') 
-        else:
-          lines = env['account.move.line'].search([('move_id', '=', journal_entry.id),('credit', '>', 0)], limit=1)
-          if lines:
-            lines.write({'account_id':account.x_studio_advance_payment_account_purchases_1.id}) 
-            record.write({'x_studio_advance_payment_acc_updated': True})
-          else:
-            raise UserError('There is no payment line to update.')
-      else:
-        raise UserError('There is no payment to update.')
-  else:
-    raise UserError('Advance Payment Accounts have not been setup in Accounting Configuration')
+        raise UserError(
+            "Advance Payment Accounts have not been setup in Accounting Configuration"
+        )
 ```
   </details>
 - **RR - Validate Payment %** (`sa_f5_account_payment_rr_validate_payment`, type `code`)
@@ -350,21 +454,30 @@ if record.x_studio_type == 'Advance Payment':
 
 ```python
 # bugfix_sales:config-cutover-v22
-if record.state == 'draft':
-  if record.x_studio_quotation_type == 'Repair':
-    sum_total = 0
-    so_value = 0
-    payment = env['account.payment'].search([('x_studio_sales_order', '=', record.x_studio_sales_order.id),('state', '=', 'posted')])
-    if payment:
-      for total in payment:
-        sum_total += total.amount
-          
-    min_magin = record.company_id
-    if min_magin:
-      so_value = round(record.x_studio_sales_order.amount_total * (min_magin.x_studio_advance_payment_/100),2)
-        
-    if so_value > (record.amount + sum_total):
-      raise UserError('Payment is not within the minimum precentage.')
+if record.state == "draft":
+    if record.x_studio_quotation_type == "Repair":
+        sum_total = 0
+        so_value = 0
+        payment = env["account.payment"].search(
+            [
+                ("x_studio_sales_order", "=", record.x_studio_sales_order.id),
+                ("state", "=", "posted"),
+            ]
+        )
+        if payment:
+            for total in payment:
+                sum_total += total.amount
+
+        min_magin = record.company_id
+        if min_magin:
+            so_value = round(
+                record.x_studio_sales_order.amount_total
+                * (min_magin.x_studio_advance_payment_ / 100),
+                2,
+            )
+
+        if so_value > (record.amount + sum_total):
+            raise UserError("Payment is not within the minimum precentage.")
 ```
   </details>
 - **Update Project No in Journal Entry** (`sa_f5_account_payment_update_project_no_in_journal_entry`, type `code`)
@@ -375,9 +488,18 @@ if record.state == 'draft':
 
 ```python
 if record.x_studio_project_no_1 != False:
-  journal_entry = env['account.move'].search([('payment_id', '=', record.id)],limit=1)
-  if journal_entry:
-    journal_entry.write({'x_studio_project_no':record.x_studio_project_no_1.id, 'x_studio_journal_type':'Payment', 'x_studio_project_no_issue':record.x_studio_project_no_1.id, 'x_studio_type':record.x_studio_type})
+    journal_entry = env["account.move"].search(
+        [("payment_id", "=", record.id)], limit=1
+    )
+    if journal_entry:
+        journal_entry.write(
+            {
+                "x_studio_project_no": record.x_studio_project_no_1.id,
+                "x_studio_journal_type": "Payment",
+                "x_studio_project_no_issue": record.x_studio_project_no_1.id,
+                "x_studio_type": record.x_studio_type,
+            }
+        )
 ```
   </details>
 **Automations (6):**

@@ -117,7 +117,6 @@ The report run header (created by Jinasena_Masterdata_Reporting) that this repo 
   <details><summary>code (12 lines)</summary>
 
 ```python
-
 # Available variables:
 #  - env: Odoo Environment on which the action is triggered
 #  - model: Odoo Model of the record on which the action is triggered; is a void recordset
@@ -138,9 +137,10 @@ The report run header (created by Jinasena_Masterdata_Reporting) that this repo 
   <details><summary>code (3 lines)</summary>
 
 ```python
-
-if record.x_studio_selection_field_Fbw0x == 'Done':
-  raise UserError("You can only delete a report model if the report model is in done state.")
+if record.x_studio_selection_field_Fbw0x == "Done":
+    raise UserError(
+        "You can only delete a report model if the report model is in done state."
+    )
 ```
   </details>
 - **Execute Code** (`server_action_1746_srm_auto_delete_sub_models`, type `code`)
@@ -150,27 +150,36 @@ if record.x_studio_selection_field_Fbw0x == 'Done':
   <details><summary>code (21 lines)</summary>
 
 ```python
-
 if record.id:
-  temp_rec = env['x_rm_production_orders'].search([('x_studio_sales_report_model_id', '=', record.id)])
-  for del_record in temp_rec:
-    del_record.unlink()
-    
-  temp_rec2 = env['x_rm_none_moving'].search([('x_studio_sales_report_model_id', '=', record.id)])
-  for del_record2 in temp_rec2:
-    del_record2.unlink()
-    
-  temp_rec3 = env['x_rm_sales_prod_purch'].search([('x_studio_sales_report_model_id', '=', record.id)])
-  for del_record3 in temp_rec3:
-    del_record3.unlink()
-    
-  temp_rec4 = env['x_rm_prod_summary_spli'].search([('x_studio_sales_report_model_id', '=', record.id)])
-  for del_record4 in temp_rec4:
-    del_record4.unlink()
-    
-  temp_rec5 = env['x_rm_production_varian'].search([('x_studio_sales_report_model_id', '=', record.id)])
-  for del_record5 in temp_rec5:
-    del_record5.unlink()
+    temp_rec = env["x_rm_production_orders"].search(
+        [("x_studio_sales_report_model_id", "=", record.id)]
+    )
+    for del_record in temp_rec:
+        del_record.unlink()
+
+    temp_rec2 = env["x_rm_none_moving"].search(
+        [("x_studio_sales_report_model_id", "=", record.id)]
+    )
+    for del_record2 in temp_rec2:
+        del_record2.unlink()
+
+    temp_rec3 = env["x_rm_sales_prod_purch"].search(
+        [("x_studio_sales_report_model_id", "=", record.id)]
+    )
+    for del_record3 in temp_rec3:
+        del_record3.unlink()
+
+    temp_rec4 = env["x_rm_prod_summary_spli"].search(
+        [("x_studio_sales_report_model_id", "=", record.id)]
+    )
+    for del_record4 in temp_rec4:
+        del_record4.unlink()
+
+    temp_rec5 = env["x_rm_production_varian"].search(
+        [("x_studio_sales_report_model_id", "=", record.id)]
+    )
+    for del_record5 in temp_rec5:
+        del_record5.unlink()
 ```
   </details>
 - **Execute Code** (`server_action_1747_report_model_seq_no`, type `code`)
@@ -180,12 +189,11 @@ if record.id:
   <details><summary>code (6 lines)</summary>
 
 ```python
+# record['x_name'] = env['ir.sequence'].next_by_code('purchase.request.seq')
 
-#record['x_name'] = env['ir.sequence'].next_by_code('purchase.request.seq')
-
-if record.x_name == 'New':
-    seq = env['ir.sequence'].next_by_code('report.model.seq')
-    record.write({'x_name': seq})
+if record.x_name == "New":
+    seq = env["ir.sequence"].next_by_code("report.model.seq")
+    record.write({"x_name": seq})
 ```
   </details>
 - **Execute Code** (`server_action_1759_srm_rpt_daily_sales_summary`, type `code`)
@@ -195,62 +203,59 @@ if record.x_name == 'New':
   <details><summary>code (56 lines)</summary>
 
 ```python
-
 if record.x_studio_report_type:
+    if record.x_studio_report_code == "Daily Sales Summary":
+        report_type_lines = record.x_studio_report_type.x_studio_journal_items_id
 
-  if record.x_studio_report_code == 'Daily Sales Summary':
+        # filter area ------------------------------------------------------------------------------------------------------------------------------------------------
 
-    report_type_lines = record.x_studio_report_type.x_studio_journal_items_id
+        # filter by as on date
 
-    
+        if record.x_studio_as_on_date:
+            report_type_lines = report_type_lines.filtered(
+                lambda x: x.date == record.x_studio_as_on_date
+            )
 
-    # filter area ------------------------------------------------------------------------------------------------------------------------------------------------
+            # filter by sales centre
 
-    # filter by as on date
+            if record.x_studio_sales_centre:
+                report_type_lines = report_type_lines.filtered(
+                    lambda x: x.x_studio_sales_team == record.x_studio_sales_centre
+                )
 
-    if record.x_studio_as_on_date:
+        # delete record area ----------------------------------------------------------------------------------------------------------------------------------------------
 
-      report_type_lines = report_type_lines.filtered(lambda x: x.date == record.x_studio_as_on_date)
+        # delete old record
 
-      
+        # Daily Sales Summary
 
-    # filter by sales centre
+        temp_rec_1 = env["x_rm_daily_s1"].search(
+            [("x_studio_sales_report_model_id", "=", record._origin.id)]
+        )
 
-      if record.x_studio_sales_centre:
+        if temp_rec_1:
+            for del_temp_rec_1 in temp_rec_1:
+                del_temp_rec_1.unlink()
 
-        report_type_lines = report_type_lines.filtered(lambda x: x.x_studio_sales_team == record.x_studio_sales_centre)
+        # Business Logic --------------------------------------------------------------------------------------------------------------------------------------------
 
-          
+        # create new record
 
-    # delete record area ----------------------------------------------------------------------------------------------------------------------------------------------  
+        # Daily Sales Summary
 
-    # delete old record
-
-    
-
-    # Daily Sales Summary
-
-    temp_rec_1 = env['x_rm_daily_s1'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
-
-    if temp_rec_1:
-
-      for del_temp_rec_1 in temp_rec_1:
-
-        del_temp_rec_1.unlink()
-
-    
-
-    # Business Logic --------------------------------------------------------------------------------------------------------------------------------------------   
-
-    # create new record 
-
-    
-
-    # Daily Sales Summary
-
-    for line in report_type_lines:
-
-      create_sub_model = env['x_rm_daily_s1'].create({'x_studio_sales_report_model_id':record.id,'x_studio_invoice_date':line.date,'x_studio_number':line.move_name,'x_studio_partner':line.partner_id.id,'x_studio_sales_centre':line.x_studio_sales_team.id,'x_studio_product_id':line.product_id.id,'x_studio_quantity':line.quantity,'x_studio_value':line.price_subtotal})
+        for line in report_type_lines:
+            create_sub_model = env["x_rm_daily_s1"].create(
+                {
+                    "x_studio_sales_report_model_id": record.id,
+                    "x_studio_invoice_date": line.date,
+                    "x_studio_number": line.move_name,
+                    "x_studio_partner": line.partner_id.id,
+                    "x_studio_sales_centre": line.x_studio_sales_team.id,
+                    "x_studio_product_id": line.product_id.id,
+                    "x_studio_quantity": line.quantity,
+                    "x_studio_value": line.price_subtotal,
+                }
+            )
 ```
   </details>
 - **Execute Code** (`server_action_1760_srm_rpt_sales_details_for_incentive_calc`, type `code`)
@@ -260,62 +265,68 @@ if record.x_studio_report_type:
   <details><summary>code (56 lines)</summary>
 
 ```python
-
 if record.x_studio_report_type:
+    if record.x_studio_report_code == "Sales Details for Incentive Calc.":
+        report_type_lines = record.x_studio_report_type.x_studio_journal_items_id
 
-  if record.x_studio_report_code == 'Sales Details for Incentive Calc.':
+        # filter area ------------------------------------------------------------------------------------------------------------------------------------------------
 
-    report_type_lines = record.x_studio_report_type.x_studio_journal_items_id
+        # filter by as on date
 
-    
+        if record.x_studio_as_on_date:
+            report_type_lines = report_type_lines.filtered(
+                lambda x: x.date == record.x_studio_as_on_date
+            )
 
-    # filter area ------------------------------------------------------------------------------------------------------------------------------------------------
+            # filter by product
 
-    # filter by as on date
+            report_type_lines = report_type_lines.filtered(
+                lambda x: x.product_id.id > 0
+            )
 
-    if record.x_studio_as_on_date:
+            # filter by internal group
 
-      report_type_lines = report_type_lines.filtered(lambda x: x.date == record.x_studio_as_on_date)
+            report_type_lines = report_type_lines.filtered(
+                lambda x: x.account_internal_group == "income"
+            )
 
-    # filter by product
+        # delete record area ----------------------------------------------------------------------------------------------------------------------------------------------
 
-      report_type_lines = report_type_lines.filtered(lambda x: x.product_id.id > 0)
+        # delete old record
 
-    # filter by internal group
+        # Sales Details for Incentive Calculation
 
-      report_type_lines = report_type_lines.filtered(lambda x: x.account_internal_group == 'income')
+        temp_rec_2 = env["x_rm_sales_order_line"].search(
+            [("x_studio_sales_report_model_id", "=", record._origin.id)]
+        )
 
-      
+        if temp_rec_2:
+            for del_temp_rec_2 in temp_rec_2:
+                del_temp_rec_2.unlink()
 
-    # delete record area ----------------------------------------------------------------------------------------------------------------------------------------------  
+        # Business Logic --------------------------------------------------------------------------------------------------------------------------------------------
 
-    # delete old record
+        # create new record
 
-    
+        # Sales Details for Incentive Calculation
 
-    # Sales Details for Incentive Calculation     
-
-    temp_rec_2 = env['x_rm_sales_order_line'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
-
-    if temp_rec_2:
-
-      for del_temp_rec_2 in temp_rec_2:
-
-        del_temp_rec_2.unlink()
-
-    
-
-    # Business Logic --------------------------------------------------------------------------------------------------------------------------------------------   
-
-    # create new record 
-
-    
-
-    # Sales Details for Incentive Calculation    
-
-    for line in report_type_lines:
-
-      create_sub_model = env['x_rm_sales_order_line'].create({'x_studio_sales_report_model_id':record.id,'x_studio_date':line.date,'x_studio_customer_acc':line.partner_id.id,'x_studio_customer_group':line.partner_id.x_studio_customer_group.id,'x_studio_name':line.partner_id.name,'x_studio_sales_order':line.move_id.x_studio_sale_id.id,'x_studio_invoice':line.move_id.id,'x_studio_product_1':line.product_id.id,'x_studio_product_category':line.product_id.categ_id.id,'x_studio_quantity':line.quantity,'x_studio_unit_price':line.price_unit,'x_studio_net_value':line.price_total})
+        for line in report_type_lines:
+            create_sub_model = env["x_rm_sales_order_line"].create(
+                {
+                    "x_studio_sales_report_model_id": record.id,
+                    "x_studio_date": line.date,
+                    "x_studio_customer_acc": line.partner_id.id,
+                    "x_studio_customer_group": line.partner_id.x_studio_customer_group.id,
+                    "x_studio_name": line.partner_id.name,
+                    "x_studio_sales_order": line.move_id.x_studio_sale_id.id,
+                    "x_studio_invoice": line.move_id.id,
+                    "x_studio_product_1": line.product_id.id,
+                    "x_studio_product_category": line.product_id.categ_id.id,
+                    "x_studio_quantity": line.quantity,
+                    "x_studio_unit_price": line.price_unit,
+                    "x_studio_net_value": line.price_total,
+                }
+            )
 ```
   </details>
 - **Execute Code** (`server_action_1761_srm_rpt_production_overview_wip`, type `code`)
@@ -325,50 +336,50 @@ if record.x_studio_report_type:
   <details><summary>code (44 lines)</summary>
 
 ```python
-
 if record.x_studio_report_type:
+    if record.x_studio_report_code == "Production Overview - WIP":
+        report_type_lines = record.x_studio_report_type.x_studio_production_order_id
 
-  if record.x_studio_report_code == 'Production Overview - WIP':
+        # filter area ------------------------------------------------------------------------------------------------------------------------------------------------
 
-    report_type_lines = record.x_studio_report_type.x_studio_production_order_id
+        report_type_lines = report_type_lines.filtered(lambda x: x.state == "progress")
 
- 
+        # delete record area ----------------------------------------------------------------------------------------------------------------------------------------------
 
-    # filter area ------------------------------------------------------------------------------------------------------------------------------------------------
+        # delete old record
 
-    report_type_lines = report_type_lines.filtered(lambda x: x.state == 'progress')
+        # MO - WIP
 
-    
+        temp_rec_3 = env["x_rm_production_orders"].search(
+            [("x_studio_sales_report_model_id", "=", record._origin.id)]
+        )
 
-    # delete record area ----------------------------------------------------------------------------------------------------------------------------------------------  
+        if temp_rec_3:
+            for del_temp_rec_3 in temp_rec_3:
+                del_temp_rec_3.unlink()
 
-    # delete old record
+        # Business Logic --------------------------------------------------------------------------------------------------------------------------------------------
 
-    
+        # create new record
 
-    # MO - WIP     
+        # Production Overview - WIP
 
-    temp_rec_3 = env['x_rm_production_orders'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
-
-    if temp_rec_3:
-
-      for del_temp_rec_3 in temp_rec_3:
-
-        del_temp_rec_3.unlink()
-
-    
-
-    # Business Logic --------------------------------------------------------------------------------------------------------------------------------------------   
-
-    # create new record 
-
-    
-
-    # Production Overview - WIP
-
-    for line in report_type_lines:
-
-      create_sub_model = env['x_rm_production_orders'].create({'x_studio_sales_report_model_id':record.id,'x_studio_production_id':line.id,'x_studio_product_code':line.product_id.id,'x_studio_description':line.product_id.name,'x_studio_warehouse':line.location_dest_id.id,'x_studio_status':line.state,'x_studio_estimated':line.product_qty,'x_studio_started':line.qty_producing,'x_studio_start':line.date_start,'x_studio_header_reference': record.x_name,'x_studio_end':line.date_finished})
+        for line in report_type_lines:
+            create_sub_model = env["x_rm_production_orders"].create(
+                {
+                    "x_studio_sales_report_model_id": record.id,
+                    "x_studio_production_id": line.id,
+                    "x_studio_product_code": line.product_id.id,
+                    "x_studio_description": line.product_id.name,
+                    "x_studio_warehouse": line.location_dest_id.id,
+                    "x_studio_status": line.state,
+                    "x_studio_estimated": line.product_qty,
+                    "x_studio_started": line.qty_producing,
+                    "x_studio_start": line.date_start,
+                    "x_studio_header_reference": record.x_name,
+                    "x_studio_end": line.date_finished,
+                }
+            )
 ```
   </details>
 - **Execute Code** (`server_action_1762_srm_rpt_slow_moving_items`, type `code`)
@@ -378,126 +389,140 @@ if record.x_studio_report_type:
   <details><summary>code (224 lines)</summary>
 
 ```python
-
 if record.x_studio_report_type:
+    if record.x_studio_report_code == "Slow Moving Items":
+        report_type_lines = record.x_studio_report_type.x_studio_slow_moving_item_id
 
-  if record.x_studio_report_code == 'Slow Moving Items':
+        currentdate = record.x_studio_as_on_date
 
-    report_type_lines = record.x_studio_report_type.x_studio_slow_moving_item_id
+        firstdayOfmonth = datetime.date(currentdate.year, currentdate.month, 1)
 
-    
+        next_month = currentdate.replace(day=28) + datetime.timedelta(days=4)
 
-    currentdate = record.x_studio_as_on_date
+        lastdayOfmonth = next_month - datetime.timedelta(days=next_month.day)
 
-    
+        if firstdayOfmonth.month != 1:
+            firstdayOfmonth2 = datetime.date(
+                firstdayOfmonth.year, firstdayOfmonth.month - 1, 1
+            )
 
-    firstdayOfmonth = datetime.date(currentdate.year, currentdate.month, 1)
+        else:
+            firstdayOfmonth2 = datetime.date(firstdayOfmonth.year - 1, 12, 1)
 
-    next_month = currentdate.replace(day=28) + datetime.timedelta(days=4)
+        next_month2 = firstdayOfmonth2.replace(day=28) + datetime.timedelta(days=4)
 
-    lastdayOfmonth = next_month - datetime.timedelta(days=next_month.day)
+        lastdayOfmonth2 = next_month2 - datetime.timedelta(days=next_month2.day)
 
-    
+        if firstdayOfmonth.month > 2:
+            firstdayOfmonth3 = datetime.date(
+                firstdayOfmonth.year, firstdayOfmonth.month - 2, 1
+            )
 
-    if firstdayOfmonth.month != 1:
+        else:
+            if firstdayOfmonth.month == 2:
+                firstdayOfmonth3 = datetime.date(firstdayOfmonth.year - 1, 12, 1)
 
-      firstdayOfmonth2 = datetime.date(firstdayOfmonth.year, firstdayOfmonth.month-1, 1)
+            else:
+                firstdayOfmonth3 = datetime.date(firstdayOfmonth.year - 1, 11, 1)
 
-    else:
+        next_month3 = firstdayOfmonth3.replace(day=28) + datetime.timedelta(days=4)
 
-      firstdayOfmonth2 = datetime.date(firstdayOfmonth.year-1, 12, 1)
+        lastdayOfmonth3 = next_month3 - datetime.timedelta(days=next_month3.day)
 
-      
+        if firstdayOfmonth.month > 3:
+            firstdayOfmonth4 = datetime.date(
+                firstdayOfmonth.year, firstdayOfmonth.month - 3, 1
+            )
 
-    next_month2 = firstdayOfmonth2.replace(day=28) + datetime.timedelta(days=4)
+        else:
+            if firstdayOfmonth.month == 3:
+                firstdayOfmonth4 = datetime.date(firstdayOfmonth.year - 1, 12, 1)
 
-    lastdayOfmonth2 = next_month2 - datetime.timedelta(days=next_month2.day)
+            elif firstdayOfmonth.month == 2:
+                firstdayOfmonth4 = datetime.date(firstdayOfmonth.year - 1, 11, 1)
 
-    
+            else:
+                firstdayOfmonth4 = datetime.date(firstdayOfmonth.year - 1, 10, 1)
 
-    if firstdayOfmonth.month > 2:
+        next_month4 = firstdayOfmonth4.replace(day=28) + datetime.timedelta(days=4)
 
-      firstdayOfmonth3 = datetime.date(firstdayOfmonth.year, firstdayOfmonth.month-2, 1)
+        lastdayOfmonth4 = next_month4 - datetime.timedelta(days=next_month4.day)
 
-    else:
+        # filter area ------------------------------------------------------------------------------------------------------------------------------------------------
 
-      if firstdayOfmonth.month == 2:
+        report_type_lines_receipt = report_type_lines.filtered(
+            lambda x: (
+                x.date.date() >= firstdayOfmonth
+                and x.date.date() <= lastdayOfmonth
+                and x.picking_code == "incoming"
+            )
+        )
 
-        firstdayOfmonth3 = datetime.date(firstdayOfmonth.year-1, 12, 1)
+        report_type_lines_delivery = report_type_lines.filtered(
+            lambda x: (
+                x.date.date() >= firstdayOfmonth
+                and x.date.date() <= lastdayOfmonth
+                and x.picking_code == "outgoing"
+            )
+        )
 
-      else:
+        report_type_lines_receipt2 = report_type_lines.filtered(
+            lambda x: (
+                x.date.date() >= firstdayOfmonth2
+                and x.date.date() <= lastdayOfmonth2
+                and x.picking_code == "incoming"
+            )
+        )
 
-        firstdayOfmonth3 = datetime.date(firstdayOfmonth.year-1, 11, 1)
+        report_type_lines_delivery2 = report_type_lines.filtered(
+            lambda x: (
+                x.date.date() >= firstdayOfmonth2
+                and x.date.date() <= lastdayOfmonth2
+                and x.picking_code == "outgoing"
+            )
+        )
 
-        
+        report_type_lines_receipt3 = report_type_lines.filtered(
+            lambda x: (
+                x.date.date() >= firstdayOfmonth3
+                and x.date.date() <= lastdayOfmonth3
+                and x.picking_code == "incoming"
+            )
+        )
 
-    next_month3 = firstdayOfmonth3.replace(day=28) + datetime.timedelta(days=4)
+        report_type_lines_delivery3 = report_type_lines.filtered(
+            lambda x: (
+                x.date.date() >= firstdayOfmonth3
+                and x.date.date() <= lastdayOfmonth3
+                and x.picking_code == "outgoing"
+            )
+        )
 
-    lastdayOfmonth3 = next_month3 - datetime.timedelta(days=next_month3.day)
+        report_type_lines_receipt4 = report_type_lines.filtered(
+            lambda x: (
+                x.date.date() >= firstdayOfmonth4
+                and x.date.date() <= lastdayOfmonth4
+                and x.picking_code == "incoming"
+            )
+        )
 
-    
+        report_type_lines_delivery4 = report_type_lines.filtered(
+            lambda x: (
+                x.date.date() >= firstdayOfmonth4
+                and x.date.date() <= lastdayOfmonth4
+                and x.picking_code == "outgoing"
+            )
+        )
 
-    if firstdayOfmonth.month > 3:
+        # delete record area ----------------------------------------------------------------------------------------------------------------------------------------------
 
-      firstdayOfmonth4 = datetime.date(firstdayOfmonth.year, firstdayOfmonth.month-3, 1)
+        # delete old record
 
-    else:
+        # Slow Moving Items
 
-      if firstdayOfmonth.month == 3:
-
-        firstdayOfmonth4 = datetime.date(firstdayOfmonth.year-1, 12, 1)
-
-      elif firstdayOfmonth.month == 2:
-
-        firstdayOfmonth4 = datetime.date(firstdayOfmonth.year-1, 11, 1)
-
-      else:
-
-        firstdayOfmonth4 = datetime.date(firstdayOfmonth.year-1, 10, 1)
-
-        
-
-    next_month4 = firstdayOfmonth4.replace(day=28) + datetime.timedelta(days=4)
-
-    lastdayOfmonth4 = next_month4 - datetime.timedelta(days=next_month4.day)
-
-    
-
-    # filter area ------------------------------------------------------------------------------------------------------------------------------------------------
-
-    report_type_lines_receipt = report_type_lines.filtered(lambda x: (x.date.date() >= firstdayOfmonth and x.date.date() <= lastdayOfmonth and x.picking_code == 'incoming'))
-
-    report_type_lines_delivery = report_type_lines.filtered(lambda x: (x.date.date() >= firstdayOfmonth and x.date.date() <= lastdayOfmonth and x.picking_code == 'outgoing'))
-
-      
-
-    report_type_lines_receipt2 = report_type_lines.filtered(lambda x: (x.date.date() >= firstdayOfmonth2 and x.date.date() <= lastdayOfmonth2 and x.picking_code == 'incoming'))
-
-    report_type_lines_delivery2 = report_type_lines.filtered(lambda x: (x.date.date() >= firstdayOfmonth2 and x.date.date() <= lastdayOfmonth2 and x.picking_code == 'outgoing'))
-
-    
-
-    report_type_lines_receipt3 = report_type_lines.filtered(lambda x: (x.date.date() >= firstdayOfmonth3 and x.date.date() <= lastdayOfmonth3 and x.picking_code == 'incoming'))
-
-    report_type_lines_delivery3 = report_type_lines.filtered(lambda x: (x.date.date() >= firstdayOfmonth3 and x.date.date() <= lastdayOfmonth3 and x.picking_code == 'outgoing'))
-
-      
-
-    report_type_lines_receipt4 = report_type_lines.filtered(lambda x: (x.date.date() >= firstdayOfmonth4 and x.date.date() <= lastdayOfmonth4 and x.picking_code == 'incoming'))
-
-    report_type_lines_delivery4 = report_type_lines.filtered(lambda x: (x.date.date() >= firstdayOfmonth4 and x.date.date() <= lastdayOfmonth4 and x.picking_code == 'outgoing'))
-
-    
-
-    # delete record area ----------------------------------------------------------------------------------------------------------------------------------------------  
-
-    # delete old record
-
-    
-
-    # Slow Moving Items     
-
-    temp_rec_4 = env['x_rm_none_moving'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
+        temp_rec_4 = env["x_rm_none_moving"].search(
+            [("x_studio_sales_report_model_id", "=", record._origin.id)]
+        )
 # … 104 more lines
 ```
   </details>
@@ -508,108 +533,117 @@ if record.x_studio_report_type:
   <details><summary>code (102 lines)</summary>
 
 ```python
-
 if record.x_studio_report_type:
+    if record.x_studio_report_code == "Sales - Production - Purchase Report":
+        report_type_lines = record.x_studio_report_type.x_studio_sales_prod_purch_id
 
-  if record.x_studio_report_code == 'Sales - Production - Purchase Report':
+        # filter area ------------------------------------------------------------------------------------------------------------------------------------------------
 
-    report_type_lines = record.x_studio_report_type.x_studio_sales_prod_purch_id
+        report_type_lines = report_type_lines.filtered(
+            lambda x: x.date.date() <= record.x_studio_as_on_date
+        )
 
-  
+        # delete record area ----------------------------------------------------------------------------------------------------------------------------------------------
 
-    # filter area ------------------------------------------------------------------------------------------------------------------------------------------------
+        # delete old record
 
-    report_type_lines = report_type_lines.filtered(lambda x: (x.date.date() <= record.x_studio_as_on_date))
+        # Sales - Production - Purchase Report
 
-    
+        temp_rec_6 = env["x_rm_sales_prod_purch"].search(
+            [("x_studio_sales_report_model_id", "=", record._origin.id)]
+        )
 
-    # delete record area ----------------------------------------------------------------------------------------------------------------------------------------------  
+        if temp_rec_6:
+            for del_temp_rec_6 in temp_rec_6:
+                del_temp_rec_6.unlink()
 
-    # delete old record
+        # Business Logic --------------------------------------------------------------------------------------------------------------------------------------------
 
-    
+        # create new record
 
-    # Sales - Production - Purchase Report     
+        # Sales - Production - Purchase Report
 
-    temp_rec_6 = env['x_rm_sales_prod_purch'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
+        d = record.x_studio_as_on_date
 
-    if temp_rec_6:
+        # d1 = datetime.strftime(d, "%Y-%m-%d %H:%M:%S")
 
-      for del_temp_rec_6 in temp_rec_6:
+        # d2 = datetime.strftime(d, "%Y-%m-%d 23:59:59")
 
-        del_temp_rec_6.unlink()
+        d1 = datetime.strptime(d, "%Y-%m-%d %H:%M:%S")
 
-    
+        d2 = datetime.strptime(d, "%Y-%m-%d 23:59:59")
 
-    # Business Logic --------------------------------------------------------------------------------------------------------------------------------------------   
+        product = env["product.product"].search([("type", "!=", "service")])
 
-    # create new record 
+        if product:
+            for products in product:
+                project_qty = 0
 
-    
+                so_qty = 0
 
-    # Sales - Production - Purchase Report   
+                prod_qty = 0
 
-    d = record.x_studio_as_on_date
+                purch_qty = 0
 
-    #d1 = datetime.strftime(d, "%Y-%m-%d %H:%M:%S")
+                last_prod_purch = env["stock.valuation.layer"].search(
+                    [
+                        ("product_id", "=", products.id),
+                        ("quantity", ">", 0),
+                        ("create_date", ">=", d1),
+                        ("create_date", "<=", d2),
+                    ],
+                    order="create_date desc",
+                    limit=1,
+                )
 
-    #d2 = datetime.strftime(d, "%Y-%m-%d 23:59:59")
+                sales_qtys = env["sale.order.line"].search(
+                    [("product_id", "=", products.id)]
+                )
 
-    d1 = datetime.strptime(d, "%Y-%m-%d %H:%M:%S")
+                sales_qtys = sales_qtys.filtered(
+                    lambda x: x.create_date.date() <= record.x_studio_as_on_date
+                )
 
-    d2 = datetime.strptime(d, "%Y-%m-%d 23:59:59")
+                for qtys in sales_qtys:
+                    so_qty += qtys.product_uom_qty
 
-    product = env['product.product'].search([('type', '!=', 'service')])
+                prod_qtys = env["mrp.production"].search(
+                    [("product_id", "=", products.id)]
+                )
 
-    if product:
+                prod_qtys = prod_qtys.filtered(
+                    lambda x: x.date_planned_start.date() <= record.x_studio_as_on_date
+                )
 
-     for products in product:
+                for prodqtys in prod_qtys:
+                    prod_qty += prodqtys.product_qty
 
-       project_qty = 0
+                purch_qtys = env["purchase.order.line"].search(
+                    [("product_id", "=", products.id)]
+                )
 
-       so_qty = 0
+                purch_qtys = purch_qtys.filtered(
+                    lambda x: x.create_date.date() <= record.x_studio_as_on_date
+                )
 
-       prod_qty = 0
+                for purchqtys in purch_qtys:
+                    purch_qty += purchqtys.product_qty
 
-       purch_qty = 0
-
-         
-
-       last_prod_purch = env['stock.valuation.layer'].search([('product_id', '=', products.id),('quantity', '>', 0),('create_date', '>=', d1),('create_date', '<=', d2)],order='create_date desc',limit=1)
-
-         
-
-       sales_qtys = env['sale.order.line'].search([('product_id', '=', products.id)])
-
-       sales_qtys = sales_qtys.filtered(lambda x: x.create_date.date() <= record.x_studio_as_on_date)
-
-       for qtys in sales_qtys:
-
-         so_qty += qtys.product_uom_qty 
-
-           
-
-       prod_qtys = env['mrp.production'].search([('product_id', '=', products.id)])
-
-       prod_qtys = prod_qtys.filtered(lambda x: x.date_planned_start.date() <= record.x_studio_as_on_date)
-
-       for prodqtys in prod_qtys: 
-
-         prod_qty += prodqtys.product_qty
-
-           
-
-       purch_qtys = env['purchase.order.line'].search([('product_id', '=', products.id)])
-
-       purch_qtys = purch_qtys.filtered(lambda x: x.create_date.date() <= record.x_studio_as_on_date)
-
-       for purchqtys in purch_qtys:
-
-         purch_qty += purchqtys.product_qty
-
-           
-
-       create_sub_model = env['x_rm_sales_prod_purch'].create({'x_studio_sales_report_model_id':record.id,'x_studio_description':products.id,'x_studio_base_price':products.list_price,'x_studio_product_type':products.type,'x_studio_date_1':last_prod_purch.create_date.date(),'x_studio_unit_cost':last_prod_purch.unit_cost,'x_studio_project_category':project_qty,'x_studio_sales_order':so_qty,'x_studio_production_qty':prod_qty,'x_studio_purchase_qty':purch_qty,'x_studio_header_reference': record.x_name})
+                create_sub_model = env["x_rm_sales_prod_purch"].create(
+                    {
+                        "x_studio_sales_report_model_id": record.id,
+                        "x_studio_description": products.id,
+                        "x_studio_base_price": products.list_price,
+                        "x_studio_product_type": products.type,
+                        "x_studio_date_1": last_prod_purch.create_date.date(),
+                        "x_studio_unit_cost": last_prod_purch.unit_cost,
+                        "x_studio_project_category": project_qty,
+                        "x_studio_sales_order": so_qty,
+                        "x_studio_production_qty": prod_qty,
+                        "x_studio_purchase_qty": purch_qty,
+                        "x_studio_header_reference": record.x_name,
+                    }
+                )
 ```
   </details>
 - **Execute Code** (`server_action_1764_srm_rpt_production_summary_split`, type `code`)
@@ -619,50 +653,53 @@ if record.x_studio_report_type:
   <details><summary>code (44 lines)</summary>
 
 ```python
-
 if record.x_studio_report_type:
+    if record.x_studio_report_code == "Production Summary - Split":
+        report_type_lines = record.x_studio_report_type.x_studio_prod_summary_split_id
 
-  if record.x_studio_report_code == 'Production Summary - Split':
+        # filter area ------------------------------------------------------------------------------------------------------------------------------------------------
 
-    report_type_lines = record.x_studio_report_type.x_studio_prod_summary_split_id
+        report_type_lines = report_type_lines.filtered(
+            lambda x: x.date.date() <= record.x_studio_as_on_date
+        )
 
-  
+        # delete record area ----------------------------------------------------------------------------------------------------------------------------------------------
 
-    # filter area ------------------------------------------------------------------------------------------------------------------------------------------------
+        # delete old record
 
-    report_type_lines = report_type_lines.filtered(lambda x: (x.date.date() <= record.x_studio_as_on_date))
+        # Production Summary - Split
 
-    
+        temp_rec_7 = env["x_rm_prod_summary_spli"].search(
+            [("x_studio_sales_report_model_id", "=", record._origin.id)]
+        )
 
-    # delete record area ----------------------------------------------------------------------------------------------------------------------------------------------  
+        if temp_rec_7:
+            for del_temp_rec_7 in temp_rec_7:
+                del_temp_rec_7.unlink()
 
-    # delete old record
+        # Business Logic --------------------------------------------------------------------------------------------------------------------------------------------
 
-    
+        # create new record
 
-    # Production Summary - Split     
+        # Production Summary - Split
 
-    temp_rec_7 = env['x_rm_prod_summary_spli'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
-
-    if temp_rec_7:
-
-      for del_temp_rec_7 in temp_rec_7:
-
-        del_temp_rec_7.unlink()
-
-        
-
-    # Business Logic --------------------------------------------------------------------------------------------------------------------------------------------   
-
-    # create new record 
-
-    
-
-    # Production Summary - Split 
-
-    for line in report_type_lines:
-
-      create_sub_model = env['x_rm_prod_summary_spli'].create({'x_studio_sales_report_model_id':record.id,'x_studio_description':line.raw_material_production_id.product_id.id,'x_studio_production_id':line.raw_material_production_id.id,'x_studio_prod_qty':line.raw_material_production_id.product_qty,'x_studio_description_1':line.product_id.id,'x_studio_bom_qty':line.x_studio_original_qty,'x_studio_esti_qty':line.x_studio_original_qty,'x_studio_cons_qty':line.product_uom_qty,'x_studio_variance':line.x_studio_variance,'x_studio_avg_cost':line.price_unit,'x_studio_total_cost':(line.product_uom_qty*line.price_unit),'x_studio_header_reference': record.x_name})
+        for line in report_type_lines:
+            create_sub_model = env["x_rm_prod_summary_spli"].create(
+                {
+                    "x_studio_sales_report_model_id": record.id,
+                    "x_studio_description": line.raw_material_production_id.product_id.id,
+                    "x_studio_production_id": line.raw_material_production_id.id,
+                    "x_studio_prod_qty": line.raw_material_production_id.product_qty,
+                    "x_studio_description_1": line.product_id.id,
+                    "x_studio_bom_qty": line.x_studio_original_qty,
+                    "x_studio_esti_qty": line.x_studio_original_qty,
+                    "x_studio_cons_qty": line.product_uom_qty,
+                    "x_studio_variance": line.x_studio_variance,
+                    "x_studio_avg_cost": line.price_unit,
+                    "x_studio_total_cost": (line.product_uom_qty * line.price_unit),
+                    "x_studio_header_reference": record.x_name,
+                }
+            )
 ```
   </details>
 - **Execute Code** (`server_action_1765_srm_rpt_production_job_variance`, type `code`)
@@ -672,50 +709,57 @@ if record.x_studio_report_type:
   <details><summary>code (44 lines)</summary>
 
 ```python
-
 if record.x_studio_report_type:
+    if record.x_studio_report_code == "Production Job Variance":
+        report_type_lines = record.x_studio_report_type.x_studio_production_variance_id
 
-  if record.x_studio_report_code == 'Production Job Variance':
+        # filter area ------------------------------------------------------------------------------------------------------------------------------------------------
 
-    report_type_lines = record.x_studio_report_type.x_studio_production_variance_id
+        report_type_lines = report_type_lines.filtered(
+            lambda x: (
+                x.date.date() >= record.x_studio_from_date
+                and x.date.date() <= record.x_studio_as_on_date
+                and x.x_studio_variance != 0
+            )
+        )
 
-  
+        # delete record area ----------------------------------------------------------------------------------------------------------------------------------------------
 
-    # filter area ------------------------------------------------------------------------------------------------------------------------------------------------
+        # delete old record
 
-    report_type_lines = report_type_lines.filtered(lambda x: (x.date.date() >= record.x_studio_from_date and x.date.date() <= record.x_studio_as_on_date and x.x_studio_variance != 0))
+        # Production Variance
 
-    
+        temp_rec_5 = env["x_rm_production_varian"].search(
+            [("x_studio_sales_report_model_id", "=", record._origin.id)]
+        )
 
-    # delete record area ----------------------------------------------------------------------------------------------------------------------------------------------  
+        if temp_rec_5:
+            for del_temp_rec_5 in temp_rec_5:
+                del_temp_rec_5.unlink()
 
-    # delete old record
+        # Business Logic --------------------------------------------------------------------------------------------------------------------------------------------
 
-    
+        # create new record
 
-    # Production Variance     
+        # Production Variance
 
-    temp_rec_5 = env['x_rm_production_varian'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
-
-    if temp_rec_5:
-
-      for del_temp_rec_5 in temp_rec_5:
-
-        del_temp_rec_5.unlink()
-
-        
-
-    # Business Logic --------------------------------------------------------------------------------------------------------------------------------------------   
-
-    # create new record 
-
-    
-
-    # Production Variance
-
-    for line in report_type_lines:
-
-      create_sub_model = env['x_rm_production_varian'].create({'x_studio_sales_report_model_id':record.id,'x_studio_description':line.raw_material_production_id.product_id.id,'x_studio_production_id':line.raw_material_production_id.id,'x_studio_prod_qty':line.raw_material_production_id.product_qty,'x_studio_description_1':line.product_id.id,'x_studio_bom_qty':line.x_studio_original_qty,'x_studio_esti_qty':line.x_studio_original_qty,'x_studio_cons_qty':line.product_uom_qty,'x_studio_variance':line.x_studio_variance,'x_studio_avg_cost':line.price_unit,'x_studio_total_cost':(line.product_uom_qty*line.price_unit),'x_studio_header_reference': record.x_name})
+        for line in report_type_lines:
+            create_sub_model = env["x_rm_production_varian"].create(
+                {
+                    "x_studio_sales_report_model_id": record.id,
+                    "x_studio_description": line.raw_material_production_id.product_id.id,
+                    "x_studio_production_id": line.raw_material_production_id.id,
+                    "x_studio_prod_qty": line.raw_material_production_id.product_qty,
+                    "x_studio_description_1": line.product_id.id,
+                    "x_studio_bom_qty": line.x_studio_original_qty,
+                    "x_studio_esti_qty": line.x_studio_original_qty,
+                    "x_studio_cons_qty": line.product_uom_qty,
+                    "x_studio_variance": line.x_studio_variance,
+                    "x_studio_avg_cost": line.price_unit,
+                    "x_studio_total_cost": (line.product_uom_qty * line.price_unit),
+                    "x_studio_header_reference": record.x_name,
+                }
+            )
 ```
   </details>
 - **Execute Code** (`server_action_2102_srm_rpt_project_gross_margin`, type `code`)
@@ -855,8 +899,7 @@ if record.x_studio_report_type:
   <details><summary>code (2 lines)</summary>
 
 ```python
-
-record['x_studio_created_date'] = datetime.datetime.today()
+record["x_studio_created_date"] = datetime.datetime.today()
 ```
   </details>
 - **Execute Code** (`server_action_2490_srm_rpt_costing_work_sheet`, type `code`)
@@ -866,126 +909,114 @@ record['x_studio_created_date'] = datetime.datetime.today()
   <details><summary>code (526 lines)</summary>
 
 ```python
-
 if record.x_studio_report_type:
+    if record.x_studio_report_code == "Costing Work Sheet":
+        company_id = env.context.get("allowed_company_ids", [env.user.company_id.id])[0]
 
-  if record.x_studio_report_code == 'Costing Work Sheet':
+        company = env["res.company"].browse(company_id)
 
-    
+        # Project Gross Margin - Estimated
 
-    company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
+        temp_rec_1 = env["x_pump_price_costing"].search(
+            [("x_studio_sales_report_model_id", "=", record._origin.id)]
+        )
 
-    company = env['res.company'].browse(company_id)
+        if temp_rec_1:
+            for del_temp_rec_1 in temp_rec_1:
+                del_temp_rec_1.unlink()
 
-    
+        # Business Logic --------------------------------------------------------------------------------------------------------------------------------------------
 
-    # Project Gross Margin - Estimated    
+        # create new record
 
-    temp_rec_1 = env['x_pump_price_costing'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
+        # Pump Price Costing
 
-    if temp_rec_1:
+        # Tab - 01 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-      for del_temp_rec_1 in temp_rec_1:
+        pump = env["product.template"].search(
+            [("x_studio_product_type", "=", "Pump"), ("company_id", "=", company.id)]
+        )
 
-        del_temp_rec_1.unlink()
+        for pumps in pump:
+            standard_count = 0
 
-    
+            standard_final = 0
 
-    # Business Logic --------------------------------------------------------------------------------------------------------------------------------------------   
+            standard_count2 = 0
 
-    # create new record 
+            standard_final2 = 0
 
-    
+            current_base_price = 0
 
-    # Pump Price Costing
+            current_base_price_date = False
 
-    # Tab - 01 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            discount = 0
 
-    
+            sscl = 0
 
-    pump = env['product.template'].search([('x_studio_product_type', '=', 'Pump'),('company_id', '=', company.id)])
+            cost_import = 0
 
-    for pumps in pump:
+            cost_other = 0
 
-      standard_count = 0
+            contingency_rs = 0
 
-      standard_final = 0
+            total_cost = 0
 
-      standard_count2 = 0
+            labour = 0
 
-      standard_final2 = 0
+            factory_oh = 0
 
-      current_base_price = 0
+            total_factory_cost = 0
 
-      current_base_price_date = False
+            total_factory_cost_a = 0
 
-      discount = 0
+            net_selling_price = 0
 
-      sscl = 0
+            actual = 0
 
-      cost_import = 0
+            actual_1 = 0
 
-      cost_other = 0
+            #######
 
-      contingency_rs = 0
+            contribution_rs = 0
 
-      total_cost = 0
+            contribution_2 = 0
 
-      labour = 0
+            sales_oh = 0
 
-      factory_oh = 0
+            sales_oh_rs = 0
 
-      total_factory_cost = 0
+            other_oh = 0
 
-      total_factory_cost_a = 0
+            other_oh_rs = 0
 
-      net_selling_price = 0
+            profitloss_as_of_net_sale = 0
 
-      actual = 0
+            current_retail_price_vat_18 = 0
 
-      actual_1 = 0
+            total_material_cost = 0
 
-      #######
+            oh_absorbed_factory = 0
 
-      contribution_rs = 0
+            oh_absorbed_sales = 0
 
-      contribution_2 = 0
+            oh_absorbed_other = 0
 
-      sales_oh = 0
+            profit_mark_up_ = 0
 
-      sales_oh_rs = 0
+            profit_mark_up_rs = 0
 
-      other_oh = 0
+            net_selling_price_1 = 0
 
-      other_oh_rs = 0
+            sscl_1 = 0
 
-      profitloss_as_of_net_sale = 0
+            max_discount_1 = 0
 
-      current_retail_price_vat_18 = 0
+            proposed_base_price = 0
 
-      total_material_cost = 0
+            current_base_price = 0
 
-      oh_absorbed_factory = 0
-
-      oh_absorbed_sales = 0
-
-      oh_absorbed_other = 0
-
-      profit_mark_up_ = 0
-
-      profit_mark_up_rs = 0
-
-      net_selling_price_1 = 0
-
-      sscl_1 = 0
-
-      max_discount_1 = 0
-
-      proposed_base_price = 0
-
-      current_base_price = 0
-
-      difference = 0
+            difference = 0
 # … 406 more lines
 ```
   </details>
@@ -996,38 +1027,48 @@ if record.x_studio_report_type:
   <details><summary>code (32 lines)</summary>
 
 ```python
-
-report_type = env['x_sales_report_type'].search([('x_studio_report_code', '=', 'Project Gross Margin')])
+report_type = env["x_sales_report_type"].search(
+    [("x_studio_report_code", "=", "Project Gross Margin")]
+)
 if report_type:
-  currentdate = datetime.datetime.today()
-      
-  firstdayOfmonth = datetime.date(currentdate.year, currentdate.month, 1)
-  next_month = currentdate.replace(day=28) + datetime.timedelta(days=4)
-  lastdayOfmonth = next_month - datetime.timedelta(days=next_month.day)
-      
-  if firstdayOfmonth.month != 1:
-    firstdayOfmonth2 = datetime.date(firstdayOfmonth.year, firstdayOfmonth.month-1, 1)
-  else:
-    firstdayOfmonth2 = datetime.date(firstdayOfmonth.year-1, 12, 1)
-    
-  next_month2 = firstdayOfmonth2.replace(day=28) + datetime.timedelta(days=4)
-  lastdayOfmonth2 = next_month2 - datetime.timedelta(days=next_month2.day)
-  
-  if firstdayOfmonth.month > 2:
-    firstdayOfmonth3 = datetime.date(firstdayOfmonth.year, firstdayOfmonth.month-2, 1)
-  else:
-    if firstdayOfmonth.month == 2:
-      firstdayOfmonth3 = datetime.date(firstdayOfmonth.year-1, 12, 1)
+    currentdate = datetime.datetime.today()
+
+    firstdayOfmonth = datetime.date(currentdate.year, currentdate.month, 1)
+    next_month = currentdate.replace(day=28) + datetime.timedelta(days=4)
+    lastdayOfmonth = next_month - datetime.timedelta(days=next_month.day)
+
+    if firstdayOfmonth.month != 1:
+        firstdayOfmonth2 = datetime.date(
+            firstdayOfmonth.year, firstdayOfmonth.month - 1, 1
+        )
     else:
-      firstdayOfmonth3 = datetime.date(firstdayOfmonth.year-1, 11, 1)
-          
-  next_month3 = firstdayOfmonth3.replace(day=28) + datetime.timedelta(days=4)
-  lastdayOfmonth3 = next_month3 - datetime.timedelta(days=next_month3.day)
-  
-  delete_report_model = env['x_sales_report_model'].search([('x_studio_report_type', '=', report_type.id),('x_studio_created_date', '<=', lastdayOfmonth3)])
-  if delete_report_model:
-      for delete_report in delete_report_model:
-        delete_report.unlink()
+        firstdayOfmonth2 = datetime.date(firstdayOfmonth.year - 1, 12, 1)
+
+    next_month2 = firstdayOfmonth2.replace(day=28) + datetime.timedelta(days=4)
+    lastdayOfmonth2 = next_month2 - datetime.timedelta(days=next_month2.day)
+
+    if firstdayOfmonth.month > 2:
+        firstdayOfmonth3 = datetime.date(
+            firstdayOfmonth.year, firstdayOfmonth.month - 2, 1
+        )
+    else:
+        if firstdayOfmonth.month == 2:
+            firstdayOfmonth3 = datetime.date(firstdayOfmonth.year - 1, 12, 1)
+        else:
+            firstdayOfmonth3 = datetime.date(firstdayOfmonth.year - 1, 11, 1)
+
+    next_month3 = firstdayOfmonth3.replace(day=28) + datetime.timedelta(days=4)
+    lastdayOfmonth3 = next_month3 - datetime.timedelta(days=next_month3.day)
+
+    delete_report_model = env["x_sales_report_model"].search(
+        [
+            ("x_studio_report_type", "=", report_type.id),
+            ("x_studio_created_date", "<=", lastdayOfmonth3),
+        ]
+    )
+    if delete_report_model:
+        for delete_report in delete_report_model:
+            delete_report.unlink()
 ```
   </details>
 - **Project Gross Margin Report** (`server_action_2116_project_gross_margin_report`, type `code`)
@@ -1037,10 +1078,17 @@ if report_type:
   <details><summary>code (4 lines)</summary>
 
 ```python
-
-report_type = env['x_sales_report_type'].search([('x_studio_report_code', '=', 'Project Gross Margin')])
+report_type = env["x_sales_report_type"].search(
+    [("x_studio_report_code", "=", "Project Gross Margin")]
+)
 if report_type:
-  create_report_model = env['x_sales_report_model'].create({'x_studio_report_type':report_type.id,'x_studio_project_no':2466,'x_studio_auto_generated':True})
+    create_report_model = env["x_sales_report_model"].create(
+        {
+            "x_studio_report_type": report_type.id,
+            "x_studio_project_no": 2466,
+            "x_studio_auto_generated": True,
+        }
+    )
 ```
   </details>
 - **Project Gross Margin Report - Management Purpose** (`server_action_2128_project_gross_margin_report_management_purpose`, type `code`)
@@ -1050,10 +1098,17 @@ if report_type:
   <details><summary>code (4 lines)</summary>
 
 ```python
-
-report_type = env['x_sales_report_type'].search([('x_studio_report_code', '=', 'Project Gross Margin')])
+report_type = env["x_sales_report_type"].search(
+    [("x_studio_report_code", "=", "Project Gross Margin")]
+)
 if report_type:
-  create_report_model = env['x_sales_report_model'].create({'x_studio_report_type':report_type.id,'x_studio_project_no':2466,'x_studio_management_purpose':True})
+    create_report_model = env["x_sales_report_model"].create(
+        {
+            "x_studio_report_type": report_type.id,
+            "x_studio_project_no": 2466,
+            "x_studio_management_purpose": True,
+        }
+    )
 ```
   </details>
 - **RPT - Customer wise Invoices - Clear** (`server_action_1681_rpt_customer_wise_invoices_clear`, type `code`)
@@ -1064,17 +1119,21 @@ if report_type:
 
 ```python
 if record.id:
-  temp_rec = env['x_rm_customer_wise_inv'].search([('x_studio_sales_report_model_id', '=', record.id)])
-  if temp_rec:
-    for del_temp_rec in temp_rec:
-      del_temp_rec.unlink()  
-      
-    temp_rec_1 = env['x_rm_cust_invoice_s1'].search([('x_studio_sales_report_model_id', '=', record.id)])
-    if temp_rec_1:
-      for del_temp_rec_1 in temp_rec_1:
-        del_temp_rec_1.unlink()
+    temp_rec = env["x_rm_customer_wise_inv"].search(
+        [("x_studio_sales_report_model_id", "=", record.id)]
+    )
+    if temp_rec:
+        for del_temp_rec in temp_rec:
+            del_temp_rec.unlink()
 
-    record['x_studio_selection_field_Fbw0x'] = 'Draft'
+        temp_rec_1 = env["x_rm_cust_invoice_s1"].search(
+            [("x_studio_sales_report_model_id", "=", record.id)]
+        )
+        if temp_rec_1:
+            for del_temp_rec_1 in temp_rec_1:
+                del_temp_rec_1.unlink()
+
+        record["x_studio_selection_field_Fbw0x"] = "Draft"
 ```
   </details>
 - **RPT - Customer wise Invoices - Generate** (`server_action_1680_rpt_customer_wise_invoices_generate`, type `code`)
@@ -1085,35 +1144,59 @@ if record.id:
 
 ```python
 if record.id:
-  today = datetime.date.today()
-  count = 0
-  c = 0
-  if not record.x_studio_customer:
-    customer = env['res.partner'].search([])
-  else:
-    vals = []
-    for filter in record.x_studio_customer:
-      c += 1
-      vals.insert(c,filter.id)
+    today = datetime.date.today()
+    count = 0
+    c = 0
+    if not record.x_studio_customer:
+        customer = env["res.partner"].search([])
+    else:
+        vals = []
+        for filter in record.x_studio_customer:
+            c += 1
+            vals.insert(c, filter.id)
 
-    customer = env['res.partner'].search([('id', '=', vals)])
-    
-  if customer:
-    for customers in customer:
-      net_inv_val_day = 0
-      invoice_line =  env['account.move.line'].search([('partner_id', '=', customers.id), ('x_studio_invoice_date', '=', record.x_studio_as_on_date), ('x_studio_status', '=', 'posted'), ('exclude_from_invoice_tab', '=', False)])
-      if invoice_line:
-        for invoice_lines in invoice_line:
-          count += 1
-          net_inv_val_day += invoice_lines.price_subtotal
-          create_sub_model = env['x_rm_cust_invoice_s1'].create({'x_studio_sales_report_model_id':record.id,'x_studio_invoice_date':invoice_lines.date,'x_studio_number':invoice_lines.move_name,'x_studio_partner':invoice_lines.partner_id.id,'x_studio_sales_centre':invoice_lines.x_studio_sales_team.id,'x_studio_product_id':invoice_lines.product_id.id,'x_studio_quantity':invoice_lines.quantity,'x_studio_value':invoice_lines.price_subtotal})
-  
-        create_model = env['x_rm_customer_wise_inv'].create({'x_studio_sales_report_model_id':record.id,'x_studio_customer':customers.id,'x_studio_total_invoice_amount':net_inv_val_day})
+        customer = env["res.partner"].search([("id", "=", vals)])
 
-  if count == 0:
-    raise UserError('No Data to Populate.')
-  
-  record['x_studio_selection_field_Fbw0x'] = 'Done'
+    if customer:
+        for customers in customer:
+            net_inv_val_day = 0
+            invoice_line = env["account.move.line"].search(
+                [
+                    ("partner_id", "=", customers.id),
+                    ("x_studio_invoice_date", "=", record.x_studio_as_on_date),
+                    ("x_studio_status", "=", "posted"),
+                    ("exclude_from_invoice_tab", "=", False),
+                ]
+            )
+            if invoice_line:
+                for invoice_lines in invoice_line:
+                    count += 1
+                    net_inv_val_day += invoice_lines.price_subtotal
+                    create_sub_model = env["x_rm_cust_invoice_s1"].create(
+                        {
+                            "x_studio_sales_report_model_id": record.id,
+                            "x_studio_invoice_date": invoice_lines.date,
+                            "x_studio_number": invoice_lines.move_name,
+                            "x_studio_partner": invoice_lines.partner_id.id,
+                            "x_studio_sales_centre": invoice_lines.x_studio_sales_team.id,
+                            "x_studio_product_id": invoice_lines.product_id.id,
+                            "x_studio_quantity": invoice_lines.quantity,
+                            "x_studio_value": invoice_lines.price_subtotal,
+                        }
+                    )
+
+                create_model = env["x_rm_customer_wise_inv"].create(
+                    {
+                        "x_studio_sales_report_model_id": record.id,
+                        "x_studio_customer": customers.id,
+                        "x_studio_total_invoice_amount": net_inv_val_day,
+                    }
+                )
+
+    if count == 0:
+        raise UserError("No Data to Populate.")
+
+    record["x_studio_selection_field_Fbw0x"] = "Done"
 ```
   </details>
 - **RPT - Daily Sales Report - Clear** (`server_action_1671_rpt_daily_sales_report_clear`, type `code`)
@@ -1124,17 +1207,21 @@ if record.id:
 
 ```python
 if record.id:
-  temp_rec = env['x_rm_daily_sales_repor'].search([('x_studio_sales_report_model_id', '=', record.id)])
-  if temp_rec:
-    for del_temp_rec in temp_rec:
-      del_temp_rec.unlink()   
-      
-    temp_rec_1 = env['x_rm_daily_s1'].search([('x_studio_sales_report_model_id', '=', record.id)])
-    if temp_rec_1:
-      for del_temp_rec_1 in temp_rec_1:
-        del_temp_rec_1.unlink() 
-  
-    record['x_studio_selection_field_Fbw0x'] = 'Draft'
+    temp_rec = env["x_rm_daily_sales_repor"].search(
+        [("x_studio_sales_report_model_id", "=", record.id)]
+    )
+    if temp_rec:
+        for del_temp_rec in temp_rec:
+            del_temp_rec.unlink()
+
+        temp_rec_1 = env["x_rm_daily_s1"].search(
+            [("x_studio_sales_report_model_id", "=", record.id)]
+        )
+        if temp_rec_1:
+            for del_temp_rec_1 in temp_rec_1:
+                del_temp_rec_1.unlink()
+
+        record["x_studio_selection_field_Fbw0x"] = "Draft"
 ```
   </details>
 - **RPT - Daily Sales Report - Clear - TEST** (`server_action_1710_rpt_daily_sales_report_clear_test`, type `code`)
@@ -1145,14 +1232,16 @@ if record.id:
 
 ```python
 if record.id:
-  c = 0
-  temp_rec_1 = env['x_rm_daily_s1'].search([('x_studio_sales_report_model_id', '=', record.id)])
-  if temp_rec_1:
-    for del_temp_rec_1 in temp_rec_1:
-      c += 1
-      del_temp_rec_1.unlink() 
-  #raise UserError(c)
-  record['x_studio_selection_field_Fbw0x'] = 'Draft'
+    c = 0
+    temp_rec_1 = env["x_rm_daily_s1"].search(
+        [("x_studio_sales_report_model_id", "=", record.id)]
+    )
+    if temp_rec_1:
+        for del_temp_rec_1 in temp_rec_1:
+            c += 1
+            del_temp_rec_1.unlink()
+    # raise UserError(c)
+    record["x_studio_selection_field_Fbw0x"] = "Draft"
 ```
   </details>
 - **RPT - Daily Sales Report - Generate** (`server_action_1670_rpt_daily_sales_report_generate`, type `code`)
@@ -1163,35 +1252,65 @@ if record.id:
 
 ```python
 if record.id:
-  today = datetime.date.today()
-  count = 0
-  c = 0
-  if not record.x_studio_sales_centre:
-    sales_centre = env['crm.team'].search([],order="name asc")
-  else:
-    vals = []
-    for filter in record.x_studio_sales_centre:
-      c += 1
-      vals.insert(c,filter.id)
+    today = datetime.date.today()
+    count = 0
+    c = 0
+    if not record.x_studio_sales_centre:
+        sales_centre = env["crm.team"].search([], order="name asc")
+    else:
+        vals = []
+        for filter in record.x_studio_sales_centre:
+            c += 1
+            vals.insert(c, filter.id)
 
-    sales_centre = env['crm.team'].search([('id', '=', vals)],order="name asc")
-    
-  if sales_centre:
-    for sales_centres in sales_centre:
-      net_inv_val_day = 0
-      invoice_line =  env['account.move.line'].search([('x_studio_sales_team', '=', sales_centres.id), ('x_studio_invoice_date', '=', record.x_studio_as_on_date), ('x_studio_status', '=', 'posted'), ('exclude_from_invoice_tab', '=', False)])
-      if invoice_line:
-        for invoice_lines in invoice_line:
-          count += 1
-          net_inv_val_day += invoice_lines.price_subtotal
-          create_sub_model = env['x_rm_daily_s1'].create({'x_studio_sales_report_model_id':record.id,'x_studio_invoice_date':invoice_lines.date,'x_studio_number':invoice_lines.move_name,'x_studio_partner':invoice_lines.partner_id.id,'x_studio_sales_centre':invoice_lines.x_studio_sales_team.id,'x_studio_product_id':invoice_lines.product_id.id,'x_studio_quantity':invoice_lines.quantity,'x_studio_value':invoice_lines.price_subtotal})
-  
-        create_model = env['x_rm_daily_sales_repor'].create({'x_studio_sales_report_model_id':record.id,'x_studio_sales_centre':sales_centres.name,'x_studio_net_invoice_value_day':net_inv_val_day,'x_studio_net_invoice_value_month':45000,'x_studio_net_invoice_value_cumulative':175000,'x_studio_m_sales_target':100000,'x_studio_s_target_cumulative':500000,'x_studio_achievement_':12,'x_studio_achieve_cumulative_':23})
+        sales_centre = env["crm.team"].search([("id", "=", vals)], order="name asc")
 
-  if count == 0:
-    raise UserError('No Data to Populate.')
-  
-  record['x_studio_selection_field_Fbw0x'] = 'Done'
+    if sales_centre:
+        for sales_centres in sales_centre:
+            net_inv_val_day = 0
+            invoice_line = env["account.move.line"].search(
+                [
+                    ("x_studio_sales_team", "=", sales_centres.id),
+                    ("x_studio_invoice_date", "=", record.x_studio_as_on_date),
+                    ("x_studio_status", "=", "posted"),
+                    ("exclude_from_invoice_tab", "=", False),
+                ]
+            )
+            if invoice_line:
+                for invoice_lines in invoice_line:
+                    count += 1
+                    net_inv_val_day += invoice_lines.price_subtotal
+                    create_sub_model = env["x_rm_daily_s1"].create(
+                        {
+                            "x_studio_sales_report_model_id": record.id,
+                            "x_studio_invoice_date": invoice_lines.date,
+                            "x_studio_number": invoice_lines.move_name,
+                            "x_studio_partner": invoice_lines.partner_id.id,
+                            "x_studio_sales_centre": invoice_lines.x_studio_sales_team.id,
+                            "x_studio_product_id": invoice_lines.product_id.id,
+                            "x_studio_quantity": invoice_lines.quantity,
+                            "x_studio_value": invoice_lines.price_subtotal,
+                        }
+                    )
+
+                create_model = env["x_rm_daily_sales_repor"].create(
+                    {
+                        "x_studio_sales_report_model_id": record.id,
+                        "x_studio_sales_centre": sales_centres.name,
+                        "x_studio_net_invoice_value_day": net_inv_val_day,
+                        "x_studio_net_invoice_value_month": 45000,
+                        "x_studio_net_invoice_value_cumulative": 175000,
+                        "x_studio_m_sales_target": 100000,
+                        "x_studio_s_target_cumulative": 500000,
+                        "x_studio_achievement_": 12,
+                        "x_studio_achieve_cumulative_": 23,
+                    }
+                )
+
+    if count == 0:
+        raise UserError("No Data to Populate.")
+
+    record["x_studio_selection_field_Fbw0x"] = "Done"
 ```
   </details>
 - **RPT - Sample Button** (`srv_sales_report_sample_button`, type `code`)
@@ -1232,7 +1351,7 @@ action = None  # No-op template action from Clear-DB (Studio scaffold).
   <details><summary>code (1 lines)</summary>
 
 ```python
-record['x_studio_created_date'] = datetime.datetime.today()
+record["x_studio_created_date"] = datetime.datetime.today()
 ```
   </details>
 - **Report Model Seq.No** (`sa_f5_x_sales_report_model_report_model_seq_no`, type `code`)
@@ -1242,11 +1361,11 @@ record['x_studio_created_date'] = datetime.datetime.today()
   <details><summary>code (5 lines)</summary>
 
 ```python
-#record['x_name'] = env['ir.sequence'].next_by_code('purchase.request.seq')
+# record['x_name'] = env['ir.sequence'].next_by_code('purchase.request.seq')
 
-if record.x_name == 'New':
-    seq = env['ir.sequence'].next_by_code('report.model.seq')
-    record.write({'x_name': seq})
+if record.x_name == "New":
+    seq = env["ir.sequence"].next_by_code("report.model.seq")
+    record.write({"x_name": seq})
 ```
   </details>
 - **Restrict Delete in Sales Report Model** (`sa_f5_x_sales_report_model_restrict_delete_in_sales_report_model`, type `code`)
@@ -1256,8 +1375,10 @@ if record.x_name == 'New':
   <details><summary>code (2 lines)</summary>
 
 ```python
-if record.x_studio_selection_field_Fbw0x == 'Done':
-  raise UserError("You can only delete a report model if the report model is in done state.")
+if record.x_studio_selection_field_Fbw0x == "Done":
+    raise UserError(
+        "You can only delete a report model if the report model is in done state."
+    )
 ```
   </details>
 - **SRM - Auto Delete Sub Models** (`sa_f5_x_sales_report_model_srm_auto_delete_sub_models`, type `code`)
@@ -1268,25 +1389,35 @@ if record.x_studio_selection_field_Fbw0x == 'Done':
 
 ```python
 if record.id:
-  temp_rec = env['x_rm_production_orders'].search([('x_studio_sales_report_model_id', '=', record.id)])
-  for del_record in temp_rec:
-    del_record.unlink()
-    
-  temp_rec2 = env['x_rm_none_moving'].search([('x_studio_sales_report_model_id', '=', record.id)])
-  for del_record2 in temp_rec2:
-    del_record2.unlink()
-    
-  temp_rec3 = env['x_rm_sales_prod_purch'].search([('x_studio_sales_report_model_id', '=', record.id)])
-  for del_record3 in temp_rec3:
-    del_record3.unlink()
-    
-  temp_rec4 = env['x_rm_prod_summary_spli'].search([('x_studio_sales_report_model_id', '=', record.id)])
-  for del_record4 in temp_rec4:
-    del_record4.unlink()
-    
-  temp_rec5 = env['x_rm_production_varian'].search([('x_studio_sales_report_model_id', '=', record.id)])
-  for del_record5 in temp_rec5:
-    del_record5.unlink()
+    temp_rec = env["x_rm_production_orders"].search(
+        [("x_studio_sales_report_model_id", "=", record.id)]
+    )
+    for del_record in temp_rec:
+        del_record.unlink()
+
+    temp_rec2 = env["x_rm_none_moving"].search(
+        [("x_studio_sales_report_model_id", "=", record.id)]
+    )
+    for del_record2 in temp_rec2:
+        del_record2.unlink()
+
+    temp_rec3 = env["x_rm_sales_prod_purch"].search(
+        [("x_studio_sales_report_model_id", "=", record.id)]
+    )
+    for del_record3 in temp_rec3:
+        del_record3.unlink()
+
+    temp_rec4 = env["x_rm_prod_summary_spli"].search(
+        [("x_studio_sales_report_model_id", "=", record.id)]
+    )
+    for del_record4 in temp_rec4:
+        del_record4.unlink()
+
+    temp_rec5 = env["x_rm_production_varian"].search(
+        [("x_studio_sales_report_model_id", "=", record.id)]
+    )
+    for del_record5 in temp_rec5:
+        del_record5.unlink()
 ```
   </details>
 - **SRM - Auto Populate Data** (`server_action_1726_srm_auto_populate_data`, type `code`)
@@ -1297,124 +1428,97 @@ if record.id:
 
 ```python
 if record.x_studio_report_type:
+    if record.x_studio_report_code == "Production Overview - WIP":
+        report_type_lines = record.x_studio_report_type.x_studio_production_order_id
 
-  if record.x_studio_report_code == 'Production Overview - WIP':
+    elif record.x_studio_report_code == "Production Job Variance":
+        report_type_lines = record.x_studio_report_type.x_studio_production_variance_id
 
-    report_type_lines = record.x_studio_report_type.x_studio_production_order_id
+    elif record.x_studio_report_code == "Sales - Production - Purchase Report":
+        report_type_lines = record.x_studio_report_type.x_studio_sales_prod_purch_id
 
-  elif record.x_studio_report_code == 'Production Job Variance':
+    elif record.x_studio_report_code == "Production Summary - Split":
+        report_type_lines = record.x_studio_report_type.x_studio_prod_summary_split_id
 
-    report_type_lines = record.x_studio_report_type.x_studio_production_variance_id
+    elif record.x_studio_report_code == "Slow Moving Items":
+        report_type_lines = record.x_studio_report_type.x_studio_slow_moving_item_id
 
-  elif record.x_studio_report_code == 'Sales - Production - Purchase Report':
+        currentdate = record.x_studio_as_on_date
 
-    report_type_lines = record.x_studio_report_type.x_studio_sales_prod_purch_id
+        firstdayOfmonth = datetime.date(currentdate.year, currentdate.month, 1)
 
-  elif record.x_studio_report_code == 'Production Summary - Split':
+        next_month = currentdate.replace(day=28) + datetime.timedelta(days=4)
 
-    report_type_lines = record.x_studio_report_type.x_studio_prod_summary_split_id
+        lastdayOfmonth = next_month - datetime.timedelta(days=next_month.day)
 
-  elif record.x_studio_report_code == 'Slow Moving Items':
+        if firstdayOfmonth.month != 1:
+            firstdayOfmonth2 = datetime.date(
+                firstdayOfmonth.year, firstdayOfmonth.month - 1, 1
+            )
 
-    report_type_lines = record.x_studio_report_type.x_studio_slow_moving_item_id
+        else:
+            firstdayOfmonth2 = datetime.date(firstdayOfmonth.year - 1, 12, 1)
 
-    
+        next_month2 = firstdayOfmonth2.replace(day=28) + datetime.timedelta(days=4)
 
-    currentdate = record.x_studio_as_on_date
+        lastdayOfmonth2 = next_month2 - datetime.timedelta(days=next_month2.day)
 
-    
+        if firstdayOfmonth.month > 2:
+            firstdayOfmonth3 = datetime.date(
+                firstdayOfmonth.year, firstdayOfmonth.month - 2, 1
+            )
 
-    firstdayOfmonth = datetime.date(currentdate.year, currentdate.month, 1)
+        else:
+            if firstdayOfmonth.month == 2:
+                firstdayOfmonth3 = datetime.date(firstdayOfmonth.year - 1, 12, 1)
 
-    next_month = currentdate.replace(day=28) + datetime.timedelta(days=4)
+            else:
+                firstdayOfmonth3 = datetime.date(firstdayOfmonth.year - 1, 11, 1)
 
-    lastdayOfmonth = next_month - datetime.timedelta(days=next_month.day)
+        next_month3 = firstdayOfmonth3.replace(day=28) + datetime.timedelta(days=4)
 
-    
+        lastdayOfmonth3 = next_month3 - datetime.timedelta(days=next_month3.day)
 
-    if firstdayOfmonth.month != 1:
+        if firstdayOfmonth.month > 3:
+            firstdayOfmonth4 = datetime.date(
+                firstdayOfmonth.year, firstdayOfmonth.month - 3, 1
+            )
 
-      firstdayOfmonth2 = datetime.date(firstdayOfmonth.year, firstdayOfmonth.month-1, 1)
+        else:
+            if firstdayOfmonth.month == 3:
+                firstdayOfmonth4 = datetime.date(firstdayOfmonth.year - 1, 12, 1)
 
-    else:
+            elif firstdayOfmonth.month == 2:
+                firstdayOfmonth4 = datetime.date(firstdayOfmonth.year - 1, 11, 1)
 
-      firstdayOfmonth2 = datetime.date(firstdayOfmonth.year-1, 12, 1)
+            else:
+                firstdayOfmonth4 = datetime.date(firstdayOfmonth.year - 1, 10, 1)
 
-      
+        next_month4 = firstdayOfmonth4.replace(day=28) + datetime.timedelta(days=4)
 
-    next_month2 = firstdayOfmonth2.replace(day=28) + datetime.timedelta(days=4)
-
-    lastdayOfmonth2 = next_month2 - datetime.timedelta(days=next_month2.day)
-
-    
-
-    if firstdayOfmonth.month > 2:
-
-      firstdayOfmonth3 = datetime.date(firstdayOfmonth.year, firstdayOfmonth.month-2, 1)
-
-    else:
-
-      if firstdayOfmonth.month == 2:
-
-        firstdayOfmonth3 = datetime.date(firstdayOfmonth.year-1, 12, 1)
-
-      else:
-
-        firstdayOfmonth3 = datetime.date(firstdayOfmonth.year-1, 11, 1)
-
-        
-
-    next_month3 = firstdayOfmonth3.replace(day=28) + datetime.timedelta(days=4)
-
-    lastdayOfmonth3 = next_month3 - datetime.timedelta(days=next_month3.day)
-
-    
-
-    if firstdayOfmonth.month > 3:
-
-      firstdayOfmonth4 = datetime.date(firstdayOfmonth.year, firstdayOfmonth.month-3, 1)
+        lastdayOfmonth4 = next_month4 - datetime.timedelta(days=next_month4.day)
 
     else:
+        report_type_lines = record.x_studio_report_type.x_studio_journal_items_id
 
-      if firstdayOfmonth.month == 3:
+    # filter area ------------------------------------------------------------------------------------------------------------------------------------------------
 
-        firstdayOfmonth4 = datetime.date(firstdayOfmonth.year-1, 12, 1)
+    if record.x_studio_report_code == "Production Overview - WIP":
+        report_type_lines = report_type_lines.filtered(lambda x: x.state == "progress")
 
-      elif firstdayOfmonth.month == 2:
+    elif record.x_studio_report_code == "Production Job Variance":
+        report_type_lines = report_type_lines.filtered(
+            lambda x: (
+                x.date.date() >= record.x_studio_from_date
+                and x.date.date() <= record.x_studio_as_on_date
+                and x.x_studio_variance != 0
+            )
+        )
 
-        firstdayOfmonth4 = datetime.date(firstdayOfmonth.year-1, 11, 1)
-
-      else:
-
-        firstdayOfmonth4 = datetime.date(firstdayOfmonth.year-1, 10, 1)
-
-        
-
-    next_month4 = firstdayOfmonth4.replace(day=28) + datetime.timedelta(days=4)
-
-    lastdayOfmonth4 = next_month4 - datetime.timedelta(days=next_month4.day)
-
-    
-
-  else:
-
-    report_type_lines = record.x_studio_report_type.x_studio_journal_items_id
-
-    
-
-  # filter area ------------------------------------------------------------------------------------------------------------------------------------------------
-
-  if record.x_studio_report_code == 'Production Overview - WIP':
-
-    report_type_lines = report_type_lines.filtered(lambda x: x.state == 'progress')
-
-  elif record.x_studio_report_code == 'Production Job Variance':
-
-    report_type_lines = report_type_lines.filtered(lambda x: (x.date.date() >= record.x_studio_from_date and x.date.date() <= record.x_studio_as_on_date and x.x_studio_variance != 0))
-
-  elif record.x_studio_report_code == 'Sales - Production - Purchase Report':
-
-    report_type_lines = report_type_lines.filtered(lambda x: (x.date.date() <= record.x_studio_as_on_date))
+    elif record.x_studio_report_code == "Sales - Production - Purchase Report":
+        report_type_lines = report_type_lines.filtered(
+            lambda x: x.date.date() <= record.x_studio_as_on_date
+        )
 
 # … 363 more lines
 ```
@@ -1427,25 +1531,36 @@ if record.x_studio_report_type:
 
 ```python
 if record.x_studio_report_type:
-  count = 0
-  c=0
-  temp_rec_1 = env['x_rm_daily_s1'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
-  if temp_rec_1:
-    for del_temp_rec_1 in temp_rec_1:
-      c += 1
-      del_temp_rec_1.unlink() 
-  
-  for invoice_lines in record.x_studio_journal_item_ids:
-  #  if invoice_lines.date == record.x_studio_as_on_date:
-  #    count += 1
-    create_sub_model = env['x_rm_daily_s1'].create({'x_studio_sales_report_model_id':record.id,'x_studio_invoice_date':invoice_lines.date,'x_studio_number':invoice_lines.move_name,'x_studio_partner':invoice_lines.partner_id.id,'x_studio_sales_centre':invoice_lines.x_studio_sales_team.id,'x_studio_product_id':invoice_lines.product_id.id,'x_studio_quantity':invoice_lines.quantity,'x_studio_value':invoice_lines.price_subtotal})
-      
-  
- 
-  #if count == 0:
-    #raise UserError('No Data to Populate.')
-  
-  #record['x_studio_selection_field_Fbw0x'] = 'Done'
+    count = 0
+    c = 0
+    temp_rec_1 = env["x_rm_daily_s1"].search(
+        [("x_studio_sales_report_model_id", "=", record._origin.id)]
+    )
+    if temp_rec_1:
+        for del_temp_rec_1 in temp_rec_1:
+            c += 1
+            del_temp_rec_1.unlink()
+
+    for invoice_lines in record.x_studio_journal_item_ids:
+        #  if invoice_lines.date == record.x_studio_as_on_date:
+        #    count += 1
+        create_sub_model = env["x_rm_daily_s1"].create(
+            {
+                "x_studio_sales_report_model_id": record.id,
+                "x_studio_invoice_date": invoice_lines.date,
+                "x_studio_number": invoice_lines.move_name,
+                "x_studio_partner": invoice_lines.partner_id.id,
+                "x_studio_sales_centre": invoice_lines.x_studio_sales_team.id,
+                "x_studio_product_id": invoice_lines.product_id.id,
+                "x_studio_quantity": invoice_lines.quantity,
+                "x_studio_value": invoice_lines.price_subtotal,
+            }
+        )
+
+    # if count == 0:
+    # raise UserError('No Data to Populate.')
+
+    # record['x_studio_selection_field_Fbw0x'] = 'Done'
 ```
   </details>
 - **SRM - Auto Populate Data - 2** (`server_action_1711_srm_auto_populate_data_2`, type `code`)
@@ -1456,12 +1571,14 @@ if record.x_studio_report_type:
 
 ```python
 if record.x_studio_report_type:
-  temp_rec_1 = env['x_rm_daily_s1'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
-  if temp_rec_1:
-    for del_temp_rec_1 in temp_rec_1:
-      del_temp_rec_1.unlink() 
-  
-  #record['x_studio_selection_field_Fbw0x'] = 'Done'
+    temp_rec_1 = env["x_rm_daily_s1"].search(
+        [("x_studio_sales_report_model_id", "=", record._origin.id)]
+    )
+    if temp_rec_1:
+        for del_temp_rec_1 in temp_rec_1:
+            del_temp_rec_1.unlink()
+
+    # record['x_studio_selection_field_Fbw0x'] = 'Done'
 ```
   </details>
 - **SRM - Auto Populate Data - TAU** (`server_action_1727_srm_auto_populate_data_tau`, type `code`)
@@ -1472,21 +1589,38 @@ if record.x_studio_report_type:
 
 ```python
 if record.x_studio_report_type:
-  report_type_lines = record.x_studio_report_type.x_studio_journal_items_id
-  # filter by As on date
-  if record.x_studio_as_on_date:
-    report_type_lines = report_type_lines.filtered(lambda x: x.date == record.x_studio_as_on_date)
-  # filter by sales centre
-  if record.x_studio_sales_centre:
-    report_type_lines = report_type_lines.filtered(lambda x: x.x_studio_sales_team == record.x_studio_sales_centre)
-  # delete old record
-  temp_rec_1 = env['x_rm_daily_s1'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
-  if temp_rec_1:
-    for del_temp_rec_1 in temp_rec_1:
-      del_temp_rec_1.unlink()
-  # create new record
-  for line in report_type_lines:
-    create_sub_model = env['x_rm_daily_s1'].create({'x_studio_sales_report_model_id':record.id,'x_studio_invoice_date':line.date,'x_studio_number':line.move_name,'x_studio_partner':line.partner_id.id,'x_studio_sales_centre':line.x_studio_sales_team.id,'x_studio_product_id':line.product_id.id,'x_studio_quantity':line.quantity,'x_studio_value':line.price_subtotal})
+    report_type_lines = record.x_studio_report_type.x_studio_journal_items_id
+    # filter by As on date
+    if record.x_studio_as_on_date:
+        report_type_lines = report_type_lines.filtered(
+            lambda x: x.date == record.x_studio_as_on_date
+        )
+    # filter by sales centre
+    if record.x_studio_sales_centre:
+        report_type_lines = report_type_lines.filtered(
+            lambda x: x.x_studio_sales_team == record.x_studio_sales_centre
+        )
+    # delete old record
+    temp_rec_1 = env["x_rm_daily_s1"].search(
+        [("x_studio_sales_report_model_id", "=", record._origin.id)]
+    )
+    if temp_rec_1:
+        for del_temp_rec_1 in temp_rec_1:
+            del_temp_rec_1.unlink()
+    # create new record
+    for line in report_type_lines:
+        create_sub_model = env["x_rm_daily_s1"].create(
+            {
+                "x_studio_sales_report_model_id": record.id,
+                "x_studio_invoice_date": line.date,
+                "x_studio_number": line.move_name,
+                "x_studio_partner": line.partner_id.id,
+                "x_studio_sales_centre": line.x_studio_sales_team.id,
+                "x_studio_product_id": line.product_id.id,
+                "x_studio_quantity": line.quantity,
+                "x_studio_value": line.price_subtotal,
+            }
+        )
 ```
   </details>
 - **SRM - Auto Populate Data-Original** (`server_action_1730_srm_auto_populate_data_original`, type `code`)
@@ -1497,21 +1631,38 @@ if record.x_studio_report_type:
 
 ```python
 if record.x_studio_report_type:
-  report_type_lines = record.x_studio_report_type.x_studio_journal_items_id
-  # filter by as on date
-  if record.x_studio_as_on_date:
-    report_type_lines = report_type_lines.filtered(lambda x: x.date == record.x_studio_as_on_date)
-  # filter by sales centre
-  if record.x_studio_sales_centre:
-    report_type_lines = report_type_lines.filtered(lambda x: x.x_studio_sales_team == record.x_studio_sales_centre)
-  # delete old record
-  temp_rec_1 = env['x_rm_daily_s1'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
-  if temp_rec_1:
-    for del_temp_rec_1 in temp_rec_1:
-      del_temp_rec_1.unlink()
-  # create new record (Business Logic)
-  for line in report_type_lines:
-    create_sub_model = env['x_rm_daily_s1'].create({'x_studio_sales_report_model_id':record.id,'x_studio_invoice_date':line.date,'x_studio_number':line.move_name,'x_studio_partner':line.partner_id.id,'x_studio_sales_centre':line.x_studio_sales_team.id,'x_studio_product_id':line.product_id.id,'x_studio_quantity':line.quantity,'x_studio_value':line.price_subtotal})
+    report_type_lines = record.x_studio_report_type.x_studio_journal_items_id
+    # filter by as on date
+    if record.x_studio_as_on_date:
+        report_type_lines = report_type_lines.filtered(
+            lambda x: x.date == record.x_studio_as_on_date
+        )
+    # filter by sales centre
+    if record.x_studio_sales_centre:
+        report_type_lines = report_type_lines.filtered(
+            lambda x: x.x_studio_sales_team == record.x_studio_sales_centre
+        )
+    # delete old record
+    temp_rec_1 = env["x_rm_daily_s1"].search(
+        [("x_studio_sales_report_model_id", "=", record._origin.id)]
+    )
+    if temp_rec_1:
+        for del_temp_rec_1 in temp_rec_1:
+            del_temp_rec_1.unlink()
+    # create new record (Business Logic)
+    for line in report_type_lines:
+        create_sub_model = env["x_rm_daily_s1"].create(
+            {
+                "x_studio_sales_report_model_id": record.id,
+                "x_studio_invoice_date": line.date,
+                "x_studio_number": line.move_name,
+                "x_studio_partner": line.partner_id.id,
+                "x_studio_sales_centre": line.x_studio_sales_team.id,
+                "x_studio_product_id": line.product_id.id,
+                "x_studio_quantity": line.quantity,
+                "x_studio_value": line.price_subtotal,
+            }
+        )
 ```
   </details>
 - **SRM - RPT - Costing Work Sheet** (`sa_f5_x_sales_report_model_srm_rpt_costing_work_sheet`, type `code`)
@@ -1522,124 +1673,113 @@ if record.x_studio_report_type:
 
 ```python
 if record.x_studio_report_type:
+    if record.x_studio_report_code == "Costing Work Sheet":
+        company_id = env.context.get("allowed_company_ids", [env.user.company_id.id])[0]
 
-  if record.x_studio_report_code == 'Costing Work Sheet':
+        company = env["res.company"].browse(company_id)
 
-    
+        # Project Gross Margin - Estimated
 
-    company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
+        temp_rec_1 = env["x_pump_price_costing"].search(
+            [("x_studio_sales_report_model_id", "=", record._origin.id)]
+        )
 
-    company = env['res.company'].browse(company_id)
+        if temp_rec_1:
+            for del_temp_rec_1 in temp_rec_1:
+                del_temp_rec_1.unlink()
 
-    
+        # Business Logic --------------------------------------------------------------------------------------------------------------------------------------------
 
-    # Project Gross Margin - Estimated    
+        # create new record
 
-    temp_rec_1 = env['x_pump_price_costing'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
+        # Pump Price Costing
 
-    if temp_rec_1:
+        # Tab - 01 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-      for del_temp_rec_1 in temp_rec_1:
+        pump = env["product.template"].search(
+            [("x_studio_product_type", "=", "Pump"), ("company_id", "=", company.id)]
+        )
 
-        del_temp_rec_1.unlink()
+        for pumps in pump:
+            standard_count = 0
 
-    
+            standard_final = 0
 
-    # Business Logic --------------------------------------------------------------------------------------------------------------------------------------------   
+            standard_count2 = 0
 
-    # create new record 
+            standard_final2 = 0
 
-    
+            current_base_price = 0
 
-    # Pump Price Costing
+            current_base_price_date = False
 
-    # Tab - 01 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            discount = 0
 
-    
+            sscl = 0
 
-    pump = env['product.template'].search([('x_studio_product_type', '=', 'Pump'),('company_id', '=', company.id)])
+            cost_import = 0
 
-    for pumps in pump:
+            cost_other = 0
 
-      standard_count = 0
+            contingency_rs = 0
 
-      standard_final = 0
+            total_cost = 0
 
-      standard_count2 = 0
+            labour = 0
 
-      standard_final2 = 0
+            factory_oh = 0
 
-      current_base_price = 0
+            total_factory_cost = 0
 
-      current_base_price_date = False
+            total_factory_cost_a = 0
 
-      discount = 0
+            net_selling_price = 0
 
-      sscl = 0
+            actual = 0
 
-      cost_import = 0
+            actual_1 = 0
 
-      cost_other = 0
+            #######
 
-      contingency_rs = 0
+            contribution_rs = 0
 
-      total_cost = 0
+            contribution_2 = 0
 
-      labour = 0
+            sales_oh = 0
 
-      factory_oh = 0
+            sales_oh_rs = 0
 
-      total_factory_cost = 0
+            other_oh = 0
 
-      total_factory_cost_a = 0
+            other_oh_rs = 0
 
-      net_selling_price = 0
+            profitloss_as_of_net_sale = 0
 
-      actual = 0
+            current_retail_price_vat_18 = 0
 
-      actual_1 = 0
+            total_material_cost = 0
 
-      #######
+            oh_absorbed_factory = 0
 
-      contribution_rs = 0
+            oh_absorbed_sales = 0
 
-      contribution_2 = 0
+            oh_absorbed_other = 0
 
-      sales_oh = 0
+            profit_mark_up_ = 0
 
-      sales_oh_rs = 0
+            profit_mark_up_rs = 0
 
-      other_oh = 0
+            net_selling_price_1 = 0
 
-      other_oh_rs = 0
+            sscl_1 = 0
 
-      profitloss_as_of_net_sale = 0
+            max_discount_1 = 0
 
-      current_retail_price_vat_18 = 0
+            proposed_base_price = 0
 
-      total_material_cost = 0
+            current_base_price = 0
 
-      oh_absorbed_factory = 0
-
-      oh_absorbed_sales = 0
-
-      oh_absorbed_other = 0
-
-      profit_mark_up_ = 0
-
-      profit_mark_up_rs = 0
-
-      net_selling_price_1 = 0
-
-      sscl_1 = 0
-
-      max_discount_1 = 0
-
-      proposed_base_price = 0
-
-      current_base_price = 0
-
-      difference = 0
+            difference = 0
 
 # … 405 more lines
 ```
@@ -1652,60 +1792,58 @@ if record.x_studio_report_type:
 
 ```python
 if record.x_studio_report_type:
+    if record.x_studio_report_code == "Daily Sales Summary":
+        report_type_lines = record.x_studio_report_type.x_studio_journal_items_id
 
-  if record.x_studio_report_code == 'Daily Sales Summary':
+        # filter area ------------------------------------------------------------------------------------------------------------------------------------------------
 
-    report_type_lines = record.x_studio_report_type.x_studio_journal_items_id
+        # filter by as on date
 
-    
+        if record.x_studio_as_on_date:
+            report_type_lines = report_type_lines.filtered(
+                lambda x: x.date == record.x_studio_as_on_date
+            )
 
-    # filter area ------------------------------------------------------------------------------------------------------------------------------------------------
+            # filter by sales centre
 
-    # filter by as on date
+            if record.x_studio_sales_centre:
+                report_type_lines = report_type_lines.filtered(
+                    lambda x: x.x_studio_sales_team == record.x_studio_sales_centre
+                )
 
-    if record.x_studio_as_on_date:
+        # delete record area ----------------------------------------------------------------------------------------------------------------------------------------------
 
-      report_type_lines = report_type_lines.filtered(lambda x: x.date == record.x_studio_as_on_date)
+        # delete old record
 
-      
+        # Daily Sales Summary
 
-    # filter by sales centre
+        temp_rec_1 = env["x_rm_daily_s1"].search(
+            [("x_studio_sales_report_model_id", "=", record._origin.id)]
+        )
 
-      if record.x_studio_sales_centre:
+        if temp_rec_1:
+            for del_temp_rec_1 in temp_rec_1:
+                del_temp_rec_1.unlink()
 
-        report_type_lines = report_type_lines.filtered(lambda x: x.x_studio_sales_team == record.x_studio_sales_centre)
+        # Business Logic --------------------------------------------------------------------------------------------------------------------------------------------
 
-          
+        # create new record
 
-    # delete record area ----------------------------------------------------------------------------------------------------------------------------------------------  
+        # Daily Sales Summary
 
-    # delete old record
-
-    
-
-    # Daily Sales Summary
-
-    temp_rec_1 = env['x_rm_daily_s1'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
-
-    if temp_rec_1:
-
-      for del_temp_rec_1 in temp_rec_1:
-
-        del_temp_rec_1.unlink()
-
-    
-
-    # Business Logic --------------------------------------------------------------------------------------------------------------------------------------------   
-
-    # create new record 
-
-    
-
-    # Daily Sales Summary
-
-    for line in report_type_lines:
-
-      create_sub_model = env['x_rm_daily_s1'].create({'x_studio_sales_report_model_id':record.id,'x_studio_invoice_date':line.date,'x_studio_number':line.move_name,'x_studio_partner':line.partner_id.id,'x_studio_sales_centre':line.x_studio_sales_team.id,'x_studio_product_id':line.product_id.id,'x_studio_quantity':line.quantity,'x_studio_value':line.price_subtotal})
+        for line in report_type_lines:
+            create_sub_model = env["x_rm_daily_s1"].create(
+                {
+                    "x_studio_sales_report_model_id": record.id,
+                    "x_studio_invoice_date": line.date,
+                    "x_studio_number": line.move_name,
+                    "x_studio_partner": line.partner_id.id,
+                    "x_studio_sales_centre": line.x_studio_sales_team.id,
+                    "x_studio_product_id": line.product_id.id,
+                    "x_studio_quantity": line.quantity,
+                    "x_studio_value": line.price_subtotal,
+                }
+            )
 ```
   </details>
 - **SRM - RPT - Production Job Variance** (`sa_f5_x_sales_report_model_srm_rpt_production_job_variance`, type `code`)
@@ -1716,48 +1854,56 @@ if record.x_studio_report_type:
 
 ```python
 if record.x_studio_report_type:
+    if record.x_studio_report_code == "Production Job Variance":
+        report_type_lines = record.x_studio_report_type.x_studio_production_variance_id
 
-  if record.x_studio_report_code == 'Production Job Variance':
+        # filter area ------------------------------------------------------------------------------------------------------------------------------------------------
 
-    report_type_lines = record.x_studio_report_type.x_studio_production_variance_id
+        report_type_lines = report_type_lines.filtered(
+            lambda x: (
+                x.date.date() >= record.x_studio_from_date
+                and x.date.date() <= record.x_studio_as_on_date
+                and x.x_studio_variance != 0
+            )
+        )
 
-  
+        # delete record area ----------------------------------------------------------------------------------------------------------------------------------------------
 
-    # filter area ------------------------------------------------------------------------------------------------------------------------------------------------
+        # delete old record
 
-    report_type_lines = report_type_lines.filtered(lambda x: (x.date.date() >= record.x_studio_from_date and x.date.date() <= record.x_studio_as_on_date and x.x_studio_variance != 0))
+        # Production Variance
 
-    
+        temp_rec_5 = env["x_rm_production_varian"].search(
+            [("x_studio_sales_report_model_id", "=", record._origin.id)]
+        )
 
-    # delete record area ----------------------------------------------------------------------------------------------------------------------------------------------  
+        if temp_rec_5:
+            for del_temp_rec_5 in temp_rec_5:
+                del_temp_rec_5.unlink()
 
-    # delete old record
+        # Business Logic --------------------------------------------------------------------------------------------------------------------------------------------
 
-    
+        # create new record
 
-    # Production Variance     
+        # Production Variance
 
-    temp_rec_5 = env['x_rm_production_varian'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
-
-    if temp_rec_5:
-
-      for del_temp_rec_5 in temp_rec_5:
-
-        del_temp_rec_5.unlink()
-
-        
-
-    # Business Logic --------------------------------------------------------------------------------------------------------------------------------------------   
-
-    # create new record 
-
-    
-
-    # Production Variance
-
-    for line in report_type_lines:
-
-      create_sub_model = env['x_rm_production_varian'].create({'x_studio_sales_report_model_id':record.id,'x_studio_description':line.raw_material_production_id.product_id.id,'x_studio_production_id':line.raw_material_production_id.id,'x_studio_prod_qty':line.raw_material_production_id.product_qty,'x_studio_description_1':line.product_id.id,'x_studio_bom_qty':line.x_studio_original_qty,'x_studio_esti_qty':line.x_studio_original_qty,'x_studio_cons_qty':line.product_uom_qty,'x_studio_variance':line.x_studio_variance,'x_studio_avg_cost':line.price_unit,'x_studio_total_cost':(line.product_uom_qty*line.price_unit),'x_studio_header_reference': record.x_name})
+        for line in report_type_lines:
+            create_sub_model = env["x_rm_production_varian"].create(
+                {
+                    "x_studio_sales_report_model_id": record.id,
+                    "x_studio_description": line.raw_material_production_id.product_id.id,
+                    "x_studio_production_id": line.raw_material_production_id.id,
+                    "x_studio_prod_qty": line.raw_material_production_id.product_qty,
+                    "x_studio_description_1": line.product_id.id,
+                    "x_studio_bom_qty": line.x_studio_original_qty,
+                    "x_studio_esti_qty": line.x_studio_original_qty,
+                    "x_studio_cons_qty": line.product_uom_qty,
+                    "x_studio_variance": line.x_studio_variance,
+                    "x_studio_avg_cost": line.price_unit,
+                    "x_studio_total_cost": (line.product_uom_qty * line.price_unit),
+                    "x_studio_header_reference": record.x_name,
+                }
+            )
 ```
   </details>
 - **SRM - RPT - Production Overview - WIP** (`sa_f5_x_sales_report_model_srm_rpt_production_overview_wip`, type `code`)
@@ -1768,48 +1914,49 @@ if record.x_studio_report_type:
 
 ```python
 if record.x_studio_report_type:
+    if record.x_studio_report_code == "Production Overview - WIP":
+        report_type_lines = record.x_studio_report_type.x_studio_production_order_id
 
-  if record.x_studio_report_code == 'Production Overview - WIP':
+        # filter area ------------------------------------------------------------------------------------------------------------------------------------------------
 
-    report_type_lines = record.x_studio_report_type.x_studio_production_order_id
+        report_type_lines = report_type_lines.filtered(lambda x: x.state == "progress")
 
- 
+        # delete record area ----------------------------------------------------------------------------------------------------------------------------------------------
 
-    # filter area ------------------------------------------------------------------------------------------------------------------------------------------------
+        # delete old record
 
-    report_type_lines = report_type_lines.filtered(lambda x: x.state == 'progress')
+        # MO - WIP
 
-    
+        temp_rec_3 = env["x_rm_production_orders"].search(
+            [("x_studio_sales_report_model_id", "=", record._origin.id)]
+        )
 
-    # delete record area ----------------------------------------------------------------------------------------------------------------------------------------------  
+        if temp_rec_3:
+            for del_temp_rec_3 in temp_rec_3:
+                del_temp_rec_3.unlink()
 
-    # delete old record
+        # Business Logic --------------------------------------------------------------------------------------------------------------------------------------------
 
-    
+        # create new record
 
-    # MO - WIP     
+        # Production Overview - WIP
 
-    temp_rec_3 = env['x_rm_production_orders'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
-
-    if temp_rec_3:
-
-      for del_temp_rec_3 in temp_rec_3:
-
-        del_temp_rec_3.unlink()
-
-    
-
-    # Business Logic --------------------------------------------------------------------------------------------------------------------------------------------   
-
-    # create new record 
-
-    
-
-    # Production Overview - WIP
-
-    for line in report_type_lines:
-
-      create_sub_model = env['x_rm_production_orders'].create({'x_studio_sales_report_model_id':record.id,'x_studio_production_id':line.id,'x_studio_product_code':line.product_id.id,'x_studio_description':line.product_id.name,'x_studio_warehouse':line.location_dest_id.id,'x_studio_status':line.state,'x_studio_estimated':line.product_qty,'x_studio_started':line.qty_producing,'x_studio_start':line.date_start,'x_studio_header_reference': record.x_name,'x_studio_end':line.date_finished})
+        for line in report_type_lines:
+            create_sub_model = env["x_rm_production_orders"].create(
+                {
+                    "x_studio_sales_report_model_id": record.id,
+                    "x_studio_production_id": line.id,
+                    "x_studio_product_code": line.product_id.id,
+                    "x_studio_description": line.product_id.name,
+                    "x_studio_warehouse": line.location_dest_id.id,
+                    "x_studio_status": line.state,
+                    "x_studio_estimated": line.product_qty,
+                    "x_studio_started": line.qty_producing,
+                    "x_studio_start": line.date_start,
+                    "x_studio_header_reference": record.x_name,
+                    "x_studio_end": line.date_finished,
+                }
+            )
 ```
   </details>
 - **SRM - RPT - Production Summary - Split** (`sa_f5_x_sales_report_model_srm_rpt_production_summary_split`, type `code`)
@@ -1820,48 +1967,52 @@ if record.x_studio_report_type:
 
 ```python
 if record.x_studio_report_type:
+    if record.x_studio_report_code == "Production Summary - Split":
+        report_type_lines = record.x_studio_report_type.x_studio_prod_summary_split_id
 
-  if record.x_studio_report_code == 'Production Summary - Split':
+        # filter area ------------------------------------------------------------------------------------------------------------------------------------------------
 
-    report_type_lines = record.x_studio_report_type.x_studio_prod_summary_split_id
+        report_type_lines = report_type_lines.filtered(
+            lambda x: x.date.date() <= record.x_studio_as_on_date
+        )
 
-  
+        # delete record area ----------------------------------------------------------------------------------------------------------------------------------------------
 
-    # filter area ------------------------------------------------------------------------------------------------------------------------------------------------
+        # delete old record
 
-    report_type_lines = report_type_lines.filtered(lambda x: (x.date.date() <= record.x_studio_as_on_date))
+        # Production Summary - Split
 
-    
+        temp_rec_7 = env["x_rm_prod_summary_spli"].search(
+            [("x_studio_sales_report_model_id", "=", record._origin.id)]
+        )
 
-    # delete record area ----------------------------------------------------------------------------------------------------------------------------------------------  
+        if temp_rec_7:
+            for del_temp_rec_7 in temp_rec_7:
+                del_temp_rec_7.unlink()
 
-    # delete old record
+        # Business Logic --------------------------------------------------------------------------------------------------------------------------------------------
 
-    
+        # create new record
 
-    # Production Summary - Split     
+        # Production Summary - Split
 
-    temp_rec_7 = env['x_rm_prod_summary_spli'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
-
-    if temp_rec_7:
-
-      for del_temp_rec_7 in temp_rec_7:
-
-        del_temp_rec_7.unlink()
-
-        
-
-    # Business Logic --------------------------------------------------------------------------------------------------------------------------------------------   
-
-    # create new record 
-
-    
-
-    # Production Summary - Split 
-
-    for line in report_type_lines:
-
-      create_sub_model = env['x_rm_prod_summary_spli'].create({'x_studio_sales_report_model_id':record.id,'x_studio_description':line.raw_material_production_id.product_id.id,'x_studio_production_id':line.raw_material_production_id.id,'x_studio_prod_qty':line.raw_material_production_id.product_qty,'x_studio_description_1':line.product_id.id,'x_studio_bom_qty':line.x_studio_original_qty,'x_studio_esti_qty':line.x_studio_original_qty,'x_studio_cons_qty':line.product_uom_qty,'x_studio_variance':line.x_studio_variance,'x_studio_avg_cost':line.price_unit,'x_studio_total_cost':(line.product_uom_qty*line.price_unit),'x_studio_header_reference': record.x_name})
+        for line in report_type_lines:
+            create_sub_model = env["x_rm_prod_summary_spli"].create(
+                {
+                    "x_studio_sales_report_model_id": record.id,
+                    "x_studio_description": line.raw_material_production_id.product_id.id,
+                    "x_studio_production_id": line.raw_material_production_id.id,
+                    "x_studio_prod_qty": line.raw_material_production_id.product_qty,
+                    "x_studio_description_1": line.product_id.id,
+                    "x_studio_bom_qty": line.x_studio_original_qty,
+                    "x_studio_esti_qty": line.x_studio_original_qty,
+                    "x_studio_cons_qty": line.product_uom_qty,
+                    "x_studio_variance": line.x_studio_variance,
+                    "x_studio_avg_cost": line.price_unit,
+                    "x_studio_total_cost": (line.product_uom_qty * line.price_unit),
+                    "x_studio_header_reference": record.x_name,
+                }
+            )
 ```
   </details>
 - **SRM - RPT - Project Gross Margin** (`sa_f5_x_sales_report_model_srm_rpt_project_gross_margin`, type `code`)
@@ -2023,106 +2174,116 @@ if record.x_studio_report_type:
 
 ```python
 if record.x_studio_report_type:
+    if record.x_studio_report_code == "Sales - Production - Purchase Report":
+        report_type_lines = record.x_studio_report_type.x_studio_sales_prod_purch_id
 
-  if record.x_studio_report_code == 'Sales - Production - Purchase Report':
+        # filter area ------------------------------------------------------------------------------------------------------------------------------------------------
 
-    report_type_lines = record.x_studio_report_type.x_studio_sales_prod_purch_id
+        report_type_lines = report_type_lines.filtered(
+            lambda x: x.date.date() <= record.x_studio_as_on_date
+        )
 
-  
+        # delete record area ----------------------------------------------------------------------------------------------------------------------------------------------
 
-    # filter area ------------------------------------------------------------------------------------------------------------------------------------------------
+        # delete old record
 
-    report_type_lines = report_type_lines.filtered(lambda x: (x.date.date() <= record.x_studio_as_on_date))
+        # Sales - Production - Purchase Report
 
-    
+        temp_rec_6 = env["x_rm_sales_prod_purch"].search(
+            [("x_studio_sales_report_model_id", "=", record._origin.id)]
+        )
 
-    # delete record area ----------------------------------------------------------------------------------------------------------------------------------------------  
+        if temp_rec_6:
+            for del_temp_rec_6 in temp_rec_6:
+                del_temp_rec_6.unlink()
 
-    # delete old record
+        # Business Logic --------------------------------------------------------------------------------------------------------------------------------------------
 
-    
+        # create new record
 
-    # Sales - Production - Purchase Report     
+        # Sales - Production - Purchase Report
 
-    temp_rec_6 = env['x_rm_sales_prod_purch'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
+        d = record.x_studio_as_on_date
 
-    if temp_rec_6:
+        # d1 = datetime.strftime(d, "%Y-%m-%d %H:%M:%S")
 
-      for del_temp_rec_6 in temp_rec_6:
+        # d2 = datetime.strftime(d, "%Y-%m-%d 23:59:59")
 
-        del_temp_rec_6.unlink()
+        d1 = datetime.strptime(d, "%Y-%m-%d %H:%M:%S")
 
-    
+        d2 = datetime.strptime(d, "%Y-%m-%d 23:59:59")
 
-    # Business Logic --------------------------------------------------------------------------------------------------------------------------------------------   
+        product = env["product.product"].search([("type", "!=", "service")])
 
-    # create new record 
+        if product:
+            for products in product:
+                project_qty = 0
 
-    
+                so_qty = 0
 
-    # Sales - Production - Purchase Report   
+                prod_qty = 0
 
-    d = record.x_studio_as_on_date
+                purch_qty = 0
 
-    #d1 = datetime.strftime(d, "%Y-%m-%d %H:%M:%S")
+                last_prod_purch = env["stock.valuation.layer"].search(
+                    [
+                        ("product_id", "=", products.id),
+                        ("quantity", ">", 0),
+                        ("create_date", ">=", d1),
+                        ("create_date", "<=", d2),
+                    ],
+                    order="create_date desc",
+                    limit=1,
+                )
 
-    #d2 = datetime.strftime(d, "%Y-%m-%d 23:59:59")
+                sales_qtys = env["sale.order.line"].search(
+                    [("product_id", "=", products.id)]
+                )
 
-    d1 = datetime.strptime(d, "%Y-%m-%d %H:%M:%S")
+                sales_qtys = sales_qtys.filtered(
+                    lambda x: x.create_date.date() <= record.x_studio_as_on_date
+                )
 
-    d2 = datetime.strptime(d, "%Y-%m-%d 23:59:59")
+                for qtys in sales_qtys:
+                    so_qty += qtys.product_uom_qty
 
-    product = env['product.product'].search([('type', '!=', 'service')])
+                prod_qtys = env["mrp.production"].search(
+                    [("product_id", "=", products.id)]
+                )
 
-    if product:
+                prod_qtys = prod_qtys.filtered(
+                    lambda x: x.date_planned_start.date() <= record.x_studio_as_on_date
+                )
 
-     for products in product:
+                for prodqtys in prod_qtys:
+                    prod_qty += prodqtys.product_qty
 
-       project_qty = 0
+                purch_qtys = env["purchase.order.line"].search(
+                    [("product_id", "=", products.id)]
+                )
 
-       so_qty = 0
+                purch_qtys = purch_qtys.filtered(
+                    lambda x: x.create_date.date() <= record.x_studio_as_on_date
+                )
 
-       prod_qty = 0
+                for purchqtys in purch_qtys:
+                    purch_qty += purchqtys.product_qty
 
-       purch_qty = 0
-
-         
-
-       last_prod_purch = env['stock.valuation.layer'].search([('product_id', '=', products.id),('quantity', '>', 0),('create_date', '>=', d1),('create_date', '<=', d2)],order='create_date desc',limit=1)
-
-         
-
-       sales_qtys = env['sale.order.line'].search([('product_id', '=', products.id)])
-
-       sales_qtys = sales_qtys.filtered(lambda x: x.create_date.date() <= record.x_studio_as_on_date)
-
-       for qtys in sales_qtys:
-
-         so_qty += qtys.product_uom_qty 
-
-           
-
-       prod_qtys = env['mrp.production'].search([('product_id', '=', products.id)])
-
-       prod_qtys = prod_qtys.filtered(lambda x: x.date_planned_start.date() <= record.x_studio_as_on_date)
-
-       for prodqtys in prod_qtys: 
-
-         prod_qty += prodqtys.product_qty
-
-           
-
-       purch_qtys = env['purchase.order.line'].search([('product_id', '=', products.id)])
-
-       purch_qtys = purch_qtys.filtered(lambda x: x.create_date.date() <= record.x_studio_as_on_date)
-
-       for purchqtys in purch_qtys:
-
-         purch_qty += purchqtys.product_qty
-
-           
-
-       create_sub_model = env['x_rm_sales_prod_purch'].create({'x_studio_sales_report_model_id':record.id,'x_studio_description':products.id,'x_studio_base_price':products.list_price,'x_studio_product_type':products.type,'x_studio_date_1':last_prod_purch.create_date.date(),'x_studio_unit_cost':last_prod_purch.unit_cost,'x_studio_project_category':project_qty,'x_studio_sales_order':so_qty,'x_studio_production_qty':prod_qty,'x_studio_purchase_qty':purch_qty,'x_studio_header_reference': record.x_name})
+                create_sub_model = env["x_rm_sales_prod_purch"].create(
+                    {
+                        "x_studio_sales_report_model_id": record.id,
+                        "x_studio_description": products.id,
+                        "x_studio_base_price": products.list_price,
+                        "x_studio_product_type": products.type,
+                        "x_studio_date_1": last_prod_purch.create_date.date(),
+                        "x_studio_unit_cost": last_prod_purch.unit_cost,
+                        "x_studio_project_category": project_qty,
+                        "x_studio_sales_order": so_qty,
+                        "x_studio_production_qty": prod_qty,
+                        "x_studio_purchase_qty": purch_qty,
+                        "x_studio_header_reference": record.x_name,
+                    }
+                )
 ```
   </details>
 - **SRM - RPT - Sales Details for Incentive Calc.** (`sa_f5_x_sales_report_model_srm_rpt_sales_details_for_incentive_calc`, type `code`)
@@ -2133,60 +2294,67 @@ if record.x_studio_report_type:
 
 ```python
 if record.x_studio_report_type:
+    if record.x_studio_report_code == "Sales Details for Incentive Calc.":
+        report_type_lines = record.x_studio_report_type.x_studio_journal_items_id
 
-  if record.x_studio_report_code == 'Sales Details for Incentive Calc.':
+        # filter area ------------------------------------------------------------------------------------------------------------------------------------------------
 
-    report_type_lines = record.x_studio_report_type.x_studio_journal_items_id
+        # filter by as on date
 
-    
+        if record.x_studio_as_on_date:
+            report_type_lines = report_type_lines.filtered(
+                lambda x: x.date == record.x_studio_as_on_date
+            )
 
-    # filter area ------------------------------------------------------------------------------------------------------------------------------------------------
+            # filter by product
 
-    # filter by as on date
+            report_type_lines = report_type_lines.filtered(
+                lambda x: x.product_id.id > 0
+            )
 
-    if record.x_studio_as_on_date:
+            # filter by internal group
 
-      report_type_lines = report_type_lines.filtered(lambda x: x.date == record.x_studio_as_on_date)
+            report_type_lines = report_type_lines.filtered(
+                lambda x: x.account_internal_group == "income"
+            )
 
-    # filter by product
+        # delete record area ----------------------------------------------------------------------------------------------------------------------------------------------
 
-      report_type_lines = report_type_lines.filtered(lambda x: x.product_id.id > 0)
+        # delete old record
 
-    # filter by internal group
+        # Sales Details for Incentive Calculation
 
-      report_type_lines = report_type_lines.filtered(lambda x: x.account_internal_group == 'income')
+        temp_rec_2 = env["x_rm_sales_order_line"].search(
+            [("x_studio_sales_report_model_id", "=", record._origin.id)]
+        )
 
-      
+        if temp_rec_2:
+            for del_temp_rec_2 in temp_rec_2:
+                del_temp_rec_2.unlink()
 
-    # delete record area ----------------------------------------------------------------------------------------------------------------------------------------------  
+        # Business Logic --------------------------------------------------------------------------------------------------------------------------------------------
 
-    # delete old record
+        # create new record
 
-    
+        # Sales Details for Incentive Calculation
 
-    # Sales Details for Incentive Calculation     
-
-    temp_rec_2 = env['x_rm_sales_order_line'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
-
-    if temp_rec_2:
-
-      for del_temp_rec_2 in temp_rec_2:
-
-        del_temp_rec_2.unlink()
-
-    
-
-    # Business Logic --------------------------------------------------------------------------------------------------------------------------------------------   
-
-    # create new record 
-
-    
-
-    # Sales Details for Incentive Calculation    
-
-    for line in report_type_lines:
-
-      create_sub_model = env['x_rm_sales_order_line'].create({'x_studio_sales_report_model_id':record.id,'x_studio_date':line.date,'x_studio_customer_acc':line.partner_id.id,'x_studio_customer_group':line.partner_id.x_studio_customer_group.id,'x_studio_name':line.partner_id.name,'x_studio_sales_order':line.move_id.x_studio_sale_id.id,'x_studio_invoice':line.move_id.id,'x_studio_product_1':line.product_id.id,'x_studio_product_category':line.product_id.categ_id.id,'x_studio_quantity':line.quantity,'x_studio_unit_price':line.price_unit,'x_studio_net_value':line.price_total})
+        for line in report_type_lines:
+            create_sub_model = env["x_rm_sales_order_line"].create(
+                {
+                    "x_studio_sales_report_model_id": record.id,
+                    "x_studio_date": line.date,
+                    "x_studio_customer_acc": line.partner_id.id,
+                    "x_studio_customer_group": line.partner_id.x_studio_customer_group.id,
+                    "x_studio_name": line.partner_id.name,
+                    "x_studio_sales_order": line.move_id.x_studio_sale_id.id,
+                    "x_studio_invoice": line.move_id.id,
+                    "x_studio_product_1": line.product_id.id,
+                    "x_studio_product_category": line.product_id.categ_id.id,
+                    "x_studio_quantity": line.quantity,
+                    "x_studio_unit_price": line.price_unit,
+                    "x_studio_net_value": line.price_total,
+                }
+            )
 ```
   </details>
 - **SRM - RPT - Slow Moving Items** (`sa_f5_x_sales_report_model_srm_rpt_slow_moving_items`, type `code`)
@@ -2197,124 +2365,139 @@ if record.x_studio_report_type:
 
 ```python
 if record.x_studio_report_type:
+    if record.x_studio_report_code == "Slow Moving Items":
+        report_type_lines = record.x_studio_report_type.x_studio_slow_moving_item_id
 
-  if record.x_studio_report_code == 'Slow Moving Items':
+        currentdate = record.x_studio_as_on_date
 
-    report_type_lines = record.x_studio_report_type.x_studio_slow_moving_item_id
+        firstdayOfmonth = datetime.date(currentdate.year, currentdate.month, 1)
 
-    
+        next_month = currentdate.replace(day=28) + datetime.timedelta(days=4)
 
-    currentdate = record.x_studio_as_on_date
+        lastdayOfmonth = next_month - datetime.timedelta(days=next_month.day)
 
-    
+        if firstdayOfmonth.month != 1:
+            firstdayOfmonth2 = datetime.date(
+                firstdayOfmonth.year, firstdayOfmonth.month - 1, 1
+            )
 
-    firstdayOfmonth = datetime.date(currentdate.year, currentdate.month, 1)
+        else:
+            firstdayOfmonth2 = datetime.date(firstdayOfmonth.year - 1, 12, 1)
 
-    next_month = currentdate.replace(day=28) + datetime.timedelta(days=4)
+        next_month2 = firstdayOfmonth2.replace(day=28) + datetime.timedelta(days=4)
 
-    lastdayOfmonth = next_month - datetime.timedelta(days=next_month.day)
+        lastdayOfmonth2 = next_month2 - datetime.timedelta(days=next_month2.day)
 
-    
+        if firstdayOfmonth.month > 2:
+            firstdayOfmonth3 = datetime.date(
+                firstdayOfmonth.year, firstdayOfmonth.month - 2, 1
+            )
 
-    if firstdayOfmonth.month != 1:
+        else:
+            if firstdayOfmonth.month == 2:
+                firstdayOfmonth3 = datetime.date(firstdayOfmonth.year - 1, 12, 1)
 
-      firstdayOfmonth2 = datetime.date(firstdayOfmonth.year, firstdayOfmonth.month-1, 1)
+            else:
+                firstdayOfmonth3 = datetime.date(firstdayOfmonth.year - 1, 11, 1)
 
-    else:
+        next_month3 = firstdayOfmonth3.replace(day=28) + datetime.timedelta(days=4)
 
-      firstdayOfmonth2 = datetime.date(firstdayOfmonth.year-1, 12, 1)
+        lastdayOfmonth3 = next_month3 - datetime.timedelta(days=next_month3.day)
 
-      
+        if firstdayOfmonth.month > 3:
+            firstdayOfmonth4 = datetime.date(
+                firstdayOfmonth.year, firstdayOfmonth.month - 3, 1
+            )
 
-    next_month2 = firstdayOfmonth2.replace(day=28) + datetime.timedelta(days=4)
+        else:
+            if firstdayOfmonth.month == 3:
+                firstdayOfmonth4 = datetime.date(firstdayOfmonth.year - 1, 12, 1)
 
-    lastdayOfmonth2 = next_month2 - datetime.timedelta(days=next_month2.day)
+            elif firstdayOfmonth.month == 2:
+                firstdayOfmonth4 = datetime.date(firstdayOfmonth.year - 1, 11, 1)
 
-    
+            else:
+                firstdayOfmonth4 = datetime.date(firstdayOfmonth.year - 1, 10, 1)
 
-    if firstdayOfmonth.month > 2:
+        next_month4 = firstdayOfmonth4.replace(day=28) + datetime.timedelta(days=4)
 
-      firstdayOfmonth3 = datetime.date(firstdayOfmonth.year, firstdayOfmonth.month-2, 1)
+        lastdayOfmonth4 = next_month4 - datetime.timedelta(days=next_month4.day)
 
-    else:
+        # filter area ------------------------------------------------------------------------------------------------------------------------------------------------
 
-      if firstdayOfmonth.month == 2:
+        report_type_lines_receipt = report_type_lines.filtered(
+            lambda x: (
+                x.date.date() >= firstdayOfmonth
+                and x.date.date() <= lastdayOfmonth
+                and x.picking_code == "incoming"
+            )
+        )
 
-        firstdayOfmonth3 = datetime.date(firstdayOfmonth.year-1, 12, 1)
+        report_type_lines_delivery = report_type_lines.filtered(
+            lambda x: (
+                x.date.date() >= firstdayOfmonth
+                and x.date.date() <= lastdayOfmonth
+                and x.picking_code == "outgoing"
+            )
+        )
 
-      else:
+        report_type_lines_receipt2 = report_type_lines.filtered(
+            lambda x: (
+                x.date.date() >= firstdayOfmonth2
+                and x.date.date() <= lastdayOfmonth2
+                and x.picking_code == "incoming"
+            )
+        )
 
-        firstdayOfmonth3 = datetime.date(firstdayOfmonth.year-1, 11, 1)
+        report_type_lines_delivery2 = report_type_lines.filtered(
+            lambda x: (
+                x.date.date() >= firstdayOfmonth2
+                and x.date.date() <= lastdayOfmonth2
+                and x.picking_code == "outgoing"
+            )
+        )
 
-        
+        report_type_lines_receipt3 = report_type_lines.filtered(
+            lambda x: (
+                x.date.date() >= firstdayOfmonth3
+                and x.date.date() <= lastdayOfmonth3
+                and x.picking_code == "incoming"
+            )
+        )
 
-    next_month3 = firstdayOfmonth3.replace(day=28) + datetime.timedelta(days=4)
+        report_type_lines_delivery3 = report_type_lines.filtered(
+            lambda x: (
+                x.date.date() >= firstdayOfmonth3
+                and x.date.date() <= lastdayOfmonth3
+                and x.picking_code == "outgoing"
+            )
+        )
 
-    lastdayOfmonth3 = next_month3 - datetime.timedelta(days=next_month3.day)
+        report_type_lines_receipt4 = report_type_lines.filtered(
+            lambda x: (
+                x.date.date() >= firstdayOfmonth4
+                and x.date.date() <= lastdayOfmonth4
+                and x.picking_code == "incoming"
+            )
+        )
 
-    
+        report_type_lines_delivery4 = report_type_lines.filtered(
+            lambda x: (
+                x.date.date() >= firstdayOfmonth4
+                and x.date.date() <= lastdayOfmonth4
+                and x.picking_code == "outgoing"
+            )
+        )
 
-    if firstdayOfmonth.month > 3:
+        # delete record area ----------------------------------------------------------------------------------------------------------------------------------------------
 
-      firstdayOfmonth4 = datetime.date(firstdayOfmonth.year, firstdayOfmonth.month-3, 1)
+        # delete old record
 
-    else:
+        # Slow Moving Items
 
-      if firstdayOfmonth.month == 3:
-
-        firstdayOfmonth4 = datetime.date(firstdayOfmonth.year-1, 12, 1)
-
-      elif firstdayOfmonth.month == 2:
-
-        firstdayOfmonth4 = datetime.date(firstdayOfmonth.year-1, 11, 1)
-
-      else:
-
-        firstdayOfmonth4 = datetime.date(firstdayOfmonth.year-1, 10, 1)
-
-        
-
-    next_month4 = firstdayOfmonth4.replace(day=28) + datetime.timedelta(days=4)
-
-    lastdayOfmonth4 = next_month4 - datetime.timedelta(days=next_month4.day)
-
-    
-
-    # filter area ------------------------------------------------------------------------------------------------------------------------------------------------
-
-    report_type_lines_receipt = report_type_lines.filtered(lambda x: (x.date.date() >= firstdayOfmonth and x.date.date() <= lastdayOfmonth and x.picking_code == 'incoming'))
-
-    report_type_lines_delivery = report_type_lines.filtered(lambda x: (x.date.date() >= firstdayOfmonth and x.date.date() <= lastdayOfmonth and x.picking_code == 'outgoing'))
-
-      
-
-    report_type_lines_receipt2 = report_type_lines.filtered(lambda x: (x.date.date() >= firstdayOfmonth2 and x.date.date() <= lastdayOfmonth2 and x.picking_code == 'incoming'))
-
-    report_type_lines_delivery2 = report_type_lines.filtered(lambda x: (x.date.date() >= firstdayOfmonth2 and x.date.date() <= lastdayOfmonth2 and x.picking_code == 'outgoing'))
-
-    
-
-    report_type_lines_receipt3 = report_type_lines.filtered(lambda x: (x.date.date() >= firstdayOfmonth3 and x.date.date() <= lastdayOfmonth3 and x.picking_code == 'incoming'))
-
-    report_type_lines_delivery3 = report_type_lines.filtered(lambda x: (x.date.date() >= firstdayOfmonth3 and x.date.date() <= lastdayOfmonth3 and x.picking_code == 'outgoing'))
-
-      
-
-    report_type_lines_receipt4 = report_type_lines.filtered(lambda x: (x.date.date() >= firstdayOfmonth4 and x.date.date() <= lastdayOfmonth4 and x.picking_code == 'incoming'))
-
-    report_type_lines_delivery4 = report_type_lines.filtered(lambda x: (x.date.date() >= firstdayOfmonth4 and x.date.date() <= lastdayOfmonth4 and x.picking_code == 'outgoing'))
-
-    
-
-    # delete record area ----------------------------------------------------------------------------------------------------------------------------------------------  
-
-    # delete old record
-
-    
-
-    # Slow Moving Items     
-
-    temp_rec_4 = env['x_rm_none_moving'].search([('x_studio_sales_report_model_id', '=', record._origin.id)])
+        temp_rec_4 = env["x_rm_none_moving"].search(
+            [("x_studio_sales_report_model_id", "=", record._origin.id)]
+        )
 
 # … 103 more lines
 ```

@@ -26,34 +26,35 @@ This pre-migrate does two ORM-only things (no cr.execute):
 
 Idempotent: no-op on fresh installs (version is None) and when rows are gone.
 """
+
 import logging
 
 from odoo import SUPERUSER_ID, api
 
 _logger = logging.getLogger(__name__)
 
-MODULE = 'BugFix-Accounting'
+MODULE = "BugFix-Accounting"
 MOVED_FIELDS = (
-    ('account.bank.statement.line', 'x_studio_cre'),
-    ('account.bank.statement.line', 'x_studio_created_from_npo_no'),
-    ('account.bank.statement.line', 'x_studio_created_from_pr_no'),
-    ('account.bank.statement.line', 'x_studio_many2one_field_4CPvU'),
-    ('account.bank.statement.line', 'x_studio_many2one_field_rpsBC'),
-    ('account.move', 'x_studio_created_from_pr_no'),
-    ('account.move', 'x_studio_cre'),
-    ('account.move', 'x_studio_created_from_npo_no'),
-    ('account.payment', 'x_studio_cre'),
-    ('account.payment', 'x_studio_created_from_npo_no'),
-    ('account.payment', 'x_studio_created_from_pr_no'),
-    ('account.payment', 'x_studio_many2one_field_4CPvU'),
-    ('account.payment', 'x_studio_many2one_field_rpsBC'),
-    ('x_consignment_charge_h', 'x_studio_structure_details_line_ids'),
-    ('x_consignment_charge_h', 'x_studio_structure_master_id'),
+    ("account.bank.statement.line", "x_studio_cre"),
+    ("account.bank.statement.line", "x_studio_created_from_npo_no"),
+    ("account.bank.statement.line", "x_studio_created_from_pr_no"),
+    ("account.bank.statement.line", "x_studio_many2one_field_4CPvU"),
+    ("account.bank.statement.line", "x_studio_many2one_field_rpsBC"),
+    ("account.move", "x_studio_created_from_pr_no"),
+    ("account.move", "x_studio_cre"),
+    ("account.move", "x_studio_created_from_npo_no"),
+    ("account.payment", "x_studio_cre"),
+    ("account.payment", "x_studio_created_from_npo_no"),
+    ("account.payment", "x_studio_created_from_pr_no"),
+    ("account.payment", "x_studio_many2one_field_4CPvU"),
+    ("account.payment", "x_studio_many2one_field_rpsBC"),
+    ("x_consignment_charge_h", "x_studio_structure_details_line_ids"),
+    ("x_consignment_charge_h", "x_studio_structure_master_id"),
 )
 STALE_VIEWS = (
-    'BugFix-Accounting.view_4017_odoo_studio_account_move_form_customization_button_e',
-    'BugFix-Accounting.ported_view_2440_odoo_studio_account_05b91b49_9dd1_4362_a49e_835596bd7ace',
-    'BugFix-Accounting.ported_view_2936_odoo_studio_default_f7a79ca0_c28b_426a_9cee_c3ad87d51662',
+    "BugFix-Accounting.view_4017_odoo_studio_account_move_form_customization_button_e",
+    "BugFix-Accounting.ported_view_2440_odoo_studio_account_05b91b49_9dd1_4362_a49e_835596bd7ace",
+    "BugFix-Accounting.ported_view_2936_odoo_studio_default_f7a79ca0_c28b_426a_9cee_c3ad87d51662",
 )
 
 
@@ -61,30 +62,43 @@ def migrate(cr, version):
     if not version:
         return
     env = api.Environment(cr, SUPERUSER_ID, {})
-    Fields = env['ir.model.fields'].sudo()
-    IMD = env['ir.model.data'].sudo()
+    Fields = env["ir.model.fields"].sudo()
+    IMD = env["ir.model.data"].sudo()
 
     field_ids = []
     for model, name in MOVED_FIELDS:
-        field_ids += Fields.search([('model', '=', model), ('name', '=', name)]).ids
+        field_ids += Fields.search([("model", "=", model), ("name", "=", name)]).ids
     if field_ids:
-        imd = IMD.search([
-            ('module', '=', MODULE),
-            ('model', '=', 'ir.model.fields'),
-            ('res_id', 'in', field_ids),
-        ])
+        imd = IMD.search(
+            [
+                ("module", "=", MODULE),
+                ("model", "=", "ir.model.fields"),
+                ("res_id", "in", field_ids),
+            ]
+        )
         if imd:
-            names = imd.mapped('name')
+            names = imd.mapped("name")
             imd.unlink()
-            _logger.info("%s v0.0.143: detached %d ir.model.data pointer(s) for moved "
-                         "fields: %s", MODULE, len(names), names)
+            _logger.info(
+                "%s v0.0.143: detached %d ir.model.data pointer(s) for moved "
+                "fields: %s",
+                MODULE,
+                len(names),
+                names,
+            )
 
-    View = env['ir.ui.view'].sudo().with_context(active_test=False)
+    View = env["ir.ui.view"].sudo().with_context(active_test=False)
     for xmlid in STALE_VIEWS:
         view = env.ref(xmlid, raise_if_not_found=False)
         if not view:
             continue
         view = View.browse(view.id)
-        _logger.info("%s v0.0.143: unlinking stale extension view %s (id=%s, model=%s) "
-                     "for recreation from the new file arch", MODULE, xmlid, view.id, view.model)
+        _logger.info(
+            "%s v0.0.143: unlinking stale extension view %s (id=%s, model=%s) "
+            "for recreation from the new file arch",
+            MODULE,
+            xmlid,
+            view.id,
+            view.model,
+        )
         view.unlink()

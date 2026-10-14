@@ -23,10 +23,10 @@ This repo adds an automation that sets a payment term's Company to the user's cu
   <details><summary>code (4 lines)</summary>
 
 ```python
-company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
-company = env['res.company'].browse(company_id)
+company_id = env.context.get("allowed_company_ids", [env.user.company_id.id])[0]
+company = env["res.company"].browse(company_id)
 
-record['company_id'] = company.id
+record["company_id"] = company.id
 ```
   </details>
 **Automations (1):**

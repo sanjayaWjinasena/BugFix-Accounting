@@ -27,6 +27,7 @@ ids (no inheriting views; verified via RPC: the model has exactly 5 views).
 ORM only (ir.ui.view.unlink), no cr.execute. Idempotent: no-op on fresh
 installs (version is None) and when the views are already gone.
 """
+
 import logging
 
 from odoo import SUPERUSER_ID, api
@@ -34,8 +35,8 @@ from odoo import SUPERUSER_ID, api
 _logger = logging.getLogger(__name__)
 
 STALE_EXTENSION_VIEWS = (
-    'BugFix-Accounting.ported_view_2684_odoo_studio_default_2389c30f_1a37_4097_87d2_180fcdcddcb0',
-    'BugFix-Accounting.ported_view_2685_odoo_studio_default_f4328649_f0ce_4d1a_9a3b_45e7f1c2e802',
+    "BugFix-Accounting.ported_view_2684_odoo_studio_default_2389c30f_1a37_4097_87d2_180fcdcddcb0",
+    "BugFix-Accounting.ported_view_2685_odoo_studio_default_f4328649_f0ce_4d1a_9a3b_45e7f1c2e802",
 )
 
 
@@ -43,7 +44,7 @@ def migrate(cr, version):
     if not version:
         return
     env = api.Environment(cr, SUPERUSER_ID, {})
-    View = env['ir.ui.view'].sudo().with_context(active_test=False)
+    View = env["ir.ui.view"].sudo().with_context(active_test=False)
     for xmlid in STALE_EXTENSION_VIEWS:
         view = env.ref(xmlid, raise_if_not_found=False)
         if not view:
@@ -52,6 +53,8 @@ def migrate(cr, version):
         _logger.info(
             "BugFix-Accounting v0.0.142: unlinking stale extension view %s "
             "(id=%s, model=%s) so the trio-less arch can load",
-            xmlid, view.id, view.model,
+            xmlid,
+            view.id,
+            view.model,
         )
         view.unlink()

@@ -94,12 +94,11 @@ A Letter of Credit (LC) opened for an import purchase order, holding the SWIFT-s
   <details><summary>code (6 lines)</summary>
 
 ```python
+# record['x_name'] = env['ir.sequence'].next_by_code('purchase.request.seq')
 
-#record['x_name'] = env['ir.sequence'].next_by_code('purchase.request.seq')
-
-if record.x_name == 'New':
- seq = env['ir.sequence'].next_by_code('lc.registration.seq')
- record.write({'x_name': seq})
+if record.x_name == "New":
+    seq = env["ir.sequence"].next_by_code("lc.registration.seq")
+    record.write({"x_name": seq})
 ```
   </details>
 - **Execute Code** (`server_action_1407_imp_lc_amount_validation`, type `code`)
@@ -109,25 +108,42 @@ if record.x_name == 'New':
   <details><summary>code (19 lines)</summary>
 
 ```python
-
 if record.x_studio_issuing_bank.id != 0:
-  if record.x_studio_issuing_bank.x_studio_lc_limit != 0.00:
-    sum_lc = 0
-    lc_lines = env['x_lc_header'].search([('x_studio_issuing_bank', '=', record.x_studio_issuing_bank.id), ('x_studio_status', '=', 'Posted')])
-    if lc_lines:
-      for sum_lines in lc_lines:
-        sum_lc += sum_lines.x_studio_lc_amount_lcy
-    
-    if (record.x_studio_lc_amount_lcy + sum_lc) > record.x_studio_issuing_bank.x_studio_lc_limit:
-      raise UserError('Current LC Amount must be within the Available LC Balance.' + '\n' +
-                    'Current LC Amount (LCY): ' + str(record.x_studio_lc_amount_lcy) + '\n' + '\n' +
-                    'Bank LC Limit (LCY): ' + str(record.x_studio_issuing_bank.x_studio_lc_limit) + '\n' + 
-                    'Posted LC Amount (LCY): ' + str(sum_lc) + '\n' +
-                    'Available LC Balance (LCY): ' + str(record.x_studio_issuing_bank.x_studio_lc_limit - sum_lc))
-  else:
-    raise UserError('LC Limit of the Selected Issuing Bank must be Specified.')
+    if record.x_studio_issuing_bank.x_studio_lc_limit != 0.00:
+        sum_lc = 0
+        lc_lines = env["x_lc_header"].search(
+            [
+                ("x_studio_issuing_bank", "=", record.x_studio_issuing_bank.id),
+                ("x_studio_status", "=", "Posted"),
+            ]
+        )
+        if lc_lines:
+            for sum_lines in lc_lines:
+                sum_lc += sum_lines.x_studio_lc_amount_lcy
+
+        if (
+            record.x_studio_lc_amount_lcy + sum_lc
+        ) > record.x_studio_issuing_bank.x_studio_lc_limit:
+            raise UserError(
+                "Current LC Amount must be within the Available LC Balance."
+                + "\n"
+                + "Current LC Amount (LCY): "
+                + str(record.x_studio_lc_amount_lcy)
+                + "\n"
+                + "\n"
+                + "Bank LC Limit (LCY): "
+                + str(record.x_studio_issuing_bank.x_studio_lc_limit)
+                + "\n"
+                + "Posted LC Amount (LCY): "
+                + str(sum_lc)
+                + "\n"
+                + "Available LC Balance (LCY): "
+                + str(record.x_studio_issuing_bank.x_studio_lc_limit - sum_lc)
+            )
+    else:
+        raise UserError("LC Limit of the Selected Issuing Bank must be Specified.")
 else:
-  raise UserError('Issuing Bank must be Specified.')
+    raise UserError("Issuing Bank must be Specified.")
 ```
   </details>
 - **Execute Code** (`server_action_2612_jin_company_id_in_lc_header`, type `code`)
@@ -137,11 +153,10 @@ else:
   <details><summary>code (5 lines)</summary>
 
 ```python
+company_id = env.context.get("allowed_company_ids", [env.user.company_id.id])[0]
+company = env["res.company"].browse(company_id)
 
-company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
-company = env['res.company'].browse(company_id)
-
-record['x_studio_company_id'] = company.id
+record["x_studio_company_id"] = company.id
 ```
   </details>
 - **IMP - Amend LC** (`srv_lc_amend_lc`, type `code`)
@@ -151,58 +166,63 @@ record['x_studio_company_id'] = company.id
   <details><summary>code (52 lines)</summary>
 
 ```python
-
 if record.id:
-    lc = env['x_lc_header'].create({'x_studio_created_from_purchase_order': record.x_studio_created_from_purchase_order.id})
-    lc.write({
-        'x_name': record.x_name,
-        'x_studio_indent_no': record.x_studio_indent_no,
-        'x_studio_additional_conditions': record.x_studio_additional_conditions,
-        'x_studio_available_with_by': record.x_studio_available_with_by,
-        'x_studio_bank_charges': record.x_studio_bank_charges,
-        'x_studio_beneficiary': record.x_studio_beneficiary,
-        'x_studio_confirmation_instructions': record.x_studio_confirmation_instructions,
-        'x_studio_currency_id': record.x_studio_currency_id,
-        'x_studio_date_of_expiry': record.x_studio_date_of_expiry,
-        'x_studio_date_of_issue': record.x_studio_date_of_issue,
-        'x_studio_date_of_receipt': record.x_studio_date_of_receipt,
-        'x_studio_deferred_days': record.x_studio_deferred_days,
-        'x_studio_description_of_goods': record.x_studio_description_of_goods,
-        'x_studio_document_required': record.x_studio_document_required,
-        'x_studio_draft': record.x_studio_draft,
-        'x_studio_instruction_remarks': record.x_studio_instruction_remarks,
-        'x_studio_issuing_bank': record.x_studio_issuing_bank.id,
-        'x_studio_issuing_bank_reference_no_1': record.x_studio_issuing_bank_reference_no_1,
-        'x_studio_latest_shipment_date': record.x_studio_latest_shipment_date,
-        'x_studio_lc_amount': record.x_studio_lc_amount,
-        'x_studio_lc_credit_sub_type': record.x_studio_lc_credit_sub_type,
-        'x_studio_lc_credit_type': record.x_studio_lc_credit_type,
-        'x_studio_lc_no': record.x_studio_lc_no,
-        'x_studio_loading_on_board': record.x_studio_loading_on_board,
-        'x_studio_partial_shipment': record.x_studio_partial_shipment,
-        'x_studio_period_for_presentation': record.x_studio_period_for_presentation,
-        'x_studio_place_of_expiry': record.x_studio_place_of_expiry,
-        'x_studio_revised_lc_amount': record.x_studio_revised_lc_amount,
-        'x_studio_tolerance': record.x_studio_tolerance,
-        'x_studio_tolerance_type': record.x_studio_tolerance_type,
-        'x_studio_transportation': record.x_studio_transportation,
-        'x_studio_transshipment': record.x_studio_transshipment,
-        'x_studio_vendor': record.x_studio_vendor.id,
-        'x_studio_version_no': (record.x_studio_version_no + 1),
-    })
+    lc = env["x_lc_header"].create(
+        {
+            "x_studio_created_from_purchase_order": record.x_studio_created_from_purchase_order.id
+        }
+    )
+    lc.write(
+        {
+            "x_name": record.x_name,
+            "x_studio_indent_no": record.x_studio_indent_no,
+            "x_studio_additional_conditions": record.x_studio_additional_conditions,
+            "x_studio_available_with_by": record.x_studio_available_with_by,
+            "x_studio_bank_charges": record.x_studio_bank_charges,
+            "x_studio_beneficiary": record.x_studio_beneficiary,
+            "x_studio_confirmation_instructions": record.x_studio_confirmation_instructions,
+            "x_studio_currency_id": record.x_studio_currency_id,
+            "x_studio_date_of_expiry": record.x_studio_date_of_expiry,
+            "x_studio_date_of_issue": record.x_studio_date_of_issue,
+            "x_studio_date_of_receipt": record.x_studio_date_of_receipt,
+            "x_studio_deferred_days": record.x_studio_deferred_days,
+            "x_studio_description_of_goods": record.x_studio_description_of_goods,
+            "x_studio_document_required": record.x_studio_document_required,
+            "x_studio_draft": record.x_studio_draft,
+            "x_studio_instruction_remarks": record.x_studio_instruction_remarks,
+            "x_studio_issuing_bank": record.x_studio_issuing_bank.id,
+            "x_studio_issuing_bank_reference_no_1": record.x_studio_issuing_bank_reference_no_1,
+            "x_studio_latest_shipment_date": record.x_studio_latest_shipment_date,
+            "x_studio_lc_amount": record.x_studio_lc_amount,
+            "x_studio_lc_credit_sub_type": record.x_studio_lc_credit_sub_type,
+            "x_studio_lc_credit_type": record.x_studio_lc_credit_type,
+            "x_studio_lc_no": record.x_studio_lc_no,
+            "x_studio_loading_on_board": record.x_studio_loading_on_board,
+            "x_studio_partial_shipment": record.x_studio_partial_shipment,
+            "x_studio_period_for_presentation": record.x_studio_period_for_presentation,
+            "x_studio_place_of_expiry": record.x_studio_place_of_expiry,
+            "x_studio_revised_lc_amount": record.x_studio_revised_lc_amount,
+            "x_studio_tolerance": record.x_studio_tolerance,
+            "x_studio_tolerance_type": record.x_studio_tolerance_type,
+            "x_studio_transportation": record.x_studio_transportation,
+            "x_studio_transshipment": record.x_studio_transshipment,
+            "x_studio_vendor": record.x_studio_vendor.id,
+            "x_studio_version_no": (record.x_studio_version_no + 1),
+        }
+    )
 
     action = {
-        'name': 'Letter of Credit',
-        'domain': [('id', '=', lc.id)],
-        'type': 'ir.actions.act_window',
-        'res_model': 'x_lc_header',
-        'view_mode': 'tree,form',
-        'view_id': False,
-        'context': False,
+        "name": "Letter of Credit",
+        "domain": [("id", "=", lc.id)],
+        "type": "ir.actions.act_window",
+        "res_model": "x_lc_header",
+        "view_mode": "tree,form",
+        "view_id": False,
+        "context": False,
     }
 
-    record['x_studio_status'] = 'Amended'
-    record['x_studio_selection_field_yo4qM'] = 'Amended'
+    record["x_studio_status"] = "Amended"
+    record["x_studio_selection_field_yo4qM"] = "Amended"
 ```
   </details>
 - **IMP - Amend LC** (`server_action_1405_imp_amend_lc`, type `code`)
@@ -213,56 +233,63 @@ if record.id:
 
 ```python
 if record.id:
-  lc = env['x_lc_header'].create({'x_studio_created_from_purchase_order':record.x_studio_created_from_purchase_order.id})
-  lc.write({'x_name':record.x_name,
-            'x_studio_indent_no':record.x_studio_indent_no,
-            'x_studio_additional_conditions':record.x_studio_additional_conditions,
-            'x_studio_available_with_by':record.x_studio_available_with_by,
-            'x_studio_bank_charges':record.x_studio_bank_charges,
-            'x_studio_beneficiary':record.x_studio_beneficiary,
-            'x_studio_confirmation_instructions':record.x_studio_confirmation_instructions,
-            'x_studio_currency_id':record.x_studio_currency_id,
-            'x_studio_date_of_expiry':record.x_studio_date_of_expiry,
-            'x_studio_date_of_issue':record.x_studio_date_of_issue,
-            'x_studio_date_of_receipt':record.x_studio_date_of_receipt,
-            'x_studio_deferred_days':record.x_studio_deferred_days,
-            'x_studio_description_of_goods':record.x_studio_description_of_goods,
-            'x_studio_document_required':record.x_studio_document_required,
-            'x_studio_draft':record.x_studio_draft,
-            'x_studio_instruction_remarks':record.x_studio_instruction_remarks,
-            'x_studio_issuing_bank':record.x_studio_issuing_bank.id,
-            'x_studio_issuing_bank_reference_no_1':record.x_studio_issuing_bank_reference_no_1,
-            'x_studio_latest_shipment_date':record.x_studio_latest_shipment_date,
-            'x_studio_lc_amount':record.x_studio_lc_amount,
-            'x_studio_lc_credit_sub_type':record.x_studio_lc_credit_sub_type,
-            'x_studio_lc_credit_type':record.x_studio_lc_credit_type,
-            'x_studio_lc_no':record.x_studio_lc_no,
-            'x_studio_loading_on_board':record.x_studio_loading_on_board,
-            'x_studio_partial_shipment':record.x_studio_partial_shipment,
-            'x_studio_period_for_presentation':record.x_studio_period_for_presentation,
-            'x_studio_place_of_expiry':record.x_studio_place_of_expiry,
-            'x_studio_revised_lc_amount':record.x_studio_revised_lc_amount,
-            'x_studio_tolerance':record.x_studio_tolerance,
-            'x_studio_tolerance_type':record.x_studio_tolerance_type,
-            'x_studio_transportation':record.x_studio_transportation,
-            'x_studio_transshipment':record.x_studio_transshipment,
-            'x_studio_vendor':record.x_studio_vendor.id,
-            'x_studio_version_no': (record.x_studio_version_no + 1)})
+    lc = env["x_lc_header"].create(
+        {
+            "x_studio_created_from_purchase_order": record.x_studio_created_from_purchase_order.id
+        }
+    )
+    lc.write(
+        {
+            "x_name": record.x_name,
+            "x_studio_indent_no": record.x_studio_indent_no,
+            "x_studio_additional_conditions": record.x_studio_additional_conditions,
+            "x_studio_available_with_by": record.x_studio_available_with_by,
+            "x_studio_bank_charges": record.x_studio_bank_charges,
+            "x_studio_beneficiary": record.x_studio_beneficiary,
+            "x_studio_confirmation_instructions": record.x_studio_confirmation_instructions,
+            "x_studio_currency_id": record.x_studio_currency_id,
+            "x_studio_date_of_expiry": record.x_studio_date_of_expiry,
+            "x_studio_date_of_issue": record.x_studio_date_of_issue,
+            "x_studio_date_of_receipt": record.x_studio_date_of_receipt,
+            "x_studio_deferred_days": record.x_studio_deferred_days,
+            "x_studio_description_of_goods": record.x_studio_description_of_goods,
+            "x_studio_document_required": record.x_studio_document_required,
+            "x_studio_draft": record.x_studio_draft,
+            "x_studio_instruction_remarks": record.x_studio_instruction_remarks,
+            "x_studio_issuing_bank": record.x_studio_issuing_bank.id,
+            "x_studio_issuing_bank_reference_no_1": record.x_studio_issuing_bank_reference_no_1,
+            "x_studio_latest_shipment_date": record.x_studio_latest_shipment_date,
+            "x_studio_lc_amount": record.x_studio_lc_amount,
+            "x_studio_lc_credit_sub_type": record.x_studio_lc_credit_sub_type,
+            "x_studio_lc_credit_type": record.x_studio_lc_credit_type,
+            "x_studio_lc_no": record.x_studio_lc_no,
+            "x_studio_loading_on_board": record.x_studio_loading_on_board,
+            "x_studio_partial_shipment": record.x_studio_partial_shipment,
+            "x_studio_period_for_presentation": record.x_studio_period_for_presentation,
+            "x_studio_place_of_expiry": record.x_studio_place_of_expiry,
+            "x_studio_revised_lc_amount": record.x_studio_revised_lc_amount,
+            "x_studio_tolerance": record.x_studio_tolerance,
+            "x_studio_tolerance_type": record.x_studio_tolerance_type,
+            "x_studio_transportation": record.x_studio_transportation,
+            "x_studio_transshipment": record.x_studio_transshipment,
+            "x_studio_vendor": record.x_studio_vendor.id,
+            "x_studio_version_no": (record.x_studio_version_no + 1),
+        }
+    )
 
-  action = {
-            'name': 'Letter of Credit',
-            'domain': [('id', '=', lc.id)],
-            'type': 'ir.actions.act_window',
-            'res_model': 'x_lc_header',
-            'view_mode': 'tree,form',
-            'view_type': 'form',
-            'view_id': False,
-            'context': False,
-            } 
-    
- 
-  record['x_studio_status'] = 'Amended'
-  record['x_studio_selection_field_yo4qM'] = 'Amended'
+    action = {
+        "name": "Letter of Credit",
+        "domain": [("id", "=", lc.id)],
+        "type": "ir.actions.act_window",
+        "res_model": "x_lc_header",
+        "view_mode": "tree,form",
+        "view_type": "form",
+        "view_id": False,
+        "context": False,
+    }
+
+    record["x_studio_status"] = "Amended"
+    record["x_studio_selection_field_yo4qM"] = "Amended"
 ```
   </details>
 - **IMP - LC Amount Validation** (`sa_f5_x_lc_header_imp_lc_amount_validation`, type `code`)
@@ -273,23 +300,41 @@ if record.id:
 
 ```python
 if record.x_studio_issuing_bank.id != 0:
-  if record.x_studio_issuing_bank.x_studio_lc_limit != 0.00:
-    sum_lc = 0
-    lc_lines = env['x_lc_header'].search([('x_studio_issuing_bank', '=', record.x_studio_issuing_bank.id), ('x_studio_status', '=', 'Posted')])
-    if lc_lines:
-      for sum_lines in lc_lines:
-        sum_lc += sum_lines.x_studio_lc_amount_lcy
-    
-    if (record.x_studio_lc_amount_lcy + sum_lc) > record.x_studio_issuing_bank.x_studio_lc_limit:
-      raise UserError('Current LC Amount must be within the Available LC Balance.' + '\n' +
-                    'Current LC Amount (LCY): ' + str(record.x_studio_lc_amount_lcy) + '\n' + '\n' +
-                    'Bank LC Limit (LCY): ' + str(record.x_studio_issuing_bank.x_studio_lc_limit) + '\n' + 
-                    'Posted LC Amount (LCY): ' + str(sum_lc) + '\n' +
-                    'Available LC Balance (LCY): ' + str(record.x_studio_issuing_bank.x_studio_lc_limit - sum_lc))
-  else:
-    raise UserError('LC Limit of the Selected Issuing Bank must be Specified.')
+    if record.x_studio_issuing_bank.x_studio_lc_limit != 0.00:
+        sum_lc = 0
+        lc_lines = env["x_lc_header"].search(
+            [
+                ("x_studio_issuing_bank", "=", record.x_studio_issuing_bank.id),
+                ("x_studio_status", "=", "Posted"),
+            ]
+        )
+        if lc_lines:
+            for sum_lines in lc_lines:
+                sum_lc += sum_lines.x_studio_lc_amount_lcy
+
+        if (
+            record.x_studio_lc_amount_lcy + sum_lc
+        ) > record.x_studio_issuing_bank.x_studio_lc_limit:
+            raise UserError(
+                "Current LC Amount must be within the Available LC Balance."
+                + "\n"
+                + "Current LC Amount (LCY): "
+                + str(record.x_studio_lc_amount_lcy)
+                + "\n"
+                + "\n"
+                + "Bank LC Limit (LCY): "
+                + str(record.x_studio_issuing_bank.x_studio_lc_limit)
+                + "\n"
+                + "Posted LC Amount (LCY): "
+                + str(sum_lc)
+                + "\n"
+                + "Available LC Balance (LCY): "
+                + str(record.x_studio_issuing_bank.x_studio_lc_limit - sum_lc)
+            )
+    else:
+        raise UserError("LC Limit of the Selected Issuing Bank must be Specified.")
 else:
-  raise UserError('Issuing Bank must be Specified.')
+    raise UserError("Issuing Bank must be Specified.")
 ```
   </details>
 - **IMP - Post LC** (`srv_lc_post_lc`, type `code`)
@@ -299,12 +344,11 @@ else:
   <details><summary>code (6 lines)</summary>
 
 ```python
-
 if record.x_studio_lc_amount == 0.00:
-    raise UserError('LC Amount must be Specified')
+    raise UserError("LC Amount must be Specified")
 
-record['x_studio_status'] = 'Posted'
-record['x_studio_selection_field_yo4qM'] = 'Posted'
+record["x_studio_status"] = "Posted"
+record["x_studio_selection_field_yo4qM"] = "Posted"
 ```
   </details>
 - **IMP - Post LC** (`server_action_1404_imp_post_lc`, type `code`)
@@ -315,10 +359,10 @@ record['x_studio_selection_field_yo4qM'] = 'Posted'
 
 ```python
 if record.x_studio_lc_amount == 0.00:
-  raise UserError('LC Amount must be Specified')
-  
-record['x_studio_status'] = 'Posted'
-record['x_studio_selection_field_yo4qM'] = 'Posted'
+    raise UserError("LC Amount must be Specified")
+
+record["x_studio_status"] = "Posted"
+record["x_studio_selection_field_yo4qM"] = "Posted"
 ```
   </details>
 - **JIN - Company Id in LC Header** (`sa_f5_x_lc_header_jin_company_id_in_lc_header`, type `code`)
@@ -328,10 +372,10 @@ record['x_studio_selection_field_yo4qM'] = 'Posted'
   <details><summary>code (4 lines)</summary>
 
 ```python
-company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
-company = env['res.company'].browse(company_id)
+company_id = env.context.get("allowed_company_ids", [env.user.company_id.id])[0]
+company = env["res.company"].browse(company_id)
 
-record['x_studio_company_id'] = company.id
+record["x_studio_company_id"] = company.id
 ```
   </details>
 - **LC Registration Seq.No** (`sa_f5_x_lc_header_lc_registration_seq_no`, type `code`)
@@ -341,11 +385,11 @@ record['x_studio_company_id'] = company.id
   <details><summary>code (5 lines)</summary>
 
 ```python
-#record['x_name'] = env['ir.sequence'].next_by_code('purchase.request.seq')
+# record['x_name'] = env['ir.sequence'].next_by_code('purchase.request.seq')
 
-if record.x_name == 'New':
- seq = env['ir.sequence'].next_by_code('lc.registration.seq')
- record.write({'x_name': seq})
+if record.x_name == "New":
+    seq = env["ir.sequence"].next_by_code("lc.registration.seq")
+    record.write({"x_name": seq})
 ```
   </details>
 **Automations (3):**

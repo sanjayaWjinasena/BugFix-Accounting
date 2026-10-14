@@ -30,49 +30,94 @@ This repo adds two product fields: Charge Type (Charge, Duty or Tax) and Non Bil
   <details><summary>code (48 lines)</summary>
 
 ```python
+if record.type == "service":
+    company_id = env.context.get("allowed_company_ids", [env.user.company_id.id])[0]
+    company = env["res.company"].browse(company_id)
 
-if record.type == 'service':
-  
-  company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
-  company = env['res.company'].browse(company_id)
-  
-  if record.x_studio_charge_type == 'Charge' and record.x_studio_non_billable == False:
-    product = env['product.template'].search([('x_studio_charge_type', '=', 'Charge'), ('x_studio_non_billable', '=', False),('company_id', '=', company.id)], limit=1)
-    if product:
-      for p in product:
-        if p.id != record.id:
-          raise UserError("Only One Service Item can be Setup as Charge/ Not Non Billable Item!")
+    if (
+        record.x_studio_charge_type == "Charge"
+        and record.x_studio_non_billable == False
+    ):
+        product = env["product.template"].search(
+            [
+                ("x_studio_charge_type", "=", "Charge"),
+                ("x_studio_non_billable", "=", False),
+                ("company_id", "=", company.id),
+            ],
+            limit=1,
+        )
+        if product:
+            for p in product:
+                if p.id != record.id:
+                    raise UserError(
+                        "Only One Service Item can be Setup as Charge/ Not Non Billable Item!"
+                    )
 
-  if record.x_studio_charge_type == 'Duty' and record.x_studio_non_billable == False:
-    product = env['product.template'].search([('x_studio_charge_type', '=', 'Duty'), ('x_studio_non_billable', '=', False),('company_id', '=', company.id)], limit=1)
-    if product:
-      for p in product:
-        if p.id != record.id:
-          raise UserError("Ony One Service Item can be Setup as Duty/ Not Non Billable Item!")
+    if record.x_studio_charge_type == "Duty" and record.x_studio_non_billable == False:
+        product = env["product.template"].search(
+            [
+                ("x_studio_charge_type", "=", "Duty"),
+                ("x_studio_non_billable", "=", False),
+                ("company_id", "=", company.id),
+            ],
+            limit=1,
+        )
+        if product:
+            for p in product:
+                if p.id != record.id:
+                    raise UserError(
+                        "Ony One Service Item can be Setup as Duty/ Not Non Billable Item!"
+                    )
 
-  if record.x_studio_charge_type == 'Tax' and record.x_studio_non_billable == False:
-    product = env['product.template'].search([('x_studio_charge_type', '=', 'Tax'), ('x_studio_non_billable', '=', False),('company_id', '=', company.id)], limit=1)
-    if product:
-      for p in product:
-        if p.id != record.id:
-          raise UserError("Ony One Service Item can be Setup as Tax/ Not Non Billable Item!")
-          
-          
-  if record.x_studio_charge_type == 'Charge' and record.x_studio_non_billable == True:
-    product = env['product.template'].search([('x_studio_charge_type', '=', 'Charge'), ('x_studio_non_billable', '=', True),('company_id', '=', company.id)], limit=1)
-    if product:
-      for p in product:
-        if p.id != record.id:
-          raise UserError("Ony One Service Item can be Setup as Charge/ Non Billable Item!")
+    if record.x_studio_charge_type == "Tax" and record.x_studio_non_billable == False:
+        product = env["product.template"].search(
+            [
+                ("x_studio_charge_type", "=", "Tax"),
+                ("x_studio_non_billable", "=", False),
+                ("company_id", "=", company.id),
+            ],
+            limit=1,
+        )
+        if product:
+            for p in product:
+                if p.id != record.id:
+                    raise UserError(
+                        "Ony One Service Item can be Setup as Tax/ Not Non Billable Item!"
+                    )
 
-  if record.x_studio_charge_type == 'Duty' and record.x_studio_non_billable == True:
-    product = env['product.template'].search([('x_studio_charge_type', '=', 'Duty'), ('x_studio_non_billable', '=', True),('company_id', '=', company.id)], limit=1)
-    if product:
-      for p in product:
-        if p.id != record.id:
-          raise UserError("Ony One Service Item can be Setup as Duty/ Non Billable Item!")
+    if record.x_studio_charge_type == "Charge" and record.x_studio_non_billable == True:
+        product = env["product.template"].search(
+            [
+                ("x_studio_charge_type", "=", "Charge"),
+                ("x_studio_non_billable", "=", True),
+                ("company_id", "=", company.id),
+            ],
+            limit=1,
+        )
+        if product:
+            for p in product:
+                if p.id != record.id:
+                    raise UserError(
+                        "Ony One Service Item can be Setup as Charge/ Non Billable Item!"
+                    )
 
-  """if record.x_studio_charge_type == 'Tax' and record.x_studio_non_billable == True:
+    if record.x_studio_charge_type == "Duty" and record.x_studio_non_billable == True:
+        product = env["product.template"].search(
+            [
+                ("x_studio_charge_type", "=", "Duty"),
+                ("x_studio_non_billable", "=", True),
+                ("company_id", "=", company.id),
+            ],
+            limit=1,
+        )
+        if product:
+            for p in product:
+                if p.id != record.id:
+                    raise UserError(
+                        "Ony One Service Item can be Setup as Duty/ Non Billable Item!"
+                    )
+
+    """if record.x_studio_charge_type == 'Tax' and record.x_studio_non_billable == True:
     product = env['product.template'].search([('x_studio_charge_type', '=', 'Tax'), ('x_studio_non_billable', '=', True),('company_id', '=', company.id)], limit=1)
     if product:
       for p in product:
@@ -87,11 +132,10 @@ if record.type == 'service':
   <details><summary>code (5 lines)</summary>
 
 ```python
+company_id = env.context.get("allowed_company_ids", [env.user.company_id.id])[0]
+company = env["res.company"].browse(company_id)
 
-company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
-company = env['res.company'].browse(company_id)
-
-record['company_id'] = company.id
+record["company_id"] = company.id
 ```
   </details>
 **Automations (1):**

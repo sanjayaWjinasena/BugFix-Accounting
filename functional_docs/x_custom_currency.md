@@ -58,12 +58,13 @@ A custom (import) currency master used in the imports workflow, holding the curr
   <details><summary>code (6 lines)</summary>
 
 ```python
-
 if record.x_studio_currency_id.id:
-  currency = env['res.currency'].search([('id', '=', record.x_studio_currency_id.id)], limit=1)
-  if currency:
-    record['x_studio_iso_currency_code'] = currency.symbol
-    record['x_name'] = currency.name
+    currency = env["res.currency"].search(
+        [("id", "=", record.x_studio_currency_id.id)], limit=1
+    )
+    if currency:
+        record["x_studio_iso_currency_code"] = currency.symbol
+        record["x_name"] = currency.name
 ```
   </details>
 - **Execute Code** (`server_action_2674_jin_company_id_in_custom_currency`, type `code`)
@@ -73,11 +74,10 @@ if record.x_studio_currency_id.id:
   <details><summary>code (5 lines)</summary>
 
 ```python
+company_id = env.context.get("allowed_company_ids", [env.user.company_id.id])[0]
+company = env["res.company"].browse(company_id)
 
-company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
-company = env['res.company'].browse(company_id)
-
-record['x_studio_company_id'] = company.id
+record["x_studio_company_id"] = company.id
 ```
   </details>
 - **IMP - Pass Currency Information to Custom Currency** (`sa_f5_x_custom_currency_imp_pass_currency_information_to_custom_currency`, type `code`)
@@ -88,10 +88,12 @@ record['x_studio_company_id'] = company.id
 
 ```python
 if record.x_studio_currency_id.id:
-  currency = env['res.currency'].search([('id', '=', record.x_studio_currency_id.id)], limit=1)
-  if currency:
-    record['x_studio_iso_currency_code'] = currency.symbol
-    record['x_name'] = currency.name
+    currency = env["res.currency"].search(
+        [("id", "=", record.x_studio_currency_id.id)], limit=1
+    )
+    if currency:
+        record["x_studio_iso_currency_code"] = currency.symbol
+        record["x_name"] = currency.name
 ```
   </details>
 - **JIN - Company Id in Custom Currency** (`sa_f5_x_custom_currency_jin_company_id_in_custom_currency`, type `code`)
@@ -101,10 +103,10 @@ if record.x_studio_currency_id.id:
   <details><summary>code (4 lines)</summary>
 
 ```python
-company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
-company = env['res.company'].browse(company_id)
+company_id = env.context.get("allowed_company_ids", [env.user.company_id.id])[0]
+company = env["res.company"].browse(company_id)
 
-record['x_studio_company_id'] = company.id
+record["x_studio_company_id"] = company.id
 ```
   </details>
 **Automations (4):**

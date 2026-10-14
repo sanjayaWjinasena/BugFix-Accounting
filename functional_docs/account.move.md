@@ -89,15 +89,17 @@ This repo adds 48 fields, Python computes, 49 server actions, 26 automations and
   <details><summary>code (9 lines)</summary>
 
 ```python
-
 if record.x_studio_rug_confirmed == True:
-  if record.x_studio_rug_acc_updated == True:
-    if record.state == 'posted':
-      so = env['sale.order'].search([('id', '=', record.x_studio_sale_id.id),('state', '=', 'done')],limit=1)
-      if so:
-        record['payment_state'] = 'in_payment'
-      else:
-        raise UserError('Incomplete sales order. Process terminatedddd.')
+    if record.x_studio_rug_acc_updated == True:
+        if record.state == "posted":
+            so = env["sale.order"].search(
+                [("id", "=", record.x_studio_sale_id.id), ("state", "=", "done")],
+                limit=1,
+            )
+            if so:
+                record["payment_state"] = "in_payment"
+            else:
+                raise UserError("Incomplete sales order. Process terminatedddd.")
 ```
   </details>
 - **Execute Code** (`server_action_2738_project_update_project_no_for_manual_transactions`, type `code`)
@@ -107,16 +109,39 @@ if record.x_studio_rug_confirmed == True:
   <details><summary>code (10 lines)</summary>
 
 ```python
-
 if record.x_studio_project_no != False:
-  if record.x_studio_journal_type == 'Bill':
-    record.write({'x_studio_project_no_bill':record.x_studio_project_no.id, 'x_studio_project_no_issue':False, 'x_studio_project_no_settle':False})
-  elif record.x_studio_journal_type == 'Payment':
-    record.write({'x_studio_project_no_bill':False, 'x_studio_project_no_issue':record.x_studio_project_no.id, 'x_studio_project_no_settle':False})
-  elif record.x_studio_journal_type == 'Settlement':
-    record.write({'x_studio_project_no_bill':False, 'x_studio_project_no_issue':False, 'x_studio_project_no_settle':record.x_studio_project_no.id})
-  else:
-    record.write({'x_studio_project_no_bill':False, 'x_studio_project_no_issue':False, 'x_studio_project_no_settle':False})
+    if record.x_studio_journal_type == "Bill":
+        record.write(
+            {
+                "x_studio_project_no_bill": record.x_studio_project_no.id,
+                "x_studio_project_no_issue": False,
+                "x_studio_project_no_settle": False,
+            }
+        )
+    elif record.x_studio_journal_type == "Payment":
+        record.write(
+            {
+                "x_studio_project_no_bill": False,
+                "x_studio_project_no_issue": record.x_studio_project_no.id,
+                "x_studio_project_no_settle": False,
+            }
+        )
+    elif record.x_studio_journal_type == "Settlement":
+        record.write(
+            {
+                "x_studio_project_no_bill": False,
+                "x_studio_project_no_issue": False,
+                "x_studio_project_no_settle": record.x_studio_project_no.id,
+            }
+        )
+    else:
+        record.write(
+            {
+                "x_studio_project_no_bill": False,
+                "x_studio_project_no_issue": False,
+                "x_studio_project_no_settle": False,
+            }
+        )
 ```
   </details>
 - **Execute Code** (`server_action_1775_sls_validate_bank_guarantee_in_customer_invoice`, type `code`)
@@ -126,29 +151,93 @@ if record.x_studio_project_no != False:
   <details><summary>code (23 lines)</summary>
 
 ```python
-
 if record.partner_id.customer_rank > 0:
-  if record.state == 'posted':
-    if record.move_type == 'out_invoice':
-      if record.partner_id.x_studio_customer_group.x_studio_group_type != 'General':
-        if record.partner_id.x_studio_mandatory_bank_guarantee == True:
-          if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():
-            #raise UserError("Customer's bank guarantee is expired.")
-            raise UserError("Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
-          else:
-            #if record.partner_id.x_studio_mandatory_bank_guarantee < (record.partner_id.credit + record.amount_total):
-            if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_id.credit + record.amount_total):
-              #raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.x_studio_mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_id.credit + record.amount_total)))
-              #raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_id.credit + record.amount_total))
-              raise UserError("The credit limit is higher than the bank guarantee amount." + "\n" + "Customer: " + record.partner_id.name + "\n" + " Sales Order: " + record.x_studio_sale_id.name + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_id.credit + record.amount_total))
-        else:
-          if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():
-            records.message_post(body="Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
-          else:
-            if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_id.credit + record.amount_total):
-              #records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.x_studio_mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_id.credit + record.amount_total)))
-              #records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_id.credit + record.amount_total))
-              records.message_post(body="The credit limit is higher than the bank guarantee amount." + "\n" + "Customer: " + str(record.partner_id.name) + "\n" + " Sales Order: " + str(record.x_studio_sale_id.name) + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_id.credit + record.amount_total))
+    if record.state == "posted":
+        if record.move_type == "out_invoice":
+            if (
+                record.partner_id.x_studio_customer_group.x_studio_group_type
+                != "General"
+            ):
+                if record.partner_id.x_studio_mandatory_bank_guarantee == True:
+                    if (
+                        record.partner_id.x_studio_expiry_date
+                        and record.partner_id.x_studio_expiry_date
+                        < datetime.date.today()
+                    ):
+                        # raise UserError("Customer's bank guarantee is expired.")
+                        raise UserError(
+                            "Customer's bank guarantee is expired."
+                            + "\n"
+                            + "Bank guaranty expiry date: "
+                            + str(record.partner_id.x_studio_expiry_date)
+                        )
+                    else:
+                        # if record.partner_id.x_studio_mandatory_bank_guarantee < (record.partner_id.credit + record.amount_total):
+                        if record.partner_id.x_studio_bank_guarantee_amount < (
+                            record.partner_id.credit + record.amount_total
+                        ):
+                            # raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.x_studio_mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_id.credit + record.amount_total)))
+                            # raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_id.credit + record.amount_total))
+                            raise UserError(
+                                "The credit limit is higher than the bank guarantee amount."
+                                + "\n"
+                                + "Customer: "
+                                + record.partner_id.name
+                                + "\n"
+                                + " Sales Order: "
+                                + record.x_studio_sale_id.name
+                                + "\n"
+                                + "Bank guarantee amount: "
+                                + str(record.partner_id.x_studio_bank_guarantee_amount)
+                                + "\n"
+                                + "Current Balance: "
+                                + str(record.partner_id.credit)
+                                + "\n"
+                                + "This Sale: "
+                                + str(record.amount_total)
+                                + "\n"
+                                + "New balance: "
+                                + str(record.partner_id.credit + record.amount_total)
+                            )
+                else:
+                    if (
+                        record.partner_id.x_studio_expiry_date
+                        and record.partner_id.x_studio_expiry_date
+                        < datetime.date.today()
+                    ):
+                        records.message_post(
+                            body="Customer's bank guarantee is expired."
+                            + "\n"
+                            + "Bank guaranty expiry date: "
+                            + str(record.partner_id.x_studio_expiry_date)
+                        )
+                    else:
+                        if record.partner_id.x_studio_bank_guarantee_amount < (
+                            record.partner_id.credit + record.amount_total
+                        ):
+                            # records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.x_studio_mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_id.credit + record.amount_total)))
+                            # records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_id.credit + record.amount_total))
+                            records.message_post(
+                                body="The credit limit is higher than the bank guarantee amount."
+                                + "\n"
+                                + "Customer: "
+                                + str(record.partner_id.name)
+                                + "\n"
+                                + " Sales Order: "
+                                + str(record.x_studio_sale_id.name)
+                                + "\n"
+                                + "Bank guarantee amount: "
+                                + str(record.partner_id.x_studio_bank_guarantee_amount)
+                                + "\n"
+                                + "Current Balance: "
+                                + str(record.partner_id.credit)
+                                + "\n"
+                                + "This Sale: "
+                                + str(record.amount_total)
+                                + "\n"
+                                + "New balance: "
+                                + str(record.partner_id.credit + record.amount_total)
+                            )
 ```
   </details>
 - **IMP - Testing** (`server_action_1374_imp_testing`, type `code`)
@@ -159,85 +248,123 @@ if record.partner_id.customer_rank > 0:
 
 ```python
 if record.id:
-  invoice_lines=[]
-  charge = 0
-  duty = 0
-  tax = 0
-  
-  charge = 10
-  duty = 20
-  tax = 30
-  
-  if charge > 0.0000:
-    product_charge = env['product.product'].search([('x_studio_charge', '=', True)], limit=1)
-    if product_charge:
-      invoice_lines.append([0,0,{
-        'move_id':record.id,
-        'partner_id':record.partner_id.id,
-        'product_id':product_charge.id,
-        'quantity':1,
-        'currency_id':record.currency_id.id,
-        'name':product_charge.name,
-        'product_uom_id':product_charge.uom_id.id,
-        'is_landed_costs_line':True,
-        'price_unit':charge,
-        'price_subtotal':charge,
-        'account_id':4}])
-  
-  if duty > 0.0000:    
-    product_duty = env['product.product'].search([('x_studio_duty', '=', True)], limit=1)
-    if product_duty:
-      invoice_lines.append([0,0,{
-        'move_id':record.id,
-        'partner_id':record.partner_id.id,
-        'product_id':product_duty.id,
-        'quantity':1,
-        'currency_id':record.currency_id.id,
-        'name':product_duty.name,
-        'product_uom_id':product_duty.uom_id.id,
-        'is_landed_costs_line':True,
-        'price_unit':duty,
-        'price_subtotal':duty,
-        'account_id':4}])
-  
-  if tax > 0.0000:
-    product_tax = env['product.product'].search([('x_studio_tax', '=', True)], limit=1)
-    if product_tax:
-      invoice_lines.append([0,0,{
-        'move_id':record.id,
-        'partner_id':record.partner_id.id,
-        'product_id':product_tax.id,
-        'quantity':1,
-        'currency_id':record.currency_id.id,
-        'name':product_tax.name,
-        'product_uom_id':product_tax.uom_id.id,
-        'is_landed_costs_line':True,
-        'price_unit':tax,
-        'price_subtotal':tax,
-        'account_id':4}])
+    invoice_lines = []
+    charge = 0
+    duty = 0
+    tax = 0
 
-  if (charge + duty + tax) > 0.0000:
-    tp_account = env['x_imports_ledger_setup'].search([('id', '=', 1)], limit=1)
-    if tp_account:
-      if tp_account.x_studio_import_tp_vendor_account.id == 0:
-        raise UserError('Import TP Vendor Account must be Specified in Imports Ledger Setup')
+    charge = 10
+    duty = 20
+    tax = 30
 
-      invoice_lines.append([0,0,{
-        'move_id':record.id,
-        'partner_id':record.partner_id.id,
-        'quantity':1,
-        'currency_id':record.currency_id.id,
-        'name':tp_account.x_studio_import_tp_vendor_account.name,
-        'price_unit':-(charge + duty + tax),
-        'price_subtotal':-(charge + duty + tax),
-        'credit':(charge + duty + tax),
-        'account_id':tp_account.x_studio_import_tp_vendor_account.id,
-        'exclude_from_invoice_tab':True}])
-      
-      record.with_context(check_move_validity = True).write({'line_ids':invoice_lines})
+    if charge > 0.0000:
+        product_charge = env["product.product"].search(
+            [("x_studio_charge", "=", True)], limit=1
+        )
+        if product_charge:
+            invoice_lines.append(
+                [
+                    0,
+                    0,
+                    {
+                        "move_id": record.id,
+                        "partner_id": record.partner_id.id,
+                        "product_id": product_charge.id,
+                        "quantity": 1,
+                        "currency_id": record.currency_id.id,
+                        "name": product_charge.name,
+                        "product_uom_id": product_charge.uom_id.id,
+                        "is_landed_costs_line": True,
+                        "price_unit": charge,
+                        "price_subtotal": charge,
+                        "account_id": 4,
+                    },
+                ]
+            )
 
-#if (charge + duty + tax) > 0.0000:
-#    record.with_context(check_move_validity = False).write({'line_ids':invoice_lines}) 
+    if duty > 0.0000:
+        product_duty = env["product.product"].search(
+            [("x_studio_duty", "=", True)], limit=1
+        )
+        if product_duty:
+            invoice_lines.append(
+                [
+                    0,
+                    0,
+                    {
+                        "move_id": record.id,
+                        "partner_id": record.partner_id.id,
+                        "product_id": product_duty.id,
+                        "quantity": 1,
+                        "currency_id": record.currency_id.id,
+                        "name": product_duty.name,
+                        "product_uom_id": product_duty.uom_id.id,
+                        "is_landed_costs_line": True,
+                        "price_unit": duty,
+                        "price_subtotal": duty,
+                        "account_id": 4,
+                    },
+                ]
+            )
+
+    if tax > 0.0000:
+        product_tax = env["product.product"].search(
+            [("x_studio_tax", "=", True)], limit=1
+        )
+        if product_tax:
+            invoice_lines.append(
+                [
+                    0,
+                    0,
+                    {
+                        "move_id": record.id,
+                        "partner_id": record.partner_id.id,
+                        "product_id": product_tax.id,
+                        "quantity": 1,
+                        "currency_id": record.currency_id.id,
+                        "name": product_tax.name,
+                        "product_uom_id": product_tax.uom_id.id,
+                        "is_landed_costs_line": True,
+                        "price_unit": tax,
+                        "price_subtotal": tax,
+                        "account_id": 4,
+                    },
+                ]
+            )
+
+    if (charge + duty + tax) > 0.0000:
+        tp_account = env["x_imports_ledger_setup"].search([("id", "=", 1)], limit=1)
+        if tp_account:
+            if tp_account.x_studio_import_tp_vendor_account.id == 0:
+                raise UserError(
+                    "Import TP Vendor Account must be Specified in Imports Ledger Setup"
+                )
+
+            invoice_lines.append(
+                [
+                    0,
+                    0,
+                    {
+                        "move_id": record.id,
+                        "partner_id": record.partner_id.id,
+                        "quantity": 1,
+                        "currency_id": record.currency_id.id,
+                        "name": tp_account.x_studio_import_tp_vendor_account.name,
+                        "price_unit": -(charge + duty + tax),
+                        "price_subtotal": -(charge + duty + tax),
+                        "credit": (charge + duty + tax),
+                        "account_id": tp_account.x_studio_import_tp_vendor_account.id,
+                        "exclude_from_invoice_tab": True,
+                    },
+                ]
+            )
+
+            record.with_context(check_move_validity=True).write(
+                {"line_ids": invoice_lines}
+            )
+
+# if (charge + duty + tax) > 0.0000:
+#    record.with_context(check_move_validity = False).write({'line_ids':invoice_lines})
 
 #    create_charges = env['account.move.line'].with_context(check_move_validity = False).create({'move_id':record.id,'partner_id':record.partner_id.id,'product_id':product_charge.id,'quantity':1,'currency_id':record.currency_id.id,'name':product_charge.name,'product_uom_id':product_charge.uom_id.id,'is_landed_costs_line':True,'price_unit':10.00,'price_subtotal':10.00,'account_id':4})
 #    payable_account = env['account.move.line'].with_context(check_move_validity = True).search([('move_id', '=', record.id), ('account_id', '=', record.partner_id.property_account_payable_id.id)], limit=1)
@@ -253,125 +380,157 @@ if record.id:
 
 ```python
 if record.id:
-  
-  company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
-  company = env['res.company'].browse(company_id)
+    company_id = env.context.get("allowed_company_ids", [env.user.company_id.id])[0]
+    company = env["res.company"].browse(company_id)
 
-  con_line = env['x_consignment_line'].search([('x_studio_consignment_header_id', '=', record.x_studio_consignment_no.id), ('x_studio_purchase_id', '=', record.x_studio_purchase_id.id)],limit=1)
-  if not con_line:
-    raise UserError('The Selected Consignment No is not linked with the Current PO.')
-  
-  ex_rate = 1
+    con_line = env["x_consignment_line"].search(
+        [
+            ("x_studio_consignment_header_id", "=", record.x_studio_consignment_no.id),
+            ("x_studio_purchase_id", "=", record.x_studio_purchase_id.id),
+        ],
+        limit=1,
+    )
+    if not con_line:
+        raise UserError(
+            "The Selected Consignment No is not linked with the Current PO."
+        )
 
-  company_currency = env['res.config.settings'].search([('currency_id', '=', record.currency_id.id)],limit=1)
-  if company_currency:
     ex_rate = 1
-  else:
-    custom_currency = env['res.currency'].search([('id', '=', record.currency_id.id),('active', '=', True)],limit=1)
-    if custom_currency:
-      custom_currency_rate = env['res.currency.rate'].search([('currency_id', '=', custom_currency.id),('name', '<=', datetime.datetime.today())],order='name desc',limit=1)
-      if custom_currency_rate.inverse_company_rate != 0:
-        ex_rate = custom_currency_rate.inverse_company_rate
-    
-    """custom_currency = env['res.currency'].search([('id', '=', record.currency_id.id),('active', '=', True)],limit=1)
+
+    company_currency = env["res.config.settings"].search(
+        [("currency_id", "=", record.currency_id.id)], limit=1
+    )
+    if company_currency:
+        ex_rate = 1
+    else:
+        custom_currency = env["res.currency"].search(
+            [("id", "=", record.currency_id.id), ("active", "=", True)], limit=1
+        )
+        if custom_currency:
+            custom_currency_rate = env["res.currency.rate"].search(
+                [
+                    ("currency_id", "=", custom_currency.id),
+                    ("name", "<=", datetime.datetime.today()),
+                ],
+                order="name desc",
+                limit=1,
+            )
+            if custom_currency_rate.inverse_company_rate != 0:
+                ex_rate = custom_currency_rate.inverse_company_rate
+
+        """custom_currency = env['res.currency'].search([('id', '=', record.currency_id.id),('active', '=', True)],limit=1)
     if custom_currency.rate > 0:
       ex_rate = custom_currency.rate"""
 
-  
-  done = 0  
-  select = 0
-  total_amount = 0
-  total_charge = 0
-  total_duty = 0
-  total_tax = 0
-  val_charge = False
-  val_duty = False
-  val_tax = False
-  total_charge_cd = 0
-  total_duty_cd = 0
-  total_tax_cd = 0
-  val_charge_cd = False
-  val_duty_cd = False
-  val_tax_cd = False
-  total_charge_ex = 0
-  total_duty_ex = 0
-  total_tax_ex = 0
-  val_charge_ex = False
-  val_duty_ex = False
-  val_tax_ex = False
-  total_charge_ex_cd = 0
-  total_duty_ex_cd = 0
-  total_tax_ex_cd = 0
-  val_charge_ex_cd = False
-  val_duty_ex_cd = False
-  val_tax_ex_cd = False
-  
-  tot_charge_ids = []
-  tot_duty_ids = []
-  tot_tax_ids = []
-  tot_final_ids = []
-  
-  tot_charge_ex_ids = []
-  tot_duty_ex_ids = []
-  tot_tax_ex_ids = []
-  tot_final_ex_ids = []
-  
-  tot_charge_cd_ids = []
-  tot_duty_cd_ids = []
-  tot_tax_cd_ids = []
-  tot_final_cd_ids = []
-  
-  tot_charge_ex_cd_ids = []
-  tot_duty_ex_cd_ids = []
-  tot_tax_ex_cd_ids = []
-  tot_final_ex_cd_ids = []
-  
-  for po_line in record.invoice_line_ids:
-    con_line_2 = env['x_consignment_line'].search([('x_studio_consignment_header_id', '=', record.x_studio_consignment_no.id), ('x_studio_purchase_id', '=', record.x_studio_purchase_id.id), ('x_studio_product_id', '=', po_line.product_id.id), ('x_studio_invoice_qty', '=', po_line.quantity), ('x_studio_purchase_line_id', '=', po_line.purchase_line_id.id)],limit=1)
-    if con_line_2:
-      select += 1
-      total_amount += po_line.quantity * (po_line.price_subtotal / po_line.quantity)
-      po_line.write({'quantity':con_line_2.x_studio_invoice_qty})
-          
-      if con_line_2.x_studio_valid_charge == True:
-        total_charge += con_line_2.x_studio_tot_charge
-        #tot_charge_ids = con_line_2.x_studio_tot_charge_ids
-        if con_line_2.x_studio_tot_charge_ids != []:
-          for ids in con_line_2.x_studio_tot_charge_ids:
-            tot_charge_ids.append(ids.id)
-            tot_final_ids.append(ids.id)
-      if con_line_2.x_studio_valid_duty == True:
-        total_duty += con_line_2.x_studio_tot_duty
-        #tot_duty_ids = con_line_2.x_studio_tot_duty_ids
-        if con_line_2.x_studio_tot_duty_ids != []:
-          for ids in con_line_2.x_studio_tot_duty_ids:
-            tot_duty_ids.append(ids.id)
-            tot_final_ids.append(ids.id)
-      if con_line_2.x_studio_valid_tax == True:
-        total_tax += con_line_2.x_studio_tot_tax
-        #tot_tax_ids = con_line_2.x_studio_tot_tax_ids
-        if con_line_2.x_studio_tot_tax_ids != []:
-          for ids in con_line_2.x_studio_tot_tax_ids:
-            tot_tax_ids.append(ids.id)
-            tot_final_ids.append(ids.id)
-        
-      if con_line_2.x_studio_valid_charge_cd == True:
-        total_charge_cd += con_line_2.x_studio_tot_charge_cd
-        #tot_charge_cd_ids = con_line_2.x_studio_tot_charge_cd_ids
-        if con_line_2.x_studio_tot_charge_cd_ids != []:
-          for ids in con_line_2.x_studio_tot_charge_cd_ids:
-            tot_charge_cd_ids.append(ids.id)
-            tot_final_cd_ids.append(ids.id)
-      if con_line_2.x_studio_valid_duty_cd == True:
-        total_duty_cd += con_line_2.x_studio_tot_duty_cd
-        #tot_duty_cd_ids = con_line_2.x_studio_tot_duty_cd_ids
-        if con_line_2.x_studio_tot_duty_cd_ids != []:
-          for ids in con_line_2.x_studio_tot_duty_cd_ids:
-            tot_duty_cd_ids.append(ids.id)
-            tot_final_cd_ids.append(ids.id)
-      if con_line_2.x_studio_valid_tax_cd == True:
-        total_tax_cd += con_line_2.x_studio_tot_tax_cd
-        #tot_tax_cd_ids = con_line_2.x_studio_tot_tax_cd_ids
+    done = 0
+    select = 0
+    total_amount = 0
+    total_charge = 0
+    total_duty = 0
+    total_tax = 0
+    val_charge = False
+    val_duty = False
+    val_tax = False
+    total_charge_cd = 0
+    total_duty_cd = 0
+    total_tax_cd = 0
+    val_charge_cd = False
+    val_duty_cd = False
+    val_tax_cd = False
+    total_charge_ex = 0
+    total_duty_ex = 0
+    total_tax_ex = 0
+    val_charge_ex = False
+    val_duty_ex = False
+    val_tax_ex = False
+    total_charge_ex_cd = 0
+    total_duty_ex_cd = 0
+    total_tax_ex_cd = 0
+    val_charge_ex_cd = False
+    val_duty_ex_cd = False
+    val_tax_ex_cd = False
+
+    tot_charge_ids = []
+    tot_duty_ids = []
+    tot_tax_ids = []
+    tot_final_ids = []
+
+    tot_charge_ex_ids = []
+    tot_duty_ex_ids = []
+    tot_tax_ex_ids = []
+    tot_final_ex_ids = []
+
+    tot_charge_cd_ids = []
+    tot_duty_cd_ids = []
+    tot_tax_cd_ids = []
+    tot_final_cd_ids = []
+
+    tot_charge_ex_cd_ids = []
+    tot_duty_ex_cd_ids = []
+    tot_tax_ex_cd_ids = []
+    tot_final_ex_cd_ids = []
+
+    for po_line in record.invoice_line_ids:
+        con_line_2 = env["x_consignment_line"].search(
+            [
+                (
+                    "x_studio_consignment_header_id",
+                    "=",
+                    record.x_studio_consignment_no.id,
+                ),
+                ("x_studio_purchase_id", "=", record.x_studio_purchase_id.id),
+                ("x_studio_product_id", "=", po_line.product_id.id),
+                ("x_studio_invoice_qty", "=", po_line.quantity),
+                ("x_studio_purchase_line_id", "=", po_line.purchase_line_id.id),
+            ],
+            limit=1,
+        )
+        if con_line_2:
+            select += 1
+            total_amount += po_line.quantity * (
+                po_line.price_subtotal / po_line.quantity
+            )
+            po_line.write({"quantity": con_line_2.x_studio_invoice_qty})
+
+            if con_line_2.x_studio_valid_charge == True:
+                total_charge += con_line_2.x_studio_tot_charge
+                # tot_charge_ids = con_line_2.x_studio_tot_charge_ids
+                if con_line_2.x_studio_tot_charge_ids != []:
+                    for ids in con_line_2.x_studio_tot_charge_ids:
+                        tot_charge_ids.append(ids.id)
+                        tot_final_ids.append(ids.id)
+            if con_line_2.x_studio_valid_duty == True:
+                total_duty += con_line_2.x_studio_tot_duty
+                # tot_duty_ids = con_line_2.x_studio_tot_duty_ids
+                if con_line_2.x_studio_tot_duty_ids != []:
+                    for ids in con_line_2.x_studio_tot_duty_ids:
+                        tot_duty_ids.append(ids.id)
+                        tot_final_ids.append(ids.id)
+            if con_line_2.x_studio_valid_tax == True:
+                total_tax += con_line_2.x_studio_tot_tax
+                # tot_tax_ids = con_line_2.x_studio_tot_tax_ids
+                if con_line_2.x_studio_tot_tax_ids != []:
+                    for ids in con_line_2.x_studio_tot_tax_ids:
+                        tot_tax_ids.append(ids.id)
+                        tot_final_ids.append(ids.id)
+
+            if con_line_2.x_studio_valid_charge_cd == True:
+                total_charge_cd += con_line_2.x_studio_tot_charge_cd
+                # tot_charge_cd_ids = con_line_2.x_studio_tot_charge_cd_ids
+                if con_line_2.x_studio_tot_charge_cd_ids != []:
+                    for ids in con_line_2.x_studio_tot_charge_cd_ids:
+                        tot_charge_cd_ids.append(ids.id)
+                        tot_final_cd_ids.append(ids.id)
+            if con_line_2.x_studio_valid_duty_cd == True:
+                total_duty_cd += con_line_2.x_studio_tot_duty_cd
+                # tot_duty_cd_ids = con_line_2.x_studio_tot_duty_cd_ids
+                if con_line_2.x_studio_tot_duty_cd_ids != []:
+                    for ids in con_line_2.x_studio_tot_duty_cd_ids:
+                        tot_duty_cd_ids.append(ids.id)
+                        tot_final_cd_ids.append(ids.id)
+            if con_line_2.x_studio_valid_tax_cd == True:
+                total_tax_cd += con_line_2.x_studio_tot_tax_cd
+                # tot_tax_cd_ids = con_line_2.x_studio_tot_tax_cd_ids
 # … 455 more lines
 ```
   </details>
@@ -383,125 +542,157 @@ if record.id:
 
 ```python
 if record.id:
-  
-  company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
-  company = env['res.company'].browse(company_id)
+    company_id = env.context.get("allowed_company_ids", [env.user.company_id.id])[0]
+    company = env["res.company"].browse(company_id)
 
-  con_line = env['x_consignment_line'].search([('x_studio_consignment_header_id', '=', record.x_studio_consignment_no.id), ('x_studio_purchase_id', '=', record.x_studio_purchase_id.id)],limit=1)
-  if not con_line:
-    raise UserError('The Selected Consignment No is not linked with the Current PO.')
-  
-  ex_rate = 1
+    con_line = env["x_consignment_line"].search(
+        [
+            ("x_studio_consignment_header_id", "=", record.x_studio_consignment_no.id),
+            ("x_studio_purchase_id", "=", record.x_studio_purchase_id.id),
+        ],
+        limit=1,
+    )
+    if not con_line:
+        raise UserError(
+            "The Selected Consignment No is not linked with the Current PO."
+        )
 
-  company_currency = env['res.config.settings'].search([('currency_id', '=', record.currency_id.id)],limit=1)
-  if company_currency:
     ex_rate = 1
-  else:
-    custom_currency = env['res.currency'].search([('id', '=', record.currency_id.id),('active', '=', True)],limit=1)
-    if custom_currency:
-      custom_currency_rate = env['res.currency.rate'].search([('currency_id', '=', custom_currency.id),('name', '<=', datetime.datetime.today())],order='name desc',limit=1)
-      if custom_currency_rate.inverse_company_rate != 0:
-        ex_rate = custom_currency_rate.inverse_company_rate
-    
-    """custom_currency = env['res.currency'].search([('id', '=', record.currency_id.id),('active', '=', True)],limit=1)
+
+    company_currency = env["res.config.settings"].search(
+        [("currency_id", "=", record.currency_id.id)], limit=1
+    )
+    if company_currency:
+        ex_rate = 1
+    else:
+        custom_currency = env["res.currency"].search(
+            [("id", "=", record.currency_id.id), ("active", "=", True)], limit=1
+        )
+        if custom_currency:
+            custom_currency_rate = env["res.currency.rate"].search(
+                [
+                    ("currency_id", "=", custom_currency.id),
+                    ("name", "<=", datetime.datetime.today()),
+                ],
+                order="name desc",
+                limit=1,
+            )
+            if custom_currency_rate.inverse_company_rate != 0:
+                ex_rate = custom_currency_rate.inverse_company_rate
+
+        """custom_currency = env['res.currency'].search([('id', '=', record.currency_id.id),('active', '=', True)],limit=1)
     if custom_currency.rate > 0:
       ex_rate = custom_currency.rate"""
 
-  
-  done = 0  
-  select = 0
-  total_amount = 0
-  total_charge = 0
-  total_duty = 0
-  total_tax = 0
-  val_charge = False
-  val_duty = False
-  val_tax = False
-  total_charge_cd = 0
-  total_duty_cd = 0
-  total_tax_cd = 0
-  val_charge_cd = False
-  val_duty_cd = False
-  val_tax_cd = False
-  total_charge_ex = 0
-  total_duty_ex = 0
-  total_tax_ex = 0
-  val_charge_ex = False
-  val_duty_ex = False
-  val_tax_ex = False
-  total_charge_ex_cd = 0
-  total_duty_ex_cd = 0
-  total_tax_ex_cd = 0
-  val_charge_ex_cd = False
-  val_duty_ex_cd = False
-  val_tax_ex_cd = False
-  
-  tot_charge_ids = []
-  tot_duty_ids = []
-  tot_tax_ids = []
-  tot_final_ids = []
-  
-  tot_charge_ex_ids = []
-  tot_duty_ex_ids = []
-  tot_tax_ex_ids = []
-  tot_final_ex_ids = []
-  
-  tot_charge_cd_ids = []
-  tot_duty_cd_ids = []
-  tot_tax_cd_ids = []
-  tot_final_cd_ids = []
-  
-  tot_charge_ex_cd_ids = []
-  tot_duty_ex_cd_ids = []
-  tot_tax_ex_cd_ids = []
-  tot_final_ex_cd_ids = []
-  
-  for po_line in record.invoice_line_ids:
-    con_line_2 = env['x_consignment_line'].search([('x_studio_consignment_header_id', '=', record.x_studio_consignment_no.id), ('x_studio_purchase_id', '=', record.x_studio_purchase_id.id), ('x_studio_product_id', '=', po_line.product_id.id), ('x_studio_invoice_qty', '=', po_line.quantity), ('x_studio_purchase_line_id', '=', po_line.purchase_line_id.id)],limit=1)
-    if con_line_2:
-      select += 1
-      total_amount += po_line.quantity * (po_line.price_subtotal / po_line.quantity)
-      po_line.write({'quantity':con_line_2.x_studio_invoice_qty})
-          
-      if con_line_2.x_studio_valid_charge == True:
-        total_charge += con_line_2.x_studio_tot_charge
-        #tot_charge_ids = con_line_2.x_studio_tot_charge_ids
-        if con_line_2.x_studio_tot_charge_ids != []:
-          for ids in con_line_2.x_studio_tot_charge_ids:
-            tot_charge_ids.append(ids.id)
-            tot_final_ids.append(ids.id)
-      if con_line_2.x_studio_valid_duty == True:
-        total_duty += con_line_2.x_studio_tot_duty
-        #tot_duty_ids = con_line_2.x_studio_tot_duty_ids
-        if con_line_2.x_studio_tot_duty_ids != []:
-          for ids in con_line_2.x_studio_tot_duty_ids:
-            tot_duty_ids.append(ids.id)
-            tot_final_ids.append(ids.id)
-      if con_line_2.x_studio_valid_tax == True:
-        total_tax += con_line_2.x_studio_tot_tax
-        #tot_tax_ids = con_line_2.x_studio_tot_tax_ids
-        if con_line_2.x_studio_tot_tax_ids != []:
-          for ids in con_line_2.x_studio_tot_tax_ids:
-            tot_tax_ids.append(ids.id)
-            tot_final_ids.append(ids.id)
-        
-      if con_line_2.x_studio_valid_charge_cd == True:
-        total_charge_cd += con_line_2.x_studio_tot_charge_cd
-        #tot_charge_cd_ids = con_line_2.x_studio_tot_charge_cd_ids
-        if con_line_2.x_studio_tot_charge_cd_ids != []:
-          for ids in con_line_2.x_studio_tot_charge_cd_ids:
-            tot_charge_cd_ids.append(ids.id)
-            tot_final_cd_ids.append(ids.id)
-      if con_line_2.x_studio_valid_duty_cd == True:
-        total_duty_cd += con_line_2.x_studio_tot_duty_cd
-        #tot_duty_cd_ids = con_line_2.x_studio_tot_duty_cd_ids
-        if con_line_2.x_studio_tot_duty_cd_ids != []:
-          for ids in con_line_2.x_studio_tot_duty_cd_ids:
-            tot_duty_cd_ids.append(ids.id)
-            tot_final_cd_ids.append(ids.id)
-      if con_line_2.x_studio_valid_tax_cd == True:
-        total_tax_cd += con_line_2.x_studio_tot_tax_cd
-        #tot_tax_cd_ids = con_line_2.x_studio_tot_tax_cd_ids
+    done = 0
+    select = 0
+    total_amount = 0
+    total_charge = 0
+    total_duty = 0
+    total_tax = 0
+    val_charge = False
+    val_duty = False
+    val_tax = False
+    total_charge_cd = 0
+    total_duty_cd = 0
+    total_tax_cd = 0
+    val_charge_cd = False
+    val_duty_cd = False
+    val_tax_cd = False
+    total_charge_ex = 0
+    total_duty_ex = 0
+    total_tax_ex = 0
+    val_charge_ex = False
+    val_duty_ex = False
+    val_tax_ex = False
+    total_charge_ex_cd = 0
+    total_duty_ex_cd = 0
+    total_tax_ex_cd = 0
+    val_charge_ex_cd = False
+    val_duty_ex_cd = False
+    val_tax_ex_cd = False
+
+    tot_charge_ids = []
+    tot_duty_ids = []
+    tot_tax_ids = []
+    tot_final_ids = []
+
+    tot_charge_ex_ids = []
+    tot_duty_ex_ids = []
+    tot_tax_ex_ids = []
+    tot_final_ex_ids = []
+
+    tot_charge_cd_ids = []
+    tot_duty_cd_ids = []
+    tot_tax_cd_ids = []
+    tot_final_cd_ids = []
+
+    tot_charge_ex_cd_ids = []
+    tot_duty_ex_cd_ids = []
+    tot_tax_ex_cd_ids = []
+    tot_final_ex_cd_ids = []
+
+    for po_line in record.invoice_line_ids:
+        con_line_2 = env["x_consignment_line"].search(
+            [
+                (
+                    "x_studio_consignment_header_id",
+                    "=",
+                    record.x_studio_consignment_no.id,
+                ),
+                ("x_studio_purchase_id", "=", record.x_studio_purchase_id.id),
+                ("x_studio_product_id", "=", po_line.product_id.id),
+                ("x_studio_invoice_qty", "=", po_line.quantity),
+                ("x_studio_purchase_line_id", "=", po_line.purchase_line_id.id),
+            ],
+            limit=1,
+        )
+        if con_line_2:
+            select += 1
+            total_amount += po_line.quantity * (
+                po_line.price_subtotal / po_line.quantity
+            )
+            po_line.write({"quantity": con_line_2.x_studio_invoice_qty})
+
+            if con_line_2.x_studio_valid_charge == True:
+                total_charge += con_line_2.x_studio_tot_charge
+                # tot_charge_ids = con_line_2.x_studio_tot_charge_ids
+                if con_line_2.x_studio_tot_charge_ids != []:
+                    for ids in con_line_2.x_studio_tot_charge_ids:
+                        tot_charge_ids.append(ids.id)
+                        tot_final_ids.append(ids.id)
+            if con_line_2.x_studio_valid_duty == True:
+                total_duty += con_line_2.x_studio_tot_duty
+                # tot_duty_ids = con_line_2.x_studio_tot_duty_ids
+                if con_line_2.x_studio_tot_duty_ids != []:
+                    for ids in con_line_2.x_studio_tot_duty_ids:
+                        tot_duty_ids.append(ids.id)
+                        tot_final_ids.append(ids.id)
+            if con_line_2.x_studio_valid_tax == True:
+                total_tax += con_line_2.x_studio_tot_tax
+                # tot_tax_ids = con_line_2.x_studio_tot_tax_ids
+                if con_line_2.x_studio_tot_tax_ids != []:
+                    for ids in con_line_2.x_studio_tot_tax_ids:
+                        tot_tax_ids.append(ids.id)
+                        tot_final_ids.append(ids.id)
+
+            if con_line_2.x_studio_valid_charge_cd == True:
+                total_charge_cd += con_line_2.x_studio_tot_charge_cd
+                # tot_charge_cd_ids = con_line_2.x_studio_tot_charge_cd_ids
+                if con_line_2.x_studio_tot_charge_cd_ids != []:
+                    for ids in con_line_2.x_studio_tot_charge_cd_ids:
+                        tot_charge_cd_ids.append(ids.id)
+                        tot_final_cd_ids.append(ids.id)
+            if con_line_2.x_studio_valid_duty_cd == True:
+                total_duty_cd += con_line_2.x_studio_tot_duty_cd
+                # tot_duty_cd_ids = con_line_2.x_studio_tot_duty_cd_ids
+                if con_line_2.x_studio_tot_duty_cd_ids != []:
+                    for ids in con_line_2.x_studio_tot_duty_cd_ids:
+                        tot_duty_cd_ids.append(ids.id)
+                        tot_final_cd_ids.append(ids.id)
+            if con_line_2.x_studio_valid_tax_cd == True:
+                total_tax_cd += con_line_2.x_studio_tot_tax_cd
+                # tot_tax_cd_ids = con_line_2.x_studio_tot_tax_cd_ids
 # … 455 more lines
 ```
   </details>
@@ -512,16 +703,22 @@ if record.id:
   <details><summary>code (10 lines)</summary>
 
 ```python
-record['x_studio_update_consignment'] = False
-record['x_studio_consignment_no'] = False
+record["x_studio_update_consignment"] = False
+record["x_studio_consignment_no"] = False
 
 if record.invoice_origin:
-  purchase = env['purchase.order'].search([('name', '=', record.invoice_origin)], limit=1)
-  if purchase:
-    record['x_studio_purchase_id'] = purchase.id
-    lc = env['x_lc_header'].search([('x_studio_created_from_purchase_order', '=', purchase.id)],limit=1,order='x_studio_version_no desc')
-    if lc:
-      record['x_studio_lc_no'] = lc.id
+    purchase = env["purchase.order"].search(
+        [("name", "=", record.invoice_origin)], limit=1
+    )
+    if purchase:
+        record["x_studio_purchase_id"] = purchase.id
+        lc = env["x_lc_header"].search(
+            [("x_studio_created_from_purchase_order", "=", purchase.id)],
+            limit=1,
+            order="x_studio_version_no desc",
+        )
+        if lc:
+            record["x_studio_lc_no"] = lc.id
 ```
   </details>
 - **IMP - Update Consignment - Vendor Bill** (`server_action_1396_imp_update_consignment_vendor_bill`, type `code`)
@@ -531,13 +728,15 @@ if record.invoice_origin:
   <details><summary>code (7 lines)</summary>
 
 ```python
-record['x_studio_update_consignment'] = False
-record['x_studio_consignment_no'] = False
+record["x_studio_update_consignment"] = False
+record["x_studio_consignment_no"] = False
 
 if record.invoice_origin:
-  purchase = env['purchase.order'].search([('name', '=', record.invoice_origin)], limit=1)
-  if purchase:
-    record['x_studio_purchase_id'] = purchase.id
+    purchase = env["purchase.order"].search(
+        [("name", "=", record.invoice_origin)], limit=1
+    )
+    if purchase:
+        record["x_studio_purchase_id"] = purchase.id
 ```
   </details>
 - **IMP - Update LC Status to Paid** (`server_action_1408_imp_update_lc_status_to_paid`, type `code`)
@@ -547,11 +746,20 @@ if record.invoice_origin:
   <details><summary>code (5 lines)</summary>
 
 ```python
-if record.state == 'posted':
-  if record.x_studio_lc_no != False:
-    lc_lines = env['x_lc_header'].search([('id', '=', record.x_studio_lc_no.id), ('x_studio_status', '=', 'Posted')],limit=1)
-    if lc_lines:
-      lc_lines.write({'x_studio_status':'Paid','x_studio_selection_field_yo4qM':'Paid','x_studio_paid_amount_lcy':record.amount_total})
+if record.state == "posted":
+    if record.x_studio_lc_no != False:
+        lc_lines = env["x_lc_header"].search(
+            [("id", "=", record.x_studio_lc_no.id), ("x_studio_status", "=", "Posted")],
+            limit=1,
+        )
+        if lc_lines:
+            lc_lines.write(
+                {
+                    "x_studio_status": "Paid",
+                    "x_studio_selection_field_yo4qM": "Paid",
+                    "x_studio_paid_amount_lcy": record.amount_total,
+                }
+            )
 ```
   </details>
 - **IMP - Vendor Bill Currency Rate** (`srv_imp_vendor_bill_currency_rate`, type `code`)
@@ -561,23 +769,36 @@ if record.state == 'posted':
   <details><summary>code (26 lines)</summary>
 
 ```python
-
 if record.x_studio_currency_rate > 0.00:
     tot_amount = 0
 
-    #record.with_context(check_move_validity = False)
+    # record.with_context(check_move_validity = False)
 
     for invoice_lines2 in record.line_ids:
         if invoice_lines2.credit == 0.00:
-            invoice_lines2.with_context(check_move_validity=False).write({'debit': (record.x_studio_currency_rate * abs(invoice_lines2.amount_currency))})
+            invoice_lines2.with_context(check_move_validity=False).write(
+                {
+                    "debit": (
+                        record.x_studio_currency_rate
+                        * abs(invoice_lines2.amount_currency)
+                    )
+                }
+            )
         if invoice_lines2.debit == 0.00:
-            invoice_lines2.with_context(check_move_validity=False).write({'credit': (record.x_studio_currency_rate * abs(invoice_lines2.amount_currency))})
+            invoice_lines2.with_context(check_move_validity=False).write(
+                {
+                    "credit": (
+                        record.x_studio_currency_rate
+                        * abs(invoice_lines2.amount_currency)
+                    )
+                }
+            )
 
-    record['x_studio_currency_rate_updated'] = True
+    record["x_studio_currency_rate_updated"] = True
 else:
-    raise UserError('Currency Rate must be defined!')
+    raise UserError("Currency Rate must be defined!")
 
-#record.with_context(check_move_validity = True).write({'line_ids':invoice_lines_cd})
+# record.with_context(check_move_validity = True).write({'line_ids':invoice_lines_cd})
 
 """  credit_line = self.env['account.move.line'].with_context(
             check_move_validity=False).create({
@@ -597,22 +818,36 @@ else:
 
 ```python
 if record.x_studio_currency_rate > 0.00:
-  tot_amount = 0
-  
-  #record.with_context(check_move_validity = False)
- 
-  for invoice_lines2 in record.line_ids:
-    if invoice_lines2.credit == 0.00:  
-      invoice_lines2.with_context(check_move_validity=False).write({'debit':(record.x_studio_currency_rate * abs(invoice_lines2.amount_currency))})
-    if invoice_lines2.debit == 0.00:
-      invoice_lines2.with_context(check_move_validity=False).write({'credit':(record.x_studio_currency_rate * abs(invoice_lines2.amount_currency))})
-    
-  record['x_studio_currency_rate_updated'] = True
+    tot_amount = 0
+
+    # record.with_context(check_move_validity = False)
+
+    for invoice_lines2 in record.line_ids:
+        if invoice_lines2.credit == 0.00:
+            invoice_lines2.with_context(check_move_validity=False).write(
+                {
+                    "debit": (
+                        record.x_studio_currency_rate
+                        * abs(invoice_lines2.amount_currency)
+                    )
+                }
+            )
+        if invoice_lines2.debit == 0.00:
+            invoice_lines2.with_context(check_move_validity=False).write(
+                {
+                    "credit": (
+                        record.x_studio_currency_rate
+                        * abs(invoice_lines2.amount_currency)
+                    )
+                }
+            )
+
+    record["x_studio_currency_rate_updated"] = True
 else:
-  raise UserError('Currency Rate must be defined!')
-  
-#record.with_context(check_move_validity = True).write({'line_ids':invoice_lines_cd})
-  
+    raise UserError("Currency Rate must be defined!")
+
+# record.with_context(check_move_validity = True).write({'line_ids':invoice_lines_cd})
+
 """  credit_line = self.env['account.move.line'].with_context(
             check_move_validity=False).create({
             'move_id': self.journal_entry.id,
@@ -630,22 +865,30 @@ else:
   <details><summary>code (16 lines)</summary>
 
 ```python
-if record.state == 'posted':
-  company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
-  company = env['res.company'].browse(company_id)
+if record.state == "posted":
+    company_id = env.context.get("allowed_company_ids", [env.user.company_id.id])[0]
+    company = env["res.company"].browse(company_id)
 
-  sum_total = 0
+    sum_total = 0
 
-  if record.x_studio_cre != False:
-    journal = env['account.journal'].search([('name', '=', 'Cash Issued'),('company_id', '=', company.id)], limit=1) 
-    if journal:
-      cash_issued = env['account.move'].search([('x_studio_cre', '=', record.x_studio_cre.id),('journal_id', '=', journal.id),('state', '=', 'posted')]) 
-      if cash_issued:
-        for total in cash_issued:
-          sum_total += total.amount_total
-      
-      if record.amount_total <= sum_total:   
-        record['payment_state'] = 'paid'
+    if record.x_studio_cre != False:
+        journal = env["account.journal"].search(
+            [("name", "=", "Cash Issued"), ("company_id", "=", company.id)], limit=1
+        )
+        if journal:
+            cash_issued = env["account.move"].search(
+                [
+                    ("x_studio_cre", "=", record.x_studio_cre.id),
+                    ("journal_id", "=", journal.id),
+                    ("state", "=", "posted"),
+                ]
+            )
+            if cash_issued:
+                for total in cash_issued:
+                    sum_total += total.amount_total
+
+            if record.amount_total <= sum_total:
+                record["payment_state"] = "paid"
 ```
   </details>
 - **Project - Update Advance Payment Account - Vendor Bill** (`srv_update_advance_payment_account_vendor_bill`, type `code`)
@@ -655,43 +898,55 @@ if record.state == 'posted':
   <details><summary>code (37 lines)</summary>
 
 ```python
-
-if record.x_studio_type == 'Advance Payment':
-
+if record.x_studio_type == "Advance Payment":
     val = False
     for line in record.invoice_line_ids:
         val = True
 
     if val == False:
-        raise UserError('You need to add a line before updating the advance account.')
+        raise UserError("You need to add a line before updating the advance account.")
 
-    account = env['x_advance_payment_acco'].search([('id', '=', 1)], limit=1)
+    account = env["x_advance_payment_acco"].search([("id", "=", 1)], limit=1)
     if account:
         if account.x_studio_advance_account_project == False:
-            raise UserError('Advance Account (Project) must be Specified in Accounting Configuration')
+            raise UserError(
+                "Advance Account (Project) must be Specified in Accounting Configuration"
+            )
 
-        if record.move_type == 'out_invoice':
-            lines = env['account.move.line'].search([
-                ('move_id', '=', record.id),
-                ('account_internal_group', '=', 'income'),
-            ], limit=1)
+        if record.move_type == "out_invoice":
+            lines = env["account.move.line"].search(
+                [
+                    ("move_id", "=", record.id),
+                    ("account_internal_group", "=", "income"),
+                ],
+                limit=1,
+            )
             if lines:
                 for line in lines:
-                    line.write({'account_id': account.x_studio_advance_account_project.id})
-                    record.write({'x_studio_advance_acc_updated': True})
-        elif record.move_type == 'in_invoice':
-            lines = env['account.move.line'].search([
-                ('move_id', '=', record.id),
-                ('account_internal_group', '=', 'expense'),
-            ], limit=1)
+                    line.write(
+                        {"account_id": account.x_studio_advance_account_project.id}
+                    )
+                    record.write({"x_studio_advance_acc_updated": True})
+        elif record.move_type == "in_invoice":
+            lines = env["account.move.line"].search(
+                [
+                    ("move_id", "=", record.id),
+                    ("account_internal_group", "=", "expense"),
+                ],
+                limit=1,
+            )
             if lines:
                 for line in lines:
-                    line.write({'account_id': account.x_studio_advance_account_project.id})
-                    record.write({'x_studio_advance_acc_updated': True})
+                    line.write(
+                        {"account_id": account.x_studio_advance_account_project.id}
+                    )
+                    record.write({"x_studio_advance_acc_updated": True})
         else:
-            raise UserError('This feature is not supported.')
+            raise UserError("This feature is not supported.")
     else:
-        raise UserError('Advance Payment Accounts have not been setup in Accounting Configuration')
+        raise UserError(
+            "Advance Payment Accounts have not been setup in Accounting Configuration"
+        )
 ```
   </details>
 - **Project - Update Advance Payment Account - Vendor Bill** (`server_action_2762_project_update_advance_payment_account_vendor_bill`, type `code`)
@@ -701,36 +956,55 @@ if record.x_studio_type == 'Advance Payment':
   <details><summary>code (30 lines)</summary>
 
 ```python
-if record.x_studio_type == 'Advance Payment':
-  
-  val = False
-  for line in record.invoice_line_ids:
-    val = True
-    
-  if val == False:
-    raise UserError('You need to add a line before updating the advance account.')  
-    
-  account = env['x_advance_payment_acco'].search([('id', '=', 1)], limit=1)
-  if account:
-    if account.x_studio_advance_account_project == False:
-      raise UserError('Advance Account (Project) must be Specified in Accounting Configuration')
-  
-    if record.move_type == 'out_invoice':
-      lines = env['account.move.line'].search([('move_id', '=', record.id),('account_internal_group', '=', 'income')], limit=1)
-      if lines:
-        for line in lines:
-          line.write({'account_id':account.x_studio_advance_account_project.id}) 
-          record.write({'x_studio_advance_acc_updated': True})
-    elif record.move_type == 'in_invoice':
-      lines = env['account.move.line'].search([('move_id', '=', record.id),('account_internal_group', '=', 'expense')], limit=1)
-      if lines:
-        for line in lines:
-          line.write({'account_id':account.x_studio_advance_account_project.id}) 
-          record.write({'x_studio_advance_acc_updated': True})
+if record.x_studio_type == "Advance Payment":
+    val = False
+    for line in record.invoice_line_ids:
+        val = True
+
+    if val == False:
+        raise UserError("You need to add a line before updating the advance account.")
+
+    account = env["x_advance_payment_acco"].search([("id", "=", 1)], limit=1)
+    if account:
+        if account.x_studio_advance_account_project == False:
+            raise UserError(
+                "Advance Account (Project) must be Specified in Accounting Configuration"
+            )
+
+        if record.move_type == "out_invoice":
+            lines = env["account.move.line"].search(
+                [
+                    ("move_id", "=", record.id),
+                    ("account_internal_group", "=", "income"),
+                ],
+                limit=1,
+            )
+            if lines:
+                for line in lines:
+                    line.write(
+                        {"account_id": account.x_studio_advance_account_project.id}
+                    )
+                    record.write({"x_studio_advance_acc_updated": True})
+        elif record.move_type == "in_invoice":
+            lines = env["account.move.line"].search(
+                [
+                    ("move_id", "=", record.id),
+                    ("account_internal_group", "=", "expense"),
+                ],
+                limit=1,
+            )
+            if lines:
+                for line in lines:
+                    line.write(
+                        {"account_id": account.x_studio_advance_account_project.id}
+                    )
+                    record.write({"x_studio_advance_acc_updated": True})
+        else:
+            raise UserError("This feature is not supported.")
     else:
-      raise UserError('This feature is not supported.')  
-  else:
-    raise UserError('Advance Payment Accounts have not been setup in Accounting Configuration')
+        raise UserError(
+            "Advance Payment Accounts have not been setup in Accounting Configuration"
+        )
 ```
   </details>
 - **Project - Update Project No for Manual Transactions** (`sa_f5_account_move_project_update_project_no_for_manual_transactions`, type `code`)
@@ -741,14 +1015,38 @@ if record.x_studio_type == 'Advance Payment':
 
 ```python
 if record.x_studio_project_no != False:
-  if record.x_studio_journal_type == 'Bill':
-    record.write({'x_studio_project_no_bill':record.x_studio_project_no.id, 'x_studio_project_no_issue':False, 'x_studio_project_no_settle':False})
-  elif record.x_studio_journal_type == 'Payment':
-    record.write({'x_studio_project_no_bill':False, 'x_studio_project_no_issue':record.x_studio_project_no.id, 'x_studio_project_no_settle':False})
-  elif record.x_studio_journal_type == 'Settlement':
-    record.write({'x_studio_project_no_bill':False, 'x_studio_project_no_issue':False, 'x_studio_project_no_settle':record.x_studio_project_no.id})
-  else:
-    record.write({'x_studio_project_no_bill':False, 'x_studio_project_no_issue':False, 'x_studio_project_no_settle':False})
+    if record.x_studio_journal_type == "Bill":
+        record.write(
+            {
+                "x_studio_project_no_bill": record.x_studio_project_no.id,
+                "x_studio_project_no_issue": False,
+                "x_studio_project_no_settle": False,
+            }
+        )
+    elif record.x_studio_journal_type == "Payment":
+        record.write(
+            {
+                "x_studio_project_no_bill": False,
+                "x_studio_project_no_issue": record.x_studio_project_no.id,
+                "x_studio_project_no_settle": False,
+            }
+        )
+    elif record.x_studio_journal_type == "Settlement":
+        record.write(
+            {
+                "x_studio_project_no_bill": False,
+                "x_studio_project_no_issue": False,
+                "x_studio_project_no_settle": record.x_studio_project_no.id,
+            }
+        )
+    else:
+        record.write(
+            {
+                "x_studio_project_no_bill": False,
+                "x_studio_project_no_issue": False,
+                "x_studio_project_no_settle": False,
+            }
+        )
 ```
   </details>
 - **RR - RUG Account Update in SI** (`server_action_2176_rr_rug_account_update_in_si`, type `code`)
@@ -759,34 +1057,31 @@ if record.x_studio_project_no != False:
 
 ```python
 if record.x_studio_rug_confirmed == True:
+    company_id = env.context.get("allowed_company_ids", [env.user.company_id.id])[0]
 
-  company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
+    company = env["res.company"].browse(company_id)
 
-  company = env['res.company'].browse(company_id)
+    rug_account = env["x_repair_accounts"].search(
+        [("x_studio_company_id", "=", company.id)], limit=1
+    )
 
-  
+    if rug_account:
+        if rug_account.x_studio_rug_account == False:
+            raise UserError("RUG Account must be Specified in Repair Accounts")
 
-  rug_account = env['x_repair_accounts'].search([('x_studio_company_id', '=',  company.id)], limit=1)
+    lines = env["account.move.line"].search(
+        [
+            ("move_id", "=", record.id),
+            ("account_id", "=", record.journal_id.default_account_id.id),
+        ]
+    )
 
-  if rug_account:
+    # lines = env['account.move.line'].search([('move_id', '=', record.id),('account_id', '=', record.partner_id.property_account_receivable_id.id)])
 
-    if rug_account.x_studio_rug_account == False:
+    for line in lines:
+        line.write({"account_id": rug_account.x_studio_rug_account.id})
 
-      raise UserError('RUG Account must be Specified in Repair Accounts')
-
-  
-
-  lines = env['account.move.line'].search([('move_id', '=', record.id),('account_id', '=', record.journal_id.default_account_id.id)])
-
-  #lines = env['account.move.line'].search([('move_id', '=', record.id),('account_id', '=', record.partner_id.property_account_receivable_id.id)])
-
-  for line in lines:
-
-    line.write({'account_id':rug_account.x_studio_rug_account.id}) 
-
-  
-
-  record.write({'x_studio_rug_acc_updated': True})
+    record.write({"x_studio_rug_acc_updated": True})
 ```
   </details>
 - **RR - RUG Account Update in SI** (`srv_rug_account_update_in_si`, type `code`)
@@ -796,24 +1091,27 @@ if record.x_studio_rug_confirmed == True:
   <details><summary>code (18 lines)</summary>
 
 ```python
-
 if record.x_studio_rug_confirmed == True:
-    company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
-    company = env['res.company'].browse(company_id)
+    company_id = env.context.get("allowed_company_ids", [env.user.company_id.id])[0]
+    company = env["res.company"].browse(company_id)
 
-    rug_account = env['x_repair_accounts'].search([('x_studio_company_id', '=', company.id)], limit=1)
+    rug_account = env["x_repair_accounts"].search(
+        [("x_studio_company_id", "=", company.id)], limit=1
+    )
     if rug_account:
         if rug_account.x_studio_rug_account == False:
-            raise UserError('RUG Account must be Specified in Repair Accounts')
+            raise UserError("RUG Account must be Specified in Repair Accounts")
 
-    lines = env['account.move.line'].search([
-        ('move_id', '=', record.id),
-        ('account_id', '=', record.journal_id.default_account_id.id),
-    ])
+    lines = env["account.move.line"].search(
+        [
+            ("move_id", "=", record.id),
+            ("account_id", "=", record.journal_id.default_account_id.id),
+        ]
+    )
     for line in lines:
-        line.write({'account_id': rug_account.x_studio_rug_account.id})
+        line.write({"account_id": rug_account.x_studio_rug_account.id})
 
-    record.write({'x_studio_rug_acc_updated': True})
+    record.write({"x_studio_rug_acc_updated": True})
 ```
   </details>
 - **RR - Validate RUG in Customer Invoice** (`sa_f5_account_move_rr_validate_rug_in_customer_invoice`, type `code`)
@@ -824,13 +1122,16 @@ if record.x_studio_rug_confirmed == True:
 
 ```python
 if record.x_studio_rug_confirmed == True:
-  if record.x_studio_rug_acc_updated == True:
-    if record.state == 'posted':
-      so = env['sale.order'].search([('id', '=', record.x_studio_sale_id.id),('state', '=', 'done')],limit=1)
-      if so:
-        record['payment_state'] = 'in_payment'
-      else:
-        raise UserError('Incomplete sales order. Process terminatedddd.')
+    if record.x_studio_rug_acc_updated == True:
+        if record.state == "posted":
+            so = env["sale.order"].search(
+                [("id", "=", record.x_studio_sale_id.id), ("state", "=", "done")],
+                limit=1,
+            )
+            if so:
+                record["payment_state"] = "in_payment"
+            else:
+                raise UserError("Incomplete sales order. Process terminatedddd.")
 ```
   </details>
 - **SLS - Credit Note Approval** (`srv_sls_credit_note_approved_flag`, type `object_write`)
@@ -967,21 +1268,26 @@ if record.x_studio_rug_confirmed == True:
 
 ```python
 if record.invoice_origin:
-  ids =[record.id]
-  sale = env['sale.order'].search([('name', '=', record.invoice_origin)], limit=1)
-  if sale:
-    find_payment = env['account.payment'].search([('x_studio_sales_order', '=', sale.id)])
-    if find_payment:
-      find_payment.write({'reconciled_invoice_ids':[(6, False, ids)],'reconciled_invoices_count':1,'is_reconciled':True})
-      record['payment_id'] = find_payment.id
-      #for reconcil_payment in find_payment:
-      #  reconcil_payment.update({'reconciled_invoice_ids':[(6, False, ids)],'reconciled_invoices_count':1})
-        
-        
-        
+    ids = [record.id]
+    sale = env["sale.order"].search([("name", "=", record.invoice_origin)], limit=1)
+    if sale:
+        find_payment = env["account.payment"].search(
+            [("x_studio_sales_order", "=", sale.id)]
+        )
+        if find_payment:
+            find_payment.write(
+                {
+                    "reconciled_invoice_ids": [(6, False, ids)],
+                    "reconciled_invoices_count": 1,
+                    "is_reconciled": True,
+                }
+            )
+            record["payment_id"] = find_payment.id
+            # for reconcil_payment in find_payment:
+            #  reconcil_payment.update({'reconciled_invoice_ids':[(6, False, ids)],'reconciled_invoices_count':1})
 
-    ##record['x_studio_purchase_id'] = purchase.id
-    
+        ##record['x_studio_purchase_id'] = purchase.id
+
 """    
   if find_bom:
     if record.stock_move_id:
@@ -1000,13 +1306,13 @@ if record.invoice_origin:
                 'name':(prod_order.name + ' - ' + 'Labour Cost'),
                 'analytic_tag_ids':[(6, False, ids)],
                 'debit':prod_order.x_studio_prod_bom_total_actual_labour_cost}])
-          
+
               cost_lines.append([0,0,{
                 'account_id':work_center_costing.x_studio_labour_cost_credit_account.id,
                 'name':(prod_order.name + ' - ' + 'Labour Cost'),
                 'analytic_tag_ids':[(6, False, ids)],
                 'credit':prod_order.x_studio_prod_bom_total_actual_labour_cost}])	
-          
+
               labour_cost_entry = env['account.move'].create({'date':datetime.datetime.today(),'ref':(prod_order.name + ' - ' + 'Labour Cost'),'journal_id':6,'move_type':'entry','line_ids':cost_lines})
               #######
               update_labour_cost_entry = env['account.move'].search([('id', '=', labour_cost_entry.id)],limit=1)
@@ -1022,13 +1328,13 @@ if record.invoice_origin:
               'name':(prod_order.name + ' - ' + 'Overhead Cost'),
               'analytic_tag_ids':[(6, False, ids2)],
               'debit':prod_order.x_studio_prod_bom_total_actual_overhead_cost}])
-            
+
             cost_lines2.append([0,0,{
               'account_id':work_center_costing.x_studio_overhead_cost_credit_account.id,
               'name':(prod_order.name + ' - ' + 'Overhead Cost'),
               'analytic_tag_ids':[(6, False, ids2)],
               'credit':prod_order.x_studio_prod_bom_total_actual_overhead_cost}])	
-            
+
             overhead_cost_entry = env['account.move'].create({'date':datetime.datetime.today(),'ref':(prod_order.name + ' - ' + 'Overhead Cost'),'journal_id':6,'move_type':'entry','line_ids':cost_lines2})
             #######
             update_overhead_cost_entry = env['account.move'].search([('id', '=', overhead_cost_entry.id)],limit=1)
@@ -1044,13 +1350,13 @@ if record.invoice_origin:
               'name':(prod_order.name + ' - ' + 'General Cost'),
               'analytic_tag_ids':[(6, False, ids3)],
               'debit':prod_order.x_studio_total_actual_general_cost}])
-            
+
             cost_lines3.append([0,0,{
               'account_id':work_center_costing.x_studio_general_cost_credit_account.id,
               'name':(prod_order.name + ' - ' + 'General Cost'),
               'analytic_tag_ids':[(6, False, ids3)],
               'credit':prod_order.x_studio_total_actual_general_cost}])	
-            
+
             general_cost_entry = env['account.move'].create({'date':datetime.datetime.today(),'ref':(prod_order.name + ' - ' + 'General Cost'),'journal_id':6,'move_type':'entry','line_ids':cost_lines3})
             #######
             update_general_cost_entry = env['account.move'].search([('id', '=', general_cost_entry.id)],limit=1)
@@ -1058,7 +1364,7 @@ if record.invoice_origin:
               update_general_cost_entry.write({'state':'posted'})
             #######
           ##########################JC
-          
+
 """
 ```
   </details>
@@ -1195,18 +1501,47 @@ if record.invoice_origin:
   <details><summary>code (12 lines)</summary>
 
 ```python
-
 if record.partner_id.customer_rank > 0:
-    if record.move_type == 'out_invoice':
-        if record.partner_id.x_studio_customer_group.x_studio_group_type != 'General':
+    if record.move_type == "out_invoice":
+        if record.partner_id.x_studio_customer_group.x_studio_group_type != "General":
             if record.partner_id.x_studio_mandatory_bank_guarantee == False:
-                if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():
-                    records.message_post(body="Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
-                    record['x_studio_bg_sent'] = True
+                if (
+                    record.partner_id.x_studio_expiry_date
+                    and record.partner_id.x_studio_expiry_date < datetime.date.today()
+                ):
+                    records.message_post(
+                        body="Customer's bank guarantee is expired."
+                        + "\n"
+                        + "Bank guaranty expiry date: "
+                        + str(record.partner_id.x_studio_expiry_date)
+                    )
+                    record["x_studio_bg_sent"] = True
                 else:
-                    if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_id.credit + record.amount_total):
-                        records.message_post(body="The credit limit is higher than the bank guarantee amount." + "\n" + "Customer: " + str(record.partner_id.name) + "\n" + " Sales Order: " + str(record.x_studio_sale_id.name) + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_id.credit + record.amount_total))
-                        record['x_studio_bg_sent'] = True
+                    if record.partner_id.x_studio_bank_guarantee_amount < (
+                        record.partner_id.credit + record.amount_total
+                    ):
+                        records.message_post(
+                            body="The credit limit is higher than the bank guarantee amount."
+                            + "\n"
+                            + "Customer: "
+                            + str(record.partner_id.name)
+                            + "\n"
+                            + " Sales Order: "
+                            + str(record.x_studio_sale_id.name)
+                            + "\n"
+                            + "Bank guarantee amount: "
+                            + str(record.partner_id.x_studio_bank_guarantee_amount)
+                            + "\n"
+                            + "Current Balance: "
+                            + str(record.partner_id.credit)
+                            + "\n"
+                            + "This Sale: "
+                            + str(record.amount_total)
+                            + "\n"
+                            + "New balance: "
+                            + str(record.partner_id.credit + record.amount_total)
+                        )
+                        record["x_studio_bg_sent"] = True
 ```
   </details>
 - **SLS - Send Bank Guarantee Notification in Customer Invoice** (`server_action_1851_sls_send_bank_guarantee_notification_in_customer_invoice`, type `code`)
@@ -1217,16 +1552,46 @@ if record.partner_id.customer_rank > 0:
 
 ```python
 if record.partner_id.customer_rank > 0:
-  if record.move_type == 'out_invoice':
-    if record.partner_id.x_studio_customer_group.x_studio_group_type != 'General':
-      if record.partner_id.x_studio_mandatory_bank_guarantee == False:
-        if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():
-          records.message_post(body="Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
-          record['x_studio_bg_sent'] = True
-        else:
-          if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_id.credit + record.amount_total):
-            records.message_post(body="The credit limit is higher than the bank guarantee amount." + "\n" + "Customer: " + str(record.partner_id.name) + "\n" + " Sales Order: " + str(record.x_studio_sale_id.name) + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_id.credit + record.amount_total))
-            record['x_studio_bg_sent'] = True
+    if record.move_type == "out_invoice":
+        if record.partner_id.x_studio_customer_group.x_studio_group_type != "General":
+            if record.partner_id.x_studio_mandatory_bank_guarantee == False:
+                if (
+                    record.partner_id.x_studio_expiry_date
+                    and record.partner_id.x_studio_expiry_date < datetime.date.today()
+                ):
+                    records.message_post(
+                        body="Customer's bank guarantee is expired."
+                        + "\n"
+                        + "Bank guaranty expiry date: "
+                        + str(record.partner_id.x_studio_expiry_date)
+                    )
+                    record["x_studio_bg_sent"] = True
+                else:
+                    if record.partner_id.x_studio_bank_guarantee_amount < (
+                        record.partner_id.credit + record.amount_total
+                    ):
+                        records.message_post(
+                            body="The credit limit is higher than the bank guarantee amount."
+                            + "\n"
+                            + "Customer: "
+                            + str(record.partner_id.name)
+                            + "\n"
+                            + " Sales Order: "
+                            + str(record.x_studio_sale_id.name)
+                            + "\n"
+                            + "Bank guarantee amount: "
+                            + str(record.partner_id.x_studio_bank_guarantee_amount)
+                            + "\n"
+                            + "Current Balance: "
+                            + str(record.partner_id.credit)
+                            + "\n"
+                            + "This Sale: "
+                            + str(record.amount_total)
+                            + "\n"
+                            + "New balance: "
+                            + str(record.partner_id.credit + record.amount_total)
+                        )
+                        record["x_studio_bg_sent"] = True
 ```
   </details>
 - **SLS - Validate Bank Guarantee in Customer Invoice** (`sa_f5_account_move_sls_validate_bank_guarantee_in_customer_invoice`, type `code`)
@@ -1237,27 +1602,92 @@ if record.partner_id.customer_rank > 0:
 
 ```python
 if record.partner_id.customer_rank > 0:
-  if record.state == 'posted':
-    if record.move_type == 'out_invoice':
-      if record.partner_id.x_studio_customer_group.x_studio_group_type != 'General':
-        if record.partner_id.x_studio_mandatory_bank_guarantee == True:
-          if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():
-            #raise UserError("Customer's bank guarantee is expired.")
-            raise UserError("Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
-          else:
-            #if record.partner_id.x_studio_mandatory_bank_guarantee < (record.partner_id.credit + record.amount_total):
-            if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_id.credit + record.amount_total):
-              #raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.x_studio_mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_id.credit + record.amount_total)))
-              #raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_id.credit + record.amount_total))
-              raise UserError("The credit limit is higher than the bank guarantee amount." + "\n" + "Customer: " + record.partner_id.name + "\n" + " Sales Order: " + record.x_studio_sale_id.name + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_id.credit + record.amount_total))
-        else:
-          if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():
-            records.message_post(body="Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
-          else:
-            if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_id.credit + record.amount_total):
-              #records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.x_studio_mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_id.credit + record.amount_total)))
-              #records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_id.credit + record.amount_total))
-              records.message_post(body="The credit limit is higher than the bank guarantee amount." + "\n" + "Customer: " + str(record.partner_id.name) + "\n" + " Sales Order: " + str(record.x_studio_sale_id.name) + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_id.credit + record.amount_total))
+    if record.state == "posted":
+        if record.move_type == "out_invoice":
+            if (
+                record.partner_id.x_studio_customer_group.x_studio_group_type
+                != "General"
+            ):
+                if record.partner_id.x_studio_mandatory_bank_guarantee == True:
+                    if (
+                        record.partner_id.x_studio_expiry_date
+                        and record.partner_id.x_studio_expiry_date
+                        < datetime.date.today()
+                    ):
+                        # raise UserError("Customer's bank guarantee is expired.")
+                        raise UserError(
+                            "Customer's bank guarantee is expired."
+                            + "\n"
+                            + "Bank guaranty expiry date: "
+                            + str(record.partner_id.x_studio_expiry_date)
+                        )
+                    else:
+                        # if record.partner_id.x_studio_mandatory_bank_guarantee < (record.partner_id.credit + record.amount_total):
+                        if record.partner_id.x_studio_bank_guarantee_amount < (
+                            record.partner_id.credit + record.amount_total
+                        ):
+                            # raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.x_studio_mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_id.credit + record.amount_total)))
+                            # raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_id.credit + record.amount_total))
+                            raise UserError(
+                                "The credit limit is higher than the bank guarantee amount."
+                                + "\n"
+                                + "Customer: "
+                                + record.partner_id.name
+                                + "\n"
+                                + " Sales Order: "
+                                + record.x_studio_sale_id.name
+                                + "\n"
+                                + "Bank guarantee amount: "
+                                + str(record.partner_id.x_studio_bank_guarantee_amount)
+                                + "\n"
+                                + "Current Balance: "
+                                + str(record.partner_id.credit)
+                                + "\n"
+                                + "This Sale: "
+                                + str(record.amount_total)
+                                + "\n"
+                                + "New balance: "
+                                + str(record.partner_id.credit + record.amount_total)
+                            )
+                else:
+                    if (
+                        record.partner_id.x_studio_expiry_date
+                        and record.partner_id.x_studio_expiry_date
+                        < datetime.date.today()
+                    ):
+                        records.message_post(
+                            body="Customer's bank guarantee is expired."
+                            + "\n"
+                            + "Bank guaranty expiry date: "
+                            + str(record.partner_id.x_studio_expiry_date)
+                        )
+                    else:
+                        if record.partner_id.x_studio_bank_guarantee_amount < (
+                            record.partner_id.credit + record.amount_total
+                        ):
+                            # records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.x_studio_mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_id.credit + record.amount_total)))
+                            # records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_id.credit + record.amount_total))
+                            records.message_post(
+                                body="The credit limit is higher than the bank guarantee amount."
+                                + "\n"
+                                + "Customer: "
+                                + str(record.partner_id.name)
+                                + "\n"
+                                + " Sales Order: "
+                                + str(record.x_studio_sale_id.name)
+                                + "\n"
+                                + "Bank guarantee amount: "
+                                + str(record.partner_id.x_studio_bank_guarantee_amount)
+                                + "\n"
+                                + "Current Balance: "
+                                + str(record.partner_id.credit)
+                                + "\n"
+                                + "This Sale: "
+                                + str(record.amount_total)
+                                + "\n"
+                                + "New balance: "
+                                + str(record.partner_id.credit + record.amount_total)
+                            )
 ```
   </details>
 - **SLS - Validate Payment in Customer Invoice** (`sa_f5_account_move_sls_validate_payment_in_customer_invoice`, type `code`)
@@ -1267,20 +1697,45 @@ if record.partner_id.customer_rank > 0:
   <details><summary>code (14 lines)</summary>
 
 ```python
-if record.state == 'posted':
-  so = env['sale.order'].search([('id', '=', record.x_studio_sale_id.id),('state', '=', 'done'),('x_studio_order_payment_method', '=', 'Cash'),('x_studio_grant_temporary_credit', '=', False)],limit=1)
-  if so:
-    sum_total = 0
-    payment = env['account.payment'].search([('x_studio_sales_order', '=', record.x_studio_sale_id.id),('state', '=', 'posted')])
-    if payment:
-      for total in payment:
-        sum_total += total.amount
-              
-    if record.amount_total > sum_total:     
-      #raise UserError('The Payment Against the Cash Sales Order must be equal to the total invoice amount.')
-      raise UserError('The Payment Against the Cash Sales Order must be equal to the total invoice amount.' + '\n'  + '\n' + 'This sale: ' + str(record.amount_total) + '\n' + 'Total payments: ' + str(sum_total) + '\n' + 'Payment due: ' + str(record.amount_total - sum_total))
-        
-    record['payment_state'] = 'in_payment'
+if record.state == "posted":
+    so = env["sale.order"].search(
+        [
+            ("id", "=", record.x_studio_sale_id.id),
+            ("state", "=", "done"),
+            ("x_studio_order_payment_method", "=", "Cash"),
+            ("x_studio_grant_temporary_credit", "=", False),
+        ],
+        limit=1,
+    )
+    if so:
+        sum_total = 0
+        payment = env["account.payment"].search(
+            [
+                ("x_studio_sales_order", "=", record.x_studio_sale_id.id),
+                ("state", "=", "posted"),
+            ]
+        )
+        if payment:
+            for total in payment:
+                sum_total += total.amount
+
+        if record.amount_total > sum_total:
+            # raise UserError('The Payment Against the Cash Sales Order must be equal to the total invoice amount.')
+            raise UserError(
+                "The Payment Against the Cash Sales Order must be equal to the total invoice amount."
+                + "\n"
+                + "\n"
+                + "This sale: "
+                + str(record.amount_total)
+                + "\n"
+                + "Total payments: "
+                + str(sum_total)
+                + "\n"
+                + "Payment due: "
+                + str(record.amount_total - sum_total)
+            )
+
+        record["payment_state"] = "in_payment"
 ```
   </details>
 - **SLS - Validate Payment in Customer Invoice** (`server_action_1751_sls_validate_payment_in_customer_invoice`, type `code`)
@@ -1290,21 +1745,45 @@ if record.state == 'posted':
   <details><summary>code (15 lines)</summary>
 
 ```python
+if record.state == "posted":
+    so = env["sale.order"].search(
+        [
+            ("id", "=", record.x_studio_sale_id.id),
+            ("state", "=", "done"),
+            ("x_studio_order_payment_method", "=", "Cash"),
+            ("x_studio_grant_temporary_credit", "=", False),
+        ],
+        limit=1,
+    )
+    if so:
+        sum_total = 0
+        payment = env["account.payment"].search(
+            [
+                ("x_studio_sales_order", "=", record.x_studio_sale_id.id),
+                ("state", "=", "posted"),
+            ]
+        )
+        if payment:
+            for total in payment:
+                sum_total += total.amount
 
-if record.state == 'posted':
-  so = env['sale.order'].search([('id', '=', record.x_studio_sale_id.id),('state', '=', 'done'),('x_studio_order_payment_method', '=', 'Cash'),('x_studio_grant_temporary_credit', '=', False)],limit=1)
-  if so:
-    sum_total = 0
-    payment = env['account.payment'].search([('x_studio_sales_order', '=', record.x_studio_sale_id.id),('state', '=', 'posted')])
-    if payment:
-      for total in payment:
-        sum_total += total.amount
-              
-    if record.amount_total > sum_total:     
-      #raise UserError('The Payment Against the Cash Sales Order must be equal to the total invoice amount.')
-      raise UserError('The Payment Against the Cash Sales Order must be equal to the total invoice amount.' + '\n'  + '\n' + 'This sale: ' + str(record.amount_total) + '\n' + 'Total payments: ' + str(sum_total) + '\n' + 'Payment due: ' + str(record.amount_total - sum_total))
-        
-    record['payment_state'] = 'in_payment'
+        if record.amount_total > sum_total:
+            # raise UserError('The Payment Against the Cash Sales Order must be equal to the total invoice amount.')
+            raise UserError(
+                "The Payment Against the Cash Sales Order must be equal to the total invoice amount."
+                + "\n"
+                + "\n"
+                + "This sale: "
+                + str(record.amount_total)
+                + "\n"
+                + "Total payments: "
+                + str(sum_total)
+                + "\n"
+                + "Payment due: "
+                + str(record.amount_total - sum_total)
+            )
+
+        record["payment_state"] = "in_payment"
 ```
   </details>
 - **SLS - View Bank Guarantee Validation in Customer Invoice** (`srv_sls_view_bank_guarantee_validation`, type `code`)
@@ -1314,16 +1793,45 @@ if record.state == 'posted':
   <details><summary>code (10 lines)</summary>
 
 ```python
-
 if record.partner_id.customer_rank > 0:
-    if record.move_type == 'out_invoice':
-        if record.partner_id.x_studio_customer_group.x_studio_group_type != 'General':
+    if record.move_type == "out_invoice":
+        if record.partner_id.x_studio_customer_group.x_studio_group_type != "General":
             if record.partner_id.x_studio_mandatory_bank_guarantee == True:
-                if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():
-                    raise UserError("Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
+                if (
+                    record.partner_id.x_studio_expiry_date
+                    and record.partner_id.x_studio_expiry_date < datetime.date.today()
+                ):
+                    raise UserError(
+                        "Customer's bank guarantee is expired."
+                        + "\n"
+                        + "Bank guaranty expiry date: "
+                        + str(record.partner_id.x_studio_expiry_date)
+                    )
                 else:
-                    if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_id.credit + record.amount_total):
-                        raise UserError("Insufficient bank guarantee." + "\n" + "Customer: " + record.partner_id.name + "\n" + "Sales Order: " + record.x_studio_sale_id.name + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_id.credit + record.amount_total))
+                    if record.partner_id.x_studio_bank_guarantee_amount < (
+                        record.partner_id.credit + record.amount_total
+                    ):
+                        raise UserError(
+                            "Insufficient bank guarantee."
+                            + "\n"
+                            + "Customer: "
+                            + record.partner_id.name
+                            + "\n"
+                            + "Sales Order: "
+                            + record.x_studio_sale_id.name
+                            + "\n"
+                            + "Bank guarantee amount: "
+                            + str(record.partner_id.x_studio_bank_guarantee_amount)
+                            + "\n"
+                            + "Current Balance: "
+                            + str(record.partner_id.credit)
+                            + "\n"
+                            + "This Sale: "
+                            + str(record.amount_total)
+                            + "\n"
+                            + "New balance: "
+                            + str(record.partner_id.credit + record.amount_total)
+                        )
 ```
   </details>
 - **SLS - View Bank Guarantee Validation in Customer Invoice** (`server_action_1852_sls_view_bank_guarantee_validation_in_customer_invoice`, type `code`)
@@ -1334,15 +1842,45 @@ if record.partner_id.customer_rank > 0:
 
 ```python
 if record.partner_id.customer_rank > 0:
-  if record.move_type == 'out_invoice':
-    if record.partner_id.x_studio_customer_group.x_studio_group_type != 'General':
-      if record.partner_id.x_studio_mandatory_bank_guarantee == True:
-        if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():
-          raise UserError("Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
-            
-        else:
-          if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_id.credit + record.amount_total):
-            raise UserError("Insufficient bank guarantee." + "\n" + "Customer: " + record.partner_id.name + "\n" + "Sales Order: " + record.x_studio_sale_id.name + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_id.credit + record.amount_total))
+    if record.move_type == "out_invoice":
+        if record.partner_id.x_studio_customer_group.x_studio_group_type != "General":
+            if record.partner_id.x_studio_mandatory_bank_guarantee == True:
+                if (
+                    record.partner_id.x_studio_expiry_date
+                    and record.partner_id.x_studio_expiry_date < datetime.date.today()
+                ):
+                    raise UserError(
+                        "Customer's bank guarantee is expired."
+                        + "\n"
+                        + "Bank guaranty expiry date: "
+                        + str(record.partner_id.x_studio_expiry_date)
+                    )
+
+                else:
+                    if record.partner_id.x_studio_bank_guarantee_amount < (
+                        record.partner_id.credit + record.amount_total
+                    ):
+                        raise UserError(
+                            "Insufficient bank guarantee."
+                            + "\n"
+                            + "Customer: "
+                            + record.partner_id.name
+                            + "\n"
+                            + "Sales Order: "
+                            + record.x_studio_sale_id.name
+                            + "\n"
+                            + "Bank guarantee amount: "
+                            + str(record.partner_id.x_studio_bank_guarantee_amount)
+                            + "\n"
+                            + "Current Balance: "
+                            + str(record.partner_id.credit)
+                            + "\n"
+                            + "This Sale: "
+                            + str(record.amount_total)
+                            + "\n"
+                            + "New balance: "
+                            + str(record.partner_id.credit + record.amount_total)
+                        )
 ```
   </details>
 - **SLS - View Credit Limit Validation in Customer Invoice** (`srv_sls_view_credit_limit_validation`, type `code`)
@@ -1352,17 +1890,29 @@ if record.partner_id.customer_rank > 0:
   <details><summary>code (12 lines)</summary>
 
 ```python
-
 if record.partner_id.customer_rank > 0:
     if record.partner_id.id:
-        if record.x_studio_order_payment_method == 'Credit':
-            if (record.partner_id.credit + record.amount_total) > record.partner_id.credit_limit:
+        if record.x_studio_order_payment_method == "Credit":
+            if (
+                record.partner_id.credit + record.amount_total
+            ) > record.partner_id.credit_limit:
                 raise UserError(
-                    "Customer's credit limit is exceeded." + "\n"
-                    + "Customer credit limit: " + str(record.partner_id.credit_limit) + "\n"
-                    + "Cust. Total Receivable: " + str(record.partner_id.credit) + "\n"
-                    + "Current Tot. Amount: " + str(record.amount_total) + "\n"
-                    + "Over Credit Amount: " + str((record.partner_id.credit + record.amount_total) - record.partner_id.credit_limit)
+                    "Customer's credit limit is exceeded."
+                    + "\n"
+                    + "Customer credit limit: "
+                    + str(record.partner_id.credit_limit)
+                    + "\n"
+                    + "Cust. Total Receivable: "
+                    + str(record.partner_id.credit)
+                    + "\n"
+                    + "Current Tot. Amount: "
+                    + str(record.amount_total)
+                    + "\n"
+                    + "Over Credit Amount: "
+                    + str(
+                        (record.partner_id.credit + record.amount_total)
+                        - record.partner_id.credit_limit
+                    )
                 )
 ```
   </details>
@@ -1374,10 +1924,29 @@ if record.partner_id.customer_rank > 0:
 
 ```python
 if record.partner_id.customer_rank > 0:
-  if record.partner_id.id:
-    if record.x_studio_order_payment_method == 'Credit':
-      if (record.partner_id.credit + record.amount_total) > record.partner_id.credit_limit:
-        raise UserError("Customer's credit limit is exceeded." + "\n" + "Customer credit limit: " + str(record.partner_id.credit_limit) + "\n" + "Cust. Total Receivable: " + str(record.partner_id.credit) + "\n" + "Current Tot. Amount: " + str(record.amount_total) + "\n" + "Over Credit Amount: " + str((record.partner_id.credit + record.amount_total) - record.partner_id.credit_limit))
+    if record.partner_id.id:
+        if record.x_studio_order_payment_method == "Credit":
+            if (
+                record.partner_id.credit + record.amount_total
+            ) > record.partner_id.credit_limit:
+                raise UserError(
+                    "Customer's credit limit is exceeded."
+                    + "\n"
+                    + "Customer credit limit: "
+                    + str(record.partner_id.credit_limit)
+                    + "\n"
+                    + "Cust. Total Receivable: "
+                    + str(record.partner_id.credit)
+                    + "\n"
+                    + "Current Tot. Amount: "
+                    + str(record.amount_total)
+                    + "\n"
+                    + "Over Credit Amount: "
+                    + str(
+                        (record.partner_id.credit + record.amount_total)
+                        - record.partner_id.credit_limit
+                    )
+                )
 ```
   </details>
 - **SRM - Auto Populate Report Type in Account Move** (`server_action_1740_srm_auto_populate_report_type_in_account_move`, type `code`)
@@ -1387,10 +1956,12 @@ if record.partner_id.customer_rank > 0:
   <details><summary>code (4 lines)</summary>
 
 ```python
-if record.move_type == 'out_invoice':
-  rpt_id= env['x_sales_report_type'].search([('x_studio_report_code', '=', 'Customer Aging Report')],limit=1)
-  if rpt_id:
-   record['x_studio_report_type_s_cust_aging'] = rpt_id.id
+if record.move_type == "out_invoice":
+    rpt_id = env["x_sales_report_type"].search(
+        [("x_studio_report_code", "=", "Customer Aging Report")], limit=1
+    )
+    if rpt_id:
+        record["x_studio_report_type_s_cust_aging"] = rpt_id.id
 ```
   </details>
 - **SRM - Update Sales Order - Customer Invoice** (`server_action_1733_srm_update_sales_order_customer_invoice`, type `code`)
@@ -1402,10 +1973,11 @@ if record.move_type == 'out_invoice':
 ```python
 # fix_repair:idempotent-v1
 if record.invoice_origin and not record.x_studio_sale_id:
-  sale = env['sale.order'].sudo().search(
-    [('name', '=', record.invoice_origin)], limit=1)
-  if sale:
-    record.write({'x_studio_sale_id': sale.id})
+    sale = (
+        env["sale.order"].sudo().search([("name", "=", record.invoice_origin)], limit=1)
+    )
+    if sale:
+        record.write({"x_studio_sale_id": sale.id})
 ```
   </details>
 - **Supplier Invoice No Update in Import Vendor Bill** (`server_action_1766_supplier_invoice_no_update_in_import_vendor_bill`, type `code`)
@@ -1416,10 +1988,14 @@ if record.invoice_origin and not record.x_studio_sale_id:
 
 ```python
 if record.x_studio_consignment_no:
-  consignment = env['x_consignment_header'].search([('id', '=', record.x_studio_consignment_no.id)],limit=1)
-  if consignment:
-    record['x_studio_supplier_invoice_number'] = consignment.x_studio_supplier_invoice_number
-    record['invoice_date'] = consignment.x_studio_invoice_date
+    consignment = env["x_consignment_header"].search(
+        [("id", "=", record.x_studio_consignment_no.id)], limit=1
+    )
+    if consignment:
+        record["x_studio_supplier_invoice_number"] = (
+            consignment.x_studio_supplier_invoice_number
+        )
+        record["invoice_date"] = consignment.x_studio_invoice_date
 ```
   </details>
 - **Supplier Invoice No Update in Import Vendor Bill - 2** (`server_action_1847_supplier_invoice_no_update_in_import_vendor_bill_2`, type `code`)
@@ -1430,9 +2006,13 @@ if record.x_studio_consignment_no:
 
 ```python
 if record.x_studio_consignment_no:
-  consignment = env['x_consignment_header'].search([('id', '=', record.x_studio_consignment_no.id)],limit=1)
-  if consignment:
-    record['x_studio_supplier_invoice_number'] = consignment.x_studio_supplier_invoice_number
+    consignment = env["x_consignment_header"].search(
+        [("id", "=", record.x_studio_consignment_no.id)], limit=1
+    )
+    if consignment:
+        record["x_studio_supplier_invoice_number"] = (
+            consignment.x_studio_supplier_invoice_number
+        )
 ```
   </details>
 - **TEST - 22** (`server_action_1441_test_22`, type `code`)
@@ -1442,7 +2022,7 @@ if record.x_studio_consignment_no:
   <details><summary>code (1 lines)</summary>
 
 ```python
-raise UserError(record.	document_request_line_id.id)
+raise UserError(record.document_request_line_id.id)
 ```
   </details>
 - **Update Analytic Tag Parameters - Sales Invoice - Customer** (`server_action_2417_update_analytic_tag_parameters_sales_invoice_customer`, type `code`)
@@ -1453,11 +2033,13 @@ raise UserError(record.	document_request_line_id.id)
 
 ```python
 if record.partner_id:
-  tag_rule= env['account.analytic.distribution.model'].search([('partner_id', '=', record.partner_id.id)],limit=1)
-  if tag_rule:
-    record['x_studio_account_mandatory'] = tag_rule.x_studio_partner_mandatory
-  else:
-    record['x_studio_account_mandatory'] = False
+    tag_rule = env["account.analytic.distribution.model"].search(
+        [("partner_id", "=", record.partner_id.id)], limit=1
+    )
+    if tag_rule:
+        record["x_studio_account_mandatory"] = tag_rule.x_studio_partner_mandatory
+    else:
+        record["x_studio_account_mandatory"] = False
 ```
   </details>
 - **Update Analytic Tag Parameters - Sales Invoice - User** (`server_action_2418_update_analytic_tag_parameters_sales_invoice_user`, type `code`)
@@ -1468,11 +2050,13 @@ if record.partner_id:
 
 ```python
 if record.create_uid:
-  tag_rule= env['account.analytic.distribution.model'].search([('partner_id.user_id', '=', record.create_uid.id)],limit=1)
-  if tag_rule:
-    record['x_studio_account_mandatory'] = tag_rule.x_studio_user_mandatory
-  else:
-    record['x_studio_account_mandatory'] = False
+    tag_rule = env["account.analytic.distribution.model"].search(
+        [("partner_id.user_id", "=", record.create_uid.id)], limit=1
+    )
+    if tag_rule:
+        record["x_studio_account_mandatory"] = tag_rule.x_studio_user_mandatory
+    else:
+        record["x_studio_account_mandatory"] = False
 ```
   </details>
 - **Validate Journals Created from CP & NPO** (`server_action_1720_validate_journals_created_from_cp_npo`, type `code`)
@@ -1483,10 +2067,12 @@ if record.create_uid:
 
 ```python
 if record.x_studio_cre.id != False:
-  raise UserError("The Journal is Liked with a Cash Purchase and can not be deleted.")
-  
+    raise UserError("The Journal is Liked with a Cash Purchase and can not be deleted.")
+
 if record.x_studio_created_from_npo_no.id != False:
-  raise UserError("The Journal is Liked with a Non-Inventory Purchase Order and can not be deleted.")
+    raise UserError(
+        "The Journal is Liked with a Non-Inventory Purchase Order and can not be deleted."
+    )
 ```
   </details>
 - **Work Center Costing Model - Update Journal Entries** (`server_action_1144_work_center_costing_model_update_journal_entries`, type `code`)
@@ -1497,23 +2083,50 @@ if record.x_studio_created_from_npo_no.id != False:
 
 ```python
 if record.id:
-  stock_valuation = env['stock.valuation.layer'].search([('account_move_id', '=', record.id)],limit=1)
-  if stock_valuation.product_tmpl_id:
-    find_bom = env['mrp.bom'].search([('product_tmpl_id', '=', stock_valuation.product_tmpl_id.id)],limit=1)
-    if find_bom:
-      if stock_valuation.stock_move_id:
-        stock_move = env['stock.move'].search([('id', '=', stock_valuation.stock_move_id.id), ('product_tmpl_id', '=', stock_valuation.product_tmpl_id.id)],limit=1)
-        if stock_move:
-          prod_order = env['mrp.production'].search([('id', '=', stock_move.production_id.id)],limit=1)
-          if prod_order:
-            journal_lines = env['account.move.line'].search([('move_id', '=', record.id),('quantity', '!=', 0.00)])
-            if journal_lines:
-              record.write({'amount_total':prod_order.x_studio_prod_bom_total_actual_material_cost, 'amount_total_signed':prod_order.x_studio_prod_bom_total_actual_material_cost})
-              for update in journal_lines:
-                if update.credit == 0.00:  
-                  update.write({'debit':prod_order.x_studio_prod_bom_total_actual_material_cost})
-                if update.debit == 0.00:
-                  update.write({'credit':prod_order.x_studio_prod_bom_total_actual_material_cost})
+    stock_valuation = env["stock.valuation.layer"].search(
+        [("account_move_id", "=", record.id)], limit=1
+    )
+    if stock_valuation.product_tmpl_id:
+        find_bom = env["mrp.bom"].search(
+            [("product_tmpl_id", "=", stock_valuation.product_tmpl_id.id)], limit=1
+        )
+        if find_bom:
+            if stock_valuation.stock_move_id:
+                stock_move = env["stock.move"].search(
+                    [
+                        ("id", "=", stock_valuation.stock_move_id.id),
+                        ("product_tmpl_id", "=", stock_valuation.product_tmpl_id.id),
+                    ],
+                    limit=1,
+                )
+                if stock_move:
+                    prod_order = env["mrp.production"].search(
+                        [("id", "=", stock_move.production_id.id)], limit=1
+                    )
+                    if prod_order:
+                        journal_lines = env["account.move.line"].search(
+                            [("move_id", "=", record.id), ("quantity", "!=", 0.00)]
+                        )
+                        if journal_lines:
+                            record.write(
+                                {
+                                    "amount_total": prod_order.x_studio_prod_bom_total_actual_material_cost,
+                                    "amount_total_signed": prod_order.x_studio_prod_bom_total_actual_material_cost,
+                                }
+                            )
+                            for update in journal_lines:
+                                if update.credit == 0.00:
+                                    update.write(
+                                        {
+                                            "debit": prod_order.x_studio_prod_bom_total_actual_material_cost
+                                        }
+                                    )
+                                if update.debit == 0.00:
+                                    update.write(
+                                        {
+                                            "credit": prod_order.x_studio_prod_bom_total_actual_material_cost
+                                        }
+                                    )
 ```
   </details>
 **Automations (26):**

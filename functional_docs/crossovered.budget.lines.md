@@ -34,8 +34,11 @@ This repo adds an 'Estimate' monetary field to budget lines. Its compute always 
 
 ```python
 if record.crossovered_budget_id.x_studio_analytic_account.id != False:
-
-  record.write({'analytic_account_id': record.crossovered_budget_id.x_studio_analytic_account.id})
+    record.write(
+        {
+            "analytic_account_id": record.crossovered_budget_id.x_studio_analytic_account.id
+        }
+    )
 ```
   </details>
 **Automations (1):**

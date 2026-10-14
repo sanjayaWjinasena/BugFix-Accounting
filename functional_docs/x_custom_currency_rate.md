@@ -53,9 +53,8 @@ A dated exchange rate (start date, end date and rate) belonging to a Custom Curr
   <details><summary>code (3 lines)</summary>
 
 ```python
-
 if record.x_studio_end_date < record.x_studio_start_date:
-  raise UserError('End Date must be Greater than Start Date.')
+    raise UserError("End Date must be Greater than Start Date.")
 ```
   </details>
 - **Execute Code** (`server_action_2675_jin_company_id_in_custom_currency_rate`, type `code`)
@@ -65,11 +64,10 @@ if record.x_studio_end_date < record.x_studio_start_date:
   <details><summary>code (5 lines)</summary>
 
 ```python
+company_id = env.context.get("allowed_company_ids", [env.user.company_id.id])[0]
+company = env["res.company"].browse(company_id)
 
-company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
-company = env['res.company'].browse(company_id)
-
-record['x_studio_company_id'] = company.id
+record["x_studio_company_id"] = company.id
 ```
   </details>
 - **IMP - Validate From To Dates in Custom Rates** (`sa_f5_x_custom_currency_rate_imp_validate_from_to_dates_in_custom_rates`, type `code`)
@@ -80,7 +78,7 @@ record['x_studio_company_id'] = company.id
 
 ```python
 if record.x_studio_end_date < record.x_studio_start_date:
-  raise UserError('End Date must be Greater than Start Date.')
+    raise UserError("End Date must be Greater than Start Date.")
 ```
   </details>
 - **JIN - Company Id in Custom Currency Rate** (`sa_f5_x_custom_currency_rate_jin_company_id_in_custom_currency_rate`, type `code`)
@@ -90,10 +88,10 @@ if record.x_studio_end_date < record.x_studio_start_date:
   <details><summary>code (4 lines)</summary>
 
 ```python
-company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
-company = env['res.company'].browse(company_id)
+company_id = env.context.get("allowed_company_ids", [env.user.company_id.id])[0]
+company = env["res.company"].browse(company_id)
 
-record['x_studio_company_id'] = company.id
+record["x_studio_company_id"] = company.id
 ```
   </details>
 **Automations (4):**

@@ -73,12 +73,11 @@ A third-party (TP) invoice for charges on an import consignment, created from th
   <details><summary>code (6 lines)</summary>
 
 ```python
+# record['x_name'] = env['ir.sequence'].next_by_code('purchase.request.seq')
 
-#record['x_name'] = env['ir.sequence'].next_by_code('purchase.request.seq')
-
-if record.x_name == 'New':
- seq = env['ir.sequence'].next_by_code('tp.invoice.seq')
- record.write({'x_name': seq})
+if record.x_name == "New":
+    seq = env["ir.sequence"].next_by_code("tp.invoice.seq")
+    record.write({"x_name": seq})
 ```
   </details>
 - **Execute Code** (`server_action_2112_tp_invoice_currency_update`, type `code`)
@@ -88,8 +87,7 @@ if record.x_name == 'New':
   <details><summary>code (2 lines)</summary>
 
 ```python
-
-record['x_studio_currency_id'] = record.x_studio_vendor.property_purchase_currency_id.id
+record["x_studio_currency_id"] = record.x_studio_vendor.property_purchase_currency_id.id
 ```
   </details>
 - **IMP - Post TP Invoice** (`srv_tp_invoice_post`, type `code`)
@@ -99,21 +97,24 @@ record['x_studio_currency_id'] = record.x_studio_vendor.property_purchase_curren
   <details><summary>code (150 lines)</summary>
 
 ```python
-
 if record.id:
-    company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
-    company = env['res.company'].browse(company_id)
+    company_id = env.context.get("allowed_company_ids", [env.user.company_id.id])[0]
+    company = env["res.company"].browse(company_id)
 
-    invalid_lines = env['x_tp_invoice_line'].search([('x_studio_tp_invoice_header_id', '=', record.id)])
+    invalid_lines = env["x_tp_invoice_line"].search(
+        [("x_studio_tp_invoice_header_id", "=", record.id)]
+    )
     diff = 0
     diff_found = False
     if invalid_lines:
         for val in invalid_lines:
             if val.x_studio_invoice_amount == 0.0000:
-                raise UserError("Invoice Amount of Individual TP Lines Should be Greater than Zero!")
+                raise UserError(
+                    "Invoice Amount of Individual TP Lines Should be Greater than Zero!"
+                )
             if val.x_studio_invoice_amount != val.x_studio_original_amount:
                 diff_found = True
-                diff += (val.x_studio_invoice_amount - val.x_studio_original_amount)
+                diff += val.x_studio_invoice_amount - val.x_studio_original_amount
 
     if record.x_studio_vendor.id == 0:
         raise UserError("Vendor Account must be Specified!")
@@ -124,101 +125,215 @@ if record.id:
     if record.x_studio_invoice_date == False:
         raise UserError("Invoice Date must be Specified!")
 
-    tax_account = env['x_imports_ledger_setup'].search([('x_studio_company_id', '=', company.id)], limit=1)
+    tax_account = env["x_imports_ledger_setup"].search(
+        [("x_studio_company_id", "=", company.id)], limit=1
+    )
     if tax_account:
         if tax_account.x_studio_tp_invoicing_tax_acc.id == 0:
-            raise UserError('TP Invoicing Tax Account must be Specified in Imports Ledger Setup')
+            raise UserError(
+                "TP Invoicing Tax Account must be Specified in Imports Ledger Setup"
+            )
         if tax_account.x_studio_import_tp_vendor_account.id == 0:
-            raise UserError('Import TP Vendor Account must be Specified in Imports Ledger Setup')
+            raise UserError(
+                "Import TP Vendor Account must be Specified in Imports Ledger Setup"
+            )
     else:
-        raise UserError('Imports Ledger Setup must be specified for the selected company ')
+        raise UserError(
+            "Imports Ledger Setup must be specified for the selected company "
+        )
 
     tp_lines = []
 
     if diff_found == True:
         qty = 0
-        con_lines = env['x_consignment_header'].search([('id', '=', record.x_studio_con_no.id)])
+        con_lines = env["x_consignment_header"].search(
+            [("id", "=", record.x_studio_con_no.id)]
+        )
         if con_lines:
             qty = 1 if diff > 0 else -1
 
-            if tax_account.x_studio_cost_allocation_method == 'by_weight':
+            if tax_account.x_studio_cost_allocation_method == "by_weight":
                 for diff_lines in con_lines.x_studio_consignment_line_ids:
-                    tp_lines.append([0, 0, {
-                        'product_id': diff_lines.x_studio_product_id.id,
-                        'quantity': qty,
-                        'currency_id': record.x_studio_currency_id.id,
-                        'name': diff_lines.x_studio_product_id.name,
-                        'product_uom_id': diff_lines.x_studio_product_id.uom_id.id,
-                        'price_unit': abs(diff) * (diff_lines.x_studio_weight / con_lines.x_studio_total_amount_cost_allocation_method),
-                        'price_subtotal': (abs(diff) * (diff_lines.x_studio_weight / con_lines.x_studio_total_amount_cost_allocation_method)) * qty,
-                        'account_id': diff_lines.x_studio_product_id.categ_id.property_stock_account_input_categ_id.id,
-                    }])
-                    value_entry = env['stock.valuation.layer'].search([('stock_move_id', '=', diff_lines.x_studio_stock_move_id.id)], limit=1)
+                    tp_lines.append(
+                        [
+                            0,
+                            0,
+                            {
+                                "product_id": diff_lines.x_studio_product_id.id,
+                                "quantity": qty,
+                                "currency_id": record.x_studio_currency_id.id,
+                                "name": diff_lines.x_studio_product_id.name,
+                                "product_uom_id": diff_lines.x_studio_product_id.uom_id.id,
+                                "price_unit": abs(diff)
+                                * (
+                                    diff_lines.x_studio_weight
+                                    / con_lines.x_studio_total_amount_cost_allocation_method
+                                ),
+                                "price_subtotal": (
+                                    abs(diff)
+                                    * (
+                                        diff_lines.x_studio_weight
+                                        / con_lines.x_studio_total_amount_cost_allocation_method
+                                    )
+                                )
+                                * qty,
+                                "account_id": diff_lines.x_studio_product_id.categ_id.property_stock_account_input_categ_id.id,
+                            },
+                        ]
+                    )
+                    value_entry = env["stock.valuation.layer"].search(
+                        [("stock_move_id", "=", diff_lines.x_studio_stock_move_id.id)],
+                        limit=1,
+                    )
                     if value_entry:
-                        adj = (abs(diff) * (diff_lines.x_studio_weight / con_lines.x_studio_total_amount_cost_allocation_method)) * qty
-                        value_entry.write({
-                            'value': value_entry.value + adj,
-                            'unit_cost': (value_entry.value + adj) / value_entry.quantity,
-                            'remaining_value': (value_entry.value + adj) / value_entry.remaining_qty,
-                        })
-            elif tax_account.x_studio_cost_allocation_method == 'by_volume':
+                        adj = (
+                            abs(diff)
+                            * (
+                                diff_lines.x_studio_weight
+                                / con_lines.x_studio_total_amount_cost_allocation_method
+                            )
+                        ) * qty
+                        value_entry.write(
+                            {
+                                "value": value_entry.value + adj,
+                                "unit_cost": (value_entry.value + adj)
+                                / value_entry.quantity,
+                                "remaining_value": (value_entry.value + adj)
+                                / value_entry.remaining_qty,
+                            }
+                        )
+            elif tax_account.x_studio_cost_allocation_method == "by_volume":
                 for diff_lines in con_lines.x_studio_consignment_line_ids:
-                    tp_lines.append([0, 0, {
-                        'product_id': diff_lines.x_studio_product_id.id,
-                        'quantity': qty,
-                        'currency_id': record.x_studio_currency_id.id,
-                        'name': diff_lines.x_studio_product_id.name,
-                        'product_uom_id': diff_lines.x_studio_product_id.uom_id.id,
-                        'price_unit': abs(diff) * (diff_lines.x_studio_volume / con_lines.x_studio_total_amount_cost_allocation_method),
-                        'price_subtotal': (abs(diff) * (diff_lines.x_studio_volume / con_lines.x_studio_total_amount_cost_allocation_method)) * qty,
-                        'account_id': diff_lines.x_studio_product_id.categ_id.property_stock_account_input_categ_id.id,
-                    }])
-                    value_entry = env['stock.valuation.layer'].search([('stock_move_id', '=', diff_lines.x_studio_stock_move_id.id)], limit=1)
+                    tp_lines.append(
+                        [
+                            0,
+                            0,
+                            {
+                                "product_id": diff_lines.x_studio_product_id.id,
+                                "quantity": qty,
+                                "currency_id": record.x_studio_currency_id.id,
+                                "name": diff_lines.x_studio_product_id.name,
+                                "product_uom_id": diff_lines.x_studio_product_id.uom_id.id,
+                                "price_unit": abs(diff)
+                                * (
+                                    diff_lines.x_studio_volume
+                                    / con_lines.x_studio_total_amount_cost_allocation_method
+                                ),
+                                "price_subtotal": (
+                                    abs(diff)
+                                    * (
+                                        diff_lines.x_studio_volume
+                                        / con_lines.x_studio_total_amount_cost_allocation_method
+                                    )
+                                )
+                                * qty,
+                                "account_id": diff_lines.x_studio_product_id.categ_id.property_stock_account_input_categ_id.id,
+                            },
+                        ]
+                    )
+                    value_entry = env["stock.valuation.layer"].search(
+                        [("stock_move_id", "=", diff_lines.x_studio_stock_move_id.id)],
+                        limit=1,
+                    )
                     if value_entry:
-                        adj = (abs(diff) * (diff_lines.x_studio_volume / con_lines.x_studio_total_amount_cost_allocation_method)) * qty
-                        value_entry.write({
-                            'value': value_entry.value + adj,
-                            'unit_cost': (value_entry.value + adj) / value_entry.quantity,
-                            'remaining_value': (value_entry.value + adj) / value_entry.remaining_qty,
-                        })
+                        adj = (
+                            abs(diff)
+                            * (
+                                diff_lines.x_studio_volume
+                                / con_lines.x_studio_total_amount_cost_allocation_method
+                            )
+                        ) * qty
+                        value_entry.write(
+                            {
+                                "value": value_entry.value + adj,
+                                "unit_cost": (value_entry.value + adj)
+                                / value_entry.quantity,
+                                "remaining_value": (value_entry.value + adj)
+                                / value_entry.remaining_qty,
+                            }
+                        )
             else:
                 for diff_lines in con_lines.x_studio_consignment_line_ids:
-                    tp_lines.append([0, 0, {
-                        'product_id': diff_lines.x_studio_product_id.id,
-                        'quantity': qty,
-                        'currency_id': record.x_studio_currency_id.id,
-                        'name': diff_lines.x_studio_product_id.name,
-                        'product_uom_id': diff_lines.x_studio_product_id.uom_id.id,
-                        'price_unit': abs(diff) * (diff_lines.x_studio_amount / con_lines.x_studio_total_amount),
-                        'price_subtotal': (abs(diff) * (diff_lines.x_studio_amount / con_lines.x_studio_total_amount)) * qty,
-                        'account_id': diff_lines.x_studio_product_id.categ_id.property_stock_account_input_categ_id.id,
-                    }])
-                    value_entry = env['stock.valuation.layer'].search([('stock_move_id', '=', diff_lines.x_studio_stock_move_id.id)], limit=1)
+                    tp_lines.append(
+                        [
+                            0,
+                            0,
+                            {
+                                "product_id": diff_lines.x_studio_product_id.id,
+                                "quantity": qty,
+                                "currency_id": record.x_studio_currency_id.id,
+                                "name": diff_lines.x_studio_product_id.name,
+                                "product_uom_id": diff_lines.x_studio_product_id.uom_id.id,
+                                "price_unit": abs(diff)
+                                * (
+                                    diff_lines.x_studio_amount
+                                    / con_lines.x_studio_total_amount
+                                ),
+                                "price_subtotal": (
+                                    abs(diff)
+                                    * (
+                                        diff_lines.x_studio_amount
+                                        / con_lines.x_studio_total_amount
+                                    )
+                                )
+                                * qty,
+                                "account_id": diff_lines.x_studio_product_id.categ_id.property_stock_account_input_categ_id.id,
+                            },
+                        ]
+                    )
+                    value_entry = env["stock.valuation.layer"].search(
+                        [("stock_move_id", "=", diff_lines.x_studio_stock_move_id.id)],
+                        limit=1,
+                    )
                     if value_entry:
-                        adj = (abs(diff) * (diff_lines.x_studio_amount / con_lines.x_studio_total_amount)) * qty
-                        value_entry.write({
-                            'value': value_entry.value + adj,
-                            'unit_cost': (value_entry.value + adj) / value_entry.quantity,
-                            'remaining_value': (value_entry.value + adj) / value_entry.remaining_qty,
-                        })
+                        adj = (
+                            abs(diff)
+                            * (
+                                diff_lines.x_studio_amount
+                                / con_lines.x_studio_total_amount
+                            )
+                        ) * qty
+                        value_entry.write(
+                            {
+                                "value": value_entry.value + adj,
+                                "unit_cost": (value_entry.value + adj)
+                                / value_entry.quantity,
+                                "remaining_value": (value_entry.value + adj)
+                                / value_entry.remaining_qty,
+                            }
+                        )
 
-    tp_lines.append([0, 0, {
-        'account_id': tax_account.x_studio_import_tp_vendor_account.id,
-        'name': 'Import TP Invoice - Reversal',
-        'quantity': 1.00,
-        'currency_id': record.x_studio_currency_id.id,
-        'price_unit': record.x_studio_total_original_invoice_amount,
-    }])
+    tp_lines.append(
+        [
+            0,
+            0,
+            {
+                "account_id": tax_account.x_studio_import_tp_vendor_account.id,
+                "name": "Import TP Invoice - Reversal",
+                "quantity": 1.00,
+                "currency_id": record.x_studio_currency_id.id,
+                "price_unit": record.x_studio_total_original_invoice_amount,
+            },
+        ]
+    )
 
-    tp_lines.append([0, 0, {
-        'account_id': tax_account.x_studio_tp_invoicing_tax_acc.id,
-        'name': 'Total Tax',
-        'quantity': 1.00,
-        'currency_id': record.x_studio_currency_id.id,
-        'price_unit': record.x_studio_taxes_1,
-    }])
+    tp_lines.append(
+        [
+            0,
+            0,
+            {
+                "account_id": tax_account.x_studio_tp_invoicing_tax_acc.id,
+                "name": "Total Tax",
+                "quantity": 1.00,
+                "currency_id": record.x_studio_currency_id.id,
+                "price_unit": record.x_studio_taxes_1,
+            },
+        ]
+    )
 
-    journal = env['account.journal'].search([('name', '=', 'TP Vendor Bills'), ('company_id', '=', company.id)], limit=1)
+    journal = env["account.journal"].search(
+        [("name", "=", "TP Vendor Bills"), ("company_id", "=", company.id)], limit=1
+    )
 # … 30 more lines
 ```
   </details>
@@ -230,125 +345,344 @@ if record.id:
 
 ```python
 if record.id:
-  company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
-  company = env['res.company'].browse(company_id)
-  
-  invalid_lines = env['x_tp_invoice_line'].search([('x_studio_tp_invoice_header_id', '=', record.id)])
-  if invalid_lines:
-    diff = 0
-    diff_found = False
-    for val in invalid_lines:
-      if val.x_studio_invoice_amount == 0.0000:
-        raise UserError("Invoice Amount of Individual TP Lines Should be Greater than Zero!")
-        
-      if val.x_studio_invoice_amount != val.x_studio_original_amount:
-        diff_found = True
-        diff += (val.x_studio_invoice_amount - val.x_studio_original_amount)
-        
-  if record.x_studio_vendor.id == 0:
-    raise UserError("Vendor Account must be Specified!")
-    
-  if record.x_studio_currency_id.id == 0:
-    raise UserError("Currency must be Specified!")
-    
-  if record.x_studio_invoice_no == False:
-    raise UserError("Invoice No must be Specified!")
-    
-  if record.x_studio_invoice_date == False:
-    raise UserError("Invoice Date must be Specified!")
-  
-  tax_account = env['x_imports_ledger_setup'].search([('x_studio_company_id', '=', company.id)], limit=1)
-  if tax_account:
-    if tax_account.x_studio_tp_invoicing_tax_acc.id == 0:
-      raise UserError('TP Invoicing Tax Account must be Specified in Imports Ledger Setup')
-      
-    if tax_account.x_studio_import_tp_vendor_account.id == 0:
-      raise UserError('Import TP Vendor Account must be Specified in Imports Ledger Setup')
-  else:
-    raise UserError('Imports Ledger Setup must be specified for the selected company ')
-   
-  tp_lines=[]
+    company_id = env.context.get("allowed_company_ids", [env.user.company_id.id])[0]
+    company = env["res.company"].browse(company_id)
 
-  if diff_found == True:
-    qty = 0
-    con_lines = env['x_consignment_header'].search([('id', '=', record.x_studio_con_no.id)])
-    if con_lines:
-      if diff > 0:
-        qty = 1
-      else:
-        qty = -1
-      
-      if tax_account.x_studio_cost_allocation_method == 'by_weight':
-        for diff_lines in con_lines.x_studio_consignment_line_ids:
-          tp_lines.append([0,0,{
-            'product_id':diff_lines.x_studio_product_id.id,
-            'quantity':qty,
-            'currency_id':record.x_studio_currency_id.id,
-            'name':diff_lines.x_studio_product_id.name,
-            'product_uom_id':diff_lines.x_studio_product_id.uom_id.id,
-            'price_unit':abs(diff) * (diff_lines.x_studio_weight / con_lines.x_studio_total_amount_cost_allocation_method), 
-            'price_subtotal':(abs(diff) * (diff_lines.x_studio_weight / con_lines.x_studio_total_amount_cost_allocation_method)) * qty, 
-            'account_id':diff_lines.x_studio_product_id.categ_id.property_stock_account_input_categ_id.id}])
-            
-          value_entry = env['stock.valuation.layer'].search([('stock_move_id', '=', diff_lines.x_studio_stock_move_id.id)], limit=1)
-          if value_entry:
-            value_entry.write({'value':(value_entry.value + ((abs(diff) * (diff_lines.x_studio_weight / con_lines.x_studio_total_amount_cost_allocation_method)) * qty)),
-                               'unit_cost':(value_entry.value + ((abs(diff) * (diff_lines.x_studio_weight / con_lines.x_studio_total_amount_cost_allocation_method)) * qty)) / value_entry.quantity,
-                               'remaining_value':(value_entry.value + ((abs(diff) * (diff_lines.x_studio_weight / con_lines.x_studio_total_amount_cost_allocation_method)) * qty)) / value_entry.remaining_qty})
-      elif tax_account.x_studio_cost_allocation_method == 'by_volume':
-        for diff_lines in con_lines.x_studio_consignment_line_ids:
-          tp_lines.append([0,0,{
-            'product_id':diff_lines.x_studio_product_id.id,
-            'quantity':qty,
-            'currency_id':record.x_studio_currency_id.id,
-            'name':diff_lines.x_studio_product_id.name,
-            'product_uom_id':diff_lines.x_studio_product_id.uom_id.id,
-            'price_unit':abs(diff) * (diff_lines.x_studio_volume / con_lines.x_studio_total_amount_cost_allocation_method), 
-            'price_subtotal':(abs(diff) * (diff_lines.x_studio_volume / con_lines.x_studio_total_amount_cost_allocation_method)) * qty, 
-            'account_id':diff_lines.x_studio_product_id.categ_id.property_stock_account_input_categ_id.id}])
-            
-          value_entry = env['stock.valuation.layer'].search([('stock_move_id', '=', diff_lines.x_studio_stock_move_id.id)], limit=1)
-          if value_entry:
-            value_entry.write({'value':(value_entry.value + ((abs(diff) * (diff_lines.x_studio_volume / con_lines.x_studio_total_amount_cost_allocation_method)) * qty)),
-                               'unit_cost':(value_entry.value + ((abs(diff) * (diff_lines.x_studio_volume / con_lines.x_studio_total_amount_cost_allocation_method)) * qty)) / value_entry.quantity,
-                               'remaining_value':(value_entry.value + ((abs(diff) * (diff_lines.x_studio_volume / con_lines.x_studio_total_amount_cost_allocation_method)) * qty)) / value_entry.remaining_qty})
-      else: 
-        for diff_lines in con_lines.x_studio_consignment_line_ids:
-          tp_lines.append([0,0,{
-            'product_id':diff_lines.x_studio_product_id.id,
-            'quantity':qty,
-            'currency_id':record.x_studio_currency_id.id,
-            'name':diff_lines.x_studio_product_id.name,
-            'product_uom_id':diff_lines.x_studio_product_id.uom_id.id,
-            'price_unit':abs(diff) * (diff_lines.x_studio_amount / con_lines.x_studio_total_amount), 
-            'price_subtotal':(abs(diff) * (diff_lines.x_studio_amount / con_lines.x_studio_total_amount)) * qty, 
-            'account_id':diff_lines.x_studio_product_id.categ_id.property_stock_account_input_categ_id.id}])
-            
-          value_entry = env['stock.valuation.layer'].search([('stock_move_id', '=', diff_lines.x_studio_stock_move_id.id)], limit=1)
-          if value_entry:
-            value_entry.write({'value':(value_entry.value + ((abs(diff) * (diff_lines.x_studio_amount / con_lines.x_studio_total_amount)) * qty)),
-                               'unit_cost':(value_entry.value + ((abs(diff) * (diff_lines.x_studio_amount / con_lines.x_studio_total_amount)) * qty)) / value_entry.quantity,
-                               'remaining_value':(value_entry.value + ((abs(diff) * (diff_lines.x_studio_amount / con_lines.x_studio_total_amount)) * qty)) / value_entry.remaining_qty})
- 
-  tp_lines.append([0,0,{
-    'account_id':tax_account.x_studio_import_tp_vendor_account.id,
-    'name':'Import TP Invoice - Reversal',
-    'quantity':1.00,
-    'currency_id':record.x_studio_currency_id.id,
-    'price_unit':record.x_studio_total_original_invoice_amount}])
+    invalid_lines = env["x_tp_invoice_line"].search(
+        [("x_studio_tp_invoice_header_id", "=", record.id)]
+    )
+    if invalid_lines:
+        diff = 0
+        diff_found = False
+        for val in invalid_lines:
+            if val.x_studio_invoice_amount == 0.0000:
+                raise UserError(
+                    "Invoice Amount of Individual TP Lines Should be Greater than Zero!"
+                )
+
+            if val.x_studio_invoice_amount != val.x_studio_original_amount:
+                diff_found = True
+                diff += val.x_studio_invoice_amount - val.x_studio_original_amount
+
+    if record.x_studio_vendor.id == 0:
+        raise UserError("Vendor Account must be Specified!")
+
+    if record.x_studio_currency_id.id == 0:
+        raise UserError("Currency must be Specified!")
+
+    if record.x_studio_invoice_no == False:
+        raise UserError("Invoice No must be Specified!")
+
+    if record.x_studio_invoice_date == False:
+        raise UserError("Invoice Date must be Specified!")
+
+    tax_account = env["x_imports_ledger_setup"].search(
+        [("x_studio_company_id", "=", company.id)], limit=1
+    )
+    if tax_account:
+        if tax_account.x_studio_tp_invoicing_tax_acc.id == 0:
+            raise UserError(
+                "TP Invoicing Tax Account must be Specified in Imports Ledger Setup"
+            )
+
+        if tax_account.x_studio_import_tp_vendor_account.id == 0:
+            raise UserError(
+                "Import TP Vendor Account must be Specified in Imports Ledger Setup"
+            )
+    else:
+        raise UserError(
+            "Imports Ledger Setup must be specified for the selected company "
+        )
+
+    tp_lines = []
+
+    if diff_found == True:
+        qty = 0
+        con_lines = env["x_consignment_header"].search(
+            [("id", "=", record.x_studio_con_no.id)]
+        )
+        if con_lines:
+            if diff > 0:
+                qty = 1
+            else:
+                qty = -1
+
+            if tax_account.x_studio_cost_allocation_method == "by_weight":
+                for diff_lines in con_lines.x_studio_consignment_line_ids:
+                    tp_lines.append(
+                        [
+                            0,
+                            0,
+                            {
+                                "product_id": diff_lines.x_studio_product_id.id,
+                                "quantity": qty,
+                                "currency_id": record.x_studio_currency_id.id,
+                                "name": diff_lines.x_studio_product_id.name,
+                                "product_uom_id": diff_lines.x_studio_product_id.uom_id.id,
+                                "price_unit": abs(diff)
+                                * (
+                                    diff_lines.x_studio_weight
+                                    / con_lines.x_studio_total_amount_cost_allocation_method
+                                ),
+                                "price_subtotal": (
+                                    abs(diff)
+                                    * (
+                                        diff_lines.x_studio_weight
+                                        / con_lines.x_studio_total_amount_cost_allocation_method
+                                    )
+                                )
+                                * qty,
+                                "account_id": diff_lines.x_studio_product_id.categ_id.property_stock_account_input_categ_id.id,
+                            },
+                        ]
+                    )
+
+                    value_entry = env["stock.valuation.layer"].search(
+                        [("stock_move_id", "=", diff_lines.x_studio_stock_move_id.id)],
+                        limit=1,
+                    )
+                    if value_entry:
+                        value_entry.write(
+                            {
+                                "value": (
+                                    value_entry.value
+                                    + (
+                                        (
+                                            abs(diff)
+                                            * (
+                                                diff_lines.x_studio_weight
+                                                / con_lines.x_studio_total_amount_cost_allocation_method
+                                            )
+                                        )
+                                        * qty
+                                    )
+                                ),
+                                "unit_cost": (
+                                    value_entry.value
+                                    + (
+                                        (
+                                            abs(diff)
+                                            * (
+                                                diff_lines.x_studio_weight
+                                                / con_lines.x_studio_total_amount_cost_allocation_method
+                                            )
+                                        )
+                                        * qty
+                                    )
+                                )
+                                / value_entry.quantity,
+                                "remaining_value": (
+                                    value_entry.value
+                                    + (
+                                        (
+                                            abs(diff)
+                                            * (
+                                                diff_lines.x_studio_weight
+                                                / con_lines.x_studio_total_amount_cost_allocation_method
+                                            )
+                                        )
+                                        * qty
+                                    )
+                                )
+                                / value_entry.remaining_qty,
+                            }
+                        )
+            elif tax_account.x_studio_cost_allocation_method == "by_volume":
+                for diff_lines in con_lines.x_studio_consignment_line_ids:
+                    tp_lines.append(
+                        [
+                            0,
+                            0,
+                            {
+                                "product_id": diff_lines.x_studio_product_id.id,
+                                "quantity": qty,
+                                "currency_id": record.x_studio_currency_id.id,
+                                "name": diff_lines.x_studio_product_id.name,
+                                "product_uom_id": diff_lines.x_studio_product_id.uom_id.id,
+                                "price_unit": abs(diff)
+                                * (
+                                    diff_lines.x_studio_volume
+                                    / con_lines.x_studio_total_amount_cost_allocation_method
+                                ),
+                                "price_subtotal": (
+                                    abs(diff)
+                                    * (
+                                        diff_lines.x_studio_volume
+                                        / con_lines.x_studio_total_amount_cost_allocation_method
+                                    )
+                                )
+                                * qty,
+                                "account_id": diff_lines.x_studio_product_id.categ_id.property_stock_account_input_categ_id.id,
+                            },
+                        ]
+                    )
+
+                    value_entry = env["stock.valuation.layer"].search(
+                        [("stock_move_id", "=", diff_lines.x_studio_stock_move_id.id)],
+                        limit=1,
+                    )
+                    if value_entry:
+                        value_entry.write(
+                            {
+                                "value": (
+                                    value_entry.value
+                                    + (
+                                        (
+                                            abs(diff)
+                                            * (
+                                                diff_lines.x_studio_volume
+                                                / con_lines.x_studio_total_amount_cost_allocation_method
+                                            )
+                                        )
+                                        * qty
+                                    )
+                                ),
+                                "unit_cost": (
+                                    value_entry.value
+                                    + (
+                                        (
+                                            abs(diff)
+                                            * (
+                                                diff_lines.x_studio_volume
+                                                / con_lines.x_studio_total_amount_cost_allocation_method
+                                            )
+                                        )
+                                        * qty
+                                    )
+                                )
+                                / value_entry.quantity,
+                                "remaining_value": (
+                                    value_entry.value
+                                    + (
+                                        (
+                                            abs(diff)
+                                            * (
+                                                diff_lines.x_studio_volume
+                                                / con_lines.x_studio_total_amount_cost_allocation_method
+                                            )
+                                        )
+                                        * qty
+                                    )
+                                )
+                                / value_entry.remaining_qty,
+                            }
+                        )
+            else:
+                for diff_lines in con_lines.x_studio_consignment_line_ids:
+                    tp_lines.append(
+                        [
+                            0,
+                            0,
+                            {
+                                "product_id": diff_lines.x_studio_product_id.id,
+                                "quantity": qty,
+                                "currency_id": record.x_studio_currency_id.id,
+                                "name": diff_lines.x_studio_product_id.name,
+                                "product_uom_id": diff_lines.x_studio_product_id.uom_id.id,
+                                "price_unit": abs(diff)
+                                * (
+                                    diff_lines.x_studio_amount
+                                    / con_lines.x_studio_total_amount
+                                ),
+                                "price_subtotal": (
+                                    abs(diff)
+                                    * (
+                                        diff_lines.x_studio_amount
+                                        / con_lines.x_studio_total_amount
+                                    )
+                                )
+                                * qty,
+                                "account_id": diff_lines.x_studio_product_id.categ_id.property_stock_account_input_categ_id.id,
+                            },
+                        ]
+                    )
+
+                    value_entry = env["stock.valuation.layer"].search(
+                        [("stock_move_id", "=", diff_lines.x_studio_stock_move_id.id)],
+                        limit=1,
+                    )
+                    if value_entry:
+                        value_entry.write(
+                            {
+                                "value": (
+                                    value_entry.value
+                                    + (
+                                        (
+                                            abs(diff)
+                                            * (
+                                                diff_lines.x_studio_amount
+                                                / con_lines.x_studio_total_amount
+                                            )
+                                        )
+                                        * qty
+                                    )
+                                ),
+                                "unit_cost": (
+                                    value_entry.value
+                                    + (
+                                        (
+                                            abs(diff)
+                                            * (
+                                                diff_lines.x_studio_amount
+                                                / con_lines.x_studio_total_amount
+                                            )
+                                        )
+                                        * qty
+                                    )
+                                )
+                                / value_entry.quantity,
+                                "remaining_value": (
+                                    value_entry.value
+                                    + (
+                                        (
+                                            abs(diff)
+                                            * (
+                                                diff_lines.x_studio_amount
+                                                / con_lines.x_studio_total_amount
+                                            )
+                                        )
+                                        * qty
+                                    )
+                                )
+                                / value_entry.remaining_qty,
+                            }
+                        )
+
+    tp_lines.append(
+        [
+            0,
+            0,
+            {
+                "account_id": tax_account.x_studio_import_tp_vendor_account.id,
+                "name": "Import TP Invoice - Reversal",
+                "quantity": 1.00,
+                "currency_id": record.x_studio_currency_id.id,
+                "price_unit": record.x_studio_total_original_invoice_amount,
+            },
+        ]
+    )
     #'price_unit':record.x_studio_total_original_invoice_amount * currency_rate.x_studio_rate}])
-    
-  tp_lines.append([0,0,{
-    'account_id':tax_account.x_studio_tp_invoicing_tax_acc.id,
-    'name':'Total Tax',
-    'quantity':1.00,
-    'currency_id':record.x_studio_currency_id.id,
-    'price_unit':record.x_studio_taxes_1}])
- 
-  journal = env['account.journal'].search([('name', '=', 'TP Vendor Bills'),('company_id', '=', company.id)], limit=1) 
-  if not journal:
-     raise UserError('The required journal has not been setup. Process terminated.')
-                
+
+    tp_lines.append(
+        [
+            0,
+            0,
+            {
+                "account_id": tax_account.x_studio_tp_invoicing_tax_acc.id,
+                "name": "Total Tax",
+                "quantity": 1.00,
+                "currency_id": record.x_studio_currency_id.id,
+                "price_unit": record.x_studio_taxes_1,
+            },
+        ]
+    )
+
+    journal = env["account.journal"].search(
+        [("name", "=", "TP Vendor Bills"), ("company_id", "=", company.id)], limit=1
+    )
+    if not journal:
+        raise UserError("The required journal has not been setup. Process terminated.")
+
 # … 19 more lines
 ```
   </details>
@@ -359,7 +693,7 @@ if record.id:
   <details><summary>code (1 lines)</summary>
 
 ```python
-record['x_studio_currency_id'] = record.x_studio_vendor.property_purchase_currency_id.id
+record["x_studio_currency_id"] = record.x_studio_vendor.property_purchase_currency_id.id
 ```
   </details>
 - **TP Invoice Seq.No** (`sa_f5_x_tp_invoice_header_tp_invoice_seq_no`, type `code`)
@@ -369,11 +703,11 @@ record['x_studio_currency_id'] = record.x_studio_vendor.property_purchase_curren
   <details><summary>code (5 lines)</summary>
 
 ```python
-#record['x_name'] = env['ir.sequence'].next_by_code('purchase.request.seq')
+# record['x_name'] = env['ir.sequence'].next_by_code('purchase.request.seq')
 
-if record.x_name == 'New':
- seq = env['ir.sequence'].next_by_code('tp.invoice.seq')
- record.write({'x_name': seq})
+if record.x_name == "New":
+    seq = env["ir.sequence"].next_by_code("tp.invoice.seq")
+    record.write({"x_name": seq})
 ```
   </details>
 **Automations (2):**

@@ -67,9 +67,8 @@ This repo adds 20 fields and their computes to budgets for project budgeting. Th
   <details><summary>code (3 lines)</summary>
 
 ```python
-
 if record.x_studio_created_from_sales_order_1.id != False:
-  raise UserError('Budgets created from SOs can not be deleted.')
+    raise UserError("Budgets created from SOs can not be deleted.")
 ```
   </details>
 - **Execute Code** (`server_action_2570_proj_validate_confirm`, type `code`)
@@ -79,16 +78,17 @@ if record.x_studio_created_from_sales_order_1.id != False:
   <details><summary>code (10 lines)</summary>
 
 ```python
-
-if record.state == 'confirm':
-  """if record.x_studio_created_from_sales_order_1.id != False:
+if record.state == "confirm":
+    """if record.x_studio_created_from_sales_order_1.id != False:
     if record.x_studio_valid_budget_lines == False:
       raise UserError('At least one budget line should be available with value greater than zero when confirming.')"""
-  if record.x_studio_valid_budget_lines == False:
-    raise UserError('At least one budget line should be available with value greater than zero when confirming.')
-      
-    if record.x_studio_confirm_status == True:
-      raise UserError('Please finalize all the related RFQs.')
+    if record.x_studio_valid_budget_lines == False:
+        raise UserError(
+            "At least one budget line should be available with value greater than zero when confirming."
+        )
+
+        if record.x_studio_confirm_status == True:
+            raise UserError("Please finalize all the related RFQs.")
 ```
   </details>
 - **PROJ - Validate Confirm** (`sa_f5_crossovered_budget_proj_validate_confirm`, type `code`)
@@ -98,15 +98,17 @@ if record.state == 'confirm':
   <details><summary>code (9 lines)</summary>
 
 ```python
-if record.state == 'confirm':
-  """if record.x_studio_created_from_sales_order_1.id != False:
+if record.state == "confirm":
+    """if record.x_studio_created_from_sales_order_1.id != False:
     if record.x_studio_valid_budget_lines == False:
       raise UserError('At least one budget line should be available with value greater than zero when confirming.')"""
-  if record.x_studio_valid_budget_lines == False:
-    raise UserError('At least one budget line should be available with value greater than zero when confirming.')
-      
-    if record.x_studio_confirm_status == True:
-      raise UserError('Please finalize all the related RFQs.')
+    if record.x_studio_valid_budget_lines == False:
+        raise UserError(
+            "At least one budget line should be available with value greater than zero when confirming."
+        )
+
+        if record.x_studio_confirm_status == True:
+            raise UserError("Please finalize all the related RFQs.")
 ```
   </details>
 - **PROJ - Validate Delete** (`sa_f5_crossovered_budget_proj_validate_delete`, type `code`)
@@ -117,7 +119,7 @@ if record.state == 'confirm':
 
 ```python
 if record.x_studio_created_from_sales_order_1.id != False:
-  raise UserError('Budgets created from SOs can not be deleted.')
+    raise UserError("Budgets created from SOs can not be deleted.")
 ```
   </details>
 **Automations (2):**

@@ -95,22 +95,24 @@ This repo adds 57 fields to journal items. They cover payroll EPF/ETF data read 
   <details><summary>code (16 lines)</summary>
 
 ```python
-
-#contract = env['hr.contract'].search([('analytic_account_id', '=', record.analytic_account_id.id)])
-#if contract:
+# contract = env['hr.contract'].search([('analytic_account_id', '=', record.analytic_account_id.id)])
+# if contract:
 #  record['x_studio_contract_id'] = contract.id
 
-#analytic_dist = record.analytic_distribution
-#if analytic_dist:
+# analytic_dist = record.analytic_distribution
+# if analytic_dist:
 #    analytic_account_id = list(analytic_dist.keys())[0]
 #    contract = env['hr.contract'].search([('analytic_account_id', '=', int(analytic_account_id))], limit=1)
 #    if contract:
 #        record['x_studio_contract_id'] = contract.id
 
 if record.distribution_analytic_account_ids:
-    contract = env['hr.contract'].search([('analytic_account_id', 'in', record.distribution_analytic_account_ids.ids)], limit=1)
+    contract = env["hr.contract"].search(
+        [("analytic_account_id", "in", record.distribution_analytic_account_ids.ids)],
+        limit=1,
+    )
     if contract:
-        record['x_studio_contract_id'] = contract.id
+        record["x_studio_contract_id"] = contract.id
 ```
   </details>
 - **SRM - Auto Populate Report Type in Account Move Lines** (`server_action_1732_srm_auto_populate_report_type_in_account_move_lines`, type `code`)
@@ -121,12 +123,17 @@ if record.distribution_analytic_account_ids:
 
 ```python
 # fix_repair:idempotent-v1
-if record.account_internal_group == 'income' and not record.x_studio_sales_report_type:
-  rpt = env['x_sales_report_type'].sudo().search(
-    [('x_studio_report_code', '=', 'Sales Details for Incentive Calc.')],
-    limit=1)
-  if rpt:
-    record.write({'x_studio_sales_report_type': rpt.id})
+if record.account_internal_group == "income" and not record.x_studio_sales_report_type:
+    rpt = (
+        env["x_sales_report_type"]
+        .sudo()
+        .search(
+            [("x_studio_report_code", "=", "Sales Details for Incentive Calc.")],
+            limit=1,
+        )
+    )
+    if rpt:
+        record.write({"x_studio_sales_report_type": rpt.id})
 ```
   </details>
 - **Update Analytic Tag Parameters - Sales Invoice Line - Account** (`server_action_2419_update_analytic_tag_parameters_sales_invoice_line_account`, type `code`)
@@ -137,16 +144,20 @@ if record.account_internal_group == 'income' and not record.x_studio_sales_repor
 
 ```python
 if record.account_id:
-  #record['x_studio_account_mandatory'] = True
-  tag_rule= env['account.analytic.distribution.model'].search([('account_id', '=', record.account_id.id)],limit=1)
-  if tag_rule:
-    record['x_studio_account_mandatory'] = tag_rule.x_studio_account_mandatory
-  else:
-    tag_rule2= env['account.analytic.distribution.model'].search([('partner_id.user_id', '=', uid)],limit=1)
-    if tag_rule2:
-      record['x_studio_account_mandatory'] = tag_rule2.x_studio_user_mandatory
+    # record['x_studio_account_mandatory'] = True
+    tag_rule = env["account.analytic.distribution.model"].search(
+        [("account_id", "=", record.account_id.id)], limit=1
+    )
+    if tag_rule:
+        record["x_studio_account_mandatory"] = tag_rule.x_studio_account_mandatory
     else:
-      record['x_studio_account_mandatory'] = False
+        tag_rule2 = env["account.analytic.distribution.model"].search(
+            [("partner_id.user_id", "=", uid)], limit=1
+        )
+        if tag_rule2:
+            record["x_studio_account_mandatory"] = tag_rule2.x_studio_user_mandatory
+        else:
+            record["x_studio_account_mandatory"] = False
 ```
   </details>
 - **Update Analytic Tag Parameters - Sales Invoice Line - Product** (`server_action_2344_update_analytic_tag_parameters_sales_invoice_line_product`, type `code`)
@@ -157,16 +168,20 @@ if record.account_id:
 
 ```python
 if record.product_id:
-  #record['x_studio_account_mandatory'] = True
-  tag_rule= env['account.analytic.distribution.model'].search([('product_id', '=', record.product_id.id)],limit=1)
-  if tag_rule:
-    record['x_studio_account_mandatory'] = tag_rule.x_studio_product_mandatory
-  else:
-    tag_rule2= env['account.analytic.distribution.model'].search([('partner_id.user_id', '=', uid)],limit=1)
-    if tag_rule2:
-      record['x_studio_account_mandatory'] = tag_rule2.x_studio_user_mandatory
+    # record['x_studio_account_mandatory'] = True
+    tag_rule = env["account.analytic.distribution.model"].search(
+        [("product_id", "=", record.product_id.id)], limit=1
+    )
+    if tag_rule:
+        record["x_studio_account_mandatory"] = tag_rule.x_studio_product_mandatory
     else:
-      record['x_studio_account_mandatory'] = False
+        tag_rule2 = env["account.analytic.distribution.model"].search(
+            [("partner_id.user_id", "=", uid)], limit=1
+        )
+        if tag_rule2:
+            record["x_studio_account_mandatory"] = tag_rule2.x_studio_user_mandatory
+        else:
+            record["x_studio_account_mandatory"] = False
 ```
   </details>
 **Automations (4):**

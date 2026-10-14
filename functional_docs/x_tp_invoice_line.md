@@ -71,16 +71,15 @@ A charge line of a TP Invoice, with charge name, group, basis, original and invo
   <details><summary>code (10 lines)</summary>
 
 ```python
-
-#if record.x_studio_taxes.id:
+# if record.x_studio_taxes.id:
 taxes = 0
 if record.x_studio_taxes != []:
-  for ids in record.x_studio_taxes:
-    tax= env['account.tax'].search([('id', '=', ids._origin.id)], limit=1)
-    if tax:
-      taxes += record.x_studio_invoice_amount * (tax.amount / 100)
- 
-record.write({'x_studio_tax_amount':taxes})
+    for ids in record.x_studio_taxes:
+        tax = env["account.tax"].search([("id", "=", ids._origin.id)], limit=1)
+        if tax:
+            taxes += record.x_studio_invoice_amount * (tax.amount / 100)
+
+record.write({"x_studio_tax_amount": taxes})
 ```
   </details>
 - **TP Invoice LineTAX Update** (`sa_f5_x_tp_invoice_line_tp_invoice_linetax_update`, type `code`)
@@ -90,15 +89,15 @@ record.write({'x_studio_tax_amount':taxes})
   <details><summary>code (9 lines)</summary>
 
 ```python
-#if record.x_studio_taxes.id:
+# if record.x_studio_taxes.id:
 taxes = 0
 if record.x_studio_taxes != []:
-  for ids in record.x_studio_taxes:
-    tax= env['account.tax'].search([('id', '=', ids._origin.id)], limit=1)
-    if tax:
-      taxes += record.x_studio_invoice_amount * (tax.amount / 100)
- 
-record.write({'x_studio_tax_amount':taxes})
+    for ids in record.x_studio_taxes:
+        tax = env["account.tax"].search([("id", "=", ids._origin.id)], limit=1)
+        if tax:
+            taxes += record.x_studio_invoice_amount * (tax.amount / 100)
+
+record.write({"x_studio_tax_amount": taxes})
 ```
   </details>
 **Automations (1):**

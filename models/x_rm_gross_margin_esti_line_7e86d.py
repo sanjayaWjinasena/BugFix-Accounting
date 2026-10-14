@@ -6,17 +6,18 @@ Studio's inline-list-nested-child-model naming convention). Kept
 verbatim for parity — Clear-DB's parent form arch references this
 model directly in the notebook page as an inline editable list.
 """
+
 from odoo import fields, models
 
 
 class XRmGrossMarginEstiLine(models.Model):
-    _name = 'x_rm_gross_margin_esti_line_7e86d'
-    _description = 'Rm Gross Margin Esti  Lines'
-    _order = 'x_studio_sequence, id'
-    _rec_name = 'x_name'
+    _name = "x_rm_gross_margin_esti_line_7e86d"
+    _description = "Rm Gross Margin Esti  Lines"
+    _order = "x_studio_sequence, id"
+    _rec_name = "x_name"
 
-    x_name = fields.Char(string='Description', required=True)
+    x_name = fields.Char(string="Description", required=True)
     x_rm_gross_margin_esti_id = fields.Many2one(
-        'x_rm_gross_margin_esti',
+        "x_rm_gross_margin_esti",
     )
-    x_studio_sequence = fields.Integer(string='Sequence', default=10)
+    x_studio_sequence = fields.Integer(string="Sequence", default=10)

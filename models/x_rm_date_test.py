@@ -7,17 +7,18 @@ without this model would break any menu / view that references it.
 
 No computes, no cross-repo refs.
 """
+
 from odoo import fields, models
 
 
 class XRmDateTest(models.Model):
-    _name = 'x_rm_date_test'
-    _description = 'RM Date Test'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
-    _order = 'x_studio_sequence, id'
-    _rec_name = 'x_name'
+    _name = "x_rm_date_test"
+    _description = "RM Date Test"
+    _inherit = ["mail.thread", "mail.activity.mixin"]
+    _order = "x_studio_sequence, id"
+    _rec_name = "x_name"
 
-    x_active = fields.Boolean(string='Active', default=True)
-    x_name = fields.Char(string='Name')
-    x_studio_date_test = fields.Date(string='Date Test')
-    x_studio_sequence = fields.Integer(string='Sequence', default=10)
+    x_active = fields.Boolean(string="Active", default=True)
+    x_name = fields.Char(string="Name")
+    x_studio_date_test = fields.Date(string="Date Test")
+    x_studio_sequence = fields.Integer(string="Sequence", default=10)

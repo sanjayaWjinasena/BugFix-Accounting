@@ -10,6 +10,7 @@ deletes them explicitly so a fresh / in-place install path both work.
 Uses ORM env['ir.default'].unlink — no cr.execute. Idempotent (no-op
 when rows don't exist).
 """
+
 import logging
 
 from odoo import SUPERUSER_ID, api
@@ -21,19 +22,21 @@ def migrate(cr, version):
     if not version:
         return
     env = api.Environment(cr, SUPERUSER_ID, {})
-    Fld = env['ir.model.fields'].sudo()
-    Default = env['ir.default'].sudo()
-    for fname in ('x_studio_credit_acc_type', 'x_studio_debit_acc_type'):
+    Fld = env["ir.model.fields"].sudo()
+    Default = env["ir.default"].sudo()
+    for fname in ("x_studio_credit_acc_type", "x_studio_debit_acc_type"):
         fld = Fld.search(
-            [('model', '=', 'x_misc_charge_codes'), ('name', '=', fname)],
+            [("model", "=", "x_misc_charge_codes"), ("name", "=", fname)],
             limit=1,
         )
         if not fld:
             continue
-        stale = Default.search([('field_id', '=', fld.id)])
+        stale = Default.search([("field_id", "=", fld.id)])
         if stale:
             stale.unlink()
             _logger.info(
                 "BugFix-Accounting v140: removed %d stale ir.default on "
-                "x_misc_charge_codes.%s", len(stale), fname,
+                "x_misc_charge_codes.%s",
+                len(stale),
+                fname,
             )
