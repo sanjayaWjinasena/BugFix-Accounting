@@ -324,7 +324,5 @@
         'views/product_template_studio_pages_content.xml',
     ],
     'post_init_hook': 'post_init_hook',
-'installable': True,
-    'auto_install': False,
     'application': True,
 }
