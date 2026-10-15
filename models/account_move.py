@@ -65,7 +65,6 @@ class AccountMove(models.Model):
         string='LC - test1', readonly=True,
         compute='_compute_x_studio_lc_test1', store=True)
     x_studio_order_payment_method = fields.Selection(
-        [('Cash', 'Cash'), ('Credit', 'Credit')],
         string='Order Payment Method', readonly=True,
         related='x_studio_sale_id.x_studio_order_payment_method', store=True)
     x_studio_over_bank_guarantee = fields.Boolean(

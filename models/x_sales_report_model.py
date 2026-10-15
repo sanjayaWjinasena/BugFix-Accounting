@@ -88,7 +88,7 @@ class XSalesReportModel(models.Model):
         readonly=True,
     )
     # TODO: x_studio_related_field_oeTJK = fields.One2many('mrp.production', <inverse>, string='New Related Field')
-    x_studio_report_code = fields.Selection([('s-dailysales', 'Daily Sales Summary'), ('s-salesincentive', 'Sales Details for Incentive Calc.'), ('m-wip', 'Production Overview - WIP')], string='Report Code')
+    x_studio_report_code = fields.Selection(string='Report Code', related='x_studio_report_type.x_studio_report_code', store=True, readonly=True)
     x_studio_report_type = fields.Many2one('x_sales_report_type', string='Report Type')
     x_studio_sales_centre = fields.Many2many('crm.team', 'x_sales_report_model_x_studio_sales_centre_rel', 'host_id', 'target_id', string='Sales Centre')
     x_studio_sales_oh = fields.Float(string='Sales OH')
