@@ -38,11 +38,6 @@ class XRmSalesProdPurch(models.Model):
         readonly=True,
     )
     x_studio_product_type = fields.Selection(
-        [
-            ('consu', 'Consumable'),
-            ('service', 'Service'),
-            ('product', 'Storable Product'),
-        ],
         string='Product Type',
         related='x_studio_description.type',
         store=False,
