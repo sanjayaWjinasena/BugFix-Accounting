@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="aw_f4_product_template_product_template" model="ir.actions.act_window">
+    <field name="name">Product.Template</field>
+    <field name="res_model">product.template</field>
+    <field name="view_mode">kanban,tree,form,activity</field>
+  </record>
+  <record id="aw_f4_product_template_product_template_1" model="ir.actions.act_window">
+    <field name="name">product.template</field>
+    <field name="res_model">product.template</field>
+    <field name="view_mode">kanban,tree,form,activity</field>
+  </record>
+  <record id="act_window_2288_product_template" model="ir.actions.act_window">
+    <field name="name">Product.Template</field>
+    <field name="res_model">product.template</field>
+    <field name="view_mode">kanban,tree,form,activity</field>
+  </record>
+  <record id="act_window_2622_product_template" model="ir.actions.act_window">
+    <field name="name">product.template</field>
+    <field name="res_model">product.template</field>
+    <field name="view_mode">kanban,tree,form,activity</field>
+  </record>
+    <record id="view_5061_product_template_product_form_button_e" model="ir.ui.view">
+      <field name="name">product.template.product.form_button</field>
+      <field name="model">product.template</field>
+      <field name="type">form</field>
+      <field name="priority">99</field>
+      <field name="active" eval="False"/>
+      <field name="inherit_id" ref="product.product_template_only_form_view"/>
+      <field name="mode">extension</field>
+      <field name="arch" type="xml">
+        <data>
+    <xpath expr="//button[@name='action_open_label_layout']" position="before">
+      <!-- STRIPPED action button aid=2293 unresolvable -->
+    </xpath>
+    
+    <!-- STRIPPED xpath: numeric button ref unresolvable -->
+  </data>
+      </field>
+    </record>
+  <record id="product_template_form_bugfix_accounting_field_content" model="ir.ui.view">
+    <field name="name">product.template.form.bugfix.accounting.field.content</field>
+    <field name="model">product.template</field>
+    <field name="inherit_id" ref="BugFix-Sales.ported_product_template_studio_2551"/>
+    <field name="priority">100</field>
+    <field name="arch" type="xml">
+      <xpath expr="//group[@name='studio_group_zujMt_right']" position="inside">
+        <field name="x_studio_charge_type" string="Charge Type" widget="radio" readonly="type != 'service'"/>
+        <field name="x_studio_non_billable" string="Non Billable" readonly="type != 'service'"/>
+      </xpath>
+    </field>
+  </record>
+</odoo>

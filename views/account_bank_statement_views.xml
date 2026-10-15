@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="action_2815_account_bank_statement" model="ir.actions.act_window">
+    <field name="name">account.bank.statement</field>
+    <field name="res_model">account.bank.statement</field>
+    <field name="view_mode">tree,form,pivot,graph</field>
+  </record>
+</odoo>

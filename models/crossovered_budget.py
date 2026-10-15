@@ -362,3 +362,9 @@ class CrossoveredBudgetLines(models.Model):
         """
         for rec in self:
             rec.x_studio_estimate = 0
+
+
+class CrossoveredBudgetGap(models.Model):
+    _inherit = "crossovered.budget"
+
+    x_currency_id = fields.Many2one(comodel_name="res.currency", string="Currency")

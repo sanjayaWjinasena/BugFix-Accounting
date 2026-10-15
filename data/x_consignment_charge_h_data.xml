@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="base_automation_289_jin_company_id_in_consignment_charge_header" model="base.automation">
+    <field name="name">JIN - Company Id in Consignment Charge Header</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'x_consignment_charge_h')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_consignment_charge_h__create_date')])]"/>
+    <!-- action_server_ids ref to BugFix-Stock.server_action_2617_... removed
+         to break Stock↔Accounting install-time cycle. Restore post-install. -->
+    <field name="action_server_ids" eval="[(5, 0, 0)]"/>
+  </record>
+  <record id="server_action_2617_jin_company_id_in_consignment_charge_header" model="ir.actions.server">
+    <field name="name">JIN - Company Id in Consignment Charge Header</field>
+    <field name="model_id" ref="BugFix-Accounting.model_x_consignment_charge_h"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="code"><![CDATA[
+company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
+company = env['res.company'].browse(company_id)
+
+record['x_studio_company_id'] = company.id
+    ]]></field>
+  </record>
+    <data noupdate="1">
+    <record id="default_159_x_consignment_charge_h_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_consignment_charge_h__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+    <record id="default_160_x_consignment_charge_h_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_consignment_charge_h__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+    <!-- DROPPED default_161_x_consignment_charge_h_x_studio_charge_group: selection value 'None' not in field allowed set -->
+<record id="default_162_x_consignment_charge_h_x_studio_structure_no" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_consignment_charge_h__x_studio_structure_no"/>
+      <field name="json_value">"0"</field>
+    </record>
+    <record id="default_165_x_consignment_charge_h_x_studio_ledger_post" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_consignment_charge_h__x_studio_ledger_post"/>
+      <field name="json_value">"1"</field>
+    </record>
+    <record id="default_161_x_consignment_charge_h_x_studio_charge_group" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_consignment_charge_h__x_studio_charge_group"/>
+      <field name="json_value">"None"</field>
+    </record>
+    </data>
+</odoo>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="action_2100_rm_gross_margin_actuals" model="ir.actions.act_window">
+    <field name="name">RM Gross Margin - Actuals</field>
+    <field name="res_model">x_rm_gross_margin_actu</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+  <record id="ported_default_form_view_fo_0ffb1e86_7941_430a_b63f_3b5a8738be2d" model="ir.ui.view">
+    <field name="name">Default form view for x_rm_gross_margin_actu</field>
+    <field name="model">x_rm_gross_margin_actu</field>
+    <field name="key">studio_customization.default_form_view_fo_0ffb1e86-7941-430a-b63f-3b5a8738be2d</field>
+    <field name="type">form</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <form>
+        <header/>
+        <sheet string="RM Gross Margin - Actuals">
+          <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="x_active == True"/>
+          <field name="x_active" invisible="1"/>
+          <div class="oe_title">
+                      <h1>
+                          <field name="x_name" required="1" placeholder="Name..."/>
+                      </h1>
+                  </div>
+          <group name="studio_group_0c65e4">
+            <group name="studio_group_0c65e4_left"/>
+            <group name="studio_group_0c65e4_right"/>
+          </group>
+        </sheet>
+        
+      </form>
+    </field>
+  </record>
+  <record id="ported_default_list_view_fo_ff791a31_7daf_408c_acdc_7018fc44fd67" model="ir.ui.view">
+    <field name="name">Default list view for x_rm_gross_margin_actu</field>
+    <field name="model">x_rm_gross_margin_actu</field>
+    <field name="key">studio_customization.default_list_view_fo_ff791a31-7daf-408c-acdc-7018fc44fd67</field>
+    <field name="type">tree</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="x_studio_sequence" widget="handle"/>
+        <field name="x_name"/>
+      </tree>
+    </field>
+  </record>
+  <record id="ported_default_search_view__5d9028dc_d96e_4d44_a869_146eb1842773" model="ir.ui.view">
+    <field name="name">Default search view for x_rm_gross_margin_actu</field>
+    <field name="model">x_rm_gross_margin_actu</field>
+    <field name="key">studio_customization.default_search_view__5d9028dc-d96e-4d44-a869-146eb1842773</field>
+    <field name="type">search</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="x_name"/>
+        <separator/>
+        <filter string="Archived" name="archived_x_rm_gross_margin_actu" domain="[['x_active', '=', False]]"/>
+        <separator/>
+      </search>
+    </field>
+  </record>
+  <record id="ported_odoo_studio_default__fc4b2707_e1d3_4e84_9239_9cbf0d789b47" model="ir.ui.view">
+    <field name="name">Odoo Studio: Default list view for x_rm_gross_margin_actu customization</field>
+    <field name="model">x_rm_gross_margin_actu</field>
+    <field name="key">studio_customization.odoo_studio_default__fc4b2707-e1d3-4e84-9239-9cbf0d789b47</field>
+    <field name="type">tree</field>
+    <field name="priority">99</field>
+    <field name="mode">extension</field>
+    <field name="inherit_id" ref="BugFix-Accounting.ported_default_list_view_fo_ff791a31_7daf_408c_acdc_7018fc44fd67"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//tree[1]" position="attributes">
+          <attribute name="editable">bottom</attribute>
+        </xpath>
+        
+        
+        
+        
+      </data>
+    </field>
+  </record>
+    <record id="ported_view_4875_default_search_view_5d9028dc_d96e_4d44_a869_146eb1842773" model="ir.ui.view">
+        <field name="name">Default search view for x_rm_gross_margin_actu</field>
+        <field name="model">x_rm_gross_margin_actu</field>
+        <field name="type">search</field>
+        <field name="priority">16</field>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <search>
+              <field name="x_name"/>
+              <separator/>
+              <filter string="Archived" name="archived_x_rm_gross_margin_actu" domain="[['x_active', '=', False]]"/>
+              <separator/>
+            </search>
+        </field>
+    </record>
+    <record id="ported_view_4880_odoo_studio_default_fc4b2707_e1d3_4e84_9239_9cbf0d789b47" model="ir.ui.view">
+        <field name="name">Odoo Studio: Default list view for x_rm_gross_margin_actu customization</field>
+        <field name="model">x_rm_gross_margin_actu</field>
+        <field name="type">tree</field>
+        <field name="priority">99</field>
+        <field name="mode">extension</field>
+        <field name="inherit_id" ref="BugFix-Accounting.ported_default_list_view_fo_ff791a31_7daf_408c_acdc_7018fc44fd67"/>
+        <field name="arch" type="xml">
+            <data>
+              <xpath expr="//tree[1]" position="attributes">
+                <attribute name="editable">bottom</attribute>
+              </xpath>
+              <xpath expr="//field[@name='x_studio_sequence']" position="before">
+                <field optional="show" name="x_studio_transaction_type_1" string="Transaction Type"/>
+                <field optional="show" name="x_studio_other_expenses" string="Other Expenses"/>
+                <field optional="show" name="x_studio_estimated_total" string="Estimated Total"/>
+                <field optional="show" name="x_studio_cost_price" string="Cost Price"/>
+                <field optional="show" name="x_studio_variance_est_act" string="Variance (Est - Act)"/>
+              </xpath>
+              <xpath expr="//field[@name='x_studio_sequence']" position="attributes">
+                <attribute name="column_invisible">1</attribute></xpath>
+              <xpath expr="//field[@name='x_name']" position="attributes">
+                <attribute name="column_invisible">1</attribute></xpath>
+              <xpath expr="//field[@name='x_name']" position="after">
+                <field optional="show" name="x_studio_sales_report_model_id" string="Sales Report Model Id" column_invisible="1"/>
+                <field optional="show" name="x_studio_header_reference" string="Header Reference" column_invisible="1"/>
+              </xpath>
+            </data>
+        </field>
+    </record>
+</odoo>

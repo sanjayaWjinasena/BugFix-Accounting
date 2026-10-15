@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="action_1308_custom_currency" model="ir.actions.act_window">
+    <field name="name">Custom Currency</field>
+    <field name="res_model">x_custom_currency</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+  <record id="action_2063_custom_currency_rates" model="ir.actions.act_window">
+    <field name="name">Custom Currency Rates</field>
+    <field name="res_model">x_custom_currency</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+  <record id="ported_default_form_view_fo_8a4b6def_7c88_4ab2_9f17_96bd901a9f4e" model="ir.ui.view">
+    <field name="name">Default form view for x_custom_currency</field>
+    <field name="model">x_custom_currency</field>
+    <field name="key">studio_customization.default_form_view_fo_8a4b6def-7c88-4ab2-9f17-96bd901a9f4e</field>
+    <field name="type">form</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <form>
+        <header/>
+        <sheet string="Custom Currency">
+          <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="x_active == True"/>
+          <field name="x_active" invisible="1"/>
+          <div class="oe_title">
+                      <h1>
+                          <field name="x_name" required="1" placeholder="Name..."/>
+                      </h1>
+                  </div>
+          <group name="studio_group_6e4bb6">
+            <group name="studio_group_6e4bb6_left"/>
+            <group name="studio_group_6e4bb6_right"/>
+          </group>
+        </sheet>
+        
+      </form>
+    </field>
+  </record>
+  <record id="ported_default_list_view_fo_c10f81e8_0461_45dc_bca4_c7824d05528e" model="ir.ui.view">
+    <field name="name">Default list view for x_custom_currency</field>
+    <field name="model">x_custom_currency</field>
+    <field name="key">studio_customization.default_list_view_fo_c10f81e8-0461-45dc-bca4-c7824d05528e</field>
+    <field name="type">tree</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="x_studio_sequence" widget="handle"/>
+        <field name="x_name"/>
+      </tree>
+    </field>
+  </record>
+  <record id="ported_default_search_view__a298038c_e955_424c_892e_bd176971bcc1" model="ir.ui.view">
+    <field name="name">Default search view for x_custom_currency</field>
+    <field name="model">x_custom_currency</field>
+    <field name="key">studio_customization.default_search_view__a298038c-e955-424c-892e-bd176971bcc1</field>
+    <field name="type">search</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="x_name"/>
+        <separator/>
+        <filter string="Archived" name="archived_x_custom_currency" domain="[['x_active', '=', False]]"/>
+        <separator/>
+      </search>
+    </field>
+  </record>
+    <record id="ported_view_2923_default_search_view_a298038c_e955_424c_892e_bd176971bcc1" model="ir.ui.view">
+        <field name="name">Default search view for x_custom_currency</field>
+        <field name="model">x_custom_currency</field>
+        <field name="type">search</field>
+        <field name="priority">16</field>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <search>
+              <field name="x_name"/>
+              <separator/>
+              <filter string="Archived" name="archived_x_custom_currency" domain="[['x_active', '=', False]]"/>
+              <separator/>
+            </search>
+        </field>
+    </record>
+    <record id="ported_view_2927_odoo_studio_default_d6e426ae_1b5c_4bbd_b6cf_aaab9463d6cb" model="ir.ui.view">
+        <field name="name">Odoo Studio: Default form view for x_custom_currency customization</field>
+        <field name="model">x_custom_currency</field>
+        <field name="type">form</field>
+        <field name="priority">99</field>
+        <field name="mode">extension</field>
+        <field name="inherit_id" ref="BugFix-Accounting.ported_default_form_view_fo_8a4b6def_7c88_4ab2_9f17_96bd901a9f4e"/>
+        <field name="arch" type="xml">
+            <data>
+              <xpath expr="//widget[@name='web_ribbon']" position="before">
+                <div name="button_box" class="oe_button_box">
+                  <button class="oe_stat_button" type="action" name="%(BugFix-Accounting.act_custom_currency_rates)d" icon="fa-money" invisible="x_studio_active == False">
+                    <field widget="statinfo" name="x_x_studio_custom_currency_id__x_custom_currency_rate_count" string="Rates"/>
+                  </button>
+                </div>
+              </xpath>
+              <xpath expr="//field[@name='x_name']" position="attributes">
+                <attribute name="invisible">1</attribute><attribute name="required"/></xpath>
+              <xpath expr="//group[@name='studio_group_6e4bb6_left']" position="inside">
+                <field name="x_studio_currency_id" force_save="True" required="1" options="{&quot;no_create&quot;:true}"/>
+                <field name="x_studio_name" string="Name"/>
+                <field name="x_studio_iso_currency_code" string="ISO Currency Code"/>
+              </xpath>
+              <xpath expr="//group[@name='studio_group_6e4bb6_right']" position="inside">
+                <field name="x_studio_currency_unit" string="Currency Unit"/>
+                <field name="x_studio_symbol" string="Symbol"/>
+                <field name="x_studio_current_rate" string="Current Rate" invisible="1"/>
+                <field name="x_studio_date" string="Date" invisible="1"/>
+                <field name="x_studio_active" string="Active" widget="boolean_toggle"/>
+                <field name="x_studio_company_id" string="Company" force_save="True" readonly="1"/>
+              </xpath>
+            </data>
+        </field>
+    </record>
+    <record id="ported_view_2931_odoo_studio_default_527d6591_4b52_40f4_a210_0cfd294b2cf0" model="ir.ui.view">
+        <field name="name">Odoo Studio: Default list view for x_custom_currency customization</field>
+        <field name="model">x_custom_currency</field>
+        <field name="type">tree</field>
+        <field name="priority">99</field>
+        <field name="mode">extension</field>
+        <field name="inherit_id" ref="BugFix-Accounting.ported_default_list_view_fo_c10f81e8_0461_45dc_bca4_c7824d05528e"/>
+        <field name="arch" type="xml">
+            <data>
+              <xpath expr="//field[@name='x_studio_sequence']" position="before">
+                <field name="x_studio_currency_id"/>
+                <field name="x_studio_name"/>
+                <field name="x_studio_iso_currency_code"/>
+                <field name="x_studio_symbol"/>
+                <field name="x_studio_date" column_invisible="1"/>
+                <field name="x_studio_current_rate" column_invisible="1"/>
+                <field name="x_studio_active" widget="boolean_toggle"/>
+                <xpath expr="//field[@name='x_name']" position="move"/>
+              </xpath>
+              <xpath expr="//field[@name='x_studio_sequence']" position="attributes">
+                <attribute name="column_invisible">1</attribute></xpath>
+              <xpath expr="//field[@name='x_name']" position="attributes">
+                <attribute name="column_invisible">1</attribute></xpath>
+            </data>
+        </field>
+    </record>
+</odoo>

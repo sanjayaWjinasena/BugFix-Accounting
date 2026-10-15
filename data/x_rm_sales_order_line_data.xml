@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+    <!-- DROPPED default_275_x_misc_charge_codes_x_studio_debit_acc_type: selection value 'Item' not in field allowed set -->
+<!-- DROPPED default_276_x_misc_charge_codes_x_studio_credit_acc_type: selection value 'G/L Account' not in field allowed set -->
+<record id="default_277_x_rm_sales_order_line_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_rm_sales_order_line__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+    <record id="default_278_x_rm_sales_order_line_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_rm_sales_order_line__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+    </data>
+</odoo>

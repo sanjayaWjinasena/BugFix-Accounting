@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="ported_view_6033_customization_account_group_tree" model="ir.ui.view">
+    <field name="name">Odoo Studio: account.group.tree customization</field>
+    <field name="model">account.group</field>
+    <field name="type">tree</field>
+    <field name="mode">extension</field>
+    <field name="priority">99</field>
+    <field name="active" eval="True"/>
+    <field name="inherit_id" ref="account.view_account_group_tree"/>
+    <field name="arch" type="xml">
+<data>
+  <xpath expr="//field[@name='code_prefix_start']" position="before">
+    <field name="id" optional="show"/>
+  </xpath>
+</data>
+    </field>
+  </record>
+</odoo>

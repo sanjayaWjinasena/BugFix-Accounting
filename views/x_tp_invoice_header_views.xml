@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="action_1379_tp_invoice_header" model="ir.actions.act_window">
+    <field name="name">TP Invoice Header</field>
+    <field name="res_model">x_tp_invoice_header</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+  <record id="action_1382_tp_invoices" model="ir.actions.act_window">
+    <field name="name">TP Invoices</field>
+    <field name="res_model">x_tp_invoice_header</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_consignment_header_id', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_consignment_header_id': active_id,'default_x_studio_consignment_header_id': active_id}</field>
+  </record>
+  <record id="action_1383_tp_invoices" model="ir.actions.act_window">
+    <field name="name">TP Invoices</field>
+    <field name="res_model">x_tp_invoice_header</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('x_studio_con_no', '=', active_id)]</field>
+    <field name="context">{'search_default_x_studio_con_no': active_id,'default_x_studio_con_no': active_id}</field>
+  </record>
+  <record id="action_2430_x_tp_invoice_header" model="ir.actions.act_window">
+    <field name="name">x_tp_invoice_header</field>
+    <field name="res_model">x_tp_invoice_header</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+  <record id="action_2864_tp_invoice_header" model="ir.actions.act_window">
+    <field name="name">TP Invoice Header</field>
+    <field name="res_model">x_tp_invoice_header</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+  <record id="ported_default_form_view_fo_b04274bb_8930_4e7e_a2cc_e65229996a48" model="ir.ui.view">
+    <field name="name">Default form view for x_tp_invoice_header</field>
+    <field name="model">x_tp_invoice_header</field>
+    <field name="key">studio_customization.default_form_view_fo_b04274bb-8930-4e7e-a2cc-e65229996a48</field>
+    <field name="type">form</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <form>
+        <header>
+          <!-- Restored in v0.0.29 (auto-porter dropped it). Post button
+               referenced from v2 extension's positional xpath. Action
+               ported in data/server_actions_v2.xml (srv_tp_invoice_post). -->
+          <button type="action" name="%(BugFix-Accounting.srv_tp_invoice_post)d" string="Post" class="btn-primary" invisible="x_studio_status not in ['Draft']"/>
+        </header>
+        <header/>
+        <sheet string="TP Invoice Header">
+          <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="x_active == True"/>
+          <field name="x_active" invisible="1"/>
+          <!-- v0.0.29: sentinel for the button's invisible modifier.
+               Full x_studio_status visibility comes from the extension view. -->
+          <field name="x_studio_status" invisible="1"/>
+          <div class="oe_title">
+                      <span class="o_form_label">Invoice Reference</span>
+                      <h1>
+                          <field name="x_name" required="1" placeholder="Name..."/>
+                      </h1>
+                  </div>
+          <group name="studio_group_c9cf25">
+            <group name="studio_group_c9cf25_left"/>
+            <group name="studio_group_c9cf25_right"/>
+          </group>
+        </sheet>
+        
+      </form>
+    </field>
+  </record>
+  <record id="ported_default_list_view_fo_87762a20_9628_4266_a414_8bb858fd9746" model="ir.ui.view">
+    <field name="name">Default list view for x_tp_invoice_header</field>
+    <field name="model">x_tp_invoice_header</field>
+    <field name="key">studio_customization.default_list_view_fo_87762a20-9628-4266-a414-8bb858fd9746</field>
+    <field name="type">tree</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="x_studio_sequence" widget="handle"/>
+        <field name="x_name"/>
+      </tree>
+    </field>
+  </record>
+  <record id="ported_default_search_view__12511c2f_92e3_4ad8_a81a_9adf7a7e038f" model="ir.ui.view">
+    <field name="name">Default search view for x_tp_invoice_header</field>
+    <field name="model">x_tp_invoice_header</field>
+    <field name="key">studio_customization.default_search_view__12511c2f-92e3-4ad8-a81a-9adf7a7e038f</field>
+    <field name="type">search</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="x_name"/>
+        <separator/>
+        <filter string="Archived" name="archived_x_tp_invoice_header" domain="[['x_active', '=', False]]"/>
+        <separator/>
+      </search>
+    </field>
+  </record>
+  <record id="ported_odoo_studio_default__c572715b_284c_469b_9b41_7a04b3431fc6" model="ir.ui.view">
+    <field name="name">Odoo Studio: Default list view for x_tp_invoice_header customization</field>
+    <field name="model">x_tp_invoice_header</field>
+    <field name="key">studio_customization.odoo_studio_default__c572715b-284c-469b-9b41-7a04b3431fc6</field>
+    <field name="type">tree</field>
+    <field name="priority">99</field>
+    <field name="mode">extension</field>
+    <field name="inherit_id" ref="BugFix-Accounting.ported_default_list_view_fo_87762a20_9628_4266_a414_8bb858fd9746"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//tree[1]" position="attributes">
+          <attribute name="create">false</attribute>
+          <attribute name="delete">false</attribute>
+        </xpath>
+        
+        
+        
+      </data>
+    </field>
+  </record>
+    <record id="ported_view_3044_default_search_view_12511c2f_92e3_4ad8_a81a_9adf7a7e038f" model="ir.ui.view">
+        <field name="name">Default search view for x_tp_invoice_header</field>
+        <field name="model">x_tp_invoice_header</field>
+        <field name="type">search</field>
+        <field name="priority">16</field>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <search>
+              <field name="x_name"/>
+              <separator/>
+              <filter string="Archived" name="archived_x_tp_invoice_header" domain="[['x_active', '=', False]]"/>
+              <separator/>
+            </search>
+        </field>
+    </record>
+    <record id="ported_view_3045_odoo_studio_default_fc4d9ef7_2d23_4a16_911c_66cf2185de9b" model="ir.ui.view">
+        <field name="name">Odoo Studio: Default form view for x_tp_invoice_header customization</field>
+        <field name="model">x_tp_invoice_header</field>
+        <field name="type">form</field>
+        <field name="priority">99</field>
+        <field name="mode">extension</field>
+        <field name="inherit_id" ref="BugFix-Accounting.ported_default_form_view_fo_b04274bb_8930_4e7e_a2cc_e65229996a48"/>
+        <field name="arch" type="xml">
+            <data>
+              <!-- v0.0.29: was //button[@name='1384'], switched to positional.
+                   Primary header now has Post button restored (v0.0.29). -->
+              <xpath expr="//header[1]/button[1]" position="after">
+                <field widget="statusbar" name="x_studio_pipeline_status_bar" string="Pipeline status bar"/>
+              </xpath>
+              <xpath expr="//widget[@name='web_ribbon']" position="before">
+                <div name="button_box" class="oe_button_box">
+                  <button class="oe_stat_button" icon="fa-file-o" type="action" name="%(BugFix-Accounting.act_tp_invoice_vendor_bill)d" invisible="x_x_studio_tp_id__account_move_count == 0">
+                    <field widget="statinfo" name="x_x_studio_tp_id__account_move_count" string="Vendor Bill"/>
+                  </button>
+                </div>
+              </xpath>
+              <xpath expr="//form[1]/sheet[1]/div[not(@name)][1]/h1[1]/field[@name='x_name']" position="attributes">
+                <attribute name="force_save">True</attribute>
+                <attribute name="readonly">1</attribute></xpath>
+              <xpath expr="//group[@name='studio_group_c9cf25_left']" position="inside">
+                <field name="x_studio_vendor" string="Vendor" force_save="True" required="1"/>
+                <field name="x_studio_name" string="Name"/>
+                <field name="x_studio_con_no" string="Created From Consignment No" force_save="True" readonly="1" invisible="x_studio_con_no == False"/>
+              </xpath>
+              <xpath expr="//group[@name='studio_group_c9cf25_right']" position="inside">
+                <field name="x_studio_invoice_no" string="Supplier's Invoice No (Bill Reference)" required="1"/>
+                <field name="x_studio_invoice_date" string="Supplier's Invoice Date (Bill Date)" required="1"/>
+                <field name="x_studio_currency_id" string="Currency" required="1"/>
+                <field name="x_studio_status" string="Status" force_save="True" readonly="1"/>
+              </xpath>
+              <xpath expr="//group[@name='studio_group_c9cf25']" position="after">
+                <notebook name="studio_notebook_ukf7u">
+                  <page string="Lines" name="studio_page_ukf7u">
+                    <field name="x_studio_tp_lines">
+                      <tree create="false" delete="false" editable="bottom">
+                        <field name="x_studio_charge_group" force_save="True" readonly="1"/>
+                        <field name="x_studio_charge_name" force_save="True" readonly="1"/>
+                        <field name="x_studio_original_amount" force_save="True" readonly="1"/>
+                        <field name="x_studio_invoice_amount"/>
+                        <field optional="show" name="x_studio_taxes" string="Taxes" widget="many2many_tags" options="{&quot;no_create&quot;:true}"/>
+                        <field optional="show" name="x_studio_tax_amount" string="Tax Amount"/>
+                        <field name="x_studio_sequence" widget="handle" column_invisible="1"/>
+                        <field name="x_name" column_invisible="1"/>
+                      </tree>
+                    </field>
+                    <group class="oe_subtotal_footer oe_right">
+                      <field name="x_studio_total_invoice_amount" widget="monetary" options="{'currency_field': 'x_currency_id'}"/>
+                      <field name="x_studio_taxes_1" widget="monetary" options="{'currency_field': 'x_currency_id'}"/>
+                      <div class="oe_subtotal_footer_separator oe_inline" name="studio_div_1fae73">
+                        <label for="x_studio_total_1"/>
+                      </div>
+                      <field name="x_studio_total_1" nolabel="1" class="oe_subtotal_footer_separator" widget="monetary" options="{'currency_field': 'x_currency_id'}"/>
+                    </group>
+                  </page>
+                </notebook>
+              </xpath>
+            </data>
+        </field>
+    </record>
+    <record id="ported_view_3050_odoo_studio_default_c572715b_284c_469b_9b41_7a04b3431fc6" model="ir.ui.view">
+        <field name="name">Odoo Studio: Default list view for x_tp_invoice_header customization</field>
+        <field name="model">x_tp_invoice_header</field>
+        <field name="type">tree</field>
+        <field name="priority">99</field>
+        <field name="mode">extension</field>
+        <field name="inherit_id" ref="BugFix-Accounting.ported_default_list_view_fo_87762a20_9628_4266_a414_8bb858fd9746"/>
+        <field name="arch" type="xml">
+            <data>
+              <xpath expr="//tree[1]" position="attributes">
+                <attribute name="create">false</attribute>
+                <attribute name="delete">false</attribute>
+              </xpath>
+              <xpath expr="//field[@name='x_studio_sequence']" position="attributes">
+                <attribute name="column_invisible">1</attribute></xpath>
+              <xpath expr="//field[@name='x_name']" position="attributes">
+                <attribute name="string">Invoice Reference</attribute>
+              </xpath>
+              <xpath expr="//field[@name='x_name']" position="after">
+                <field name="x_studio_status" optional="show"/>
+                <field name="x_studio_vendor"/>
+                <field name="x_studio_invoice_no"/>
+                <field name="x_studio_invoice_date"/>
+                <field name="x_studio_currency_id"/>
+              </xpath>
+            </data>
+        </field>
+    </record>
+</odoo>

@@ -16,7 +16,7 @@ models/x_sales_report_model.py.
 Clear-DB has 0 rows in this table -- schema-only asset. Ported for
 fresh-install completeness so the "Pump Price Costing" tab
 (currently stripped from x_sales_report_model form) can be restored
-in a follow-up commit per INSTALL_JOURNEY.md item #4.
+in a follow-up commit per docs/INSTALL_JOURNEY.md item #4.
 """
 
 from odoo import fields, models
@@ -110,3 +110,11 @@ class XPumpPriceCosting(models.Model):
     x_studio_total_material_cost = fields.Float(string="Total Material Cost")
     x_studio_total_material_cost_1 = fields.Float(string="Total Material Cost")
     x_studio_total_material_cost_2 = fields.Float(string="Total Material Cost")
+
+
+class XPumpPriceCostingGap(models.Model):
+    _inherit = "x_pump_price_costing"
+    _rec_name = "x_name"  # Clear-DB Studio model: records are named by x_name
+
+    x_active = fields.Boolean(string="Active")
+    x_name = fields.Char(string="Name")

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+    <record id="default_317_x_temp_estimated_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_temp_estimated__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+    <record id="default_318_x_temp_estimated_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_temp_estimated__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+    <record id="default_319_x_temp_estimated_x_currency_id" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_temp_estimated__x_currency_id"/>
+      <field name="json_value">145</field>
+    </record>
+    </data>
+</odoo>

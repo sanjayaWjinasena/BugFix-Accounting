@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+    <record id="default_279_x_rm_production_orders_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_rm_production_orders__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+    <record id="default_280_x_rm_production_orders_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_rm_production_orders__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+    </data>
+</odoo>

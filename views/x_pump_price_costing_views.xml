@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="action_2491_pump_price_costing" model="ir.actions.act_window">
+    <field name="name">Pump Price Costing</field>
+    <field name="res_model">x_pump_price_costing</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+  <record id="action_2529_costing_worksheet" model="ir.actions.act_window">
+    <field name="name">Costing Worksheet</field>
+    <field name="res_model">x_pump_price_costing</field>
+    <field name="view_mode">tree,form,pivot</field>
+  </record>
+  <record id="action_2533_pump_costing_worksheet" model="ir.actions.act_window">
+    <field name="name">Pump Costing Worksheet</field>
+    <field name="res_model">x_pump_price_costing</field>
+    <field name="view_mode">tree,kanban,form,pivot,graph</field>
+  </record>
+  <record id="ported_view_5422_default_list_x_pump_price_costing" model="ir.ui.view">
+    <field name="name">Default list view for x_pump_price_costing</field>
+    <field name="model">x_pump_price_costing</field>
+    <field name="type">tree</field>
+    <field name="mode">primary</field>
+    <field name="priority">16</field>
+    <field name="active" eval="True"/>
+    <field name="arch" type="xml">
+<tree>
+  <field name="x_studio_sequence" widget="handle"/>
+  <field name="x_name"/>
+</tree>
+    </field>
+  </record>
+  <record id="ported_view_5425_customization_x_pump_price_costing_tree" model="ir.ui.view">
+    <field name="name">Odoo Studio: Default list view for x_pump_price_costing customization</field>
+    <field name="model">x_pump_price_costing</field>
+    <field name="type">tree</field>
+    <field name="mode">extension</field>
+    <field name="priority">99</field>
+    <field name="active" eval="True"/>
+    <field name="inherit_id" ref="BugFix-Accounting.ported_view_5422_default_list_x_pump_price_costing"/>
+    <field name="arch" type="xml">
+<data>
+  <xpath expr="//tree[1]" position="attributes">
+    <attribute name="create">false</attribute>
+    <attribute name="delete">false</attribute>
+    <attribute name="edit">false</attribute>
+    <attribute name="editable">bottom</attribute>
+  </xpath>
+  <xpath expr="//field[@name='x_studio_sequence']" position="after">
+    <field optional="show" name="x_studio_sales_report_model_id" string="Report Reference"/>
+    <field name="x_studio_product_id_1" optional="show"/>
+  </xpath>
+  <xpath expr="//field[@name='x_name']" position="attributes">
+    <attribute name="column_invisible">1</attribute></xpath>
+  <xpath expr="//field[@name='x_name']" position="after">
+    <field name="x_studio_satd_discount" optional="show"/>
+    <field name="x_studio_distributor_addition" optional="show"/>
+    <field name="x_studio_max_discount" optional="show"/>
+    <field name="x_studio_date" optional="show"/>
+    <field name="x_studio_rs" optional="show"/>
+    <field name="x_studio_sscl" optional="show"/>
+    <field name="x_studio_system_cost" optional="show"/>
+    <field name="x_studio_total_material_cost_2" optional="show"/>
+    <field name="x_studio_route_time" optional="show"/>
+    <field name="x_studio_discount" optional="show"/>
+    <field name="x_studio_net_selling_price" optional="show"/>
+    <field name="x_studio_material_cost_imports" optional="show"/>
+    <field name="x_studio_material_cost_other" optional="show"/>
+    <field name="x_studio_total_cost" optional="show"/>
+    <field name="x_studio_total_factory_cost" optional="show"/>
+    <field name="x_studio_contribution_rs" optional="show"/>
+    <field name="x_studio_contribution_2" optional="show"/>
+    <field name="x_studio_sales_oh" optional="show"/>
+    <field name="x_studio_sales_oh_rs" optional="show"/>
+    <field name="x_studio_other_oh" optional="show"/>
+    <field name="x_studio_other_oh_rs" optional="show"/>
+    <field name="x_studio_profitloss_as_of_net_sale" optional="show"/>
+    <field name="x_studio_current_retail_price_vat_18" optional="show"/>
+    <field name="x_studio_total_material_cost" optional="show"/>
+    <field name="x_studio_oh_absorbed_factory" optional="show"/>
+    <field name="x_studio_oh_absorbed_sales" optional="show"/>
+    <field name="x_studio_oh_absorbed_other" optional="show"/>
+    <field name="x_studio_profit_mark_up_" optional="show"/>
+    <field name="x_studio_profit_mark_up_rs" optional="show"/>
+    <field name="x_studio_net_selling_price_2" optional="show"/>
+    <field name="x_studio_sscl_2" optional="show"/>
+    <field name="x_studio_max_discount_2" optional="show"/>
+    <field name="x_studio_proposed_base_price_1" optional="show"/>
+  </xpath>
+</data>
+    </field>
+  </record>
+    <record id="view_5423_default_form_view_for_x_pump_price_costing_e" model="ir.ui.view">
+      <field name="name">Default form view for x_pump_price_costing</field>
+      <field name="model">x_pump_price_costing</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form>
+  <header/>
+  <sheet string="Pump Price Costing">
+    <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="x_active == True"/>
+    <field name="x_active" invisible="1"/>
+    <div class="oe_title">
+                <h1>
+                    <field name="x_name" required="1" placeholder="Name..."/>
+                </h1>
+            </div>
+    <group name="studio_group_3ebdf2">
+      <group name="studio_group_3ebdf2_left"/>
+      <group name="studio_group_3ebdf2_right"/>
+    </group>
+  </sheet>
+  <div class="oe_chatter" name="oe_chatter">
+    <field name="message_follower_ids"/>
+    <field name="message_ids"/>
+    <field name="activity_ids"/>
+  </div>
+</form>
+      </field>
+    </record>
+    <record id="view_5424_default_search_view_for_x_pump_price_costing_e" model="ir.ui.view">
+      <field name="name">Default search view for x_pump_price_costing</field>
+      <field name="model">x_pump_price_costing</field>
+      <field name="type">search</field>
+      <field name="arch" type="xml">
+        <search>
+  <field name="x_name"/>
+  <separator/>
+  <filter string="Archived" name="archived_x_pump_price_costing" domain="[['x_active', '=', False]]"/>
+  <separator/>
+</search>
+      </field>
+    </record>
+</odoo>

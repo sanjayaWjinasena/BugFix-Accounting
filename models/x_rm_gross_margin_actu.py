@@ -52,3 +52,11 @@ class XRmGrossMarginActu(models.Model):
         string="Transaction Type",
     )
     x_studio_variance_est_act = fields.Float(string="Variance (Est - Act)")
+
+
+class XRmGrossMarginActuGap(models.Model):
+    _inherit = "x_rm_gross_margin_actu"
+    _rec_name = "x_name"  # Clear-DB Studio model: records are named by x_name
+
+    x_active = fields.Boolean(string="Active")
+    x_name = fields.Char(string="Name")

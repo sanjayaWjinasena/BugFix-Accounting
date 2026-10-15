@@ -51,3 +51,11 @@ class XRmNoneMoving(models.Model):
     )
     x_studio_sequence = fields.Integer(string="Sequence", default=10)
     x_studio_value = fields.Float(string="Value")
+
+
+class XRmNoneMovingGap(models.Model):
+    _inherit = "x_rm_none_moving"
+    _rec_name = "x_name"  # Clear-DB Studio model: records are named by x_name
+
+    x_active = fields.Boolean(string="Active")
+    x_name = fields.Char(string="Name")

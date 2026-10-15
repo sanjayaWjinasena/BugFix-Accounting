@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="action_3275_journal" model="ir.actions.act_window">
+    <field name="name">Journal</field>
+    <field name="res_model">account.journal</field>
+    <field name="view_mode">kanban,tree,form,pivot</field>
+  </record>
+  <record id="ported_default_pivot_view_f_e6b5ae70_5837_410f_a7ec_43da4ff64f33" model="ir.ui.view">
+    <field name="name">Default pivot view for ir.model(435,)</field>
+    <field name="model">account.journal</field>
+    <field name="key">studio_customization.default_pivot_view_f_e6b5ae70-5837-410f-a7ec-43da4ff64f33</field>
+    <field name="type">pivot</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <pivot string="Journal" sample="1"/>
+    </field>
+  </record>
+  <record id="ported_view_2549_customization_account_journal_tree" model="ir.ui.view">
+    <field name="name">Odoo Studio: account.journal.tree customization</field>
+    <field name="model">account.journal</field>
+    <field name="type">tree</field>
+    <field name="mode">extension</field>
+    <field name="priority">99</field>
+    <field name="active" eval="True"/>
+    <field name="inherit_id" ref="account.view_account_journal_tree"/>
+    <field name="arch" type="xml">
+<data>
+  <xpath expr="//field[@name='type']" position="after">
+    <field name="id"/>
+  </xpath>
+</data>
+    </field>
+  </record>
+  <!-- STRIPPED act_window_1570_sales_invoice_lines: model out-of-deps for BugFix-Accounting: account.edi.document (owned by account_edi) -->
+<record id="act_window_339_accounting_dashboard" model="ir.actions.act_window">
+    <field name="name">Accounting Dashboard</field>
+    <field name="res_model">account.journal</field>
+    <field name="view_mode">kanban,form,pivot</field>
+    <field name="domain">[]</field>
+    <field name="context">{'search_default_dashboard':1}</field>
+    <field name="help" type="html"><p class="o_view_nocontent_neutral_face">
+                This is the accounting dashboard
+            </p><p>
+                If you have not installed a chart of account, please install one first.<br/>
+               <a class="btn-link" type="action" name="337" tabindex="-1">Browse available countries.</a>
+            </p>
+        </field>
+    <field name="usage">menu</field>
+  </record>
+</odoo>

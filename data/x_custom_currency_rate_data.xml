@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="sa_f5_x_custom_currency_rate_imp_validate_from_to_dates_in_custom_rates" model="ir.actions.server">
+    <field name="name">IMP - Validate From To Dates in Custom Rates</field>
+    <field name="model_id" search="[('model', '=', 'x_custom_currency_rate')]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[if record.x_studio_end_date < record.x_studio_start_date:
+  raise UserError('End Date must be Greater than Start Date.')
+
+
+
+]]></field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+  </record>
+  <record id="sa_f5_x_custom_currency_rate_jin_company_id_in_custom_currency_rate" model="ir.actions.server">
+    <field name="name">JIN - Company Id in Custom Currency Rate</field>
+    <field name="model_id" search="[('model', '=', 'x_custom_currency_rate')]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
+company = env['res.company'].browse(company_id)
+
+record['x_studio_company_id'] = company.id]]></field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+  </record>
+  <record id="server_action_1311_imp_validate_from_to_dates_in_custom_rates" model="ir.actions.server">
+    <field name="name">IMP - Validate From To Dates in Custom Rates</field>
+    <field name="model_id" search="[('model', '=', 'x_custom_currency_rate')]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[if record.x_studio_end_date < record.x_studio_start_date:
+  raise UserError('End Date must be Greater than Start Date.')
+
+
+
+]]></field>
+    <field name="usage">base_automation</field>
+  </record>
+  <record id="server_action_2675_jin_company_id_in_custom_currency_rate" model="ir.actions.server">
+    <field name="name">JIN - Company Id in Custom Currency Rate</field>
+    <field name="model_id" search="[('model', '=', 'x_custom_currency_rate')]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
+company = env['res.company'].browse(company_id)
+
+record['x_studio_company_id'] = company.id]]></field>
+    <field name="usage">base_automation</field>
+  </record>
+  <record id="automation_60_imp_validate_from_to_dates_in_custom_rates" model="base.automation">
+    <field name="name">IMP - Validate From To Dates in Custom Rates</field>
+    <field name="model_id" search="[('model', '=', 'x_custom_currency_rate')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="active" eval="True"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('server_action_1311_imp_validate_from_to_dates_in_custom_rates')])]"/>
+  </record>
+  <record id="automation_311_jin_company_id_in_custom_currency_rate" model="base.automation">
+    <field name="name">JIN - Company Id in Custom Currency Rate</field>
+    <field name="model_id" search="[('model', '=', 'x_custom_currency_rate')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="active" eval="True"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('server_action_2675_jin_company_id_in_custom_currency_rate')])]"/>
+  </record>
+  <record id="base_automation_60_imp_validate_from_to_dates_in_custom_rates" model="base.automation">
+    <field name="name">IMP - Validate From To Dates in Custom Rates</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'x_custom_currency_rate')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_custom_currency_rate__x_studio_end_date'), ref('BugFix-Accounting.field_x_custom_currency_rate__x_studio_start_date')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1311_imp_validate_from_to_dates_in_custom_rates')])]"/>
+  </record>
+  <record id="base_automation_311_jin_company_id_in_custom_currency_rate" model="base.automation">
+    <field name="name">JIN - Company Id in Custom Currency Rate</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'x_custom_currency_rate')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_custom_currency_rate__create_date')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2675_jin_company_id_in_custom_currency_rate')])]"/>
+  </record>
+  <record id="server_action_1311_imp_validate_from_to_dates_in_custom_rates" model="ir.actions.server">
+    <field name="name">IMP - Validate From To Dates in Custom Rates</field>
+    <field name="model_id" ref="BugFix-Accounting.model_x_custom_currency_rate"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="code"><![CDATA[
+if record.x_studio_end_date < record.x_studio_start_date:
+  raise UserError('End Date must be Greater than Start Date.')
+
+
+
+
+    ]]></field>
+  </record>
+  <record id="server_action_2675_jin_company_id_in_custom_currency_rate" model="ir.actions.server">
+    <field name="name">JIN - Company Id in Custom Currency Rate</field>
+    <field name="model_id" ref="BugFix-Accounting.model_x_custom_currency_rate"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="code"><![CDATA[
+company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
+company = env['res.company'].browse(company_id)
+
+record['x_studio_company_id'] = company.id
+    ]]></field>
+  </record>
+    <data noupdate="1">
+    <record id="default_157_x_custom_currency_rate_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_custom_currency_rate__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+    <record id="default_158_x_custom_currency_rate_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_custom_currency_rate__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+    </data>
+</odoo>

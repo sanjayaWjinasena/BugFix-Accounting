@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_journal_entry_1" model="ir.actions.report">
+        <field name="name">Journal Entry Report</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">BugFix-Accounting.report_journal_entry_1</field>
+        <field name="report_file">BugFix-Accounting.report_journal_entry_1</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+        <field name="binding_view_types">list,form</field>
+    </record>
+    <record id="action_report_journal_entry_2" model="ir.actions.report">
+        <field name="name">Journal Entry Report</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">BugFix-Accounting.report_journal_entry_2</field>
+        <field name="report_file">BugFix-Accounting.report_journal_entry_2</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+        <field name="binding_view_types">list,form</field>
+    </record>
+    <record id="action_report_pro_forma_invoice" model="ir.actions.report">
+        <field name="name">Pro forma Invoice</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">BugFix-Accounting.report_pro_forma_invoice</field>
+        <field name="report_file">BugFix-Accounting.report_pro_forma_invoice</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+        <field name="binding_view_types">list,form</field>
+    </record>
+</odoo>

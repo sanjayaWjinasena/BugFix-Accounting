@@ -387,3 +387,13 @@ class AccountMoveLine(models.Model):
                 rec._fix_repair_compute_credit_limit_2()
             else:
                 rec.x_studio_credit_limit_2 = 0
+
+
+class AccountMoveLineGap(models.Model):
+    _inherit = "account.move.line"
+
+    x_studio_related_field_zy8mz = fields.One2many(
+        string="New Related Field",
+        related="purchase_order_id.order_line",
+        readonly=True,
+    )

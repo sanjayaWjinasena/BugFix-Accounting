@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="sa_f5_crossovered_budget_proj_validate_confirm" model="ir.actions.server">
+    <field name="name">PROJ - Validate Confirm</field>
+    <field name="model_id" search="[('model', '=', 'crossovered.budget')]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[if record.state == 'confirm':
+  """if record.x_studio_created_from_sales_order_1.id != False:
+    if record.x_studio_valid_budget_lines == False:
+      raise UserError('At least one budget line should be available with value greater than zero when confirming.')"""
+  if record.x_studio_valid_budget_lines == False:
+    raise UserError('At least one budget line should be available with value greater than zero when confirming.')
+      
+    if record.x_studio_confirm_status == True:
+      raise UserError('Please finalize all the related RFQs.')
+
+]]></field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+  </record>
+  <record id="sa_f5_crossovered_budget_proj_validate_delete" model="ir.actions.server">
+    <field name="name">PROJ - Validate Delete</field>
+    <field name="model_id" search="[('model', '=', 'crossovered.budget')]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[if record.x_studio_created_from_sales_order_1.id != False:
+  raise UserError('Budgets created from SOs can not be deleted.')
+
+
+]]></field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+  </record>
+  <record id="server_action_2183_proj_validate_delete" model="ir.actions.server">
+    <field name="name">PROJ - Validate Delete</field>
+    <field name="model_id" search="[('model', '=', 'crossovered.budget')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.x_studio_created_from_sales_order_1.id != False:
+  raise UserError('Budgets created from SOs can not be deleted.')
+
+
+]]></field>
+  </record>
+  <record id="server_action_2570_proj_validate_confirm" model="ir.actions.server">
+    <field name="name">PROJ - Validate Confirm</field>
+    <field name="model_id" search="[('model', '=', 'crossovered.budget')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.state == 'confirm':
+  """if record.x_studio_created_from_sales_order_1.id != False:
+    if record.x_studio_valid_budget_lines == False:
+      raise UserError('At least one budget line should be available with value greater than zero when confirming.')"""
+  if record.x_studio_valid_budget_lines == False:
+    raise UserError('At least one budget line should be available with value greater than zero when confirming.')
+      
+    if record.x_studio_confirm_status == True:
+      raise UserError('Please finalize all the related RFQs.')
+
+]]></field>
+  </record>
+  <record id="base_automation_197_proj_validate_delete" model="base.automation">
+    <field name="name">PROJ - Validate Delete</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'crossovered.budget')]"/>
+    <field name="trigger">on_unlink</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2183_proj_validate_delete')])]"/>
+  </record>
+  <record id="base_automation_256_proj_validate_confirm" model="base.automation">
+    <field name="name">PROJ - Validate Confirm</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'crossovered.budget')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2570_proj_validate_confirm')])]"/>
+  </record>
+  <record id="server_action_2183_proj_validate_delete" model="ir.actions.server">
+    <field name="name">PROJ - Validate Delete</field>
+    <field name="model_id" ref="account_budget.model_crossovered_budget"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="code"><![CDATA[
+if record.x_studio_created_from_sales_order_1.id != False:
+  raise UserError('Budgets created from SOs can not be deleted.')
+
+
+
+    ]]></field>
+  </record>
+  <record id="server_action_2570_proj_validate_confirm" model="ir.actions.server">
+    <field name="name">PROJ - Validate Confirm</field>
+    <field name="model_id" ref="account_budget.model_crossovered_budget"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="code"><![CDATA[
+if record.state == 'confirm':
+  """if record.x_studio_created_from_sales_order_1.id != False:
+    if record.x_studio_valid_budget_lines == False:
+      raise UserError('At least one budget line should be available with value greater than zero when confirming.')"""
+  if record.x_studio_valid_budget_lines == False:
+    raise UserError('At least one budget line should be available with value greater than zero when confirming.')
+      
+    if record.x_studio_confirm_status == True:
+      raise UserError('Please finalize all the related RFQs.')
+
+
+    ]]></field>
+  </record>
+    <data noupdate="1">
+    <record id="default_412_crossovered_budget_x_studio_confirm_validation" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_crossovered_budget__x_studio_confirm_validation"/>
+      <field name="json_value">"The project budget can't be confirmed until all the PRs are updated. "</field>
+    </record>
+    </data>
+</odoo>

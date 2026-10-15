@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+    <record id="default_393_x_pump_price_costing_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_pump_price_costing__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+    <record id="default_394_x_pump_price_costing_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_pump_price_costing__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+    </data>
+</odoo>

@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="sa_f5_account_payment_rr_validate_payment" model="ir.actions.server">
+    <field name="name">RR - Validate Payment %</field>
+    <field name="model_id" search="[('model', '=', 'account.payment')]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[# bugfix_sales:config-cutover-v22
+if record.state == 'draft':
+  if record.x_studio_quotation_type == 'Repair':
+    sum_total = 0
+    so_value = 0
+    payment = env['account.payment'].search([('x_studio_sales_order', '=', record.x_studio_sales_order.id),('state', '=', 'posted')])
+    if payment:
+      for total in payment:
+        sum_total += total.amount
+          
+    min_magin = record.company_id
+    if min_magin:
+      so_value = round(record.x_studio_sales_order.amount_total * (min_magin.x_studio_advance_payment_/100),2)
+        
+    if so_value > (record.amount + sum_total):
+      raise UserError('Payment is not within the minimum precentage.')
+  
+  
+
+
+
+]]></field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+  </record>
+  <record id="sa_f5_account_payment_update_project_no_in_journal_entry" model="ir.actions.server">
+    <field name="name">Update Project No in Journal Entry</field>
+    <field name="model_id" search="[('model', '=', 'account.payment')]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[if record.x_studio_project_no_1 != False:
+  journal_entry = env['account.move'].search([('payment_id', '=', record.id)],limit=1)
+  if journal_entry:
+    journal_entry.write({'x_studio_project_no':record.x_studio_project_no_1.id, 'x_studio_journal_type':'Payment', 'x_studio_project_no_issue':record.x_studio_project_no_1.id, 'x_studio_type':record.x_studio_type})
+    
+    ]]></field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+  </record>
+  <record id="server_action_2427_rr_validate_payment" model="ir.actions.server">
+    <field name="name">RR - Validate Payment %</field>
+    <field name="model_id" search="[('model', '=', 'account.payment')]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[# bugfix_sales:config-cutover-v22
+if record.state == 'draft':
+  if record.x_studio_quotation_type == 'Repair':
+    sum_total = 0
+    so_value = 0
+    payment = env['account.payment'].search([('x_studio_sales_order', '=', record.x_studio_sales_order.id),('state', '=', 'posted')])
+    if payment:
+      for total in payment:
+        sum_total += total.amount
+          
+    min_magin = record.company_id
+    if min_magin:
+      so_value = round(record.x_studio_sales_order.amount_total * (min_magin.x_studio_advance_payment_/100),2)
+        
+    if so_value > (record.amount + sum_total):
+      raise UserError('Payment is not within the minimum precentage.')
+  
+  
+
+
+
+]]></field>
+    <field name="usage">base_automation</field>
+  </record>
+  <record id="server_action_2627_update_project_no_in_journal_entry" model="ir.actions.server">
+    <field name="name">Update Project No in Journal Entry</field>
+    <field name="model_id" search="[('model', '=', 'account.payment')]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[if record.x_studio_project_no_1 != False:
+  journal_entry = env['account.move'].search([('payment_id', '=', record.id)],limit=1)
+  if journal_entry:
+    journal_entry.write({'x_studio_project_no':record.x_studio_project_no_1.id, 'x_studio_journal_type':'Payment', 'x_studio_project_no_issue':record.x_studio_project_no_1.id, 'x_studio_type':record.x_studio_type})
+    
+    ]]></field>
+    <field name="usage">base_automation</field>
+  </record>
+  <!-- Clear-DB action 1409 -->
+  <record id="server_action_1409_imp_update_lc_status_to_paid_2" model="ir.actions.server">
+    <field name="name">IMP - Update LC Status to Paid - 2</field>
+    <field name="model_id" search="[('model', '=', 'account.payment')]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[if record.state == 'posted':
+  amount_lcy = 0.00
+  if record.x_studio_lc_no_1 != False:
+    lc_lines = env['x_lc_header'].search([('id', '=', record.x_studio_lc_no_1.id), ('x_studio_status', '=', 'Posted')],limit=1)
+    if lc_lines:
+      currency = env['res.currency'].search([('id', '=', record.currency_id.id),('date', '<=', datetime.datetime.now().date()),('active', '=', True)],limit=1)
+      if currency:
+        amount_lcy = round((record.amount * currency.rate),2)
+      else:
+        amount_lcy = record.amount
+        
+      lc_lines.write({'x_studio_status':'Paid','x_studio_selection_field_yo4qM':'Paid','x_studio_paid_amount_lcy':amount_lcy})
+  
+  
+
+
+
+]]></field>
+    <field name="usage">base_automation</field>
+  </record>
+    <!-- ==================================================== -->
+    <!-- v0.0.24 additions: 4 more numeric action refs        -->
+    <!-- caught by a broader sweep than v0.0.20 did.          -->
+    <!--                                                      -->
+    <!-- Clear-DB id -> local xmlid:                          -->
+    <!--   2739 -> srv_advance_payment_acc_update (FULL PORT) -->
+    <!--   1310 -> act_custom_currency_rates                  -->
+    <!--   1676 -> srv_sales_report_sample_button (verbatim)  -->
+    <!--   1386 -> act_tp_invoice_vendor_bill                 -->
+    <!-- ==================================================== -->
+    <!-- 2739: Project - Update Advance Payment Account.
+         Full port of the Clear-DB Python — this is a real business
+         rule, not a stub. Referenced by
+         views/account_payment_studio_ported_v2.xml line 26. Depends
+         on x_advance_payment_acco model (already ported in v0.0.14). -->
+    <record id="srv_advance_payment_acc_update" model="ir.actions.server">
+        <field name="name">Project - Update Advance Payment Account</field>
+        <field name="model_id" ref="account.model_account_payment"/>
+        <field name="binding_view_types">list,form</field>
+        <field name="state">code</field>
+        <field name="usage">base_automation</field>
+        <field name="sequence">5</field>
+        <field name="code"><![CDATA[
+if record.x_studio_type == 'Advance Payment':
+    account = env['x_advance_payment_acco'].search([('id', '=', 1)], limit=1)
+    if account:
+        if record.partner_type == 'customer':
+            if account.x_studio_advance_payment_account_sales == False:
+                raise UserError('Advance Payment Account (Sales) must be Specified in Accounting Configuration')
+
+            journal_entry = env['account.move'].search([('payment_id', '=', record.id)], limit=1)
+            if journal_entry:
+                if record.payment_type == 'inbound':
+                    lines = env['account.move.line'].search([('move_id', '=', journal_entry.id), ('debit', '>', 0)], limit=1)
+                    if lines:
+                        lines.write({'account_id': account.x_studio_advance_payment_account_sales.id})
+                        record.write({'x_studio_advance_payment_acc_updated': True})
+                    else:
+                        raise UserError('There is no payment line to update.')
+                else:
+                    lines = env['account.move.line'].search([('move_id', '=', journal_entry.id), ('credit', '>', 0)], limit=1)
+                    if lines:
+                        lines.write({'account_id': account.x_studio_advance_payment_account_sales.id})
+                        record.write({'x_studio_advance_payment_acc_updated': True})
+                    else:
+                        raise UserError('There is no payment line to update.')
+            else:
+                raise UserError('There is no payment to update.')
+        else:
+            if account.x_studio_advance_payment_account_purchases_1 == False:
+                raise UserError('Advance Payment Account (Purchases) must be Specified in Accounting Configuration')
+
+            journal_entry = env['account.move'].search([('payment_id', '=', record.id)], limit=1)
+            if journal_entry:
+                if record.payment_type == 'inbound':
+                    lines = env['account.move.line'].search([('move_id', '=', journal_entry.id), ('debit', '>', 0)], limit=1)
+                    if lines:
+                        lines.write({'account_id': account.x_studio_advance_payment_account_purchases_1.id})
+                        record.write({'x_studio_advance_payment_acc_updated': True})
+                    else:
+                        raise UserError('There is no payment line to update.')
+                else:
+                    lines = env['account.move.line'].search([('move_id', '=', journal_entry.id), ('credit', '>', 0)], limit=1)
+                    if lines:
+                        lines.write({'account_id': account.x_studio_advance_payment_account_purchases_1.id})
+                        record.write({'x_studio_advance_payment_acc_updated': True})
+                    else:
+                        raise UserError('There is no payment line to update.')
+            else:
+                raise UserError('There is no payment to update.')
+    else:
+        raise UserError('Advance Payment Accounts have not been setup in Accounting Configuration')
+]]></field>
+    </record>
+  <record id="server_action_278_post_payments" model="ir.actions.server">
+    <field name="name">Post Payments</field>
+    <field name="model_id" search="[('model', '=', 'account.payment')]"/>
+    <field name="state">code</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list</field>
+    <field name="code"><![CDATA[
+                records.action_post()
+            ]]></field>
+  </record>
+  <record id="server_action_1716_print_checks" model="ir.actions.server">
+    <field name="name">Print Checks</field>
+    <field name="model_id" search="[('model', '=', 'account.payment')]"/>
+    <field name="state">code</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list</field>
+    <field name="code"><![CDATA[
+if records:
+    action = records.print_checks()
+            ]]></field>
+  </record>
+  <record id="server_action_2739_project_update_advance_payment_account" model="ir.actions.server">
+    <field name="name">Project - Update Advance Payment Account</field>
+    <field name="model_id" search="[('model', '=', 'account.payment')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.x_studio_type == 'Advance Payment':
+  account = env['x_advance_payment_acco'].search([('id', '=', 1)], limit=1)
+  if account:
+    if record.partner_type == 'customer':
+      if account.x_studio_advance_payment_account_sales == False:
+        raise UserError('Advance Payment Account (Sales) must be Specified in Accounting Configuration')
+      
+      journal_entry = env['account.move'].search([('payment_id', '=', record.id)], limit=1)
+      if journal_entry:
+        if record.payment_type == 'inbound':
+          lines = env['account.move.line'].search([('move_id', '=', journal_entry.id),('debit', '>', 0)], limit=1)
+          if lines:
+            lines.write({'account_id':account.x_studio_advance_payment_account_sales.id}) 
+            record.write({'x_studio_advance_payment_acc_updated': True})
+          else:
+            raise UserError('There is no payment line to update.') 
+        else:
+          lines = env['account.move.line'].search([('move_id', '=', journal_entry.id),('credit', '>', 0)], limit=1)
+          if lines:
+            lines.write({'account_id':account.x_studio_advance_payment_account_sales.id}) 
+            record.write({'x_studio_advance_payment_acc_updated': True})
+          else:
+            raise UserError('There is no payment line to update.')
+      else:
+        raise UserError('There is no payment to update.')
+    else:
+      if account.x_studio_advance_payment_account_purchases_1 == False:
+        raise UserError('Advance Payment Account (Purchases) must be Specified in Accounting Configuration')
+      
+      journal_entry = env['account.move'].search([('payment_id', '=', record.id)], limit=1)
+      if journal_entry:
+        if record.payment_type == 'inbound':
+          lines = env['account.move.line'].search([('move_id', '=', journal_entry.id),('debit', '>', 0)], limit=1)
+          if lines:
+            lines.write({'account_id':account.x_studio_advance_payment_account_purchases_1.id}) 
+            record.write({'x_studio_advance_payment_acc_updated': True})
+          else:
+            raise UserError('There is no payment line to update.') 
+        else:
+          lines = env['account.move.line'].search([('move_id', '=', journal_entry.id),('credit', '>', 0)], limit=1)
+          if lines:
+            lines.write({'account_id':account.x_studio_advance_payment_account_purchases_1.id}) 
+            record.write({'x_studio_advance_payment_acc_updated': True})
+          else:
+            raise UserError('There is no payment line to update.')
+      else:
+        raise UserError('There is no payment to update.')
+  else:
+    raise UserError('Advance Payment Accounts have not been setup in Accounting Configuration') 
+
+
+  
+
+
+
+]]></field>
+  </record>
+  <record id="automation_73_imp_update_lc_status_to_paid_2" model="base.automation">
+    <field name="name">IMP - Update LC Status to Paid - 2</field>
+    <field name="model_id" search="[('model', '=', 'account.payment')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="active" eval="True"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('server_action_1409_imp_update_lc_status_to_paid_2')])]"/>
+  </record>
+  <record id="automation_241_rr_validate_payment" model="base.automation">
+    <field name="name">RR - Validate Payment %</field>
+    <field name="model_id" search="[('model', '=', 'account.payment')]"/>
+    <field name="trigger">on_change</field>
+    <field name="active" eval="True"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('server_action_2427_rr_validate_payment')])]"/>
+  </record>
+  <record id="automation_292_update_project_no_in_journal_entry" model="base.automation">
+    <field name="name">Update Project No in Journal Entry</field>
+    <field name="model_id" search="[('model', '=', 'account.payment')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="active" eval="True"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('server_action_2627_update_project_no_in_journal_entry')])]"/>
+  </record>
+  <record id="base_automation_73_imp_update_lc_status_to_paid_2" model="base.automation">
+    <field name="name">IMP - Update LC Status to Paid - 2</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'account.payment')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1409_imp_update_lc_status_to_paid_2')])]"/>
+  </record>
+  <record id="base_automation_241_rr_validate_payment" model="base.automation">
+    <field name="name">RR - Validate Payment %</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'account.payment')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('account.field_account_payment__amount')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2427_rr_validate_payment')])]"/>
+  </record>
+  <record id="base_automation_292_update_project_no_in_journal_entry" model="base.automation">
+    <field name="name">Update Project No in Journal Entry</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'account.payment')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2627_update_project_no_in_journal_entry')])]"/>
+  </record>
+  <record id="server_action_2427_rr_validate_payment" model="ir.actions.server">
+    <field name="name">RR - Validate Payment %</field>
+    <field name="model_id" ref="account.model_account_payment"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="code"><![CDATA[
+# bugfix_sales:config-cutover-v22
+if record.state == 'draft':
+  if record.x_studio_quotation_type == 'Repair':
+    sum_total = 0
+    so_value = 0
+    payment = env['account.payment'].search([('x_studio_sales_order', '=', record.x_studio_sales_order.id),('state', '=', 'posted')])
+    if payment:
+      for total in payment:
+        sum_total += total.amount
+          
+    min_magin = record.company_id
+    if min_magin:
+      so_value = round(record.x_studio_sales_order.amount_total * (min_magin.x_studio_advance_payment_/100),2)
+        
+    if so_value > (record.amount + sum_total):
+      raise UserError('Payment is not within the minimum precentage.')
+  
+  
+
+
+
+
+    ]]></field>
+  </record>
+  <record id="server_action_2627_update_project_no_in_journal_entry" model="ir.actions.server">
+    <field name="name">Update Project No in Journal Entry</field>
+    <field name="model_id" ref="account.model_account_payment"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="code"><![CDATA[
+if record.x_studio_project_no_1 != False:
+  journal_entry = env['account.move'].search([('payment_id', '=', record.id)],limit=1)
+  if journal_entry:
+    journal_entry.write({'x_studio_project_no':record.x_studio_project_no_1.id, 'x_studio_journal_type':'Payment', 'x_studio_project_no_issue':record.x_studio_project_no_1.id, 'x_studio_type':record.x_studio_type})
+    
+    
+    ]]></field>
+  </record>
+    <data noupdate="1">
+    <record id="default_385_account_payment_x_studio_payment_validation_1" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_account_payment__x_studio_payment_validation_1"/>
+      <field name="json_value">"The Payment amount is less than the minimum % for repairs."</field>
+    </record>
+    <record id="default_451_account_payment_x_studio_type" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_account_payment__x_studio_type"/>
+      <field name="json_value">"General"</field>
+    </record>
+    </data>
+</odoo>

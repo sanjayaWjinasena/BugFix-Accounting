@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="action_2333_analytic_account" model="ir.actions.act_window">
+    <field name="name">Analytic Account</field>
+    <field name="res_model">account.analytic.account</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[('plan_id', '=', active_id)]</field>
+    <field name="context">{'search_default_group_id': active_id,'default_group_id': active_id}</field>
+  </record>
+  <record id="action_3276_account_analytic_account" model="ir.actions.act_window">
+    <field name="name">account.analytic.account</field>
+    <field name="res_model">account.analytic.account</field>
+    <field name="view_mode">kanban,tree,form</field>
+  </record>
+  <record id="ported_view_5075_customization_account_analytic_account_tree" model="ir.ui.view">
+    <field name="name">Odoo Studio: account.analytic.account.list customization</field>
+    <field name="model">account.analytic.account</field>
+    <field name="type">tree</field>
+    <field name="mode">extension</field>
+    <field name="priority">99</field>
+    <field name="active" eval="True"/>
+    <field name="inherit_id" ref="analytic.view_account_analytic_account_list"/>
+    <field name="arch" type="xml">
+<data>
+  <xpath expr="//field[@name='balance']" position="after">
+    <field name="id" optional="show"/>
+  </xpath>
+</data>
+    </field>
+  </record>
+</odoo>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="action_2758_taxes" model="ir.actions.act_window">
+    <field name="name">Taxes</field>
+    <field name="res_model">account.tax</field>
+    <field name="view_mode">kanban,tree,form</field>
+  </record>
+  <record id="ported_view_5957_customization_account_tax_tree" model="ir.ui.view">
+    <field name="name">Odoo Studio: account.invoice.line.tax.search customization</field>
+    <field name="model">account.tax</field>
+    <field name="type">tree</field>
+    <field name="mode">extension</field>
+    <field name="priority">99</field>
+    <field name="active" eval="True"/>
+    <field name="inherit_id" ref="account.account_tax_view_tree"/>
+    <field name="arch" type="xml">
+<data>
+  <xpath expr="//field[@name='display_name']" position="after">
+    <field name="type_tax_use" optional="show"/>
+    <field name="tax_scope" optional="show"/>
+  </xpath>
+  <xpath expr="//field[@name='description']" position="after">
+    <field name="company_id" optional="show"/>
+    <field name="active" optional="show" widget="boolean_toggle"/>
+    <field name="create_uid" optional="show"/>
+    <field name="amount_type" optional="show"/>
+  </xpath>
+</data>
+    </field>
+  </record>
+</odoo>

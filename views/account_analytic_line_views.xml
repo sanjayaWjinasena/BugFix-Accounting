@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="aw_f4_account_analytic_line_account_analytic_line" model="ir.actions.act_window">
+    <field name="name">account.analytic.line</field>
+    <field name="res_model">account.analytic.line</field>
+    <field name="view_mode">kanban,tree,form,pivot,graph,grid</field>
+  </record>
+  <record id="aw_f4_account_analytic_line_analytic_line" model="ir.actions.act_window">
+    <field name="name">Analytic Line</field>
+    <field name="res_model">account.analytic.line</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[(1, '=', 1)]</field>
+    <field name="context">{'search_default_group_id': active_id,'default_group_id': active_id}</field>
+  </record>
+  <record id="action_2742_account_analytic_line" model="ir.actions.act_window">
+    <field name="name">account.analytic.line</field>
+    <field name="res_model">account.analytic.line</field>
+    <field name="view_mode">kanban,tree,form,pivot,graph,grid</field>
+  </record>
+  <record id="action_2334_analytic_line" model="ir.actions.act_window">
+    <field name="name">Analytic Line</field>
+    <field name="res_model">account.analytic.line</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[(1, '=', 1)]</field>
+    <field name="context">{'search_default_group_id': active_id,'default_group_id': active_id}</field>
+  </record>
+    <record id="ported_view_5911_odoo_studio_account_b0ebdb96_c367_4044_8e3c_c00f0a925a60" model="ir.ui.view">
+        <field name="name">Odoo Studio: account.analytic.line.view.tree.with.user customization</field>
+        <field name="model">account.analytic.line</field>
+        <field name="type">tree</field>
+        <field name="priority">160</field>
+        <field name="mode">extension</field>
+        <field name="inherit_id" ref="analytic.view_account_analytic_line_tree"/>
+        <field name="arch" type="xml">
+            <data>
+              <xpath expr="//field[@name='date']" position="after">
+                <field name="account_id" optional="show"/>
+              </xpath>
+              <xpath expr="//tree[1]/field[@name='name']" position="after">
+                <field name="amount" optional="show"/>
+              </xpath>
+            </data>
+        </field>
+    </record>
+  <record id="act_window_2742_account_analytic_line" model="ir.actions.act_window">
+    <field name="name">account.analytic.line</field>
+    <field name="res_model">account.analytic.line</field>
+    <field name="view_mode">kanban,tree,form,pivot,graph,grid</field>
+  </record>
+  <record id="act_window_2334_analytic_line" model="ir.actions.act_window">
+    <field name="name">Analytic Line</field>
+    <field name="res_model">account.analytic.line</field>
+    <field name="view_mode">tree,form</field>
+    <field name="domain">[(1, '=', 1)]</field>
+    <field name="context">{'search_default_group_id': active_id,'default_group_id': active_id}</field>
+  </record>
+</odoo>

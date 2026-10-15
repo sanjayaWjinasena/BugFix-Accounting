@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 1378: IMP - Apply Selected Charge Lines to TP Invoice.
+         Full port of the Clear-DB Python — real workflow action
+         that creates an x_tp_invoice_header from selected consignment
+         charge lines on the temp header. Referenced from
+         views/x_temp_tp_invoice_head_studio_ported_v2.xml line 47.
+         Depends on x_consignment_header (model may not be on-disk yet
+         — the action will fail at click-time if so, but install
+         completes). -->
+    <record id="srv_tp_invoice_apply_charges" model="ir.actions.server">
+        <field name="name">IMP - Apply Selected Charge Lines to TP Invoice</field>
+        <field name="model_id" ref="model_x_temp_tp_invoice_head"/>
+        <field name="state">code</field>
+        <field name="usage">ir_actions_server</field>
+        <field name="sequence">5</field>
+        <field name="code"><![CDATA[
+lines = []
+select = 0
+
+for valid_line in record.x_studio_charge_line:
+    if valid_line.x_studio_select == True:
+        select += 1
+        lines.append([0, 0, {
+            'x_studio_consignment_charge_header_id': valid_line.x_studio_consignment_charge_header_id.id,
+            'x_studio_consignment_id': valid_line.x_studio_consignment_id.id,
+            'x_studio_charge_group': valid_line.x_studio_charge_group,
+            'x_studio_charge_name': valid_line.x_studio_charge_name,
+            'x_studio_basis': valid_line.x_studio_basis,
+            'x_studio_original_amount': valid_line.x_studio_amount,
+            'x_studio_invoice_amount': valid_line.x_studio_amount,
+        }])
+
+        charge_line = env['x_consignment_charge_h'].search([('id', '=', valid_line.x_studio_consignment_charge_header_id.id)])
+        if charge_line:
+            charge_line.write({'x_studio_tp_processed': True})
+
+if select == 0:
+    raise UserError("Atleast One Line Should be Selected to Proceed.")
+
+con_header = env['x_consignment_header'].search([('id', '=', record.x_studio_consignment_header_id.id)], limit=1)
+
+if con_header:
+    tp_invoice = env['x_tp_invoice_header'].create({
+        'x_studio_con_no': record.x_studio_consignment_header_id.id,
+        'x_studio_vendor': record.x_studio_supplier_id.id,
+        'x_studio_currency_id': record.x_studio_supplier_id.property_purchase_currency_id.id,
+        'x_studio_invoice_no': con_header.x_studio_supplier_invoice_number,
+        'x_studio_invoice_date': con_header.x_studio_invoice_date,
+        'x_studio_tp_lines': lines,
+    })
+else:
+    tp_invoice = env['x_tp_invoice_header'].create({
+        'x_studio_con_no': record.x_studio_consignment_header_id.id,
+        'x_studio_vendor': record.x_studio_supplier_id.id,
+        'x_studio_currency_id': record.x_studio_supplier_id.property_purchase_currency_id.id,
+        'x_studio_tp_lines': lines,
+    })
+
+if con_header:
+    con_header.write({'x_studio_status': 'TP Invoice', 'x_studio_status_bar': 'TP Invoice'})
+
+if record.id:
+    temp_rec = env['x_temp_tp_invoice_head'].search([('id', '=', record.id)], limit=1)
+    temp_rec.unlink()
+
+action = {
+    'name': 'TP Invoice',
+    'domain': [('id', '=', tp_invoice.id)],
+    'type': 'ir.actions.act_window',
+    'res_model': 'x_tp_invoice_header',
+    'view_mode': 'tree,form',
+    'view_id': False,
+    'context': False,
+}
+]]></field>
+    </record>
+  <record id="server_action_1378_imp_apply_selected_charge_lines_to_tp_invoice" model="ir.actions.server">
+    <field name="name">IMP - Apply Selected Charge Lines to TP Invoice</field>
+    <field name="model_id" search="[('model', '=', 'x_temp_tp_invoice_head')]"/>
+    <field name="state">code</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[lines=[]
+select = 0
+
+for valid_line in record.x_studio_charge_line:
+  if (valid_line.x_studio_select == True):
+    select += 1
+    lines.append([0,0,{
+      'x_studio_consignment_charge_header_id':valid_line.x_studio_consignment_charge_header_id.id,
+      'x_studio_consignment_id':valid_line.x_studio_consignment_id.id,
+      'x_studio_charge_group':valid_line.x_studio_charge_group,
+      'x_studio_charge_name':valid_line.x_studio_charge_name,
+      'x_studio_basis':valid_line.x_studio_basis,
+      'x_studio_original_amount':valid_line.x_studio_amount,
+      'x_studio_invoice_amount':valid_line.x_studio_amount}])
+      
+    charge_line = env['x_consignment_charge_h'].search([('id', '=', valid_line.x_studio_consignment_charge_header_id.id)])
+    if charge_line:
+      charge_line.write({'x_studio_tp_processed':True})
+ 
+if select == 0:
+ raise UserError("Atleast One Line Should be Selected to Proceed.")
+
+con_header = env['x_consignment_header'].search([('id', '=', record.x_studio_consignment_header_id.id)],limit=1)
+
+#tp_invoice = env['x_tp_invoice_header'].create({'x_studio_con_no':record.x_studio_consignment_header_id.id,'x_studio_vendor':record.x_studio_supplier_id.id,'x_studio_currency_id':record.x_studio_consignment_header_id.x_studio_currency_id.id,'x_studio_tp_lines':lines})
+if con_header:
+  tp_invoice = env['x_tp_invoice_header'].create({'x_studio_con_no':record.x_studio_consignment_header_id.id,'x_studio_vendor':record.x_studio_supplier_id.id,'x_studio_currency_id':record.x_studio_supplier_id.property_purchase_currency_id.id,'x_studio_invoice_no':con_header.x_studio_supplier_invoice_number,'x_studio_invoice_date':con_header.x_studio_invoice_date,'x_studio_tp_lines':lines})
+else:
+  tp_invoice = env['x_tp_invoice_header'].create({'x_studio_con_no':record.x_studio_consignment_header_id.id,'x_studio_vendor':record.x_studio_supplier_id.id,'x_studio_currency_id':record.x_studio_supplier_id.property_purchase_currency_id.id,'x_studio_tp_lines':lines})
+#con_header = env['x_consignment_header'].search([('id', '=', record.x_studio_consignment_header_id.id)],limit=1)
+if con_header:
+  con_header.write({'x_studio_status':'TP Invoice','x_studio_status_bar':'TP Invoice'})
+
+if record.id:
+  temp_rec = env['x_temp_tp_invoice_head'].search([('id', '=', record.id)],limit=1)
+  temp_rec.unlink()
+
+action = {
+          'name': 'TP Invoice',
+          'domain': [('id', '=', tp_invoice.id)],
+          'type': 'ir.actions.act_window',
+          'res_model': 'x_tp_invoice_header',
+          'view_mode': 'tree,form',
+          'view_type': 'form',
+          'view_id': False,
+          'context': False,
+          } 
+]]></field>
+  </record>
+    <data noupdate="1">
+    <record id="default_170_x_temp_tp_invoice_head_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_temp_tp_invoice_head__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+    <record id="default_171_x_temp_tp_invoice_head_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_temp_tp_invoice_head__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+    </data>
+</odoo>

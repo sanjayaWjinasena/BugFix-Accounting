@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="server_action_1387_imp_service_item_charge_duty_tax" model="ir.actions.server">
+    <field name="name">IMP - Service Item - Charge-Duty-Tax</field>
+    <field name="model_id" ref="product.model_product_template"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="code"><![CDATA[
+if record.type == 'service':
+  
+  company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
+  company = env['res.company'].browse(company_id)
+  
+  if record.x_studio_charge_type == 'Charge' and record.x_studio_non_billable == False:
+    product = env['product.template'].search([('x_studio_charge_type', '=', 'Charge'), ('x_studio_non_billable', '=', False),('company_id', '=', company.id)], limit=1)
+    if product:
+      for p in product:
+        if p.id != record.id:
+          raise UserError("Only One Service Item can be Setup as Charge/ Not Non Billable Item!")
+
+  if record.x_studio_charge_type == 'Duty' and record.x_studio_non_billable == False:
+    product = env['product.template'].search([('x_studio_charge_type', '=', 'Duty'), ('x_studio_non_billable', '=', False),('company_id', '=', company.id)], limit=1)
+    if product:
+      for p in product:
+        if p.id != record.id:
+          raise UserError("Ony One Service Item can be Setup as Duty/ Not Non Billable Item!")
+
+  if record.x_studio_charge_type == 'Tax' and record.x_studio_non_billable == False:
+    product = env['product.template'].search([('x_studio_charge_type', '=', 'Tax'), ('x_studio_non_billable', '=', False),('company_id', '=', company.id)], limit=1)
+    if product:
+      for p in product:
+        if p.id != record.id:
+          raise UserError("Ony One Service Item can be Setup as Tax/ Not Non Billable Item!")
+          
+          
+  if record.x_studio_charge_type == 'Charge' and record.x_studio_non_billable == True:
+    product = env['product.template'].search([('x_studio_charge_type', '=', 'Charge'), ('x_studio_non_billable', '=', True),('company_id', '=', company.id)], limit=1)
+    if product:
+      for p in product:
+        if p.id != record.id:
+          raise UserError("Ony One Service Item can be Setup as Charge/ Non Billable Item!")
+
+  if record.x_studio_charge_type == 'Duty' and record.x_studio_non_billable == True:
+    product = env['product.template'].search([('x_studio_charge_type', '=', 'Duty'), ('x_studio_non_billable', '=', True),('company_id', '=', company.id)], limit=1)
+    if product:
+      for p in product:
+        if p.id != record.id:
+          raise UserError("Ony One Service Item can be Setup as Duty/ Non Billable Item!")
+
+  """if record.x_studio_charge_type == 'Tax' and record.x_studio_non_billable == True:
+    product = env['product.template'].search([('x_studio_charge_type', '=', 'Tax'), ('x_studio_non_billable', '=', True),('company_id', '=', company.id)], limit=1)
+    if product:
+      for p in product:
+        if p.id != record.id:
+          raise UserError("Ony One Service Item can be Setup as Tax/ Non Billable Item!")"""
+
+    ]]></field>
+  </record>
+  <record id="server_action_2587_jin_company_id_in_product" model="ir.actions.server">
+    <field name="name">JIN - Company Id in Product</field>
+    <field name="model_id" ref="product.model_product_template"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="code"><![CDATA[
+company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
+company = env['res.company'].browse(company_id)
+
+record['company_id'] = company.id
+
+
+
+    ]]></field>
+  </record>
+  <record id="base_automation_1_avoid_product_duplicate" model="base.automation">
+    <field name="name">Avoid Product Duplicate</field>
+    <field name="active" eval="False"/>
+    <field name="model_id" ref="product.model_product_template"/>
+    <field name="trigger">on_create_or_write</field>
+  </record>
+</odoo>

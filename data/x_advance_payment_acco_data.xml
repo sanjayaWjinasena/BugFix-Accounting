@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+    <!-- DROPPED default_451_account_payment_x_studio_type: selection value 'General' not in field allowed set -->
+<record id="default_452_x_advance_payment_acco_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_advance_payment_acco__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+    <record id="default_453_x_advance_payment_acco_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_advance_payment_acco__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+    </data>
+</odoo>

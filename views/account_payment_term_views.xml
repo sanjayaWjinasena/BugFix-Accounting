@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="ported_view_6052_customization_account_payment_term_form" model="ir.ui.view">
+    <field name="name">Odoo Studio: account.payment.term.form customization</field>
+    <field name="model">account.payment.term</field>
+    <field name="type">form</field>
+    <field name="mode">extension</field>
+    <field name="priority">99</field>
+    <field name="active" eval="True"/>
+    <field name="inherit_id" ref="account.view_payment_term_form"/>
+    <field name="arch" type="xml">
+<data>
+  <xpath expr="//field[@name='company_id']" position="attributes">
+    <attribute name="force_save">True</attribute>
+    <attribute name="readonly">1</attribute></xpath>
+  <xpath expr="//field[@name='line_ids']" position="inside">
+    <tree string="Payment Terms">
+      <field name="value" string="Due Type"/>
+      <field name="value_amount" readonly="value == 'balance'"/>
+      <field name="nb_days"/>
+      </tree>
+  </xpath>
+</data>
+    </field>
+  </record>
+  <record id="ported_view_3118_customization_account_payment_term_tree" model="ir.ui.view">
+    <field name="name">Odoo Studio: account.payment.term.tree customization</field>
+    <field name="model">account.payment.term</field>
+    <field name="type">tree</field>
+    <field name="mode">extension</field>
+    <field name="priority">99</field>
+    <field name="active" eval="True"/>
+    <field name="inherit_id" ref="account.view_payment_term_tree"/>
+    <field name="arch" type="xml">
+<data>
+  <xpath expr="//tree[1]/field[@name='name']" position="after">
+    <field name="id"/>
+  </xpath>
+</data>
+    </field>
+  </record>
+</odoo>

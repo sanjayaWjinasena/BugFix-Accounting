@@ -38,3 +38,11 @@ class XRmProdSummarySpli(models.Model):
     x_studio_split = fields.Float(string="Split")
     x_studio_split_1 = fields.Float(string="Split")
     x_studio_total = fields.Float(string="Total")
+
+
+class XRmProdSummarySpliGap(models.Model):
+    _inherit = "x_rm_prod_summary_spli"
+    _rec_name = "x_name"  # Clear-DB Studio model: records are named by x_name
+
+    x_active = fields.Boolean(string="Active")
+    x_name = fields.Char(string="Name")

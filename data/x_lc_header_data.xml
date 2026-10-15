@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="sa_f5_x_lc_header_imp_lc_amount_validation" model="ir.actions.server">
+    <field name="name">IMP - LC Amount Validation</field>
+    <field name="model_id" search="[('model', '=', 'x_lc_header')]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[if record.x_studio_issuing_bank.id != 0:
+  if record.x_studio_issuing_bank.x_studio_lc_limit != 0.00:
+    sum_lc = 0
+    lc_lines = env['x_lc_header'].search([('x_studio_issuing_bank', '=', record.x_studio_issuing_bank.id), ('x_studio_status', '=', 'Posted')])
+    if lc_lines:
+      for sum_lines in lc_lines:
+        sum_lc += sum_lines.x_studio_lc_amount_lcy
+    
+    if (record.x_studio_lc_amount_lcy + sum_lc) > record.x_studio_issuing_bank.x_studio_lc_limit:
+      raise UserError('Current LC Amount must be within the Available LC Balance.' + '\n' +
+                    'Current LC Amount (LCY): ' + str(record.x_studio_lc_amount_lcy) + '\n' + '\n' +
+                    'Bank LC Limit (LCY): ' + str(record.x_studio_issuing_bank.x_studio_lc_limit) + '\n' + 
+                    'Posted LC Amount (LCY): ' + str(sum_lc) + '\n' +
+                    'Available LC Balance (LCY): ' + str(record.x_studio_issuing_bank.x_studio_lc_limit - sum_lc))
+  else:
+    raise UserError('LC Limit of the Selected Issuing Bank must be Specified.')
+else:
+  raise UserError('Issuing Bank must be Specified.')
+
+
+]]></field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+  </record>
+  <record id="sa_f5_x_lc_header_jin_company_id_in_lc_header" model="ir.actions.server">
+    <field name="name">JIN - Company Id in LC Header</field>
+    <field name="model_id" search="[('model', '=', 'x_lc_header')]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
+company = env['res.company'].browse(company_id)
+
+record['x_studio_company_id'] = company.id]]></field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+  </record>
+  <record id="sa_f5_x_lc_header_lc_registration_seq_no" model="ir.actions.server">
+    <field name="name">LC Registration Seq.No</field>
+    <field name="model_id" search="[('model', '=', 'x_lc_header')]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[#record['x_name'] = env['ir.sequence'].next_by_code('purchase.request.seq')
+
+if record.x_name == 'New':
+ seq = env['ir.sequence'].next_by_code('lc.registration.seq')
+ record.write({'x_name': seq})
+
+
+
+]]></field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+  </record>
+    <!-- 1404: IMP - Post LC. Sets x_studio_status/x_studio_selection_field_yo4qM
+         to 'Posted' after validating LC amount. Referenced from the primary
+         form view (restored in v0.0.26; auto-porter had dropped it). -->
+    <record id="srv_lc_post_lc" model="ir.actions.server">
+        <field name="name">IMP - Post LC</field>
+        <field name="model_id" ref="model_x_lc_header"/>
+        <field name="state">code</field>
+        <field name="usage">ir_actions_server</field>
+        <field name="sequence">5</field>
+        <field name="code"><![CDATA[
+if record.x_studio_lc_amount == 0.00:
+    raise UserError('LC Amount must be Specified')
+
+record['x_studio_status'] = 'Posted'
+record['x_studio_selection_field_yo4qM'] = 'Posted'
+]]></field>
+    </record>
+    <!-- 1405: IMP - Amend LC. Clones the LC to a new record with
+         incremented version_no, then flips the source status to 'Amended'.
+         Referenced from the primary form view (restored in v0.0.26). -->
+    <record id="srv_lc_amend_lc" model="ir.actions.server">
+        <field name="name">IMP - Amend LC</field>
+        <field name="model_id" ref="model_x_lc_header"/>
+        <field name="state">code</field>
+        <field name="usage">ir_actions_server</field>
+        <field name="sequence">5</field>
+        <field name="code"><![CDATA[
+if record.id:
+    lc = env['x_lc_header'].create({'x_studio_created_from_purchase_order': record.x_studio_created_from_purchase_order.id})
+    lc.write({
+        'x_name': record.x_name,
+        'x_studio_indent_no': record.x_studio_indent_no,
+        'x_studio_additional_conditions': record.x_studio_additional_conditions,
+        'x_studio_available_with_by': record.x_studio_available_with_by,
+        'x_studio_bank_charges': record.x_studio_bank_charges,
+        'x_studio_beneficiary': record.x_studio_beneficiary,
+        'x_studio_confirmation_instructions': record.x_studio_confirmation_instructions,
+        'x_studio_currency_id': record.x_studio_currency_id,
+        'x_studio_date_of_expiry': record.x_studio_date_of_expiry,
+        'x_studio_date_of_issue': record.x_studio_date_of_issue,
+        'x_studio_date_of_receipt': record.x_studio_date_of_receipt,
+        'x_studio_deferred_days': record.x_studio_deferred_days,
+        'x_studio_description_of_goods': record.x_studio_description_of_goods,
+        'x_studio_document_required': record.x_studio_document_required,
+        'x_studio_draft': record.x_studio_draft,
+        'x_studio_instruction_remarks': record.x_studio_instruction_remarks,
+        'x_studio_issuing_bank': record.x_studio_issuing_bank.id,
+        'x_studio_issuing_bank_reference_no_1': record.x_studio_issuing_bank_reference_no_1,
+        'x_studio_latest_shipment_date': record.x_studio_latest_shipment_date,
+        'x_studio_lc_amount': record.x_studio_lc_amount,
+        'x_studio_lc_credit_sub_type': record.x_studio_lc_credit_sub_type,
+        'x_studio_lc_credit_type': record.x_studio_lc_credit_type,
+        'x_studio_lc_no': record.x_studio_lc_no,
+        'x_studio_loading_on_board': record.x_studio_loading_on_board,
+        'x_studio_partial_shipment': record.x_studio_partial_shipment,
+        'x_studio_period_for_presentation': record.x_studio_period_for_presentation,
+        'x_studio_place_of_expiry': record.x_studio_place_of_expiry,
+        'x_studio_revised_lc_amount': record.x_studio_revised_lc_amount,
+        'x_studio_tolerance': record.x_studio_tolerance,
+        'x_studio_tolerance_type': record.x_studio_tolerance_type,
+        'x_studio_transportation': record.x_studio_transportation,
+        'x_studio_transshipment': record.x_studio_transshipment,
+        'x_studio_vendor': record.x_studio_vendor.id,
+        'x_studio_version_no': (record.x_studio_version_no + 1),
+    })
+
+    action = {
+        'name': 'Letter of Credit',
+        'domain': [('id', '=', lc.id)],
+        'type': 'ir.actions.act_window',
+        'res_model': 'x_lc_header',
+        'view_mode': 'tree,form',
+        'view_id': False,
+        'context': False,
+    }
+
+    record['x_studio_status'] = 'Amended'
+    record['x_studio_selection_field_yo4qM'] = 'Amended'
+]]></field>
+    </record>
+  <record id="server_action_1402_lc_registration_seq_no" model="ir.actions.server">
+    <field name="name">LC Registration Seq.No</field>
+    <field name="model_id" search="[('model', '=', 'x_lc_header')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[#record['x_name'] = env['ir.sequence'].next_by_code('purchase.request.seq')
+
+if record.x_name == 'New':
+ seq = env['ir.sequence'].next_by_code('lc.registration.seq')
+ record.write({'x_name': seq})
+
+
+
+]]></field>
+  </record>
+  <record id="server_action_1407_imp_lc_amount_validation" model="ir.actions.server">
+    <field name="name">IMP - LC Amount Validation</field>
+    <field name="model_id" search="[('model', '=', 'x_lc_header')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.x_studio_issuing_bank.id != 0:
+  if record.x_studio_issuing_bank.x_studio_lc_limit != 0.00:
+    sum_lc = 0
+    lc_lines = env['x_lc_header'].search([('x_studio_issuing_bank', '=', record.x_studio_issuing_bank.id), ('x_studio_status', '=', 'Posted')])
+    if lc_lines:
+      for sum_lines in lc_lines:
+        sum_lc += sum_lines.x_studio_lc_amount_lcy
+    
+    if (record.x_studio_lc_amount_lcy + sum_lc) > record.x_studio_issuing_bank.x_studio_lc_limit:
+      raise UserError('Current LC Amount must be within the Available LC Balance.' + '\n' +
+                    'Current LC Amount (LCY): ' + str(record.x_studio_lc_amount_lcy) + '\n' + '\n' +
+                    'Bank LC Limit (LCY): ' + str(record.x_studio_issuing_bank.x_studio_lc_limit) + '\n' + 
+                    'Posted LC Amount (LCY): ' + str(sum_lc) + '\n' +
+                    'Available LC Balance (LCY): ' + str(record.x_studio_issuing_bank.x_studio_lc_limit - sum_lc))
+  else:
+    raise UserError('LC Limit of the Selected Issuing Bank must be Specified.')
+else:
+  raise UserError('Issuing Bank must be Specified.')
+
+
+]]></field>
+  </record>
+  <record id="server_action_2612_jin_company_id_in_lc_header" model="ir.actions.server">
+    <field name="name">JIN - Company Id in LC Header</field>
+    <field name="model_id" search="[('model', '=', 'x_lc_header')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
+company = env['res.company'].browse(company_id)
+
+record['x_studio_company_id'] = company.id]]></field>
+  </record>
+  <record id="server_action_1405_imp_amend_lc" model="ir.actions.server">
+    <field name="name">IMP - Amend LC</field>
+    <field name="model_id" search="[('model', '=', 'x_lc_header')]"/>
+    <field name="state">code</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.id:
+  lc = env['x_lc_header'].create({'x_studio_created_from_purchase_order':record.x_studio_created_from_purchase_order.id})
+  lc.write({'x_name':record.x_name,
+            'x_studio_indent_no':record.x_studio_indent_no,
+            'x_studio_additional_conditions':record.x_studio_additional_conditions,
+            'x_studio_available_with_by':record.x_studio_available_with_by,
+            'x_studio_bank_charges':record.x_studio_bank_charges,
+            'x_studio_beneficiary':record.x_studio_beneficiary,
+            'x_studio_confirmation_instructions':record.x_studio_confirmation_instructions,
+            'x_studio_currency_id':record.x_studio_currency_id,
+            'x_studio_date_of_expiry':record.x_studio_date_of_expiry,
+            'x_studio_date_of_issue':record.x_studio_date_of_issue,
+            'x_studio_date_of_receipt':record.x_studio_date_of_receipt,
+            'x_studio_deferred_days':record.x_studio_deferred_days,
+            'x_studio_description_of_goods':record.x_studio_description_of_goods,
+            'x_studio_document_required':record.x_studio_document_required,
+            'x_studio_draft':record.x_studio_draft,
+            'x_studio_instruction_remarks':record.x_studio_instruction_remarks,
+            'x_studio_issuing_bank':record.x_studio_issuing_bank.id,
+            'x_studio_issuing_bank_reference_no_1':record.x_studio_issuing_bank_reference_no_1,
+            'x_studio_latest_shipment_date':record.x_studio_latest_shipment_date,
+            'x_studio_lc_amount':record.x_studio_lc_amount,
+            'x_studio_lc_credit_sub_type':record.x_studio_lc_credit_sub_type,
+            'x_studio_lc_credit_type':record.x_studio_lc_credit_type,
+            'x_studio_lc_no':record.x_studio_lc_no,
+            'x_studio_loading_on_board':record.x_studio_loading_on_board,
+            'x_studio_partial_shipment':record.x_studio_partial_shipment,
+            'x_studio_period_for_presentation':record.x_studio_period_for_presentation,
+            'x_studio_place_of_expiry':record.x_studio_place_of_expiry,
+            'x_studio_revised_lc_amount':record.x_studio_revised_lc_amount,
+            'x_studio_tolerance':record.x_studio_tolerance,
+            'x_studio_tolerance_type':record.x_studio_tolerance_type,
+            'x_studio_transportation':record.x_studio_transportation,
+            'x_studio_transshipment':record.x_studio_transshipment,
+            'x_studio_vendor':record.x_studio_vendor.id,
+            'x_studio_version_no': (record.x_studio_version_no + 1)})
+
+  action = {
+            'name': 'Letter of Credit',
+            'domain': [('id', '=', lc.id)],
+            'type': 'ir.actions.act_window',
+            'res_model': 'x_lc_header',
+            'view_mode': 'tree,form',
+            'view_type': 'form',
+            'view_id': False,
+            'context': False,
+            } 
+    
+ 
+  record['x_studio_status'] = 'Amended'
+  record['x_studio_selection_field_yo4qM'] = 'Amended'
+]]></field>
+  </record>
+  <record id="server_action_1404_imp_post_lc" model="ir.actions.server">
+    <field name="name">IMP - Post LC</field>
+    <field name="model_id" search="[('model', '=', 'x_lc_header')]"/>
+    <field name="state">code</field>
+    <field name="usage">ir_actions_server</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.x_studio_lc_amount == 0.00:
+  raise UserError('LC Amount must be Specified')
+  
+record['x_studio_status'] = 'Posted'
+record['x_studio_selection_field_yo4qM'] = 'Posted'
+]]></field>
+  </record>
+  <record id="base_automation_70_jin_lc_registration_seq_no" model="base.automation">
+    <field name="name">JIN-LC Registration Seq.No</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'x_lc_header')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_lc_header__create_date')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1402_lc_registration_seq_no')])]"/>
+  </record>
+  <record id="base_automation_71_imp_lc_amount_validation" model="base.automation">
+    <field name="name">IMP - LC Amount Validation</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'x_lc_header')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_lc_header__x_studio_lc_amount')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1407_imp_lc_amount_validation')])]"/>
+  </record>
+  <record id="base_automation_284_jin_company_id_in_lc_header" model="base.automation">
+    <field name="name">JIN - Company Id in LC Header</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'x_lc_header')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_lc_header__create_date')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2612_jin_company_id_in_lc_header')])]"/>
+  </record>
+  <record id="server_action_1402_lc_registration_seq_no" model="ir.actions.server">
+    <field name="name">LC Registration Seq.No</field>
+    <field name="model_id" ref="BugFix-Accounting.model_x_lc_header"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="code"><![CDATA[
+#record['x_name'] = env['ir.sequence'].next_by_code('purchase.request.seq')
+
+if record.x_name == 'New':
+ seq = env['ir.sequence'].next_by_code('lc.registration.seq')
+ record.write({'x_name': seq})
+
+
+
+
+    ]]></field>
+  </record>
+  <record id="server_action_1407_imp_lc_amount_validation" model="ir.actions.server">
+    <field name="name">IMP - LC Amount Validation</field>
+    <field name="model_id" ref="BugFix-Accounting.model_x_lc_header"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="code"><![CDATA[
+if record.x_studio_issuing_bank.id != 0:
+  if record.x_studio_issuing_bank.x_studio_lc_limit != 0.00:
+    sum_lc = 0
+    lc_lines = env['x_lc_header'].search([('x_studio_issuing_bank', '=', record.x_studio_issuing_bank.id), ('x_studio_status', '=', 'Posted')])
+    if lc_lines:
+      for sum_lines in lc_lines:
+        sum_lc += sum_lines.x_studio_lc_amount_lcy
+    
+    if (record.x_studio_lc_amount_lcy + sum_lc) > record.x_studio_issuing_bank.x_studio_lc_limit:
+      raise UserError('Current LC Amount must be within the Available LC Balance.' + '\n' +
+                    'Current LC Amount (LCY): ' + str(record.x_studio_lc_amount_lcy) + '\n' + '\n' +
+                    'Bank LC Limit (LCY): ' + str(record.x_studio_issuing_bank.x_studio_lc_limit) + '\n' + 
+                    'Posted LC Amount (LCY): ' + str(sum_lc) + '\n' +
+                    'Available LC Balance (LCY): ' + str(record.x_studio_issuing_bank.x_studio_lc_limit - sum_lc))
+  else:
+    raise UserError('LC Limit of the Selected Issuing Bank must be Specified.')
+else:
+  raise UserError('Issuing Bank must be Specified.')
+
+
+
+    ]]></field>
+  </record>
+  <record id="server_action_2612_jin_company_id_in_lc_header" model="ir.actions.server">
+    <field name="name">JIN - Company Id in LC Header</field>
+    <field name="model_id" ref="BugFix-Accounting.model_x_lc_header"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="code"><![CDATA[
+company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
+company = env['res.company'].browse(company_id)
+
+record['x_studio_company_id'] = company.id
+    ]]></field>
+  </record>
+    <data noupdate="1">
+    <!-- DROPPED default_179_x_tp_invoice_header_x_studio_pipeline_status_bar: selection default (defer to user via UI) -->
+<!-- DROPPED default_180_x_tp_invoice_header_x_studio_status: selection default (defer to user via UI) -->
+<record id="default_185_x_lc_header_x_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_active"/>
+      <field name="json_value">true</field>
+    </record>
+    <record id="default_186_x_lc_header_x_studio_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_sequence"/>
+      <field name="json_value">10</field>
+    </record>
+    <!-- DROPPED default_187_x_lc_header_x_studio_lc_credit_type: selection value 'Irrevocable' not in field allowed set -->
+<!-- DROPPED default_188_x_lc_header_x_studio_lc_credit_sub_type: selection value 'Non Transferable' not in field allowed set -->
+<!-- DROPPED default_189_x_lc_header_x_studio_status: selection value 'Draft' not in field allowed set -->
+<!-- DROPPED default_190_x_lc_header_x_studio_tolerance_type: selection value 'Plus' not in field allowed set -->
+<!-- DROPPED default_191_x_lc_header_x_studio_partial_shipment: selection value 'Allowed' not in field allowed set -->
+<!-- DROPPED default_192_x_lc_header_x_studio_transshipment: selection value 'Allowed' not in field allowed set -->
+<!-- DROPPED default_193_x_lc_header_x_studio_draft: selection value 'At Sight' not in field allowed set -->
+<!-- DROPPED default_194_x_lc_header_x_studio_confirmation_instructions: selection value 'None' not in field allowed set -->
+<record id="default_195_x_lc_header_x_name" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_name"/>
+      <field name="json_value">"New"</field>
+    </record>
+    <!-- DROPPED default_197_x_lc_header_x_studio_selection_field_yo4qM: selection value 'Draft' not in field allowed set -->
+<record id="default_199_x_lc_header_x_studio_version_no" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_version_no"/>
+      <field name="json_value">"0"</field>
+    </record>
+    <record id="default_227_x_lc_header_x_studio_currency_id" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_currency_id"/>
+      <field name="json_value">145</field>
+    </record>
+    <record id="default_428_x_lc_header_x_studio_currency_id" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_currency_id"/>
+      <field name="json_value">145</field>
+    </record>
+    <record id="default_194_x_lc_header_x_studio_confirmation_instructions" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_confirmation_instructions"/>
+      <field name="json_value">"None"</field>
+    </record>
+    <!-- Removed: x_misc_charge_codes.x_studio_credit_acc_type and
+         x_studio_debit_acc_type defaults were causing CSV imports in
+         Jinasena_MasterData_Purchase to fail on fresh install with
+         "Wrong value for ... 'G/L Account'". Odoo's selection validator
+         sees the field as empty-selection at CSV-import time (even though
+         Python declares [('Item','Item'),('G/L Account','G/L Account')])
+         — likely a Python-vs-DB sync-order quirk during cascade install.
+         Users can set the value manually in the UI; no functional loss. -->
+    <record id="default_187_x_lc_header_x_studio_lc_credit_type" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_lc_credit_type"/>
+      <field name="json_value">"Irrevocable"</field>
+    </record>
+    <record id="default_188_x_lc_header_x_studio_lc_credit_sub_type" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_lc_credit_sub_type"/>
+      <field name="json_value">"Non Transferable"</field>
+    </record>
+    <record id="default_189_x_lc_header_x_studio_status" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_status"/>
+      <field name="json_value">"Draft"</field>
+    </record>
+    <record id="default_190_x_lc_header_x_studio_tolerance_type" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_tolerance_type"/>
+      <field name="json_value">"Plus"</field>
+    </record>
+    <record id="default_191_x_lc_header_x_studio_partial_shipment" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_partial_shipment"/>
+      <field name="json_value">"Allowed"</field>
+    </record>
+    <record id="default_192_x_lc_header_x_studio_transshipment" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_transshipment"/>
+      <field name="json_value">"Allowed"</field>
+    </record>
+    <record id="default_193_x_lc_header_x_studio_draft" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_draft"/>
+      <field name="json_value">"At Sight"</field>
+    </record>
+    <record id="default_197_x_lc_header_x_studio_selection_field_yo4qM" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_selection_field_yo4qM"/>
+      <field name="json_value">"Draft"</field>
+    </record>
+    </data>
+</odoo>

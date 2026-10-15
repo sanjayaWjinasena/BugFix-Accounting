@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="action_3623_test_rm_gross_margin_actuals" model="ir.actions.act_window">
+    <field name="name">Test - RM Gross Margin - Actuals</field>
+    <field name="res_model">x_test_rm_gross_margin</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+  <record id="ported_default_form_view_fo_e77232e4_e7f3_4769_97c0_439ce924b337" model="ir.ui.view">
+    <field name="name">Default form view for x_test_rm_gross_margin</field>
+    <field name="model">x_test_rm_gross_margin</field>
+    <field name="key">studio_customization.default_form_view_fo_e77232e4-e7f3-4769-97c0-439ce924b337</field>
+    <field name="type">form</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <form>
+        <header/>
+        <sheet string="Test - RM Gross Margin - Actuals">
+          <widget name="web_ribbon" text="Archived" bg_color="text-bg-danger" invisible="x_active"/>
+          <field name="x_active" invisible="1"/>
+          <div class="oe_title">
+                      <h1>
+                          <field name="x_name" required="1" placeholder="Name..."/>
+                      </h1>
+                  </div>
+          <group name="studio_group_4bdcf7">
+            <group name="studio_group_4bdcf7_left"/>
+            <group name="studio_group_4bdcf7_right"/>
+          </group>
+        </sheet>
+        
+      </form>
+    </field>
+  </record>
+  <record id="ported_default_list_view_fo_ebc1fec3_02e8_4e3a_a42a_8a43aeef04c4" model="ir.ui.view">
+    <field name="name">Default list view for x_test_rm_gross_margin</field>
+    <field name="model">x_test_rm_gross_margin</field>
+    <field name="key">studio_customization.default_list_view_fo_ebc1fec3-02e8-4e3a-a42a-8a43aeef04c4</field>
+    <field name="type">tree</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="x_studio_sequence" widget="handle"/>
+        <field name="x_name"/>
+      </tree>
+    </field>
+  </record>
+  <record id="ported_default_search_view__1ca0ea84_3938_4f26_ad80_7824d77d00f2" model="ir.ui.view">
+    <field name="name">Default search view for x_test_rm_gross_margin</field>
+    <field name="model">x_test_rm_gross_margin</field>
+    <field name="key">studio_customization.default_search_view__1ca0ea84-3938-4f26-ad80-7824d77d00f2</field>
+    <field name="type">search</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="x_name"/>
+        <separator/>
+        <filter string="Archived" name="archived_x_test_rm_gross_margin" domain="[['x_active', '=', False]]"/>
+        <separator/>
+      </search>
+    </field>
+  </record>
+    <record id="ported_view_9491_default_search_view_1ca0ea84_3938_4f26_ad80_7824d77d00f2" model="ir.ui.view">
+        <field name="name">Default search view for x_test_rm_gross_margin</field>
+        <field name="model">x_test_rm_gross_margin</field>
+        <field name="type">search</field>
+        <field name="priority">16</field>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <search>
+              <field name="x_name"/>
+              <separator/>
+              <filter string="Archived" name="archived_x_test_rm_gross_margin" domain="[['x_active', '=', False]]"/>
+              <separator/>
+            </search>
+        </field>
+    </record>
+</odoo>

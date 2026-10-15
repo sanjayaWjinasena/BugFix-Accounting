@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="server_action_2827_jin_company_id_in_payment_terms" model="ir.actions.server">
+    <field name="name">JIN - Company Id in Payment Terms</field>
+    <field name="model_id" search="[('model', '=', 'account.payment.term')]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
+company = env['res.company'].browse(company_id)
+
+record['company_id'] = company.id]]></field>
+    <field name="usage">base_automation</field>
+  </record>
+  <record id="base_automation_335_jin_company_id_in_payment_terms" model="base.automation">
+    <field name="name">JIN - Company Id in Payment Terms</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'account.payment.term')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('account.field_account_payment_term__create_date')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2827_jin_company_id_in_payment_terms')])]"/>
+  </record>
+</odoo>

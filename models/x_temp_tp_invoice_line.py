@@ -37,3 +37,11 @@ class XTempTpInvoiceLine(models.Model):
     x_studio_temp_tp_invoice_header_id = fields.Many2one(
         "x_temp_tp_invoice_head", string="Temp TP Invoice Header Id", ondelete="cascade"
     )
+
+
+class XTempTpInvoiceLineGap(models.Model):
+    _inherit = "x_temp_tp_invoice_line"
+    _rec_name = "x_name"  # Clear-DB Studio model: records are named by x_name
+
+    x_active = fields.Boolean(string="Active")
+    x_name = fields.Char(string="Name")

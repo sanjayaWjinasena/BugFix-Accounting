@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="server_action_3278_execute_code" model="ir.actions.server">
+    <field name="name">Execute Code</field>
+    <field name="model_id" search="[('model', '=', 'account.move.line')]"/>
+    <field name="state">code</field>
+    <field name="code"><![CDATA[#contract = env['hr.contract'].search([('analytic_account_id', '=', record.analytic_account_id.id)])
+#if contract:
+#  record['x_studio_contract_id'] = contract.id
+
+#analytic_dist = record.analytic_distribution
+#if analytic_dist:
+#    analytic_account_id = list(analytic_dist.keys())[0]
+#    contract = env['hr.contract'].search([('analytic_account_id', '=', int(analytic_account_id))], limit=1)
+#    if contract:
+#        record['x_studio_contract_id'] = contract.id
+
+if record.distribution_analytic_account_ids:
+    contract = env['hr.contract'].search([('analytic_account_id', 'in', record.distribution_analytic_account_ids.ids)], limit=1)
+    if contract:
+        record['x_studio_contract_id'] = contract.id]]></field>
+    <field name="usage">base_automation</field>
+  </record>
+  <record id="server_action_1732_srm_auto_populate_report_type_in_account_move_lines" model="ir.actions.server">
+    <field name="name">SRM - Auto Populate Report Type in Account Move Lines</field>
+    <field name="model_id" search="[('model', '=', 'account.move.line')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[# fix_repair:idempotent-v1
+if record.account_internal_group == 'income' and not record.x_studio_sales_report_type:
+  rpt = env['x_sales_report_type'].sudo().search(
+    [('x_studio_report_code', '=', 'Sales Details for Incentive Calc.')],
+    limit=1)
+  if rpt:
+    record.write({'x_studio_sales_report_type': rpt.id})
+]]></field>
+  </record>
+  <record id="server_action_2344_update_analytic_tag_parameters_sales_invoice_line_product" model="ir.actions.server">
+    <field name="name">Update Analytic Tag Parameters - Sales Invoice Line - Product</field>
+    <field name="model_id" search="[('model', '=', 'account.move.line')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.product_id:
+  #record['x_studio_account_mandatory'] = True
+  tag_rule= env['account.analytic.distribution.model'].search([('product_id', '=', record.product_id.id)],limit=1)
+  if tag_rule:
+    record['x_studio_account_mandatory'] = tag_rule.x_studio_product_mandatory
+  else:
+    tag_rule2= env['account.analytic.distribution.model'].search([('partner_id.user_id', '=', uid)],limit=1)
+    if tag_rule2:
+      record['x_studio_account_mandatory'] = tag_rule2.x_studio_user_mandatory
+    else:
+      record['x_studio_account_mandatory'] = False]]></field>
+  </record>
+  <record id="server_action_2419_update_analytic_tag_parameters_sales_invoice_line_account" model="ir.actions.server">
+    <field name="name">Update Analytic Tag Parameters - Sales Invoice Line - Account</field>
+    <field name="model_id" search="[('model', '=', 'account.move.line')]"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="binding_view_types">list,form</field>
+    <field name="code"><![CDATA[if record.account_id:
+  #record['x_studio_account_mandatory'] = True
+  tag_rule= env['account.analytic.distribution.model'].search([('account_id', '=', record.account_id.id)],limit=1)
+  if tag_rule:
+    record['x_studio_account_mandatory'] = tag_rule.x_studio_account_mandatory
+  else:
+    tag_rule2= env['account.analytic.distribution.model'].search([('partner_id.user_id', '=', uid)],limit=1)
+    if tag_rule2:
+      record['x_studio_account_mandatory'] = tag_rule2.x_studio_user_mandatory
+    else:
+      record['x_studio_account_mandatory'] = False]]></field>
+  </record>
+  <record id="base_automation_120_srm_auto_populate_report_type_in_account_move_lines" model="base.automation">
+    <field name="name">SRM - Auto Populate Report Type in Account Move Lines</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'account.move.line')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_sales_report_model__x_studio_as_on_date')])]"/>
+    <field name="filter_domain">[]</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1732_srm_auto_populate_report_type_in_account_move_lines')])]"/>
+  </record>
+  <record id="base_automation_219_update_analytic_tag_parameters_sales_invoice_line_product" model="base.automation">
+    <field name="name">Update Analytic Tag Parameters - Sales Invoice Line - Product</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'account.move.line')]"/>
+    <field name="trigger">on_change</field>
+    <field name="on_change_field_ids" eval="[(6, 0, [ref('account.field_account_move_line__product_id')])]"/>
+    <field name="filter_domain">[]</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2344_update_analytic_tag_parameters_sales_invoice_line_product')])]"/>
+  </record>
+  <record id="base_automation_343_etf_schedule_contract_id" model="base.automation">
+    <field name="name">ETF Schedule - Contract Id</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'account.move.line')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="trigger_field_ids" eval="[(6, 0, [ref('account.field_account_move_line__create_date')])]"/>
+    <field name="filter_domain">[("distribution_analytic_account_ids", "!=", False)]</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_3278_execute_code')])]"/>
+  </record>
+  <record id="server_action_3278_execute_code" model="ir.actions.server">
+    <field name="name">Execute Code</field>
+    <field name="model_id" ref="account.model_account_move_line"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="code"><![CDATA[
+#contract = env['hr.contract'].search([('analytic_account_id', '=', record.analytic_account_id.id)])
+#if contract:
+#  record['x_studio_contract_id'] = contract.id
+
+#analytic_dist = record.analytic_distribution
+#if analytic_dist:
+#    analytic_account_id = list(analytic_dist.keys())[0]
+#    contract = env['hr.contract'].search([('analytic_account_id', '=', int(analytic_account_id))], limit=1)
+#    if contract:
+#        record['x_studio_contract_id'] = contract.id
+
+if record.distribution_analytic_account_ids:
+    contract = env['hr.contract'].search([('analytic_account_id', 'in', record.distribution_analytic_account_ids.ids)], limit=1)
+    if contract:
+        record['x_studio_contract_id'] = contract.id
+    ]]></field>
+  </record>
+  <record id="base_automation_239_update_analytic_tag_parameters_sales_invoice_line_account" model="base.automation">
+    <field name="name">Update Analytic Tag Parameters - Sales Invoice Line - Account</field>
+    <field name="active" eval="False"/>
+    <field name="model_id" ref="account.model_account_move_line"/>
+    <field name="trigger">on_change</field>
+    <field name="filter_domain">[]</field>
+  </record>
+</odoo>
