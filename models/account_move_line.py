@@ -236,7 +236,8 @@ class AccountMoveLine(models.Model):
         store=False,
         readonly=True,
     )
-    # TODO: x_studio_related_field_zy8mz = fields.One2many(...) -- Studio inverse name unknown; port from Clear-DB manually.
+    # TODO: x_studio_related_field_zy8mz = fields.One2many(...) -- Studio inverse name
+    # unknown; port from Clear-DB manually.
     x_studio_sales_report_type = fields.Many2one(
         "x_sales_report_type", string="Report Type (S- Incentive Calculation)"
     )

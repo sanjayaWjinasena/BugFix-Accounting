@@ -133,10 +133,14 @@ class XSalesReportModel(models.Model):
         string="New Related Field",
         readonly=True,
     )
-    # TODO: x_studio_related_field_NsCKm = fields.One2many('stock.move.line', <inverse>, string='New Related Field')
-    # TODO: x_studio_related_field_PaCjA = fields.One2many('stock.move', <inverse>, string='New Related Field')
-    # TODO: x_studio_related_field_XCKXu = fields.One2many('stock.move.line', <inverse>, string='New Related Field')
-    # TODO: x_studio_related_field_bCtVj = fields.One2many('stock.move.line', <inverse>, string='New Related Field')
+    # TODO: x_studio_related_field_NsCKm = fields.One2many('stock.move.line', <inverse>,
+    # string='New Related Field')
+    # TODO: x_studio_related_field_PaCjA = fields.One2many('stock.move', <inverse>,
+    # string='New Related Field')
+    # TODO: x_studio_related_field_XCKXu = fields.One2many('stock.move.line', <inverse>,
+    # string='New Related Field')
+    # TODO: x_studio_related_field_bCtVj = fields.One2many('stock.move.line', <inverse>,
+    # string='New Related Field')
     x_studio_related_field_n589a = fields.One2many(
         "account.move.line",
         related="x_studio_report_type.x_studio_journal_items_id",
@@ -149,7 +153,8 @@ class XSalesReportModel(models.Model):
         string="New Related Field",
         readonly=True,
     )
-    # TODO: x_studio_related_field_oeTJK = fields.One2many('mrp.production', <inverse>, string='New Related Field')
+    # TODO: x_studio_related_field_oeTJK = fields.One2many('mrp.production', <inverse>,
+    # string='New Related Field')
     x_studio_report_code = fields.Selection(
         [
             ("s-dailysales", "Daily Sales Summary"),

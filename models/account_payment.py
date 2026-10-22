@@ -1,7 +1,9 @@
 from odoo import api, fields, models
 
-# NOTE (v0.0.143): the Many2one(s) x_studio_cre / x_studio_created_from_npo_no / x_studio_created_from_pr_no (related
-#   mirrors of account.move) / x_studio_many2one_field_4CPvU / x_studio_many2one_field_rpsBC were MOVED to BugFix-Purchase v0.1.0.178.
+# NOTE (v0.0.143): the Many2one(s) x_studio_cre / x_studio_created_from_npo_no /
+# x_studio_created_from_pr_no (related
+# mirrors of account.move) / x_studio_many2one_field_4CPvU /
+# x_studio_many2one_field_rpsBC were MOVED to BugFix-Purchase v0.1.0.178.
 # Their comodel is owned by a DOWNSTREAM module; declared here they were
 # `_unknown` for the whole upgrade-mode registry build (see BugFix-Purchase
 # models/upstream_link_fields.py). Do NOT re-add them here.

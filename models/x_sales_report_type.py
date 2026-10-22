@@ -21,9 +21,12 @@ class XSalesReportType(models.Model):
         "x_studio_sales_report_type",
         string="Journal Items Id",
     )
-    # TODO: x_studio_prod_summary_split_id = fields.One2many('stock.move.line', <inverse>, string='Prod. Summary Split Id')
-    # TODO: x_studio_production_order_id = fields.One2many('mrp.production', <inverse>, string='Production Order Id')
-    # TODO: x_studio_production_variance_id = fields.One2many('stock.move', <inverse>, string='Production Variance Id')
+    # TODO: x_studio_prod_summary_split_id = fields.One2many('stock.move.line',
+    # <inverse>, string='Prod. Summary Split Id')
+    # TODO: x_studio_production_order_id = fields.One2many('mrp.production', <inverse>,
+    # string='Production Order Id')
+    # TODO: x_studio_production_variance_id = fields.One2many('stock.move', <inverse>,
+    # string='Production Variance Id')
     x_studio_report_code = fields.Selection(
         [
             ("Daily Sales Summary", "Daily Sales Summary"),
@@ -49,9 +52,11 @@ class XSalesReportType(models.Model):
         "x_studio_sales_report_type",
         string="Sales Lines Id",
     )
-    # TODO: x_studio_sales_prod_purch_id = fields.One2many('stock.move.line', <inverse>, string='Sales Prod. Purch. Id')
+    # TODO: x_studio_sales_prod_purch_id = fields.One2many('stock.move.line', <inverse>,
+    # string='Sales Prod. Purch. Id')
     x_studio_sequence = fields.Integer(string="Sequence")
-    # TODO: x_studio_slow_moving_item_id = fields.One2many('stock.move.line', <inverse>, string='Slow Moving Item Id')
+    # TODO: x_studio_slow_moving_item_id = fields.One2many('stock.move.line', <inverse>,
+    # string='Slow Moving Item Id')
     x_studio_test = fields.One2many(
         "account.move.line",
         "x_studio_many2one_field_kiSUJ",
