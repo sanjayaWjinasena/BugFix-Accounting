@@ -305,6 +305,7 @@ def _seed_field_selections(env, entries):
                 model,
                 fname,
                 e,
+                exc_info=True,
             )
 
 
