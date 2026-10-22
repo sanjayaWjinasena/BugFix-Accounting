@@ -3819,7 +3819,8 @@ record.write({'x_studio_tax_amount':taxes})
 
     
 
-    pump = env['product.template'].search([('x_studio_product_type', '=', 'Pump'),('company_id', '=', company.id)])
+    # Internal Product Type's value is 'Pumps' (there is no 'Pump'), so the search found nothing (22/Oct).
+    pump = env['product.template'].search([('x_studio_product_type', '=', 'Pumps'),('company_id', '=', company.id)])
 
     for pumps in pump:
 

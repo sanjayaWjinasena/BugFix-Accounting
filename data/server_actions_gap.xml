@@ -1373,7 +1373,8 @@ if record.x_studio_report_type:
     # Pump Price Costing
     # Tab - 01 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
-    pump = env['product.template'].search([('x_studio_product_type', '=', 'Pump'),('company_id', '=', company.id)])
+    # Internal Product Type's value is 'Pumps' (there is no 'Pump'), so the search found nothing (22/Oct).
+    pump = env['product.template'].search([('x_studio_product_type', '=', 'Pumps'),('company_id', '=', company.id)])
     for pumps in pump:
       standard_count = 0
       standard_final = 0
