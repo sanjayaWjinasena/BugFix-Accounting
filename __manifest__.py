@@ -1,7 +1,7 @@
 {
     # upgrade-testing branch: data files below are commented out - this branch installs functions only, no data is seeded.
     "name": "Jinasena : Module : Accounting",
-    "version": "17.0.0.0.146",
+    "version": "17.0.0.0.147",
     "summary": "Studio-to-Python port for BugFix-Accounting",
     "author": "Jinasena Agricultural Machinery (Pvt) Ltd.",
     "category": "Accounting",
