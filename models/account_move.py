@@ -108,7 +108,6 @@ class AccountMove(models.Model):
         store=True,
     )
     x_studio_order_payment_method = fields.Selection(
-        [("Cash", "Cash"), ("Credit", "Credit")],
         string="Order Payment Method",
         readonly=True,
         related="x_studio_sale_id.x_studio_order_payment_method",

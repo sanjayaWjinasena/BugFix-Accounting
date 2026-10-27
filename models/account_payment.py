@@ -192,7 +192,6 @@ class AccountPayment(models.Model):
     )
     x_studio_float_field_5tma1 = fields.Float(string="New Decimal", store=False)
     x_studio_journal_type = fields.Selection(
-        [],
         string="Journal Type",
         related="move_id.x_studio_journal_type",
         store=True,
@@ -273,7 +272,6 @@ class AccountPayment(models.Model):
         "account.move", string="Journal Entry", store=False
     )
     x_studio_order_payment_method = fields.Selection(
-        [],
         string="Order Payment Method",
         related="move_id.x_studio_order_payment_method",
         store=True,
@@ -333,13 +331,15 @@ class AccountPayment(models.Model):
     )
     x_studio_purchase_order = fields.Many2one("purchase.order", string="Purchase Order")
     x_studio_purchase_type = fields.Selection(
-        [],
         string="PR Type",
         related="move_id.x_studio_purchase_type",
         store=True,
         readonly=True,
     )
-    x_studio_quotation_type = fields.Selection([], string="Quotation Type")
+    x_studio_quotation_type = fields.Selection(
+        [("Sales", "Sales"), ("Project", "Project"), ("Repair", "Repair")],
+        string="Quotation Type",
+    )
     x_studio_related_field_1JsOz = fields.Boolean(
         string="New Related Field", readonly=True, store=False
     )
@@ -431,7 +431,6 @@ class AccountPayment(models.Model):
         readonly=True,
     )
     x_studio_test_type = fields.Selection(
-        [],
         string="Test Type",
         related="move_id.x_studio_test_type",
         store=True,

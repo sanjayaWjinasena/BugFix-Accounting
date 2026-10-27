@@ -36,7 +36,6 @@ class AccountMoveLine(models.Model):
         readonly=True,
     )
     x_studio_customer_group_type = fields.Selection(
-        [("General", "General"), ("Distributor", "Distributor"), ("Dealer", "Dealer")],
         string="Customer Group Type",
         related="partner_id.x_studio_customer_group.x_studio_group_type",
         store=True,
@@ -73,7 +72,6 @@ class AccountMoveLine(models.Model):
         "account.move", string="Journal", readonly=True, related="move_id", store=True
     )
     x_studio_journal_type = fields.Selection(
-        [("Bill", "Bill"), ("Payment", "Payment"), ("Settlement", "Settlement")],
         string="Journal Type",
         related="move_id.x_studio_journal_type",
         store=True,
@@ -108,21 +106,12 @@ class AccountMoveLine(models.Model):
         readonly=True,
     )
     x_studio_payment_status = fields.Selection(
-        [
-            ("not_paid", "Not Paid"),
-            ("in_payment", "In Payment"),
-            ("paid", "Paid"),
-            ("partial", "Partially Paid"),
-            ("reversed", "Reversed"),
-            ("invoicing_legacy", "Invoicing App Legacy"),
-        ],
         string="Payment Status",
         related="move_id.payment_state",
         store=True,
         readonly=True,
     )
     x_studio_pr_type = fields.Selection(
-        [("Local", "Local"), ("Import", "Import")],
         string="PR Type",
         related="move_id.x_studio_purchase_type",
         store=True,
@@ -249,18 +238,10 @@ class AccountMoveLine(models.Model):
         readonly=True,
     )
     x_studio_status = fields.Selection(
-        [("draft", "Draft"), ("posted", "Posted"), ("cancel", "Cancelled")],
-        string="Status",
-        related="move_id.state",
-        store=True,
-        readonly=True,
+        string="Status", related="move_id.state", store=True, readonly=True
     )
     x_studio_status_1 = fields.Selection(
-        [("draft", "Draft"), ("posted", "Posted"), ("cancel", "Cancelled")],
-        string="Status",
-        related="move_id.state",
-        store=True,
-        readonly=True,
+        string="Status", related="move_id.state", store=True, readonly=True
     )
     x_studio_surname = fields.Char(
         string="Surname",

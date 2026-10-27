@@ -112,7 +112,8 @@ if record.x_name == 'New':
 
     
 
-    pump = env['product.template'].search([('x_studio_product_type', '=', 'Pump'),('company_id', '=', company.id)])
+    # Internal Product Type's value is 'Pumps' (there is no 'Pump'), so the search found nothing (22/Oct).
+    pump = env['product.template'].search([('x_studio_product_type', '=', 'Pumps'),('company_id', '=', company.id)])
 
     for pumps in pump:
 
@@ -4463,7 +4464,8 @@ if record.x_name == 'New':
 
     
 
-    pump = env['product.template'].search([('x_studio_product_type', '=', 'Pump'),('company_id', '=', company.id)])
+    # Internal Product Type's value is 'Pumps' (there is no 'Pump'), so the search found nothing (22/Oct).
+    pump = env['product.template'].search([('x_studio_product_type', '=', 'Pumps'),('company_id', '=', company.id)])
 
     for pumps in pump:
 
@@ -7144,7 +7146,8 @@ if record.x_studio_report_type:
 
     
 
-    pump = env['product.template'].search([('x_studio_product_type', '=', 'Pump'),('company_id', '=', company.id)])
+    # Internal Product Type's value is 'Pumps' (there is no 'Pump'), so the search found nothing (22/Oct).
+    pump = env['product.template'].search([('x_studio_product_type', '=', 'Pumps'),('company_id', '=', company.id)])
 
     for pumps in pump:
 
