@@ -6,7 +6,6 @@ from . import account_bank_statement_line
 from . import account_move
 from . import account_move_line
 from . import account_payment
-from . import account_setup_bank_manual_config
 from . import account_tax_group
 from . import product_template
 from . import sequence_mixin
