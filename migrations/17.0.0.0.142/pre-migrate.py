@@ -3,7 +3,8 @@ so the v141 file (trio fields removed) can load.
 
 What happened on upgrade to v141 (target 2026-10-02):
 
-    ParseError: while parsing BugFix-Accounting/views/x_misc_charge_codes_studio_ported_v2.xml:16
+    ParseError: while parsing
+    BugFix-Accounting/views/x_misc_charge_codes_studio_ported_v2.xml:16
     Field "x_studio_charges_line_id" does not exist in model "x_misc_charge_codes"
 
 The file holds 5 views. The three link fields were only ever referenced by
