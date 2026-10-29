@@ -1239,6 +1239,9 @@ if report_type:
     <field name="name">SRM - RPT - Project Gross Margin - Notify Users</field>
     <field name="model_id" ref="BugFix-Accounting.model_x_sales_report_model"/>
     <field name="state">next_activity</field>
+    <!-- Clear-DB: activity goes to rohana.b@jinasena.com.lk (user is environment data: matched by login). -->
+    <field name="activity_user_type">specific</field>
+    <field name="activity_user_id" search="[('login', '=', 'rohana.b@jinasena.com.lk')]"/>
     <field name="usage">base_automation</field>
     <field name="code"><![CDATA[
 # Available variables:

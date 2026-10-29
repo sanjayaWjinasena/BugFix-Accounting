@@ -1445,6 +1445,8 @@ action = {
     <field name="binding_view_types">list,form</field>
     <field name="activity_type_id" ref="mail.mail_activity_data_todo"/>
     <field name="activity_user_type">specific</field>
+    <!-- Clear-DB: activity goes to rohana.b@jinasena.com.lk (user is environment data: matched by login). -->
+    <field name="activity_user_id" search="[('login', '=', 'rohana.b@jinasena.com.lk')]"/>
     <field name="activity_summary">Gross Margin Report Generated</field>
     <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
   </record>
@@ -4381,6 +4383,8 @@ record['x_studio_company_id'] = company.id]]></field>
     <field name="binding_view_types">list,form</field>
     <field name="activity_type_id" ref="mail.mail_activity_data_todo"/>
     <field name="activity_user_type">generic</field>
+    <!-- Clear-DB: user taken from the record's user_id. Without it Odoo 17 fails with "False in ..." -->
+    <field name="activity_user_field_name">user_id</field>
     <field name="activity_summary">Credit Note Approval - Confirm</field>
     <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
   </record>
@@ -4393,6 +4397,8 @@ record['x_studio_company_id'] = company.id]]></field>
     <field name="binding_view_types">list,form</field>
     <field name="activity_type_id" ref="mail.mail_activity_data_todo"/>
     <field name="activity_user_type">specific</field>
+    <!-- Clear-DB: activity goes to tharaka.h@jinasena.com.lk (user is environment data: matched by login). -->
+    <field name="activity_user_id" search="[('login', '=', 'tharaka.h@jinasena.com.lk')]"/>
     <field name="activity_summary">Approve Credit Note</field>
     <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
   </record>
@@ -4407,6 +4413,10 @@ record['x_studio_company_id'] = company.id]]></field>
     <field name="name">SLS - Credit Note Approval</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="state">object_write</field>
+    <!-- Odoo 17 reads the target from update_path; without it the action fails with KeyError '' (Clear-DB: x_studio_credit_note_approved). -->
+    <field name="update_path">x_studio_credit_note_approved</field>
+    <field name="evaluation_type">value</field>
+    <field name="update_boolean_value">true</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
     <field name="update_field_id" ref="BugFix-Accounting.field_account_move__x_studio_credit_note_approved"/>
@@ -4417,6 +4427,10 @@ record['x_studio_company_id'] = company.id]]></field>
     <field name="name">SLS - Request Credit Note Approval Sent</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="state">object_write</field>
+    <!-- Odoo 17 reads the target from update_path; without it the action fails with KeyError '' (Clear-DB: x_studio_credit_note_request_sent). -->
+    <field name="update_path">x_studio_credit_note_request_sent</field>
+    <field name="evaluation_type">value</field>
+    <field name="update_boolean_value">true</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
     <field name="update_field_id" ref="BugFix-Accounting.field_account_move__x_studio_credit_note_request_sent"/>
