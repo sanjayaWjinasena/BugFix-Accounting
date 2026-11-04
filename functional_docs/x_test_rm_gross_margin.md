@@ -4,7 +4,7 @@
 
 ### `x_test_rm_gross_margin` — Test - RM Gross Margin - Actuals
 
-*Created by this repo.* Python: `models/x_test_rm_gross_margin.py`, `models/x_test_rm_gross_margin_gap.py`. Record name field: `x_name`.
+*Created by this repo.* Python: `models/x_test_rm_gross_margin.py`, `models/x_test_rm_gross_margin_gap.py`. Record name field: `name`.
 
 **Summary:**
 
@@ -33,9 +33,9 @@ Purpose not evident from code. It is a test model named 'Test - RM Gross Margin 
 | `my_activity_date_deadline` | My Activity Deadline | date | Standard computed field: due date of the current user's next activity on this Test - RM Gross Margin - Actuals record. | not stored |  |  |
 | `write_date` | Last Updated on | datetime | Date and time this Test - RM Gross Margin - Actuals record was last modified; set automatically. | stored |  |  |
 | `write_uid` | Last Updated by | many2one → `res.users` | User who last modified this Test - RM Gross Margin - Actuals record; set automatically. | stored | `model res.users` (base) |  |
-| `x_active` | Active | boolean | Archive flag of the Test - RM Gross Margin - Actuals record (test model); defaults to true (ir.default), and unticked (archived) records are hidden from normal lists. Shown in the form and search views. | stored |  | `default BugFix-Accounting.default_642_x_test_rm_gross_margin_x_active`<br>`view BugFix-Accounting.ported_default_form_view_fo_e77232e4_e7f3_4769_97c0_439ce924b337`<br>`view BugFix-Accounting.ported_default_search_view__1ca0ea84_3938_4f26_ad80_7824d77d00f2`<br>`view BugFix-Accounting.ported_view_9491_default_search_view_1ca0ea84_3938_4f26_ad80_7824d77d00f2` |
-| `x_name` | Description | char | Description of the test gross margin record; shown in its list, form and search views. | stored; required |  | `view BugFix-Accounting.ported_default_form_view_fo_e77232e4_e7f3_4769_97c0_439ce924b337`<br>`view BugFix-Accounting.ported_default_list_view_fo_ebc1fec3_02e8_4e3a_a42a_8a43aeef04c4`<br>`view BugFix-Accounting.ported_default_search_view__1ca0ea84_3938_4f26_ad80_7824d77d00f2`<br>`view BugFix-Accounting.ported_view_9491_default_search_view_1ca0ea84_3938_4f26_ad80_7824d77d00f2` |
-| `x_studio_sequence` | Sequence | integer | Sort order of the Test - RM Gross Margin - Actuals record (test model) (default 10); used as the drag handle in its list view. | stored |  | `default BugFix-Accounting.default_643_x_test_rm_gross_margin_x_studio_sequence`<br>`view BugFix-Accounting.ported_default_list_view_fo_ebc1fec3_02e8_4e3a_a42a_8a43aeef04c4` |
+| `active` | Active | boolean | Archive flag of the Test - RM Gross Margin - Actuals record (test model); defaults to true (ir.default), and unticked (archived) records are hidden from normal lists. Shown in the form and search views. | stored |  | `default BugFix-Accounting.default_642_x_test_rm_gross_margin_active`<br>`view BugFix-Accounting.ported_default_form_view_fo_e77232e4_e7f3_4769_97c0_439ce924b337`<br>`view BugFix-Accounting.ported_default_search_view__1ca0ea84_3938_4f26_ad80_7824d77d00f2`<br>`view BugFix-Accounting.ported_view_9491_default_search_view_1ca0ea84_3938_4f26_ad80_7824d77d00f2` |
+| `name` | Description | char | Description of the test gross margin record; shown in its list, form and search views. | stored; required |  | `view BugFix-Accounting.ported_default_form_view_fo_e77232e4_e7f3_4769_97c0_439ce924b337`<br>`view BugFix-Accounting.ported_default_list_view_fo_ebc1fec3_02e8_4e3a_a42a_8a43aeef04c4`<br>`view BugFix-Accounting.ported_default_search_view__1ca0ea84_3938_4f26_ad80_7824d77d00f2`<br>`view BugFix-Accounting.ported_view_9491_default_search_view_1ca0ea84_3938_4f26_ad80_7824d77d00f2` |
+| `sequence` | Sequence | integer | Sort order of the Test - RM Gross Margin - Actuals record (test model) (default 10); used as the drag handle in its list view. | stored |  | `default BugFix-Accounting.default_643_x_test_rm_gross_margin_sequence`<br>`view BugFix-Accounting.ported_default_list_view_fo_ebc1fec3_02e8_4e3a_a42a_8a43aeef04c4` |
 
 **Window actions (1):**
 
@@ -47,10 +47,10 @@ Purpose not evident from code. It is a test model named 'Test - RM Gross Margin 
 
 | Name | Record name | Type | What it changes | Function | Depends on | Used by |
 |---|---|---|---|---|---|---|
-| Default form view for x_test_rm_gross_margin | `ported_default_form_view_fo_e77232e4_e7f3_4769_97c0_439ce924b337` | form | full form layout with 2 fields | Base form screen for Test - RM Gross Margin - Actuals records: required Name title, an Archived ribbon when inactive and empty column groups that Studio extensions fill. | `x_test_rm_gross_margin.x_active`<br>`x_test_rm_gross_margin.x_name` |  |
-| Default list view for x_test_rm_gross_margin | `ported_default_list_view_fo_ebc1fec3_02e8_4e3a_a42a_8a43aeef04c4` | tree | full tree layout with 2 fields | Base list screen for Test - RM Gross Margin - Actuals records showing Name with a drag handle for manual ordering by Sequence. | `x_test_rm_gross_margin.x_name`<br>`x_test_rm_gross_margin.x_studio_sequence` |  |
-| Default search view for x_test_rm_gross_margin | `ported_default_search_view__1ca0ea84_3938_4f26_ad80_7824d77d00f2` | search | full search layout with 1 fields | Search bar for Test - RM Gross Margin - Actuals records: search by Name and an 'Archived' filter to show inactive records. | `x_test_rm_gross_margin.x_active`<br>`x_test_rm_gross_margin.x_name` |  |
-| Default search view for x_test_rm_gross_margin | `ported_view_9491_default_search_view_1ca0ea84_3938_4f26_ad80_7824d77d00f2` | search | full search layout with 1 fields | Default search view for the Test RM Gross Margin model: search by name plus an Archived filter. | `x_test_rm_gross_margin.x_active`<br>`x_test_rm_gross_margin.x_name` |  |
+| Default form view for x_test_rm_gross_margin | `ported_default_form_view_fo_e77232e4_e7f3_4769_97c0_439ce924b337` | form | full form layout with 2 fields | Base form screen for Test - RM Gross Margin - Actuals records: required Name title, an Archived ribbon when inactive and empty column groups that Studio extensions fill. | `x_test_rm_gross_margin.active`<br>`x_test_rm_gross_margin.name` |  |
+| Default list view for x_test_rm_gross_margin | `ported_default_list_view_fo_ebc1fec3_02e8_4e3a_a42a_8a43aeef04c4` | tree | full tree layout with 2 fields | Base list screen for Test - RM Gross Margin - Actuals records showing Name with a drag handle for manual ordering by Sequence. | `x_test_rm_gross_margin.name`<br>`x_test_rm_gross_margin.sequence` |  |
+| Default search view for x_test_rm_gross_margin | `ported_default_search_view__1ca0ea84_3938_4f26_ad80_7824d77d00f2` | search | full search layout with 1 fields | Search bar for Test - RM Gross Margin - Actuals records: search by Name and an 'Archived' filter to show inactive records. | `x_test_rm_gross_margin.active`<br>`x_test_rm_gross_margin.name` |  |
+| Default search view for x_test_rm_gross_margin | `ported_view_9491_default_search_view_1ca0ea84_3938_4f26_ad80_7824d77d00f2` | search | full search layout with 1 fields | Default search view for the Test RM Gross Margin model: search by name plus an Archived filter. | `x_test_rm_gross_margin.active`<br>`x_test_rm_gross_margin.name` |  |
 
 **Access rights (5):**
 

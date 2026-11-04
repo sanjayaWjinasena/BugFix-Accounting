@@ -18,11 +18,11 @@ class XRmSalesOrderLine(models.Model):
     _name = "x_rm_sales_order_line"
     _description = "RM Sales Order Line"
     _inherit = ["mail.thread", "mail.activity.mixin"]
-    _order = "x_studio_sequence, id"
-    _rec_name = "x_name"
+    _order = "sequence, id"
+    _rec_name = "name"
 
-    x_active = fields.Boolean(string="Active", default=True)
-    x_name = fields.Char(string="Name")
+    active = fields.Boolean(string="Active", default=True)
+    name = fields.Char(string="Name")
     x_studio_customer_acc = fields.Many2one("res.partner", string="Customer Acc")
     x_studio_customer_group = fields.Many2one(
         "x_customer_group",
@@ -40,20 +40,20 @@ class XRmSalesOrderLine(models.Model):
         "product.category",
         string="Product Category",
     )
-    x_studio_quantity = fields.Float(string="Quantity")
-    x_studio_sales_order = fields.Many2one("sale.order", string="Sales Order")
+    quantity = fields.Float(string="Quantity")
+    sales_order = fields.Many2one("sale.order", string="Sales Order")
     x_studio_sales_report_model_id = fields.Many2one(
         "x_sales_report_model",
         string="Sales Report Model Id",
     )
-    x_studio_sequence = fields.Integer(string="Sequence", default=10)
+    sequence = fields.Integer(string="Sequence", default=10)
     x_studio_total_base_price = fields.Float(string="Total Base Price")
-    x_studio_unit_price = fields.Float(string="Unit Price")
+    unit_price = fields.Float(string="Unit Price")
 
 
 class XRmSalesOrderLineGap(models.Model):
     _inherit = "x_rm_sales_order_line"
-    _rec_name = "x_name"  # Clear-DB Studio model: records are named by x_name
+    _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    x_active = fields.Boolean(string="Active")
-    x_name = fields.Char(string="Name")
+    active = fields.Boolean(string="Active")
+    name = fields.Char(string="Name")

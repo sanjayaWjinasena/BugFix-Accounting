@@ -4,7 +4,7 @@ Compares BOM planned vs actual for a single production step:
 BOM item, item number, estimated qty, actual production qty,
 consumption qty, unit cost, total cost, variance.
 
-Two product references (`x_studio_description` = the finished-good
+Two product references (`description` = the finished-good
 product, `x_studio_description_1` = the BOM component product) —
 Studio's original naming preserved verbatim.
 """
@@ -16,11 +16,11 @@ class XRmProductionVarian(models.Model):
     _name = "x_rm_production_varian"
     _description = "RM Production Variance"
     _inherit = ["mail.thread", "mail.activity.mixin"]
-    _order = "x_studio_sequence, id"
-    _rec_name = "x_name"
+    _order = "sequence, id"
+    _rec_name = "name"
 
-    x_active = fields.Boolean(string="Active", default=True)
-    x_name = fields.Char(string="Name")
+    active = fields.Boolean(string="Active", default=True)
+    name = fields.Char(string="Name")
     x_studio_avg_cost = fields.Float(string="Avg. Cost")
     x_studio_bom_item = fields.Char(
         string="BOM Item",
@@ -29,7 +29,7 @@ class XRmProductionVarian(models.Model):
     )
     x_studio_bom_qty = fields.Float(string="BOM Qty")
     x_studio_cons_qty = fields.Float(string="Cons. Qty")
-    x_studio_description = fields.Many2one(
+    description = fields.Many2one(
         "product.product",
         string="Description",
     )
@@ -41,7 +41,7 @@ class XRmProductionVarian(models.Model):
     x_studio_header_reference = fields.Char(string="Header Reference")
     x_studio_item_number = fields.Char(
         string="Item Number",
-        related="x_studio_description.default_code",
+        related="description.default_code",
         readonly=True,
     )
     x_studio_prod_qty = fields.Float(string="Prod. Qty")
@@ -53,12 +53,12 @@ class XRmProductionVarian(models.Model):
         "x_sales_report_model",
         string="Sales Report Model Id",
     )
-    x_studio_sequence = fields.Integer(string="Sequence", default=10)
+    sequence = fields.Integer(string="Sequence", default=10)
     x_studio_total_cost = fields.Float(string="Total Cost")
     x_studio_unit = fields.Many2one(
         "uom.uom",
         string="Unit",
-        related="x_studio_description.uom_id",
+        related="description.uom_id",
         store=False,
         readonly=True,
     )
@@ -67,7 +67,7 @@ class XRmProductionVarian(models.Model):
 
 class XRmProductionVarianGap(models.Model):
     _inherit = "x_rm_production_varian"
-    _rec_name = "x_name"  # Clear-DB Studio model: records are named by x_name
+    _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    x_active = fields.Boolean(string="Active")
-    x_name = fields.Char(string="Name")
+    active = fields.Boolean(string="Active")
+    name = fields.Char(string="Name")

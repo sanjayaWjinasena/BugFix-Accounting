@@ -4,7 +4,7 @@
 
 ### `x_journal_types` — Journal Types
 
-*Extends a model created by `BugFix-Maintenance`.* Python: `models/x_journal_types.py`, `models/x_journal_types_gap.py`. Record name field: `x_name`.
+*Extends a model created by `BugFix-Maintenance`.* Python: `models/x_journal_types.py`, `models/x_journal_types_gap.py`. Record name field: `name`.
 
 Other repos that use this model: `access right BugFix-Stock.access_x_journal_types_user` (BugFix-Stock)<br>`maintenance.equipment.category.x_studio_journal_type` (BugFix-Maintenance)<br>`maintenance.request.x_studio_journal_type_1` (BugFix-Maintenance)<br>`server action BugFix-Stock.server_action_2448_movement_journals_update_offset_account` (BugFix-Stock)<br>`stock.picking.x_studio_journal_type` (BugFix-Stock)<br>`x_material_request.x_studio_journal_type` (BugFix-Stock)
 
@@ -48,18 +48,18 @@ Journal type master (created by BugFix-Maintenance) that this repo also declares
 | `website_message_ids` | Website Messages | one2many → `mail.message` | Messages on the Journal Types record that are visible on the website/portal; standard chatter field. | stored | `model mail.message` (mail) |  |
 | `write_date` | Last Updated on | datetime | Date and time the Journal Types record was last modified; set automatically. | stored |  |  |
 | `write_uid` | Last Updated by | many2one → `res.users` | User who last modified the Journal Types record; set automatically. | stored | `model res.users` (base) |  |
-| `x_active` | Active | boolean | Active flag of the Journal Types record: unchecking it archives the record and hides it from default searches; defaults to checked via ir.default. | stored |  | `default BugFix-Accounting.default_390_x_journal_types_x_active`<br>`view BugFix-Accounting.ported_view_5321_default_form_view_fo_dbddc8a1_ea9d_47ba_8335_c08e4a53fc5c`<br>`view BugFix-Accounting.ported_view_5322_default_search_view_d3c181ad_9bc3_4cfc_9d60_2500bd38fe9f` |
-| `x_name` | Journal Type | char | Name of the journal type, shown in its list, form and search views. | stored; required |  | `view BugFix-Accounting.ported_view_5320_default_list_view_fo_02152264_7fd7_4b5e_8a84_ca3714db9fad`<br>`view BugFix-Accounting.ported_view_5321_default_form_view_fo_dbddc8a1_ea9d_47ba_8335_c08e4a53fc5c`<br>`view BugFix-Accounting.ported_view_5322_default_search_view_d3c181ad_9bc3_4cfc_9d60_2500bd38fe9f` |
-| `x_studio_company_id` | Company | many2one → `res.company` | Company the Journal Types record belongs to; enforced by a multi-company record rule and filled on creation by the 'JIN Company Id' automation. | stored | `model res.company` (base) | `record rule BugFix-Accounting.rule_629_jin_multi_company_journal_types`<br>`server action BugFix-Accounting.sa_f5_x_journal_types_jin_company_id_in_journal_types`<br>`server action BugFix-Accounting.server_action_2871_jin_company_id_in_journal_types`<br>`view BugFix-Accounting.ported_view_5326_odoo_studio_default_7879380a_9ecc_4ca6_bfd3_fa82b991c3ce` |
-| `x_studio_description` | Description | char | Free-text description of the journal type. | stored |  | `view BugFix-Accounting.ported_view_5326_odoo_studio_default_7879380a_9ecc_4ca6_bfd3_fa82b991c3ce` |
+| `active` | Active | boolean | Active flag of the Journal Types record: unchecking it archives the record and hides it from default searches; defaults to checked via ir.default. | stored |  | `default BugFix-Accounting.default_390_x_journal_types_active`<br>`view BugFix-Accounting.ported_view_5321_default_form_view_fo_dbddc8a1_ea9d_47ba_8335_c08e4a53fc5c`<br>`view BugFix-Accounting.ported_view_5322_default_search_view_d3c181ad_9bc3_4cfc_9d60_2500bd38fe9f` |
+| `name` | Journal Type | char | Name of the journal type, shown in its list, form and search views. | stored; required |  | `view BugFix-Accounting.ported_view_5320_default_list_view_fo_02152264_7fd7_4b5e_8a84_ca3714db9fad`<br>`view BugFix-Accounting.ported_view_5321_default_form_view_fo_dbddc8a1_ea9d_47ba_8335_c08e4a53fc5c`<br>`view BugFix-Accounting.ported_view_5322_default_search_view_d3c181ad_9bc3_4cfc_9d60_2500bd38fe9f` |
+| `accounting_company_id` | Company | many2one → `res.company` | Company the Journal Types record belongs to; enforced by a multi-company record rule and filled on creation by the 'JIN Company Id' automation. | stored | `model res.company` (base) | `record rule BugFix-Accounting.rule_629_jin_multi_company_journal_types`<br>`server action BugFix-Accounting.sa_f5_x_journal_types_jin_company_id_in_journal_types`<br>`server action BugFix-Accounting.server_action_2871_jin_company_id_in_journal_types`<br>`view BugFix-Accounting.ported_view_5326_odoo_studio_default_7879380a_9ecc_4ca6_bfd3_fa82b991c3ce` |
+| `description` | Description | char | Free-text description of the journal type. | stored |  | `view BugFix-Accounting.ported_view_5326_odoo_studio_default_7879380a_9ecc_4ca6_bfd3_fa82b991c3ce` |
 | `x_studio_offset_account` | Offset Account | many2one → `account.account` | Default offset (contra) G/L account for this journal type, entered on its form; not read by logic in this repo. | stored | `model account.account` (account) | `view BugFix-Accounting.ported_view_5326_odoo_studio_default_7879380a_9ecc_4ca6_bfd3_fa82b991c3ce` |
-| `x_studio_sequence` | Sequence | integer | Sort order of Journal Types records in the list view (drag-and-drop handle); default value set by ir.default. | stored |  | `default BugFix-Accounting.default_391_x_journal_types_x_studio_sequence`<br>`view BugFix-Accounting.ported_view_5320_default_list_view_fo_02152264_7fd7_4b5e_8a84_ca3714db9fad` |
+| `sequence` | Sequence | integer | Sort order of Journal Types records in the list view (drag-and-drop handle); default value set by ir.default. | stored |  | `default BugFix-Accounting.default_391_x_journal_types_sequence`<br>`view BugFix-Accounting.ported_view_5320_default_list_view_fo_02152264_7fd7_4b5e_8a84_ca3714db9fad` |
 
 **Server actions (2):**
 
 - **Execute Code** (`server_action_2871_jin_company_id_in_journal_types`, type `code`)
   - Function: Run by the JIN automation: sets the Journal Type's Company to the user's currently active company.
-  - Depends on: `model res.company` (base), `model x_journal_types` (BugFix-Maintenance), `x_journal_types.x_studio_company_id` (BugFix-Maintenance)
+  - Depends on: `model res.company` (base), `model x_journal_types` (BugFix-Maintenance), `x_journal_types.accounting_company_id` (BugFix-Maintenance)
   - Used by: `automation BugFix-Accounting.base_automation_337_jin_company_id_in_journal_types`
   <details><summary>code (5 lines)</summary>
 
@@ -67,12 +67,12 @@ Journal type master (created by BugFix-Maintenance) that this repo also declares
 company_id = env.context.get("allowed_company_ids", [env.user.company_id.id])[0]
 company = env["res.company"].browse(company_id)
 
-record["x_studio_company_id"] = company.id
+record["accounting_company_id"] = company.id
 ```
   </details>
 - **JIN - Company Id in Journal Types** (`sa_f5_x_journal_types_jin_company_id_in_journal_types`, type `code`)
   - Function: Sets the Journal Types record's Company field to the user's currently active company (first allowed company in context).
-  - Depends on: `model res.company` (base), `model x_journal_types` (BugFix-Maintenance), `x_journal_types.x_studio_company_id` (BugFix-Maintenance)
+  - Depends on: `model res.company` (base), `model x_journal_types` (BugFix-Maintenance), `x_journal_types.accounting_company_id` (BugFix-Maintenance)
   - Used by: — (not linked to a button, menu or automation)
   <details><summary>code (4 lines)</summary>
 
@@ -80,7 +80,7 @@ record["x_studio_company_id"] = company.id
 company_id = env.context.get("allowed_company_ids", [env.user.company_id.id])[0]
 company = env["res.company"].browse(company_id)
 
-record["x_studio_company_id"] = company.id
+record["accounting_company_id"] = company.id
 ```
   </details>
 **Automations (1):**
@@ -99,10 +99,10 @@ record["x_studio_company_id"] = company.id
 
 | Name | Record name | Type | What it changes | Function | Depends on | Used by |
 |---|---|---|---|---|---|---|
-| Default form view for x_journal_types | `ported_view_5321_default_form_view_fo_dbddc8a1_ea9d_47ba_8335_c08e4a53fc5c` | form | full form layout with 5 fields | Default form for Journal Types: archived ribbon, required Name title, two empty groups and chatter. | `x_journal_types.activity_ids`<br>`x_journal_types.message_follower_ids`<br>`x_journal_types.message_ids`<br>`x_journal_types.x_active` (BugFix-Maintenance)<br>`x_journal_types.x_name` (BugFix-Maintenance) |  |
-| Default list view for x_journal_types | `ported_view_5320_default_list_view_fo_02152264_7fd7_4b5e_8a84_ca3714db9fad` | tree | full tree layout with 2 fields | Base list of Journal Types with sequence handle and Name; extended by its Studio customization. | `x_journal_types.x_name` (BugFix-Maintenance)<br>`x_journal_types.x_studio_sequence` (BugFix-Maintenance) | `view BugFix-Accounting.ported_view_5326_odoo_studio_default_7879380a_9ecc_4ca6_bfd3_fa82b991c3ce` |
-| Default search view for x_journal_types | `ported_view_5322_default_search_view_d3c181ad_9bc3_4cfc_9d60_2500bd38fe9f` | search | full search layout with 1 fields | Default search view for Journal Types: search by name plus an Archived filter. | `x_journal_types.x_active` (BugFix-Maintenance)<br>`x_journal_types.x_name` (BugFix-Maintenance) |  |
-| Odoo Studio: Default list view for x_journal_types customization | `ported_view_5326_odoo_studio_default_7879380a_9ecc_4ca6_bfd3_fa82b991c3ce` | tree | set editable=bottom on `//tree[1]`; set string=Journal Type on `//field[@name='x_name']`; after `//field[@name='x_name']`: add field x_studio_description, field x_studio_offset_account, field x_studio_company_id | Makes the Journal Types list inline-editable, labels Name as 'Journal Type' and adds Description, Offset Account and read-only Company columns. | `view BugFix-Accounting.ported_view_5320_default_list_view_fo_02152264_7fd7_4b5e_8a84_ca3714db9fad`<br>`x_journal_types.x_studio_company_id` (BugFix-Maintenance)<br>`x_journal_types.x_studio_description` (BugFix-Maintenance)<br>`x_journal_types.x_studio_offset_account` (BugFix-Maintenance) |  |
+| Default form view for x_journal_types | `ported_view_5321_default_form_view_fo_dbddc8a1_ea9d_47ba_8335_c08e4a53fc5c` | form | full form layout with 5 fields | Default form for Journal Types: archived ribbon, required Name title, two empty groups and chatter. | `x_journal_types.activity_ids`<br>`x_journal_types.message_follower_ids`<br>`x_journal_types.message_ids`<br>`x_journal_types.active` (BugFix-Maintenance)<br>`x_journal_types.name` (BugFix-Maintenance) |  |
+| Default list view for x_journal_types | `ported_view_5320_default_list_view_fo_02152264_7fd7_4b5e_8a84_ca3714db9fad` | tree | full tree layout with 2 fields | Base list of Journal Types with sequence handle and Name; extended by its Studio customization. | `x_journal_types.name` (BugFix-Maintenance)<br>`x_journal_types.sequence` (BugFix-Maintenance) | `view BugFix-Accounting.ported_view_5326_odoo_studio_default_7879380a_9ecc_4ca6_bfd3_fa82b991c3ce` |
+| Default search view for x_journal_types | `ported_view_5322_default_search_view_d3c181ad_9bc3_4cfc_9d60_2500bd38fe9f` | search | full search layout with 1 fields | Default search view for Journal Types: search by name plus an Archived filter. | `x_journal_types.active` (BugFix-Maintenance)<br>`x_journal_types.name` (BugFix-Maintenance) |  |
+| Odoo Studio: Default list view for x_journal_types customization | `ported_view_5326_odoo_studio_default_7879380a_9ecc_4ca6_bfd3_fa82b991c3ce` | tree | set editable=bottom on `//tree[1]`; set string=Journal Type on `//field[@name='name']`; after `//field[@name='name']`: add field description, field x_studio_offset_account, field accounting_company_id | Makes the Journal Types list inline-editable, labels Name as 'Journal Type' and adds Description, Offset Account and read-only Company columns. | `view BugFix-Accounting.ported_view_5320_default_list_view_fo_02152264_7fd7_4b5e_8a84_ca3714db9fad`<br>`x_journal_types.accounting_company_id` (BugFix-Maintenance)<br>`x_journal_types.description` (BugFix-Maintenance)<br>`x_journal_types.x_studio_offset_account` (BugFix-Maintenance) |  |
 
 **Access rights (2):**
 
@@ -115,4 +115,4 @@ record["x_studio_company_id"] = company.id
 
 | Name | Record name | Function | Depends on | Used by |
 |---|---|---|---|---|
-| JIN - Multi-Company - Journal Types | `rule_629_jin_multi_company_journal_types` | For everyone (global rule): read/write/create/delete on Journal Types only where `['|', ('x_studio_company_id', 'in', company_ids), ('x_studio_company_id', '=', False)]`. | `model x_journal_types` (BugFix-Maintenance)<br>`x_journal_types.x_studio_company_id` (BugFix-Maintenance) |  |
+| JIN - Multi-Company - Journal Types | `rule_629_jin_multi_company_journal_types` | For everyone (global rule): read/write/create/delete on Journal Types only where `['|', ('accounting_company_id', 'in', company_ids), ('accounting_company_id', '=', False)]`. | `model x_journal_types` (BugFix-Maintenance)<br>`x_journal_types.accounting_company_id` (BugFix-Maintenance) |  |

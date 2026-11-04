@@ -15,11 +15,11 @@
             <form>
               <header/>
               <sheet string="RM Sales Order Line">
-                <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="x_active == True"/>
-                <field name="x_active" invisible="1"/>
+                <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="active == True"/>
+                <field name="active" invisible="1"/>
                 <div class="oe_title">
                             <h1>
-                                <field name="x_name" required="1" placeholder="Name..."/>
+                                <field name="name" required="1" placeholder="Name..."/>
                             </h1>
                         </div>
                 <group name="studio_group_725b1a">
@@ -43,9 +43,9 @@
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <search>
-              <field name="x_name"/>
+              <field name="name"/>
               <separator/>
-              <filter string="Archived" name="archived_x_rm_sales_order_line" domain="[['x_active', '=', False]]"/>
+              <filter string="Archived" name="archived_x_rm_sales_order_line" domain="[['active', '=', False]]"/>
               <separator/>
             </search>
         </field>
@@ -58,8 +58,8 @@
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <tree>
-              <field name="x_studio_sequence" widget="handle"/>
-              <field name="x_name"/>
+              <field name="sequence" widget="handle"/>
+              <field name="name"/>
             </tree>
         </field>
     </record>
@@ -72,20 +72,20 @@
         <field name="inherit_id" ref="BugFix-Accounting.ported_view_3892_default_list_view_fo_ce8e1fd9_9851_4dbb_9241_b23919424fdb"/>
         <field name="arch" type="xml">
             <data>
-              <xpath expr="//field[@name='x_name']" position="attributes">
+              <xpath expr="//field[@name='name']" position="attributes">
                 <attribute name="column_invisible">1</attribute></xpath>
-              <xpath expr="//field[@name='x_name']" position="after">
+              <xpath expr="//field[@name='name']" position="after">
                 <field name="x_studio_sales_report_model_id" string="Sales Report Model Id"/>
                 <field name="x_studio_customer_acc" string="Customer Acc"/>
                 <field name="x_studio_customer_group" string="Customer Group"/>
                 <field name="x_studio_name" string="Name"/>
                 <field name="x_studio_product_1" string="Product"/>
-                <field name="x_studio_sales_order" string="Sales Order"/>
+                <field name="sales_order" string="Sales Order"/>
                 <field name="x_studio_invoice" string="Invoice"/>
                 <field name="x_studio_date" string="Date"/>
                 <field name="x_studio_product_category" string="Product Category"/>
-                <field name="x_studio_quantity" string="Quantity"/>
-                <field name="x_studio_unit_price" string="Unit Price"/>
+                <field name="quantity" string="Quantity"/>
+                <field name="unit_price" string="Unit Price"/>
                 <field name="x_studio_total_base_price" string="Total Base Price"/>
                 <field name="x_studio_disc_amount" string="Disc. Amount"/>
                 <field name="x_studio_disc_" string="Disc (%)"/>

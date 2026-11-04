@@ -35,7 +35,7 @@ else:
     <field name="code"><![CDATA[company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
 company = env['res.company'].browse(company_id)
 
-record['x_studio_company_id'] = company.id]]></field>
+record['accounting_company_id'] = company.id]]></field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
@@ -43,11 +43,11 @@ record['x_studio_company_id'] = company.id]]></field>
     <field name="name">LC Registration Seq.No</field>
     <field name="model_id" search="[('model', '=', 'x_lc_header')]"/>
     <field name="state">code</field>
-    <field name="code"><![CDATA[#record['x_name'] = env['ir.sequence'].next_by_code('purchase.request.seq')
+    <field name="code"><![CDATA[#record['name'] = env['ir.sequence'].next_by_code('purchase.request.seq')
 
-if record.x_name == 'New':
+if record.name == 'New':
  seq = env['ir.sequence'].next_by_code('lc.registration.seq')
- record.write({'x_name': seq})
+ record.write({'name': seq})
 
 
 
@@ -85,7 +85,7 @@ record['x_studio_selection_field_yo4qM'] = 'Posted'
 if record.id:
     lc = env['x_lc_header'].create({'x_studio_created_from_purchase_order': record.x_studio_created_from_purchase_order.id})
     lc.write({
-        'x_name': record.x_name,
+        'name': record.name,
         'x_studio_indent_no': record.x_studio_indent_no,
         'x_studio_additional_conditions': record.x_studio_additional_conditions,
         'x_studio_available_with_by': record.x_studio_available_with_by,
@@ -141,11 +141,11 @@ if record.id:
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[#record['x_name'] = env['ir.sequence'].next_by_code('purchase.request.seq')
+    <field name="code"><![CDATA[#record['name'] = env['ir.sequence'].next_by_code('purchase.request.seq')
 
-if record.x_name == 'New':
+if record.name == 'New':
  seq = env['ir.sequence'].next_by_code('lc.registration.seq')
- record.write({'x_name': seq})
+ record.write({'name': seq})
 
 
 
@@ -188,7 +188,7 @@ else:
     <field name="code"><![CDATA[company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
 company = env['res.company'].browse(company_id)
 
-record['x_studio_company_id'] = company.id]]></field>
+record['accounting_company_id'] = company.id]]></field>
   </record>
   <record id="server_action_1405_imp_amend_lc" model="ir.actions.server">
     <field name="name">IMP - Amend LC</field>
@@ -198,7 +198,7 @@ record['x_studio_company_id'] = company.id]]></field>
     <field name="binding_view_types">list,form</field>
     <field name="code"><![CDATA[if record.id:
   lc = env['x_lc_header'].create({'x_studio_created_from_purchase_order':record.x_studio_created_from_purchase_order.id})
-  lc.write({'x_name':record.x_name,
+  lc.write({'name':record.name,
             'x_studio_indent_no':record.x_studio_indent_no,
             'x_studio_additional_conditions':record.x_studio_additional_conditions,
             'x_studio_available_with_by':record.x_studio_available_with_by,
@@ -292,11 +292,11 @@ record['x_studio_selection_field_yo4qM'] = 'Posted'
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="code"><![CDATA[
-#record['x_name'] = env['ir.sequence'].next_by_code('purchase.request.seq')
+#record['name'] = env['ir.sequence'].next_by_code('purchase.request.seq')
 
-if record.x_name == 'New':
+if record.name == 'New':
  seq = env['ir.sequence'].next_by_code('lc.registration.seq')
- record.write({'x_name': seq})
+ record.write({'name': seq})
 
 
 
@@ -341,18 +341,18 @@ else:
 company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
 company = env['res.company'].browse(company_id)
 
-record['x_studio_company_id'] = company.id
+record['accounting_company_id'] = company.id
     ]]></field>
   </record>
     <data noupdate="1">
     <!-- DROPPED default_179_x_tp_invoice_header_x_studio_pipeline_status_bar: selection default (defer to user via UI) -->
 <!-- DROPPED default_180_x_tp_invoice_header_x_studio_status: selection default (defer to user via UI) -->
-<record id="default_185_x_lc_header_x_active" model="ir.default">
-      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_active"/>
+<record id="default_185_x_lc_header_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__active"/>
       <field name="json_value">true</field>
     </record>
-    <record id="default_186_x_lc_header_x_studio_sequence" model="ir.default">
-      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_studio_sequence"/>
+    <record id="default_186_x_lc_header_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__sequence"/>
       <field name="json_value">10</field>
     </record>
     <!-- DROPPED default_187_x_lc_header_x_studio_lc_credit_type: selection value 'Irrevocable' not in field allowed set -->
@@ -363,8 +363,8 @@ record['x_studio_company_id'] = company.id
 <!-- DROPPED default_192_x_lc_header_x_studio_transshipment: selection value 'Allowed' not in field allowed set -->
 <!-- DROPPED default_193_x_lc_header_x_studio_draft: selection value 'At Sight' not in field allowed set -->
 <!-- DROPPED default_194_x_lc_header_x_studio_confirmation_instructions: selection value 'None' not in field allowed set -->
-<record id="default_195_x_lc_header_x_name" model="ir.default">
-      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__x_name"/>
+<record id="default_195_x_lc_header_name" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_lc_header__name"/>
       <field name="json_value">"New"</field>
     </record>
     <!-- DROPPED default_197_x_lc_header_x_studio_selection_field_yo4qM: selection value 'Draft' not in field allowed set -->

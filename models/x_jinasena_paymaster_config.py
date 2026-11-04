@@ -5,13 +5,13 @@ class XJinasenaPaymasterConfig(models.Model):
     """Studio-ported custom model x_jinasena_paymaster_config."""
 
     _name = "x_jinasena_paymaster_config"
-    _rec_name = "x_name"  # Clear-DB Studio model: records are named by x_name
+    _rec_name = "name"  # Clear-DB Studio model: records are named by name
     _description = "CBC Paymaster Config"
 
     x_cr_dr_code = fields.Char(string="Cr/Dr Code (H)")
     x_currency_code = fields.Char(string="Currency Code (K)")
     x_filler = fields.Char(string="Filler (T)")
-    x_name = fields.Char(string="Name")
+    name = fields.Char(string="Name")
     x_orig_account = fields.Char(string="Orig Account (N)")
     x_orig_bank_micr = fields.Char(string="Orig Bank MICR (L)")
     x_orig_branch = fields.Char(string="Orig Branch (M)")
@@ -24,12 +24,12 @@ class XJinasenaPaymasterConfig(models.Model):
 
 class XJinasenaPaymasterConfigGap(models.Model):
     _inherit = "x_jinasena_paymaster_config"
-    _rec_name = "x_name"  # Clear-DB Studio model: records are named by x_name
+    _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
     x_cr_dr_code = fields.Char(string="Cr/Dr Code (H)")
     x_currency_code = fields.Char(string="Currency Code (K)")
     x_filler = fields.Char(string="Filler (T)")
-    x_name = fields.Char(string="Name")
+    name = fields.Char(string="Name")
     x_orig_account = fields.Char(string="Orig Account (N)")
     x_orig_bank_micr = fields.Char(string="Orig Bank MICR (L)")
     x_orig_branch = fields.Char(string="Orig Branch (M)")

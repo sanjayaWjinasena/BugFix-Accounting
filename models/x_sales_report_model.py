@@ -5,12 +5,12 @@ from odoo import fields, models
 
 class XSalesReportModel(models.Model):
     _name = "x_sales_report_model"
-    _rec_name = "x_name"  # Clear-DB Studio model: records are named by x_name
+    _rec_name = "name"  # Clear-DB Studio model: records are named by name
     _description = "Sales Report Model"
 
     _inherit = ["mail.thread", "mail.activity.mixin"]
-    x_active = fields.Boolean(string="Active")
-    x_name = fields.Char(string="Name")
+    active = fields.Boolean(string="Active")
+    name = fields.Char(string="Name")
     x_studio_actual_gp_ = fields.Float(string="Actual GP")
     x_studio_actual_line_ids = fields.One2many(
         "x_rm_gross_margin_actu",
@@ -28,7 +28,7 @@ class XSalesReportModel(models.Model):
         string="Comparison Line Ids",
     )
     x_studio_contingency_ = fields.Float(string="Contingency %")
-    x_studio_created_date = fields.Date(string="Created Date")
+    created_date = fields.Date(string="Created Date")
     x_studio_created_from_project_update = fields.Many2one(
         "project.update", string="Created From Project Update"
     )
@@ -183,13 +183,13 @@ class XSalesReportModel(models.Model):
     x_studio_selection_field_Fbw0x = fields.Selection(
         [("Draft", "Draft"), ("Done", "Done")], string="Status"
     )
-    x_studio_sequence = fields.Integer(string="Sequence")
+    sequence = fields.Integer(string="Sequence")
     x_studio_sscl = fields.Float(string="SSCL %")
 
 
 class XSalesReportModelGap(models.Model):
     _inherit = "x_sales_report_model"
-    _rec_name = "x_name"  # Clear-DB Studio model: records are named by x_name
+    _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    x_active = fields.Boolean(string="Active")
-    x_name = fields.Char(string="Name")
+    active = fields.Boolean(string="Active")
+    name = fields.Char(string="Name")

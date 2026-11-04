@@ -3,7 +3,7 @@ from odoo import fields, models
 
 class XRmDateTestGap(models.Model):
     _inherit = "x_rm_date_test"
-    _rec_name = "x_name"  # Clear-DB Studio model: records are named by x_name
+    _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    x_active = fields.Boolean(string="Active")
-    x_name = fields.Char(string="Name")
+    active = fields.Boolean(string="Active")
+    name = fields.Char(string="Name")

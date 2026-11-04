@@ -13,11 +13,11 @@ class XRmDailySalesRepor(models.Model):
     _name = "x_rm_daily_sales_repor"
     _description = "RM Daily Sales Report"
     _inherit = ["mail.thread", "mail.activity.mixin"]
-    _order = "x_studio_sequence, id"
-    _rec_name = "x_name"
+    _order = "sequence, id"
+    _rec_name = "name"
 
-    x_active = fields.Boolean(string="Active", default=True)
-    x_name = fields.Char(string="Name")
+    active = fields.Boolean(string="Active", default=True)
+    name = fields.Char(string="Name")
     x_studio_achieve_cumulative_ = fields.Float(string="Achieve Cumulative (%)")
     x_studio_achievement_ = fields.Float(string="Achievement (%)")
     x_studio_m_sales_target = fields.Float(string="M. Sales Target")
@@ -36,12 +36,12 @@ class XRmDailySalesRepor(models.Model):
         "x_sales_report_model",
         string="Sales Report Model Id",
     )
-    x_studio_sequence = fields.Integer(string="Sequence", default=10)
+    sequence = fields.Integer(string="Sequence", default=10)
 
 
 class XRmDailySalesReporGap(models.Model):
     _inherit = "x_rm_daily_sales_repor"
-    _rec_name = "x_name"  # Clear-DB Studio model: records are named by x_name
+    _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    x_active = fields.Boolean(string="Active")
-    x_name = fields.Char(string="Name")
+    active = fields.Boolean(string="Active")
+    name = fields.Char(string="Name")

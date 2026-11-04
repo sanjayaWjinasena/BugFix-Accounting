@@ -7,7 +7,7 @@
     <field name="code"><![CDATA[company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
 company = env['res.company'].browse(company_id)
 
-record['x_studio_company_id'] = company.id]]></field>
+record['accounting_company_id'] = company.id]]></field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
@@ -20,7 +20,7 @@ record['x_studio_company_id'] = company.id]]></field>
     <field name="code"><![CDATA[company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
 company = env['res.company'].browse(company_id)
 
-record['x_studio_company_id'] = company.id]]></field>
+record['accounting_company_id'] = company.id]]></field>
   </record>
   <record id="base_automation_337_jin_company_id_in_journal_types" model="base.automation">
     <field name="name">JIN - Company Id in Journal Types</field>
@@ -39,16 +39,16 @@ record['x_studio_company_id'] = company.id]]></field>
 company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
 company = env['res.company'].browse(company_id)
 
-record['x_studio_company_id'] = company.id
+record['accounting_company_id'] = company.id
     ]]></field>
   </record>
     <data noupdate="1">
-    <record id="default_390_x_journal_types_x_active" model="ir.default">
-      <field name="field_id" ref="BugFix-Accounting.field_x_journal_types__x_active"/>
+    <record id="default_390_x_journal_types_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_journal_types__active"/>
       <field name="json_value">true</field>
     </record>
-    <record id="default_391_x_journal_types_x_studio_sequence" model="ir.default">
-      <field name="field_id" ref="BugFix-Accounting.field_x_journal_types__x_studio_sequence"/>
+    <record id="default_391_x_journal_types_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_journal_types__sequence"/>
       <field name="json_value">10</field>
     </record>
     </data>

@@ -37,11 +37,11 @@
             <form>
               <header/>
               <sheet string="Consignment Charge Header">
-                <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="x_active == True"/>
-                <field name="x_active" invisible="1"/>
+                <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="active == True"/>
+                <field name="active" invisible="1"/>
                 <div class="oe_title">
                             <h1>
-                                <field name="x_name" required="1" placeholder="Name..."/>
+                                <field name="name" required="1" placeholder="Name..."/>
                             </h1>
                         </div>
                 <group name="studio_group_99a601">
@@ -65,9 +65,9 @@
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <search>
-              <field name="x_name"/>
+              <field name="name"/>
               <separator/>
-              <filter string="Archived" name="archived_x_consignment_charge_h" domain="[['x_active', '=', False]]"/>
+              <filter string="Archived" name="archived_x_consignment_charge_h" domain="[['active', '=', False]]"/>
               <separator/>
             </search>
         </field>
@@ -80,8 +80,8 @@
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <tree>
-              <field name="x_studio_sequence" widget="handle"/>
-              <field name="x_name"/>
+              <field name="sequence" widget="handle"/>
+              <field name="name"/>
             </tree>
         </field>
     </record>
@@ -125,20 +125,20 @@
                 <attribute name="delete">false</attribute>
                 <attribute name="editable">bottom</attribute>
               </xpath>
-              <xpath expr="//field[@name='x_studio_sequence']" position="attributes">
+              <xpath expr="//field[@name='sequence']" position="attributes">
                 <attribute name="column_invisible">1</attribute></xpath>
-              <xpath expr="//field[@name='x_studio_sequence']" position="after">
+              <xpath expr="//field[@name='sequence']" position="after">
                 <field name="x_studio_charge_group" readonly="1"/>
                 <field name="x_studio_charge_name" readonly="1"/>
                 <field name="x_studio_amount" readonly="(x_studio_allocate_header_charges == True) or (x_studio_charge_group != 'Charges')"/>
                 <field name="x_studio_ledger_post" widget="boolean" readonly="x_studio_allocate_header_charges == True"/>
-                <field optional="show" name="x_studio_company_id" string="Company" column_invisible="1"/>
+                <field optional="show" name="accounting_company_id" string="Company" column_invisible="1"/>
                 <field name="x_studio_tax_appicable" string="Tax Applicable" column_invisible="1"/>
                 <field name="x_studio_tax_appicable2" string="Tax Applicable2" column_invisible="1"/>
                 <field name="x_studio_tp_processed" string="TP Processed" column_invisible="1"/>
                 <field name="x_studio_allocate_header_charges" string="Allocate Header Charges" column_invisible="1"/>
               </xpath>
-              <xpath expr="//field[@name='x_name']" position="attributes">
+              <xpath expr="//field[@name='name']" position="attributes">
                 <attribute name="column_invisible">1</attribute></xpath>
             </data>
         </field>

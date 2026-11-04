@@ -277,9 +277,9 @@ class AccountPayment(models.Model):
         store=True,
         readonly=True,
     )
-    x_studio_over_bank_guarantee = fields.Boolean(
+    over_bank_guarantee = fields.Boolean(
         string="Over Bank Guarantee",
-        related="move_id.x_studio_over_bank_guarantee",
+        related="move_id.over_bank_guarantee",
         store=True,
         readonly=True,
     )
@@ -336,7 +336,7 @@ class AccountPayment(models.Model):
         store=True,
         readonly=True,
     )
-    x_studio_quotation_type = fields.Selection(
+    quotation_type = fields.Selection(
         [("Sales", "Sales"), ("Project", "Project"), ("Repair", "Repair")],
         string="Quotation Type",
     )
@@ -389,15 +389,15 @@ class AccountPayment(models.Model):
         store=False,
         readonly=True,
     )
-    x_studio_rug_acc_updated = fields.Boolean(
+    rug_acc_updated = fields.Boolean(
         string="RUG Account Updated",
-        related="move_id.x_studio_rug_acc_updated",
+        related="move_id.rug_acc_updated",
         store=True,
         readonly=True,
     )
-    x_studio_rug_confirmed = fields.Boolean(
+    rug_confirmed = fields.Boolean(
         string="RUG Confirmed",
-        related="move_id.x_studio_rug_confirmed",
+        related="move_id.rug_confirmed",
         store=True,
         readonly=True,
     )
@@ -414,7 +414,7 @@ class AccountPayment(models.Model):
         store=False,
         readonly=True,
     )
-    x_studio_sales_order = fields.Many2one("sale.order", string="Sales Order")
+    sales_order = fields.Many2one("sale.order", string="Sales Order")
     x_studio_selection_field_5Gimk = fields.Selection(
         [], string="New Selection", store=False
     )
@@ -474,10 +474,10 @@ class AccountPayment(models.Model):
         readonly=True,
     )
 
-    @api.depends("x_studio_quotation_type", "x_studio_sales_order", "amount")
+    @api.depends("quotation_type", "sales_order", "amount")
     def _compute_x_studio_payment_validation(self):
         # Ported from CDB Studio compute (bugfix_sales:config-cutover-v22).
         # Minimal semantics: True when a sales_order link exists AND amount > 0.
         for rec in self:
-            has_so = bool(getattr(rec, "x_studio_sales_order", False))
+            has_so = bool(getattr(rec, "sales_order", False))
             rec.x_studio_payment_validation = has_so and (rec.amount or 0) > 0

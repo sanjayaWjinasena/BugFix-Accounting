@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data noupdate="1">
-    <record id="default_287_x_rm_sales_prod_purch_x_active" model="ir.default">
-      <field name="field_id" ref="BugFix-Accounting.field_x_rm_sales_prod_purch__x_active"/>
+    <record id="default_287_x_rm_sales_prod_purch_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_rm_sales_prod_purch__active"/>
       <field name="json_value">true</field>
     </record>
-    <record id="default_288_x_rm_sales_prod_purch_x_studio_sequence" model="ir.default">
-      <field name="field_id" ref="BugFix-Accounting.field_x_rm_sales_prod_purch__x_studio_sequence"/>
+    <record id="default_288_x_rm_sales_prod_purch_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_rm_sales_prod_purch__sequence"/>
       <field name="json_value">10</field>
     </record>
     </data>

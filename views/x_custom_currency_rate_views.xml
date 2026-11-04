@@ -34,11 +34,11 @@
       <form>
         <header/>
         <sheet string="Custom Currency Rate">
-          <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="x_active == True"/>
-          <field name="x_active" invisible="1"/>
+          <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="active == True"/>
+          <field name="active" invisible="1"/>
           <div class="oe_title">
                       <h1>
-                          <field name="x_name" required="1" placeholder="Name..."/>
+                          <field name="name" required="1" placeholder="Name..."/>
                       </h1>
                   </div>
           <group name="studio_group_e8c751">
@@ -59,8 +59,8 @@
     <field name="mode">primary</field>
     <field name="arch" type="xml">
       <tree>
-        <field name="x_studio_sequence" widget="handle"/>
-        <field name="x_name"/>
+        <field name="sequence" widget="handle"/>
+        <field name="name"/>
       </tree>
     </field>
   </record>
@@ -73,9 +73,9 @@
     <field name="mode">primary</field>
     <field name="arch" type="xml">
       <search>
-        <field name="x_name"/>
+        <field name="name"/>
         <separator/>
-        <filter string="Archived" name="archived_x_custom_currency_rate" domain="[['x_active', '=', False]]"/>
+        <filter string="Archived" name="archived_x_custom_currency_rate" domain="[['active', '=', False]]"/>
         <separator/>
       </search>
     </field>
@@ -107,9 +107,9 @@
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <search>
-              <field name="x_name"/>
+              <field name="name"/>
               <separator/>
-              <filter string="Archived" name="archived_x_custom_currency_rate" domain="[['x_active', '=', False]]"/>
+              <filter string="Archived" name="archived_x_custom_currency_rate" domain="[['active', '=', False]]"/>
               <separator/>
             </search>
         </field>
@@ -123,7 +123,7 @@
         <field name="inherit_id" ref="BugFix-Accounting.ported_default_form_view_fo_f5872bac_d1f7_4709_a9b1_364b0db1710c"/>
         <field name="arch" type="xml">
             <data>
-              <xpath expr="//field[@name='x_name']" position="attributes">
+              <xpath expr="//field[@name='name']" position="attributes">
                 <attribute name="invisible">1</attribute><attribute name="required"/></xpath>
               <xpath expr="//group[@name='studio_group_e8c751_left']" position="inside">
                 <field name="x_studio_start_date" string="Start Date"/>
@@ -146,15 +146,15 @@
               <xpath expr="//tree[1]" position="attributes">
                 <attribute name="editable">bottom</attribute>
               </xpath>
-              <xpath expr="//field[@name='x_studio_sequence']" position="before">
+              <xpath expr="//field[@name='sequence']" position="before">
                 <field name="x_studio_start_date" required="1"/>
                 <field name="x_studio_end_date" required="1"/>
                 <field name="x_studio_rate" required="1"/>
-                <field optional="show" name="x_studio_company_id" string="Company" column_invisible="1"/>
+                <field optional="show" name="accounting_company_id" string="Company" column_invisible="1"/>
               </xpath>
-              <xpath expr="//field[@name='x_studio_sequence']" position="attributes">
+              <xpath expr="//field[@name='sequence']" position="attributes">
                 <attribute name="column_invisible">1</attribute></xpath>
-              <xpath expr="//field[@name='x_name']" position="attributes">
+              <xpath expr="//field[@name='name']" position="attributes">
                 <attribute name="column_invisible">1</attribute></xpath>
             </data>
         </field>

@@ -16,11 +16,11 @@
       <form>
         <header/>
         <sheet string="RM Gross Margin - Actuals">
-          <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="x_active == True"/>
-          <field name="x_active" invisible="1"/>
+          <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="active == True"/>
+          <field name="active" invisible="1"/>
           <div class="oe_title">
                       <h1>
-                          <field name="x_name" required="1" placeholder="Name..."/>
+                          <field name="name" required="1" placeholder="Name..."/>
                       </h1>
                   </div>
           <group name="studio_group_0c65e4">
@@ -41,8 +41,8 @@
     <field name="mode">primary</field>
     <field name="arch" type="xml">
       <tree>
-        <field name="x_studio_sequence" widget="handle"/>
-        <field name="x_name"/>
+        <field name="sequence" widget="handle"/>
+        <field name="name"/>
       </tree>
     </field>
   </record>
@@ -55,9 +55,9 @@
     <field name="mode">primary</field>
     <field name="arch" type="xml">
       <search>
-        <field name="x_name"/>
+        <field name="name"/>
         <separator/>
-        <filter string="Archived" name="archived_x_rm_gross_margin_actu" domain="[['x_active', '=', False]]"/>
+        <filter string="Archived" name="archived_x_rm_gross_margin_actu" domain="[['active', '=', False]]"/>
         <separator/>
       </search>
     </field>
@@ -90,9 +90,9 @@
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <search>
-              <field name="x_name"/>
+              <field name="name"/>
               <separator/>
-              <filter string="Archived" name="archived_x_rm_gross_margin_actu" domain="[['x_active', '=', False]]"/>
+              <filter string="Archived" name="archived_x_rm_gross_margin_actu" domain="[['active', '=', False]]"/>
               <separator/>
             </search>
         </field>
@@ -109,18 +109,18 @@
               <xpath expr="//tree[1]" position="attributes">
                 <attribute name="editable">bottom</attribute>
               </xpath>
-              <xpath expr="//field[@name='x_studio_sequence']" position="before">
+              <xpath expr="//field[@name='sequence']" position="before">
                 <field optional="show" name="x_studio_transaction_type_1" string="Transaction Type"/>
                 <field optional="show" name="x_studio_other_expenses" string="Other Expenses"/>
                 <field optional="show" name="x_studio_estimated_total" string="Estimated Total"/>
                 <field optional="show" name="x_studio_cost_price" string="Cost Price"/>
                 <field optional="show" name="x_studio_variance_est_act" string="Variance (Est - Act)"/>
               </xpath>
-              <xpath expr="//field[@name='x_studio_sequence']" position="attributes">
+              <xpath expr="//field[@name='sequence']" position="attributes">
                 <attribute name="column_invisible">1</attribute></xpath>
-              <xpath expr="//field[@name='x_name']" position="attributes">
+              <xpath expr="//field[@name='name']" position="attributes">
                 <attribute name="column_invisible">1</attribute></xpath>
-              <xpath expr="//field[@name='x_name']" position="after">
+              <xpath expr="//field[@name='name']" position="after">
                 <field optional="show" name="x_studio_sales_report_model_id" string="Sales Report Model Id" column_invisible="1"/>
                 <field optional="show" name="x_studio_header_reference" string="Header Reference" column_invisible="1"/>
               </xpath>

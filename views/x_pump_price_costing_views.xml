@@ -24,8 +24,8 @@
     <field name="active" eval="True"/>
     <field name="arch" type="xml">
 <tree>
-  <field name="x_studio_sequence" widget="handle"/>
-  <field name="x_name"/>
+  <field name="sequence" widget="handle"/>
+  <field name="name"/>
 </tree>
     </field>
   </record>
@@ -45,13 +45,13 @@
     <attribute name="edit">false</attribute>
     <attribute name="editable">bottom</attribute>
   </xpath>
-  <xpath expr="//field[@name='x_studio_sequence']" position="after">
+  <xpath expr="//field[@name='sequence']" position="after">
     <field optional="show" name="x_studio_sales_report_model_id" string="Report Reference"/>
     <field name="x_studio_product_id_1" optional="show"/>
   </xpath>
-  <xpath expr="//field[@name='x_name']" position="attributes">
+  <xpath expr="//field[@name='name']" position="attributes">
     <attribute name="column_invisible">1</attribute></xpath>
-  <xpath expr="//field[@name='x_name']" position="after">
+  <xpath expr="//field[@name='name']" position="after">
     <field name="x_studio_satd_discount" optional="show"/>
     <field name="x_studio_distributor_addition" optional="show"/>
     <field name="x_studio_max_discount" optional="show"/>
@@ -97,11 +97,11 @@
         <form>
   <header/>
   <sheet string="Pump Price Costing">
-    <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="x_active == True"/>
-    <field name="x_active" invisible="1"/>
+    <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="active == True"/>
+    <field name="active" invisible="1"/>
     <div class="oe_title">
                 <h1>
-                    <field name="x_name" required="1" placeholder="Name..."/>
+                    <field name="name" required="1" placeholder="Name..."/>
                 </h1>
             </div>
     <group name="studio_group_3ebdf2">
@@ -123,9 +123,9 @@
       <field name="type">search</field>
       <field name="arch" type="xml">
         <search>
-  <field name="x_name"/>
+  <field name="name"/>
   <separator/>
-  <filter string="Archived" name="archived_x_pump_price_costing" domain="[['x_active', '=', False]]"/>
+  <filter string="Archived" name="archived_x_pump_price_costing" domain="[['active', '=', False]]"/>
   <separator/>
 </search>
       </field>

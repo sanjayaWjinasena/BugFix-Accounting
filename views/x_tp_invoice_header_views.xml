@@ -46,15 +46,15 @@
         </header>
         <header/>
         <sheet string="TP Invoice Header">
-          <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="x_active == True"/>
-          <field name="x_active" invisible="1"/>
+          <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="active == True"/>
+          <field name="active" invisible="1"/>
           <!-- v0.0.29: sentinel for the button's invisible modifier.
                Full x_studio_status visibility comes from the extension view. -->
           <field name="x_studio_status" invisible="1"/>
           <div class="oe_title">
                       <span class="o_form_label">Invoice Reference</span>
                       <h1>
-                          <field name="x_name" required="1" placeholder="Name..."/>
+                          <field name="name" required="1" placeholder="Name..."/>
                       </h1>
                   </div>
           <group name="studio_group_c9cf25">
@@ -75,8 +75,8 @@
     <field name="mode">primary</field>
     <field name="arch" type="xml">
       <tree>
-        <field name="x_studio_sequence" widget="handle"/>
-        <field name="x_name"/>
+        <field name="sequence" widget="handle"/>
+        <field name="name"/>
       </tree>
     </field>
   </record>
@@ -89,9 +89,9 @@
     <field name="mode">primary</field>
     <field name="arch" type="xml">
       <search>
-        <field name="x_name"/>
+        <field name="name"/>
         <separator/>
-        <filter string="Archived" name="archived_x_tp_invoice_header" domain="[['x_active', '=', False]]"/>
+        <filter string="Archived" name="archived_x_tp_invoice_header" domain="[['active', '=', False]]"/>
         <separator/>
       </search>
     </field>
@@ -124,9 +124,9 @@
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <search>
-              <field name="x_name"/>
+              <field name="name"/>
               <separator/>
-              <filter string="Archived" name="archived_x_tp_invoice_header" domain="[['x_active', '=', False]]"/>
+              <filter string="Archived" name="archived_x_tp_invoice_header" domain="[['active', '=', False]]"/>
               <separator/>
             </search>
         </field>
@@ -152,7 +152,7 @@
                   </button>
                 </div>
               </xpath>
-              <xpath expr="//form[1]/sheet[1]/div[not(@name)][1]/h1[1]/field[@name='x_name']" position="attributes">
+              <xpath expr="//form[1]/sheet[1]/div[not(@name)][1]/h1[1]/field[@name='name']" position="attributes">
                 <attribute name="force_save">True</attribute>
                 <attribute name="readonly">1</attribute></xpath>
               <xpath expr="//group[@name='studio_group_c9cf25_left']" position="inside">
@@ -177,8 +177,8 @@
                         <field name="x_studio_invoice_amount"/>
                         <field optional="show" name="x_studio_taxes" string="Taxes" widget="many2many_tags" options="{&quot;no_create&quot;:true}"/>
                         <field optional="show" name="x_studio_tax_amount" string="Tax Amount"/>
-                        <field name="x_studio_sequence" widget="handle" column_invisible="1"/>
-                        <field name="x_name" column_invisible="1"/>
+                        <field name="sequence" widget="handle" column_invisible="1"/>
+                        <field name="name" column_invisible="1"/>
                       </tree>
                     </field>
                     <group class="oe_subtotal_footer oe_right">
@@ -208,12 +208,12 @@
                 <attribute name="create">false</attribute>
                 <attribute name="delete">false</attribute>
               </xpath>
-              <xpath expr="//field[@name='x_studio_sequence']" position="attributes">
+              <xpath expr="//field[@name='sequence']" position="attributes">
                 <attribute name="column_invisible">1</attribute></xpath>
-              <xpath expr="//field[@name='x_name']" position="attributes">
+              <xpath expr="//field[@name='name']" position="attributes">
                 <attribute name="string">Invoice Reference</attribute>
               </xpath>
-              <xpath expr="//field[@name='x_name']" position="after">
+              <xpath expr="//field[@name='name']" position="after">
                 <field name="x_studio_status" optional="show"/>
                 <field name="x_studio_vendor"/>
                 <field name="x_studio_invoice_no"/>

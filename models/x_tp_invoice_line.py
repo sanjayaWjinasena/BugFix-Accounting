@@ -13,11 +13,11 @@ class XTpInvoiceLine(models.Model):
     _name = "x_tp_invoice_line"
     _description = "TP Invoice Line"
     _inherit = ["mail.thread", "mail.activity.mixin"]
-    _order = "x_studio_sequence, id"
-    _rec_name = "x_name"
+    _order = "sequence, id"
+    _rec_name = "name"
 
-    x_active = fields.Boolean(string="Active", default=True)
-    x_name = fields.Char(string="Name")
+    active = fields.Boolean(string="Active", default=True)
+    name = fields.Char(string="Name")
     x_studio_basis = fields.Selection(
         [
             ("Percentage", "Percentage"),
@@ -45,7 +45,7 @@ class XTpInvoiceLine(models.Model):
     )
     x_studio_invoice_amount = fields.Float(string="Invoice Amount")
     x_studio_original_amount = fields.Float(string="Original Amount")
-    x_studio_sequence = fields.Integer(string="Sequence", default=10)
+    sequence = fields.Integer(string="Sequence", default=10)
     x_studio_tax_amount = fields.Float(string="Tax Amount")
     x_studio_taxes = fields.Many2many("account.tax", string="Taxes")
     x_studio_tp_invoice_header_id = fields.Many2one(
@@ -57,7 +57,7 @@ class XTpInvoiceLine(models.Model):
 
 class XTpInvoiceLineGap(models.Model):
     _inherit = "x_tp_invoice_line"
-    _rec_name = "x_name"  # Clear-DB Studio model: records are named by x_name
+    _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    x_active = fields.Boolean(string="Active")
-    x_name = fields.Char(string="Name")
+    active = fields.Boolean(string="Active")
+    name = fields.Char(string="Name")

@@ -21,7 +21,7 @@ Every compute traverses either:
   * standard-Odoo fields (crossovered_budget_line.planned_amount,
     .practical_amount, .general_budget_id.name)
   * Studio fields on sale.order provided by BugFix-Sales
-    (x_studio_quotation_type, x_studio_inventory_short,
+    (quotation_type, x_studio_inventory_short,
     x_studio_sub_contract)
   * x_purchase_request records provided by BugFix-Purchase
     (searched by x_studio_created_from_so pointing at the linked SO)
@@ -265,7 +265,7 @@ class CrossoveredBudget(models.Model):
             )
 
     @api.depends(
-        "x_studio_created_from_sales_order_1.x_studio_quotation_type",
+        "x_studio_created_from_sales_order_1.quotation_type",
         "x_studio_created_from_sales_order_1.x_studio_inventory_short",
     )
     def _compute_x_studio_confirm_status(self):
@@ -282,7 +282,7 @@ class CrossoveredBudget(models.Model):
         for rec in self:
             valid_lines = False
             so = rec.x_studio_created_from_sales_order_1
-            if so and so.x_studio_quotation_type == "Project":
+            if so and so.quotation_type == "Project":
                 if so.x_studio_inventory_short:
                     if PurchaseRequest is not None:
                         pr = PurchaseRequest.search(
@@ -314,7 +314,7 @@ class CrossoveredBudget(models.Model):
         for rec in self:
             valid = False
             so = rec.x_studio_created_from_sales_order_1
-            if so and so.x_studio_quotation_type == "Project":
+            if so and so.quotation_type == "Project":
                 if so.x_studio_sub_contract:
                     if PurchaseRequest is not None:
                         pr = PurchaseRequest.search(

@@ -6,17 +6,17 @@
     <field name="state">code</field>
     <field name="code"><![CDATA[# bugfix_sales:config-cutover-v22
 if record.state == 'draft':
-  if record.x_studio_quotation_type == 'Repair':
+  if record.quotation_type == 'Repair':
     sum_total = 0
     so_value = 0
-    payment = env['account.payment'].search([('x_studio_sales_order', '=', record.x_studio_sales_order.id),('state', '=', 'posted')])
+    payment = env['account.payment'].search([('sales_order', '=', record.sales_order.id),('state', '=', 'posted')])
     if payment:
       for total in payment:
         sum_total += total.amount
           
     min_magin = record.company_id
     if min_magin:
-      so_value = round(record.x_studio_sales_order.amount_total * (min_magin.x_studio_advance_payment_/100),2)
+      so_value = round(record.sales_order.amount_total * (min_magin.x_studio_advance_payment_/100),2)
         
     if so_value > (record.amount + sum_total):
       raise UserError('Payment is not within the minimum precentage.')
@@ -48,17 +48,17 @@ if record.state == 'draft':
     <field name="state">code</field>
     <field name="code"><![CDATA[# bugfix_sales:config-cutover-v22
 if record.state == 'draft':
-  if record.x_studio_quotation_type == 'Repair':
+  if record.quotation_type == 'Repair':
     sum_total = 0
     so_value = 0
-    payment = env['account.payment'].search([('x_studio_sales_order', '=', record.x_studio_sales_order.id),('state', '=', 'posted')])
+    payment = env['account.payment'].search([('sales_order', '=', record.sales_order.id),('state', '=', 'posted')])
     if payment:
       for total in payment:
         sum_total += total.amount
           
     min_magin = record.company_id
     if min_magin:
-      so_value = round(record.x_studio_sales_order.amount_total * (min_magin.x_studio_advance_payment_/100),2)
+      so_value = round(record.sales_order.amount_total * (min_magin.x_studio_advance_payment_/100),2)
         
     if so_value > (record.amount + sum_total):
       raise UserError('Payment is not within the minimum precentage.')
@@ -316,17 +316,17 @@ if records:
     <field name="code"><![CDATA[
 # bugfix_sales:config-cutover-v22
 if record.state == 'draft':
-  if record.x_studio_quotation_type == 'Repair':
+  if record.quotation_type == 'Repair':
     sum_total = 0
     so_value = 0
-    payment = env['account.payment'].search([('x_studio_sales_order', '=', record.x_studio_sales_order.id),('state', '=', 'posted')])
+    payment = env['account.payment'].search([('sales_order', '=', record.sales_order.id),('state', '=', 'posted')])
     if payment:
       for total in payment:
         sum_total += total.amount
           
     min_magin = record.company_id
     if min_magin:
-      so_value = round(record.x_studio_sales_order.amount_total * (min_magin.x_studio_advance_payment_/100),2)
+      so_value = round(record.sales_order.amount_total * (min_magin.x_studio_advance_payment_/100),2)
         
     if so_value > (record.amount + sum_total):
       raise UserError('Payment is not within the minimum precentage.')

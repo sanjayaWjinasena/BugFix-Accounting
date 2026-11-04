@@ -20,7 +20,7 @@
     <field name="code"><![CDATA[company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
 company = env['res.company'].browse(company_id)
 
-record['x_studio_company_id'] = company.id]]></field>
+record['accounting_company_id'] = company.id]]></field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
@@ -43,7 +43,7 @@ record['x_studio_company_id'] = company.id]]></field>
     <field name="code"><![CDATA[company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
 company = env['res.company'].browse(company_id)
 
-record['x_studio_company_id'] = company.id]]></field>
+record['accounting_company_id'] = company.id]]></field>
     <field name="usage">base_automation</field>
   </record>
   <record id="automation_60_imp_validate_from_to_dates_in_custom_rates" model="base.automation">
@@ -99,16 +99,16 @@ if record.x_studio_end_date < record.x_studio_start_date:
 company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
 company = env['res.company'].browse(company_id)
 
-record['x_studio_company_id'] = company.id
+record['accounting_company_id'] = company.id
     ]]></field>
   </record>
     <data noupdate="1">
-    <record id="default_157_x_custom_currency_rate_x_active" model="ir.default">
-      <field name="field_id" ref="BugFix-Accounting.field_x_custom_currency_rate__x_active"/>
+    <record id="default_157_x_custom_currency_rate_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_custom_currency_rate__active"/>
       <field name="json_value">true</field>
     </record>
-    <record id="default_158_x_custom_currency_rate_x_studio_sequence" model="ir.default">
-      <field name="field_id" ref="BugFix-Accounting.field_x_custom_currency_rate__x_studio_sequence"/>
+    <record id="default_158_x_custom_currency_rate_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_custom_currency_rate__sequence"/>
       <field name="json_value">10</field>
     </record>
     </data>

@@ -13,19 +13,19 @@ from odoo import fields, models
 class XRmGrossMarginEstiLine(models.Model):
     _name = "x_rm_gross_margin_esti_line_7e86d"
     _description = "Rm Gross Margin Esti  Lines"
-    _order = "x_studio_sequence, id"
-    _rec_name = "x_name"
+    _order = "sequence, id"
+    _rec_name = "name"
 
-    x_name = fields.Char(string="Description", required=True)
+    name = fields.Char(string="Description", required=True)
     x_rm_gross_margin_esti_id = fields.Many2one(
         "x_rm_gross_margin_esti",
     )
-    x_studio_sequence = fields.Integer(string="Sequence", default=10)
+    sequence = fields.Integer(string="Sequence", default=10)
 
 
 class XRmGrossMarginEstiLine7e86dGap(models.Model):
     _inherit = "x_rm_gross_margin_esti_line_7e86d"
-    _rec_name = "x_name"  # Clear-DB Studio model: records are named by x_name
+    _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    x_name = fields.Char(string="Description", required=True)
+    name = fields.Char(string="Description", required=True)
     x_rm_gross_margin_esti_id = fields.Many2one(comodel_name="x_rm_gross_margin_esti")

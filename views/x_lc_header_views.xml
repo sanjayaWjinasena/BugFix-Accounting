@@ -42,8 +42,8 @@
         </header>
         <header/>
         <sheet string="LC Header">
-          <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="x_active == True"/>
-          <field name="x_active" invisible="1"/>
+          <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="active == True"/>
+          <field name="active" invisible="1"/>
           <!-- v0.0.27: sentinel field to satisfy validator. The header
                buttons above reference x_studio_status in their invisible
                modifiers; the extension view (3063) declares x_studio_status
@@ -54,7 +54,7 @@
           <div class="oe_title">
                       <span class="o_form_label">Registration No </span>
                       <h1>
-                          <field name="x_name" required="1" placeholder="Name..."/>
+                          <field name="name" required="1" placeholder="Name..."/>
                       </h1>
                   </div>
           <group name="studio_group_535d1b">
@@ -75,8 +75,8 @@
     <field name="mode">primary</field>
     <field name="arch" type="xml">
       <tree>
-        <field name="x_studio_sequence" widget="handle"/>
-        <field name="x_name"/>
+        <field name="sequence" widget="handle"/>
+        <field name="name"/>
       </tree>
     </field>
   </record>
@@ -89,9 +89,9 @@
     <field name="mode">primary</field>
     <field name="arch" type="xml">
       <search>
-        <field name="x_name"/>
+        <field name="name"/>
         <separator/>
-        <filter string="Archived" name="archived_x_lc_header" domain="[['x_active', '=', False]]"/>
+        <filter string="Archived" name="archived_x_lc_header" domain="[['active', '=', False]]"/>
         <separator/>
       </search>
     </field>
@@ -129,7 +129,7 @@
       <data>
         <xpath expr="//tree[1]" position="attributes">
           <attribute name="create">false</attribute>
-          <attribute name="default_order">x_name desc</attribute>
+          <attribute name="default_order">name desc</attribute>
           <attribute name="delete">false</attribute>
           <attribute name="edit">false</attribute>
         </xpath>
@@ -148,9 +148,9 @@
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <search>
-              <field name="x_name"/>
+              <field name="name"/>
               <separator/>
-              <filter string="Archived" name="archived_x_lc_header" domain="[['x_active', '=', False]]"/>
+              <filter string="Archived" name="archived_x_lc_header" domain="[['active', '=', False]]"/>
               <separator/>
             </search>
         </field>
@@ -178,14 +178,14 @@
               <xpath expr="//header[1]/button[1]" position="after">
                 <field widget="statusbar" name="x_studio_selection_field_yo4qM"/>
               </xpath>
-              <xpath expr="//field[@name='x_name']" position="attributes">
+              <xpath expr="//field[@name='name']" position="attributes">
                 <attribute name="force_save">True</attribute>
                 <attribute name="string">Registration No</attribute>
               <attribute name="readonly">1</attribute></xpath>
               <xpath expr="//group[@name='studio_group_535d1b_left']" position="inside">
                 <field name="x_studio_created_from_purchase_order" string="Ref. PO" force_save="True" readonly="1" invisible="x_studio_created_from_purchase_order == False"/>
                 <field name="x_studio_version_no" string="Version No" force_save="True" readonly="1"/>
-                <field name="x_studio_company_id" string="Company"/>
+                <field name="accounting_company_id" string="Company"/>
               </xpath>
               <xpath expr="//group[@name='studio_group_535d1b']" position="after">
                 <notebook name="studio_notebook_NOcl4">
@@ -269,21 +269,21 @@
             <data>
               <xpath expr="//tree[1]" position="attributes">
                 <attribute name="create">false</attribute>
-                <attribute name="default_order">x_name desc</attribute>
+                <attribute name="default_order">name desc</attribute>
                 <attribute name="delete">false</attribute>
                 <attribute name="edit">false</attribute>
               </xpath>
-              <xpath expr="//field[@name='x_studio_sequence']" position="attributes">
+              <xpath expr="//field[@name='sequence']" position="attributes">
                 <attribute name="column_invisible">1</attribute></xpath>
-              <xpath expr="//field[@name='x_studio_sequence']" position="after">
+              <xpath expr="//field[@name='sequence']" position="after">
                 <field name="x_studio_created_from_purchase_order" optional="show" string="PO Number"/>
                 <field name="x_studio_indent_no" optional="show"/>
                 <field name="x_studio_vendor" optional="show"/>
               </xpath>
-              <xpath expr="//field[@name='x_name']" position="attributes">
+              <xpath expr="//field[@name='name']" position="attributes">
                 <attribute name="string">LC Registration No</attribute>
               </xpath>
-              <xpath expr="//field[@name='x_name']" position="after">
+              <xpath expr="//field[@name='name']" position="after">
                 <field name="x_studio_status"/>
                 <field name="x_studio_currency_id" optional="show" string="Currency"/>
                 <field name="x_studio_issuing_bank" optional="show"/>

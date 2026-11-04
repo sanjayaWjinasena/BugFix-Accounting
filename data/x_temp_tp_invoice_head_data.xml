@@ -131,12 +131,12 @@ action = {
 ]]></field>
   </record>
     <data noupdate="1">
-    <record id="default_170_x_temp_tp_invoice_head_x_active" model="ir.default">
-      <field name="field_id" ref="BugFix-Accounting.field_x_temp_tp_invoice_head__x_active"/>
+    <record id="default_170_x_temp_tp_invoice_head_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_temp_tp_invoice_head__active"/>
       <field name="json_value">true</field>
     </record>
-    <record id="default_171_x_temp_tp_invoice_head_x_studio_sequence" model="ir.default">
-      <field name="field_id" ref="BugFix-Accounting.field_x_temp_tp_invoice_head__x_studio_sequence"/>
+    <record id="default_171_x_temp_tp_invoice_head_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_temp_tp_invoice_head__sequence"/>
       <field name="json_value">10</field>
     </record>
     </data>

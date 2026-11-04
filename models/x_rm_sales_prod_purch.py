@@ -13,15 +13,15 @@ class XRmSalesProdPurch(models.Model):
     _name = "x_rm_sales_prod_purch"
     _description = "RM Sales Prod. Purch."
     _inherit = ["mail.thread", "mail.activity.mixin"]
-    _order = "x_studio_sequence, id"
-    _rec_name = "x_name"
+    _order = "sequence, id"
+    _rec_name = "name"
 
-    x_active = fields.Boolean(string="Active", default=True)
-    x_name = fields.Char(string="Name")
+    active = fields.Boolean(string="Active", default=True)
+    name = fields.Char(string="Name")
     x_studio_base_price = fields.Float(string="Base Price")
     x_studio_date = fields.Date(string="Date")
     x_studio_date_1 = fields.Date(string="Date")
-    x_studio_description = fields.Many2one(
+    description = fields.Many2one(
         "product.product",
         string="Description",
     )
@@ -29,36 +29,36 @@ class XRmSalesProdPurch(models.Model):
     x_studio_product_category = fields.Many2one(
         "product.category",
         string="Product Category",
-        related="x_studio_description.categ_id",
+        related="description.categ_id",
         store=False,
         readonly=True,
     )
     x_studio_product_code = fields.Char(
         string="Product Code",
-        related="x_studio_description.default_code",
+        related="description.default_code",
         readonly=True,
     )
     x_studio_product_type = fields.Selection(
         string="Product Type",
-        related="x_studio_description.type",
+        related="description.type",
         store=False,
         readonly=True,
     )
     x_studio_production_qty = fields.Float(string="Production Qty")
     x_studio_project_category = fields.Float(string="Project")
     x_studio_purchase_qty = fields.Float(string="Purchase Qty")
-    x_studio_sales_order = fields.Float(string="Sales Order")
+    sales_order = fields.Float(string="Sales Order")
     x_studio_sales_report_model_id = fields.Many2one(
         "x_sales_report_model",
         string="Sales Report Model Id",
     )
-    x_studio_sequence = fields.Integer(string="Sequence", default=10)
+    sequence = fields.Integer(string="Sequence", default=10)
     x_studio_unit_cost = fields.Float(string="Unit Cost")
 
 
 class XRmSalesProdPurchGap(models.Model):
     _inherit = "x_rm_sales_prod_purch"
-    _rec_name = "x_name"  # Clear-DB Studio model: records are named by x_name
+    _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    x_active = fields.Boolean(string="Active")
-    x_name = fields.Char(string="Name")
+    active = fields.Boolean(string="Active")
+    name = fields.Char(string="Name")

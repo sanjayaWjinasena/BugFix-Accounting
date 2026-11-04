@@ -35,8 +35,8 @@
     <field name="name">Payments</field>
     <field name="res_model">account.payment</field>
     <field name="view_mode">tree,form</field>
-    <field name="domain">[('x_studio_sales_order', '=', active_id)]</field>
-    <field name="context">{'search_default_x_studio_sales_order': active_id,'default_x_studio_sales_order': active_id}</field>
+    <field name="domain">[('sales_order', '=', active_id)]</field>
+    <field name="context">{'search_default_sales_order': active_id,'default_sales_order': active_id}</field>
   </record>
   <record id="action_2629_payments" model="ir.actions.act_window">
     <field name="name">Payments</field>
@@ -63,7 +63,7 @@
                 <field name="x_studio_type" string="Type" readonly="state != 'draft'"/>
               </xpath>
               <xpath expr="//form[1]/sheet[1]/group[1]/group[@name='group2']/field[@name='partner_bank_id']" position="after">
-                <field name="x_studio_sales_order" string="Sales Order" domain="[('partner_id', '=', partner_id)]" readonly="(partner_id == False) or (state != 'draft')"/>
+                <field name="sales_order" string="Sales Order" domain="[('partner_id', '=', partner_id)]" readonly="(partner_id == False) or (state != 'draft')"/>
                 <field name="x_studio_project_no_1" string="Project No" readonly="(state != 'draft') or (x_studio_created_from_project_1 == True)"/>
                 <field name="x_studio_created_from_project_1" string="Created From Project" force_save="True" readonly="1" invisible="1"/>
                 <field name="x_studio_lc_no_1" string="LC No" domain="[('x_studio_vendor', '=', partner_id),('x_studio_status', '=', 'Posted')]" readonly="state != 'draft'"/>
@@ -72,7 +72,7 @@
                 <field name="x_studio_payment_validation" string="Payment Validation" force_save="True" readonly="1" invisible="1"/>
               </xpath>
               <xpath expr="//field[@name='payment_transaction_id']" position="after">
-                <field name="x_studio_quotation_type" string="Quotation Type" force_save="True" invisible="1" readonly="1"/>
+                <field name="quotation_type" string="Quotation Type" force_save="True" invisible="1" readonly="1"/>
                 <field name="x_studio_payment_validation_1" string="Payment Validation" force_save="True" readonly="1" invisible="x_studio_payment_validation == False"/>
                 <field name="x_studio_advance_payment_acc_updated" force_save="True" readonly="1" invisible="1"/>
               </xpath>
@@ -124,8 +124,8 @@
     <field name="name">Payments</field>
     <field name="res_model">account.payment</field>
     <field name="view_mode">tree,form</field>
-    <field name="domain">[('x_studio_sales_order', '=', active_id)]</field>
-    <field name="context">{'search_default_x_studio_sales_order': active_id,'default_x_studio_sales_order': active_id}</field>
+    <field name="domain">[('sales_order', '=', active_id)]</field>
+    <field name="context">{'search_default_sales_order': active_id,'default_sales_order': active_id}</field>
   </record>
   <record id="act_window_2629_payments" model="ir.actions.act_window">
     <field name="name">Payments</field>

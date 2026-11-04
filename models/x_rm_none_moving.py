@@ -13,13 +13,13 @@ class XRmNoneMoving(models.Model):
     _name = "x_rm_none_moving"
     _description = "RM None Moving"
     _inherit = ["mail.thread", "mail.activity.mixin"]
-    _order = "x_studio_sequence, id"
-    _rec_name = "x_name"
+    _order = "sequence, id"
+    _rec_name = "name"
 
-    x_active = fields.Boolean(string="Active", default=True)
-    x_name = fields.Char(string="Name")
+    active = fields.Boolean(string="Active", default=True)
+    name = fields.Char(string="Name")
     x_studio_base_price = fields.Float(string="Base Price")
-    x_studio_description = fields.Many2one(
+    description = fields.Many2one(
         "product.product",
         string="Description",
     )
@@ -35,27 +35,27 @@ class XRmNoneMoving(models.Model):
     x_studio_product_category = fields.Many2one(
         "product.category",
         string="Product Category",
-        related="x_studio_description.categ_id",
+        related="description.categ_id",
         store=False,
         readonly=True,
     )
     x_studio_product_code_1 = fields.Char(
         string="Product Code",
-        related="x_studio_description.default_code",
+        related="description.default_code",
         readonly=True,
     )
-    x_studio_qty = fields.Float(string="Qty")
+    qty = fields.Float(string="Qty")
     x_studio_sales_report_model_id = fields.Many2one(
         "x_sales_report_model",
         string="Sales Report Model Id",
     )
-    x_studio_sequence = fields.Integer(string="Sequence", default=10)
+    sequence = fields.Integer(string="Sequence", default=10)
     x_studio_value = fields.Float(string="Value")
 
 
 class XRmNoneMovingGap(models.Model):
     _inherit = "x_rm_none_moving"
-    _rec_name = "x_name"  # Clear-DB Studio model: records are named by x_name
+    _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    x_active = fields.Boolean(string="Active")
-    x_name = fields.Char(string="Name")
+    active = fields.Boolean(string="Active")
+    name = fields.Char(string="Name")

@@ -113,10 +113,10 @@ class AccountMove(models.Model):
         related="x_studio_sale_id.x_studio_order_payment_method",
         store=True,
     )
-    x_studio_over_bank_guarantee = fields.Boolean(
+    over_bank_guarantee = fields.Boolean(
         string="Over Bank Guarantee",
         readonly=True,
-        related="x_studio_sale_id.x_studio_over_bank_guarantee",
+        related="x_studio_sale_id.over_bank_guarantee",
         store=True,
     )
     x_studio_project_no = fields.Many2one("project.project", string="Project No")
@@ -143,11 +143,11 @@ class AccountMove(models.Model):
     x_studio_report_type_s_cust_aging = fields.Many2one(
         "x_sales_report_type", string="Report Type (S - Cust Aging)"
     )
-    x_studio_rug_acc_updated = fields.Boolean(string="RUG Account Updated")
-    x_studio_rug_confirmed = fields.Boolean(
+    rug_acc_updated = fields.Boolean(string="RUG Account Updated")
+    rug_confirmed = fields.Boolean(
         string="RUG Confirmed",
         readonly=True,
-        related="x_studio_sale_id.x_studio_rug_confirmed",
+        related="x_studio_sale_id.rug_confirmed",
         store=True,
     )
     x_studio_rug_rejected = fields.Boolean(
@@ -210,9 +210,7 @@ class AccountMove(models.Model):
                         getattr(cg, "x_studio_group_type", None) if cg else None
                     )
                     if group_type and group_type != "General":
-                        mandatory = getattr(
-                            p, "x_studio_mandatory_bank_guarantee", False
-                        )
+                        mandatory = getattr(p, "mandatory_bank_guarantee", False)
                         expiry = getattr(p, "x_studio_expiry_date", None)
                         bg_amount = getattr(p, "x_studio_bank_guarantee_amount", 0) or 0
                         exposure = (p.credit or 0) + (record.amount_total or 0)
@@ -243,9 +241,7 @@ class AccountMove(models.Model):
                         getattr(cg, "x_studio_group_type", None) if cg else None
                     )
                     if group_type and group_type != "General":
-                        mandatory = getattr(
-                            p, "x_studio_mandatory_bank_guarantee", False
-                        )
+                        mandatory = getattr(p, "mandatory_bank_guarantee", False)
                         expiry = getattr(p, "x_studio_expiry_date", None)
                         bg_amount = getattr(p, "x_studio_bank_guarantee_amount", 0) or 0
                         exposure = (p.credit or 0) + (record.amount_total or 0)

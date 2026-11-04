@@ -13,7 +13,7 @@
     </span>
   </xpath>
   <xpath expr="/t[1]/t[1]/div[1]/h2[1]/span[1]/p[1]" position="attributes">
-    <attribute name="t-if">o.partner_id.x_studio_vat_registration_status == "VAT Registered"</attribute>
+    <attribute name="t-if">o.partner_id.vat_registration_status == "VAT Registered"</attribute>
   </xpath>
   <xpath expr="/t/t/div/h2" position="before">
     <div class="row">
@@ -68,10 +68,10 @@
     </font>
   </xpath>
   <xpath expr="/t[1]/t[1]/div[1]/div[1]/div[1]/span[1]/span[1]/font[1]/font[1]/font[1]/font[1]/font[1]/font[1]" position="attributes">
-    <attribute name="t-if">o.partner_id.x_studio_vat_registration_status == "VAT Not Registered"</attribute>
+    <attribute name="t-if">o.partner_id.vat_registration_status == "VAT Not Registered"</attribute>
   </xpath>
   <xpath expr="/t[1]/t[1]/div[1]/h2[1]/span[1]/p[1]" position="attributes">
-    <attribute name="t-if">o.partner_id.x_studio_vat_registration_status == "VAT Registered" and o.partner_id.x_studio_svat_registration_status == "SVAT Nor Registered"</attribute>
+    <attribute name="t-if">o.partner_id.vat_registration_status == "VAT Registered" and o.partner_id.svat_registration_status == "SVAT Nor Registered"</attribute>
   </xpath>
   <xpath expr="/t/t/div/div[1]" position="after">
     <div class="row">
@@ -96,17 +96,17 @@
     </span>
   </xpath>
   <xpath expr="/t[1]/t[1]/div[1]/div[2]/div[1]/span[1]/span[1]/font[1]" position="attributes">
-    <attribute name="t-if">o.partner_id.x_studio_vat_registration_status == "VAT Registered" and o.partner_id.x_studio_svat_registration_status == "SVAT Registered"</attribute>
+    <attribute name="t-if">o.partner_id.vat_registration_status == "VAT Registered" and o.partner_id.svat_registration_status == "SVAT Registered"</attribute>
   </xpath>
   <xpath expr="/t/t/div/h2" position="after">
     <div class="row">
       <div class="col">
-        <span t-field="o.partner_id.x_studio_vat_registration_number"/>
+        <span t-field="o.partner_id.vat_registration_number"/>
       </div>
     </div>
   </xpath>
   <xpath expr="/t/t/div/div[1]/div/span/span/font/font/font/font/font/font" position="replace">
-    <font style="color: rgb(0, 49, 99);" t-if="o.partner_id.x_studio_vat_registration_status == &quot;VAT Not Registered&quot;">
+    <font style="color: rgb(0, 49, 99);" t-if="o.partner_id.vat_registration_status == &quot;VAT Not Registered&quot;">
       <p>Invoice</p>
     </font>
   </xpath>
@@ -114,10 +114,10 @@
     <attribute name="t-if">o.move_type == "out_invoice" and o.state == "posted"</attribute>
   </xpath>
   <xpath expr="/t[1]/t[1]/div[1]/div[2]/div[1]/span[1]/span[1]/font[1]" position="attributes">
-    <attribute name="t-if">o.partner_id.x_studio_vat_registration_status == "VAT Registered" and o.partner_id.x_studio_svat_registration_status == "SVAT Registered" and o.move_type == "out_invoice" and o.state == "posted"</attribute>
+    <attribute name="t-if">o.partner_id.vat_registration_status == "VAT Registered" and o.partner_id.svat_registration_status == "SVAT Registered" and o.move_type == "out_invoice" and o.state == "posted"</attribute>
   </xpath>
   <xpath expr="/t[1]/t[1]/div[1]/h2[1]/span[1]/p[1]" position="attributes">
-    <attribute name="t-if">o.partner_id.x_studio_vat_registration_status == "VAT Registered" and o.partner_id.x_studio_svat_registration_status == "SVAT Nor Registered" and o.move_type == "out_invoice" and o.state == "posted"</attribute>
+    <attribute name="t-if">o.partner_id.vat_registration_status == "VAT Registered" and o.partner_id.svat_registration_status == "SVAT Nor Registered" and o.move_type == "out_invoice" and o.state == "posted"</attribute>
   </xpath>
   <xpath expr="/t/t/div/div[3]/div/span" position="attributes">
     <attribute name="style" separator=";" add="margin-top:10px"/>
@@ -139,7 +139,7 @@
   <xpath expr="/t/t/div/div[3]" position="after">
     <div class="row">
       <div class="col">
-        <span t-field="o.partner_id.x_studio_vat_registration_number"/>
+        <span t-field="o.partner_id.vat_registration_number"/>
       </div>
     </div>
   </xpath>
@@ -177,7 +177,7 @@
     </span>
   </xpath>
   <xpath expr="/t[1]/t[1]/div[1]/h2[1]/span[1]/p[1]" position="attributes">
-    <attribute name="t-if">o.partner_id.x_studio_vat_registration_status == "VAT Registered"</attribute>
+    <attribute name="t-if">o.partner_id.vat_registration_status == "VAT Registered"</attribute>
   </xpath>
   <xpath expr="/t/t/div/h2" position="before">
     <div class="row">
@@ -232,10 +232,10 @@
     </font>
   </xpath>
   <xpath expr="/t[1]/t[1]/div[1]/div[1]/div[1]/span[1]/span[1]/font[1]/font[1]/font[1]/font[1]/font[1]/font[1]" position="attributes">
-    <attribute name="t-if">o.partner_id.x_studio_vat_registration_status == "VAT Not Registered"</attribute>
+    <attribute name="t-if">o.partner_id.vat_registration_status == "VAT Not Registered"</attribute>
   </xpath>
   <xpath expr="/t[1]/t[1]/div[1]/h2[1]/span[1]/p[1]" position="attributes">
-    <attribute name="t-if">o.partner_id.x_studio_vat_registration_status == "VAT Registered" and o.partner_id.x_studio_svat_registration_status == "SVAT Nor Registered"</attribute>
+    <attribute name="t-if">o.partner_id.vat_registration_status == "VAT Registered" and o.partner_id.svat_registration_status == "SVAT Nor Registered"</attribute>
   </xpath>
   <xpath expr="/t/t/div/div[1]" position="after">
     <div class="row">
@@ -260,17 +260,17 @@
     </span>
   </xpath>
   <xpath expr="/t[1]/t[1]/div[1]/div[2]/div[1]/span[1]/span[1]/font[1]" position="attributes">
-    <attribute name="t-if">o.partner_id.x_studio_vat_registration_status == "VAT Registered" and o.partner_id.x_studio_svat_registration_status == "SVAT Registered"</attribute>
+    <attribute name="t-if">o.partner_id.vat_registration_status == "VAT Registered" and o.partner_id.svat_registration_status == "SVAT Registered"</attribute>
   </xpath>
   <xpath expr="/t/t/div/h2" position="after">
     <div class="row">
       <div class="col">
-        <span t-field="o.partner_id.x_studio_vat_registration_number"/>
+        <span t-field="o.partner_id.vat_registration_number"/>
       </div>
     </div>
   </xpath>
   <xpath expr="/t/t/div/div[1]/div/span/span/font/font/font/font/font/font" position="replace">
-    <font style="color: rgb(0, 49, 99);" t-if="o.partner_id.x_studio_vat_registration_status == &quot;VAT Not Registered&quot;">
+    <font style="color: rgb(0, 49, 99);" t-if="o.partner_id.vat_registration_status == &quot;VAT Not Registered&quot;">
       <p>Invoice</p>
     </font>
   </xpath>
@@ -278,10 +278,10 @@
     <attribute name="t-if">o.move_type == "out_invoice" and o.state == "posted"</attribute>
   </xpath>
   <xpath expr="/t[1]/t[1]/div[1]/div[2]/div[1]/span[1]/span[1]/font[1]" position="attributes">
-    <attribute name="t-if">o.partner_id.x_studio_vat_registration_status == "VAT Registered" and o.partner_id.x_studio_svat_registration_status == "SVAT Registered" and o.move_type == "out_invoice" and o.state == "posted"</attribute>
+    <attribute name="t-if">o.partner_id.vat_registration_status == "VAT Registered" and o.partner_id.svat_registration_status == "SVAT Registered" and o.move_type == "out_invoice" and o.state == "posted"</attribute>
   </xpath>
   <xpath expr="/t[1]/t[1]/div[1]/h2[1]/span[1]/p[1]" position="attributes">
-    <attribute name="t-if">o.partner_id.x_studio_vat_registration_status == "VAT Registered" and o.partner_id.x_studio_svat_registration_status == "SVAT Nor Registered" and o.move_type == "out_invoice" and o.state == "posted"</attribute>
+    <attribute name="t-if">o.partner_id.vat_registration_status == "VAT Registered" and o.partner_id.svat_registration_status == "SVAT Nor Registered" and o.move_type == "out_invoice" and o.state == "posted"</attribute>
   </xpath>
   <xpath expr="/t/t/div/div[3]/div/span" position="attributes">
     <attribute name="style" separator=";" add="margin-top:10px"/>

@@ -13,12 +13,12 @@ class XRmProductionOrders(models.Model):
     _name = "x_rm_production_orders"
     _description = "RM Production Orders"
     _inherit = ["mail.thread", "mail.activity.mixin"]
-    _order = "x_studio_sequence, id"
-    _rec_name = "x_name"
+    _order = "sequence, id"
+    _rec_name = "name"
 
-    x_active = fields.Boolean(string="Active", default=True)
-    x_name = fields.Char(string="Name")
-    x_studio_description = fields.Char(string="Description")
+    active = fields.Boolean(string="Active", default=True)
+    name = fields.Char(string="Name")
+    description = fields.Char(string="Description")
     x_studio_end = fields.Datetime(string="End")
     x_studio_estimated = fields.Float(string="Estimated")
     x_studio_good_qty = fields.Float(string="Good Qty")
@@ -35,7 +35,7 @@ class XRmProductionOrders(models.Model):
         "x_sales_report_model",
         string="Sales Report Model Id",
     )
-    x_studio_sequence = fields.Integer(string="Sequence", default=10)
+    sequence = fields.Integer(string="Sequence", default=10)
     x_studio_start = fields.Datetime(string="Start")
     x_studio_started = fields.Float(string="Started")
     x_studio_status = fields.Selection(
@@ -55,7 +55,7 @@ class XRmProductionOrders(models.Model):
 
 class XRmProductionOrdersGap(models.Model):
     _inherit = "x_rm_production_orders"
-    _rec_name = "x_name"  # Clear-DB Studio model: records are named by x_name
+    _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    x_active = fields.Boolean(string="Active")
-    x_name = fields.Char(string="Name")
+    active = fields.Boolean(string="Active")
+    name = fields.Char(string="Name")

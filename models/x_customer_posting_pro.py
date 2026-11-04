@@ -5,24 +5,24 @@ class XCustomerPostingPro(models.Model):
     """Studio-ported custom model x_customer_posting_pro."""
 
     _name = "x_customer_posting_pro"
-    _rec_name = "x_name"  # Clear-DB Studio model: records are named by x_name
+    _rec_name = "name"  # Clear-DB Studio model: records are named by name
     _inherit = ["mail.activity.mixin"]
     _description = "Customer Posting Profile"
 
-    x_active = fields.Boolean(string="Active")
-    x_name = fields.Char(string="Customer Posting Profile")
+    active = fields.Boolean(string="Active")
+    name = fields.Char(string="Customer Posting Profile")
     x_studio_item_relation_type = fields.Selection(
         [("All", "All"), ("Group", "Group"), ("Table", "Table")],
         string="Item Relation Type",
     )
     x_studio_many2one_field_eYVbe = fields.Many2one("product.product", string="Product")
     x_studio_notes = fields.Text(string="Notes")
-    x_studio_sequence = fields.Integer(string="Sequence")
+    sequence = fields.Integer(string="Sequence")
 
 
 class XCustomerPostingProGap(models.Model):
     _inherit = "x_customer_posting_pro"
-    _rec_name = "x_name"  # Clear-DB Studio model: records are named by x_name
+    _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    x_active = fields.Boolean(string="Active")
-    x_name = fields.Char(string="Customer Posting Profile")
+    active = fields.Boolean(string="Active")
+    name = fields.Char(string="Customer Posting Profile")

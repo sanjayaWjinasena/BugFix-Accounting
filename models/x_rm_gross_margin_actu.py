@@ -15,11 +15,11 @@ class XRmGrossMarginActu(models.Model):
     _name = "x_rm_gross_margin_actu"
     _inherit = ["mail.activity.mixin"]
     _description = "RM Gross Margin - Actuals"
-    _order = "x_studio_sequence, id"
-    _rec_name = "x_name"
+    _order = "sequence, id"
+    _rec_name = "name"
 
-    x_active = fields.Boolean(string="Active", default=True)
-    x_name = fields.Char(string="Name")
+    active = fields.Boolean(string="Active", default=True)
+    name = fields.Char(string="Name")
     x_studio_budget_line = fields.Boolean(string="Budget Line")
     x_studio_budget_line_ids = fields.One2many(
         "x_temp_actual_budget",
@@ -41,7 +41,7 @@ class XRmGrossMarginActu(models.Model):
         string="Sales Report Model Id",
         ondelete="cascade",
     )
-    x_studio_sequence = fields.Integer(string="Sequence", default=10)
+    sequence = fields.Integer(string="Sequence", default=10)
     x_studio_transaction_type_1 = fields.Selection(
         [
             ("Item", "Item"),
@@ -56,7 +56,7 @@ class XRmGrossMarginActu(models.Model):
 
 class XRmGrossMarginActuGap(models.Model):
     _inherit = "x_rm_gross_margin_actu"
-    _rec_name = "x_name"  # Clear-DB Studio model: records are named by x_name
+    _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    x_active = fields.Boolean(string="Active")
-    x_name = fields.Char(string="Name")
+    active = fields.Boolean(string="Active")
+    name = fields.Char(string="Name")

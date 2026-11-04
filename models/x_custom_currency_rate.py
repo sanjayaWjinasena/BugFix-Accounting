@@ -5,25 +5,25 @@ class XCustomCurrencyRate(models.Model):
     """Studio-ported custom model x_custom_currency_rate."""
 
     _name = "x_custom_currency_rate"
-    _rec_name = "x_name"  # Clear-DB Studio model: records are named by x_name
+    _rec_name = "name"  # Clear-DB Studio model: records are named by name
     _inherit = ["mail.activity.mixin"]
     _description = "Custom Currency Rate"
 
-    x_active = fields.Boolean(string="Active")
-    x_name = fields.Char(string="Name")
-    x_studio_company_id = fields.Many2one("res.company", string="Company")
+    active = fields.Boolean(string="Active")
+    name = fields.Char(string="Name")
+    accounting_company_id = fields.Many2one("res.company", string="Company")
     x_studio_custom_currency_id = fields.Many2one(
         "x_custom_currency", string="Custom Currency Id", ondelete="restrict"
     )
     x_studio_end_date = fields.Date(string="End Date")
     x_studio_rate = fields.Float(string="Rate")
-    x_studio_sequence = fields.Integer(string="Sequence")
+    sequence = fields.Integer(string="Sequence")
     x_studio_start_date = fields.Date(string="Start Date")
 
 
 class XCustomCurrencyRateGap(models.Model):
     _inherit = "x_custom_currency_rate"
-    _rec_name = "x_name"  # Clear-DB Studio model: records are named by x_name
+    _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    x_active = fields.Boolean(string="Active")
-    x_name = fields.Char(string="Name")
+    active = fields.Boolean(string="Active")
+    name = fields.Char(string="Name")

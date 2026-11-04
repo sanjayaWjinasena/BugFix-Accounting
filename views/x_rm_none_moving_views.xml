@@ -20,11 +20,11 @@
             <form>
               <header/>
               <sheet string="RM None Moving">
-                <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="x_active == True"/>
-                <field name="x_active" invisible="1"/>
+                <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="active == True"/>
+                <field name="active" invisible="1"/>
                 <div class="oe_title">
                             <h1>
-                                <field name="x_name" required="1" placeholder="Name..."/>
+                                <field name="name" required="1" placeholder="Name..."/>
                             </h1>
                         </div>
                 <group name="studio_group_2f7829">
@@ -48,9 +48,9 @@
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <search>
-              <field name="x_name"/>
+              <field name="name"/>
               <separator/>
-              <filter string="Archived" name="archived_x_rm_none_moving" domain="[['x_active', '=', False]]"/>
+              <filter string="Archived" name="archived_x_rm_none_moving" domain="[['active', '=', False]]"/>
               <separator/>
             </search>
         </field>
@@ -63,8 +63,8 @@
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <tree>
-              <field name="x_studio_sequence" widget="handle"/>
-              <field name="x_name"/>
+              <field name="sequence" widget="handle"/>
+              <field name="name"/>
             </tree>
         </field>
     </record>
@@ -82,11 +82,11 @@
                 <attribute name="delete">true</attribute>
                 <attribute name="edit">false</attribute>
               </xpath>
-              <xpath expr="//field[@name='x_studio_sequence']" position="after">
+              <xpath expr="//field[@name='sequence']" position="after">
                 <field name="x_studio_sales_report_model_id" string="Sales Report Model Id" column_invisible="1"/>
                 <field name="x_studio_product_code_1" string="Product Code"/>
                 <field name="x_studio_product_category" string="Product Category"/>
-                <field name="x_studio_description" string="Description"/>
+                <field name="description" string="Description"/>
                 <field name="x_studio_base_price" string="Base Price"/>
                 <field name="x_studio_in_hand_1" string="In Hand"/>
                 <field name="x_studio_issue_1" string="Issue"/>
@@ -96,11 +96,11 @@
                 <field name="x_studio_issue_3" string="Issue"/>
                 <field name="x_studio_in_hand_4" string="In Hand"/>
                 <field name="x_studio_issue_4" string="Issue"/>
-                <field name="x_studio_qty" string="Qty"/>
+                <field name="qty" string="Qty"/>
                 <field name="x_studio_value" string="Value"/>
                 <field name="x_studio_header_reference" string="Header Reference"/>
               </xpath>
-              <xpath expr="//field[@name='x_name']" position="attributes">
+              <xpath expr="//field[@name='name']" position="attributes">
                 <attribute name="column_invisible">1</attribute></xpath>
             </data>
         </field>

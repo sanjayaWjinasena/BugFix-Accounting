@@ -20,11 +20,11 @@
             <form>
               <header/>
               <sheet string="RM Production Orders">
-                <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="x_active == True"/>
-                <field name="x_active" invisible="1"/>
+                <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="active == True"/>
+                <field name="active" invisible="1"/>
                 <div class="oe_title">
                             <h1>
-                                <field name="x_name" required="1" placeholder="Name..."/>
+                                <field name="name" required="1" placeholder="Name..."/>
                             </h1>
                         </div>
                 <group name="studio_group_5c843d">
@@ -48,9 +48,9 @@
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <search>
-              <field name="x_name"/>
+              <field name="name"/>
               <separator/>
-              <filter string="Archived" name="archived_x_rm_production_orders" domain="[['x_active', '=', False]]"/>
+              <filter string="Archived" name="archived_x_rm_production_orders" domain="[['active', '=', False]]"/>
               <separator/>
             </search>
         </field>
@@ -63,8 +63,8 @@
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <tree>
-              <field name="x_studio_sequence" widget="handle"/>
-              <field name="x_name"/>
+              <field name="sequence" widget="handle"/>
+              <field name="name"/>
             </tree>
         </field>
     </record>
@@ -77,11 +77,11 @@
         <field name="inherit_id" ref="BugFix-Accounting.ported_view_3899_default_list_view_fo_fbf09a9f_0dc9_473b_9b62_84c53b338217"/>
         <field name="arch" type="xml">
             <data>
-              <xpath expr="//field[@name='x_name']" position="replace">
+              <xpath expr="//field[@name='name']" position="replace">
                 <field name="x_studio_header_reference" string="Header Reference" column_invisible="1"/>
                 <field name="x_studio_production_id" string="Production Id"/>
                 <field name="x_studio_product_code" string="Product Code"/>
-                <field name="x_studio_description" string="Description"/>
+                <field name="description" string="Description"/>
                 <field name="x_studio_warehouse" string="Warehouse"/>
                 <field name="x_studio_status" string="Status"/>
                 <field name="x_studio_estimated" string="Estimated"/>

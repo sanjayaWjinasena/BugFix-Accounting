@@ -4,7 +4,7 @@
     <field name="name">Report Model Created Date</field>
     <field name="model_id" search="[('model', '=', 'x_sales_report_model')]"/>
     <field name="state">code</field>
-    <field name="code"><![CDATA[record['x_studio_created_date'] = datetime.datetime.today()
+    <field name="code"><![CDATA[record['created_date'] = datetime.datetime.today()
 
 
 ]]></field>
@@ -15,11 +15,11 @@
     <field name="name">Report Model Seq.No</field>
     <field name="model_id" search="[('model', '=', 'x_sales_report_model')]"/>
     <field name="state">code</field>
-    <field name="code"><![CDATA[#record['x_name'] = env['ir.sequence'].next_by_code('purchase.request.seq')
+    <field name="code"><![CDATA[#record['name'] = env['ir.sequence'].next_by_code('purchase.request.seq')
 
-if record.x_name == 'New':
+if record.name == 'New':
     seq = env['ir.sequence'].next_by_code('report.model.seq')
-    record.write({'x_name': seq})
+    record.write({'name': seq})
 
 
 
@@ -663,7 +663,7 @@ if record.x_name == 'New':
 
     for line in report_type_lines:
 
-      create_sub_model = env['x_rm_daily_s1'].create({'x_studio_sales_report_model_id':record.id,'x_studio_invoice_date':line.date,'x_studio_number':line.move_name,'x_studio_partner':line.partner_id.id,'x_studio_sales_centre':line.x_studio_sales_team.id,'x_studio_product_id':line.product_id.id,'x_studio_quantity':line.quantity,'x_studio_value':line.price_subtotal})
+      create_sub_model = env['x_rm_daily_s1'].create({'x_studio_sales_report_model_id':record.id,'x_studio_invoice_date':line.date,'x_studio_number':line.move_name,'x_studio_partner':line.partner_id.id,'x_studio_sales_centre':line.x_studio_sales_team.id,'x_studio_product_id':line.product_id.id,'quantity':line.quantity,'x_studio_value':line.price_subtotal})
 
   
 
@@ -717,7 +717,7 @@ if record.x_name == 'New':
 
     for line in report_type_lines:
 
-      create_sub_model = env['x_rm_production_varian'].create({'x_studio_sales_report_model_id':record.id,'x_studio_description':line.raw_material_production_id.product_id.id,'x_studio_production_id':line.raw_material_production_id.id,'x_studio_prod_qty':line.raw_material_production_id.product_qty,'x_studio_description_1':line.product_id.id,'x_studio_bom_qty':line.x_studio_original_qty,'x_studio_esti_qty':line.x_studio_original_qty,'x_studio_cons_qty':line.product_uom_qty,'x_studio_variance':line.x_studio_variance,'x_studio_avg_cost':line.price_unit,'x_studio_total_cost':(line.product_uom_qty*line.price_unit),'x_studio_header_reference': record.x_name})
+      create_sub_model = env['x_rm_production_varian'].create({'x_studio_sales_report_model_id':record.id,'description':line.raw_material_production_id.product_id.id,'x_studio_production_id':line.raw_material_production_id.id,'x_studio_prod_qty':line.raw_material_production_id.product_qty,'x_studio_description_1':line.product_id.id,'x_studio_bom_qty':line.x_studio_original_qty,'x_studio_esti_qty':line.x_studio_original_qty,'x_studio_cons_qty':line.product_uom_qty,'x_studio_variance':line.x_studio_variance,'x_studio_avg_cost':line.price_unit,'x_studio_total_cost':(line.product_uom_qty*line.price_unit),'x_studio_header_reference': record.name})
 
       
 
@@ -771,7 +771,7 @@ if record.x_name == 'New':
 
     for line in report_type_lines:
 
-      create_sub_model = env['x_rm_production_orders'].create({'x_studio_sales_report_model_id':record.id,'x_studio_production_id':line.id,'x_studio_product_code':line.product_id.id,'x_studio_description':line.product_id.name,'x_studio_warehouse':line.location_dest_id.id,'x_studio_status':line.state,'x_studio_estimated':line.product_qty,'x_studio_started':line.qty_producing,'x_studio_start':line.date_start,'x_studio_header_reference': record.x_name,'x_studio_end':line.date_finished})
+      create_sub_model = env['x_rm_production_orders'].create({'x_studio_sales_report_model_id':record.id,'x_studio_production_id':line.id,'x_studio_product_code':line.product_id.id,'description':line.product_id.name,'x_studio_warehouse':line.location_dest_id.id,'x_studio_status':line.state,'x_studio_estimated':line.product_qty,'x_studio_started':line.qty_producing,'x_studio_start':line.date_start,'x_studio_header_reference': record.name,'x_studio_end':line.date_finished})
 
         
 
@@ -825,7 +825,7 @@ if record.x_name == 'New':
 
     for line in report_type_lines:
 
-      create_sub_model = env['x_rm_prod_summary_spli'].create({'x_studio_sales_report_model_id':record.id,'x_studio_description':line.raw_material_production_id.product_id.id,'x_studio_production_id':line.raw_material_production_id.id,'x_studio_prod_qty':line.raw_material_production_id.product_qty,'x_studio_description_1':line.product_id.id,'x_studio_bom_qty':line.x_studio_original_qty,'x_studio_esti_qty':line.x_studio_original_qty,'x_studio_cons_qty':line.product_uom_qty,'x_studio_variance':line.x_studio_variance,'x_studio_avg_cost':line.price_unit,'x_studio_total_cost':(line.product_uom_qty*line.price_unit),'x_studio_header_reference': record.x_name})]]></field>
+      create_sub_model = env['x_rm_prod_summary_spli'].create({'x_studio_sales_report_model_id':record.id,'description':line.raw_material_production_id.product_id.id,'x_studio_production_id':line.raw_material_production_id.id,'x_studio_prod_qty':line.raw_material_production_id.product_qty,'x_studio_description_1':line.product_id.id,'x_studio_bom_qty':line.x_studio_original_qty,'x_studio_esti_qty':line.x_studio_original_qty,'x_studio_cons_qty':line.product_uom_qty,'x_studio_variance':line.x_studio_variance,'x_studio_avg_cost':line.price_unit,'x_studio_total_cost':(line.product_uom_qty*line.price_unit),'x_studio_header_reference': record.name})]]></field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
@@ -1077,13 +1077,13 @@ if record.x_name == 'New':
 
         
 
-        create_comparison_sub_model = env['x_rm_gross_margin_comp'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference':record.x_name,'x_studio_sales_order':main_lines.order_id.id,'x_studio_many2one_field_7fcuw':main_lines.product_id.id,'x_studio_estimated_amount':(main_lines.product_uom_qty * main_lines.price_unit),'x_studio_delivered_amount':(main_lines.qty_delivered * main_lines.price_unit),'x_studio_invoiced_amount':(main_lines.qty_invoiced * main_lines.price_unit),'x_studio_delivered_not_invoiced':(main_lines.qty_delivered * main_lines.price_unit)-(main_lines.qty_invoiced * main_lines.price_unit)})
+        create_comparison_sub_model = env['x_rm_gross_margin_comp'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference':record.name,'sales_order':main_lines.order_id.id,'x_studio_many2one_field_7fcuw':main_lines.product_id.id,'x_studio_estimated_amount':(main_lines.product_uom_qty * main_lines.price_unit),'x_studio_delivered_amount':(main_lines.qty_delivered * main_lines.price_unit),'x_studio_invoiced_amount':(main_lines.qty_invoiced * main_lines.price_unit),'x_studio_delivered_not_invoiced':(main_lines.qty_delivered * main_lines.price_unit)-(main_lines.qty_invoiced * main_lines.price_unit)})
 
         
 
         temp_estimated_lines.append([0,0,{
 
-          'x_studio_sales_order':main_lines.order_id.id,
+          'sales_order':main_lines.order_id.id,
 
           'x_studio_customer':main_lines.order_partner_id.id,
 
@@ -1091,19 +1091,19 @@ if record.x_name == 'New':
 
           'x_studio_product_id':main_lines.product_id.id,
 
-          'x_studio_description':main_lines.name,
+          'description':main_lines.name,
 
           'x_studio_trans_type':main_lines.x_studio_trans_type,
 
           'x_studio_category':main_lines.x_studio_category.id,
 
-          'x_studio_quantity':main_lines.product_uom_qty,
+          'quantity':main_lines.product_uom_qty,
 
           'x_studio_delivered_qty':main_lines.qty_delivered,
 
           'x_studio_uom':main_lines.product_uom.id,
 
-          'x_studio_unit_price':main_lines.price_unit,
+          'unit_price':main_lines.price_unit,
 
           'x_studio_sub_total':main_lines.price_subtotal,
 
@@ -1127,7 +1127,7 @@ if record.x_name == 'New':
 
           temp_actual_lines_2.append([0,0,{
 
-            'x_studio_sales_order':main_lines.order_id.id,
+            'sales_order':main_lines.order_id.id,
 
             'x_studio_customer':main_lines.order_partner_id.id,
 
@@ -1135,19 +1135,19 @@ if record.x_name == 'New':
 
             'x_studio_product_id':main_lines.product_id.id,
 
-            'x_studio_description':main_lines.name,
+            'description':main_lines.name,
 
             'x_studio_trans_type':main_lines.x_studio_trans_type,
 
             'x_studio_category':main_lines.x_studio_category.id,
 
-            'x_studio_quantity':main_lines.product_uom_qty,
+            'quantity':main_lines.product_uom_qty,
 
             'x_studio_delivered_qty':main_lines.qty_delivered,
 
             'x_studio_uom':main_lines.product_uom.id,
 
-            'x_studio_unit_price':main_lines.price_unit,
+            'unit_price':main_lines.price_unit,
 
             'x_studio_sub_total':main_lines.price_subtotal,
 
@@ -1171,7 +1171,7 @@ if record.x_name == 'New':
 
           temp_actual_lines_3.append([0,0,{
 
-            'x_studio_sales_order':main_lines.order_id.id,
+            'sales_order':main_lines.order_id.id,
 
             'x_studio_customer':main_lines.order_partner_id.id,
 
@@ -1179,19 +1179,19 @@ if record.x_name == 'New':
 
             'x_studio_product_id':main_lines.product_id.id,
 
-            'x_studio_description':main_lines.name,
+            'description':main_lines.name,
 
             'x_studio_trans_type':main_lines.x_studio_trans_type,
 
             'x_studio_category':main_lines.x_studio_category.id,
 
-            'x_studio_quantity':main_lines.product_uom_qty,
+            'quantity':main_lines.product_uom_qty,
 
             'x_studio_delivered_qty':main_lines.qty_delivered,
 
             'x_studio_uom':main_lines.product_uom.id,
 
-            'x_studio_unit_price':main_lines.price_unit,
+            'unit_price':main_lines.price_unit,
 
             'x_studio_sub_total':main_lines.price_subtotal,
 
@@ -1215,7 +1215,7 @@ if record.x_name == 'New':
 
           temp_actual_lines_4.append([0,0,{
 
-            'x_studio_sales_order':main_lines.order_id.id,
+            'sales_order':main_lines.order_id.id,
 
             'x_studio_customer':main_lines.order_partner_id.id,
 
@@ -1223,19 +1223,19 @@ if record.x_name == 'New':
 
             'x_studio_product_id':main_lines.product_id.id,
 
-            'x_studio_description':main_lines.name,
+            'description':main_lines.name,
 
             'x_studio_trans_type':main_lines.x_studio_trans_type,
 
             'x_studio_category':main_lines.x_studio_category.id,
 
-            'x_studio_quantity':main_lines.product_uom_qty,
+            'quantity':main_lines.product_uom_qty,
 
             'x_studio_delivered_qty':main_lines.qty_delivered,
 
             'x_studio_uom':main_lines.product_uom.id,
 
-            'x_studio_unit_price':main_lines.price_unit,
+            'unit_price':main_lines.price_unit,
 
             'x_studio_sub_total':main_lines.price_subtotal,
 
@@ -1271,7 +1271,7 @@ if record.x_name == 'New':
 
             temp_actual_lines_5.append([0,0,{
 
-              'x_studio_sales_order':main_lines.order_id.id,
+              'sales_order':main_lines.order_id.id,
 
               'x_studio_customer':main_lines.order_partner_id.id,
 
@@ -1279,19 +1279,19 @@ if record.x_name == 'New':
 
               'x_studio_product_id':main_lines.product_id.id,
 
-              'x_studio_description':main_lines.name,
+              'description':main_lines.name,
 
               'x_studio_trans_type':main_lines.x_studio_trans_type,
 
               'x_studio_category':main_lines.x_studio_category.id,
 
-              'x_studio_quantity':main_lines.product_uom_qty,
+              'quantity':main_lines.product_uom_qty,
 
               'x_studio_delivered_qty':main_lines.qty_delivered,
 
               'x_studio_uom':main_lines.product_uom.id,
 
-              'x_studio_unit_price':main_lines.price_unit,
+              'unit_price':main_lines.price_unit,
 
               'x_studio_sub_total':main_lines.price_subtotal,
 
@@ -1315,7 +1315,7 @@ if record.x_name == 'New':
 
             temp_actual_lines_6.append([0,0,{
 
-              'x_studio_sales_order':main_lines.order_id.id,
+              'sales_order':main_lines.order_id.id,
 
               'x_studio_customer':main_lines.order_partner_id.id,
 
@@ -1323,19 +1323,19 @@ if record.x_name == 'New':
 
               'x_studio_product_id':main_lines.product_id.id,
 
-              'x_studio_description':main_lines.name,
+              'description':main_lines.name,
 
               'x_studio_trans_type':main_lines.x_studio_trans_type,
 
               'x_studio_category':main_lines.x_studio_category.id,
 
-              'x_studio_quantity':main_lines.product_uom_qty,
+              'quantity':main_lines.product_uom_qty,
 
               'x_studio_delivered_qty':main_lines.qty_delivered,
 
               'x_studio_uom':main_lines.product_uom.id,
 
-              'x_studio_unit_price':main_lines.price_unit,
+              'unit_price':main_lines.price_unit,
 
               'x_studio_sub_total':main_lines.price_subtotal,
 
@@ -1371,13 +1371,13 @@ if record.x_name == 'New':
 
         
 
-        create_comparison_sub_model = env['x_rm_gross_margin_comp'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference':record.x_name,'x_studio_sales_order':lines.order_id.id,'x_studio_many2one_field_7fcuw':lines.product_id.id,'x_studio_estimated_amount':(lines.product_uom_qty * lines.price_unit),'x_studio_delivered_amount':(lines.qty_delivered * lines.price_unit),'x_studio_invoiced_amount':(lines.qty_invoiced * lines.price_unit),'x_studio_delivered_not_invoiced':(lines.qty_delivered * lines.price_unit)-(lines.qty_invoiced * lines.price_unit)})
+        create_comparison_sub_model = env['x_rm_gross_margin_comp'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference':record.name,'sales_order':lines.order_id.id,'x_studio_many2one_field_7fcuw':lines.product_id.id,'x_studio_estimated_amount':(lines.product_uom_qty * lines.price_unit),'x_studio_delivered_amount':(lines.qty_delivered * lines.price_unit),'x_studio_invoiced_amount':(lines.qty_invoiced * lines.price_unit),'x_studio_delivered_not_invoiced':(lines.qty_delivered * lines.price_unit)-(lines.qty_invoiced * lines.price_unit)})
 
         
 
         temp_estimated_lines.append([0,0,{
 
-          'x_studio_sales_order':lines.order_id.id,
+          'sales_order':lines.order_id.id,
 
           'x_studio_customer':lines.order_partner_id.id,
 
@@ -1385,19 +1385,19 @@ if record.x_name == 'New':
 
           'x_studio_product_id':lines.product_id.id,
 
-          'x_studio_description':lines.name,
+          'description':lines.name,
 
           'x_studio_trans_type':lines.x_studio_trans_type,
 
           'x_studio_category':lines.x_studio_category.id,
 
-          'x_studio_quantity':lines.product_uom_qty,
+          'quantity':lines.product_uom_qty,
 
           'x_studio_delivered_qty':lines.qty_delivered,
 
           'x_studio_uom':lines.product_uom.id,
 
-          'x_studio_unit_price':lines.price_unit,
+          'unit_price':lines.price_unit,
 
           'x_studio_sub_total':lines.price_subtotal,
 
@@ -1421,7 +1421,7 @@ if record.x_name == 'New':
 
           temp_actual_lines_2.append([0,0,{
 
-            'x_studio_sales_order':lines.order_id.id,
+            'sales_order':lines.order_id.id,
 
             'x_studio_customer':lines.order_partner_id.id,
 
@@ -1429,19 +1429,19 @@ if record.x_name == 'New':
 
             'x_studio_product_id':lines.product_id.id,
 
-            'x_studio_description':lines.name,
+            'description':lines.name,
 
             'x_studio_trans_type':lines.x_studio_trans_type,
 
             'x_studio_category':lines.x_studio_category.id,
 
-            'x_studio_quantity':lines.product_uom_qty,
+            'quantity':lines.product_uom_qty,
 
             'x_studio_delivered_qty':lines.qty_delivered,
 
             'x_studio_uom':lines.product_uom.id,
 
-            'x_studio_unit_price':lines.price_unit,
+            'unit_price':lines.price_unit,
 
             'x_studio_sub_total':lines.price_subtotal,
 
@@ -1465,7 +1465,7 @@ if record.x_name == 'New':
 
           temp_actual_lines_3.append([0,0,{
 
-            'x_studio_sales_order':lines.order_id.id,
+            'sales_order':lines.order_id.id,
 
             'x_studio_customer':lines.order_partner_id.id,
 
@@ -1473,19 +1473,19 @@ if record.x_name == 'New':
 
             'x_studio_product_id':lines.product_id.id,
 
-            'x_studio_description':lines.name,
+            'description':lines.name,
 
             'x_studio_trans_type':lines.x_studio_trans_type,
 
             'x_studio_category':lines.x_studio_category.id,
 
-            'x_studio_quantity':lines.product_uom_qty,
+            'quantity':lines.product_uom_qty,
 
             'x_studio_delivered_qty':lines.qty_delivered,
 
             'x_studio_uom':lines.product_uom.id,
 
-            'x_studio_unit_price':lines.price_unit,
+            'unit_price':lines.price_unit,
 
             'x_studio_sub_total':lines.price_subtotal,
 
@@ -1509,7 +1509,7 @@ if record.x_name == 'New':
 
           temp_actual_lines_4.append([0,0,{
 
-            'x_studio_sales_order':lines.order_id.id,
+            'sales_order':lines.order_id.id,
 
             'x_studio_customer':lines.order_partner_id.id,
 
@@ -1517,19 +1517,19 @@ if record.x_name == 'New':
 
             'x_studio_product_id':lines.product_id.id,
 
-            'x_studio_description':lines.name,
+            'description':lines.name,
 
             'x_studio_trans_type':lines.x_studio_trans_type,
 
             'x_studio_category':lines.x_studio_category.id,
 
-            'x_studio_quantity':lines.product_uom_qty,
+            'quantity':lines.product_uom_qty,
 
             'x_studio_delivered_qty':lines.qty_delivered,
 
             'x_studio_uom':lines.product_uom.id,
 
-            'x_studio_unit_price':lines.price_unit,
+            'unit_price':lines.price_unit,
 
             'x_studio_sub_total':lines.price_subtotal,
 
@@ -1565,7 +1565,7 @@ if record.x_name == 'New':
 
             temp_actual_lines_5.append([0,0,{
 
-              'x_studio_sales_order':lines.order_id.id,
+              'sales_order':lines.order_id.id,
 
               'x_studio_customer':lines.order_partner_id.id,
 
@@ -1573,19 +1573,19 @@ if record.x_name == 'New':
 
               'x_studio_product_id':lines.product_id.id,
 
-              'x_studio_description':lines.name,
+              'description':lines.name,
 
               'x_studio_trans_type':lines.x_studio_trans_type,
 
               'x_studio_category':lines.x_studio_category.id,
 
-              'x_studio_quantity':lines.product_uom_qty,
+              'quantity':lines.product_uom_qty,
 
               'x_studio_delivered_qty':lines.qty_delivered,
 
               'x_studio_uom':lines.product_uom.id,
 
-              'x_studio_unit_price':lines.price_unit,
+              'unit_price':lines.price_unit,
 
               'x_studio_sub_total':lines.price_subtotal,
 
@@ -1609,7 +1609,7 @@ if record.x_name == 'New':
 
             temp_actual_lines_6.append([0,0,{
 
-            'x_studio_sales_order':lines.order_id.id,
+            'sales_order':lines.order_id.id,
 
             'x_studio_customer':lines.order_partner_id.id,
 
@@ -1617,19 +1617,19 @@ if record.x_name == 'New':
 
             'x_studio_product_id':lines.product_id.id,
 
-            'x_studio_description':lines.name,
+            'description':lines.name,
 
             'x_studio_trans_type':lines.x_studio_trans_type,
 
             'x_studio_category':lines.x_studio_category.id,
 
-            'x_studio_quantity':lines.product_uom_qty,
+            'quantity':lines.product_uom_qty,
 
             'x_studio_delivered_qty':lines.qty_delivered,
 
             'x_studio_uom':lines.product_uom.id,
 
-            'x_studio_unit_price':lines.price_unit,
+            'unit_price':lines.price_unit,
 
             'x_studio_sub_total':lines.price_subtotal,
 
@@ -1643,13 +1643,13 @@ if record.x_name == 'New':
 
       if cat_count > 0:  
 
-        create_estimated_sub_model = env['x_rm_gross_margin_esti'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_transaction_type': cat_lines.x_studio_transaction_type,'x_studio_category': cat_lines.x_name,'x_studio_estimated_amt': tot_estimated_val_1,'x_studio_actual_cost': tot_actual_val_1,'x_studio_balance_cost': tot_balance_val_1,'x_studio_sales_order_line_ids':temp_estimated_lines})
+        create_estimated_sub_model = env['x_rm_gross_margin_esti'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_transaction_type': cat_lines.x_studio_transaction_type,'x_studio_category': cat_lines.name,'x_studio_estimated_amt': tot_estimated_val_1,'x_studio_actual_cost': tot_actual_val_1,'x_studio_balance_cost': tot_balance_val_1,'x_studio_sales_order_line_ids':temp_estimated_lines})
 
     
 
     if cat_grand_count > 0:
 
-      create_estimated_sub_model = env['x_rm_gross_margin_esti'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_group_title': 'Total Estimated Value','x_studio_estimated_amt': tot_estimated_val,'x_studio_actual_cost': tot_actual_val,'x_studio_balance_cost': tot_balance_val,'x_studio_total': True})  
+      create_estimated_sub_model = env['x_rm_gross_margin_esti'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_group_title': 'Total Estimated Value','x_studio_estimated_amt': tot_estimated_val,'x_studio_actual_cost': tot_actual_val,'x_studio_balance_cost': tot_balance_val,'x_studio_total': True})  
 
     
 
@@ -1689,49 +1689,49 @@ if record.x_name == 'New':
 
     if cat_count_2 > 0:  
 
-      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_transaction_type_1': 'Fee','x_studio_estimated_total': tot_estimated_val_2,'x_studio_cost_price': tot_actual_val_2,'x_studio_variance_est_act': tot_balance_val_2,'x_studio_normal_line':True,'x_studio_sales_order_line_ids':temp_actual_lines_2})
+      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_transaction_type_1': 'Fee','x_studio_estimated_total': tot_estimated_val_2,'x_studio_cost_price': tot_actual_val_2,'x_studio_variance_est_act': tot_balance_val_2,'x_studio_normal_line':True,'x_studio_sales_order_line_ids':temp_actual_lines_2})
 
     
 
     if cat_count_3 > 0:  
 
-      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_transaction_type_1': 'Hour','x_studio_estimated_total': tot_estimated_val_3,'x_studio_cost_price': tot_actual_val_3,'x_studio_variance_est_act': tot_balance_val_3,'x_studio_normal_line':True,'x_studio_sales_order_line_ids':temp_actual_lines_3})
+      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_transaction_type_1': 'Hour','x_studio_estimated_total': tot_estimated_val_3,'x_studio_cost_price': tot_actual_val_3,'x_studio_variance_est_act': tot_balance_val_3,'x_studio_normal_line':True,'x_studio_sales_order_line_ids':temp_actual_lines_3})
 
     
 
     if cat_count_4 > 0:  
 
-      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_transaction_type_1': 'Item','x_studio_estimated_total': tot_estimated_val_4,'x_studio_cost_price': tot_actual_val_4,'x_studio_variance_est_act': tot_balance_val_4,'x_studio_normal_line':True,'x_studio_sales_order_line_ids':temp_actual_lines_4})
+      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_transaction_type_1': 'Item','x_studio_estimated_total': tot_estimated_val_4,'x_studio_cost_price': tot_actual_val_4,'x_studio_variance_est_act': tot_balance_val_4,'x_studio_normal_line':True,'x_studio_sales_order_line_ids':temp_actual_lines_4})
 
       
 
     #if cat_count_7 > 0:  
 
-    #  create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_transaction_type_1': 'Expense'})
+    #  create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_transaction_type_1': 'Expense'})
 
     
 
     if cat_count_5 > 0:  
 
-      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_transaction_type_1': 'Expense','x_studio_other_expenses': 'Claimable Expenses','x_studio_estimated_total': tot_estimated_val_5,'x_studio_cost_price': tot_actual_val_5,'x_studio_variance_est_act': tot_balance_val_5,'x_studio_normal_line':True,'x_studio_sales_order_line_ids':temp_actual_lines_5})
+      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_transaction_type_1': 'Expense','x_studio_other_expenses': 'Claimable Expenses','x_studio_estimated_total': tot_estimated_val_5,'x_studio_cost_price': tot_actual_val_5,'x_studio_variance_est_act': tot_balance_val_5,'x_studio_normal_line':True,'x_studio_sales_order_line_ids':temp_actual_lines_5})
 
     
 
     if cat_count_6 > 0:  
 
-      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_transaction_type_1': 'Expense','x_studio_other_expenses': 'Non-Claimable Expenses','x_studio_estimated_total': tot_estimated_val_6,'x_studio_cost_price': tot_actual_val_6,'x_studio_variance_est_act': tot_balance_val_6,'x_studio_normal_line':True,'x_studio_sales_order_line_ids':temp_actual_lines_6})
+      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_transaction_type_1': 'Expense','x_studio_other_expenses': 'Non-Claimable Expenses','x_studio_estimated_total': tot_estimated_val_6,'x_studio_cost_price': tot_actual_val_6,'x_studio_variance_est_act': tot_balance_val_6,'x_studio_normal_line':True,'x_studio_sales_order_line_ids':temp_actual_lines_6})
 
     
 
     if cat_grand_count > 0:
 
-      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_other_expenses': 'Total Actual Cost','x_studio_estimated_total': tot_estimated_val,'x_studio_cost_price': tot_actual_val,'x_studio_variance_est_act': tot_balance_val})   
+      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_other_expenses': 'Total Actual Cost','x_studio_estimated_total': tot_estimated_val,'x_studio_cost_price': tot_actual_val,'x_studio_variance_est_act': tot_balance_val})   
 
       
 
-    create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_other_expenses': 'Outstanding Cash Advances','x_studio_estimated_total': outstanding_cash_tot})     
+    create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_other_expenses': 'Outstanding Cash Advances','x_studio_estimated_total': outstanding_cash_tot})     
 
-    create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_other_expenses': 'Total planned amount of the budget','x_studio_estimated_total': on_account_val,'x_studio_budget_line':True,'x_studio_budget_line_ids':temp_actual_budget}) 
+    create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_other_expenses': 'Total planned amount of the budget','x_studio_estimated_total': on_account_val,'x_studio_budget_line':True,'x_studio_budget_line_ids':temp_actual_budget}) 
 
     
 
@@ -1757,7 +1757,7 @@ if record.x_name == 'New':
 
       invoice_total += main_invoice_lines.amount_total_signed
 
-      create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_invoice_no':main_invoice_lines.id,'x_studio_invoice_date':main_invoice_lines.invoice_date,'x_studio_status':main_invoice_lines.state,'x_studio_payment_status':main_invoice_lines.payment_state,'x_studio_amount':main_invoice_lines.amount_total_signed}) 
+      create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_invoice_no':main_invoice_lines.id,'x_studio_invoice_date':main_invoice_lines.invoice_date,'x_studio_status':main_invoice_lines.state,'x_studio_payment_status':main_invoice_lines.payment_state,'x_studio_amount':main_invoice_lines.amount_total_signed}) 
 
     # Loop Main Sales Order Invoice Lines - End
 
@@ -1771,7 +1771,7 @@ if record.x_name == 'New':
 
       invoice_total += invoice_lines.amount_total_signed
 
-      create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_invoice_no':invoice_lines.id,'x_studio_invoice_date':invoice_lines.invoice_date,'x_studio_status':invoice_lines.state,'x_studio_payment_status':invoice_lines.payment_state,'x_studio_amount':invoice_lines.amount_total_signed}) 
+      create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_invoice_no':invoice_lines.id,'x_studio_invoice_date':invoice_lines.invoice_date,'x_studio_status':invoice_lines.state,'x_studio_payment_status':invoice_lines.payment_state,'x_studio_amount':invoice_lines.amount_total_signed}) 
 
     # Loop Sub Sales Order Invoice Lines - End
 
@@ -1779,7 +1779,7 @@ if record.x_name == 'New':
 
     if invoice_count > 0:
 
-      create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_group_title':'Total Invoice Amount','x_studio_amount':invoice_total}) 
+      create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_group_title':'Total Invoice Amount','x_studio_amount':invoice_total}) 
 
     
 
@@ -1793,13 +1793,13 @@ if record.x_name == 'New':
 
     
 
-    create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_group_title':'Actual Gross Margin','x_studio_amount':(invoice_total - tot_actual_val)})
+    create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_group_title':'Actual Gross Margin','x_studio_amount':(invoice_total - tot_actual_val)})
 
-    create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_group_title':'Estimated Gross Margin','x_studio_amount':tot_estimated_val_2}) 
+    create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_group_title':'Estimated Gross Margin','x_studio_amount':tot_estimated_val_2}) 
 
-    create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_group_title':'Estimated GP%','x_studio_amount':estimated_gp})
+    create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_group_title':'Estimated GP%','x_studio_amount':estimated_gp})
 
-    create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_group_title':'Actual GP%','x_studio_amount':actual_gp}) ]]></field>
+    create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_group_title':'Actual GP%','x_studio_amount':actual_gp}) ]]></field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
@@ -1914,7 +1914,7 @@ if record.x_name == 'New':
 
            
 
-       create_sub_model = env['x_rm_sales_prod_purch'].create({'x_studio_sales_report_model_id':record.id,'x_studio_description':products.id,'x_studio_base_price':products.list_price,'x_studio_product_type':products.type,'x_studio_date_1':last_prod_purch.create_date.date(),'x_studio_unit_cost':last_prod_purch.unit_cost,'x_studio_project_category':project_qty,'x_studio_sales_order':so_qty,'x_studio_production_qty':prod_qty,'x_studio_purchase_qty':purch_qty,'x_studio_header_reference': record.x_name})
+       create_sub_model = env['x_rm_sales_prod_purch'].create({'x_studio_sales_report_model_id':record.id,'description':products.id,'x_studio_base_price':products.list_price,'x_studio_product_type':products.type,'x_studio_date_1':last_prod_purch.create_date.date(),'x_studio_unit_cost':last_prod_purch.unit_cost,'x_studio_project_category':project_qty,'sales_order':so_qty,'x_studio_production_qty':prod_qty,'x_studio_purchase_qty':purch_qty,'x_studio_header_reference': record.name})
 
   
 
@@ -1980,7 +1980,7 @@ if record.x_name == 'New':
 
     for line in report_type_lines:
 
-      create_sub_model = env['x_rm_sales_order_line'].create({'x_studio_sales_report_model_id':record.id,'x_studio_date':line.date,'x_studio_customer_acc':line.partner_id.id,'x_studio_customer_group':line.partner_id.x_studio_customer_group.id,'x_studio_name':line.partner_id.name,'x_studio_sales_order':line.move_id.x_studio_sale_id.id,'x_studio_invoice':line.move_id.id,'x_studio_product_1':line.product_id.id,'x_studio_product_category':line.product_id.categ_id.id,'x_studio_quantity':line.quantity,'x_studio_unit_price':line.price_unit,'x_studio_net_value':line.price_total}) 
+      create_sub_model = env['x_rm_sales_order_line'].create({'x_studio_sales_report_model_id':record.id,'x_studio_date':line.date,'x_studio_customer_acc':line.partner_id.id,'x_studio_customer_group':line.partner_id.x_studio_customer_group.id,'x_studio_name':line.partner_id.name,'sales_order':line.move_id.x_studio_sale_id.id,'x_studio_invoice':line.move_id.id,'x_studio_product_1':line.product_id.id,'x_studio_product_category':line.product_id.categ_id.id,'quantity':line.quantity,'unit_price':line.price_unit,'x_studio_net_value':line.price_total}) 
 
       
 
@@ -2214,7 +2214,7 @@ if record.x_name == 'New':
 
           
 
-      create_sub_model = env['x_rm_none_moving'].create({'x_studio_sales_report_model_id':record.id,'x_studio_description':products.id,'x_studio_base_price':products.list_price,'x_studio_in_hand_1':inhand4,'x_studio_issue_1':issue4,'x_studio_in_hand_2':inhand3,'x_studio_issue_2':issue3,'x_studio_in_hand_3':inhand2,'x_studio_issue_3':issue2,'x_studio_in_hand_4':inhand,'x_studio_issue_4':issue,'x_studio_header_reference': record.x_name})
+      create_sub_model = env['x_rm_none_moving'].create({'x_studio_sales_report_model_id':record.id,'description':products.id,'x_studio_base_price':products.list_price,'x_studio_in_hand_1':inhand4,'x_studio_issue_1':issue4,'x_studio_in_hand_2':inhand3,'x_studio_issue_2':issue3,'x_studio_in_hand_3':inhand2,'x_studio_issue_3':issue2,'x_studio_in_hand_4':inhand,'x_studio_issue_4':issue,'x_studio_header_reference': record.name})
 
        
 
@@ -2551,7 +2551,7 @@ if record.x_name == 'New':
 
     for line in report_type_lines:
 
-      create_sub_model = env['x_rm_daily_s1'].create({'x_studio_sales_report_model_id':record.id,'x_studio_invoice_date':line.date,'x_studio_number':line.move_name,'x_studio_partner':line.partner_id.id,'x_studio_sales_centre':line.x_studio_sales_team.id,'x_studio_product_id':line.product_id.id,'x_studio_quantity':line.quantity,'x_studio_value':line.price_subtotal})
+      create_sub_model = env['x_rm_daily_s1'].create({'x_studio_sales_report_model_id':record.id,'x_studio_invoice_date':line.date,'x_studio_number':line.move_name,'x_studio_partner':line.partner_id.id,'x_studio_sales_centre':line.x_studio_sales_team.id,'x_studio_product_id':line.product_id.id,'quantity':line.quantity,'x_studio_value':line.price_subtotal})
 
   
 
@@ -2561,7 +2561,7 @@ if record.x_name == 'New':
 
     for line in report_type_lines:
 
-      create_sub_model = env['x_rm_sales_order_line'].create({'x_studio_sales_report_model_id':record.id,'x_studio_date':line.date,'x_studio_customer_acc':line.partner_id.id,'x_studio_customer_group':line.partner_id.x_studio_customer_group.id,'x_studio_name':line.partner_id.name,'x_studio_sales_order':line.move_id.x_studio_sale_id.id,'x_studio_invoice':line.move_id.id,'x_studio_product_1':line.product_id.id,'x_studio_product_category':line.product_id.categ_id.id,'x_studio_quantity':line.quantity,'x_studio_unit_price':line.price_unit,'x_studio_net_value':line.price_total}) 
+      create_sub_model = env['x_rm_sales_order_line'].create({'x_studio_sales_report_model_id':record.id,'x_studio_date':line.date,'x_studio_customer_acc':line.partner_id.id,'x_studio_customer_group':line.partner_id.x_studio_customer_group.id,'x_studio_name':line.partner_id.name,'sales_order':line.move_id.x_studio_sale_id.id,'x_studio_invoice':line.move_id.id,'x_studio_product_1':line.product_id.id,'x_studio_product_category':line.product_id.categ_id.id,'quantity':line.quantity,'unit_price':line.price_unit,'x_studio_net_value':line.price_total}) 
 
       
 
@@ -2571,7 +2571,7 @@ if record.x_name == 'New':
 
     for line in report_type_lines:
 
-      create_sub_model = env['x_rm_production_orders'].create({'x_studio_sales_report_model_id':record.id,'x_studio_production_id':line.id,'x_studio_product_code':line.product_id.id,'x_studio_description':line.product_id.name,'x_studio_warehouse':line.location_dest_id.id,'x_studio_status':line.state,'x_studio_estimated':line.product_qty,'x_studio_started':line.qty_producing,'x_studio_start':line.date_start,'x_studio_header_reference': record.x_name,'x_studio_end':line.date_finished})
+      create_sub_model = env['x_rm_production_orders'].create({'x_studio_sales_report_model_id':record.id,'x_studio_production_id':line.id,'x_studio_product_code':line.product_id.id,'description':line.product_id.name,'x_studio_warehouse':line.location_dest_id.id,'x_studio_status':line.state,'x_studio_estimated':line.product_qty,'x_studio_started':line.qty_producing,'x_studio_start':line.date_start,'x_studio_header_reference': record.name,'x_studio_end':line.date_finished})
 
       
 
@@ -2665,7 +2665,7 @@ if record.x_name == 'New':
 
         
 
-      create_sub_model = env['x_rm_none_moving'].create({'x_studio_sales_report_model_id':record.id,'x_studio_description':products.id,'x_studio_base_price':products.list_price,'x_studio_in_hand_1':inhand4,'x_studio_issue_1':issue4,'x_studio_in_hand_2':inhand3,'x_studio_issue_2':issue3,'x_studio_in_hand_3':inhand2,'x_studio_issue_3':issue2,'x_studio_in_hand_4':inhand,'x_studio_issue_4':issue,'x_studio_header_reference': record.x_name})
+      create_sub_model = env['x_rm_none_moving'].create({'x_studio_sales_report_model_id':record.id,'description':products.id,'x_studio_base_price':products.list_price,'x_studio_in_hand_1':inhand4,'x_studio_issue_1':issue4,'x_studio_in_hand_2':inhand3,'x_studio_issue_2':issue3,'x_studio_in_hand_3':inhand2,'x_studio_issue_3':issue2,'x_studio_in_hand_4':inhand,'x_studio_issue_4':issue,'x_studio_header_reference': record.name})
 
        
 
@@ -2675,7 +2675,7 @@ if record.x_name == 'New':
 
     for line in report_type_lines:
 
-      create_sub_model = env['x_rm_production_varian'].create({'x_studio_sales_report_model_id':record.id,'x_studio_description':line.raw_material_production_id.product_id.id,'x_studio_production_id':line.raw_material_production_id.id,'x_studio_prod_qty':line.raw_material_production_id.product_qty,'x_studio_description_1':line.product_id.id,'x_studio_bom_qty':line.x_studio_original_qty,'x_studio_esti_qty':line.x_studio_original_qty,'x_studio_cons_qty':line.product_uom_qty,'x_studio_variance':line.x_studio_variance,'x_studio_avg_cost':line.price_unit,'x_studio_total_cost':(line.product_uom_qty*line.price_unit),'x_studio_header_reference': record.x_name})
+      create_sub_model = env['x_rm_production_varian'].create({'x_studio_sales_report_model_id':record.id,'description':line.raw_material_production_id.product_id.id,'x_studio_production_id':line.raw_material_production_id.id,'x_studio_prod_qty':line.raw_material_production_id.product_qty,'x_studio_description_1':line.product_id.id,'x_studio_bom_qty':line.x_studio_original_qty,'x_studio_esti_qty':line.x_studio_original_qty,'x_studio_cons_qty':line.product_uom_qty,'x_studio_variance':line.x_studio_variance,'x_studio_avg_cost':line.price_unit,'x_studio_total_cost':(line.product_uom_qty*line.price_unit),'x_studio_header_reference': record.name})
 
       
 
@@ -2743,7 +2743,7 @@ if record.x_name == 'New':
 
          
 
-       create_sub_model = env['x_rm_sales_prod_purch'].create({'x_studio_sales_report_model_id':record.id,'x_studio_description':products.id,'x_studio_base_price':products.list_price,'x_studio_product_type':products.type,'x_studio_date_1':last_prod_purch.create_date.date(),'x_studio_unit_cost':last_prod_purch.unit_cost,'x_studio_project_category':project_qty,'x_studio_sales_order':so_qty,'x_studio_production_qty':prod_qty,'x_studio_purchase_qty':purch_qty,'x_studio_header_reference': record.x_name})
+       create_sub_model = env['x_rm_sales_prod_purch'].create({'x_studio_sales_report_model_id':record.id,'description':products.id,'x_studio_base_price':products.list_price,'x_studio_product_type':products.type,'x_studio_date_1':last_prod_purch.create_date.date(),'x_studio_unit_cost':last_prod_purch.unit_cost,'x_studio_project_category':project_qty,'sales_order':so_qty,'x_studio_production_qty':prod_qty,'x_studio_purchase_qty':purch_qty,'x_studio_header_reference': record.name})
 
   
 
@@ -2753,7 +2753,7 @@ if record.x_name == 'New':
 
     for line in report_type_lines:
 
-      create_sub_model = env['x_rm_prod_summary_spli'].create({'x_studio_sales_report_model_id':record.id,'x_studio_description':line.raw_material_production_id.product_id.id,'x_studio_production_id':line.raw_material_production_id.id,'x_studio_prod_qty':line.raw_material_production_id.product_qty,'x_studio_description_1':line.product_id.id,'x_studio_bom_qty':line.x_studio_original_qty,'x_studio_esti_qty':line.x_studio_original_qty,'x_studio_cons_qty':line.product_uom_qty,'x_studio_variance':line.x_studio_variance,'x_studio_avg_cost':line.price_unit,'x_studio_total_cost':(line.product_uom_qty*line.price_unit),'x_studio_header_reference': record.x_name})]]></field>
+      create_sub_model = env['x_rm_prod_summary_spli'].create({'x_studio_sales_report_model_id':record.id,'description':line.raw_material_production_id.product_id.id,'x_studio_production_id':line.raw_material_production_id.id,'x_studio_prod_qty':line.raw_material_production_id.product_qty,'x_studio_description_1':line.product_id.id,'x_studio_bom_qty':line.x_studio_original_qty,'x_studio_esti_qty':line.x_studio_original_qty,'x_studio_cons_qty':line.product_uom_qty,'x_studio_variance':line.x_studio_variance,'x_studio_avg_cost':line.price_unit,'x_studio_total_cost':(line.product_uom_qty*line.price_unit),'x_studio_header_reference': record.name})]]></field>
   </record>
   <record id="server_action_1746_srm_auto_delete_sub_models" model="ir.actions.server">
     <field name="name">SRM - Auto Delete Sub Models</field>
@@ -2788,11 +2788,11 @@ if record.x_name == 'New':
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[#record['x_name'] = env['ir.sequence'].next_by_code('purchase.request.seq')
+    <field name="code"><![CDATA[#record['name'] = env['ir.sequence'].next_by_code('purchase.request.seq')
 
-if record.x_name == 'New':
+if record.name == 'New':
     seq = env['ir.sequence'].next_by_code('report.model.seq')
-    record.write({'x_name': seq})
+    record.write({'name': seq})
 
 
 
@@ -2861,7 +2861,7 @@ if record.x_name == 'New':
 
     for line in report_type_lines:
 
-      create_sub_model = env['x_rm_daily_s1'].create({'x_studio_sales_report_model_id':record.id,'x_studio_invoice_date':line.date,'x_studio_number':line.move_name,'x_studio_partner':line.partner_id.id,'x_studio_sales_centre':line.x_studio_sales_team.id,'x_studio_product_id':line.product_id.id,'x_studio_quantity':line.quantity,'x_studio_value':line.price_subtotal})
+      create_sub_model = env['x_rm_daily_s1'].create({'x_studio_sales_report_model_id':record.id,'x_studio_invoice_date':line.date,'x_studio_number':line.move_name,'x_studio_partner':line.partner_id.id,'x_studio_sales_centre':line.x_studio_sales_team.id,'x_studio_product_id':line.product_id.id,'quantity':line.quantity,'x_studio_value':line.price_subtotal})
 
   
 
@@ -2927,7 +2927,7 @@ if record.x_name == 'New':
 
     for line in report_type_lines:
 
-      create_sub_model = env['x_rm_sales_order_line'].create({'x_studio_sales_report_model_id':record.id,'x_studio_date':line.date,'x_studio_customer_acc':line.partner_id.id,'x_studio_customer_group':line.partner_id.x_studio_customer_group.id,'x_studio_name':line.partner_id.name,'x_studio_sales_order':line.move_id.x_studio_sale_id.id,'x_studio_invoice':line.move_id.id,'x_studio_product_1':line.product_id.id,'x_studio_product_category':line.product_id.categ_id.id,'x_studio_quantity':line.quantity,'x_studio_unit_price':line.price_unit,'x_studio_net_value':line.price_total}) 
+      create_sub_model = env['x_rm_sales_order_line'].create({'x_studio_sales_report_model_id':record.id,'x_studio_date':line.date,'x_studio_customer_acc':line.partner_id.id,'x_studio_customer_group':line.partner_id.x_studio_customer_group.id,'x_studio_name':line.partner_id.name,'sales_order':line.move_id.x_studio_sale_id.id,'x_studio_invoice':line.move_id.id,'x_studio_product_1':line.product_id.id,'x_studio_product_category':line.product_id.categ_id.id,'quantity':line.quantity,'unit_price':line.price_unit,'x_studio_net_value':line.price_total}) 
 
       
 
@@ -2981,7 +2981,7 @@ if record.x_name == 'New':
 
     for line in report_type_lines:
 
-      create_sub_model = env['x_rm_production_orders'].create({'x_studio_sales_report_model_id':record.id,'x_studio_production_id':line.id,'x_studio_product_code':line.product_id.id,'x_studio_description':line.product_id.name,'x_studio_warehouse':line.location_dest_id.id,'x_studio_status':line.state,'x_studio_estimated':line.product_qty,'x_studio_started':line.qty_producing,'x_studio_start':line.date_start,'x_studio_header_reference': record.x_name,'x_studio_end':line.date_finished})
+      create_sub_model = env['x_rm_production_orders'].create({'x_studio_sales_report_model_id':record.id,'x_studio_production_id':line.id,'x_studio_product_code':line.product_id.id,'description':line.product_id.name,'x_studio_warehouse':line.location_dest_id.id,'x_studio_status':line.state,'x_studio_estimated':line.product_qty,'x_studio_started':line.qty_producing,'x_studio_start':line.date_start,'x_studio_header_reference': record.name,'x_studio_end':line.date_finished})
 
         
 
@@ -3215,7 +3215,7 @@ if record.x_name == 'New':
 
           
 
-      create_sub_model = env['x_rm_none_moving'].create({'x_studio_sales_report_model_id':record.id,'x_studio_description':products.id,'x_studio_base_price':products.list_price,'x_studio_in_hand_1':inhand4,'x_studio_issue_1':issue4,'x_studio_in_hand_2':inhand3,'x_studio_issue_2':issue3,'x_studio_in_hand_3':inhand2,'x_studio_issue_3':issue2,'x_studio_in_hand_4':inhand,'x_studio_issue_4':issue,'x_studio_header_reference': record.x_name})
+      create_sub_model = env['x_rm_none_moving'].create({'x_studio_sales_report_model_id':record.id,'description':products.id,'x_studio_base_price':products.list_price,'x_studio_in_hand_1':inhand4,'x_studio_issue_1':issue4,'x_studio_in_hand_2':inhand3,'x_studio_issue_2':issue3,'x_studio_in_hand_3':inhand2,'x_studio_issue_3':issue2,'x_studio_in_hand_4':inhand,'x_studio_issue_4':issue,'x_studio_header_reference': record.name})
 
        
 
@@ -3327,7 +3327,7 @@ if record.x_name == 'New':
 
            
 
-       create_sub_model = env['x_rm_sales_prod_purch'].create({'x_studio_sales_report_model_id':record.id,'x_studio_description':products.id,'x_studio_base_price':products.list_price,'x_studio_product_type':products.type,'x_studio_date_1':last_prod_purch.create_date.date(),'x_studio_unit_cost':last_prod_purch.unit_cost,'x_studio_project_category':project_qty,'x_studio_sales_order':so_qty,'x_studio_production_qty':prod_qty,'x_studio_purchase_qty':purch_qty,'x_studio_header_reference': record.x_name})
+       create_sub_model = env['x_rm_sales_prod_purch'].create({'x_studio_sales_report_model_id':record.id,'description':products.id,'x_studio_base_price':products.list_price,'x_studio_product_type':products.type,'x_studio_date_1':last_prod_purch.create_date.date(),'x_studio_unit_cost':last_prod_purch.unit_cost,'x_studio_project_category':project_qty,'sales_order':so_qty,'x_studio_production_qty':prod_qty,'x_studio_purchase_qty':purch_qty,'x_studio_header_reference': record.name})
 
   
 
@@ -3381,7 +3381,7 @@ if record.x_name == 'New':
 
     for line in report_type_lines:
 
-      create_sub_model = env['x_rm_prod_summary_spli'].create({'x_studio_sales_report_model_id':record.id,'x_studio_description':line.raw_material_production_id.product_id.id,'x_studio_production_id':line.raw_material_production_id.id,'x_studio_prod_qty':line.raw_material_production_id.product_qty,'x_studio_description_1':line.product_id.id,'x_studio_bom_qty':line.x_studio_original_qty,'x_studio_esti_qty':line.x_studio_original_qty,'x_studio_cons_qty':line.product_uom_qty,'x_studio_variance':line.x_studio_variance,'x_studio_avg_cost':line.price_unit,'x_studio_total_cost':(line.product_uom_qty*line.price_unit),'x_studio_header_reference': record.x_name})]]></field>
+      create_sub_model = env['x_rm_prod_summary_spli'].create({'x_studio_sales_report_model_id':record.id,'description':line.raw_material_production_id.product_id.id,'x_studio_production_id':line.raw_material_production_id.id,'x_studio_prod_qty':line.raw_material_production_id.product_qty,'x_studio_description_1':line.product_id.id,'x_studio_bom_qty':line.x_studio_original_qty,'x_studio_esti_qty':line.x_studio_original_qty,'x_studio_cons_qty':line.product_uom_qty,'x_studio_variance':line.x_studio_variance,'x_studio_avg_cost':line.price_unit,'x_studio_total_cost':(line.product_uom_qty*line.price_unit),'x_studio_header_reference': record.name})]]></field>
   </record>
   <record id="server_action_1765_srm_rpt_production_job_variance" model="ir.actions.server">
     <field name="name">SRM - RPT - Production Job Variance</field>
@@ -3431,7 +3431,7 @@ if record.x_name == 'New':
 
     for line in report_type_lines:
 
-      create_sub_model = env['x_rm_production_varian'].create({'x_studio_sales_report_model_id':record.id,'x_studio_description':line.raw_material_production_id.product_id.id,'x_studio_production_id':line.raw_material_production_id.id,'x_studio_prod_qty':line.raw_material_production_id.product_qty,'x_studio_description_1':line.product_id.id,'x_studio_bom_qty':line.x_studio_original_qty,'x_studio_esti_qty':line.x_studio_original_qty,'x_studio_cons_qty':line.product_uom_qty,'x_studio_variance':line.x_studio_variance,'x_studio_avg_cost':line.price_unit,'x_studio_total_cost':(line.product_uom_qty*line.price_unit),'x_studio_header_reference': record.x_name})
+      create_sub_model = env['x_rm_production_varian'].create({'x_studio_sales_report_model_id':record.id,'description':line.raw_material_production_id.product_id.id,'x_studio_production_id':line.raw_material_production_id.id,'x_studio_prod_qty':line.raw_material_production_id.product_qty,'x_studio_description_1':line.product_id.id,'x_studio_bom_qty':line.x_studio_original_qty,'x_studio_esti_qty':line.x_studio_original_qty,'x_studio_cons_qty':line.product_uom_qty,'x_studio_variance':line.x_studio_variance,'x_studio_avg_cost':line.price_unit,'x_studio_total_cost':(line.product_uom_qty*line.price_unit),'x_studio_header_reference': record.name})
 
       
 
@@ -3687,13 +3687,13 @@ if record.x_name == 'New':
 
         
 
-        create_comparison_sub_model = env['x_rm_gross_margin_comp'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference':record.x_name,'x_studio_sales_order':main_lines.order_id.id,'x_studio_many2one_field_7fcuw':main_lines.product_id.id,'x_studio_estimated_amount':(main_lines.product_uom_qty * main_lines.price_unit),'x_studio_delivered_amount':(main_lines.qty_delivered * main_lines.price_unit),'x_studio_invoiced_amount':(main_lines.qty_invoiced * main_lines.price_unit),'x_studio_delivered_not_invoiced':(main_lines.qty_delivered * main_lines.price_unit)-(main_lines.qty_invoiced * main_lines.price_unit)})
+        create_comparison_sub_model = env['x_rm_gross_margin_comp'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference':record.name,'sales_order':main_lines.order_id.id,'x_studio_many2one_field_7fcuw':main_lines.product_id.id,'x_studio_estimated_amount':(main_lines.product_uom_qty * main_lines.price_unit),'x_studio_delivered_amount':(main_lines.qty_delivered * main_lines.price_unit),'x_studio_invoiced_amount':(main_lines.qty_invoiced * main_lines.price_unit),'x_studio_delivered_not_invoiced':(main_lines.qty_delivered * main_lines.price_unit)-(main_lines.qty_invoiced * main_lines.price_unit)})
 
         
 
         temp_estimated_lines.append([0,0,{
 
-          'x_studio_sales_order':main_lines.order_id.id,
+          'sales_order':main_lines.order_id.id,
 
           'x_studio_customer':main_lines.order_partner_id.id,
 
@@ -3701,19 +3701,19 @@ if record.x_name == 'New':
 
           'x_studio_product_id':main_lines.product_id.id,
 
-          'x_studio_description':main_lines.name,
+          'description':main_lines.name,
 
           'x_studio_trans_type':main_lines.x_studio_trans_type,
 
           'x_studio_category':main_lines.x_studio_category.id,
 
-          'x_studio_quantity':main_lines.product_uom_qty,
+          'quantity':main_lines.product_uom_qty,
 
           'x_studio_delivered_qty':main_lines.qty_delivered,
 
           'x_studio_uom':main_lines.product_uom.id,
 
-          'x_studio_unit_price':main_lines.price_unit,
+          'unit_price':main_lines.price_unit,
 
           'x_studio_sub_total':main_lines.price_subtotal,
 
@@ -3737,7 +3737,7 @@ if record.x_name == 'New':
 
           temp_actual_lines_2.append([0,0,{
 
-            'x_studio_sales_order':main_lines.order_id.id,
+            'sales_order':main_lines.order_id.id,
 
             'x_studio_customer':main_lines.order_partner_id.id,
 
@@ -3745,19 +3745,19 @@ if record.x_name == 'New':
 
             'x_studio_product_id':main_lines.product_id.id,
 
-            'x_studio_description':main_lines.name,
+            'description':main_lines.name,
 
             'x_studio_trans_type':main_lines.x_studio_trans_type,
 
             'x_studio_category':main_lines.x_studio_category.id,
 
-            'x_studio_quantity':main_lines.product_uom_qty,
+            'quantity':main_lines.product_uom_qty,
 
             'x_studio_delivered_qty':main_lines.qty_delivered,
 
             'x_studio_uom':main_lines.product_uom.id,
 
-            'x_studio_unit_price':main_lines.price_unit,
+            'unit_price':main_lines.price_unit,
 
             'x_studio_sub_total':main_lines.price_subtotal,
 
@@ -3781,7 +3781,7 @@ if record.x_name == 'New':
 
           temp_actual_lines_3.append([0,0,{
 
-            'x_studio_sales_order':main_lines.order_id.id,
+            'sales_order':main_lines.order_id.id,
 
             'x_studio_customer':main_lines.order_partner_id.id,
 
@@ -3789,19 +3789,19 @@ if record.x_name == 'New':
 
             'x_studio_product_id':main_lines.product_id.id,
 
-            'x_studio_description':main_lines.name,
+            'description':main_lines.name,
 
             'x_studio_trans_type':main_lines.x_studio_trans_type,
 
             'x_studio_category':main_lines.x_studio_category.id,
 
-            'x_studio_quantity':main_lines.product_uom_qty,
+            'quantity':main_lines.product_uom_qty,
 
             'x_studio_delivered_qty':main_lines.qty_delivered,
 
             'x_studio_uom':main_lines.product_uom.id,
 
-            'x_studio_unit_price':main_lines.price_unit,
+            'unit_price':main_lines.price_unit,
 
             'x_studio_sub_total':main_lines.price_subtotal,
 
@@ -3825,7 +3825,7 @@ if record.x_name == 'New':
 
           temp_actual_lines_4.append([0,0,{
 
-            'x_studio_sales_order':main_lines.order_id.id,
+            'sales_order':main_lines.order_id.id,
 
             'x_studio_customer':main_lines.order_partner_id.id,
 
@@ -3833,19 +3833,19 @@ if record.x_name == 'New':
 
             'x_studio_product_id':main_lines.product_id.id,
 
-            'x_studio_description':main_lines.name,
+            'description':main_lines.name,
 
             'x_studio_trans_type':main_lines.x_studio_trans_type,
 
             'x_studio_category':main_lines.x_studio_category.id,
 
-            'x_studio_quantity':main_lines.product_uom_qty,
+            'quantity':main_lines.product_uom_qty,
 
             'x_studio_delivered_qty':main_lines.qty_delivered,
 
             'x_studio_uom':main_lines.product_uom.id,
 
-            'x_studio_unit_price':main_lines.price_unit,
+            'unit_price':main_lines.price_unit,
 
             'x_studio_sub_total':main_lines.price_subtotal,
 
@@ -3881,7 +3881,7 @@ if record.x_name == 'New':
 
             temp_actual_lines_5.append([0,0,{
 
-              'x_studio_sales_order':main_lines.order_id.id,
+              'sales_order':main_lines.order_id.id,
 
               'x_studio_customer':main_lines.order_partner_id.id,
 
@@ -3889,19 +3889,19 @@ if record.x_name == 'New':
 
               'x_studio_product_id':main_lines.product_id.id,
 
-              'x_studio_description':main_lines.name,
+              'description':main_lines.name,
 
               'x_studio_trans_type':main_lines.x_studio_trans_type,
 
               'x_studio_category':main_lines.x_studio_category.id,
 
-              'x_studio_quantity':main_lines.product_uom_qty,
+              'quantity':main_lines.product_uom_qty,
 
               'x_studio_delivered_qty':main_lines.qty_delivered,
 
               'x_studio_uom':main_lines.product_uom.id,
 
-              'x_studio_unit_price':main_lines.price_unit,
+              'unit_price':main_lines.price_unit,
 
               'x_studio_sub_total':main_lines.price_subtotal,
 
@@ -3925,7 +3925,7 @@ if record.x_name == 'New':
 
             temp_actual_lines_6.append([0,0,{
 
-              'x_studio_sales_order':main_lines.order_id.id,
+              'sales_order':main_lines.order_id.id,
 
               'x_studio_customer':main_lines.order_partner_id.id,
 
@@ -3933,19 +3933,19 @@ if record.x_name == 'New':
 
               'x_studio_product_id':main_lines.product_id.id,
 
-              'x_studio_description':main_lines.name,
+              'description':main_lines.name,
 
               'x_studio_trans_type':main_lines.x_studio_trans_type,
 
               'x_studio_category':main_lines.x_studio_category.id,
 
-              'x_studio_quantity':main_lines.product_uom_qty,
+              'quantity':main_lines.product_uom_qty,
 
               'x_studio_delivered_qty':main_lines.qty_delivered,
 
               'x_studio_uom':main_lines.product_uom.id,
 
-              'x_studio_unit_price':main_lines.price_unit,
+              'unit_price':main_lines.price_unit,
 
               'x_studio_sub_total':main_lines.price_subtotal,
 
@@ -3981,13 +3981,13 @@ if record.x_name == 'New':
 
         
 
-        create_comparison_sub_model = env['x_rm_gross_margin_comp'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference':record.x_name,'x_studio_sales_order':lines.order_id.id,'x_studio_many2one_field_7fcuw':lines.product_id.id,'x_studio_estimated_amount':(lines.product_uom_qty * lines.price_unit),'x_studio_delivered_amount':(lines.qty_delivered * lines.price_unit),'x_studio_invoiced_amount':(lines.qty_invoiced * lines.price_unit),'x_studio_delivered_not_invoiced':(lines.qty_delivered * lines.price_unit)-(lines.qty_invoiced * lines.price_unit)})
+        create_comparison_sub_model = env['x_rm_gross_margin_comp'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference':record.name,'sales_order':lines.order_id.id,'x_studio_many2one_field_7fcuw':lines.product_id.id,'x_studio_estimated_amount':(lines.product_uom_qty * lines.price_unit),'x_studio_delivered_amount':(lines.qty_delivered * lines.price_unit),'x_studio_invoiced_amount':(lines.qty_invoiced * lines.price_unit),'x_studio_delivered_not_invoiced':(lines.qty_delivered * lines.price_unit)-(lines.qty_invoiced * lines.price_unit)})
 
         
 
         temp_estimated_lines.append([0,0,{
 
-          'x_studio_sales_order':lines.order_id.id,
+          'sales_order':lines.order_id.id,
 
           'x_studio_customer':lines.order_partner_id.id,
 
@@ -3995,19 +3995,19 @@ if record.x_name == 'New':
 
           'x_studio_product_id':lines.product_id.id,
 
-          'x_studio_description':lines.name,
+          'description':lines.name,
 
           'x_studio_trans_type':lines.x_studio_trans_type,
 
           'x_studio_category':lines.x_studio_category.id,
 
-          'x_studio_quantity':lines.product_uom_qty,
+          'quantity':lines.product_uom_qty,
 
           'x_studio_delivered_qty':lines.qty_delivered,
 
           'x_studio_uom':lines.product_uom.id,
 
-          'x_studio_unit_price':lines.price_unit,
+          'unit_price':lines.price_unit,
 
           'x_studio_sub_total':lines.price_subtotal,
 
@@ -4031,7 +4031,7 @@ if record.x_name == 'New':
 
           temp_actual_lines_2.append([0,0,{
 
-            'x_studio_sales_order':lines.order_id.id,
+            'sales_order':lines.order_id.id,
 
             'x_studio_customer':lines.order_partner_id.id,
 
@@ -4039,19 +4039,19 @@ if record.x_name == 'New':
 
             'x_studio_product_id':lines.product_id.id,
 
-            'x_studio_description':lines.name,
+            'description':lines.name,
 
             'x_studio_trans_type':lines.x_studio_trans_type,
 
             'x_studio_category':lines.x_studio_category.id,
 
-            'x_studio_quantity':lines.product_uom_qty,
+            'quantity':lines.product_uom_qty,
 
             'x_studio_delivered_qty':lines.qty_delivered,
 
             'x_studio_uom':lines.product_uom.id,
 
-            'x_studio_unit_price':lines.price_unit,
+            'unit_price':lines.price_unit,
 
             'x_studio_sub_total':lines.price_subtotal,
 
@@ -4075,7 +4075,7 @@ if record.x_name == 'New':
 
           temp_actual_lines_3.append([0,0,{
 
-            'x_studio_sales_order':lines.order_id.id,
+            'sales_order':lines.order_id.id,
 
             'x_studio_customer':lines.order_partner_id.id,
 
@@ -4083,19 +4083,19 @@ if record.x_name == 'New':
 
             'x_studio_product_id':lines.product_id.id,
 
-            'x_studio_description':lines.name,
+            'description':lines.name,
 
             'x_studio_trans_type':lines.x_studio_trans_type,
 
             'x_studio_category':lines.x_studio_category.id,
 
-            'x_studio_quantity':lines.product_uom_qty,
+            'quantity':lines.product_uom_qty,
 
             'x_studio_delivered_qty':lines.qty_delivered,
 
             'x_studio_uom':lines.product_uom.id,
 
-            'x_studio_unit_price':lines.price_unit,
+            'unit_price':lines.price_unit,
 
             'x_studio_sub_total':lines.price_subtotal,
 
@@ -4119,7 +4119,7 @@ if record.x_name == 'New':
 
           temp_actual_lines_4.append([0,0,{
 
-            'x_studio_sales_order':lines.order_id.id,
+            'sales_order':lines.order_id.id,
 
             'x_studio_customer':lines.order_partner_id.id,
 
@@ -4127,19 +4127,19 @@ if record.x_name == 'New':
 
             'x_studio_product_id':lines.product_id.id,
 
-            'x_studio_description':lines.name,
+            'description':lines.name,
 
             'x_studio_trans_type':lines.x_studio_trans_type,
 
             'x_studio_category':lines.x_studio_category.id,
 
-            'x_studio_quantity':lines.product_uom_qty,
+            'quantity':lines.product_uom_qty,
 
             'x_studio_delivered_qty':lines.qty_delivered,
 
             'x_studio_uom':lines.product_uom.id,
 
-            'x_studio_unit_price':lines.price_unit,
+            'unit_price':lines.price_unit,
 
             'x_studio_sub_total':lines.price_subtotal,
 
@@ -4175,7 +4175,7 @@ if record.x_name == 'New':
 
             temp_actual_lines_5.append([0,0,{
 
-              'x_studio_sales_order':lines.order_id.id,
+              'sales_order':lines.order_id.id,
 
               'x_studio_customer':lines.order_partner_id.id,
 
@@ -4183,19 +4183,19 @@ if record.x_name == 'New':
 
               'x_studio_product_id':lines.product_id.id,
 
-              'x_studio_description':lines.name,
+              'description':lines.name,
 
               'x_studio_trans_type':lines.x_studio_trans_type,
 
               'x_studio_category':lines.x_studio_category.id,
 
-              'x_studio_quantity':lines.product_uom_qty,
+              'quantity':lines.product_uom_qty,
 
               'x_studio_delivered_qty':lines.qty_delivered,
 
               'x_studio_uom':lines.product_uom.id,
 
-              'x_studio_unit_price':lines.price_unit,
+              'unit_price':lines.price_unit,
 
               'x_studio_sub_total':lines.price_subtotal,
 
@@ -4219,7 +4219,7 @@ if record.x_name == 'New':
 
             temp_actual_lines_6.append([0,0,{
 
-            'x_studio_sales_order':lines.order_id.id,
+            'sales_order':lines.order_id.id,
 
             'x_studio_customer':lines.order_partner_id.id,
 
@@ -4227,19 +4227,19 @@ if record.x_name == 'New':
 
             'x_studio_product_id':lines.product_id.id,
 
-            'x_studio_description':lines.name,
+            'description':lines.name,
 
             'x_studio_trans_type':lines.x_studio_trans_type,
 
             'x_studio_category':lines.x_studio_category.id,
 
-            'x_studio_quantity':lines.product_uom_qty,
+            'quantity':lines.product_uom_qty,
 
             'x_studio_delivered_qty':lines.qty_delivered,
 
             'x_studio_uom':lines.product_uom.id,
 
-            'x_studio_unit_price':lines.price_unit,
+            'unit_price':lines.price_unit,
 
             'x_studio_sub_total':lines.price_subtotal,
 
@@ -4253,13 +4253,13 @@ if record.x_name == 'New':
 
       if cat_count > 0:  
 
-        create_estimated_sub_model = env['x_rm_gross_margin_esti'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_transaction_type': cat_lines.x_studio_transaction_type,'x_studio_category': cat_lines.x_name,'x_studio_estimated_amt': tot_estimated_val_1,'x_studio_actual_cost': tot_actual_val_1,'x_studio_balance_cost': tot_balance_val_1,'x_studio_sales_order_line_ids':temp_estimated_lines})
+        create_estimated_sub_model = env['x_rm_gross_margin_esti'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_transaction_type': cat_lines.x_studio_transaction_type,'x_studio_category': cat_lines.name,'x_studio_estimated_amt': tot_estimated_val_1,'x_studio_actual_cost': tot_actual_val_1,'x_studio_balance_cost': tot_balance_val_1,'x_studio_sales_order_line_ids':temp_estimated_lines})
 
     
 
     if cat_grand_count > 0:
 
-      create_estimated_sub_model = env['x_rm_gross_margin_esti'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_group_title': 'Total Estimated Value','x_studio_estimated_amt': tot_estimated_val,'x_studio_actual_cost': tot_actual_val,'x_studio_balance_cost': tot_balance_val,'x_studio_total': True})  
+      create_estimated_sub_model = env['x_rm_gross_margin_esti'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_group_title': 'Total Estimated Value','x_studio_estimated_amt': tot_estimated_val,'x_studio_actual_cost': tot_actual_val,'x_studio_balance_cost': tot_balance_val,'x_studio_total': True})  
 
     
 
@@ -4299,49 +4299,49 @@ if record.x_name == 'New':
 
     if cat_count_2 > 0:  
 
-      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_transaction_type_1': 'Fee','x_studio_estimated_total': tot_estimated_val_2,'x_studio_cost_price': tot_actual_val_2,'x_studio_variance_est_act': tot_balance_val_2,'x_studio_normal_line':True,'x_studio_sales_order_line_ids':temp_actual_lines_2})
+      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_transaction_type_1': 'Fee','x_studio_estimated_total': tot_estimated_val_2,'x_studio_cost_price': tot_actual_val_2,'x_studio_variance_est_act': tot_balance_val_2,'x_studio_normal_line':True,'x_studio_sales_order_line_ids':temp_actual_lines_2})
 
     
 
     if cat_count_3 > 0:  
 
-      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_transaction_type_1': 'Hour','x_studio_estimated_total': tot_estimated_val_3,'x_studio_cost_price': tot_actual_val_3,'x_studio_variance_est_act': tot_balance_val_3,'x_studio_normal_line':True,'x_studio_sales_order_line_ids':temp_actual_lines_3})
+      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_transaction_type_1': 'Hour','x_studio_estimated_total': tot_estimated_val_3,'x_studio_cost_price': tot_actual_val_3,'x_studio_variance_est_act': tot_balance_val_3,'x_studio_normal_line':True,'x_studio_sales_order_line_ids':temp_actual_lines_3})
 
     
 
     if cat_count_4 > 0:  
 
-      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_transaction_type_1': 'Item','x_studio_estimated_total': tot_estimated_val_4,'x_studio_cost_price': tot_actual_val_4,'x_studio_variance_est_act': tot_balance_val_4,'x_studio_normal_line':True,'x_studio_sales_order_line_ids':temp_actual_lines_4})
+      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_transaction_type_1': 'Item','x_studio_estimated_total': tot_estimated_val_4,'x_studio_cost_price': tot_actual_val_4,'x_studio_variance_est_act': tot_balance_val_4,'x_studio_normal_line':True,'x_studio_sales_order_line_ids':temp_actual_lines_4})
 
       
 
     #if cat_count_7 > 0:  
 
-    #  create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_transaction_type_1': 'Expense'})
+    #  create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_transaction_type_1': 'Expense'})
 
     
 
     if cat_count_5 > 0:  
 
-      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_transaction_type_1': 'Expense','x_studio_other_expenses': 'Claimable Expenses','x_studio_estimated_total': tot_estimated_val_5,'x_studio_cost_price': tot_actual_val_5,'x_studio_variance_est_act': tot_balance_val_5,'x_studio_normal_line':True,'x_studio_sales_order_line_ids':temp_actual_lines_5})
+      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_transaction_type_1': 'Expense','x_studio_other_expenses': 'Claimable Expenses','x_studio_estimated_total': tot_estimated_val_5,'x_studio_cost_price': tot_actual_val_5,'x_studio_variance_est_act': tot_balance_val_5,'x_studio_normal_line':True,'x_studio_sales_order_line_ids':temp_actual_lines_5})
 
     
 
     if cat_count_6 > 0:  
 
-      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_transaction_type_1': 'Expense','x_studio_other_expenses': 'Non-Claimable Expenses','x_studio_estimated_total': tot_estimated_val_6,'x_studio_cost_price': tot_actual_val_6,'x_studio_variance_est_act': tot_balance_val_6,'x_studio_normal_line':True,'x_studio_sales_order_line_ids':temp_actual_lines_6})
+      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_transaction_type_1': 'Expense','x_studio_other_expenses': 'Non-Claimable Expenses','x_studio_estimated_total': tot_estimated_val_6,'x_studio_cost_price': tot_actual_val_6,'x_studio_variance_est_act': tot_balance_val_6,'x_studio_normal_line':True,'x_studio_sales_order_line_ids':temp_actual_lines_6})
 
     
 
     if cat_grand_count > 0:
 
-      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_other_expenses': 'Total Actual Cost','x_studio_estimated_total': tot_estimated_val,'x_studio_cost_price': tot_actual_val,'x_studio_variance_est_act': tot_balance_val})   
+      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_other_expenses': 'Total Actual Cost','x_studio_estimated_total': tot_estimated_val,'x_studio_cost_price': tot_actual_val,'x_studio_variance_est_act': tot_balance_val})   
 
       
 
-    create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_other_expenses': 'Outstanding Cash Advances','x_studio_estimated_total': outstanding_cash_tot})     
+    create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_other_expenses': 'Outstanding Cash Advances','x_studio_estimated_total': outstanding_cash_tot})     
 
-    create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_other_expenses': 'Total planned amount of the budget','x_studio_estimated_total': on_account_val,'x_studio_budget_line':True,'x_studio_budget_line_ids':temp_actual_budget}) 
+    create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_other_expenses': 'Total planned amount of the budget','x_studio_estimated_total': on_account_val,'x_studio_budget_line':True,'x_studio_budget_line_ids':temp_actual_budget}) 
 
     
 
@@ -4367,7 +4367,7 @@ if record.x_name == 'New':
 
       invoice_total += main_invoice_lines.amount_total_signed
 
-      create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_invoice_no':main_invoice_lines.id,'x_studio_invoice_date':main_invoice_lines.invoice_date,'x_studio_status':main_invoice_lines.state,'x_studio_payment_status':main_invoice_lines.payment_state,'x_studio_amount':main_invoice_lines.amount_total_signed}) 
+      create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_invoice_no':main_invoice_lines.id,'x_studio_invoice_date':main_invoice_lines.invoice_date,'x_studio_status':main_invoice_lines.state,'x_studio_payment_status':main_invoice_lines.payment_state,'x_studio_amount':main_invoice_lines.amount_total_signed}) 
 
     # Loop Main Sales Order Invoice Lines - End
 
@@ -4381,7 +4381,7 @@ if record.x_name == 'New':
 
       invoice_total += invoice_lines.amount_total_signed
 
-      create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_invoice_no':invoice_lines.id,'x_studio_invoice_date':invoice_lines.invoice_date,'x_studio_status':invoice_lines.state,'x_studio_payment_status':invoice_lines.payment_state,'x_studio_amount':invoice_lines.amount_total_signed}) 
+      create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_invoice_no':invoice_lines.id,'x_studio_invoice_date':invoice_lines.invoice_date,'x_studio_status':invoice_lines.state,'x_studio_payment_status':invoice_lines.payment_state,'x_studio_amount':invoice_lines.amount_total_signed}) 
 
     # Loop Sub Sales Order Invoice Lines - End
 
@@ -4389,7 +4389,7 @@ if record.x_name == 'New':
 
     if invoice_count > 0:
 
-      create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_group_title':'Total Invoice Amount','x_studio_amount':invoice_total}) 
+      create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_group_title':'Total Invoice Amount','x_studio_amount':invoice_total}) 
 
     
 
@@ -4403,13 +4403,13 @@ if record.x_name == 'New':
 
     
 
-    create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_group_title':'Actual Gross Margin','x_studio_amount':(invoice_total - tot_actual_val)})
+    create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_group_title':'Actual Gross Margin','x_studio_amount':(invoice_total - tot_actual_val)})
 
-    create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_group_title':'Estimated Gross Margin','x_studio_amount':tot_estimated_val_2}) 
+    create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_group_title':'Estimated Gross Margin','x_studio_amount':tot_estimated_val_2}) 
 
-    create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_group_title':'Estimated GP%','x_studio_amount':estimated_gp})
+    create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_group_title':'Estimated GP%','x_studio_amount':estimated_gp})
 
-    create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_group_title':'Actual GP%','x_studio_amount':actual_gp}) ]]></field>
+    create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_group_title':'Actual GP%','x_studio_amount':actual_gp}) ]]></field>
   </record>
   <record id="server_action_2126_report_model_created_date" model="ir.actions.server">
     <field name="name">Report Model Created Date</field>
@@ -4417,7 +4417,7 @@ if record.x_name == 'New':
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[record['x_studio_created_date'] = datetime.datetime.today()
+    <field name="code"><![CDATA[record['created_date'] = datetime.datetime.today()
 
 
 ]]></field>
@@ -5010,7 +5010,7 @@ if record.x_name == 'New':
         for invoice_lines in invoice_line:
           count += 1
           net_inv_val_day += invoice_lines.price_subtotal
-          create_sub_model = env['x_rm_cust_invoice_s1'].create({'x_studio_sales_report_model_id':record.id,'x_studio_invoice_date':invoice_lines.date,'x_studio_number':invoice_lines.move_name,'x_studio_partner':invoice_lines.partner_id.id,'x_studio_sales_centre':invoice_lines.x_studio_sales_team.id,'x_studio_product_id':invoice_lines.product_id.id,'x_studio_quantity':invoice_lines.quantity,'x_studio_value':invoice_lines.price_subtotal})
+          create_sub_model = env['x_rm_cust_invoice_s1'].create({'x_studio_sales_report_model_id':record.id,'x_studio_invoice_date':invoice_lines.date,'x_studio_number':invoice_lines.move_name,'x_studio_partner':invoice_lines.partner_id.id,'x_studio_sales_centre':invoice_lines.x_studio_sales_team.id,'x_studio_product_id':invoice_lines.product_id.id,'quantity':invoice_lines.quantity,'x_studio_value':invoice_lines.price_subtotal})
   
         create_model = env['x_rm_customer_wise_inv'].create({'x_studio_sales_report_model_id':record.id,'x_studio_customer':customers.id,'x_studio_total_invoice_amount':net_inv_val_day})
 
@@ -5086,7 +5086,7 @@ if record.x_name == 'New':
         for invoice_lines in invoice_line:
           count += 1
           net_inv_val_day += invoice_lines.price_subtotal
-          create_sub_model = env['x_rm_daily_s1'].create({'x_studio_sales_report_model_id':record.id,'x_studio_invoice_date':invoice_lines.date,'x_studio_number':invoice_lines.move_name,'x_studio_partner':invoice_lines.partner_id.id,'x_studio_sales_centre':invoice_lines.x_studio_sales_team.id,'x_studio_product_id':invoice_lines.product_id.id,'x_studio_quantity':invoice_lines.quantity,'x_studio_value':invoice_lines.price_subtotal})
+          create_sub_model = env['x_rm_daily_s1'].create({'x_studio_sales_report_model_id':record.id,'x_studio_invoice_date':invoice_lines.date,'x_studio_number':invoice_lines.move_name,'x_studio_partner':invoice_lines.partner_id.id,'x_studio_sales_centre':invoice_lines.x_studio_sales_team.id,'x_studio_product_id':invoice_lines.product_id.id,'quantity':invoice_lines.quantity,'x_studio_value':invoice_lines.price_subtotal})
   
         create_model = env['x_rm_daily_sales_repor'].create({'x_studio_sales_report_model_id':record.id,'x_studio_sales_centre':sales_centres.name,'x_studio_net_invoice_value_day':net_inv_val_day,'x_studio_net_invoice_value_month':45000,'x_studio_net_invoice_value_cumulative':175000,'x_studio_m_sales_target':100000,'x_studio_s_target_cumulative':500000,'x_studio_achievement_':12,'x_studio_achieve_cumulative_':23})
 
@@ -5115,7 +5115,7 @@ if record.x_name == 'New':
   for invoice_lines in record.x_studio_journal_item_ids:
   #  if invoice_lines.date == record.x_studio_as_on_date:
   #    count += 1
-    create_sub_model = env['x_rm_daily_s1'].create({'x_studio_sales_report_model_id':record.id,'x_studio_invoice_date':invoice_lines.date,'x_studio_number':invoice_lines.move_name,'x_studio_partner':invoice_lines.partner_id.id,'x_studio_sales_centre':invoice_lines.x_studio_sales_team.id,'x_studio_product_id':invoice_lines.product_id.id,'x_studio_quantity':invoice_lines.quantity,'x_studio_value':invoice_lines.price_subtotal})
+    create_sub_model = env['x_rm_daily_s1'].create({'x_studio_sales_report_model_id':record.id,'x_studio_invoice_date':invoice_lines.date,'x_studio_number':invoice_lines.move_name,'x_studio_partner':invoice_lines.partner_id.id,'x_studio_sales_centre':invoice_lines.x_studio_sales_team.id,'x_studio_product_id':invoice_lines.product_id.id,'quantity':invoice_lines.quantity,'x_studio_value':invoice_lines.price_subtotal})
       
   
  
@@ -5159,7 +5159,7 @@ if record.x_name == 'New':
       del_temp_rec_1.unlink()
   # create new record
   for line in report_type_lines:
-    create_sub_model = env['x_rm_daily_s1'].create({'x_studio_sales_report_model_id':record.id,'x_studio_invoice_date':line.date,'x_studio_number':line.move_name,'x_studio_partner':line.partner_id.id,'x_studio_sales_centre':line.x_studio_sales_team.id,'x_studio_product_id':line.product_id.id,'x_studio_quantity':line.quantity,'x_studio_value':line.price_subtotal})]]></field>
+    create_sub_model = env['x_rm_daily_s1'].create({'x_studio_sales_report_model_id':record.id,'x_studio_invoice_date':line.date,'x_studio_number':line.move_name,'x_studio_partner':line.partner_id.id,'x_studio_sales_centre':line.x_studio_sales_team.id,'x_studio_product_id':line.product_id.id,'quantity':line.quantity,'x_studio_value':line.price_subtotal})]]></field>
   </record>
   <record id="server_action_1730_srm_auto_populate_data_original" model="ir.actions.server">
     <field name="name">SRM - Auto Populate Data-Original</field>
@@ -5182,7 +5182,7 @@ if record.x_name == 'New':
       del_temp_rec_1.unlink()
   # create new record (Business Logic)
   for line in report_type_lines:
-    create_sub_model = env['x_rm_daily_s1'].create({'x_studio_sales_report_model_id':record.id,'x_studio_invoice_date':line.date,'x_studio_number':line.move_name,'x_studio_partner':line.partner_id.id,'x_studio_sales_centre':line.x_studio_sales_team.id,'x_studio_product_id':line.product_id.id,'x_studio_quantity':line.quantity,'x_studio_value':line.price_subtotal})]]></field>
+    create_sub_model = env['x_rm_daily_s1'].create({'x_studio_sales_report_model_id':record.id,'x_studio_invoice_date':line.date,'x_studio_number':line.move_name,'x_studio_partner':line.partner_id.id,'x_studio_sales_centre':line.x_studio_sales_team.id,'x_studio_product_id':line.product_id.id,'quantity':line.quantity,'x_studio_value':line.price_subtotal})]]></field>
   </record>
   <record id="base_automation_99_restrict_delete_in_sales_report_model" model="base.automation">
     <field name="name">Restrict Delete in Sales Report Model</field>
@@ -5376,11 +5376,11 @@ if record.id:
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="code"><![CDATA[
-#record['x_name'] = env['ir.sequence'].next_by_code('purchase.request.seq')
+#record['name'] = env['ir.sequence'].next_by_code('purchase.request.seq')
 
-if record.x_name == 'New':
+if record.name == 'New':
     seq = env['ir.sequence'].next_by_code('report.model.seq')
-    record.write({'x_name': seq})
+    record.write({'name': seq})
 
 
 
@@ -5450,7 +5450,7 @@ if record.x_studio_report_type:
 
     for line in report_type_lines:
 
-      create_sub_model = env['x_rm_daily_s1'].create({'x_studio_sales_report_model_id':record.id,'x_studio_invoice_date':line.date,'x_studio_number':line.move_name,'x_studio_partner':line.partner_id.id,'x_studio_sales_centre':line.x_studio_sales_team.id,'x_studio_product_id':line.product_id.id,'x_studio_quantity':line.quantity,'x_studio_value':line.price_subtotal})
+      create_sub_model = env['x_rm_daily_s1'].create({'x_studio_sales_report_model_id':record.id,'x_studio_invoice_date':line.date,'x_studio_number':line.move_name,'x_studio_partner':line.partner_id.id,'x_studio_sales_centre':line.x_studio_sales_team.id,'x_studio_product_id':line.product_id.id,'quantity':line.quantity,'x_studio_value':line.price_subtotal})
 
   
 
@@ -5517,7 +5517,7 @@ if record.x_studio_report_type:
 
     for line in report_type_lines:
 
-      create_sub_model = env['x_rm_sales_order_line'].create({'x_studio_sales_report_model_id':record.id,'x_studio_date':line.date,'x_studio_customer_acc':line.partner_id.id,'x_studio_customer_group':line.partner_id.x_studio_customer_group.id,'x_studio_name':line.partner_id.name,'x_studio_sales_order':line.move_id.x_studio_sale_id.id,'x_studio_invoice':line.move_id.id,'x_studio_product_1':line.product_id.id,'x_studio_product_category':line.product_id.categ_id.id,'x_studio_quantity':line.quantity,'x_studio_unit_price':line.price_unit,'x_studio_net_value':line.price_total}) 
+      create_sub_model = env['x_rm_sales_order_line'].create({'x_studio_sales_report_model_id':record.id,'x_studio_date':line.date,'x_studio_customer_acc':line.partner_id.id,'x_studio_customer_group':line.partner_id.x_studio_customer_group.id,'x_studio_name':line.partner_id.name,'sales_order':line.move_id.x_studio_sale_id.id,'x_studio_invoice':line.move_id.id,'x_studio_product_1':line.product_id.id,'x_studio_product_category':line.product_id.categ_id.id,'quantity':line.quantity,'unit_price':line.price_unit,'x_studio_net_value':line.price_total}) 
 
       
 
@@ -5572,7 +5572,7 @@ if record.x_studio_report_type:
 
     for line in report_type_lines:
 
-      create_sub_model = env['x_rm_production_orders'].create({'x_studio_sales_report_model_id':record.id,'x_studio_production_id':line.id,'x_studio_product_code':line.product_id.id,'x_studio_description':line.product_id.name,'x_studio_warehouse':line.location_dest_id.id,'x_studio_status':line.state,'x_studio_estimated':line.product_qty,'x_studio_started':line.qty_producing,'x_studio_start':line.date_start,'x_studio_header_reference': record.x_name,'x_studio_end':line.date_finished})
+      create_sub_model = env['x_rm_production_orders'].create({'x_studio_sales_report_model_id':record.id,'x_studio_production_id':line.id,'x_studio_product_code':line.product_id.id,'description':line.product_id.name,'x_studio_warehouse':line.location_dest_id.id,'x_studio_status':line.state,'x_studio_estimated':line.product_qty,'x_studio_started':line.qty_producing,'x_studio_start':line.date_start,'x_studio_header_reference': record.name,'x_studio_end':line.date_finished})
 
         
 
@@ -5807,7 +5807,7 @@ if record.x_studio_report_type:
 
           
 
-      create_sub_model = env['x_rm_none_moving'].create({'x_studio_sales_report_model_id':record.id,'x_studio_description':products.id,'x_studio_base_price':products.list_price,'x_studio_in_hand_1':inhand4,'x_studio_issue_1':issue4,'x_studio_in_hand_2':inhand3,'x_studio_issue_2':issue3,'x_studio_in_hand_3':inhand2,'x_studio_issue_3':issue2,'x_studio_in_hand_4':inhand,'x_studio_issue_4':issue,'x_studio_header_reference': record.x_name})
+      create_sub_model = env['x_rm_none_moving'].create({'x_studio_sales_report_model_id':record.id,'description':products.id,'x_studio_base_price':products.list_price,'x_studio_in_hand_1':inhand4,'x_studio_issue_1':issue4,'x_studio_in_hand_2':inhand3,'x_studio_issue_2':issue3,'x_studio_in_hand_3':inhand2,'x_studio_issue_3':issue2,'x_studio_in_hand_4':inhand,'x_studio_issue_4':issue,'x_studio_header_reference': record.name})
 
        
 
@@ -5920,7 +5920,7 @@ if record.x_studio_report_type:
 
            
 
-       create_sub_model = env['x_rm_sales_prod_purch'].create({'x_studio_sales_report_model_id':record.id,'x_studio_description':products.id,'x_studio_base_price':products.list_price,'x_studio_product_type':products.type,'x_studio_date_1':last_prod_purch.create_date.date(),'x_studio_unit_cost':last_prod_purch.unit_cost,'x_studio_project_category':project_qty,'x_studio_sales_order':so_qty,'x_studio_production_qty':prod_qty,'x_studio_purchase_qty':purch_qty,'x_studio_header_reference': record.x_name})
+       create_sub_model = env['x_rm_sales_prod_purch'].create({'x_studio_sales_report_model_id':record.id,'description':products.id,'x_studio_base_price':products.list_price,'x_studio_product_type':products.type,'x_studio_date_1':last_prod_purch.create_date.date(),'x_studio_unit_cost':last_prod_purch.unit_cost,'x_studio_project_category':project_qty,'sales_order':so_qty,'x_studio_production_qty':prod_qty,'x_studio_purchase_qty':purch_qty,'x_studio_header_reference': record.name})
 
   
 
@@ -5975,7 +5975,7 @@ if record.x_studio_report_type:
 
     for line in report_type_lines:
 
-      create_sub_model = env['x_rm_prod_summary_spli'].create({'x_studio_sales_report_model_id':record.id,'x_studio_description':line.raw_material_production_id.product_id.id,'x_studio_production_id':line.raw_material_production_id.id,'x_studio_prod_qty':line.raw_material_production_id.product_qty,'x_studio_description_1':line.product_id.id,'x_studio_bom_qty':line.x_studio_original_qty,'x_studio_esti_qty':line.x_studio_original_qty,'x_studio_cons_qty':line.product_uom_qty,'x_studio_variance':line.x_studio_variance,'x_studio_avg_cost':line.price_unit,'x_studio_total_cost':(line.product_uom_qty*line.price_unit),'x_studio_header_reference': record.x_name})
+      create_sub_model = env['x_rm_prod_summary_spli'].create({'x_studio_sales_report_model_id':record.id,'description':line.raw_material_production_id.product_id.id,'x_studio_production_id':line.raw_material_production_id.id,'x_studio_prod_qty':line.raw_material_production_id.product_qty,'x_studio_description_1':line.product_id.id,'x_studio_bom_qty':line.x_studio_original_qty,'x_studio_esti_qty':line.x_studio_original_qty,'x_studio_cons_qty':line.product_uom_qty,'x_studio_variance':line.x_studio_variance,'x_studio_avg_cost':line.price_unit,'x_studio_total_cost':(line.product_uom_qty*line.price_unit),'x_studio_header_reference': record.name})
     ]]></field>
   </record>
   <record id="server_action_1765_srm_rpt_production_job_variance" model="ir.actions.server">
@@ -6026,7 +6026,7 @@ if record.x_studio_report_type:
 
     for line in report_type_lines:
 
-      create_sub_model = env['x_rm_production_varian'].create({'x_studio_sales_report_model_id':record.id,'x_studio_description':line.raw_material_production_id.product_id.id,'x_studio_production_id':line.raw_material_production_id.id,'x_studio_prod_qty':line.raw_material_production_id.product_qty,'x_studio_description_1':line.product_id.id,'x_studio_bom_qty':line.x_studio_original_qty,'x_studio_esti_qty':line.x_studio_original_qty,'x_studio_cons_qty':line.product_uom_qty,'x_studio_variance':line.x_studio_variance,'x_studio_avg_cost':line.price_unit,'x_studio_total_cost':(line.product_uom_qty*line.price_unit),'x_studio_header_reference': record.x_name})
+      create_sub_model = env['x_rm_production_varian'].create({'x_studio_sales_report_model_id':record.id,'description':line.raw_material_production_id.product_id.id,'x_studio_production_id':line.raw_material_production_id.id,'x_studio_prod_qty':line.raw_material_production_id.product_qty,'x_studio_description_1':line.product_id.id,'x_studio_bom_qty':line.x_studio_original_qty,'x_studio_esti_qty':line.x_studio_original_qty,'x_studio_cons_qty':line.product_uom_qty,'x_studio_variance':line.x_studio_variance,'x_studio_avg_cost':line.price_unit,'x_studio_total_cost':(line.product_uom_qty*line.price_unit),'x_studio_header_reference': record.name})
 
       
 
@@ -6283,13 +6283,13 @@ if record.x_studio_report_type:
 
         
 
-        create_comparison_sub_model = env['x_rm_gross_margin_comp'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference':record.x_name,'x_studio_sales_order':main_lines.order_id.id,'x_studio_many2one_field_7fcuw':main_lines.product_id.id,'x_studio_estimated_amount':(main_lines.product_uom_qty * main_lines.price_unit),'x_studio_delivered_amount':(main_lines.qty_delivered * main_lines.price_unit),'x_studio_invoiced_amount':(main_lines.qty_invoiced * main_lines.price_unit),'x_studio_delivered_not_invoiced':(main_lines.qty_delivered * main_lines.price_unit)-(main_lines.qty_invoiced * main_lines.price_unit)})
+        create_comparison_sub_model = env['x_rm_gross_margin_comp'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference':record.name,'sales_order':main_lines.order_id.id,'x_studio_many2one_field_7fcuw':main_lines.product_id.id,'x_studio_estimated_amount':(main_lines.product_uom_qty * main_lines.price_unit),'x_studio_delivered_amount':(main_lines.qty_delivered * main_lines.price_unit),'x_studio_invoiced_amount':(main_lines.qty_invoiced * main_lines.price_unit),'x_studio_delivered_not_invoiced':(main_lines.qty_delivered * main_lines.price_unit)-(main_lines.qty_invoiced * main_lines.price_unit)})
 
         
 
         temp_estimated_lines.append([0,0,{
 
-          'x_studio_sales_order':main_lines.order_id.id,
+          'sales_order':main_lines.order_id.id,
 
           'x_studio_customer':main_lines.order_partner_id.id,
 
@@ -6297,19 +6297,19 @@ if record.x_studio_report_type:
 
           'x_studio_product_id':main_lines.product_id.id,
 
-          'x_studio_description':main_lines.name,
+          'description':main_lines.name,
 
           'x_studio_trans_type':main_lines.x_studio_trans_type,
 
           'x_studio_category':main_lines.x_studio_category.id,
 
-          'x_studio_quantity':main_lines.product_uom_qty,
+          'quantity':main_lines.product_uom_qty,
 
           'x_studio_delivered_qty':main_lines.qty_delivered,
 
           'x_studio_uom':main_lines.product_uom.id,
 
-          'x_studio_unit_price':main_lines.price_unit,
+          'unit_price':main_lines.price_unit,
 
           'x_studio_sub_total':main_lines.price_subtotal,
 
@@ -6333,7 +6333,7 @@ if record.x_studio_report_type:
 
           temp_actual_lines_2.append([0,0,{
 
-            'x_studio_sales_order':main_lines.order_id.id,
+            'sales_order':main_lines.order_id.id,
 
             'x_studio_customer':main_lines.order_partner_id.id,
 
@@ -6341,19 +6341,19 @@ if record.x_studio_report_type:
 
             'x_studio_product_id':main_lines.product_id.id,
 
-            'x_studio_description':main_lines.name,
+            'description':main_lines.name,
 
             'x_studio_trans_type':main_lines.x_studio_trans_type,
 
             'x_studio_category':main_lines.x_studio_category.id,
 
-            'x_studio_quantity':main_lines.product_uom_qty,
+            'quantity':main_lines.product_uom_qty,
 
             'x_studio_delivered_qty':main_lines.qty_delivered,
 
             'x_studio_uom':main_lines.product_uom.id,
 
-            'x_studio_unit_price':main_lines.price_unit,
+            'unit_price':main_lines.price_unit,
 
             'x_studio_sub_total':main_lines.price_subtotal,
 
@@ -6377,7 +6377,7 @@ if record.x_studio_report_type:
 
           temp_actual_lines_3.append([0,0,{
 
-            'x_studio_sales_order':main_lines.order_id.id,
+            'sales_order':main_lines.order_id.id,
 
             'x_studio_customer':main_lines.order_partner_id.id,
 
@@ -6385,19 +6385,19 @@ if record.x_studio_report_type:
 
             'x_studio_product_id':main_lines.product_id.id,
 
-            'x_studio_description':main_lines.name,
+            'description':main_lines.name,
 
             'x_studio_trans_type':main_lines.x_studio_trans_type,
 
             'x_studio_category':main_lines.x_studio_category.id,
 
-            'x_studio_quantity':main_lines.product_uom_qty,
+            'quantity':main_lines.product_uom_qty,
 
             'x_studio_delivered_qty':main_lines.qty_delivered,
 
             'x_studio_uom':main_lines.product_uom.id,
 
-            'x_studio_unit_price':main_lines.price_unit,
+            'unit_price':main_lines.price_unit,
 
             'x_studio_sub_total':main_lines.price_subtotal,
 
@@ -6421,7 +6421,7 @@ if record.x_studio_report_type:
 
           temp_actual_lines_4.append([0,0,{
 
-            'x_studio_sales_order':main_lines.order_id.id,
+            'sales_order':main_lines.order_id.id,
 
             'x_studio_customer':main_lines.order_partner_id.id,
 
@@ -6429,19 +6429,19 @@ if record.x_studio_report_type:
 
             'x_studio_product_id':main_lines.product_id.id,
 
-            'x_studio_description':main_lines.name,
+            'description':main_lines.name,
 
             'x_studio_trans_type':main_lines.x_studio_trans_type,
 
             'x_studio_category':main_lines.x_studio_category.id,
 
-            'x_studio_quantity':main_lines.product_uom_qty,
+            'quantity':main_lines.product_uom_qty,
 
             'x_studio_delivered_qty':main_lines.qty_delivered,
 
             'x_studio_uom':main_lines.product_uom.id,
 
-            'x_studio_unit_price':main_lines.price_unit,
+            'unit_price':main_lines.price_unit,
 
             'x_studio_sub_total':main_lines.price_subtotal,
 
@@ -6477,7 +6477,7 @@ if record.x_studio_report_type:
 
             temp_actual_lines_5.append([0,0,{
 
-              'x_studio_sales_order':main_lines.order_id.id,
+              'sales_order':main_lines.order_id.id,
 
               'x_studio_customer':main_lines.order_partner_id.id,
 
@@ -6485,19 +6485,19 @@ if record.x_studio_report_type:
 
               'x_studio_product_id':main_lines.product_id.id,
 
-              'x_studio_description':main_lines.name,
+              'description':main_lines.name,
 
               'x_studio_trans_type':main_lines.x_studio_trans_type,
 
               'x_studio_category':main_lines.x_studio_category.id,
 
-              'x_studio_quantity':main_lines.product_uom_qty,
+              'quantity':main_lines.product_uom_qty,
 
               'x_studio_delivered_qty':main_lines.qty_delivered,
 
               'x_studio_uom':main_lines.product_uom.id,
 
-              'x_studio_unit_price':main_lines.price_unit,
+              'unit_price':main_lines.price_unit,
 
               'x_studio_sub_total':main_lines.price_subtotal,
 
@@ -6521,7 +6521,7 @@ if record.x_studio_report_type:
 
             temp_actual_lines_6.append([0,0,{
 
-              'x_studio_sales_order':main_lines.order_id.id,
+              'sales_order':main_lines.order_id.id,
 
               'x_studio_customer':main_lines.order_partner_id.id,
 
@@ -6529,19 +6529,19 @@ if record.x_studio_report_type:
 
               'x_studio_product_id':main_lines.product_id.id,
 
-              'x_studio_description':main_lines.name,
+              'description':main_lines.name,
 
               'x_studio_trans_type':main_lines.x_studio_trans_type,
 
               'x_studio_category':main_lines.x_studio_category.id,
 
-              'x_studio_quantity':main_lines.product_uom_qty,
+              'quantity':main_lines.product_uom_qty,
 
               'x_studio_delivered_qty':main_lines.qty_delivered,
 
               'x_studio_uom':main_lines.product_uom.id,
 
-              'x_studio_unit_price':main_lines.price_unit,
+              'unit_price':main_lines.price_unit,
 
               'x_studio_sub_total':main_lines.price_subtotal,
 
@@ -6577,13 +6577,13 @@ if record.x_studio_report_type:
 
         
 
-        create_comparison_sub_model = env['x_rm_gross_margin_comp'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference':record.x_name,'x_studio_sales_order':lines.order_id.id,'x_studio_many2one_field_7fcuw':lines.product_id.id,'x_studio_estimated_amount':(lines.product_uom_qty * lines.price_unit),'x_studio_delivered_amount':(lines.qty_delivered * lines.price_unit),'x_studio_invoiced_amount':(lines.qty_invoiced * lines.price_unit),'x_studio_delivered_not_invoiced':(lines.qty_delivered * lines.price_unit)-(lines.qty_invoiced * lines.price_unit)})
+        create_comparison_sub_model = env['x_rm_gross_margin_comp'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference':record.name,'sales_order':lines.order_id.id,'x_studio_many2one_field_7fcuw':lines.product_id.id,'x_studio_estimated_amount':(lines.product_uom_qty * lines.price_unit),'x_studio_delivered_amount':(lines.qty_delivered * lines.price_unit),'x_studio_invoiced_amount':(lines.qty_invoiced * lines.price_unit),'x_studio_delivered_not_invoiced':(lines.qty_delivered * lines.price_unit)-(lines.qty_invoiced * lines.price_unit)})
 
         
 
         temp_estimated_lines.append([0,0,{
 
-          'x_studio_sales_order':lines.order_id.id,
+          'sales_order':lines.order_id.id,
 
           'x_studio_customer':lines.order_partner_id.id,
 
@@ -6591,19 +6591,19 @@ if record.x_studio_report_type:
 
           'x_studio_product_id':lines.product_id.id,
 
-          'x_studio_description':lines.name,
+          'description':lines.name,
 
           'x_studio_trans_type':lines.x_studio_trans_type,
 
           'x_studio_category':lines.x_studio_category.id,
 
-          'x_studio_quantity':lines.product_uom_qty,
+          'quantity':lines.product_uom_qty,
 
           'x_studio_delivered_qty':lines.qty_delivered,
 
           'x_studio_uom':lines.product_uom.id,
 
-          'x_studio_unit_price':lines.price_unit,
+          'unit_price':lines.price_unit,
 
           'x_studio_sub_total':lines.price_subtotal,
 
@@ -6627,7 +6627,7 @@ if record.x_studio_report_type:
 
           temp_actual_lines_2.append([0,0,{
 
-            'x_studio_sales_order':lines.order_id.id,
+            'sales_order':lines.order_id.id,
 
             'x_studio_customer':lines.order_partner_id.id,
 
@@ -6635,19 +6635,19 @@ if record.x_studio_report_type:
 
             'x_studio_product_id':lines.product_id.id,
 
-            'x_studio_description':lines.name,
+            'description':lines.name,
 
             'x_studio_trans_type':lines.x_studio_trans_type,
 
             'x_studio_category':lines.x_studio_category.id,
 
-            'x_studio_quantity':lines.product_uom_qty,
+            'quantity':lines.product_uom_qty,
 
             'x_studio_delivered_qty':lines.qty_delivered,
 
             'x_studio_uom':lines.product_uom.id,
 
-            'x_studio_unit_price':lines.price_unit,
+            'unit_price':lines.price_unit,
 
             'x_studio_sub_total':lines.price_subtotal,
 
@@ -6671,7 +6671,7 @@ if record.x_studio_report_type:
 
           temp_actual_lines_3.append([0,0,{
 
-            'x_studio_sales_order':lines.order_id.id,
+            'sales_order':lines.order_id.id,
 
             'x_studio_customer':lines.order_partner_id.id,
 
@@ -6679,19 +6679,19 @@ if record.x_studio_report_type:
 
             'x_studio_product_id':lines.product_id.id,
 
-            'x_studio_description':lines.name,
+            'description':lines.name,
 
             'x_studio_trans_type':lines.x_studio_trans_type,
 
             'x_studio_category':lines.x_studio_category.id,
 
-            'x_studio_quantity':lines.product_uom_qty,
+            'quantity':lines.product_uom_qty,
 
             'x_studio_delivered_qty':lines.qty_delivered,
 
             'x_studio_uom':lines.product_uom.id,
 
-            'x_studio_unit_price':lines.price_unit,
+            'unit_price':lines.price_unit,
 
             'x_studio_sub_total':lines.price_subtotal,
 
@@ -6715,7 +6715,7 @@ if record.x_studio_report_type:
 
           temp_actual_lines_4.append([0,0,{
 
-            'x_studio_sales_order':lines.order_id.id,
+            'sales_order':lines.order_id.id,
 
             'x_studio_customer':lines.order_partner_id.id,
 
@@ -6723,19 +6723,19 @@ if record.x_studio_report_type:
 
             'x_studio_product_id':lines.product_id.id,
 
-            'x_studio_description':lines.name,
+            'description':lines.name,
 
             'x_studio_trans_type':lines.x_studio_trans_type,
 
             'x_studio_category':lines.x_studio_category.id,
 
-            'x_studio_quantity':lines.product_uom_qty,
+            'quantity':lines.product_uom_qty,
 
             'x_studio_delivered_qty':lines.qty_delivered,
 
             'x_studio_uom':lines.product_uom.id,
 
-            'x_studio_unit_price':lines.price_unit,
+            'unit_price':lines.price_unit,
 
             'x_studio_sub_total':lines.price_subtotal,
 
@@ -6771,7 +6771,7 @@ if record.x_studio_report_type:
 
             temp_actual_lines_5.append([0,0,{
 
-              'x_studio_sales_order':lines.order_id.id,
+              'sales_order':lines.order_id.id,
 
               'x_studio_customer':lines.order_partner_id.id,
 
@@ -6779,19 +6779,19 @@ if record.x_studio_report_type:
 
               'x_studio_product_id':lines.product_id.id,
 
-              'x_studio_description':lines.name,
+              'description':lines.name,
 
               'x_studio_trans_type':lines.x_studio_trans_type,
 
               'x_studio_category':lines.x_studio_category.id,
 
-              'x_studio_quantity':lines.product_uom_qty,
+              'quantity':lines.product_uom_qty,
 
               'x_studio_delivered_qty':lines.qty_delivered,
 
               'x_studio_uom':lines.product_uom.id,
 
-              'x_studio_unit_price':lines.price_unit,
+              'unit_price':lines.price_unit,
 
               'x_studio_sub_total':lines.price_subtotal,
 
@@ -6815,7 +6815,7 @@ if record.x_studio_report_type:
 
             temp_actual_lines_6.append([0,0,{
 
-            'x_studio_sales_order':lines.order_id.id,
+            'sales_order':lines.order_id.id,
 
             'x_studio_customer':lines.order_partner_id.id,
 
@@ -6823,19 +6823,19 @@ if record.x_studio_report_type:
 
             'x_studio_product_id':lines.product_id.id,
 
-            'x_studio_description':lines.name,
+            'description':lines.name,
 
             'x_studio_trans_type':lines.x_studio_trans_type,
 
             'x_studio_category':lines.x_studio_category.id,
 
-            'x_studio_quantity':lines.product_uom_qty,
+            'quantity':lines.product_uom_qty,
 
             'x_studio_delivered_qty':lines.qty_delivered,
 
             'x_studio_uom':lines.product_uom.id,
 
-            'x_studio_unit_price':lines.price_unit,
+            'unit_price':lines.price_unit,
 
             'x_studio_sub_total':lines.price_subtotal,
 
@@ -6849,13 +6849,13 @@ if record.x_studio_report_type:
 
       if cat_count > 0:  
 
-        create_estimated_sub_model = env['x_rm_gross_margin_esti'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_transaction_type': cat_lines.x_studio_transaction_type,'x_studio_category': cat_lines.x_name,'x_studio_estimated_amt': tot_estimated_val_1,'x_studio_actual_cost': tot_actual_val_1,'x_studio_balance_cost': tot_balance_val_1,'x_studio_sales_order_line_ids':temp_estimated_lines})
+        create_estimated_sub_model = env['x_rm_gross_margin_esti'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_transaction_type': cat_lines.x_studio_transaction_type,'x_studio_category': cat_lines.name,'x_studio_estimated_amt': tot_estimated_val_1,'x_studio_actual_cost': tot_actual_val_1,'x_studio_balance_cost': tot_balance_val_1,'x_studio_sales_order_line_ids':temp_estimated_lines})
 
     
 
     if cat_grand_count > 0:
 
-      create_estimated_sub_model = env['x_rm_gross_margin_esti'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_group_title': 'Total Estimated Value','x_studio_estimated_amt': tot_estimated_val,'x_studio_actual_cost': tot_actual_val,'x_studio_balance_cost': tot_balance_val,'x_studio_total': True})  
+      create_estimated_sub_model = env['x_rm_gross_margin_esti'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_group_title': 'Total Estimated Value','x_studio_estimated_amt': tot_estimated_val,'x_studio_actual_cost': tot_actual_val,'x_studio_balance_cost': tot_balance_val,'x_studio_total': True})  
 
     
 
@@ -6895,49 +6895,49 @@ if record.x_studio_report_type:
 
     if cat_count_2 > 0:  
 
-      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_transaction_type_1': 'Fee','x_studio_estimated_total': tot_estimated_val_2,'x_studio_cost_price': tot_actual_val_2,'x_studio_variance_est_act': tot_balance_val_2,'x_studio_normal_line':True,'x_studio_sales_order_line_ids':temp_actual_lines_2})
+      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_transaction_type_1': 'Fee','x_studio_estimated_total': tot_estimated_val_2,'x_studio_cost_price': tot_actual_val_2,'x_studio_variance_est_act': tot_balance_val_2,'x_studio_normal_line':True,'x_studio_sales_order_line_ids':temp_actual_lines_2})
 
     
 
     if cat_count_3 > 0:  
 
-      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_transaction_type_1': 'Hour','x_studio_estimated_total': tot_estimated_val_3,'x_studio_cost_price': tot_actual_val_3,'x_studio_variance_est_act': tot_balance_val_3,'x_studio_normal_line':True,'x_studio_sales_order_line_ids':temp_actual_lines_3})
+      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_transaction_type_1': 'Hour','x_studio_estimated_total': tot_estimated_val_3,'x_studio_cost_price': tot_actual_val_3,'x_studio_variance_est_act': tot_balance_val_3,'x_studio_normal_line':True,'x_studio_sales_order_line_ids':temp_actual_lines_3})
 
     
 
     if cat_count_4 > 0:  
 
-      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_transaction_type_1': 'Item','x_studio_estimated_total': tot_estimated_val_4,'x_studio_cost_price': tot_actual_val_4,'x_studio_variance_est_act': tot_balance_val_4,'x_studio_normal_line':True,'x_studio_sales_order_line_ids':temp_actual_lines_4})
+      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_transaction_type_1': 'Item','x_studio_estimated_total': tot_estimated_val_4,'x_studio_cost_price': tot_actual_val_4,'x_studio_variance_est_act': tot_balance_val_4,'x_studio_normal_line':True,'x_studio_sales_order_line_ids':temp_actual_lines_4})
 
       
 
     #if cat_count_7 > 0:  
 
-    #  create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_transaction_type_1': 'Expense'})
+    #  create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_transaction_type_1': 'Expense'})
 
     
 
     if cat_count_5 > 0:  
 
-      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_transaction_type_1': 'Expense','x_studio_other_expenses': 'Claimable Expenses','x_studio_estimated_total': tot_estimated_val_5,'x_studio_cost_price': tot_actual_val_5,'x_studio_variance_est_act': tot_balance_val_5,'x_studio_normal_line':True,'x_studio_sales_order_line_ids':temp_actual_lines_5})
+      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_transaction_type_1': 'Expense','x_studio_other_expenses': 'Claimable Expenses','x_studio_estimated_total': tot_estimated_val_5,'x_studio_cost_price': tot_actual_val_5,'x_studio_variance_est_act': tot_balance_val_5,'x_studio_normal_line':True,'x_studio_sales_order_line_ids':temp_actual_lines_5})
 
     
 
     if cat_count_6 > 0:  
 
-      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_transaction_type_1': 'Expense','x_studio_other_expenses': 'Non-Claimable Expenses','x_studio_estimated_total': tot_estimated_val_6,'x_studio_cost_price': tot_actual_val_6,'x_studio_variance_est_act': tot_balance_val_6,'x_studio_normal_line':True,'x_studio_sales_order_line_ids':temp_actual_lines_6})
+      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_transaction_type_1': 'Expense','x_studio_other_expenses': 'Non-Claimable Expenses','x_studio_estimated_total': tot_estimated_val_6,'x_studio_cost_price': tot_actual_val_6,'x_studio_variance_est_act': tot_balance_val_6,'x_studio_normal_line':True,'x_studio_sales_order_line_ids':temp_actual_lines_6})
 
     
 
     if cat_grand_count > 0:
 
-      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_other_expenses': 'Total Actual Cost','x_studio_estimated_total': tot_estimated_val,'x_studio_cost_price': tot_actual_val,'x_studio_variance_est_act': tot_balance_val})   
+      create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_other_expenses': 'Total Actual Cost','x_studio_estimated_total': tot_estimated_val,'x_studio_cost_price': tot_actual_val,'x_studio_variance_est_act': tot_balance_val})   
 
       
 
-    create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_other_expenses': 'Outstanding Cash Advances','x_studio_estimated_total': outstanding_cash_tot})     
+    create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_other_expenses': 'Outstanding Cash Advances','x_studio_estimated_total': outstanding_cash_tot})     
 
-    create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_other_expenses': 'Total planned amount of the budget','x_studio_estimated_total': on_account_val,'x_studio_budget_line':True,'x_studio_budget_line_ids':temp_actual_budget}) 
+    create_estimated_sub_model = env['x_rm_gross_margin_actu'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_other_expenses': 'Total planned amount of the budget','x_studio_estimated_total': on_account_val,'x_studio_budget_line':True,'x_studio_budget_line_ids':temp_actual_budget}) 
 
     
 
@@ -6963,7 +6963,7 @@ if record.x_studio_report_type:
 
       invoice_total += main_invoice_lines.amount_total_signed
 
-      create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_invoice_no':main_invoice_lines.id,'x_studio_invoice_date':main_invoice_lines.invoice_date,'x_studio_status':main_invoice_lines.state,'x_studio_payment_status':main_invoice_lines.payment_state,'x_studio_amount':main_invoice_lines.amount_total_signed}) 
+      create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_invoice_no':main_invoice_lines.id,'x_studio_invoice_date':main_invoice_lines.invoice_date,'x_studio_status':main_invoice_lines.state,'x_studio_payment_status':main_invoice_lines.payment_state,'x_studio_amount':main_invoice_lines.amount_total_signed}) 
 
     # Loop Main Sales Order Invoice Lines - End
 
@@ -6977,7 +6977,7 @@ if record.x_studio_report_type:
 
       invoice_total += invoice_lines.amount_total_signed
 
-      create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_invoice_no':invoice_lines.id,'x_studio_invoice_date':invoice_lines.invoice_date,'x_studio_status':invoice_lines.state,'x_studio_payment_status':invoice_lines.payment_state,'x_studio_amount':invoice_lines.amount_total_signed}) 
+      create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_invoice_no':invoice_lines.id,'x_studio_invoice_date':invoice_lines.invoice_date,'x_studio_status':invoice_lines.state,'x_studio_payment_status':invoice_lines.payment_state,'x_studio_amount':invoice_lines.amount_total_signed}) 
 
     # Loop Sub Sales Order Invoice Lines - End
 
@@ -6985,7 +6985,7 @@ if record.x_studio_report_type:
 
     if invoice_count > 0:
 
-      create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_group_title':'Total Invoice Amount','x_studio_amount':invoice_total}) 
+      create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_group_title':'Total Invoice Amount','x_studio_amount':invoice_total}) 
 
     
 
@@ -6999,13 +6999,13 @@ if record.x_studio_report_type:
 
     
 
-    create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_group_title':'Actual Gross Margin','x_studio_amount':(invoice_total - tot_actual_val)})
+    create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_group_title':'Actual Gross Margin','x_studio_amount':(invoice_total - tot_actual_val)})
 
-    create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_group_title':'Estimated Gross Margin','x_studio_amount':tot_estimated_val_2}) 
+    create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_group_title':'Estimated Gross Margin','x_studio_amount':tot_estimated_val_2}) 
 
-    create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_group_title':'Estimated GP%','x_studio_amount':estimated_gp})
+    create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_group_title':'Estimated GP%','x_studio_amount':estimated_gp})
 
-    create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.x_name,'x_studio_group_title':'Actual GP%','x_studio_amount':actual_gp}) 
+    create_estimated_sub_model = env['x_rm_gross_margin_invo'].create({'x_studio_sales_report_model_id':record.id,'x_studio_header_reference': record.name,'x_studio_group_title':'Actual GP%','x_studio_amount':actual_gp}) 
     ]]></field>
   </record>
   <record id="server_action_2116_project_gross_margin_report" model="ir.actions.server">
@@ -7025,7 +7025,7 @@ if report_type:
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="code"><![CDATA[
-record['x_studio_created_date'] = datetime.datetime.today()
+record['created_date'] = datetime.datetime.today()
 
 
 
@@ -7064,7 +7064,7 @@ if report_type:
   next_month3 = firstdayOfmonth3.replace(day=28) + datetime.timedelta(days=4)
   lastdayOfmonth3 = next_month3 - datetime.timedelta(days=next_month3.day)
   
-  delete_report_model = env['x_sales_report_model'].search([('x_studio_report_type', '=', report_type.id),('x_studio_created_date', '<=', lastdayOfmonth3)])
+  delete_report_model = env['x_sales_report_model'].search([('x_studio_report_type', '=', report_type.id),('created_date', '<=', lastdayOfmonth3)])
   if delete_report_model:
       for delete_report in delete_report_model:
         delete_report.unlink()
@@ -7653,12 +7653,12 @@ if record.x_studio_report_type:
     <field name="filter_domain">[]</field>
   </record>
     <data noupdate="1">
-    <record id="default_250_x_sales_report_model_x_active" model="ir.default">
-      <field name="field_id" ref="BugFix-Accounting.field_x_sales_report_model__x_active"/>
+    <record id="default_250_x_sales_report_model_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_sales_report_model__active"/>
       <field name="json_value">true</field>
     </record>
-    <record id="default_251_x_sales_report_model_x_studio_sequence" model="ir.default">
-      <field name="field_id" ref="BugFix-Accounting.field_x_sales_report_model__x_studio_sequence"/>
+    <record id="default_251_x_sales_report_model_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_sales_report_model__sequence"/>
       <field name="json_value">10</field>
     </record>
     <record id="default_395_x_sales_report_model_x_studio_idling_rate" model="ir.default">

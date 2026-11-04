@@ -17,12 +17,12 @@ class XTpInvoiceHeader(models.Model):
     _name = "x_tp_invoice_header"
     _inherit = ["mail.activity.mixin"]
     _description = "TP Invoice Header"
-    _order = "x_studio_sequence, id"
-    _rec_name = "x_name"
+    _order = "sequence, id"
+    _rec_name = "name"
 
-    x_active = fields.Boolean(string="Active", default=True)
+    active = fields.Boolean(string="Active", default=True)
     x_currency_id = fields.Many2one("res.currency", string="Currency")
-    x_name = fields.Char(string="Invoice Reference")
+    name = fields.Char(string="Invoice Reference")
     x_studio_con_no = fields.Many2one(
         "x_consignment_header",
         string="Created From Consignment No",
@@ -43,7 +43,7 @@ class XTpInvoiceHeader(models.Model):
         [("Draft", "Draft"), ("Posted", "Posted")],
         string="Pipeline status bar",
     )
-    x_studio_sequence = fields.Integer(string="Sequence", default=10)
+    sequence = fields.Integer(string="Sequence", default=10)
     x_studio_status = fields.Selection(
         [("Draft", "Draft"), ("Posted", "Posted")],
         string="Status",
@@ -159,8 +159,8 @@ class XTpInvoiceHeader(models.Model):
 
 class XTpInvoiceHeaderGap(models.Model):
     _inherit = "x_tp_invoice_header"
-    _rec_name = "x_name"  # Clear-DB Studio model: records are named by x_name
+    _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    x_active = fields.Boolean(string="Active")
+    active = fields.Boolean(string="Active")
     x_currency_id = fields.Many2one(comodel_name="res.currency", string="Currency")
-    x_name = fields.Char(string="Invoice Reference")
+    name = fields.Char(string="Invoice Reference")

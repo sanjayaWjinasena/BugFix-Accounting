@@ -5,12 +5,12 @@ from odoo import fields, models
 
 class XSalesReportType(models.Model):
     _name = "x_sales_report_type"
-    _rec_name = "x_name"  # Clear-DB Studio model: records are named by x_name
+    _rec_name = "name"  # Clear-DB Studio model: records are named by name
     _description = "Sales Report Type"
 
     _inherit = ["mail.thread", "mail.activity.mixin"]
-    x_active = fields.Boolean(string="Active")
-    x_name = fields.Char(string="Report Name")
+    active = fields.Boolean(string="Active")
+    name = fields.Char(string="Report Name")
     x_studio_journal_entry_id = fields.One2many(
         "account.move",
         "x_studio_report_type_s_cust_aging",
@@ -54,7 +54,7 @@ class XSalesReportType(models.Model):
     )
     # TODO: x_studio_sales_prod_purch_id = fields.One2many('stock.move.line', <inverse>,
     # string='Sales Prod. Purch. Id')
-    x_studio_sequence = fields.Integer(string="Sequence")
+    sequence = fields.Integer(string="Sequence")
     # TODO: x_studio_slow_moving_item_id = fields.One2many('stock.move.line', <inverse>,
     # string='Slow Moving Item Id')
     x_studio_test = fields.One2many(
@@ -66,7 +66,7 @@ class XSalesReportType(models.Model):
 
 class XSalesReportTypeGap(models.Model):
     _inherit = "x_sales_report_type"
-    _rec_name = "x_name"  # Clear-DB Studio model: records are named by x_name
+    _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    x_active = fields.Boolean(string="Active")
-    x_name = fields.Char(string="Report Name")
+    active = fields.Boolean(string="Active")
+    name = fields.Char(string="Report Name")

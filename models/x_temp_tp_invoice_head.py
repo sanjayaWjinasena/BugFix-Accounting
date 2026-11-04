@@ -16,11 +16,11 @@ class XTempTpInvoiceHead(models.Model):
     _name = "x_temp_tp_invoice_head"
     _inherit = ["mail.activity.mixin"]
     _description = "Temp TP Invoice Header"
-    _order = "x_studio_sequence, id"
-    _rec_name = "x_name"
+    _order = "sequence, id"
+    _rec_name = "name"
 
-    x_active = fields.Boolean(string="Active", default=True)
-    x_name = fields.Char(string="Name")
+    active = fields.Boolean(string="Active", default=True)
+    name = fields.Char(string="Name")
     x_studio_charge_line = fields.One2many(
         "x_temp_tp_invoice_line",
         "x_studio_temp_tp_invoice_header_id",
@@ -30,13 +30,13 @@ class XTempTpInvoiceHead(models.Model):
         "x_consignment_header",
         string="Consignment Header Id",
     )
-    x_studio_sequence = fields.Integer(string="Sequence", default=10)
+    sequence = fields.Integer(string="Sequence", default=10)
     x_studio_supplier_id = fields.Many2one("res.partner", string="Vendor")
 
 
 class XTempTpInvoiceHeadGap(models.Model):
     _inherit = "x_temp_tp_invoice_head"
-    _rec_name = "x_name"  # Clear-DB Studio model: records are named by x_name
+    _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    x_active = fields.Boolean(string="Active")
-    x_name = fields.Char(string="Name")
+    active = fields.Boolean(string="Active")
+    name = fields.Char(string="Name")

@@ -2,7 +2,7 @@
     # upgrade-testing branch: data files below are commented out - this branch installs
     # functions only, no data is seeded.
     "name": "Jinasena : Module : Accounting",
-    "version": "17.0.0.0.149",
+    "version": "17.0.0.0.150",
     "summary": "Studio-to-Python port for BugFix-Accounting",
     "author": "Jinasena Agricultural Machinery (Pvt) Ltd.",
     "category": "Accounting",
@@ -95,7 +95,7 @@
     #     crossovered.budget + crossovered.budget.lines (extended by
     #     models/crossovered_budget.py).
     #   * BugFix-Sales — crossovered.budget compute traversals into
-    #     sale.order.x_studio_quotation_type / _inventory_short /
+    #     sale.order.quotation_type / _inventory_short /
     #     _sub_contract fields, which BugFix-Sales owns.
     #   * BugFix-Purchase — crossovered.budget compute uses
     #     env['x_purchase_request'] (soft-guarded so absence doesn't
@@ -133,7 +133,7 @@
     # v0.0.48: x_pump_price_costing custom model port.
     #   * models/x_pump_price_costing.py declares the 69 Studio x_*
     #     fields from Clear-DB verbatim (0 rows on Clear-DB - schema-
-    #     only asset). Order: x_studio_sequence asc, id asc. Mixed with
+    #     only asset). Order: sequence asc, id asc. Mixed with
     #     mail.thread + mail.activity.mixin per the ir.model.data state.
     #   * models/x_sales_report_model.py: TODO comment for
     #     x_studio_pump_price_costing_ids O2M replaced with the real

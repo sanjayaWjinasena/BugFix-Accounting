@@ -4,7 +4,7 @@
 
 ### `x_rm_date_test` — RM Date Test
 
-*Created by this repo.* Python: `models/x_rm_date_test.py`, `models/x_rm_date_test_gap.py`. Record name field: `x_name`.
+*Created by this repo.* Python: `models/x_rm_date_test.py`, `models/x_rm_date_test_gap.py`. Record name field: `name`.
 
 **Summary:**
 
@@ -46,10 +46,10 @@ Purpose not evident from code. It is a test model with a single Date Test field 
 | `website_message_ids` | Website Messages | one2many → `mail.message` | Standard computed subset of chatter messages on this RM Date Test record that are visible on the website/portal. | stored | `model mail.message` (mail) |  |
 | `write_date` | Last Updated on | datetime | Date and time this RM Date Test record was last modified; set automatically. | stored |  |  |
 | `write_uid` | Last Updated by | many2one → `res.users` | User who last modified this RM Date Test record; set automatically. | stored | `model res.users` (base) |  |
-| `x_active` | Active | boolean | Archive flag of the RM Date Test (test model); defaults to true (ir.default), and unticked (archived) records are hidden from normal lists. Shown in the form and search views. | stored |  | `default BugFix-Accounting.default_283_x_rm_date_test_x_active`<br>`view BugFix-Accounting.ported_view_3915_default_form_view_fo_d88777b5_8251_4e43_ad64_0e506e49f9fb`<br>`view BugFix-Accounting.ported_view_3916_default_search_view_e7a99ab7_8776_4f92_acf1_7409a5917f9d` |
-| `x_name` | Name | char | Name of the RM Date Test (test model), used as its display name. Shown in the list, form and search views. | stored |  | `view BugFix-Accounting.ported_view_3914_default_list_view_fo_77a72e54_ec9a_410e_8cec_7eb0098c24da`<br>`view BugFix-Accounting.ported_view_3915_default_form_view_fo_d88777b5_8251_4e43_ad64_0e506e49f9fb`<br>`view BugFix-Accounting.ported_view_3916_default_search_view_e7a99ab7_8776_4f92_acf1_7409a5917f9d` |
+| `active` | Active | boolean | Archive flag of the RM Date Test (test model); defaults to true (ir.default), and unticked (archived) records are hidden from normal lists. Shown in the form and search views. | stored |  | `default BugFix-Accounting.default_283_x_rm_date_test_active`<br>`view BugFix-Accounting.ported_view_3915_default_form_view_fo_d88777b5_8251_4e43_ad64_0e506e49f9fb`<br>`view BugFix-Accounting.ported_view_3916_default_search_view_e7a99ab7_8776_4f92_acf1_7409a5917f9d` |
+| `name` | Name | char | Name of the RM Date Test (test model), used as its display name. Shown in the list, form and search views. | stored |  | `view BugFix-Accounting.ported_view_3914_default_list_view_fo_77a72e54_ec9a_410e_8cec_7eb0098c24da`<br>`view BugFix-Accounting.ported_view_3915_default_form_view_fo_d88777b5_8251_4e43_ad64_0e506e49f9fb`<br>`view BugFix-Accounting.ported_view_3916_default_search_view_e7a99ab7_8776_4f92_acf1_7409a5917f9d` |
 | `x_studio_date_test` | Date Test | date | Test date field on the RM Date Test model; shown in its list view. No business logic uses it. | stored |  | `view BugFix-Accounting.ported_view_3917_odoo_studio_default_6f8232ab_b685_499c_a92e_e1f0a6371c68` |
-| `x_studio_sequence` | Sequence | integer | Sort order of the RM Date Test (test model) (default 10); used as the drag handle in its list view. | default `10`; stored |  | `default BugFix-Accounting.default_284_x_rm_date_test_x_studio_sequence`<br>`view BugFix-Accounting.ported_view_3914_default_list_view_fo_77a72e54_ec9a_410e_8cec_7eb0098c24da` |
+| `sequence` | Sequence | integer | Sort order of the RM Date Test (test model) (default 10); used as the drag handle in its list view. | default `10`; stored |  | `default BugFix-Accounting.default_284_x_rm_date_test_sequence`<br>`view BugFix-Accounting.ported_view_3914_default_list_view_fo_77a72e54_ec9a_410e_8cec_7eb0098c24da` |
 
 **Window actions (1):**
 
@@ -61,10 +61,10 @@ Purpose not evident from code. It is a test model with a single Date Test field 
 
 | Name | Record name | Type | What it changes | Function | Depends on | Used by |
 |---|---|---|---|---|---|---|
-| Default form view for x_rm_date_test | `ported_view_3915_default_form_view_fo_d88777b5_8251_4e43_ad64_0e506e49f9fb` | form | full form layout with 5 fields | Default form for RM Date Test (`x_rm_date_test`): archived ribbon, required Name title, two empty groups and chatter. | `x_rm_date_test.activity_ids`<br>`x_rm_date_test.message_follower_ids`<br>`x_rm_date_test.message_ids`<br>`x_rm_date_test.x_active`<br>`x_rm_date_test.x_name` |  |
-| Default list view for x_rm_date_test | `ported_view_3914_default_list_view_fo_77a72e54_ec9a_410e_8cec_7eb0098c24da` | tree | full tree layout with 2 fields | Default list for RM Date Test (`x_rm_date_test`) with sequence handle and Name. | `x_rm_date_test.x_name`<br>`x_rm_date_test.x_studio_sequence` | `view BugFix-Accounting.ported_view_3917_odoo_studio_default_6f8232ab_b685_499c_a92e_e1f0a6371c68` |
-| Default search view for x_rm_date_test | `ported_view_3916_default_search_view_e7a99ab7_8776_4f92_acf1_7409a5917f9d` | search | full search layout with 1 fields | Default search view for RM Date Test records (`x_rm_date_test`): search by name plus an Archived filter. | `x_rm_date_test.x_active`<br>`x_rm_date_test.x_name` |  |
-| Odoo Studio: Default list view for x_rm_date_test customization | `ported_view_3917_odoo_studio_default_6f8232ab_b685_499c_a92e_e1f0a6371c68` | tree | after `//field[@name='x_studio_sequence']`: add field x_studio_date_test; set column_invisible=1 on `//field[@name='x_name']` | Adds a Date Test column and hides the Name column in the RM Date Test list; appears to be a test model. | `view BugFix-Accounting.ported_view_3914_default_list_view_fo_77a72e54_ec9a_410e_8cec_7eb0098c24da`<br>`x_rm_date_test.x_studio_date_test` |  |
+| Default form view for x_rm_date_test | `ported_view_3915_default_form_view_fo_d88777b5_8251_4e43_ad64_0e506e49f9fb` | form | full form layout with 5 fields | Default form for RM Date Test (`x_rm_date_test`): archived ribbon, required Name title, two empty groups and chatter. | `x_rm_date_test.activity_ids`<br>`x_rm_date_test.message_follower_ids`<br>`x_rm_date_test.message_ids`<br>`x_rm_date_test.active`<br>`x_rm_date_test.name` |  |
+| Default list view for x_rm_date_test | `ported_view_3914_default_list_view_fo_77a72e54_ec9a_410e_8cec_7eb0098c24da` | tree | full tree layout with 2 fields | Default list for RM Date Test (`x_rm_date_test`) with sequence handle and Name. | `x_rm_date_test.name`<br>`x_rm_date_test.sequence` | `view BugFix-Accounting.ported_view_3917_odoo_studio_default_6f8232ab_b685_499c_a92e_e1f0a6371c68` |
+| Default search view for x_rm_date_test | `ported_view_3916_default_search_view_e7a99ab7_8776_4f92_acf1_7409a5917f9d` | search | full search layout with 1 fields | Default search view for RM Date Test records (`x_rm_date_test`): search by name plus an Archived filter. | `x_rm_date_test.active`<br>`x_rm_date_test.name` |  |
+| Odoo Studio: Default list view for x_rm_date_test customization | `ported_view_3917_odoo_studio_default_6f8232ab_b685_499c_a92e_e1f0a6371c68` | tree | after `//field[@name='sequence']`: add field x_studio_date_test; set column_invisible=1 on `//field[@name='name']` | Adds a Date Test column and hides the Name column in the RM Date Test list; appears to be a test model. | `view BugFix-Accounting.ported_view_3914_default_list_view_fo_77a72e54_ec9a_410e_8cec_7eb0098c24da`<br>`x_rm_date_test.x_studio_date_test` |  |
 
 **Access rights (2):**
 

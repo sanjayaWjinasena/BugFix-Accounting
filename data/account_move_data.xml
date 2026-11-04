@@ -12,8 +12,8 @@
     <field name="name">RR - Validate RUG in Customer Invoice</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="state">code</field>
-    <field name="code"><![CDATA[if record.x_studio_rug_confirmed == True:
-  if record.x_studio_rug_acc_updated == True:
+    <field name="code"><![CDATA[if record.rug_confirmed == True:
+  if record.rug_acc_updated == True:
     if record.state == 'posted':
       so = env['sale.order'].search([('id', '=', record.x_studio_sale_id.id),('state', '=', 'done')],limit=1)
       if so:
@@ -56,14 +56,14 @@
   if record.state == 'posted':
     if record.move_type == 'out_invoice':
       if record.partner_id.x_studio_customer_group.x_studio_group_type != 'General':
-        if record.partner_id.x_studio_mandatory_bank_guarantee == True:
+        if record.partner_id.mandatory_bank_guarantee == True:
           if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():
             #raise UserError("Customer's bank guarantee is expired.")
             raise UserError("Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
           else:
-            #if record.partner_id.x_studio_mandatory_bank_guarantee < (record.partner_id.credit + record.amount_total):
+            #if record.partner_id.mandatory_bank_guarantee < (record.partner_id.credit + record.amount_total):
             if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_id.credit + record.amount_total):
-              #raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.x_studio_mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_id.credit + record.amount_total)))
+              #raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_id.credit + record.amount_total)))
               #raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_id.credit + record.amount_total))
               raise UserError("The credit limit is higher than the bank guarantee amount." + "\n" + "Customer: " + record.partner_id.name + "\n" + " Sales Order: " + record.x_studio_sale_id.name + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_id.credit + record.amount_total))
         else:
@@ -71,7 +71,7 @@
             records.message_post(body="Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
           else:
             if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_id.credit + record.amount_total):
-              #records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.x_studio_mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_id.credit + record.amount_total)))
+              #records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_id.credit + record.amount_total)))
               #records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_id.credit + record.amount_total))
               records.message_post(body="The credit limit is higher than the bank guarantee amount." + "\n" + "Customer: " + str(record.partner_id.name) + "\n" + " Sales Order: " + str(record.x_studio_sale_id.name) + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_id.credit + record.amount_total))
         
@@ -95,7 +95,7 @@
   so = env['sale.order'].search([('id', '=', record.x_studio_sale_id.id),('state', '=', 'done'),('x_studio_order_payment_method', '=', 'Cash'),('x_studio_grant_temporary_credit', '=', False)],limit=1)
   if so:
     sum_total = 0
-    payment = env['account.payment'].search([('x_studio_sales_order', '=', record.x_studio_sale_id.id),('state', '=', 'posted')])
+    payment = env['account.payment'].search([('sales_order', '=', record.x_studio_sale_id.id),('state', '=', 'posted')])
     if payment:
       for total in payment:
         sum_total += total.amount
@@ -116,7 +116,7 @@
     <field name="name">RR - RUG Account Update in SI</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="state">code</field>
-    <field name="code"><![CDATA[if record.x_studio_rug_confirmed == True:
+    <field name="code"><![CDATA[if record.rug_confirmed == True:
 
   company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
 
@@ -124,11 +124,11 @@
 
   
 
-  rug_account = env['x_repair_accounts'].search([('x_studio_company_id', '=',  company.id)], limit=1)
+  rug_account = env['repair_accounts'].search([('accounting_company_id', '=',  company.id)], limit=1)
 
   if rug_account:
 
-    if rug_account.x_studio_rug_account == False:
+    if rug_account.rug_account == False:
 
       raise UserError('RUG Account must be Specified in Repair Accounts')
 
@@ -140,19 +140,19 @@
 
   for line in lines:
 
-    line.write({'account_id':rug_account.x_studio_rug_account.id}) 
+    line.write({'account_id':rug_account.rug_account.id}) 
 
   
 
-  record.write({'x_studio_rug_acc_updated': True})]]></field>
+  record.write({'rug_acc_updated': True})]]></field>
     <field name="usage">ir_actions_server</field>
   </record>
   <record id="server_action_2331_rr_validate_rug_in_customer_invoice" model="ir.actions.server">
     <field name="name">RR - Validate RUG in Customer Invoice</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="state">code</field>
-    <field name="code"><![CDATA[if record.x_studio_rug_confirmed == True:
-  if record.x_studio_rug_acc_updated == True:
+    <field name="code"><![CDATA[if record.rug_confirmed == True:
+  if record.rug_acc_updated == True:
     if record.state == 'posted':
       so = env['sale.order'].search([('id', '=', record.x_studio_sale_id.id),('state', '=', 'done')],limit=1)
       if so:
@@ -193,14 +193,14 @@
   if record.state == 'posted':
     if record.move_type == 'out_invoice':
       if record.partner_id.x_studio_customer_group.x_studio_group_type != 'General':
-        if record.partner_id.x_studio_mandatory_bank_guarantee == True:
+        if record.partner_id.mandatory_bank_guarantee == True:
           if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():
             #raise UserError("Customer's bank guarantee is expired.")
             raise UserError("Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
           else:
-            #if record.partner_id.x_studio_mandatory_bank_guarantee < (record.partner_id.credit + record.amount_total):
+            #if record.partner_id.mandatory_bank_guarantee < (record.partner_id.credit + record.amount_total):
             if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_id.credit + record.amount_total):
-              #raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.x_studio_mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_id.credit + record.amount_total)))
+              #raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_id.credit + record.amount_total)))
               #raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_id.credit + record.amount_total))
               raise UserError("The credit limit is higher than the bank guarantee amount." + "\n" + "Customer: " + record.partner_id.name + "\n" + " Sales Order: " + record.x_studio_sale_id.name + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_id.credit + record.amount_total))
         else:
@@ -208,7 +208,7 @@
             records.message_post(body="Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
           else:
             if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_id.credit + record.amount_total):
-              #records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.x_studio_mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_id.credit + record.amount_total)))
+              #records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_id.credit + record.amount_total)))
               #records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_id.credit + record.amount_total))
               records.message_post(body="The credit limit is higher than the bank guarantee amount." + "\n" + "Customer: " + str(record.partner_id.name) + "\n" + " Sales Order: " + str(record.x_studio_sale_id.name) + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_id.credit + record.amount_total))
         
@@ -231,7 +231,7 @@
   so = env['sale.order'].search([('id', '=', record.x_studio_sale_id.id),('state', '=', 'done'),('x_studio_order_payment_method', '=', 'Cash'),('x_studio_grant_temporary_credit', '=', False)],limit=1)
   if so:
     sum_total = 0
-    payment = env['account.payment'].search([('x_studio_sales_order', '=', record.x_studio_sale_id.id),('state', '=', 'posted')])
+    payment = env['account.payment'].search([('sales_order', '=', record.x_studio_sale_id.id),('state', '=', 'posted')])
     if payment:
       for total in payment:
         sum_total += total.amount
@@ -410,11 +410,11 @@ if record.invoice_origin and not record.x_studio_sale_id:
     <!-- Server action stubs (9)                              -->
     <!-- ==================================================== -->
     <!-- 2176: RR - RUG Account Update in SI. FULL PORT (v0.0.39).
-         When invoice's x_studio_rug_confirmed is True, rewrites all
+         When invoice's rug_confirmed is True, rewrites all
          account.move.line entries pointing at the journal's default
-         account to instead point at x_repair_accounts.x_studio_rug_account
-         (per-company), then marks x_studio_rug_acc_updated=True on
-         the invoice. Depends on env['x_repair_accounts'] which is
+         account to instead point at repair_accounts.rug_account
+         (per-company), then marks rug_acc_updated=True on
+         the invoice. Depends on env['repair_accounts'] which is
          owned by Fix-repair (installed alongside on repair-test-101).
          No install-time model dep needed - env[] resolution happens at
          click time. -->
@@ -426,13 +426,13 @@ if record.invoice_origin and not record.x_studio_sale_id:
         <field name="usage">ir_actions_server</field>
         <field name="sequence">5</field>
         <field name="code"><![CDATA[
-if record.x_studio_rug_confirmed == True:
+if record.rug_confirmed == True:
     company_id = env.context.get('allowed_company_ids', [env.user.company_id.id])[0]
     company = env['res.company'].browse(company_id)
 
-    rug_account = env['x_repair_accounts'].search([('x_studio_company_id', '=', company.id)], limit=1)
+    rug_account = env['repair_accounts'].search([('accounting_company_id', '=', company.id)], limit=1)
     if rug_account:
-        if rug_account.x_studio_rug_account == False:
+        if rug_account.rug_account == False:
             raise UserError('RUG Account must be Specified in Repair Accounts')
 
     lines = env['account.move.line'].search([
@@ -440,9 +440,9 @@ if record.x_studio_rug_confirmed == True:
         ('account_id', '=', record.journal_id.default_account_id.id),
     ])
     for line in lines:
-        line.write({'account_id': rug_account.x_studio_rug_account.id})
+        line.write({'account_id': rug_account.rug_account.id})
 
-    record.write({'x_studio_rug_acc_updated': True})
+    record.write({'rug_acc_updated': True})
 ]]></field>
     </record>
     <!-- 2762: Project - Update Advance Payment Account - Vendor Bill.
@@ -727,7 +727,7 @@ if record.x_studio_type == 'Advance Payment':
     if con_header.x_studio_vendor_dispatch == True:
       grand_total_amount = total_amount * con_header.x_studio_vendor_dispatch_exchange_rate
       if grand_total_amount > 0.0000:
-        despatch_account = env['x_imports_ledger_setup'].search([('x_studio_company_id', '=', company.id)], limit=1)
+        despatch_account = env['x_imports_ledger_setup'].search([('accounting_company_id', '=', company.id)], limit=1)
         if despatch_account:
           if despatch_account.x_studio_vendor_despatch_debit_account.id == 0 or despatch_account.x_studio_vendor_despatch_credit_account.id == 0:
             raise UserError('Vendor Despatch Accounts must be Specified in Imports Ledger Setup')
@@ -1279,7 +1279,7 @@ if record.partner_id.customer_rank > 0:
          posts a chatter warning (does NOT raise) when the customer's
          bank guarantee is expired or insufficient for the credit + this
          invoice. Only fires for non-'General' customer groups where BG
-         is optional (x_studio_mandatory_bank_guarantee == False).
+         is optional (mandatory_bank_guarantee == False).
          Marks x_studio_bg_sent=True after posting to avoid duplicates. -->
     <record id="srv_sls_send_bank_guarantee_notification" model="ir.actions.server">
         <field name="name">SLS - Send Bank Guarantee Notification in Customer Invoice</field>
@@ -1292,7 +1292,7 @@ if record.partner_id.customer_rank > 0:
 if record.partner_id.customer_rank > 0:
     if record.move_type == 'out_invoice':
         if record.partner_id.x_studio_customer_group.x_studio_group_type != 'General':
-            if record.partner_id.x_studio_mandatory_bank_guarantee == False:
+            if record.partner_id.mandatory_bank_guarantee == False:
                 if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():
                     records.message_post(body="Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
                     record['x_studio_bg_sent'] = True
@@ -1306,7 +1306,7 @@ if record.partner_id.customer_rank > 0:
          FULL PORT (v0.0.42). Blocking counterpart to 1851: raises
          UserError (not chatter post) when BG is expired or insufficient
          AND the customer's group requires mandatory BG
-         (x_studio_mandatory_bank_guarantee == True). Same field
+         (mandatory_bank_guarantee == True). Same field
          dependencies as 1851; no new deps. -->
     <record id="srv_sls_view_bank_guarantee_validation" model="ir.actions.server">
         <field name="name">SLS - View Bank Guarantee Validation in Customer Invoice</field>
@@ -1319,7 +1319,7 @@ if record.partner_id.customer_rank > 0:
 if record.partner_id.customer_rank > 0:
     if record.move_type == 'out_invoice':
         if record.partner_id.x_studio_customer_group.x_studio_group_type != 'General':
-            if record.partner_id.x_studio_mandatory_bank_guarantee == True:
+            if record.partner_id.mandatory_bank_guarantee == True:
                 if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():
                     raise UserError("Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
                 else:
@@ -1683,7 +1683,7 @@ if record.partner_id.customer_rank > 0:
     if con_header.x_studio_vendor_dispatch == True:
       grand_total_amount = total_amount * con_header.x_studio_vendor_dispatch_exchange_rate
       if grand_total_amount > 0.0000:
-        despatch_account = env['x_imports_ledger_setup'].search([('x_studio_company_id', '=', company.id)], limit=1)
+        despatch_account = env['x_imports_ledger_setup'].search([('accounting_company_id', '=', company.id)], limit=1)
         if despatch_account:
           if despatch_account.x_studio_vendor_despatch_debit_account.id == 0 or despatch_account.x_studio_vendor_despatch_credit_account.id == 0:
             raise UserError('Vendor Despatch Accounts must be Specified in Imports Ledger Setup')
@@ -2203,7 +2203,7 @@ else:
   ids =[record.id]
   sale = env['sale.order'].search([('name', '=', record.invoice_origin)], limit=1)
   if sale:
-    find_payment = env['account.payment'].search([('x_studio_sales_order', '=', sale.id)])
+    find_payment = env['account.payment'].search([('sales_order', '=', sale.id)])
     if find_payment:
       find_payment.write({'reconciled_invoice_ids':[(6, False, ids)],'reconciled_invoices_count':1,'is_reconciled':True})
       record['payment_id'] = find_payment.id
@@ -2308,7 +2308,7 @@ else:
     <field name="code"><![CDATA[if record.partner_id.customer_rank > 0:
   if record.move_type == 'out_invoice':
     if record.partner_id.x_studio_customer_group.x_studio_group_type != 'General':
-      if record.partner_id.x_studio_mandatory_bank_guarantee == False:
+      if record.partner_id.mandatory_bank_guarantee == False:
         if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():
           records.message_post(body="Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
           record['x_studio_bg_sent'] = True
@@ -2331,7 +2331,7 @@ else:
     <field name="code"><![CDATA[if record.partner_id.customer_rank > 0:
   if record.move_type == 'out_invoice':
     if record.partner_id.x_studio_customer_group.x_studio_group_type != 'General':
-      if record.partner_id.x_studio_mandatory_bank_guarantee == True:
+      if record.partner_id.mandatory_bank_guarantee == True:
         if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():
           raise UserError("Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
             
@@ -2581,7 +2581,7 @@ if record.state == 'posted':
   so = env['sale.order'].search([('id', '=', record.x_studio_sale_id.id),('state', '=', 'done'),('x_studio_order_payment_method', '=', 'Cash'),('x_studio_grant_temporary_credit', '=', False)],limit=1)
   if so:
     sum_total = 0
-    payment = env['account.payment'].search([('x_studio_sales_order', '=', record.x_studio_sale_id.id),('state', '=', 'posted')])
+    payment = env['account.payment'].search([('sales_order', '=', record.x_studio_sale_id.id),('state', '=', 'posted')])
     if payment:
       for total in payment:
         sum_total += total.amount
@@ -2607,14 +2607,14 @@ if record.partner_id.customer_rank > 0:
   if record.state == 'posted':
     if record.move_type == 'out_invoice':
       if record.partner_id.x_studio_customer_group.x_studio_group_type != 'General':
-        if record.partner_id.x_studio_mandatory_bank_guarantee == True:
+        if record.partner_id.mandatory_bank_guarantee == True:
           if record.partner_id.x_studio_expiry_date and record.partner_id.x_studio_expiry_date < datetime.date.today():
             #raise UserError("Customer's bank guarantee is expired.")
             raise UserError("Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
           else:
-            #if record.partner_id.x_studio_mandatory_bank_guarantee < (record.partner_id.credit + record.amount_total):
+            #if record.partner_id.mandatory_bank_guarantee < (record.partner_id.credit + record.amount_total):
             if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_id.credit + record.amount_total):
-              #raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.x_studio_mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_id.credit + record.amount_total)))
+              #raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_id.credit + record.amount_total)))
               #raise UserError("Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_id.credit + record.amount_total))
               raise UserError("The credit limit is higher than the bank guarantee amount." + "\n" + "Customer: " + record.partner_id.name + "\n" + " Sales Order: " + record.x_studio_sale_id.name + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_id.credit + record.amount_total))
         else:
@@ -2622,7 +2622,7 @@ if record.partner_id.customer_rank > 0:
             records.message_post(body="Customer's bank guarantee is expired." + "\n" + "Bank guaranty expiry date: " + str(record.partner_id.x_studio_expiry_date))
           else:
             if record.partner_id.x_studio_bank_guarantee_amount < (record.partner_id.credit + record.amount_total):
-              #records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.x_studio_mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_id.credit + record.amount_total)))
+              #records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee limit: " + "\n" + str(record.partner_id.mandatory_bank_guarantee) + "\n" + "New balance: " + "\n" + str((record.partner_id.credit + record.amount_total)))
               #records.message_post(body="Customer's balance exceeds the bank guarantee amount." + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_id.credit + record.amount_total))
               records.message_post(body="The credit limit is higher than the bank guarantee amount." + "\n" + "Customer: " + str(record.partner_id.name) + "\n" + " Sales Order: " + str(record.x_studio_sale_id.name) + "\n" + "Bank guarantee amount: " + str(record.partner_id.x_studio_bank_guarantee_amount) + "\n" + "Current Balance: " + str(record.partner_id.credit) + '\n' + "This Sale: " + str(record.amount_total) + "\n" + "New balance: " + str(record.partner_id.credit + record.amount_total))
         
@@ -2643,8 +2643,8 @@ if record.partner_id.customer_rank > 0:
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="code"><![CDATA[
-if record.x_studio_rug_confirmed == True:
-  if record.x_studio_rug_acc_updated == True:
+if record.rug_confirmed == True:
+  if record.rug_acc_updated == True:
     if record.state == 'posted':
       so = env['sale.order'].search([('id', '=', record.x_studio_sale_id.id),('state', '=', 'done')],limit=1)
       if so:

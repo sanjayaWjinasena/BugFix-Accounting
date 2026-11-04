@@ -5,13 +5,13 @@ class XTempActualBudget(models.Model):
     """Studio-ported custom model x_temp_actual_budget."""
 
     _name = "x_temp_actual_budget"
-    _rec_name = "x_name"  # Clear-DB Studio model: records are named by x_name
+    _rec_name = "name"  # Clear-DB Studio model: records are named by name
     _inherit = ["mail.activity.mixin"]
     _description = "Temp_Actual_Budget"
 
-    x_active = fields.Boolean(string="Active")
+    active = fields.Boolean(string="Active")
     x_currency_id = fields.Many2one("res.currency", string="Currency")
-    x_name = fields.Char(string="Name")
+    name = fields.Char(string="Name")
     x_studio_actual_line_ids = fields.Many2one(
         "x_rm_gross_margin_actu", string="Actual Line Ids", ondelete="cascade"
     )
@@ -29,13 +29,13 @@ class XTempActualBudget(models.Model):
     x_studio_planned_amount = fields.Float(
         string="Planned Amount"
     )  # was Monetary (no currency_field)
-    x_studio_sequence = fields.Integer(string="Sequence")
+    sequence = fields.Integer(string="Sequence")
 
 
 class XTempActualBudgetGap(models.Model):
     _inherit = "x_temp_actual_budget"
-    _rec_name = "x_name"  # Clear-DB Studio model: records are named by x_name
+    _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    x_active = fields.Boolean(string="Active")
+    active = fields.Boolean(string="Active")
     x_currency_id = fields.Many2one(comodel_name="res.currency", string="Currency")
-    x_name = fields.Char(string="Name")
+    name = fields.Char(string="Name")

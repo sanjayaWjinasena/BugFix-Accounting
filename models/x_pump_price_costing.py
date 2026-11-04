@@ -26,11 +26,11 @@ class XPumpPriceCosting(models.Model):
     _name = "x_pump_price_costing"
     _description = "Pump Price Costing"
     _inherit = ["mail.thread", "mail.activity.mixin"]
-    _order = "x_studio_sequence asc, id asc"
-    _rec_name = "x_name"
+    _order = "sequence asc, id asc"
+    _rec_name = "name"
 
-    x_active = fields.Boolean(string="Active")
-    x_name = fields.Char(string="Name")
+    active = fields.Boolean(string="Active")
+    name = fields.Char(string="Name")
     x_studio_actual = fields.Float(string="Actual (Exc. Casting Hours)")
     x_studio_actual_1 = fields.Float(string="Actual (Tot. Labour Hours)")
     x_studio_contingency_1 = fields.Float(string="Contingency %")
@@ -90,7 +90,7 @@ class XPumpPriceCosting(models.Model):
         "x_sales_report_model", string="Report Reference"
     )
     x_studio_satd_discount = fields.Float(string="Satd. Discount")
-    x_studio_sequence = fields.Integer(string="Sequence")
+    sequence = fields.Integer(string="Sequence")
     x_studio_sscl = fields.Float(string="SSCL")
     x_studio_sscl_1 = fields.Float(string="SSCL")
     x_studio_sscl_2 = fields.Float(string="SSCL")
@@ -114,7 +114,7 @@ class XPumpPriceCosting(models.Model):
 
 class XPumpPriceCostingGap(models.Model):
     _inherit = "x_pump_price_costing"
-    _rec_name = "x_name"  # Clear-DB Studio model: records are named by x_name
+    _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    x_active = fields.Boolean(string="Active")
-    x_name = fields.Char(string="Name")
+    active = fields.Boolean(string="Active")
+    name = fields.Char(string="Name")

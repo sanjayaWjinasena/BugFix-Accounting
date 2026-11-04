@@ -16,12 +16,12 @@
       <field name="company_id" ref="seed_master_data_and_settings.company_jinasena_pvt_ltd"/>
     </record>
     -->
-    <record id="default_642_x_test_rm_gross_margin_x_active" model="ir.default">
-      <field name="field_id" ref="BugFix-Accounting.field_x_test_rm_gross_margin__x_active"/>
+    <record id="default_642_x_test_rm_gross_margin_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_test_rm_gross_margin__active"/>
       <field name="json_value">true</field>
     </record>
-    <record id="default_643_x_test_rm_gross_margin_x_studio_sequence" model="ir.default">
-      <field name="field_id" ref="BugFix-Accounting.field_x_test_rm_gross_margin__x_studio_sequence"/>
+    <record id="default_643_x_test_rm_gross_margin_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_x_test_rm_gross_margin__sequence"/>
       <field name="json_value">10</field>
     </record>
     </data>

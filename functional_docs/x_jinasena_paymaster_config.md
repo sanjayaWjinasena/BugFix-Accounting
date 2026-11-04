@@ -4,7 +4,7 @@
 
 ### `x_jinasena_paymaster_config` — CBC Paymaster Config
 
-*Created by this repo.* Python: `models/x_jinasena_paymaster_config.py`, `models/x_jinasena_paymaster_config_gap.py`. Record name field: `x_name`.
+*Created by this repo.* Python: `models/x_jinasena_paymaster_config.py`, `models/x_jinasena_paymaster_config_gap.py`. Record name field: `name`.
 
 **Summary:**
 
@@ -25,7 +25,7 @@ Purpose not evident from code. It holds fixed values for a Paymaster bank transf
 | `x_cr_dr_code` | Cr/Dr Code (H) | char | Fixed Credit/Debit code value for the Paymaster bank transfer file configuration (letter in the label is the file column); entered as configuration data, not referenced by views or logic in this repo. | stored |  |  |
 | `x_currency_code` | Currency Code (K) | char | Fixed currency code value for the Paymaster bank transfer file configuration (letter in the label is the file column); entered as configuration data, not referenced by views or logic in this repo. | stored |  |  |
 | `x_filler` | Filler (T) | char | Fixed filler value for the Paymaster bank transfer file configuration (letter in the label is the file column); entered as configuration data, not referenced by views or logic in this repo. | stored |  |  |
-| `x_name` | Name | char | Name of the Paymaster bank file configuration record. | stored |  |  |
+| `name` | Name | char | Name of the Paymaster bank file configuration record. | stored |  |  |
 | `x_orig_account` | Orig Account (N) | char | Fixed originating account number value for the Paymaster bank transfer file configuration (letter in the label is the file column); entered as configuration data, not referenced by views or logic in this repo. | stored |  |  |
 | `x_orig_bank_micr` | Orig Bank MICR (L) | char | Fixed originating bank MICR code value for the Paymaster bank transfer file configuration (letter in the label is the file column); entered as configuration data, not referenced by views or logic in this repo. | stored |  |  |
 | `x_orig_branch` | Orig Branch (M) | char | Fixed originating branch code value for the Paymaster bank transfer file configuration (letter in the label is the file column); entered as configuration data, not referenced by views or logic in this repo. | stored |  |  |

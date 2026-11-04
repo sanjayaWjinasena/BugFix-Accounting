@@ -16,11 +16,11 @@ class XRmGrossMarginInvo(models.Model):
     _name = "x_rm_gross_margin_invo"
     _description = "RM Gross Margin - Invoice Details"
     _inherit = ["mail.thread", "mail.activity.mixin"]
-    _order = "x_studio_sequence, id"
-    _rec_name = "x_name"
+    _order = "sequence, id"
+    _rec_name = "name"
 
-    x_active = fields.Boolean(string="Active", default=True)
-    x_name = fields.Char(string="Name")
+    active = fields.Boolean(string="Active", default=True)
+    name = fields.Char(string="Name")
     x_studio_amount = fields.Float(string="Amount")
     x_studio_group_title = fields.Char(string="          ")
     x_studio_header_reference = fields.Char(string="Header Reference")
@@ -43,7 +43,7 @@ class XRmGrossMarginInvo(models.Model):
         string="Sales Report Model Id",
         ondelete="cascade",
     )
-    x_studio_sequence = fields.Integer(string="Sequence", default=10)
+    sequence = fields.Integer(string="Sequence", default=10)
     x_studio_status = fields.Selection(
         [
             ("draft", "Draft"),
@@ -56,7 +56,7 @@ class XRmGrossMarginInvo(models.Model):
 
 class XRmGrossMarginInvoGap(models.Model):
     _inherit = "x_rm_gross_margin_invo"
-    _rec_name = "x_name"  # Clear-DB Studio model: records are named by x_name
+    _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    x_active = fields.Boolean(string="Active")
-    x_name = fields.Char(string="Name")
+    active = fields.Boolean(string="Active")
+    name = fields.Char(string="Name")

@@ -5,12 +5,12 @@ class XAdvancePaymentAcco(models.Model):
     """Studio-ported custom model x_advance_payment_acco."""
 
     _name = "x_advance_payment_acco"
-    _rec_name = "x_name"  # Clear-DB Studio model: records are named by x_name
+    _rec_name = "name"  # Clear-DB Studio model: records are named by name
     _inherit = ["mail.activity.mixin"]
     _description = "Advance Payment Account"
 
-    x_active = fields.Boolean(string="Active")
-    x_name = fields.Char(string="Name")
+    active = fields.Boolean(string="Active")
+    name = fields.Char(string="Name")
     x_studio_advance_account_project = fields.Many2one(
         "account.account", string="Advance Account (Project)"
     )
@@ -23,12 +23,12 @@ class XAdvancePaymentAcco(models.Model):
     x_studio_advance_payment_account_sales = fields.Many2one(
         "account.account", string="Advance Payment Account (Sales)"
     )
-    x_studio_sequence = fields.Integer(string="Sequence")
+    sequence = fields.Integer(string="Sequence")
 
 
 class XAdvancePaymentAccoGap(models.Model):
     _inherit = "x_advance_payment_acco"
-    _rec_name = "x_name"  # Clear-DB Studio model: records are named by x_name
+    _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    x_active = fields.Boolean(string="Active")
-    x_name = fields.Char(string="Name")
+    active = fields.Boolean(string="Active")
+    name = fields.Char(string="Name")

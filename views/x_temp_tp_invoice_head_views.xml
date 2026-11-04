@@ -14,8 +14,8 @@
     <field name="mode">primary</field>
     <field name="arch" type="xml">
       <tree>
-        <field name="x_studio_sequence" widget="handle"/>
-        <field name="x_name"/>
+        <field name="sequence" widget="handle"/>
+        <field name="name"/>
       </tree>
     </field>
   </record>
@@ -28,9 +28,9 @@
     <field name="mode">primary</field>
     <field name="arch" type="xml">
       <search>
-        <field name="x_name"/>
+        <field name="name"/>
         <separator/>
-        <filter string="Archived" name="archived_x_temp_tp_invoice_head" domain="[['x_active', '=', False]]"/>
+        <filter string="Archived" name="archived_x_temp_tp_invoice_head" domain="[['active', '=', False]]"/>
         <separator/>
       </search>
     </field>
@@ -107,9 +107,9 @@
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <search>
-              <field name="x_name"/>
+              <field name="name"/>
               <separator/>
-              <filter string="Archived" name="archived_x_temp_tp_invoice_head" domain="[['x_active', '=', False]]"/>
+              <filter string="Archived" name="archived_x_temp_tp_invoice_head" domain="[['active', '=', False]]"/>
               <separator/>
             </search>
         </field>

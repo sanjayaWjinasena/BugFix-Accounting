@@ -20,11 +20,11 @@
             <form>
               <header/>
               <sheet string="TP Invoice Line">
-                <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="x_active == True"/>
-                <field name="x_active" invisible="1"/>
+                <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="active == True"/>
+                <field name="active" invisible="1"/>
                 <div class="oe_title">
                             <h1>
-                                <field name="x_name" required="1" placeholder="Name..."/>
+                                <field name="name" required="1" placeholder="Name..."/>
                             </h1>
                         </div>
                 <group name="studio_group_6de1a3">
@@ -48,9 +48,9 @@
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <search>
-              <field name="x_name"/>
+              <field name="name"/>
               <separator/>
-              <filter string="Archived" name="archived_x_tp_invoice_line" domain="[['x_active', '=', False]]"/>
+              <filter string="Archived" name="archived_x_tp_invoice_line" domain="[['active', '=', False]]"/>
               <separator/>
             </search>
         </field>
@@ -63,8 +63,8 @@
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <tree>
-              <field name="x_studio_sequence" widget="handle"/>
-              <field name="x_name"/>
+              <field name="sequence" widget="handle"/>
+              <field name="name"/>
             </tree>
         </field>
     </record>
@@ -77,7 +77,7 @@
         <field name="inherit_id" ref="BugFix-Accounting.ported_view_3047_default_form_view_fo_38c3a46a_3d2b_47c5_8a5e_88963b4b2366"/>
         <field name="arch" type="xml">
             <data>
-              <xpath expr="//field[@name='x_name']" position="attributes">
+              <xpath expr="//field[@name='name']" position="attributes">
                 <attribute name="invisible">1</attribute><attribute name="required"/></xpath>
               <xpath expr="//group[@name='studio_group_6de1a3_left']" position="inside">
                 <field name="x_studio_charge_group" string="Charge Group" force_save="True" readonly="1"/>

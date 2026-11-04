@@ -16,11 +16,11 @@
       <form>
         <header/>
         <sheet string="Temp_Actual_Budget">
-          <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="x_active == True"/>
-          <field name="x_active" invisible="1"/>
+          <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="active == True"/>
+          <field name="active" invisible="1"/>
           <div class="oe_title">
                       <h1>
-                          <field name="x_name" required="1" placeholder="Name..."/>
+                          <field name="name" required="1" placeholder="Name..."/>
                       </h1>
                   </div>
           <group name="studio_group_2e9832">
@@ -41,8 +41,8 @@
     <field name="mode">primary</field>
     <field name="arch" type="xml">
       <tree>
-        <field name="x_studio_sequence" widget="handle"/>
-        <field name="x_name"/>
+        <field name="sequence" widget="handle"/>
+        <field name="name"/>
       </tree>
     </field>
   </record>
@@ -55,9 +55,9 @@
     <field name="mode">primary</field>
     <field name="arch" type="xml">
       <search>
-        <field name="x_name"/>
+        <field name="name"/>
         <separator/>
-        <filter string="Archived" name="archived_x_temp_actual_budget" domain="[['x_active', '=', False]]"/>
+        <filter string="Archived" name="archived_x_temp_actual_budget" domain="[['active', '=', False]]"/>
         <separator/>
       </search>
     </field>
@@ -70,9 +70,9 @@
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <search>
-              <field name="x_name"/>
+              <field name="name"/>
               <separator/>
-              <filter string="Archived" name="archived_x_temp_actual_budget" domain="[['x_active', '=', False]]"/>
+              <filter string="Archived" name="archived_x_temp_actual_budget" domain="[['active', '=', False]]"/>
               <separator/>
             </search>
         </field>
@@ -86,7 +86,7 @@
         <field name="inherit_id" ref="BugFix-Accounting.ported_default_list_view_fo_bcc5f161_0ade_4995_9c51_35002b4f9d4d"/>
         <field name="arch" type="xml">
             <data>
-              <xpath expr="//field[@name='x_studio_sequence']" position="after">
+              <xpath expr="//field[@name='sequence']" position="after">
                 <field optional="show" name="x_studio_budget_line_ids" string="Budget Line Ids" column_invisible="1"/>
                 <field optional="show" name="x_studio_crossovered_budget_id" widget="product_configurator"/>
                 <field optional="show" name="x_studio_analytic_account_id"/>
@@ -95,9 +95,9 @@
                 <field optional="show" name="x_studio_planned_amount" string="Planned Amount"/>
                 <field name="x_currency_id" column_invisible="1"/>
               </xpath>
-              <xpath expr="//field[@name='x_name']" position="attributes">
+              <xpath expr="//field[@name='name']" position="attributes">
                 <attribute name="column_invisible">1</attribute></xpath>
-              <xpath expr="//field[@name='x_name']" position="after">
+              <xpath expr="//field[@name='name']" position="after">
                 <field optional="show" name="x_studio_actual_line_ids" string="Actual Line Ids" column_invisible="1"/>
               </xpath>
             </data>

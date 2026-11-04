@@ -25,12 +25,12 @@
               </header>
               <header/>
               <sheet string="Sales Report Model">
-                <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="x_active == True"/>
-                <field name="x_active" invisible="1"/>
+                <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="active == True"/>
+                <field name="active" invisible="1"/>
                 <div class="oe_title">
                             <span class="o_form_label">Reference </span>
                             <h1>
-                                <field name="x_name" required="1" placeholder="Name..."/>
+                                <field name="name" required="1" placeholder="Name..."/>
                             </h1>
                         </div>
                 <group name="studio_group_1eb3ec">
@@ -54,9 +54,9 @@
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <search>
-              <field name="x_name"/>
+              <field name="name"/>
               <separator/>
-              <filter string="Archived" name="archived_x_sales_report_model" domain="[['x_active', '=', False]]"/>
+              <filter string="Archived" name="archived_x_sales_report_model" domain="[['active', '=', False]]"/>
               <separator/>
             </search>
         </field>
@@ -69,8 +69,8 @@
         <field name="mode">primary</field>
         <field name="arch" type="xml">
             <tree>
-              <field name="x_studio_sequence" widget="handle"/>
-              <field name="x_name"/>
+              <field name="sequence" widget="handle"/>
+              <field name="name"/>
             </tree>
         </field>
     </record>
@@ -88,7 +88,7 @@
               <xpath expr="//header[1]/button[1]" position="after">
                 <field widget="statusbar" options="{}" name="x_studio_selection_field_Fbw0x"/>
               </xpath>
-              <xpath expr="//field[@name='x_name']" position="attributes">
+              <xpath expr="//field[@name='name']" position="attributes">
                 <attribute name="force_save">True</attribute>
                 <attribute name="readonly">1</attribute><attribute name="required"/></xpath>
               <xpath expr="//group[@name='studio_group_1eb3ec_left']" position="attributes">
@@ -135,7 +135,7 @@
                 <field name="create_uid" widget="many2one_avatar"/>
                 <field name="create_date"/>
                 <field name="x_studio_created_from_project_update" string="Created From Project Update" force_save="True" readonly="1" invisible="x_studio_created_from_project_update == False"/>
-                <field name="x_studio_created_date" string="Created Date" force_save="True" readonly="1" invisible="1"/>
+                <field name="created_date" string="Created Date" force_save="True" readonly="1" invisible="1"/>
                 <field name="x_studio_auto_generated" string="Auto Generated" force_save="True" readonly="1" invisible="x_studio_report_code != 'Project Gross Margin'"/>
                 <field name="x_studio_management_purpose" string="Management Purpose" force_save="True" readonly="1" invisible="x_studio_report_code != 'Project Gross Margin'"/>
                 <field name="x_studio_month_end_entry_updated" string="Month End Entry Updated" force_save="True" readonly="1" invisible="x_studio_report_code != 'Project Gross Margin'"/>
@@ -228,8 +228,8 @@
                   <page string="Daily Sales Report" name="studio_page_cA9iK" invisible="1">
                     <field name="x_studio_daily_sales_report_id" string="Daily Sales Report Id" force_save="True" readonly="1">
                       <tree editable="bottom">
-                        <field name="x_studio_sequence" widget="handle" column_invisible="1"/>
-                        <field name="x_name" column_invisible="1"/>
+                        <field name="sequence" widget="handle" column_invisible="1"/>
+                        <field name="name" column_invisible="1"/>
                         <field name="x_studio_sales_centre" string="Sales Centre" force_save="True" readonly="1"/>
                         <field name="x_studio_net_invoice_value_day" string="Net Invoice Value - Day" force_save="True" readonly="1"/>
                         <field name="x_studio_net_invoice_value_month" string="Net Invoice Value - Month" force_save="True" readonly="1"/>
@@ -242,11 +242,11 @@
                       <form>
                         <header/>
                         <sheet string="RM Daily Sales Report" name="studio_sheet_63b6f8">
-                          <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="x_active == True"/>
-                          <field name="x_active" invisible="1"/>
+                          <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="active == True"/>
+                          <field name="active" invisible="1"/>
                           <div class="oe_title" name="studio_div_4d5e71">
                             <h1>
-                              <field name="x_name" required="1" placeholder="Name..."/>
+                              <field name="name" required="1" placeholder="Name..."/>
                             </h1>
                           </div>
                           <group name="studio_group_0e0847">
@@ -264,8 +264,8 @@
                       <tree>
                         <field name="x_studio_customer" string="Customer"/>
                         <field name="x_studio_total_invoice_amount" string="Total Invoice Amount"/>
-                        <field name="x_studio_sequence" widget="handle"/>
-                        <field name="x_name" column_invisible="1"/>
+                        <field name="sequence" widget="handle"/>
+                        <field name="name" column_invisible="1"/>
                       </tree>
                     </field>
                   </page>
@@ -277,11 +277,11 @@
                         <field name="x_studio_partner" string="Partner"/>
                         <field name="x_studio_product_id" string="Product"/>
                         <field name="x_studio_sales_centre" string="Sales Centre"/>
-                        <field name="x_studio_quantity" string="Quantity"/>
+                        <field name="quantity" string="Quantity"/>
                         <field name="x_studio_value" string="Value"/>
                         <field name="x_studio_sales_report_model_id" column_invisible="1"/>
-                        <field name="x_studio_sequence" widget="handle"/>
-                        <field name="x_name" column_invisible="1"/>
+                        <field name="sequence" widget="handle"/>
+                        <field name="name" column_invisible="1"/>
                       </tree>
                     </field>
                   </page>
@@ -292,10 +292,10 @@
                         <field name="x_studio_number" string="Number"/>
                         <field name="x_studio_partner" string="Partner"/>
                         <field name="x_studio_sales_centre" string="Sales Centre"/>
-                        <field name="x_studio_quantity" string="Quantity"/>
+                        <field name="quantity" string="Quantity"/>
                         <field name="x_studio_value" string="Value"/>
-                        <field name="x_studio_sequence" widget="handle"/>
-                        <field name="x_name" column_invisible="1"/>
+                        <field name="sequence" widget="handle"/>
+                        <field name="name" column_invisible="1"/>
                       </tree>
                     </field>
                   </page>
@@ -307,10 +307,10 @@
                         <field name="x_studio_many2one_field_CiZHF"/>
                         <field name="x_studio_sales_centre" string="Sales Centre"/>
                         <field name="x_studio_product_id" string="Product"/>
-                        <field name="x_studio_quantity" string="Quantity"/>
+                        <field name="quantity" string="Quantity"/>
                         <field name="x_studio_value" string="Value"/>
-                        <field name="x_studio_sequence" widget="handle"/>
-                        <field name="x_name" column_invisible="1"/>
+                        <field name="sequence" widget="handle"/>
+                        <field name="name" column_invisible="1"/>
                       </tree>
                     </field>
                   </page>
@@ -322,27 +322,27 @@
                         <field name="x_studio_partner" string="Partner"/>
                         <field name="x_studio_sales_centre" string="Sales Centre"/>
                         <field name="x_studio_product_id" string="Product"/>
-                        <field name="x_studio_quantity" string="Quantity"/>
+                        <field name="quantity" string="Quantity"/>
                         <field name="x_studio_value" string="Value"/>
-                        <field name="x_studio_sequence" widget="handle"/>
-                        <field name="x_name" column_invisible="1"/>
+                        <field name="sequence" widget="handle"/>
+                        <field name="name" column_invisible="1"/>
                       </tree>
                     </field>
                   </page>
                   <page string="Order Lines - For the Date (Filtered)" name="studio_page_vjod4" invisible="x_studio_report_code != 'Sales Details for Incentive Calc.'">
                     <field name="x_studio_one2many_field_jTZq4" string="Sales Order Lines">
                       <tree create="false" delete="false" edit="false">
-                        <field name="x_studio_sequence" widget="handle"/>
+                        <field name="sequence" widget="handle"/>
                         <field name="x_studio_customer_acc"/>
                         <field name="x_studio_customer_group" string="Customer Group"/>
                         <field name="x_studio_name" string="Name"/>
                         <field name="x_studio_product_1" string="Product"/>
-                        <field name="x_studio_sales_order" string="Sales Order"/>
+                        <field name="sales_order" string="Sales Order"/>
                         <field name="x_studio_invoice" string="Invoice"/>
                         <field name="x_studio_date" string="Date"/>
                         <field name="x_studio_product_category" string="Product Category"/>
-                        <field name="x_studio_quantity" string="Quantity"/>
-                        <field name="x_studio_unit_price" string="Unit Price"/>
+                        <field name="quantity" string="Quantity"/>
+                        <field name="unit_price" string="Unit Price"/>
                         <field name="x_studio_total_base_price" string="Total Base Price" optional="hide"/>
                         <field name="x_studio_disc_amount" string="Disc. Amount" optional="hide"/>
                         <field name="x_studio_disc_" string="Disc (%)" optional="hide"/>
@@ -354,10 +354,10 @@
                   <page string="MO - WIP (Filtered)" name="studio_page_tlWFx" invisible="x_studio_report_code != 'Production Overview - WIP'">
                     <field name="x_studio_one2many_field_1rlRW">
                       <tree create="false" edit="false" delete="false">
-                        <field name="x_studio_sequence" widget="handle"/>
+                        <field name="sequence" widget="handle"/>
                         <field name="x_studio_production_id" string="Production Id"/>
                         <field name="x_studio_product_code" string="Product Code"/>
-                        <field name="x_studio_description" string="Description"/>
+                        <field name="description" string="Description"/>
                         <field name="x_studio_warehouse" string="Warehouse"/>
                         <field name="x_studio_status" string="Status"/>
                         <field name="x_studio_estimated" string="Estimated"/>
@@ -372,11 +372,11 @@
                   <page string="Slow Moving Items (Filtered)" name="studio_page_emoQg" invisible="x_studio_report_code != 'Slow Moving Items'">
                     <field name="x_studio_none_moving_item_ids" string="None Moving Item IDs">
                       <tree create="false" delete="false" edit="false">
-                        <field name="x_studio_sequence" widget="handle"/>
+                        <field name="sequence" widget="handle"/>
                         <field name="x_studio_sales_report_model_id" string="Sales Report Model Id" column_invisible="1"/>
                         <field name="x_studio_product_code_1" string="Product Code"/>
                         <field name="x_studio_product_category" string="Product Category"/>
-                        <field name="x_studio_description" string="Description"/>
+                        <field name="description" string="Description"/>
                         <field name="x_studio_base_price" string="Base Price"/>
                         <field name="x_studio_in_hand_1" string="In Hand"/>
                         <field name="x_studio_issue_1" string="Issue"/>
@@ -386,20 +386,20 @@
                         <field name="x_studio_issue_3" string="Issue" optional="hide"/>
                         <field name="x_studio_in_hand_4" string="In Hand" optional="hide"/>
                         <field name="x_studio_issue_4" string="Issue" optional="hide"/>
-                        <field name="x_studio_qty" string="Qty" optional="hide"/>
+                        <field name="qty" string="Qty" optional="hide"/>
                         <field name="x_studio_value" string="Value" optional="hide"/>
-                        <field name="x_name" column_invisible="1"/>
+                        <field name="name" column_invisible="1"/>
                       </tree>
                     </field>
                   </page>
                   <page string="Sales - Prod. - Purch. (Filtered)" name="studio_page_nFZf9" invisible="x_studio_report_code != 'Sales - Production - Purchase Report'">
                     <field name="x_studio_one2many_field_6rdac">
                       <tree editable="bottom" create="false" edit="false" delete="false">
-                        <field name="x_studio_sequence" widget="handle" column_invisible="1"/>
+                        <field name="sequence" widget="handle" column_invisible="1"/>
                         <field name="x_studio_sales_report_model_id" string="Sales Report Model Id" column_invisible="1"/>
                         <field name="x_studio_header_reference" string="Header Reference" column_invisible="1"/>
                         <field name="x_studio_product_code" string="Product Code"/>
-                        <field name="x_studio_description" string="Description"/>
+                        <field name="description" string="Description"/>
                         <field name="x_studio_product_category" string="Product Category"/>
                         <field name="x_studio_product_type" string="Product Type"/>
                         <field name="x_studio_date" string="Date"/>
@@ -407,34 +407,34 @@
                         <field name="x_studio_date_1" string="Date"/>
                         <field name="x_studio_unit_cost" string="Unit Cost"/>
                         <field name="x_studio_project_category" string="Project"/>
-                        <field name="x_studio_sales_order" string="Sales Order"/>
+                        <field name="sales_order" string="Sales Order"/>
                         <field name="x_studio_production_qty" string="Production Qty"/>
                         <field name="x_studio_purchase_qty" string="Purchase Qty"/>
-                        <field name="x_name" column_invisible="1"/>
+                        <field name="name" column_invisible="1"/>
                       </tree>
                     </field>
                   </page>
                   <page string="Prod. Summary Split (Filtered)" name="studio_page_Lab7b" invisible="x_studio_report_code != 'Production Summary - Split'">
                     <field name="x_studio_one2many_field_yeTsx">
                       <tree editable="bottom" create="false" edit="false" delete="false">
-                        <field name="x_studio_sequence" widget="handle" column_invisible="1"/>
+                        <field name="sequence" widget="handle" column_invisible="1"/>
                         <field name="x_studio_sales_report_model_id" string="Sales Report Model Id" column_invisible="1"/>
                         <field name="x_studio_header_reference" string="Header Reference" column_invisible="1"/>
                         <field name="x_studio_product_code" string="Product Code"/>
-                        <field name="x_studio_description" string="Description"/>
+                        <field name="description" string="Description"/>
                         <field name="x_studio_job_no" string="Job No"/>
-                        <field name="x_studio_quantity" string="Quantity"/>
+                        <field name="quantity" string="Quantity"/>
                         <field name="x_studio_total" string="Total"/>
                         <field name="x_studio_split_1"/>
                         <field name="x_studio_split" string="Split" column_invisible="1"/>
-                        <field name="x_name" column_invisible="1"/>
+                        <field name="name" column_invisible="1"/>
                       </tree>
                     </field>
                   </page>
                   <page string="Production Variance (Filtered)" name="studio_page_r3TB7" invisible="x_studio_report_code != 'Production Job Variance'">
                     <field name="x_studio_one2many_field_1Aq0X">
                       <tree create="false" edit="false" delete="false">
-                        <field name="x_studio_sequence" widget="handle"/>
+                        <field name="sequence" widget="handle"/>
                         <field name="x_studio_item_number" string="Item Number"/>
                         <field name="x_studio_production_id" string="Production Id"/>
                         <field name="x_studio_prod_qty" string="Prod. Qty"/>
@@ -447,17 +447,17 @@
                         <field name="x_studio_variance" string="Variance"/>
                         <field name="x_studio_avg_cost" string="Avg. Cost"/>
                         <field name="x_studio_total_cost" string="Total Cost"/>
-                        <field name="x_studio_description" string="Description" column_invisible="1"/>
+                        <field name="description" string="Description" column_invisible="1"/>
                         <field name="x_studio_header_reference" string="Header Reference" column_invisible="1"/>
                         <field name="x_studio_sales_report_model_id" string="Sales Report Model Id" column_invisible="1"/>
-                        <field name="x_name" column_invisible="1"/>
+                        <field name="name" column_invisible="1"/>
                       </tree>
                     </field>
                   </page>
                   <page string="Quotation/ Estimated" name="studio_page_IW80A" invisible="x_studio_report_code != 'Project Gross Margin'">
                     <field name="x_studio_estimated_line_ids" force_save="True" readonly="1" string="Estimated Line Ids">
                       <tree>
-                        <field name="x_studio_sequence" widget="handle"/>
+                        <field name="sequence" widget="handle"/>
                         <field optional="show" name="x_studio_header_reference" string="Header Reference" column_invisible="1"/>
                         <field optional="show" name="x_studio_sales_report_model_id" string="Sales Report Model Id" column_invisible="1"/>
                         <field optional="show" name="x_studio_transaction_type" string="Transaction Type"/>
@@ -466,16 +466,16 @@
                         <field optional="show" name="x_studio_estimated_amt" string="Estimated Amt." help="Estimated Amount = Sales Line.Quantity X Unit Price"/>
                         <field optional="show" name="x_studio_actual_cost" string="Delivered Amount" widget="float" help="Delivered Amount = Sales Line.Unit Price X Delivered Quantity"/>
                         <field optional="show" name="x_studio_balance_cost" string="Balance Amount" help="Balance Amount = Estimated Amount - Delivered Amount"/>
-                        <field name="x_name" column_invisible="1"/>
+                        <field name="name" column_invisible="1"/>
                       </tree>
                       <form>
                         <header/>
                         <sheet string="RM Gross Margin - Estimated" name="studio_sheet_8ef8c5">
-                          <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="x_active == True"/>
-                          <field name="x_active" invisible="1"/>
+                          <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="active == True"/>
+                          <field name="active" invisible="1"/>
                           <div class="oe_title" name="studio_div_607f78">
                             <h1>
-                              <field name="x_name" required="1" placeholder="Name..." invisible="1"/>
+                              <field name="name" required="1" placeholder="Name..." invisible="1"/>
                             </h1>
                           </div>
                           <group name="studio_group_eb1296">
@@ -491,21 +491,21 @@
                           </notebook>
                           <field name="x_studio_sales_order_line_ids" string="Sales Order Line Ids" force_save="True" readonly="1">
                             <tree>
-                              <field name="x_studio_sequence" widget="handle"/>
-                              <field name="x_name" column_invisible="1"/>
+                              <field name="sequence" widget="handle"/>
+                              <field name="name" column_invisible="1"/>
                               <field optional="show" name="x_studio_estimated_line_ids" string="Estimated Line Ids" column_invisible="1"/>
                               <field optional="show" name="x_studio_actual_line_ids" string="Actual Line Ids" column_invisible="1"/>
-                              <field optional="show" name="x_studio_sales_order" string="Sales Order" widget="product_configurator"/>
+                              <field optional="show" name="sales_order" string="Sales Order" widget="product_configurator"/>
                               <field optional="show" name="x_studio_customer" string="Customer"/>
                               <field optional="show" name="x_studio_sales_order_line_id" string="Sales Order Line Id" column_invisible="1"/>
                               <field optional="show" name="x_studio_product_id" string="Product Id" widget="product_configurator"/>
-                              <field optional="show" name="x_studio_description" string="Description"/>
+                              <field optional="show" name="description" string="Description"/>
                               <field optional="show" name="x_studio_trans_type" string="Trans Type"/>
                               <field optional="show" name="x_studio_category" string="Category"/>
-                              <field optional="show" name="x_studio_quantity" string="Quantity"/>
+                              <field optional="show" name="quantity" string="Quantity"/>
                               <field optional="show" name="x_studio_delivered_qty" string="Delivered Qty"/>
                               <field optional="show" name="x_studio_uom" string="UOM"/>
-                              <field optional="show" name="x_studio_unit_price" string="Unit Price"/>
+                              <field optional="show" name="unit_price" string="Unit Price"/>
                               <field optional="show" name="x_studio_sub_total" string="Sub Total"/>
                               <field optional="show" name="x_studio_project_no" string="Project No" column_invisible="1"/>
                               <field name="x_currency_id" column_invisible="1"/>
@@ -525,19 +525,19 @@
                         <field optional="show" name="x_studio_variance_est_act" string="Variance (Est - Act)"/>
                         <field optional="show" name="x_studio_normal_line" string="Normal Line" column_invisible="1"/>
                         <field optional="show" name="x_studio_budget_line" string="Budget Line" column_invisible="1"/>
-                        <field name="x_studio_sequence" widget="handle" column_invisible="1"/>
-                        <field name="x_name" column_invisible="1"/>
+                        <field name="sequence" widget="handle" column_invisible="1"/>
+                        <field name="name" column_invisible="1"/>
                         <field optional="show" name="x_studio_sales_report_model_id" string="Sales Report Model Id" column_invisible="1"/>
                         <field optional="show" name="x_studio_header_reference" string="Header Reference" column_invisible="1"/>
                       </tree>
                       <form>
                         <header/>
                         <sheet string="RM Gross Margin - Actuals" name="studio_sheet_59f1e8">
-                          <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="x_active == True"/>
-                          <field name="x_active" invisible="1"/>
+                          <widget name="web_ribbon" text="Archived" bg_color="bg-danger" invisible="active == True"/>
+                          <field name="active" invisible="1"/>
                           <div class="oe_title" name="studio_div_21114c">
                             <h1>
-                              <field name="x_name" required="1" placeholder="Name..." invisible="1"/>
+                              <field name="name" required="1" placeholder="Name..." invisible="1"/>
                             </h1>
                           </div>
                           <group name="studio_group_0c65e4">
@@ -553,21 +553,21 @@
                             <page string="Sales Order Lines" name="studio_page_95I04" invisible="x_studio_normal_line != True">
                               <field name="x_studio_sales_order_line_ids" string="Sales Order Line Ids" force_save="True" readonly="1">
                                 <tree>
-                                  <field name="x_studio_sequence" widget="handle"/>
-                                  <field name="x_name" column_invisible="1"/>
+                                  <field name="sequence" widget="handle"/>
+                                  <field name="name" column_invisible="1"/>
                                   <field optional="show" name="x_studio_estimated_line_ids" string="Estimated Line Ids" column_invisible="1"/>
                                   <field optional="show" name="x_studio_actual_line_ids" string="Actual Line Ids" column_invisible="1"/>
-                                  <field optional="show" name="x_studio_sales_order" string="Sales Order" widget="product_configurator"/>
+                                  <field optional="show" name="sales_order" string="Sales Order" widget="product_configurator"/>
                                   <field optional="show" name="x_studio_customer" string="Customer"/>
                                   <field optional="show" name="x_studio_sales_order_line_id" string="Sales Order Line Id" column_invisible="1"/>
                                   <field optional="show" name="x_studio_product_id" string="Product Id" widget="product_configurator"/>
-                                  <field optional="show" name="x_studio_description" string="Description"/>
+                                  <field optional="show" name="description" string="Description"/>
                                   <field optional="show" name="x_studio_trans_type" string="Trans Type"/>
                                   <field optional="show" name="x_studio_category" string="Category"/>
-                                  <field optional="show" name="x_studio_quantity" string="Quantity"/>
+                                  <field optional="show" name="quantity" string="Quantity"/>
                                   <field optional="show" name="x_studio_delivered_qty" string="Delivered Qty"/>
                                   <field optional="show" name="x_studio_uom" string="UOM"/>
-                                  <field optional="show" name="x_studio_unit_price" string="Unit Price"/>
+                                  <field optional="show" name="unit_price" string="Unit Price"/>
                                   <field optional="show" name="x_studio_sub_total" string="Sub Total"/>
                                   <field optional="show" name="x_studio_project_no" string="Project No" column_invisible="1"/>
                                   <field name="x_currency_id" column_invisible="1"/>
@@ -577,7 +577,7 @@
                             <page string="Budget Lines" name="studio_page_eT2Jp" invisible="x_studio_budget_line != True">
                               <field name="x_studio_budget_line_ids" string="Budget Line Ids" force_save="True" readonly="1">
                                 <tree>
-                                  <field name="x_studio_sequence" widget="handle"/>
+                                  <field name="sequence" widget="handle"/>
                                   <field optional="show" name="x_studio_budget_line_ids" string="Budget Line Ids" column_invisible="1"/>
                                   <field optional="show" name="x_studio_crossovered_budget_id" widget="product_configurator"/>
                                   <field optional="show" name="x_studio_analytic_account_id"/>
@@ -585,7 +585,7 @@
                                   <field optional="show" name="x_studio_date_to" string="End Date"/>
                                   <field optional="show" name="x_studio_planned_amount" string="Planned Amount"/>
                                   <field name="x_currency_id" column_invisible="1"/>
-                                  <field name="x_name" column_invisible="1"/>
+                                  <field name="name" column_invisible="1"/>
                                   <field optional="show" name="x_studio_actual_line_ids" string="Actual Line Ids" column_invisible="1"/>
                                 </tree>
                               </field>
@@ -600,14 +600,14 @@
                       <tree editable="bottom">
                         <field optional="show" name="x_studio_invoice_no" string="Invoice No"/>
                         <field optional="show" name="x_studio_invoice_date" string="Invoice Date"/>
-                        <field name="x_studio_sequence" widget="handle"/>
+                        <field name="sequence" widget="handle"/>
                         <field optional="show" name="x_studio_sales_report_model_id" string="Sales Report Model Id" column_invisible="1"/>
                         <field optional="show" name="x_studio_header_reference" string="Header Reference" column_invisible="1"/>
                         <field optional="show" name="x_studio_status" string="Invoice Status"/>
                         <field widget="selection" optional="show" name="x_studio_payment_status" string="Payment Status"/>
                         <field optional="show" name="x_studio_group_title" string="          "/>
                         <field optional="show" name="x_studio_amount" string="Amount"/>
-                        <field name="x_name" column_invisible="1"/>
+                        <field name="name" column_invisible="1"/>
                       </tree>
                     </field>
                   </page>
@@ -616,14 +616,14 @@
                       <tree editable="bottom">
                         <field optional="show" name="x_studio_sales_report_model_id" string="Sales Report Model Id" column_invisible="1"/>
                         <field optional="show" name="x_studio_header_reference" string="Header Reference" column_invisible="1"/>
-                        <field optional="show" name="x_studio_sales_order" string="Sales Order"/>
+                        <field optional="show" name="sales_order" string="Sales Order"/>
                         <field optional="show" name="x_studio_many2one_field_7fcuw"/>
                         <field optional="show" name="x_studio_estimated_amount" string="Estimated Amount" sum="Sum of Estimated Amount"/>
                         <field optional="show" name="x_studio_delivered_amount" string="Delivered Amount" sum="Sum of Delivered Amount"/>
                         <field optional="show" name="x_studio_invoiced_amount" sum="Sum of Invoiced Amount"/>
                         <field optional="show" name="x_studio_delivered_not_invoiced" string="Delivered not Invoiced" sum="Sum of Delivered not Invoiced"/>
-                        <field name="x_studio_sequence" widget="handle" column_invisible="1"/>
-                        <field name="x_name" column_invisible="1"/>
+                        <field name="sequence" widget="handle" column_invisible="1"/>
+                        <field name="name" column_invisible="1"/>
                       </tree>
                     </field>
                   </page>
@@ -636,8 +636,8 @@
                   <page string="Pump Price Costing" name="studio_page_l5MQG" invisible="x_studio_report_code != 'Costing Work Sheet'">
                           <field name="x_studio_pump_price_costing_ids" string="Pump Price Costing Ids" force_save="True" readonly="1">
                             <tree editable="bottom">
-                              <field name="x_studio_sequence" widget="handle"/>
-                              <field name="x_name" column_invisible="1"/>
+                              <field name="sequence" widget="handle"/>
+                              <field name="name" column_invisible="1"/>
                               <field optional="show" name="x_studio_product_id" string="Product Id" column_invisible="1"/>
                               <field optional="show" name="x_studio_product_id_1" string="Product Id (Actual)"/>
                               <field optional="show" name="x_studio_standard" string="Standard (Exc. Casting Hours)" column_invisible="parent.x_studio_actuals == True"/>
@@ -719,11 +719,11 @@
         <field name="arch" type="xml">
             <data>
               <xpath expr="//tree[1]" position="attributes">
-                <attribute name="default_order">x_name desc</attribute>
+                <attribute name="default_order">name desc</attribute>
               </xpath>
-              <xpath expr="//field[@name='x_studio_sequence']" position="attributes">
+              <xpath expr="//field[@name='sequence']" position="attributes">
                 <attribute name="column_invisible">1</attribute></xpath>
-              <xpath expr="//field[@name='x_studio_sequence']" position="after">
+              <xpath expr="//field[@name='sequence']" position="after">
                 <field name="display_name" string="Reference"/>
                 <field name="x_studio_report_type"/>
                 <field name="x_studio_as_on_date"/>
@@ -739,7 +739,7 @@
                 <field name="x_studio_month_end_entry_updated" optional="hide"/>
                 <field name="id" optional="hide"/>
               </xpath>
-              <xpath expr="//field[@name='x_name']" position="attributes">
+              <xpath expr="//field[@name='name']" position="attributes">
                 <attribute name="column_invisible">1</attribute></xpath>
             </data>
         </field>

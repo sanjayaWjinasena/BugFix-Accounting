@@ -5,17 +5,17 @@ from odoo import api, fields, models
 
 class XLcHeader(models.Model):
     _name = "x_lc_header"
-    _rec_name = "x_name"  # Clear-DB Studio model: records are named by x_name
+    _rec_name = "name"  # Clear-DB Studio model: records are named by name
     _inherit = ["mail.activity.mixin"]
     _description = "LC Header"
 
-    x_active = fields.Boolean(string="Active")
-    x_name = fields.Char(string="LC Registration No")
+    active = fields.Boolean(string="Active")
+    name = fields.Char(string="LC Registration No")
     x_studio_additional_conditions = fields.Text(string="Additional Conditions (47A/B)")
     x_studio_available_with_by = fields.Char(string="Available with / By (41A)")
     x_studio_bank_charges = fields.Text(string="Bank Charges (71B)")
     x_studio_beneficiary = fields.Char(string="Beneficiary (59)")
-    x_studio_company_id = fields.Many2one("res.company", string="Company")
+    accounting_company_id = fields.Many2one("res.company", string="Company")
     x_studio_confirmation_instructions = fields.Selection(
         [("None", "None"), ("A", "A"), ("B", "B"), ("C", "C")],
         string="Confirmation Instructions (49)",
@@ -120,7 +120,7 @@ class XLcHeader(models.Model):
         ],
         string="Pipeline status bar",
     )
-    x_studio_sequence = fields.Integer(string="Sequence")
+    sequence = fields.Integer(string="Sequence")
     x_studio_status = fields.Selection(
         [
             ("Draft", "Draft"),
@@ -146,7 +146,7 @@ class XLcHeader(models.Model):
 
 class XLcHeaderGap(models.Model):
     _inherit = "x_lc_header"
-    _rec_name = "x_name"  # Clear-DB Studio model: records are named by x_name
+    _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    x_active = fields.Boolean(string="Active")
-    x_name = fields.Char(string="LC Registration No")
+    active = fields.Boolean(string="Active")
+    name = fields.Char(string="LC Registration No")

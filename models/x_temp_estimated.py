@@ -19,12 +19,12 @@ class XTempEstimated(models.Model):
     _name = "x_temp_estimated"
     _description = "Temp_Estimated"
     _inherit = ["mail.thread", "mail.activity.mixin"]
-    _order = "x_studio_sequence, id"
-    _rec_name = "x_name"
+    _order = "sequence, id"
+    _rec_name = "name"
 
-    x_active = fields.Boolean(string="Active", default=True)
+    active = fields.Boolean(string="Active", default=True)
     x_currency_id = fields.Many2one("res.currency", string="Currency")
-    x_name = fields.Char(string="Name")
+    name = fields.Char(string="Name")
 
     # Parent-pointer m2os (inverse for the header's one2many).
     x_studio_actual_line_ids = fields.Many2one(
@@ -44,7 +44,7 @@ class XTempEstimated(models.Model):
     )
     x_studio_customer = fields.Many2one("res.partner", string="Customer")
     x_studio_delivered_qty = fields.Float(string="Delivered Qty")
-    x_studio_description = fields.Char(string="Description")
+    description = fields.Char(string="Description")
     x_studio_product_id = fields.Many2one(
         "product.product",
         string="Product Id",
@@ -53,26 +53,26 @@ class XTempEstimated(models.Model):
         "project.project",
         string="Project No",
     )
-    x_studio_quantity = fields.Float(string="Quantity")
-    x_studio_sales_order = fields.Many2one("sale.order", string="Sales Order")
+    quantity = fields.Float(string="Quantity")
+    sales_order = fields.Many2one("sale.order", string="Sales Order")
     x_studio_sales_order_line_id = fields.Many2one(
         "sale.order.line",
         string="Sales Order Line Id",
     )
-    x_studio_sequence = fields.Integer(string="Sequence", default=10)
+    sequence = fields.Integer(string="Sequence", default=10)
     x_studio_sub_total = fields.Monetary(
         string="Sub Total",
         currency_field="x_currency_id",
     )
     x_studio_trans_type = fields.Char(string="Trans Type")
-    x_studio_unit_price = fields.Float(string="Unit Price")
+    unit_price = fields.Float(string="Unit Price")
     x_studio_uom = fields.Many2one("uom.uom", string="UOM")
 
 
 class XTempEstimatedGap(models.Model):
     _inherit = "x_temp_estimated"
-    _rec_name = "x_name"  # Clear-DB Studio model: records are named by x_name
+    _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    x_active = fields.Boolean(string="Active")
+    active = fields.Boolean(string="Active")
     x_currency_id = fields.Many2one(comodel_name="res.currency", string="Currency")
-    x_name = fields.Char(string="Name")
+    name = fields.Char(string="Name")
