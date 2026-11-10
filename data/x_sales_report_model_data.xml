@@ -2247,6 +2247,8 @@ if record.name == 'New':
     <field name="binding_view_types">list,form</field>
     <field name="activity_type_id" ref="mail.mail_activity_data_todo"/>
     <field name="activity_user_type">specific</field>
+    <!-- Clear-DB: activity goes to rohana.b@jinasena.com.lk (user is environment data: matched by login). -->
+    <field name="activity_user_id" search="[('login', '=', 'rohana.b@jinasena.com.lk')]"/>
     <field name="activity_summary">Gross Margin Report Generated</field>
     <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
   </record>

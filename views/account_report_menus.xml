@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_report_purchasing_cost" name="Purchasing Cost" parent="account.account_reports_management_menu" action="action_report_purchasing_cost" sequence="100"/>
+    <menuitem id="menu_report_sales_summary" name="Sales Summary" parent="account.account_reports_management_menu" action="action_report_sales_summary" sequence="101"/>
+</odoo>
