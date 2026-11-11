@@ -19,33 +19,33 @@
     <field name="domain">[('project_no_1', '=', active_id)]</field>
     <field name="context">{'search_default_project_no_1': active_id,'default_project_no_1': active_id}</field>
   </record>
-  <record id="action_1442_account_payment" model="ir.actions.act_window">
+  <record id="action_account_payment" model="ir.actions.act_window">
     <field name="name">account.payment</field>
     <field name="res_model">account.payment</field>
     <field name="view_mode">kanban,tree,form,graph</field>
   </record>
-  <record id="action_2422_advance_payments" model="ir.actions.act_window">
+  <record id="action_advance_payments" model="ir.actions.act_window">
     <field name="name">Advance Payments</field>
     <field name="res_model">account.payment</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('purchase_order', '=', active_id)]</field>
     <field name="context">{'search_default_purchase_order': active_id,'default_purchase_order': active_id}</field>
   </record>
-  <record id="action_2342_payments" model="ir.actions.act_window">
+  <record id="action_payments" model="ir.actions.act_window">
     <field name="name">Payments</field>
     <field name="res_model">account.payment</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('sales_order', '=', active_id)]</field>
     <field name="context">{'search_default_sales_order': active_id,'default_sales_order': active_id}</field>
   </record>
-  <record id="action_2629_payments" model="ir.actions.act_window">
+  <record id="action_payments_2" model="ir.actions.act_window">
     <field name="name">Payments</field>
     <field name="res_model">account.payment</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('project_no_1', '=', active_id)]</field>
     <field name="context">{'search_default_project_no_1': active_id,'default_project_no_1': active_id}</field>
   </record>
-    <record id="ported_view_3066_odoo_studio_account_b5367f7f_470f_43eb_bfb4_583117888f1f" model="ir.ui.view">
+    <record id="view_account_payment_form_inherit" model="ir.ui.view">
         <field name="name">Odoo Studio: account.payment.form customization</field>
         <field name="model">account.payment</field>
         <field name="type">form</field>
@@ -79,7 +79,7 @@
             </data>
         </field>
     </record>
-    <record id="ported_view_3112_odoo_studio_account_260c28c3_3477_4c4a_a023_77f402c5dabf" model="ir.ui.view">
+    <record id="view_account_payment_tree_inherit" model="ir.ui.view">
         <field name="name">Odoo Studio: account.payment.tree customization</field>
         <field name="model">account.payment</field>
         <field name="type">tree</field>
@@ -108,26 +108,26 @@
             </data>
         </field>
     </record>
-  <record id="act_window_1442_account_payment" model="ir.actions.act_window">
+  <record id="action_account_payment_2" model="ir.actions.act_window">
     <field name="name">account.payment</field>
     <field name="res_model">account.payment</field>
     <field name="view_mode">kanban,tree,form,graph</field>
   </record>
-  <record id="act_window_2422_advance_payments" model="ir.actions.act_window">
+  <record id="action_advance_payments_2" model="ir.actions.act_window">
     <field name="name">Advance Payments</field>
     <field name="res_model">account.payment</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('purchase_order', '=', active_id)]</field>
     <field name="context">{'search_default_purchase_order': active_id,'default_purchase_order': active_id}</field>
   </record>
-  <record id="act_window_2342_payments" model="ir.actions.act_window">
+  <record id="action_payments_3" model="ir.actions.act_window">
     <field name="name">Payments</field>
     <field name="res_model">account.payment</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('sales_order', '=', active_id)]</field>
     <field name="context">{'search_default_sales_order': active_id,'default_sales_order': active_id}</field>
   </record>
-  <record id="act_window_2629_payments" model="ir.actions.act_window">
+  <record id="action_payments_4" model="ir.actions.act_window">
     <field name="name">Payments</field>
     <field name="res_model">account.payment</field>
     <field name="view_mode">tree,form</field>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="ported_view_6052_customization_account_payment_term_form" model="ir.ui.view">
+  <record id="view_account_payment_term_form_inherit" model="ir.ui.view">
     <field name="name">Odoo Studio: account.payment.term.form customization</field>
     <field name="model">account.payment.term</field>
     <field name="type">form</field>
@@ -23,7 +23,7 @@
 </data>
     </field>
   </record>
-  <record id="ported_view_3118_customization_account_payment_term_tree" model="ir.ui.view">
+  <record id="view_account_payment_term_tree_inherit" model="ir.ui.view">
     <field name="name">Odoo Studio: account.payment.term.tree customization</field>
     <field name="model">account.payment.term</field>
     <field name="type">tree</field>

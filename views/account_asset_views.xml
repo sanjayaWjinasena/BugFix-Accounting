@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="ported_view_8350_customization_account_asset_tree" model="ir.ui.view">
+  <record id="view_account_asset_tree_inherit" model="ir.ui.view">
     <field name="name">Odoo Studio: account.asset.tree customization</field>
     <field name="model">account.asset</field>
     <field name="type">tree</field>

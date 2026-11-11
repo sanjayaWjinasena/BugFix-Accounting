@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="action_2123_temp_actual_budget" model="ir.actions.act_window">
+  <record id="action_temp_actual_budget" model="ir.actions.act_window">
     <field name="name">Temp_Actual_Budget</field>
     <field name="res_model">temp_actual_budget</field>
     <field name="view_mode">tree,form</field>
   </record>
-  <record id="ported_default_form_view_fo_741643ee_ca4d_4aa5_a8e3_76dfefa6c8c1" model="ir.ui.view">
+  <record id="view_temp_actual_budget_form" model="ir.ui.view">
     <field name="name">Default form view for temp_actual_budget</field>
     <field name="model">temp_actual_budget</field>
     <field name="key">studio_customization.default_form_view_fo_741643ee-ca4d-4aa5-a8e3-76dfefa6c8c1</field>
@@ -32,7 +32,7 @@
       </form>
     </field>
   </record>
-  <record id="ported_default_list_view_fo_bcc5f161_0ade_4995_9c51_35002b4f9d4d" model="ir.ui.view">
+  <record id="view_temp_actual_budget_list" model="ir.ui.view">
     <field name="name">Default list view for temp_actual_budget</field>
     <field name="model">temp_actual_budget</field>
     <field name="key">studio_customization.default_list_view_fo_bcc5f161-0ade-4995-9c51-35002b4f9d4d</field>
@@ -46,7 +46,7 @@
       </tree>
     </field>
   </record>
-  <record id="ported_default_search_view__65bb7bb5_0341_4946_8b0e_8040521503cf" model="ir.ui.view">
+  <record id="view_temp_actual_budget_search" model="ir.ui.view">
     <field name="name">Default search view for temp_actual_budget</field>
     <field name="model">temp_actual_budget</field>
     <field name="key">studio_customization.default_search_view__65bb7bb5-0341-4946-8b0e-8040521503cf</field>
@@ -62,7 +62,7 @@
       </search>
     </field>
   </record>
-    <record id="ported_view_4914_default_search_view_65bb7bb5_0341_4946_8b0e_8040521503cf" model="ir.ui.view">
+    <record id="view_temp_actual_budget_search_2" model="ir.ui.view">
         <field name="name">Default search view for temp_actual_budget</field>
         <field name="model">temp_actual_budget</field>
         <field name="type">search</field>
@@ -77,13 +77,13 @@
             </search>
         </field>
     </record>
-    <record id="ported_view_4915_odoo_studio_default_4d82d10a_a936_4ed9_b0f0_c50c40f19759" model="ir.ui.view">
+    <record id="view_default_list_view_for_temp_actual_budget_inherit" model="ir.ui.view">
         <field name="name">Odoo Studio: Default list view for temp_actual_budget customization</field>
         <field name="model">temp_actual_budget</field>
         <field name="type">tree</field>
         <field name="priority">99</field>
         <field name="mode">extension</field>
-        <field name="inherit_id" ref="BugFix-Accounting.ported_default_list_view_fo_bcc5f161_0ade_4995_9c51_35002b4f9d4d"/>
+        <field name="inherit_id" ref="BugFix-Accounting.view_temp_actual_budget_list"/>
         <field name="arch" type="xml">
             <data>
               <xpath expr="//field[@name='sequence']" position="after">

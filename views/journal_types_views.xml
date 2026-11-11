@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="action_2447_journal_types" model="ir.actions.act_window">
+  <record id="action_journal_types" model="ir.actions.act_window">
     <field name="name">Journal Types</field>
     <field name="res_model">journal_types</field>
     <field name="view_mode">tree,form</field>
   </record>
-    <record id="ported_view_5321_default_form_view_fo_dbddc8a1_ea9d_47ba_8335_c08e4a53fc5c" model="ir.ui.view">
+    <record id="view_journal_types_form" model="ir.ui.view">
         <field name="name">Default form view for journal_types</field>
         <field name="model">journal_types</field>
         <field name="type">form</field>
@@ -35,7 +35,7 @@
             </form>
         </field>
     </record>
-    <record id="ported_view_5322_default_search_view_d3c181ad_9bc3_4cfc_9d60_2500bd38fe9f" model="ir.ui.view">
+    <record id="view_journal_types_search" model="ir.ui.view">
         <field name="name">Default search view for journal_types</field>
         <field name="model">journal_types</field>
         <field name="type">search</field>
@@ -50,7 +50,7 @@
             </search>
         </field>
     </record>
-    <record id="ported_view_5320_default_list_view_fo_02152264_7fd7_4b5e_8a84_ca3714db9fad" model="ir.ui.view">
+    <record id="view_journal_types_list" model="ir.ui.view">
         <field name="name">Default list view for journal_types</field>
         <field name="model">journal_types</field>
         <field name="type">tree</field>
@@ -63,13 +63,13 @@
             </tree>
         </field>
     </record>
-    <record id="ported_view_5326_odoo_studio_default_7879380a_9ecc_4ca6_bfd3_fa82b991c3ce" model="ir.ui.view">
+    <record id="view_default_list_view_for_journal_types_inherit" model="ir.ui.view">
         <field name="name">Odoo Studio: Default list view for journal_types customization</field>
         <field name="model">journal_types</field>
         <field name="type">tree</field>
         <field name="priority">99</field>
         <field name="mode">extension</field>
-        <field name="inherit_id" ref="BugFix-Accounting.ported_view_5320_default_list_view_fo_02152264_7fd7_4b5e_8a84_ca3714db9fad"/>
+        <field name="inherit_id" ref="BugFix-Accounting.view_journal_types_list"/>
         <field name="arch" type="xml">
             <data>
               <xpath expr="//tree[1]" position="attributes">

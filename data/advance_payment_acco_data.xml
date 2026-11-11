@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data noupdate="1">
-    <!-- DROPPED default_451_account_payment_type: selection value 'General' not in field allowed set -->
-<record id="default_452_x_advance_payment_acco_active" model="ir.default">
+    <!-- DROPPED default_account_payment_type: selection value 'General' not in field allowed set -->
+<record id="default_advance_payment_acco_active" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_advance_payment_acco__active"/>
       <field name="json_value">true</field>
     </record>
-    <record id="default_453_x_advance_payment_acco_sequence" model="ir.default">
+    <record id="default_advance_payment_acco_sequence" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_advance_payment_acco__sequence"/>
       <field name="json_value">10</field>
     </record>

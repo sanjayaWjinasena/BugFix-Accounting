@@ -16,4 +16,4 @@ This repo only adds the Asset Model column after Name in the Assets list. It add
 
 | Name | Record name | Type | What it changes | Function | Depends on | Used by |
 |---|---|---|---|---|---|---|
-| Odoo Studio: account.asset.tree customization | `ported_view_8350_customization_account_asset_tree` | tree | after `//tree[1]/field[@name='name']`: add field model_id | Adds the Asset Model column after Name in the Assets list. | `account.asset.model_id` (account_asset)<br>`view account_asset.view_account_asset_tree` (account_asset) |  |
+| Odoo Studio: account.asset.tree customization | `view_account_asset_tree_inherit` | tree | after `//tree[1]/field[@name='name']`: add field model_id | Adds the Asset Model column after Name in the Assets list. | `account.asset.model_id` (account_asset)<br>`view account_asset.view_account_asset_tree` (account_asset) |  |

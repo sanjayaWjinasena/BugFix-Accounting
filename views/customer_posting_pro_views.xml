@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="action_779_customer_posting_profile" model="ir.actions.act_window">
+  <record id="action_customer_posting_profile" model="ir.actions.act_window">
     <field name="name">Customer Posting Profile</field>
     <field name="res_model">customer_posting_pro</field>
     <field name="view_mode">tree,form</field>
   </record>
-  <record id="action_2678_customer_posting_pro" model="ir.actions.act_window">
+  <record id="action_customer_posting_pro" model="ir.actions.act_window">
     <field name="name">customer_posting_pro</field>
     <field name="res_model">customer_posting_pro</field>
     <field name="view_mode">tree,form</field>
   </record>
-  <record id="ported_default_form_view_fo_f49a8f85_9bb2_43ef_8f4f_8b962b411265" model="ir.ui.view">
+  <record id="view_customer_posting_pro_form" model="ir.ui.view">
     <field name="name">Default form view for customer_posting_pro</field>
     <field name="model">customer_posting_pro</field>
     <field name="key">studio_customization.default_form_view_fo_f49a8f85-9bb2-43ef-8f4f-8b962b411265</field>
@@ -40,7 +40,7 @@
       </form>
     </field>
   </record>
-  <record id="ported_default_list_view_fo_3031fe1e_398f_4098_9918_014ea6ba462f" model="ir.ui.view">
+  <record id="view_customer_posting_pro_list" model="ir.ui.view">
     <field name="name">Default list view for customer_posting_pro</field>
     <field name="model">customer_posting_pro</field>
     <field name="key">studio_customization.default_list_view_fo_3031fe1e-398f-4098-9918-014ea6ba462f</field>
@@ -54,7 +54,7 @@
       </tree>
     </field>
   </record>
-  <record id="ported_default_search_view__75c14789_fbd8_4c3b_9714_053aebf3de17" model="ir.ui.view">
+  <record id="view_customer_posting_pro_search" model="ir.ui.view">
     <field name="name">Default search view for customer_posting_pro</field>
     <field name="model">customer_posting_pro</field>
     <field name="key">studio_customization.default_search_view__75c14789-fbd8-4c3b-9714-053aebf3de17</field>
@@ -70,7 +70,7 @@
       </search>
     </field>
   </record>
-    <record id="ported_view_2312_default_search_view_75c14789_fbd8_4c3b_9714_053aebf3de17" model="ir.ui.view">
+    <record id="view_customer_posting_pro_search_2" model="ir.ui.view">
         <field name="name">Default search view for customer_posting_pro</field>
         <field name="model">customer_posting_pro</field>
         <field name="type">search</field>
@@ -85,13 +85,13 @@
             </search>
         </field>
     </record>
-    <record id="ported_view_2313_odoo_studio_default_48b939b5_01fe_4c2d_8fb8_dbabd7799b2f" model="ir.ui.view">
+    <record id="view_default_form_view_for_customer_posting_pro_inherit" model="ir.ui.view">
         <field name="name">Odoo Studio: Default form view for customer_posting_pro customization</field>
         <field name="model">customer_posting_pro</field>
         <field name="type">form</field>
         <field name="priority">99</field>
         <field name="mode">extension</field>
-        <field name="inherit_id" ref="BugFix-Accounting.ported_default_form_view_fo_f49a8f85_9bb2_43ef_8f4f_8b962b411265"/>
+        <field name="inherit_id" ref="BugFix-Accounting.view_customer_posting_pro_form"/>
         <field name="arch" type="xml">
             <data>
               <xpath expr="//form[1]/sheet[1]/div[1]/h1[1]" position="replace"/>
@@ -101,13 +101,13 @@
             </data>
         </field>
     </record>
-    <record id="ported_view_2314_odoo_studio_default_92045e29_920d_457c_8bbc_c4568805914e" model="ir.ui.view">
+    <record id="view_default_list_view_for_customer_posting_pro_inherit" model="ir.ui.view">
         <field name="name">Odoo Studio: Default list view for customer_posting_pro customization</field>
         <field name="model">customer_posting_pro</field>
         <field name="type">tree</field>
         <field name="priority">99</field>
         <field name="mode">extension</field>
-        <field name="inherit_id" ref="BugFix-Accounting.ported_default_list_view_fo_3031fe1e_398f_4098_9918_014ea6ba462f"/>
+        <field name="inherit_id" ref="BugFix-Accounting.view_customer_posting_pro_list"/>
         <field name="arch" type="xml">
             <data>
               <xpath expr="//field[@name='name']" position="replace"/>

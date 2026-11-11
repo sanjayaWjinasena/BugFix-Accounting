@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="sa_f5_x_custom_currency_imp_pass_currency_information_to_custom_currency" model="ir.actions.server">
+  <record id="action_custom_currency_imp_pass_currency_information_to_custom_currency" model="ir.actions.server">
     <field name="name">IMP - Pass Currency Information to Custom Currency</field>
     <field name="model_id" search="[('model', '=', 'custom_currency')]"/>
     <field name="state">code</field>
@@ -17,7 +17,7 @@
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="sa_f5_x_custom_currency_jin_company_id_in_custom_currency" model="ir.actions.server">
+  <record id="action_custom_currency_jin_company_id_in_custom_currency" model="ir.actions.server">
     <field name="name">JIN - Company Id in Custom Currency</field>
     <field name="model_id" search="[('model', '=', 'custom_currency')]"/>
     <field name="state">code</field>
@@ -29,7 +29,7 @@ record['accounting_company_id'] = company.id]]></field>
     <field name="binding_view_types">list,form</field>
   </record>
   <!-- 13 server_actions ports for BugFix-Accounting (auto-generated from Clear-DB snapshot) -->
-  <record id="server_action_1312_imp_pass_currency_information_to_custom_currency" model="ir.actions.server">
+  <record id="action_imp_pass_currency_information_to_custom_currency" model="ir.actions.server">
     <field name="name">IMP - Pass Currency Information to Custom Currency</field>
     <field name="model_id" search="[('model', '=', 'custom_currency')]"/>
     <field name="state">code</field>
@@ -45,7 +45,7 @@ record['accounting_company_id'] = company.id]]></field>
 ]]></field>
     <field name="usage">base_automation</field>
   </record>
-  <record id="server_action_2674_jin_company_id_in_custom_currency" model="ir.actions.server">
+  <record id="action_jin_company_id_in_custom_currency" model="ir.actions.server">
     <field name="name">JIN - Company Id in Custom Currency</field>
     <field name="model_id" search="[('model', '=', 'custom_currency')]"/>
     <field name="state">code</field>
@@ -60,14 +60,14 @@ record['accounting_company_id'] = company.id]]></field>
     <field name="model_id" search="[('model', '=', 'custom_currency')]"/>
     <field name="trigger">on_change</field>
     <field name="active" eval="True"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('server_action_1312_imp_pass_currency_information_to_custom_currency')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('action_imp_pass_currency_information_to_custom_currency')])]"/>
   </record>
-  <record id="automation_310_jin_company_id_in_custom_currency" model="base.automation">
+  <record id="automation_jin_company_id_in_custom_currency" model="base.automation">
     <field name="name">JIN - Company Id in Custom Currency</field>
     <field name="model_id" search="[('model', '=', 'custom_currency')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="active" eval="True"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('server_action_2674_jin_company_id_in_custom_currency')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('action_jin_company_id_in_custom_currency')])]"/>
   </record>
   <record id="base_automation_61_imp_pass_currency_information_to_custom_currency" model="base.automation">
     <field name="name">IMP - Pass Currency Information to Custom Currency</field>
@@ -76,17 +76,17 @@ record['accounting_company_id'] = company.id]]></field>
     <field name="trigger">on_change</field>
     <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_custom_currency__accounting_currency_id')])]"/>
     <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_custom_currency__accounting_currency_id')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1312_imp_pass_currency_information_to_custom_currency')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_imp_pass_currency_information_to_custom_currency')])]"/>
   </record>
-  <record id="base_automation_310_jin_company_id_in_custom_currency" model="base.automation">
+  <record id="automation_jin_company_id_in_custom_currency_2" model="base.automation">
     <field name="name">JIN - Company Id in Custom Currency</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'custom_currency')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_custom_currency__create_date')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2674_jin_company_id_in_custom_currency')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_jin_company_id_in_custom_currency')])]"/>
   </record>
-  <record id="server_action_1312_imp_pass_currency_information_to_custom_currency" model="ir.actions.server">
+  <record id="action_imp_pass_currency_information_to_custom_currency" model="ir.actions.server">
     <field name="name">IMP - Pass Currency Information to Custom Currency</field>
     <field name="model_id" ref="BugFix-Accounting.model_custom_currency"/>
     <field name="state">code</field>
@@ -104,7 +104,7 @@ if record.accounting_currency_id.id:
 
     ]]></field>
   </record>
-  <record id="server_action_2674_jin_company_id_in_custom_currency" model="ir.actions.server">
+  <record id="action_jin_company_id_in_custom_currency" model="ir.actions.server">
     <field name="name">JIN - Company Id in Custom Currency</field>
     <field name="model_id" ref="BugFix-Accounting.model_custom_currency"/>
     <field name="state">code</field>
@@ -117,19 +117,19 @@ record['accounting_company_id'] = company.id
     ]]></field>
   </record>
     <data noupdate="1">
-    <record id="default_155_x_custom_currency_active" model="ir.default">
+    <record id="default_custom_currency_active" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_custom_currency__active"/>
       <field name="json_value">true</field>
     </record>
-    <record id="default_156_x_custom_currency_sequence" model="ir.default">
+    <record id="default_custom_currency_sequence" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_custom_currency__sequence"/>
       <field name="json_value">10</field>
     </record>
-    <record id="default_225_x_custom_currency_accounting_currency_id" model="ir.default">
+    <record id="default_custom_currency_accounting_currency_id" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_custom_currency__accounting_currency_id"/>
       <field name="json_value">145</field>
     </record>
-    <record id="default_426_x_custom_currency_accounting_currency_id" model="ir.default">
+    <record id="default_custom_currency_accounting_currency_id_2" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_custom_currency__accounting_currency_id"/>
       <field name="json_value">145</field>
     </record>

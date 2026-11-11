@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="sa_f5_x_tp_invoice_header_tp_invoice_currency_update" model="ir.actions.server">
+  <record id="action_tp_invoice_header_tp_invoice_currency_update" model="ir.actions.server">
     <field name="name">TP Invoice Currency Update</field>
     <field name="model_id" search="[('model', '=', 'tp_invoice_header')]"/>
     <field name="state">code</field>
@@ -8,7 +8,7 @@
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="sa_f5_x_tp_invoice_header_tp_invoice_seq_no" model="ir.actions.server">
+  <record id="action_tp_invoice_header_tp_invoice_seq_no" model="ir.actions.server">
     <field name="name">TP Invoice Seq.No</field>
     <field name="model_id" search="[('model', '=', 'tp_invoice_header')]"/>
     <field name="state">code</field>
@@ -190,7 +190,7 @@ if record.id:
     }
 ]]></field>
     </record>
-  <record id="server_action_1381_tp_invoice_seq_no" model="ir.actions.server">
+  <record id="action_tp_invoice_seq_no" model="ir.actions.server">
     <field name="name">TP Invoice Seq.No</field>
     <field name="model_id" search="[('model', '=', 'tp_invoice_header')]"/>
     <field name="state">code</field>
@@ -206,7 +206,7 @@ if record.name == 'New':
 
 ]]></field>
   </record>
-  <record id="server_action_2112_tp_invoice_currency_update" model="ir.actions.server">
+  <record id="action_tp_invoice_currency_update" model="ir.actions.server">
     <field name="name">TP Invoice Currency Update</field>
     <field name="model_id" search="[('model', '=', 'tp_invoice_header')]"/>
     <field name="state">code</field>
@@ -214,7 +214,7 @@ if record.name == 'New':
     <field name="binding_view_types">list,form</field>
     <field name="code"><![CDATA[record['accounting_currency_id'] = record.vendor.property_purchase_currency_id.id]]></field>
   </record>
-  <record id="server_action_1384_imp_post_tp_invoice" model="ir.actions.server">
+  <record id="action_imp_post_tp_invoice" model="ir.actions.server">
     <field name="name">IMP - Post TP Invoice</field>
     <field name="model_id" search="[('model', '=', 'tp_invoice_header')]"/>
     <field name="state">code</field>
@@ -367,17 +367,17 @@ if record.name == 'New':
     <field name="model_id" search="[('model', '=', 'tp_invoice_header')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_tp_invoice_header__create_date')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1381_tp_invoice_seq_no')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_tp_invoice_seq_no')])]"/>
   </record>
-  <record id="base_automation_184_tp_invoice_currency_update" model="base.automation">
+  <record id="automation_tp_invoice_currency_update" model="base.automation">
     <field name="name">TP Invoice Currency Update</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'tp_invoice_header')]"/>
     <field name="trigger">on_change</field>
     <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_tp_invoice_header__vendor')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2112_tp_invoice_currency_update')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_tp_invoice_currency_update')])]"/>
   </record>
-  <record id="server_action_1381_tp_invoice_seq_no" model="ir.actions.server">
+  <record id="action_tp_invoice_seq_no" model="ir.actions.server">
     <field name="name">TP Invoice Seq.No</field>
     <field name="model_id" ref="BugFix-Accounting.model_tp_invoice_header"/>
     <field name="state">code</field>
@@ -394,7 +394,7 @@ if record.name == 'New':
 
     ]]></field>
   </record>
-  <record id="server_action_2112_tp_invoice_currency_update" model="ir.actions.server">
+  <record id="action_tp_invoice_currency_update" model="ir.actions.server">
     <field name="name">TP Invoice Currency Update</field>
     <field name="model_id" ref="BugFix-Accounting.model_tp_invoice_header"/>
     <field name="state">code</field>
@@ -404,35 +404,35 @@ record['accounting_currency_id'] = record.vendor.property_purchase_currency_id.i
     ]]></field>
   </record>
     <data noupdate="1">
-    <record id="default_174_x_tp_invoice_header_active" model="ir.default">
+    <record id="default_tp_invoice_header_active" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_tp_invoice_header__active"/>
       <field name="json_value">true</field>
     </record>
-    <record id="default_175_x_tp_invoice_header_sequence" model="ir.default">
+    <record id="default_tp_invoice_header_sequence" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_tp_invoice_header__sequence"/>
       <field name="json_value">10</field>
     </record>
-    <record id="default_178_x_tp_invoice_header_name" model="ir.default">
+    <record id="default_tp_invoice_header_name" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_tp_invoice_header__name"/>
       <field name="json_value">"New"</field>
     </record>
-    <record id="default_226_x_tp_invoice_header_accounting_currency_id" model="ir.default">
+    <record id="default_tp_invoice_header_accounting_currency_id" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_tp_invoice_header__accounting_currency_id"/>
       <field name="json_value">145</field>
     </record>
-    <record id="default_386_x_tp_invoice_header_currency_id" model="ir.default">
+    <record id="default_tp_invoice_header_currency_id" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_tp_invoice_header__currency_id"/>
       <field name="json_value">145</field>
     </record>
-    <record id="default_427_x_tp_invoice_header_accounting_currency_id" model="ir.default">
+    <record id="default_tp_invoice_header_accounting_currency_id_2" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_tp_invoice_header__accounting_currency_id"/>
       <field name="json_value">145</field>
     </record>
-    <record id="default_179_x_tp_invoice_header_pipeline_status_bar" model="ir.default">
+    <record id="default_tp_invoice_header_pipeline_status_bar" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_tp_invoice_header__pipeline_status_bar"/>
       <field name="json_value">"Draft"</field>
     </record>
-    <record id="default_180_x_tp_invoice_header_status" model="ir.default">
+    <record id="default_tp_invoice_header_status" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_tp_invoice_header__status"/>
       <field name="json_value">"Draft"</field>
     </record>

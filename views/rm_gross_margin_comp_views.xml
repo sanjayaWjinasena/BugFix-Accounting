@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="action_2186_rm_gross_margin_comparison" model="ir.actions.act_window">
+  <record id="action_rm_gross_margin_comparison" model="ir.actions.act_window">
     <field name="name">RM Gross Margin - Comparison</field>
     <field name="res_model">rm_gross_margin_comp</field>
     <field name="view_mode">tree,form</field>
   </record>
-  <record id="ported_default_form_view_fo_2c4ff7a9_7c71_4304_a9eb_f205aa6d9c48" model="ir.ui.view">
+  <record id="view_rm_gross_margin_comp_form" model="ir.ui.view">
     <field name="name">Default form view for rm_gross_margin_comp</field>
     <field name="model">rm_gross_margin_comp</field>
     <field name="key">studio_customization.default_form_view_fo_2c4ff7a9-7c71-4304-a9eb-f205aa6d9c48</field>
@@ -32,7 +32,7 @@
       </form>
     </field>
   </record>
-  <record id="ported_default_list_view_fo_a92a9962_4949_4660_bc6a_de4d9d6d0eea" model="ir.ui.view">
+  <record id="view_rm_gross_margin_comp_list" model="ir.ui.view">
     <field name="name">Default list view for rm_gross_margin_comp</field>
     <field name="model">rm_gross_margin_comp</field>
     <field name="key">studio_customization.default_list_view_fo_a92a9962-4949-4660-bc6a-de4d9d6d0eea</field>
@@ -46,7 +46,7 @@
       </tree>
     </field>
   </record>
-  <record id="ported_default_search_view__d0a55d20_9864_48d4_8206_1aa5273904ef" model="ir.ui.view">
+  <record id="view_rm_gross_margin_comp_search" model="ir.ui.view">
     <field name="name">Default search view for rm_gross_margin_comp</field>
     <field name="model">rm_gross_margin_comp</field>
     <field name="key">studio_customization.default_search_view__d0a55d20-9864-48d4-8206-1aa5273904ef</field>
@@ -62,14 +62,14 @@
       </search>
     </field>
   </record>
-  <record id="ported_odoo_studio_default__8d552af8_bee4_4f69_8ea3_22ed514dfbca" model="ir.ui.view">
+  <record id="view_default_list_view_for_rm_gross_margin_comp_inherit" model="ir.ui.view">
     <field name="name">Odoo Studio: Default list view for rm_gross_margin_comp customization</field>
     <field name="model">rm_gross_margin_comp</field>
     <field name="key">studio_customization.odoo_studio_default__8d552af8-bee4-4f69-8ea3-22ed514dfbca</field>
     <field name="type">tree</field>
     <field name="priority">99</field>
     <field name="mode">extension</field>
-    <field name="inherit_id" ref="BugFix-Accounting.ported_default_list_view_fo_a92a9962_4949_4660_bc6a_de4d9d6d0eea"/>
+    <field name="inherit_id" ref="BugFix-Accounting.view_rm_gross_margin_comp_list"/>
     <field name="arch" type="xml">
       <data>
         <xpath expr="//tree[1]" position="attributes">
@@ -81,7 +81,7 @@
       </data>
     </field>
   </record>
-    <record id="ported_view_4945_default_search_view_d0a55d20_9864_48d4_8206_1aa5273904ef" model="ir.ui.view">
+    <record id="view_rm_gross_margin_comp_search_2" model="ir.ui.view">
         <field name="name">Default search view for rm_gross_margin_comp</field>
         <field name="model">rm_gross_margin_comp</field>
         <field name="type">search</field>
@@ -96,13 +96,13 @@
             </search>
         </field>
     </record>
-    <record id="ported_view_4946_odoo_studio_default_8d552af8_bee4_4f69_8ea3_22ed514dfbca" model="ir.ui.view">
+    <record id="view_default_list_view_for_rm_gross_margin_comp_inherit_2" model="ir.ui.view">
         <field name="name">Odoo Studio: Default list view for rm_gross_margin_comp customization</field>
         <field name="model">rm_gross_margin_comp</field>
         <field name="type">tree</field>
         <field name="priority">99</field>
         <field name="mode">extension</field>
-        <field name="inherit_id" ref="BugFix-Accounting.ported_default_list_view_fo_a92a9962_4949_4660_bc6a_de4d9d6d0eea"/>
+        <field name="inherit_id" ref="BugFix-Accounting.view_rm_gross_margin_comp_list"/>
         <field name="arch" type="xml">
             <data>
               <xpath expr="//tree[1]" position="attributes">

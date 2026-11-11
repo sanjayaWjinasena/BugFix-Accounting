@@ -18,7 +18,7 @@ This repo adds full form and list views for Tax Groups showing the tax payable, 
 
 | Name | Record name | Function | Depends on | Used by |
 |---|---|---|---|---|
-| Tax Groups | `action_1891_tax_groups` | Opens **Tax Group** records (tree,form). | `model account.tax.group` (account) | `menu BugFix-Accounting.menu_f6_tax_groups` |
+| Tax Groups | `action_tax_groups` | Opens **Tax Group** records (tree,form). | `model account.tax.group` (account) | `menu BugFix-Accounting.menu_tax_groups` |
 
 **Views (2):**
 
@@ -31,11 +31,11 @@ This repo adds full form and list views for Tax Groups showing the tax payable, 
 
 | Name | Record name | Function | Depends on | Used by |
 |---|---|---|---|---|
-| access_account_tax_group_rohana_read | `access_f3_access_account_tax_group_rohana_read` | Gives **Other Extra Rights / Rohana** read access to Tax Group records. | `group studio_usermodel_migration.group_studio_518_rohana` (studio_usermodel_migration)<br>`model account.tax.group` (account) |  |
-| access_account_tax_group_rohana_read | `access_g_access_account_tax_group_rohana_read_group_rohana` | Gives **Other Extra Rights / Rohana** read access to Tax Group records. | `group studio_usermodel_migration.group_studio_518_rohana` (studio_usermodel_migration)<br>`model account.tax.group` (account) |  |
+| access_account_tax_group_rohana_read | `access_f3_access_account_tax_group_rohana_read` | Gives **Other Extra Rights / Rohana** read access to Tax Group records. | `group studio_usermodel_migration.group_studio_rohana` (studio_usermodel_migration)<br>`model account.tax.group` (account) |  |
+| access_account_tax_group_rohana_read | `access_g_access_account_tax_group_rohana_read_group_rohana` | Gives **Other Extra Rights / Rohana** read access to Tax Group records. | `group studio_usermodel_migration.group_studio_rohana` (studio_usermodel_migration)<br>`model account.tax.group` (account) |  |
 
 **Record rules (1):**
 
 | Name | Record name | Function | Depends on | Used by |
 |---|---|---|---|---|
-| Tax group multi-company | `rule_768_tax_group_multi_company` | For everyone (global rule): read/write/create/delete on Tax Group only where `[('company_id', 'parent_of', company_ids)]`. | `account.tax.group.company_id` (account)<br>`model account.tax.group` (account) |  |
+| Tax group multi-company | `rule_tax_group_multi_company` | For everyone (global rule): read/write/create/delete on Tax Group only where `[('company_id', 'parent_of', company_ids)]`. | `account.tax.group.company_id` (account)<br>`model account.tax.group` (account) |  |

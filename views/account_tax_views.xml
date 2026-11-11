@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="action_2758_taxes" model="ir.actions.act_window">
+  <record id="action_taxes" model="ir.actions.act_window">
     <field name="name">Taxes</field>
     <field name="res_model">account.tax</field>
     <field name="view_mode">kanban,tree,form</field>
   </record>
-  <record id="ported_view_5957_customization_account_tax_tree" model="ir.ui.view">
+  <record id="view_account_invoice_line_tax_search_inherit" model="ir.ui.view">
     <field name="name">Odoo Studio: account.invoice.line.tax.search customization</field>
     <field name="model">account.tax</field>
     <field name="type">tree</field>

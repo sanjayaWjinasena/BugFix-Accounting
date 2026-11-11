@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data noupdate="1">
-    <record id="default_321_x_temp_actual_budget_active" model="ir.default">
+    <record id="default_temp_actual_budget_active" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_temp_actual_budget__active"/>
       <field name="json_value">true</field>
     </record>
-    <record id="default_322_x_temp_actual_budget_sequence" model="ir.default">
+    <record id="default_temp_actual_budget_sequence" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_temp_actual_budget__sequence"/>
       <field name="json_value">10</field>
     </record>
-    <record id="default_323_x_temp_actual_budget_currency_id" model="ir.default">
+    <record id="default_temp_actual_budget_currency_id" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_temp_actual_budget__currency_id"/>
       <field name="json_value">145</field>
     </record>

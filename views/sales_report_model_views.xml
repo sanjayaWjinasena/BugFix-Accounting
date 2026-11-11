@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="action_1667_sales_report_model" model="ir.actions.act_window">
+  <record id="action_sales_report_model" model="ir.actions.act_window">
     <field name="name">Sales Report Model</field>
     <field name="res_model">sales_report_model</field>
     <field name="view_mode">tree,form</field>
   </record>
-  <record id="action_2115_gross_margin_reports" model="ir.actions.act_window">
+  <record id="action_gross_margin_reports" model="ir.actions.act_window">
     <field name="name">Gross Margin Reports</field>
     <field name="res_model">sales_report_model</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('project_no', '=', active_id)]</field>
     <field name="context">{'search_default_project_no': active_id,'default_project_no': active_id}</field>
   </record>
-    <record id="ported_view_3784_default_form_view_fo_d583be6a_921f_4205_94a7_603a2375ce6e" model="ir.ui.view">
+    <record id="view_sales_report_model_form" model="ir.ui.view">
         <field name="name">Default form view for sales_report_model</field>
         <field name="model">sales_report_model</field>
         <field name="type">form</field>
@@ -46,7 +46,7 @@
             </form>
         </field>
     </record>
-    <record id="ported_view_3785_default_search_view_36b50122_6852_4842_9718_7d6fbf0c90e3" model="ir.ui.view">
+    <record id="view_sales_report_model_search" model="ir.ui.view">
         <field name="name">Default search view for sales_report_model</field>
         <field name="model">sales_report_model</field>
         <field name="type">search</field>
@@ -61,7 +61,7 @@
             </search>
         </field>
     </record>
-    <record id="ported_view_3783_default_list_view_fo_8853c5be_dc14_48d4_82c4_f209d820d16a" model="ir.ui.view">
+    <record id="view_sales_report_model_list" model="ir.ui.view">
         <field name="name">Default list view for sales_report_model</field>
         <field name="model">sales_report_model</field>
         <field name="type">tree</field>
@@ -74,13 +74,13 @@
             </tree>
         </field>
     </record>
-    <record id="ported_view_3786_odoo_studio_default_ff0f5f4b_41b6_49a0_9acc_cb410e663b5b" model="ir.ui.view">
+    <record id="view_default_form_view_for_sales_report_model_inherit" model="ir.ui.view">
         <field name="name">Odoo Studio: Default form view for sales_report_model customization</field>
         <field name="model">sales_report_model</field>
         <field name="type">form</field>
         <field name="priority">99</field>
         <field name="mode">extension</field>
-        <field name="inherit_id" ref="BugFix-Accounting.ported_view_3784_default_form_view_fo_d583be6a_921f_4205_94a7_603a2375ce6e"/>
+        <field name="inherit_id" ref="BugFix-Accounting.view_sales_report_model_form"/>
         <field name="arch" type="xml">
             <data>
               <!-- v0.0.29: was //button[@name='1676'], switched to positional.
@@ -709,13 +709,13 @@
             </data>
         </field>
     </record>
-    <record id="ported_view_3791_odoo_studio_default_25244692_8d9f_4fba_9286_7f16ca6d45f1" model="ir.ui.view">
+    <record id="view_default_list_view_for_sales_report_model_inherit" model="ir.ui.view">
         <field name="name">Odoo Studio: Default list view for sales_report_model customization</field>
         <field name="model">sales_report_model</field>
         <field name="type">tree</field>
         <field name="priority">99</field>
         <field name="mode">extension</field>
-        <field name="inherit_id" ref="BugFix-Accounting.ported_view_3783_default_list_view_fo_8853c5be_dc14_48d4_82c4_f209d820d16a"/>
+        <field name="inherit_id" ref="BugFix-Accounting.view_sales_report_model_list"/>
         <field name="arch" type="xml">
             <data>
               <xpath expr="//tree[1]" position="attributes">

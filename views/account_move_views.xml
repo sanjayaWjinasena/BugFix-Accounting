@@ -140,132 +140,132 @@
         <field name="context">{'search_default_tp_id': active_id, 'default_tp_id': active_id}</field>
         <field name="binding_view_types">list,form</field>
     </record>
-  <record id="action_2628_account_move" model="ir.actions.act_window">
+  <record id="action_account_move" model="ir.actions.act_window">
     <field name="name">account.move</field>
     <field name="res_model">account.move</field>
     <field name="view_mode">kanban,tree,form,pivot</field>
   </record>
-  <record id="action_2734_cash_advance_bills" model="ir.actions.act_window">
+  <record id="action_cash_advance_bills" model="ir.actions.act_window">
     <field name="name">Cash Advance Bills</field>
     <field name="res_model">account.move</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('project_no_bill', '=', active_id)]</field>
     <field name="context">{'search_default_project_no_bill': active_id,'default_project_no_bill': active_id}</field>
   </record>
-  <record id="action_900_cash_issued" model="ir.actions.act_window">
+  <record id="action_cash_issued" model="ir.actions.act_window">
     <field name="name">Cash Issued</field>
     <field name="res_model">account.move</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('cre', '=', active_id)]</field>
     <field name="context">{'search_default_cre': active_id,'default_cre': active_id}</field>
   </record>
-  <record id="action_1322_custom_clearance" model="ir.actions.act_window">
+  <record id="action_custom_clearance" model="ir.actions.act_window">
     <field name="name">Custom Clearance</field>
     <field name="res_model">account.move</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('created_from_consignment_1', '=', active_id)]</field>
     <field name="context">{'search_default_created_from_consignment_1': active_id,'default_created_from_consignment_1': active_id}</field>
   </record>
-  <record id="action_1372_custom_clearance_reversal" model="ir.actions.act_window">
+  <record id="action_custom_clearance_reversal_2" model="ir.actions.act_window">
     <field name="name">Custom Clearance Reversal</field>
     <field name="res_model">account.move</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('created_from_vendor_bill_1', '=', active_id)]</field>
     <field name="context">{'search_default_created_from_vendor_bill_1': active_id,'default_created_from_vendor_bill_1': active_id}</field>
   </record>
-  <record id="action_1363_custom_clearance_reversal" model="ir.actions.act_window">
+  <record id="action_custom_clearance_reversal" model="ir.actions.act_window">
     <field name="name">Custom Clearance Reversal</field>
     <field name="res_model">account.move</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('create_from_transfer_1', '=', active_id)]</field>
     <field name="context">{'search_default_create_from_transfer_1': active_id,'default_create_from_transfer_1': active_id}</field>
   </record>
-  <record id="action_1371_dispatch_reversal" model="ir.actions.act_window">
+  <record id="action_dispatch_reversal" model="ir.actions.act_window">
     <field name="name">Dispatch Reversal</field>
     <field name="res_model">account.move</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('created_from_vendor_bill', '=', active_id)]</field>
     <field name="context">{'search_default_created_from_vendor_bill': active_id,'default_created_from_vendor_bill': active_id}</field>
   </record>
-  <record id="action_3268_invoice_wise_revenue_report" model="ir.actions.act_window">
+  <record id="action_invoice_wise_revenue_report" model="ir.actions.act_window">
     <field name="name">Invoice Wise Revenue Report</field>
     <field name="res_model">account.move</field>
     <field name="view_mode">kanban,tree,form,pivot,activity</field>
   </record>
-  <record id="action_1569_invoices" model="ir.actions.act_window">
+  <record id="action_invoices" model="ir.actions.act_window">
     <field name="name">Invoices</field>
     <field name="res_model">account.move</field>
     <field name="view_mode">tree,form,pivot</field>
   </record>
-  <record id="action_2735_issued_cash_advances" model="ir.actions.act_window">
+  <record id="action_issued_cash_advances" model="ir.actions.act_window">
     <field name="name">Issued Cash Advances</field>
     <field name="res_model">account.move</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('project_no_issue', '=', active_id)]</field>
     <field name="context">{'search_default_project_no_issue': active_id,'default_project_no_issue': active_id}</field>
   </record>
-  <record id="action_2630_journal_entries" model="ir.actions.act_window">
+  <record id="action_journal_entries" model="ir.actions.act_window">
     <field name="name">Journal Entries</field>
     <field name="res_model">account.move</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('project_no', '=', active_id)]</field>
     <field name="context">{'search_default_project_no': active_id,'default_project_no': active_id}</field>
   </record>
-  <record id="action_2120_month_end_entries" model="ir.actions.act_window">
+  <record id="action_month_end_entries" model="ir.actions.act_window">
     <field name="name">Month End Entries</field>
     <field name="res_model">account.move</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('created_from_project_no', '=', active_id)]</field>
     <field name="context">{'search_default_created_from_project_no': active_id,'default_created_from_project_no': active_id}</field>
   </record>
-  <record id="action_989_related_invoice_journal" model="ir.actions.act_window">
+  <record id="action_related_invoice_journal" model="ir.actions.act_window">
     <field name="name">Related Invoice Journal</field>
     <field name="res_model">account.move</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('created_from_npo_no', '=', active_id)]</field>
     <field name="context">{'search_default_created_from_npo_no': active_id,'default_created_from_npo_no': active_id}</field>
   </record>
-  <record id="action_1571_sales_invoice_lines" model="ir.actions.act_window">
+  <record id="action_sales_invoice_lines" model="ir.actions.act_window">
     <field name="name">Sales Invoice lines</field>
     <field name="res_model">account.move</field>
     <field name="view_mode">kanban,tree,form,pivot</field>
   </record>
-  <record id="action_2736_settled_cash_advances" model="ir.actions.act_window">
+  <record id="action_settled_cash_advances" model="ir.actions.act_window">
     <field name="name">Settled Cash Advances</field>
     <field name="res_model">account.move</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('project_no_settle', '=', active_id)]</field>
     <field name="context">{'search_default_project_no_settle': active_id,'default_project_no_settle': active_id}</field>
   </record>
-  <record id="action_1362_vend_dispatch_reversal" model="ir.actions.act_window">
+  <record id="action_vend_dispatch_reversal" model="ir.actions.act_window">
     <field name="name">Vend. Dispatch Reversal</field>
     <field name="res_model">account.move</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('created_from_transfer', '=', active_id)]</field>
     <field name="context">{'search_default_created_from_transfer': active_id,'default_created_from_transfer': active_id}</field>
   </record>
-  <record id="action_1385_vendor_bill" model="ir.actions.act_window">
+  <record id="action_vendor_bill" model="ir.actions.act_window">
     <field name="name">Vendor Bill</field>
     <field name="res_model">account.move</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('created_from_tp_invoice', '=', active_id)]</field>
     <field name="context">{'search_default_created_from_tp_invoice': active_id,'default_created_from_tp_invoice': active_id}</field>
   </record>
-  <record id="action_1386_vendor_bill" model="ir.actions.act_window">
+  <record id="action_vendor_bill_2" model="ir.actions.act_window">
     <field name="name">Vendor Bill</field>
     <field name="res_model">account.move</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('tp_id', '=', active_id)]</field>
     <field name="context">{'search_default_tp_id': active_id,'default_tp_id': active_id}</field>
   </record>
-  <record id="action_1306_vendor_despatch" model="ir.actions.act_window">
+  <record id="action_vendor_despatch" model="ir.actions.act_window">
     <field name="name">Vendor Despatch</field>
     <field name="res_model">account.move</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('created_from_consignment', '=', active_id)]</field>
     <field name="context">{'search_default_created_from_consignment': active_id,'default_created_from_consignment': active_id}</field>
   </record>
-  <record id="ported_default_pivot_view_f_579a1e20_d982_4b37_be90_ad2cefa0aef5" model="ir.ui.view">
+  <record id="view_account_move_pivot_2" model="ir.ui.view">
     <field name="name">Default pivot view for ir.model(446,)</field>
     <field name="model">account.move</field>
     <field name="key">studio_customization.default_pivot_view_f_579a1e20-d982-4b37-be90-ad2cefa0aef5</field>
@@ -276,7 +276,7 @@
       <pivot string="Journal Entry"/>
     </field>
   </record>
-  <record id="ported_odoo_studio_account__29c77b7b_16f2_4af0_a17b_5aa40c932833" model="ir.ui.view">
+  <record id="view_account_invoice_tree_inherit" model="ir.ui.view">
     <field name="name">Odoo Studio: account.invoice.tree customization</field>
     <field name="model">account.move</field>
     <field name="key">studio_customization.odoo_studio_account__29c77b7b-16f2-4af0-a17b-5aa40c932833</field>
@@ -293,7 +293,7 @@
       </data>
     </field>
   </record>
-  <record id="ported_odoo_studio_account__05b91b49_9dd1_4362_a49e_835596bd7ace" model="ir.ui.view">
+  <record id="view_account_move_form_inherit_2" model="ir.ui.view">
     <field name="name">Odoo Studio: account.move.form customization</field>
     <field name="model">account.move</field>
     <field name="key">studio_customization.odoo_studio_account__05b91b49-9dd1-4362-a49e-835596bd7ace</field>
@@ -337,7 +337,7 @@
       </data>
     </field>
   </record>
-  <record id="ported_odoo_studio_account__3d938809_4b3e_4ad9_aff4_9c2a2e2b0eb5" model="ir.ui.view">
+  <record id="view_account_out_invoice_tree_inherit" model="ir.ui.view">
     <field name="name">Odoo Studio: account.out.invoice.tree customization</field>
     <field name="model">account.move</field>
     <field name="key">studio_customization.odoo_studio_account__3d938809-4b3e-4ad9-aff4-9c2a2e2b0eb5</field>
@@ -355,7 +355,7 @@
       </data>
     </field>
   </record>
-  <record id="ported_odoo_studio_account__53334ddd_2d0c_4baa_a85d_f090510fcdc6" model="ir.ui.view">
+  <record id="view_account_out_invoice_tree_inherit_2" model="ir.ui.view">
     <field name="name">Odoo Studio: account.out.invoice.tree customization</field>
     <field name="model">account.move</field>
     <field name="key">studio_customization.odoo_studio_account__53334ddd-2d0c-4baa-a85d-f090510fcdc6</field>
@@ -374,7 +374,7 @@
   <!-- v143: cre / created_from_npo_no field nodes + sentinel and the
        cre clause of the Register Payment invisible expression moved to
        BugFix-Purchase views/upstream_link_fields_views.xml. -->
-    <record id="ported_view_2440_odoo_studio_account_05b91b49_9dd1_4362_a49e_835596bd7ace" model="ir.ui.view">
+    <record id="view_account_move_form_inherit_3" model="ir.ui.view">
         <field name="name">Odoo Studio: account.move.form customization</field>
         <field name="model">account.move</field>
         <field name="type">form</field>
@@ -530,7 +530,7 @@
             </data>
         </field>
     </record>
-    <record id="ported_view_2442_odoo_studio_account_29c77b7b_16f2_4af0_a17b_5aa40c932833" model="ir.ui.view">
+    <record id="view_account_invoice_tree_inherit_2" model="ir.ui.view">
         <field name="name">Odoo Studio: account.invoice.tree customization</field>
         <field name="model">account.move</field>
         <field name="type">tree</field>
@@ -550,7 +550,7 @@
             </data>
         </field>
     </record>
-    <record id="ported_view_2591_odoo_studio_account_3930e1f6_bbbf_41d4_a35e_9eb18e292f43" model="ir.ui.view">
+    <record id="view_account_move_tree_inherit" model="ir.ui.view">
         <field name="name">Odoo Studio: account.move.tree customization</field>
         <field name="model">account.move</field>
         <field name="type">tree</field>
@@ -569,7 +569,7 @@
             </data>
         </field>
     </record>
-    <record id="ported_view_3906_odoo_studio_account_3d938809_4b3e_4ad9_aff4_9c2a2e2b0eb5" model="ir.ui.view">
+    <record id="view_account_out_invoice_tree_inherit_3" model="ir.ui.view">
         <field name="name">Odoo Studio: account.out.invoice.tree customization</field>
         <field name="model">account.move</field>
         <field name="type">tree</field>
@@ -591,7 +591,7 @@
             </data>
         </field>
     </record>
-    <record id="ported_view_3907_odoo_studio_account_53334ddd_2d0c_4baa_a85d_f090510fcdc6" model="ir.ui.view">
+    <record id="view_account_out_invoice_tree_inherit_4" model="ir.ui.view">
         <field name="name">Odoo Studio: account.out.invoice.tree customization</field>
         <field name="model">account.move</field>
         <field name="type">tree</field>
@@ -608,125 +608,125 @@
             </data>
         </field>
     </record>
-  <record id="act_window_2628_account_move" model="ir.actions.act_window">
+  <record id="action_account_move_2" model="ir.actions.act_window">
     <field name="name">account.move</field>
     <field name="res_model">account.move</field>
     <field name="view_mode">kanban,tree,form,pivot</field>
   </record>
-  <record id="act_window_2734_cash_advance_bills" model="ir.actions.act_window">
+  <record id="action_cash_advance_bills_2" model="ir.actions.act_window">
     <field name="name">Cash Advance Bills</field>
     <field name="res_model">account.move</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('project_no_bill', '=', active_id)]</field>
     <field name="context">{'search_default_project_no_bill': active_id,'default_project_no_bill': active_id}</field>
   </record>
-  <record id="act_window_900_cash_issued" model="ir.actions.act_window">
+  <record id="action_cash_issued_2" model="ir.actions.act_window">
     <field name="name">Cash Issued</field>
     <field name="res_model">account.move</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('cre', '=', active_id)]</field>
     <field name="context">{'search_default_cre': active_id,'default_cre': active_id}</field>
   </record>
-  <record id="act_window_1322_custom_clearance" model="ir.actions.act_window">
+  <record id="action_custom_clearance_2" model="ir.actions.act_window">
     <field name="name">Custom Clearance</field>
     <field name="res_model">account.move</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('created_from_consignment_1', '=', active_id)]</field>
     <field name="context">{'search_default_created_from_consignment_1': active_id,'default_created_from_consignment_1': active_id}</field>
   </record>
-  <record id="act_window_1372_custom_clearance_reversal" model="ir.actions.act_window">
+  <record id="action_custom_clearance_reversal_4" model="ir.actions.act_window">
     <field name="name">Custom Clearance Reversal</field>
     <field name="res_model">account.move</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('created_from_vendor_bill_1', '=', active_id)]</field>
     <field name="context">{'search_default_created_from_vendor_bill_1': active_id,'default_created_from_vendor_bill_1': active_id}</field>
   </record>
-  <record id="act_window_1363_custom_clearance_reversal" model="ir.actions.act_window">
+  <record id="action_custom_clearance_reversal_3" model="ir.actions.act_window">
     <field name="name">Custom Clearance Reversal</field>
     <field name="res_model">account.move</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('create_from_transfer_1', '=', active_id)]</field>
     <field name="context">{'search_default_create_from_transfer_1': active_id,'default_create_from_transfer_1': active_id}</field>
   </record>
-  <record id="act_window_1371_dispatch_reversal" model="ir.actions.act_window">
+  <record id="action_dispatch_reversal_2" model="ir.actions.act_window">
     <field name="name">Dispatch Reversal</field>
     <field name="res_model">account.move</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('created_from_vendor_bill', '=', active_id)]</field>
     <field name="context">{'search_default_created_from_vendor_bill': active_id,'default_created_from_vendor_bill': active_id}</field>
   </record>
-  <record id="act_window_3268_invoice_wise_revenue_report" model="ir.actions.act_window">
+  <record id="action_invoice_wise_revenue_report_3" model="ir.actions.act_window">
     <field name="name">Invoice Wise Revenue Report</field>
     <field name="res_model">account.move</field>
     <field name="view_mode">kanban,tree,form,pivot,activity</field>
   </record>
-  <record id="act_window_1569_invoices" model="ir.actions.act_window">
+  <record id="action_invoices_2" model="ir.actions.act_window">
     <field name="name">Invoices</field>
     <field name="res_model">account.move</field>
     <field name="view_mode">tree,form,pivot</field>
   </record>
-  <record id="act_window_2735_issued_cash_advances" model="ir.actions.act_window">
+  <record id="action_issued_cash_advances_2" model="ir.actions.act_window">
     <field name="name">Issued Cash Advances</field>
     <field name="res_model">account.move</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('project_no_issue', '=', active_id)]</field>
     <field name="context">{'search_default_project_no_issue': active_id,'default_project_no_issue': active_id}</field>
   </record>
-  <record id="act_window_2630_journal_entries" model="ir.actions.act_window">
+  <record id="action_journal_entries_2" model="ir.actions.act_window">
     <field name="name">Journal Entries</field>
     <field name="res_model">account.move</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('project_no', '=', active_id)]</field>
     <field name="context">{'search_default_project_no': active_id,'default_project_no': active_id}</field>
   </record>
-  <record id="act_window_2120_month_end_entries" model="ir.actions.act_window">
+  <record id="action_month_end_entries_2" model="ir.actions.act_window">
     <field name="name">Month End Entries</field>
     <field name="res_model">account.move</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('created_from_project_no', '=', active_id)]</field>
     <field name="context">{'search_default_created_from_project_no': active_id,'default_created_from_project_no': active_id}</field>
   </record>
-  <record id="act_window_989_related_invoice_journal" model="ir.actions.act_window">
+  <record id="action_related_invoice_journal_2" model="ir.actions.act_window">
     <field name="name">Related Invoice Journal</field>
     <field name="res_model">account.move</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('created_from_npo_no', '=', active_id)]</field>
     <field name="context">{'search_default_created_from_npo_no': active_id,'default_created_from_npo_no': active_id}</field>
   </record>
-  <record id="act_window_1571_sales_invoice_lines" model="ir.actions.act_window">
+  <record id="action_sales_invoice_lines_3" model="ir.actions.act_window">
     <field name="name">Sales Invoice lines</field>
     <field name="res_model">account.move</field>
     <field name="view_mode">kanban,tree,form,pivot</field>
   </record>
-  <record id="act_window_2736_settled_cash_advances" model="ir.actions.act_window">
+  <record id="action_settled_cash_advances_2" model="ir.actions.act_window">
     <field name="name">Settled Cash Advances</field>
     <field name="res_model">account.move</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('project_no_settle', '=', active_id)]</field>
     <field name="context">{'search_default_project_no_settle': active_id,'default_project_no_settle': active_id}</field>
   </record>
-  <record id="act_window_1362_vend_dispatch_reversal" model="ir.actions.act_window">
+  <record id="action_vend_dispatch_reversal_2" model="ir.actions.act_window">
     <field name="name">Vend. Dispatch Reversal</field>
     <field name="res_model">account.move</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('created_from_transfer', '=', active_id)]</field>
     <field name="context">{'search_default_created_from_transfer': active_id,'default_created_from_transfer': active_id}</field>
   </record>
-  <record id="act_window_1385_vendor_bill" model="ir.actions.act_window">
+  <record id="action_vendor_bill_3" model="ir.actions.act_window">
     <field name="name">Vendor Bill</field>
     <field name="res_model">account.move</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('created_from_tp_invoice', '=', active_id)]</field>
     <field name="context">{'search_default_created_from_tp_invoice': active_id,'default_created_from_tp_invoice': active_id}</field>
   </record>
-  <record id="act_window_1386_vendor_bill" model="ir.actions.act_window">
+  <record id="action_vendor_bill_4" model="ir.actions.act_window">
     <field name="name">Vendor Bill</field>
     <field name="res_model">account.move</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('tp_id', '=', active_id)]</field>
     <field name="context">{'search_default_tp_id': active_id,'default_tp_id': active_id}</field>
   </record>
-  <record id="act_window_1306_vendor_despatch" model="ir.actions.act_window">
+  <record id="action_vendor_despatch_2" model="ir.actions.act_window">
     <field name="name">Vendor Despatch</field>
     <field name="res_model">account.move</field>
     <field name="view_mode">tree,form</field>
@@ -736,7 +736,7 @@
   <!-- v143: cre sentinel + the cre clause of the Register Payment
        invisible expression moved to BugFix-Purchase views/upstream_link_fields_views.xml
        (priority 100 re-applies the full Clear-DB expression). -->
-    <record id="view_4017_odoo_studio_account_move_form_customization_button_e" model="ir.ui.view">
+    <record id="view_account_move_form_inherit" model="ir.ui.view">
       <field name="name">Odoo Studio: account.move.form customization_button</field>
       <field name="model">account.move</field>
       <field name="type">form</field>
@@ -783,7 +783,7 @@
   </data>
       </field>
     </record>
-    <record id="view_3261_default_pivot_view_for_ir_model_446_e" model="ir.ui.view">
+    <record id="view_account_move_pivot" model="ir.ui.view">
       <field name="name">Default pivot view for ir.model(446,)</field>
       <field name="model">account.move</field>
       <field name="type">pivot</field>

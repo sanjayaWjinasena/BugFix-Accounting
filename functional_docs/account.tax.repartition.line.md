@@ -24,4 +24,4 @@ This repo adds no fields or logic to tax repartition lines. It ships an editable
 
 | Name | Record name | Function | Depends on | Used by |
 |---|---|---|---|---|
-| Tax Repartition multi-company | `rule_631_tax_repartition_multi_company` | For everyone (global rule): read/write/create/delete on Tax Repartition Line only where `['|',('company_id','=',False), ('company_id', 'parent_of', company_ids)]`. | `account.tax.repartition.line.company_id` (account)<br>`model account.tax.repartition.line` (account) |  |
+| Tax Repartition multi-company | `rule_tax_repartition_multi_company` | For everyone (global rule): read/write/create/delete on Tax Repartition Line only where `['|',('company_id','=',False), ('company_id', 'parent_of', company_ids)]`. | `account.tax.repartition.line.company_id` (account)<br>`model account.tax.repartition.line` (account) |  |

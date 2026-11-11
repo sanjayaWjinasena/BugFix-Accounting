@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="act_window_2741_account_payment_method_line" model="ir.actions.act_window">
+  <record id="action_account_payment_method_line" model="ir.actions.act_window">
     <field name="name">	account.payment.method.line</field>
     <field name="res_model">account.payment.method.line</field>
     <field name="view_mode">tree,form</field>

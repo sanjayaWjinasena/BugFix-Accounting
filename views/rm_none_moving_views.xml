@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="action_1741_slow_moving_items" model="ir.actions.act_window">
+  <record id="action_slow_moving_items" model="ir.actions.act_window">
     <field name="name">Slow Moving Items</field>
     <field name="res_model">rm_none_moving</field>
     <field name="view_mode">pivot</field>
   </record>
-  <record id="action_1748_slow_moving_items" model="ir.actions.act_window">
+  <record id="action_slow_moving_items_2" model="ir.actions.act_window">
     <field name="name">Slow Moving Items</field>
     <field name="res_model">rm_none_moving</field>
     <field name="view_mode">pivot</field>
   </record>
-    <record id="ported_view_3909_default_form_view_fo_f4f032d0_7a46_4579_89a2_7de2a53f1691" model="ir.ui.view">
+    <record id="view_rm_none_moving_form" model="ir.ui.view">
         <field name="name">Default form view for rm_none_moving</field>
         <field name="model">rm_none_moving</field>
         <field name="type">form</field>
@@ -40,7 +40,7 @@
             </form>
         </field>
     </record>
-    <record id="ported_view_3910_default_search_view_a20617eb_c233_4ef7_841d_76333d4511b1" model="ir.ui.view">
+    <record id="view_rm_none_moving_search" model="ir.ui.view">
         <field name="name">Default search view for rm_none_moving</field>
         <field name="model">rm_none_moving</field>
         <field name="type">search</field>
@@ -55,7 +55,7 @@
             </search>
         </field>
     </record>
-    <record id="ported_view_3908_default_list_view_fo_8c1b45f2_eaaf_40ba_81b9_5e2d83c10b2b" model="ir.ui.view">
+    <record id="view_rm_none_moving_list" model="ir.ui.view">
         <field name="name">Default list view for rm_none_moving</field>
         <field name="model">rm_none_moving</field>
         <field name="type">tree</field>
@@ -68,13 +68,13 @@
             </tree>
         </field>
     </record>
-    <record id="ported_view_3911_odoo_studio_default_b8bde084_af8f_4e6e_9c44_c57b4da44228" model="ir.ui.view">
+    <record id="view_default_list_view_for_rm_none_moving_inherit" model="ir.ui.view">
         <field name="name">Odoo Studio: Default list view for rm_none_moving customization</field>
         <field name="model">rm_none_moving</field>
         <field name="type">tree</field>
         <field name="priority">99</field>
         <field name="mode">extension</field>
-        <field name="inherit_id" ref="BugFix-Accounting.ported_view_3908_default_list_view_fo_8c1b45f2_eaaf_40ba_81b9_5e2d83c10b2b"/>
+        <field name="inherit_id" ref="BugFix-Accounting.view_rm_none_moving_list"/>
         <field name="arch" type="xml">
             <data>
               <xpath expr="//tree[1]" position="attributes">

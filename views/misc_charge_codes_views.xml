@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
   <!-- v0.0.55: bulk-port remaining Accounting act_window records. -->
-  <record id="action_1172_misc_charge_codes" model="ir.actions.act_window">
+  <record id="action_misc_charge_codes" model="ir.actions.act_window">
     <field name="name">Misc. Charge Codes</field>
     <field name="res_model">misc_charge_codes</field>
     <field name="view_mode">tree,form</field>
   </record>
-  <record id="action_2061_misc_charge_codes" model="ir.actions.act_window">
+  <record id="action_misc_charge_codes_2" model="ir.actions.act_window">
     <field name="name">Misc. Charge Codes</field>
     <field name="res_model">misc_charge_codes</field>
     <field name="view_mode">tree,form</field>
   </record>
-    <record id="ported_view_2682_default_form_view_fo_79d2000d_8484_4cdb_befd_2dbcf0fb6a69" model="ir.ui.view">
+    <record id="view_misc_charge_codes_form" model="ir.ui.view">
         <field name="name">Default form view for misc_charge_codes</field>
         <field name="model">misc_charge_codes</field>
         <field name="type">form</field>
@@ -41,7 +41,7 @@
             </form>
         </field>
     </record>
-    <record id="ported_view_2683_default_search_view_26c03071_07d8_4292_934f_fd75e2f5f6db" model="ir.ui.view">
+    <record id="view_misc_charge_codes_search" model="ir.ui.view">
         <field name="name">Default search view for misc_charge_codes</field>
         <field name="model">misc_charge_codes</field>
         <field name="type">search</field>
@@ -56,7 +56,7 @@
             </search>
         </field>
     </record>
-    <record id="ported_view_2681_default_list_view_fo_d3bfc8f6_5ce5_4404_9e14_e4e077d23300" model="ir.ui.view">
+    <record id="view_misc_charge_codes_list" model="ir.ui.view">
         <field name="name">Default list view for misc_charge_codes</field>
         <field name="model">misc_charge_codes</field>
         <field name="type">tree</field>
@@ -69,13 +69,13 @@
             </tree>
         </field>
     </record>
-    <record id="ported_view_2684_odoo_studio_default_2389c30f_1a37_4097_87d2_180fcdcddcb0" model="ir.ui.view">
+    <record id="view_default_form_view_for_misc_charge_codes_inherit" model="ir.ui.view">
         <field name="name">Odoo Studio: Default form view for misc_charge_codes customization</field>
         <field name="model">misc_charge_codes</field>
         <field name="type">form</field>
         <field name="priority">99</field>
         <field name="mode">extension</field>
-        <field name="inherit_id" ref="BugFix-Accounting.ported_view_2682_default_form_view_fo_79d2000d_8484_4cdb_befd_2dbcf0fb6a69"/>
+        <field name="inherit_id" ref="BugFix-Accounting.view_misc_charge_codes_form"/>
         <field name="arch" type="xml">
             <data>
               <xpath expr="//form[1]" position="attributes">
@@ -95,13 +95,13 @@
             </data>
         </field>
     </record>
-    <record id="ported_view_2685_odoo_studio_default_f4328649_f0ce_4d1a_9a3b_45e7f1c2e802" model="ir.ui.view">
+    <record id="view_default_list_view_for_misc_charge_codes_inherit" model="ir.ui.view">
         <field name="name">Odoo Studio: Default list view for misc_charge_codes customization</field>
         <field name="model">misc_charge_codes</field>
         <field name="type">tree</field>
         <field name="priority">99</field>
         <field name="mode">extension</field>
-        <field name="inherit_id" ref="BugFix-Accounting.ported_view_2681_default_list_view_fo_d3bfc8f6_5ce5_4404_9e14_e4e077d23300"/>
+        <field name="inherit_id" ref="BugFix-Accounting.view_misc_charge_codes_list"/>
         <field name="arch" type="xml">
             <data>
               <xpath expr="//tree[1]" position="attributes">

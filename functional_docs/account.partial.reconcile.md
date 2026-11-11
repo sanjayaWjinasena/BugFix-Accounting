@@ -16,4 +16,4 @@ This repo adds no fields or logic to partial reconciliations. It only grants rea
 
 | Name | Record name | Function | Depends on | Used by |
 |---|---|---|---|---|
-| account.partial.reconcile | `access_6866_account_partial_reconcile` | Gives **Sales / Jin - Sales - POS Users** read access to Partial Reconcile records. | `group BugFix-Approvals.group_132_jin_sales_pos_users` (BugFix-Approvals)<br>`model account.partial.reconcile` (account) |  |
+| account.partial.reconcile | `access_account_partial_reconcile` | Gives **Sales / Jin - Sales - POS Users** read access to Partial Reconcile records. | `group BugFix-Approvals.group_jin_sales_pos_users` (BugFix-Approvals)<br>`model account.partial.reconcile` (account) |  |

@@ -16,4 +16,4 @@ This repo only adds an optional record ID column before the code prefix in the A
 
 | Name | Record name | Type | What it changes | Function | Depends on | Used by |
 |---|---|---|---|---|---|---|
-| Odoo Studio: account.group.tree customization | `ported_view_6033_customization_account_group_tree` | tree | before `//field[@name='code_prefix_start']`: add field id | Adds an optional record ID column before the code prefix in the Account Groups list. | `view account.view_account_group_tree` (account) |  |
+| Odoo Studio: account.group.tree customization | `view_account_group_tree_inherit` | tree | before `//field[@name='code_prefix_start']`: add field id | Adds an optional record ID column before the code prefix in the Account Groups list. | `view account.view_account_group_tree` (account) |  |

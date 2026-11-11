@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="sa_f5_account_payment_rr_validate_payment" model="ir.actions.server">
+  <record id="action_account_payment_rr_validate_payment" model="ir.actions.server">
     <field name="name">RR - Validate Payment %</field>
     <field name="model_id" search="[('model', '=', 'account.payment')]"/>
     <field name="state">code</field>
@@ -29,7 +29,7 @@ if record.state == 'draft':
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="sa_f5_account_payment_update_project_no_in_journal_entry" model="ir.actions.server">
+  <record id="action_account_payment_update_project_no_in_journal_entry" model="ir.actions.server">
     <field name="name">Update Project No in Journal Entry</field>
     <field name="model_id" search="[('model', '=', 'account.payment')]"/>
     <field name="state">code</field>
@@ -42,7 +42,7 @@ if record.state == 'draft':
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="server_action_2427_rr_validate_payment" model="ir.actions.server">
+  <record id="action_rr_validate_payment" model="ir.actions.server">
     <field name="name">RR - Validate Payment %</field>
     <field name="model_id" search="[('model', '=', 'account.payment')]"/>
     <field name="state">code</field>
@@ -70,7 +70,7 @@ if record.state == 'draft':
 ]]></field>
     <field name="usage">base_automation</field>
   </record>
-  <record id="server_action_2627_update_project_no_in_journal_entry" model="ir.actions.server">
+  <record id="action_update_project_no_in_journal_entry" model="ir.actions.server">
     <field name="name">Update Project No in Journal Entry</field>
     <field name="model_id" search="[('model', '=', 'account.payment')]"/>
     <field name="state">code</field>
@@ -83,7 +83,7 @@ if record.state == 'draft':
     <field name="usage">base_automation</field>
   </record>
   <!-- Clear-DB action 1409 -->
-  <record id="server_action_1409_imp_update_lc_status_to_paid_2" model="ir.actions.server">
+  <record id="action_imp_update_lc_status_to_paid_2" model="ir.actions.server">
     <field name="name">IMP - Update LC Status to Paid - 2</field>
     <field name="model_id" search="[('model', '=', 'account.payment')]"/>
     <field name="state">code</field>
@@ -181,7 +181,7 @@ if record.type == 'Advance Payment':
         raise UserError('Advance Payment Accounts have not been setup in Accounting Configuration')
 ]]></field>
     </record>
-  <record id="server_action_278_post_payments" model="ir.actions.server">
+  <record id="action_post_payments" model="ir.actions.server">
     <field name="name">Post Payments</field>
     <field name="model_id" search="[('model', '=', 'account.payment')]"/>
     <field name="state">code</field>
@@ -191,7 +191,7 @@ if record.type == 'Advance Payment':
                 records.action_post()
             ]]></field>
   </record>
-  <record id="server_action_1716_print_checks" model="ir.actions.server">
+  <record id="action_print_checks" model="ir.actions.server">
     <field name="name">Print Checks</field>
     <field name="model_id" search="[('model', '=', 'account.payment')]"/>
     <field name="state">code</field>
@@ -202,7 +202,7 @@ if records:
     action = records.print_checks()
             ]]></field>
   </record>
-  <record id="server_action_2739_project_update_advance_payment_account" model="ir.actions.server">
+  <record id="action_project_update_advance_payment_account" model="ir.actions.server">
     <field name="name">Project - Update Advance Payment Account</field>
     <field name="model_id" search="[('model', '=', 'account.payment')]"/>
     <field name="state">code</field>
@@ -270,45 +270,45 @@ if records:
     <field name="model_id" search="[('model', '=', 'account.payment')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="active" eval="True"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('server_action_1409_imp_update_lc_status_to_paid_2')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('action_imp_update_lc_status_to_paid_2')])]"/>
   </record>
-  <record id="automation_241_rr_validate_payment" model="base.automation">
+  <record id="automation_rr_validate_payment" model="base.automation">
     <field name="name">RR - Validate Payment %</field>
     <field name="model_id" search="[('model', '=', 'account.payment')]"/>
     <field name="trigger">on_change</field>
     <field name="active" eval="True"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('server_action_2427_rr_validate_payment')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('action_rr_validate_payment')])]"/>
   </record>
-  <record id="automation_292_update_project_no_in_journal_entry" model="base.automation">
+  <record id="automation_update_project_no_in_journal_entry" model="base.automation">
     <field name="name">Update Project No in Journal Entry</field>
     <field name="model_id" search="[('model', '=', 'account.payment')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="active" eval="True"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('server_action_2627_update_project_no_in_journal_entry')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('action_update_project_no_in_journal_entry')])]"/>
   </record>
   <record id="base_automation_73_imp_update_lc_status_to_paid_2" model="base.automation">
     <field name="name">IMP - Update LC Status to Paid - 2</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'account.payment')]"/>
     <field name="trigger">on_create_or_write</field>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1409_imp_update_lc_status_to_paid_2')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_imp_update_lc_status_to_paid_2')])]"/>
   </record>
-  <record id="base_automation_241_rr_validate_payment" model="base.automation">
+  <record id="automation_rr_validate_payment_2" model="base.automation">
     <field name="name">RR - Validate Payment %</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'account.payment')]"/>
     <field name="trigger">on_change</field>
     <field name="on_change_field_ids" eval="[(6, 0, [ref('account.field_account_payment__amount')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2427_rr_validate_payment')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_rr_validate_payment')])]"/>
   </record>
-  <record id="base_automation_292_update_project_no_in_journal_entry" model="base.automation">
+  <record id="automation_update_project_no_in_journal_entry_2" model="base.automation">
     <field name="name">Update Project No in Journal Entry</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'account.payment')]"/>
     <field name="trigger">on_create_or_write</field>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2627_update_project_no_in_journal_entry')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_update_project_no_in_journal_entry')])]"/>
   </record>
-  <record id="server_action_2427_rr_validate_payment" model="ir.actions.server">
+  <record id="action_rr_validate_payment" model="ir.actions.server">
     <field name="name">RR - Validate Payment %</field>
     <field name="model_id" ref="account.model_account_payment"/>
     <field name="state">code</field>
@@ -338,7 +338,7 @@ if record.state == 'draft':
 
     ]]></field>
   </record>
-  <record id="server_action_2627_update_project_no_in_journal_entry" model="ir.actions.server">
+  <record id="action_update_project_no_in_journal_entry" model="ir.actions.server">
     <field name="name">Update Project No in Journal Entry</field>
     <field name="model_id" ref="account.model_account_payment"/>
     <field name="state">code</field>
@@ -353,11 +353,11 @@ if record.project_no_1 != False:
     ]]></field>
   </record>
     <data noupdate="1">
-    <record id="default_385_account_payment_payment_validation_1" model="ir.default">
+    <record id="default_account_payment_payment_validation_1" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_account_payment__payment_validation_1"/>
       <field name="json_value">"The Payment amount is less than the minimum % for repairs."</field>
     </record>
-    <record id="default_451_account_payment_type" model="ir.default">
+    <record id="default_account_payment_type" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_account_payment__type"/>
       <field name="json_value">"General"</field>
     </record>

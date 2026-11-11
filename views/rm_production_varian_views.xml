@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="action_1756_rm_production_variance" model="ir.actions.act_window">
+  <record id="action_rm_production_variance" model="ir.actions.act_window">
     <field name="name">RM Production Variance</field>
     <field name="res_model">rm_production_varian</field>
     <field name="view_mode">tree,form</field>
   </record>
-    <record id="ported_view_3940_default_form_view_fo_b960f711_4334_4247_888f_a7bf47b12755" model="ir.ui.view">
+    <record id="view_rm_production_varian_form" model="ir.ui.view">
         <field name="name">Default form view for rm_production_varian</field>
         <field name="model">rm_production_varian</field>
         <field name="type">form</field>
@@ -35,7 +35,7 @@
             </form>
         </field>
     </record>
-    <record id="ported_view_3941_default_search_view_53ee3395_a792_4568_9ab4_6867545c5b63" model="ir.ui.view">
+    <record id="view_rm_production_varian_search" model="ir.ui.view">
         <field name="name">Default search view for rm_production_varian</field>
         <field name="model">rm_production_varian</field>
         <field name="type">search</field>
@@ -50,7 +50,7 @@
             </search>
         </field>
     </record>
-    <record id="ported_view_3939_default_list_view_fo_54c3870a_8080_4a73_86a5_23507b151146" model="ir.ui.view">
+    <record id="view_rm_production_varian_list" model="ir.ui.view">
         <field name="name">Default list view for rm_production_varian</field>
         <field name="model">rm_production_varian</field>
         <field name="type">tree</field>
@@ -63,13 +63,13 @@
             </tree>
         </field>
     </record>
-    <record id="ported_view_3942_odoo_studio_default_52c137d2_4c27_495d_a758_67d01f1f34de" model="ir.ui.view">
+    <record id="view_default_list_view_for_rm_production_varian_inherit" model="ir.ui.view">
         <field name="name">Odoo Studio: Default list view for rm_production_varian customization</field>
         <field name="model">rm_production_varian</field>
         <field name="type">tree</field>
         <field name="priority">99</field>
         <field name="mode">extension</field>
-        <field name="inherit_id" ref="BugFix-Accounting.ported_view_3939_default_list_view_fo_54c3870a_8080_4a73_86a5_23507b151146"/>
+        <field name="inherit_id" ref="BugFix-Accounting.view_rm_production_varian_list"/>
         <field name="arch" type="xml">
             <data>
               <xpath expr="//field[@name='sequence']" position="after">

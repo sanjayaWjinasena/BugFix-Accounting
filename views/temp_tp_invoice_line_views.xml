@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="action_1376_temp_tp_invoice_line" model="ir.actions.act_window">
+  <record id="action_temp_tp_invoice_line" model="ir.actions.act_window">
     <field name="name">Temp TP Invoice Line</field>
     <field name="res_model">temp_tp_invoice_line</field>
     <field name="view_mode">tree,form</field>
   </record>
-  <record id="ported_default_form_view_fo_8e00b755_fbe6_4921_925a_91bb567326d7" model="ir.ui.view">
+  <record id="view_temp_tp_invoice_line_form" model="ir.ui.view">
     <field name="name">Default form view for temp_tp_invoice_line</field>
     <field name="model">temp_tp_invoice_line</field>
     <field name="key">studio_customization.default_form_view_fo_8e00b755-fbe6-4921-925a-91bb567326d7</field>
@@ -32,7 +32,7 @@
       </form>
     </field>
   </record>
-  <record id="ported_default_list_view_fo_a6e6b3ad_20ca_4271_b887_d78bf98e2073" model="ir.ui.view">
+  <record id="view_temp_tp_invoice_line_list" model="ir.ui.view">
     <field name="name">Default list view for temp_tp_invoice_line</field>
     <field name="model">temp_tp_invoice_line</field>
     <field name="key">studio_customization.default_list_view_fo_a6e6b3ad-20ca-4271-b887-d78bf98e2073</field>
@@ -46,7 +46,7 @@
       </tree>
     </field>
   </record>
-  <record id="ported_default_search_view__262de343_80f0_46e9_b0a4_3cbfe09d933f" model="ir.ui.view">
+  <record id="view_temp_tp_invoice_line_search" model="ir.ui.view">
     <field name="name">Default search view for temp_tp_invoice_line</field>
     <field name="model">temp_tp_invoice_line</field>
     <field name="key">studio_customization.default_search_view__262de343-80f0-46e9-b0a4-3cbfe09d933f</field>
@@ -62,7 +62,7 @@
       </search>
     </field>
   </record>
-    <record id="ported_view_3036_default_search_view_262de343_80f0_46e9_b0a4_3cbfe09d933f" model="ir.ui.view">
+    <record id="view_temp_tp_invoice_line_search_2" model="ir.ui.view">
         <field name="name">Default search view for temp_tp_invoice_line</field>
         <field name="model">temp_tp_invoice_line</field>
         <field name="type">search</field>
@@ -77,13 +77,13 @@
             </search>
         </field>
     </record>
-    <record id="ported_view_3038_odoo_studio_default_cb099adf_20d3_4e33_8500_801e1c815b1f" model="ir.ui.view">
+    <record id="view_default_form_view_for_temp_tp_invoice_line_inherit" model="ir.ui.view">
         <field name="name">Odoo Studio: Default form view for temp_tp_invoice_line customization</field>
         <field name="model">temp_tp_invoice_line</field>
         <field name="type">form</field>
         <field name="priority">99</field>
         <field name="mode">extension</field>
-        <field name="inherit_id" ref="BugFix-Accounting.ported_default_form_view_fo_8e00b755_fbe6_4921_925a_91bb567326d7"/>
+        <field name="inherit_id" ref="BugFix-Accounting.view_temp_tp_invoice_line_form"/>
         <field name="arch" type="xml">
             <data>
               <xpath expr="//group[@name='studio_group_0b2b4a_left']" position="inside">

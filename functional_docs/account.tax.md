@@ -6,7 +6,7 @@
 
 *Extends a model created by `account`.*
 
-Other repos that use this model: `window action BugFix-Studio-Misc.act_window_2758_taxes_d7` (BugFix-Studio-Misc)<br>`po_line_non_inventor.taxes` (BugFix-Purchase)
+Other repos that use this model: `window action BugFix-Studio-Misc.action_taxes_d7` (BugFix-Studio-Misc)<br>`po_line_non_inventor.taxes` (BugFix-Purchase)
 
 **Summary:**
 
@@ -18,13 +18,13 @@ This repo adds no fields to taxes. It extends the Taxes list with Tax Type, Tax 
 
 | Name | Record name | Function | Depends on | Used by |
 |---|---|---|---|---|
-| Taxes | `action_2758_taxes` | Opens **Tax** records (kanban,tree,form). | `model account.tax` (account) | `menu BugFix-Accounting.menu_1340_taxes`<br>`menu BugFix-Studio-Misc.menu_f6_taxes` (BugFix-Studio-Misc) |
+| Taxes | `action_taxes` | Opens **Tax** records (kanban,tree,form). | `model account.tax` (account) | `menu BugFix-Accounting.menu_taxes`<br>`menu BugFix-Studio-Misc.menu_taxes` (BugFix-Studio-Misc) |
 
 **Views (1):**
 
 | Name | Record name | Type | What it changes | Function | Depends on | Used by |
 |---|---|---|---|---|---|---|
-| Odoo Studio: account.invoice.line.tax.search customization | `ported_view_5957_customization_account_tax_tree` | tree | after `//field[@name='display_name']`: add field type_tax_use, field tax_scope; after `//field[@name='description']`: add field company_id, field active, field create_uid, field amount_type | Taxes list: adds Tax Type (sales/purchase use) and Tax Scope after the name, and Company, an Active toggle, Created By and Tax Computation after the description. | `account.tax.active` (account)<br>`account.tax.amount_type` (account)<br>`account.tax.company_id` (account)<br>`account.tax.tax_scope` (account)<br>`account.tax.type_tax_use` (account)<details><summary>+1 more</summary>`view account.account_tax_view_tree` (account)</details> |  |
+| Odoo Studio: account.invoice.line.tax.search customization | `view_account_invoice_line_tax_search_inherit` | tree | after `//field[@name='display_name']`: add field type_tax_use, field tax_scope; after `//field[@name='description']`: add field company_id, field active, field create_uid, field amount_type | Taxes list: adds Tax Type (sales/purchase use) and Tax Scope after the name, and Company, an Active toggle, Created By and Tax Computation after the description. | `account.tax.active` (account)<br>`account.tax.amount_type` (account)<br>`account.tax.company_id` (account)<br>`account.tax.tax_scope` (account)<br>`account.tax.type_tax_use` (account)<details><summary>+1 more</summary>`view account.account_tax_view_tree` (account)</details> |  |
 
 **Record rules (1):**
 

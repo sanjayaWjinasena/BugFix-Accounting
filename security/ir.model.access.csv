@@ -1,120 +1,120 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_x_advance_payment_acco_user,advance_payment_acco user access,model_advance_payment_acco,base.group_user,1,1,1,1
-access_x_custom_currency_user,custom_currency user access,model_custom_currency,base.group_user,1,1,1,1
-access_x_custom_currency_rate_user,custom_currency_rate user access,model_custom_currency_rate,base.group_user,1,1,1,1
-access_x_customer_posting_pro_user,customer_posting_pro user access,model_customer_posting_pro,base.group_user,1,1,1,1
-access_x_jinasena_paymaster_config_user,jinasena_paymaster_config accounting manager,model_jinasena_paymaster_config,account.group_account_manager,1,1,1,1
-access_x_rm_cust_invoice_s1_user,rm_cust_invoice_s1 user access,model_rm_cust_invoice_s1,base.group_user,1,1,1,1
-access_x_rm_customer_wise_inv_user,rm_customer_wise_inv user access,model_rm_customer_wise_inv,base.group_user,1,1,1,1
-access_x_rm_gross_margin_comp_user,rm_gross_margin_comp user access,model_rm_gross_margin_comp,base.group_user,1,1,1,1
-access_x_temp_actual_budget_user,temp_actual_budget user access,model_temp_actual_budget,base.group_user,1,1,1,1
-access_x_temp_tp_invoice_line_user,temp_tp_invoice_line user access,model_temp_tp_invoice_line,base.group_user,1,1,1,1
+access_advance_payment_acco_user,advance_payment_acco user access,model_advance_payment_acco,base.group_user,1,1,1,1
+access_custom_currency_user,custom_currency user access,model_custom_currency,base.group_user,1,1,1,1
+access_custom_currency_rate_user,custom_currency_rate user access,model_custom_currency_rate,base.group_user,1,1,1,1
+access_customer_posting_pro_user,customer_posting_pro user access,model_customer_posting_pro,base.group_user,1,1,1,1
+access_jinasena_paymaster_config_user,jinasena_paymaster_config accounting manager,model_jinasena_paymaster_config,account.group_account_manager,1,1,1,1
+access_rm_cust_invoice_s1_user,rm_cust_invoice_s1 user access,model_rm_cust_invoice_s1,base.group_user,1,1,1,1
+access_rm_customer_wise_inv_user,rm_customer_wise_inv user access,model_rm_customer_wise_inv,base.group_user,1,1,1,1
+access_rm_gross_margin_comp_user,rm_gross_margin_comp user access,model_rm_gross_margin_comp,base.group_user,1,1,1,1
+access_temp_actual_budget_user,temp_actual_budget user access,model_temp_actual_budget,base.group_user,1,1,1,1
+access_temp_tp_invoice_line_user,temp_tp_invoice_line user access,model_temp_tp_invoice_line,base.group_user,1,1,1,1
 access_x_test_rm_gross_margin_user,x_test_rm_gross_margin user access,model_x_test_rm_gross_margin,base.group_user,1,1,1,1
-access_x_consignment_charge_h_user,consignment_charge_h user access,model_consignment_charge_h,base.group_user,1,1,1,1
-access_x_lc_header_user,lc_header user access,model_lc_header,base.group_user,1,1,1,1
-access_x_misc_charge_codes_user,misc_charge_codes user access,model_misc_charge_codes,base.group_user,1,1,1,1
-access_x_rm_gross_margin_actu_user,rm_gross_margin_actu user access,model_rm_gross_margin_actu,base.group_user,1,1,1,1
-access_x_sales_report_model_user,sales_report_model user access,model_sales_report_model,base.group_user,1,1,1,1
-access_x_sales_report_type_user,sales_report_type user access,model_sales_report_type,base.group_user,1,1,1,1
-access_x_temp_tp_invoice_head_user,temp_tp_invoice_head user access,model_temp_tp_invoice_head,base.group_user,1,1,1,1
-access_x_tp_invoice_header_user,tp_invoice_header user access,model_tp_invoice_header,base.group_user,1,1,1,1
-access_x_pump_price_costing_user,pump_price_costing user access,model_pump_price_costing,base.group_user,1,1,1,1
-access_6858_account_move,account.move,BugFix-Accounting.model_account_move,BugFix-Approvals.group_132_jin_sales_pos_users,1,1,1,1
-access_6867_account_move_line,account.move.line,BugFix-Accounting.model_account_move_line,BugFix-Approvals.group_132_jin_sales_pos_users,1,1,1,1
-access_6866_account_partial_reconcile,account.partial.reconcile,account.model_account_partial_reconcile,BugFix-Approvals.group_132_jin_sales_pos_users,1,0,0,0
-access_6854_crossovered_budget,crossovered.budget,BugFix-Accounting.model_crossovered_budget,BugFix-Approvals.group_132_jin_sales_pos_users,1,0,0,0
-access_7204_advance_payment_account_group_user,Advance Payment Account group_user,BugFix-Accounting.model_advance_payment_acco,base.group_user,1,1,1,0
-access_7203_advance_payment_account_group_system,Advance Payment Account group_system,BugFix-Accounting.model_advance_payment_acco,base.group_system,1,1,1,1
-access_1334_consignment_charge_header_group_user,Consignment Charge Header group_user,BugFix-Accounting.model_consignment_charge_h,base.group_user,1,0,0,0
-access_1333_consignment_charge_header_group_system,Consignment Charge Header group_system,BugFix-Accounting.model_consignment_charge_h,base.group_system,1,1,1,1
-access_1330_custom_currency_group_user,Custom Currency group_user,BugFix-Accounting.model_custom_currency,base.group_user,1,0,0,0
-access_1329_custom_currency_group_system,Custom Currency group_system,BugFix-Accounting.model_custom_currency,base.group_system,1,1,1,1
-access_1332_custom_currency_rate_group_user,Custom Currency Rate group_user,BugFix-Accounting.model_custom_currency_rate,base.group_user,1,0,0,0
-access_1331_custom_currency_rate_group_system,Custom Currency Rate group_system,BugFix-Accounting.model_custom_currency_rate,base.group_system,1,1,1,1
-access_1118_customer_posting_profile_group_user,Customer Posting Profile group_user,BugFix-Accounting.model_customer_posting_pro,base.group_user,1,0,0,0
-access_1117_customer_posting_profile_group_system,Customer Posting Profile group_system,BugFix-Accounting.model_customer_posting_pro,base.group_system,1,1,1,1
-access_5951_journal_types_group_user,Journal Types group_user,BugFix-Accounting.model_journal_types,base.group_user,1,0,0,0
-access_5950_journal_types_group_system,Journal Types group_system,BugFix-Accounting.model_journal_types,base.group_system,1,1,1,1
-access_1377_lc_header_group_user,LC Header group_user,BugFix-Accounting.model_lc_header,base.group_user,1,0,0,0
-access_1376_lc_header_group_system,LC Header group_system,BugFix-Accounting.model_lc_header,base.group_system,1,1,1,1
-access_1240_misc_charge_codes_group_user,Misc Charge Codes group_user,BugFix-Accounting.model_misc_charge_codes,base.group_user,1,0,0,0
-access_1239_misc_charge_codes_group_system,Misc Charge Codes group_system,BugFix-Accounting.model_misc_charge_codes,base.group_system,1,1,1,1
-access_6391_pump_price_costing_group_user,Pump Price Costing group_user,BugFix-Accounting.model_pump_price_costing,base.group_user,1,1,1,0
-access_6390_pump_price_costing_group_system,Pump Price Costing group_system,BugFix-Accounting.model_pump_price_costing,base.group_system,1,1,1,1
-access_1513_rm_cust_invoice_s1_group_user,RM Cust Invoice S1 group_user,BugFix-Accounting.model_rm_cust_invoice_s1,base.group_user,1,0,0,0
-access_1512_rm_cust_invoice_s1_group_system,RM Cust Invoice S1 group_system,BugFix-Accounting.model_rm_cust_invoice_s1,base.group_system,1,1,1,1
-access_1511_rm_customer_wise_invoices_group_user,RM Customer wise Invoices group_user,BugFix-Accounting.model_rm_customer_wise_inv,base.group_user,1,0,0,0
-access_1510_rm_customer_wise_invoices_group_system,RM Customer wise Invoices group_system,BugFix-Accounting.model_rm_customer_wise_inv,base.group_system,1,1,1,1
-access_1505_rm_daily_s1_group_user,RM Daily S1 group_user,BugFix-Accounting.model_rm_daily_s1,base.group_user,1,0,0,0
-access_1504_rm_daily_s1_group_system,RM Daily S1 group_system,BugFix-Accounting.model_rm_daily_s1,base.group_system,1,1,1,1
-access_1507_rm_daily_s2_group_user,RM Daily S2 group_user,BugFix-Accounting.model_rm_daily_s2,base.group_user,1,0,0,0
-access_1506_rm_daily_s2_group_system,RM Daily S2 group_system,BugFix-Accounting.model_rm_daily_s2,base.group_system,1,1,1,1
-access_1509_rm_daily_s3_group_user,RM Daily S3 group_user,BugFix-Accounting.model_rm_daily_s3,base.group_user,1,0,0,0
-access_1508_rm_daily_s3_group_system,RM Daily S3 group_system,BugFix-Accounting.model_rm_daily_s3,base.group_system,1,1,1,1
-access_1503_rm_daily_sales_report_group_user,RM Daily Sales Report group_user,BugFix-Accounting.model_rm_daily_sales_repor,base.group_user,1,0,0,0
-access_1502_rm_daily_sales_report_group_system,RM Daily Sales Report group_system,BugFix-Accounting.model_rm_daily_sales_repor,base.group_system,1,1,1,1
+access_consignment_charge_h_user,consignment_charge_h user access,model_consignment_charge_h,base.group_user,1,1,1,1
+access_lc_header_user,lc_header user access,model_lc_header,base.group_user,1,1,1,1
+access_misc_charge_codes_user,misc_charge_codes user access,model_misc_charge_codes,base.group_user,1,1,1,1
+access_rm_gross_margin_actu_user,rm_gross_margin_actu user access,model_rm_gross_margin_actu,base.group_user,1,1,1,1
+access_sales_report_model_user,sales_report_model user access,model_sales_report_model,base.group_user,1,1,1,1
+access_sales_report_type_user,sales_report_type user access,model_sales_report_type,base.group_user,1,1,1,1
+access_temp_tp_invoice_head_user,temp_tp_invoice_head user access,model_temp_tp_invoice_head,base.group_user,1,1,1,1
+access_tp_invoice_header_user,tp_invoice_header user access,model_tp_invoice_header,base.group_user,1,1,1,1
+access_pump_price_costing_user,pump_price_costing user access,model_pump_price_costing,base.group_user,1,1,1,1
+access_account_move,account.move,BugFix-Accounting.model_account_move,BugFix-Approvals.group_jin_sales_pos_users,1,1,1,1
+access_account_move_line,account.move.line,BugFix-Accounting.model_account_move_line,BugFix-Approvals.group_jin_sales_pos_users,1,1,1,1
+access_account_partial_reconcile,account.partial.reconcile,account.model_account_partial_reconcile,BugFix-Approvals.group_jin_sales_pos_users,1,0,0,0
+access_crossovered_budget,crossovered.budget,BugFix-Accounting.model_crossovered_budget,BugFix-Approvals.group_jin_sales_pos_users,1,0,0,0
+access_advance_payment_account_group_user,Advance Payment Account group_user,BugFix-Accounting.model_advance_payment_acco,base.group_user,1,1,1,0
+access_advance_payment_account_group_system,Advance Payment Account group_system,BugFix-Accounting.model_advance_payment_acco,base.group_system,1,1,1,1
+access_consignment_charge_header_group_user,Consignment Charge Header group_user,BugFix-Accounting.model_consignment_charge_h,base.group_user,1,0,0,0
+access_consignment_charge_header_group_system,Consignment Charge Header group_system,BugFix-Accounting.model_consignment_charge_h,base.group_system,1,1,1,1
+access_custom_currency_group_user,Custom Currency group_user,BugFix-Accounting.model_custom_currency,base.group_user,1,0,0,0
+access_custom_currency_group_system,Custom Currency group_system,BugFix-Accounting.model_custom_currency,base.group_system,1,1,1,1
+access_custom_currency_rate_group_user,Custom Currency Rate group_user,BugFix-Accounting.model_custom_currency_rate,base.group_user,1,0,0,0
+access_custom_currency_rate_group_system,Custom Currency Rate group_system,BugFix-Accounting.model_custom_currency_rate,base.group_system,1,1,1,1
+access_customer_posting_profile_group_user,Customer Posting Profile group_user,BugFix-Accounting.model_customer_posting_pro,base.group_user,1,0,0,0
+access_customer_posting_profile_group_system,Customer Posting Profile group_system,BugFix-Accounting.model_customer_posting_pro,base.group_system,1,1,1,1
+access_journal_types_group_user,Journal Types group_user,BugFix-Accounting.model_journal_types,base.group_user,1,0,0,0
+access_journal_types_group_system,Journal Types group_system,BugFix-Accounting.model_journal_types,base.group_system,1,1,1,1
+access_lc_header_group_user,LC Header group_user,BugFix-Accounting.model_lc_header,base.group_user,1,0,0,0
+access_lc_header_group_system,LC Header group_system,BugFix-Accounting.model_lc_header,base.group_system,1,1,1,1
+access_misc_charge_codes_group_user,Misc Charge Codes group_user,BugFix-Accounting.model_misc_charge_codes,base.group_user,1,0,0,0
+access_misc_charge_codes_group_system,Misc Charge Codes group_system,BugFix-Accounting.model_misc_charge_codes,base.group_system,1,1,1,1
+access_pump_price_costing_group_user,Pump Price Costing group_user,BugFix-Accounting.model_pump_price_costing,base.group_user,1,1,1,0
+access_pump_price_costing_group_system,Pump Price Costing group_system,BugFix-Accounting.model_pump_price_costing,base.group_system,1,1,1,1
+access_rm_cust_invoice_s1_group_user,RM Cust Invoice S1 group_user,BugFix-Accounting.model_rm_cust_invoice_s1,base.group_user,1,0,0,0
+access_rm_cust_invoice_s1_group_system,RM Cust Invoice S1 group_system,BugFix-Accounting.model_rm_cust_invoice_s1,base.group_system,1,1,1,1
+access_rm_customer_wise_invoices_group_user,RM Customer wise Invoices group_user,BugFix-Accounting.model_rm_customer_wise_inv,base.group_user,1,0,0,0
+access_rm_customer_wise_invoices_group_system,RM Customer wise Invoices group_system,BugFix-Accounting.model_rm_customer_wise_inv,base.group_system,1,1,1,1
+access_rm_daily_s1_group_user,RM Daily S1 group_user,BugFix-Accounting.model_rm_daily_s1,base.group_user,1,0,0,0
+access_rm_daily_s1_group_system,RM Daily S1 group_system,BugFix-Accounting.model_rm_daily_s1,base.group_system,1,1,1,1
+access_rm_daily_s2_group_user,RM Daily S2 group_user,BugFix-Accounting.model_rm_daily_s2,base.group_user,1,0,0,0
+access_rm_daily_s2_group_system,RM Daily S2 group_system,BugFix-Accounting.model_rm_daily_s2,base.group_system,1,1,1,1
+access_rm_daily_s3_group_user,RM Daily S3 group_user,BugFix-Accounting.model_rm_daily_s3,base.group_user,1,0,0,0
+access_rm_daily_s3_group_system,RM Daily S3 group_system,BugFix-Accounting.model_rm_daily_s3,base.group_system,1,1,1,1
+access_rm_daily_sales_report_group_user,RM Daily Sales Report group_user,BugFix-Accounting.model_rm_daily_sales_repor,base.group_user,1,0,0,0
+access_rm_daily_sales_report_group_system,RM Daily Sales Report group_system,BugFix-Accounting.model_rm_daily_sales_repor,base.group_system,1,1,1,1
 access_1530_rm_date_test_group_user,RM Date Test group_user,BugFix-Accounting.model_x_rm_date_test,base.group_user,1,0,0,0
 access_1529_rm_date_test_group_system,RM Date Test group_system,BugFix-Accounting.model_x_rm_date_test,base.group_system,1,1,1,1
-access_1734_rm_gross_margin___actuals_group_user,RM Gross Margin - Actuals group_user,BugFix-Accounting.model_rm_gross_margin_actu,base.group_user,1,0,0,0
-access_1733_rm_gross_margin___actuals_group_system,RM Gross Margin - Actuals group_system,BugFix-Accounting.model_rm_gross_margin_actu,base.group_system,1,1,1,1
-access_1777_rm_gross_margin___comparison_group_user,RM Gross Margin - Comparison group_user,BugFix-Accounting.model_rm_gross_margin_comp,base.group_user,1,0,0,0
-access_1776_rm_gross_margin___comparison_group_system,RM Gross Margin - Comparison group_system,BugFix-Accounting.model_rm_gross_margin_comp,base.group_system,1,1,1,1
-access_1732_rm_gross_margin___estimated_group_user,RM Gross Margin - Estimated group_user,BugFix-Accounting.model_rm_gross_margin_esti,base.group_user,1,0,0,0
-access_1731_rm_gross_margin___estimated_group_system,RM Gross Margin - Estimated group_system,BugFix-Accounting.model_rm_gross_margin_esti,base.group_system,1,1,1,1
-access_1750_rm_gross_margin_esti__lines_group_user,Rm Gross Margin Esti  Lines group_user,BugFix-Accounting.model_rm_gross_margin_esti_line_7e86d,base.group_user,1,0,0,0
-access_1752_rm_gross_margin_esti__lines_group_user,Rm Gross Margin Esti  Lines group_user,BugFix-Accounting.model_rm_gross_margin_esti_line_7e86d,base.group_user,1,0,0,0
-access_1749_rm_gross_margin_esti__lines_group_system,Rm Gross Margin Esti  Lines group_system,BugFix-Accounting.model_rm_gross_margin_esti_line_7e86d,base.group_system,1,1,1,1
-access_1751_rm_gross_margin_esti__lines_group_system,Rm Gross Margin Esti  Lines group_system,BugFix-Accounting.model_rm_gross_margin_esti_line_7e86d,base.group_system,1,1,1,1
-access_1736_rm_gross_margin___invoice_details_group_user,RM Gross Margin - Invoice Details group_user,BugFix-Accounting.model_rm_gross_margin_invo,base.group_user,1,0,0,0
-access_1735_rm_gross_margin___invoice_details_group_system,RM Gross Margin - Invoice Details group_system,BugFix-Accounting.model_rm_gross_margin_invo,base.group_system,1,1,1,1
-access_1528_rm_none_moving_group_user,RM None Moving group_user,BugFix-Accounting.model_rm_none_moving,base.group_user,1,0,0,0
-access_1527_rm_none_moving_group_system,RM None Moving group_system,BugFix-Accounting.model_rm_none_moving,base.group_system,1,1,1,1
-access_1538_rm_prod__summary_split_group_user,RM Prod. Summary Split group_user,BugFix-Accounting.model_rm_prod_summary_spli,base.group_user,1,0,0,0
-access_1537_rm_prod__summary_split_group_system,RM Prod. Summary Split group_system,BugFix-Accounting.model_rm_prod_summary_spli,base.group_system,1,1,1,1
-access_1526_rm_production_orders_group_user,RM Production Orders group_user,BugFix-Accounting.model_rm_production_orders,base.group_user,1,0,0,0
-access_1525_rm_production_orders_group_system,RM Production Orders group_system,BugFix-Accounting.model_rm_production_orders,base.group_system,1,1,1,1
-access_1540_rm_production_variance_group_user,RM Production Variance group_user,BugFix-Accounting.model_rm_production_varian,base.group_user,1,0,0,0
-access_1539_rm_production_variance_group_system,RM Production Variance group_system,BugFix-Accounting.model_rm_production_varian,base.group_system,1,1,1,1
-access_1524_rm_sales_order_line_group_user,RM Sales Order Line group_user,BugFix-Accounting.model_rm_sales_order_line,base.group_user,1,0,0,0
-access_1523_rm_sales_order_line_group_system,RM Sales Order Line group_system,BugFix-Accounting.model_rm_sales_order_line,base.group_system,1,1,1,1
-access_1536_rm_sales_prod__purch__group_user,RM Sales Prod. Purch. group_user,BugFix-Accounting.model_rm_sales_prod_purch,base.group_user,1,0,0,0
-access_1535_rm_sales_prod__purch__group_system,RM Sales Prod. Purch. group_system,BugFix-Accounting.model_rm_sales_prod_purch,base.group_system,1,1,1,1
-access_1499_sales_report_model_group_user,Sales Report Model group_user,BugFix-Accounting.model_sales_report_model,base.group_user,0,0,0,0
-access_1498_sales_report_model_group_system,Sales Report Model group_system,BugFix-Accounting.model_sales_report_model,base.group_system,1,1,1,1
-access_1501_sales_report_type_group_user,Sales Report Type group_user,BugFix-Accounting.model_sales_report_type,base.group_user,0,0,0,0
-access_1500_sales_report_type_group_system,Sales Report Type group_system,BugFix-Accounting.model_sales_report_type,base.group_system,1,1,1,1
-access_1754_temp_actual_budget_group_user,Temp_Actual_Budget group_user,BugFix-Accounting.model_temp_actual_budget,base.group_user,1,0,0,0
-access_1753_temp_actual_budget_group_system,Temp_Actual_Budget group_system,BugFix-Accounting.model_temp_actual_budget,base.group_system,1,1,1,1
-access_1748_temp_estimated_group_user,Temp_Estimated group_user,BugFix-Accounting.model_temp_estimated,base.group_user,1,0,0,0
-access_1747_temp_estimated_group_system,Temp_Estimated group_system,BugFix-Accounting.model_temp_estimated,base.group_system,1,1,1,1
-access_1367_temp_tp_invoice_header_group_user,Temp TP Invoice Header group_user,BugFix-Accounting.model_temp_tp_invoice_head,base.group_user,1,0,0,0
-access_1366_temp_tp_invoice_header_group_system,Temp TP Invoice Header group_system,BugFix-Accounting.model_temp_tp_invoice_head,base.group_system,1,1,1,1
-access_1369_temp_tp_invoice_line_group_user,Temp TP Invoice Line group_user,BugFix-Accounting.model_temp_tp_invoice_line,base.group_user,1,0,0,0
-access_1368_temp_tp_invoice_line_group_system,Temp TP Invoice Line group_system,BugFix-Accounting.model_temp_tp_invoice_line,base.group_system,1,1,1,1
+access_rm_gross_margin_actuals_group_user_2,RM Gross Margin - Actuals group_user,BugFix-Accounting.model_rm_gross_margin_actu,base.group_user,1,0,0,0
+access_rm_gross_margin_actuals_group_system_2,RM Gross Margin - Actuals group_system,BugFix-Accounting.model_rm_gross_margin_actu,base.group_system,1,1,1,1
+access_rm_gross_margin_comparison_group_user_2,RM Gross Margin - Comparison group_user,BugFix-Accounting.model_rm_gross_margin_comp,base.group_user,1,0,0,0
+access_rm_gross_margin_comparison_group_system_2,RM Gross Margin - Comparison group_system,BugFix-Accounting.model_rm_gross_margin_comp,base.group_system,1,1,1,1
+access_rm_gross_margin_estimated_group_user_2,RM Gross Margin - Estimated group_user,BugFix-Accounting.model_rm_gross_margin_esti,base.group_user,1,0,0,0
+access_rm_gross_margin_estimated_group_system_2,RM Gross Margin - Estimated group_system,BugFix-Accounting.model_rm_gross_margin_esti,base.group_system,1,1,1,1
+access_rm_gross_margin_esti_lines_group_user_3,Rm Gross Margin Esti  Lines group_user,BugFix-Accounting.model_rm_gross_margin_esti_line_7e86d,base.group_user,1,0,0,0
+access_rm_gross_margin_esti_lines_group_user_4,Rm Gross Margin Esti  Lines group_user,BugFix-Accounting.model_rm_gross_margin_esti_line_7e86d,base.group_user,1,0,0,0
+access_rm_gross_margin_esti_lines_group_system_3,Rm Gross Margin Esti  Lines group_system,BugFix-Accounting.model_rm_gross_margin_esti_line_7e86d,base.group_system,1,1,1,1
+access_rm_gross_margin_esti_lines_group_system_4,Rm Gross Margin Esti  Lines group_system,BugFix-Accounting.model_rm_gross_margin_esti_line_7e86d,base.group_system,1,1,1,1
+access_rm_gross_margin_invoice_details_group_user_2,RM Gross Margin - Invoice Details group_user,BugFix-Accounting.model_rm_gross_margin_invo,base.group_user,1,0,0,0
+access_rm_gross_margin_invoice_details_group_system_2,RM Gross Margin - Invoice Details group_system,BugFix-Accounting.model_rm_gross_margin_invo,base.group_system,1,1,1,1
+access_rm_none_moving_group_user,RM None Moving group_user,BugFix-Accounting.model_rm_none_moving,base.group_user,1,0,0,0
+access_rm_none_moving_group_system,RM None Moving group_system,BugFix-Accounting.model_rm_none_moving,base.group_system,1,1,1,1
+access_rm_prod_summary_split_group_user_2,RM Prod. Summary Split group_user,BugFix-Accounting.model_rm_prod_summary_spli,base.group_user,1,0,0,0
+access_rm_prod_summary_split_group_system_2,RM Prod. Summary Split group_system,BugFix-Accounting.model_rm_prod_summary_spli,base.group_system,1,1,1,1
+access_rm_production_orders_group_user,RM Production Orders group_user,BugFix-Accounting.model_rm_production_orders,base.group_user,1,0,0,0
+access_rm_production_orders_group_system,RM Production Orders group_system,BugFix-Accounting.model_rm_production_orders,base.group_system,1,1,1,1
+access_rm_production_variance_group_user,RM Production Variance group_user,BugFix-Accounting.model_rm_production_varian,base.group_user,1,0,0,0
+access_rm_production_variance_group_system,RM Production Variance group_system,BugFix-Accounting.model_rm_production_varian,base.group_system,1,1,1,1
+access_rm_sales_order_line_group_user,RM Sales Order Line group_user,BugFix-Accounting.model_rm_sales_order_line,base.group_user,1,0,0,0
+access_rm_sales_order_line_group_system,RM Sales Order Line group_system,BugFix-Accounting.model_rm_sales_order_line,base.group_system,1,1,1,1
+access_rm_sales_prod_purch_group_user_2,RM Sales Prod. Purch. group_user,BugFix-Accounting.model_rm_sales_prod_purch,base.group_user,1,0,0,0
+access_rm_sales_prod_purch_group_system_2,RM Sales Prod. Purch. group_system,BugFix-Accounting.model_rm_sales_prod_purch,base.group_system,1,1,1,1
+access_sales_report_model_group_user,Sales Report Model group_user,BugFix-Accounting.model_sales_report_model,base.group_user,0,0,0,0
+access_sales_report_model_group_system,Sales Report Model group_system,BugFix-Accounting.model_sales_report_model,base.group_system,1,1,1,1
+access_sales_report_type_group_user,Sales Report Type group_user,BugFix-Accounting.model_sales_report_type,base.group_user,0,0,0,0
+access_sales_report_type_group_system,Sales Report Type group_system,BugFix-Accounting.model_sales_report_type,base.group_system,1,1,1,1
+access_temp_actual_budget_group_user,Temp_Actual_Budget group_user,BugFix-Accounting.model_temp_actual_budget,base.group_user,1,0,0,0
+access_temp_actual_budget_group_system,Temp_Actual_Budget group_system,BugFix-Accounting.model_temp_actual_budget,base.group_system,1,1,1,1
+access_temp_estimated_group_user,Temp_Estimated group_user,BugFix-Accounting.model_temp_estimated,base.group_user,1,0,0,0
+access_temp_estimated_group_system,Temp_Estimated group_system,BugFix-Accounting.model_temp_estimated,base.group_system,1,1,1,1
+access_temp_tp_invoice_header_group_user,Temp TP Invoice Header group_user,BugFix-Accounting.model_temp_tp_invoice_head,base.group_user,1,0,0,0
+access_temp_tp_invoice_header_group_system,Temp TP Invoice Header group_system,BugFix-Accounting.model_temp_tp_invoice_head,base.group_system,1,1,1,1
+access_temp_tp_invoice_line_group_user,Temp TP Invoice Line group_user,BugFix-Accounting.model_temp_tp_invoice_line,base.group_user,1,0,0,0
+access_temp_tp_invoice_line_group_system,Temp TP Invoice Line group_system,BugFix-Accounting.model_temp_tp_invoice_line,base.group_system,1,1,1,1
 access_8577_test___rm_gross_margin___actuals_group_user,Test - RM Gross Margin - Actuals group_user,BugFix-Accounting.model_x_test_rm_gross_margin,base.group_user,1,1,1,0
 access_8576_test___rm_gross_margin___actuals_group_system,Test - RM Gross Margin - Actuals group_system,BugFix-Accounting.model_x_test_rm_gross_margin,base.group_system,1,1,1,1
-access_1371_tp_invoice_header_group_user,TP Invoice Header group_user,BugFix-Accounting.model_tp_invoice_header,base.group_user,1,0,0,0
-access_1370_tp_invoice_header_group_system,TP Invoice Header group_system,BugFix-Accounting.model_tp_invoice_header,base.group_system,1,1,1,1
-access_1373_tp_invoice_line_group_user,TP Invoice Line group_user,BugFix-Accounting.model_tp_invoice_line,base.group_user,1,0,0,0
-access_1372_tp_invoice_line_group_system,TP Invoice Line group_system,BugFix-Accounting.model_tp_invoice_line,base.group_system,1,1,1,1
-access_1734_rm_gross_margin_actuals_group_user,RM Gross Margin - Actuals group_user,BugFix-Accounting.model_rm_gross_margin_actu,base.group_user,1,0,0,0
-access_1733_rm_gross_margin_actuals_group_system,RM Gross Margin - Actuals group_system,BugFix-Accounting.model_rm_gross_margin_actu,base.group_system,1,1,1,1
-access_1777_rm_gross_margin_comparison_group_user,RM Gross Margin - Comparison group_user,BugFix-Accounting.model_rm_gross_margin_comp,base.group_user,1,0,0,0
-access_1776_rm_gross_margin_comparison_group_system,RM Gross Margin - Comparison group_system,BugFix-Accounting.model_rm_gross_margin_comp,base.group_system,1,1,1,1
-access_1732_rm_gross_margin_estimated_group_user,RM Gross Margin - Estimated group_user,BugFix-Accounting.model_rm_gross_margin_esti,base.group_user,1,0,0,0
-access_1731_rm_gross_margin_estimated_group_system,RM Gross Margin - Estimated group_system,BugFix-Accounting.model_rm_gross_margin_esti,base.group_system,1,1,1,1
-access_1736_rm_gross_margin_invoice_details_group_user,RM Gross Margin - Invoice Details group_user,BugFix-Accounting.model_rm_gross_margin_invo,base.group_user,1,0,0,0
-access_1735_rm_gross_margin_invoice_details_group_system,RM Gross Margin - Invoice Details group_system,BugFix-Accounting.model_rm_gross_margin_invo,base.group_system,1,1,1,1
-access_1538_rm_prod_summary_split_group_user,RM Prod. Summary Split group_user,BugFix-Accounting.model_rm_prod_summary_spli,base.group_user,1,0,0,0
-access_1537_rm_prod_summary_split_group_system,RM Prod. Summary Split group_system,BugFix-Accounting.model_rm_prod_summary_spli,base.group_system,1,1,1,1
-access_1536_rm_sales_prod_purch_group_user,RM Sales Prod. Purch. group_user,BugFix-Accounting.model_rm_sales_prod_purch,base.group_user,1,0,0,0
-access_1535_rm_sales_prod_purch_group_system,RM Sales Prod. Purch. group_system,BugFix-Accounting.model_rm_sales_prod_purch,base.group_system,1,1,1,1
+access_tp_invoice_header_group_user,TP Invoice Header group_user,BugFix-Accounting.model_tp_invoice_header,base.group_user,1,0,0,0
+access_tp_invoice_header_group_system,TP Invoice Header group_system,BugFix-Accounting.model_tp_invoice_header,base.group_system,1,1,1,1
+access_tp_invoice_line_group_user,TP Invoice Line group_user,BugFix-Accounting.model_tp_invoice_line,base.group_user,1,0,0,0
+access_tp_invoice_line_group_system,TP Invoice Line group_system,BugFix-Accounting.model_tp_invoice_line,base.group_system,1,1,1,1
+access_rm_gross_margin_actuals_group_user,RM Gross Margin - Actuals group_user,BugFix-Accounting.model_rm_gross_margin_actu,base.group_user,1,0,0,0
+access_rm_gross_margin_actuals_group_system,RM Gross Margin - Actuals group_system,BugFix-Accounting.model_rm_gross_margin_actu,base.group_system,1,1,1,1
+access_rm_gross_margin_comparison_group_user,RM Gross Margin - Comparison group_user,BugFix-Accounting.model_rm_gross_margin_comp,base.group_user,1,0,0,0
+access_rm_gross_margin_comparison_group_system,RM Gross Margin - Comparison group_system,BugFix-Accounting.model_rm_gross_margin_comp,base.group_system,1,1,1,1
+access_rm_gross_margin_estimated_group_user,RM Gross Margin - Estimated group_user,BugFix-Accounting.model_rm_gross_margin_esti,base.group_user,1,0,0,0
+access_rm_gross_margin_estimated_group_system,RM Gross Margin - Estimated group_system,BugFix-Accounting.model_rm_gross_margin_esti,base.group_system,1,1,1,1
+access_rm_gross_margin_invoice_details_group_user,RM Gross Margin - Invoice Details group_user,BugFix-Accounting.model_rm_gross_margin_invo,base.group_user,1,0,0,0
+access_rm_gross_margin_invoice_details_group_system,RM Gross Margin - Invoice Details group_system,BugFix-Accounting.model_rm_gross_margin_invo,base.group_system,1,1,1,1
+access_rm_prod_summary_split_group_user,RM Prod. Summary Split group_user,BugFix-Accounting.model_rm_prod_summary_spli,base.group_user,1,0,0,0
+access_rm_prod_summary_split_group_system,RM Prod. Summary Split group_system,BugFix-Accounting.model_rm_prod_summary_spli,base.group_system,1,1,1,1
+access_rm_sales_prod_purch_group_user,RM Sales Prod. Purch. group_user,BugFix-Accounting.model_rm_sales_prod_purch,base.group_user,1,0,0,0
+access_rm_sales_prod_purch_group_system,RM Sales Prod. Purch. group_system,BugFix-Accounting.model_rm_sales_prod_purch,base.group_system,1,1,1,1
 access_8577_test_rm_gross_margin_actuals_group_user,Test - RM Gross Margin - Actuals group_user,BugFix-Accounting.model_x_test_rm_gross_margin,base.group_user,1,1,1,0
 access_8576_test_rm_gross_margin_actuals_group_system,Test - RM Gross Margin - Actuals group_system,BugFix-Accounting.model_x_test_rm_gross_margin,base.group_system,1,1,1,1
-access_1750_rm_gross_margin_esti_lines_group_user,Rm Gross Margin Esti  Lines group_user,BugFix-Accounting.model_rm_gross_margin_esti_line_7e86d,base.group_user,1,0,0,0
-access_1752_rm_gross_margin_esti_lines_group_user,Rm Gross Margin Esti  Lines group_user,BugFix-Accounting.model_rm_gross_margin_esti_line_7e86d,base.group_user,1,0,0,0
-access_1749_rm_gross_margin_esti_lines_group_system,Rm Gross Margin Esti  Lines group_system,BugFix-Accounting.model_rm_gross_margin_esti_line_7e86d,base.group_system,1,1,1,1
-access_1751_rm_gross_margin_esti_lines_group_system,Rm Gross Margin Esti  Lines group_system,BugFix-Accounting.model_rm_gross_margin_esti_line_7e86d,base.group_system,1,1,1,1
-access_f3_access_account_tax_group_rohana_read,access_account_tax_group_rohana_read,model_account_tax_group,studio_usermodel_migration.group_studio_518_rohana,1,0,0,0
+access_rm_gross_margin_esti_lines_group_user,Rm Gross Margin Esti  Lines group_user,BugFix-Accounting.model_rm_gross_margin_esti_line_7e86d,base.group_user,1,0,0,0
+access_rm_gross_margin_esti_lines_group_user_2,Rm Gross Margin Esti  Lines group_user,BugFix-Accounting.model_rm_gross_margin_esti_line_7e86d,base.group_user,1,0,0,0
+access_rm_gross_margin_esti_lines_group_system,Rm Gross Margin Esti  Lines group_system,BugFix-Accounting.model_rm_gross_margin_esti_line_7e86d,base.group_system,1,1,1,1
+access_rm_gross_margin_esti_lines_group_system_2,Rm Gross Margin Esti  Lines group_system,BugFix-Accounting.model_rm_gross_margin_esti_line_7e86d,base.group_system,1,1,1,1
+access_f3_access_account_tax_group_rohana_read,access_account_tax_group_rohana_read,model_account_tax_group,studio_usermodel_migration.group_studio_rohana,1,0,0,0
 
-access_g_access_account_tax_group_rohana_read_group_rohana,access_account_tax_group_rohana_read,model_account_tax_group,studio_usermodel_migration.group_studio_518_rohana,1,0,0,0
+access_g_access_account_tax_group_rohana_read_group_rohana,access_account_tax_group_rohana_read,model_account_tax_group,studio_usermodel_migration.group_studio_rohana,1,0,0,0

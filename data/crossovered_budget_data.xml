@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="sa_f5_crossovered_budget_proj_validate_confirm" model="ir.actions.server">
+  <record id="action_crossovered_budget_proj_validate_confirm" model="ir.actions.server">
     <field name="name">PROJ - Validate Confirm</field>
     <field name="model_id" search="[('model', '=', 'crossovered.budget')]"/>
     <field name="state">code</field>
@@ -18,7 +18,7 @@
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="sa_f5_crossovered_budget_proj_validate_delete" model="ir.actions.server">
+  <record id="action_crossovered_budget_proj_validate_delete" model="ir.actions.server">
     <field name="name">PROJ - Validate Delete</field>
     <field name="model_id" search="[('model', '=', 'crossovered.budget')]"/>
     <field name="state">code</field>
@@ -30,7 +30,7 @@
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="server_action_2183_proj_validate_delete" model="ir.actions.server">
+  <record id="action_proj_validate_delete" model="ir.actions.server">
     <field name="name">PROJ - Validate Delete</field>
     <field name="model_id" search="[('model', '=', 'crossovered.budget')]"/>
     <field name="state">code</field>
@@ -42,7 +42,7 @@
 
 ]]></field>
   </record>
-  <record id="server_action_2570_proj_validate_confirm" model="ir.actions.server">
+  <record id="action_proj_validate_confirm" model="ir.actions.server">
     <field name="name">PROJ - Validate Confirm</field>
     <field name="model_id" search="[('model', '=', 'crossovered.budget')]"/>
     <field name="state">code</field>
@@ -60,21 +60,21 @@
 
 ]]></field>
   </record>
-  <record id="base_automation_197_proj_validate_delete" model="base.automation">
+  <record id="automation_proj_validate_delete" model="base.automation">
     <field name="name">PROJ - Validate Delete</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'crossovered.budget')]"/>
     <field name="trigger">on_unlink</field>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2183_proj_validate_delete')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_proj_validate_delete')])]"/>
   </record>
-  <record id="base_automation_256_proj_validate_confirm" model="base.automation">
+  <record id="automation_proj_validate_confirm" model="base.automation">
     <field name="name">PROJ - Validate Confirm</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'crossovered.budget')]"/>
     <field name="trigger">on_create_or_write</field>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2570_proj_validate_confirm')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_proj_validate_confirm')])]"/>
   </record>
-  <record id="server_action_2183_proj_validate_delete" model="ir.actions.server">
+  <record id="action_proj_validate_delete" model="ir.actions.server">
     <field name="name">PROJ - Validate Delete</field>
     <field name="model_id" ref="account_budget.model_crossovered_budget"/>
     <field name="state">code</field>
@@ -87,7 +87,7 @@ if record.created_from_sales_order_1.id != False:
 
     ]]></field>
   </record>
-  <record id="server_action_2570_proj_validate_confirm" model="ir.actions.server">
+  <record id="action_proj_validate_confirm" model="ir.actions.server">
     <field name="name">PROJ - Validate Confirm</field>
     <field name="model_id" ref="account_budget.model_crossovered_budget"/>
     <field name="state">code</field>
@@ -107,7 +107,7 @@ if record.state == 'confirm':
     ]]></field>
   </record>
     <data noupdate="1">
-    <record id="default_412_crossovered_budget_confirm_validation" model="ir.default">
+    <record id="default_crossovered_budget_confirm_validation" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_crossovered_budget__confirm_validation"/>
       <field name="json_value">"The project budget can't be confirmed until all the PRs are updated. "</field>
     </record>

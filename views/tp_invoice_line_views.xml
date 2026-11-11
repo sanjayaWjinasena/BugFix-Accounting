@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="action_1380_tp_invoice_line" model="ir.actions.act_window">
+  <record id="action_tp_invoice_line" model="ir.actions.act_window">
     <field name="name">TP Invoice Line</field>
     <field name="res_model">tp_invoice_line</field>
     <field name="view_mode">tree,form</field>
   </record>
-  <record id="action_2865_tp_invoice_line" model="ir.actions.act_window">
+  <record id="action_tp_invoice_line_2" model="ir.actions.act_window">
     <field name="name">TP Invoice Line</field>
     <field name="res_model">tp_invoice_line</field>
     <field name="view_mode">tree,form</field>
   </record>
-    <record id="ported_view_3047_default_form_view_fo_38c3a46a_3d2b_47c5_8a5e_88963b4b2366" model="ir.ui.view">
+    <record id="view_tp_invoice_line_form" model="ir.ui.view">
         <field name="name">Default form view for tp_invoice_line</field>
         <field name="model">tp_invoice_line</field>
         <field name="type">form</field>
@@ -40,7 +40,7 @@
             </form>
         </field>
     </record>
-    <record id="ported_view_3048_default_search_view_7b413959_fb76_4b31_a287_eed100601331" model="ir.ui.view">
+    <record id="view_tp_invoice_line_search" model="ir.ui.view">
         <field name="name">Default search view for tp_invoice_line</field>
         <field name="model">tp_invoice_line</field>
         <field name="type">search</field>
@@ -55,7 +55,7 @@
             </search>
         </field>
     </record>
-    <record id="ported_view_3046_default_list_view_fo_811781bc_7da3_4aa1_bd02_ffa9f7ab171e" model="ir.ui.view">
+    <record id="view_tp_invoice_line_list" model="ir.ui.view">
         <field name="name">Default list view for tp_invoice_line</field>
         <field name="model">tp_invoice_line</field>
         <field name="type">tree</field>
@@ -68,13 +68,13 @@
             </tree>
         </field>
     </record>
-    <record id="ported_view_3049_odoo_studio_default_69a9a02d_2a83_4c80_90bb_89810d018792" model="ir.ui.view">
+    <record id="view_default_form_view_for_tp_invoice_line_inherit" model="ir.ui.view">
         <field name="name">Odoo Studio: Default form view for tp_invoice_line customization</field>
         <field name="model">tp_invoice_line</field>
         <field name="type">form</field>
         <field name="priority">99</field>
         <field name="mode">extension</field>
-        <field name="inherit_id" ref="BugFix-Accounting.ported_view_3047_default_form_view_fo_38c3a46a_3d2b_47c5_8a5e_88963b4b2366"/>
+        <field name="inherit_id" ref="BugFix-Accounting.view_tp_invoice_line_form"/>
         <field name="arch" type="xml">
             <data>
               <xpath expr="//field[@name='name']" position="attributes">

@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="action_1379_tp_invoice_header" model="ir.actions.act_window">
+  <record id="action_tp_invoice_header" model="ir.actions.act_window">
     <field name="name">TP Invoice Header</field>
     <field name="res_model">tp_invoice_header</field>
     <field name="view_mode">tree,form</field>
   </record>
-  <record id="action_1382_tp_invoices" model="ir.actions.act_window">
+  <record id="action_tp_invoices" model="ir.actions.act_window">
     <field name="name">TP Invoices</field>
     <field name="res_model">tp_invoice_header</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('consignment_header_id', '=', active_id)]</field>
     <field name="context">{'search_default_consignment_header_id': active_id,'default_consignment_header_id': active_id}</field>
   </record>
-  <record id="action_1383_tp_invoices" model="ir.actions.act_window">
+  <record id="action_tp_invoices_2" model="ir.actions.act_window">
     <field name="name">TP Invoices</field>
     <field name="res_model">tp_invoice_header</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('con_no', '=', active_id)]</field>
     <field name="context">{'search_default_con_no': active_id,'default_con_no': active_id}</field>
   </record>
-  <record id="action_2430_tp_invoice_header" model="ir.actions.act_window">
+  <record id="action_tp_invoice_header_2" model="ir.actions.act_window">
     <field name="name">tp_invoice_header</field>
     <field name="res_model">tp_invoice_header</field>
     <field name="view_mode">tree,form</field>
   </record>
-  <record id="action_2864_tp_invoice_header" model="ir.actions.act_window">
+  <record id="action_tp_invoice_header_2_2" model="ir.actions.act_window">
     <field name="name">TP Invoice Header</field>
     <field name="res_model">tp_invoice_header</field>
     <field name="view_mode">tree,form</field>
   </record>
-  <record id="ported_default_form_view_fo_b04274bb_8930_4e7e_a2cc_e65229996a48" model="ir.ui.view">
+  <record id="view_tp_invoice_header_form" model="ir.ui.view">
     <field name="name">Default form view for tp_invoice_header</field>
     <field name="model">tp_invoice_header</field>
     <field name="key">studio_customization.default_form_view_fo_b04274bb-8930-4e7e-a2cc-e65229996a48</field>
@@ -66,7 +66,7 @@
       </form>
     </field>
   </record>
-  <record id="ported_default_list_view_fo_87762a20_9628_4266_a414_8bb858fd9746" model="ir.ui.view">
+  <record id="view_tp_invoice_header_list" model="ir.ui.view">
     <field name="name">Default list view for tp_invoice_header</field>
     <field name="model">tp_invoice_header</field>
     <field name="key">studio_customization.default_list_view_fo_87762a20-9628-4266-a414-8bb858fd9746</field>
@@ -80,7 +80,7 @@
       </tree>
     </field>
   </record>
-  <record id="ported_default_search_view__12511c2f_92e3_4ad8_a81a_9adf7a7e038f" model="ir.ui.view">
+  <record id="view_tp_invoice_header_search" model="ir.ui.view">
     <field name="name">Default search view for tp_invoice_header</field>
     <field name="model">tp_invoice_header</field>
     <field name="key">studio_customization.default_search_view__12511c2f-92e3-4ad8-a81a-9adf7a7e038f</field>
@@ -96,14 +96,14 @@
       </search>
     </field>
   </record>
-  <record id="ported_odoo_studio_default__c572715b_284c_469b_9b41_7a04b3431fc6" model="ir.ui.view">
+  <record id="view_default_list_view_for_tp_invoice_header_inherit" model="ir.ui.view">
     <field name="name">Odoo Studio: Default list view for tp_invoice_header customization</field>
     <field name="model">tp_invoice_header</field>
     <field name="key">studio_customization.odoo_studio_default__c572715b-284c-469b-9b41-7a04b3431fc6</field>
     <field name="type">tree</field>
     <field name="priority">99</field>
     <field name="mode">extension</field>
-    <field name="inherit_id" ref="BugFix-Accounting.ported_default_list_view_fo_87762a20_9628_4266_a414_8bb858fd9746"/>
+    <field name="inherit_id" ref="BugFix-Accounting.view_tp_invoice_header_list"/>
     <field name="arch" type="xml">
       <data>
         <xpath expr="//tree[1]" position="attributes">
@@ -116,7 +116,7 @@
       </data>
     </field>
   </record>
-    <record id="ported_view_3044_default_search_view_12511c2f_92e3_4ad8_a81a_9adf7a7e038f" model="ir.ui.view">
+    <record id="view_tp_invoice_header_search_2" model="ir.ui.view">
         <field name="name">Default search view for tp_invoice_header</field>
         <field name="model">tp_invoice_header</field>
         <field name="type">search</field>
@@ -131,13 +131,13 @@
             </search>
         </field>
     </record>
-    <record id="ported_view_3045_odoo_studio_default_fc4d9ef7_2d23_4a16_911c_66cf2185de9b" model="ir.ui.view">
+    <record id="view_default_form_view_for_tp_invoice_header_inherit" model="ir.ui.view">
         <field name="name">Odoo Studio: Default form view for tp_invoice_header customization</field>
         <field name="model">tp_invoice_header</field>
         <field name="type">form</field>
         <field name="priority">99</field>
         <field name="mode">extension</field>
-        <field name="inherit_id" ref="BugFix-Accounting.ported_default_form_view_fo_b04274bb_8930_4e7e_a2cc_e65229996a48"/>
+        <field name="inherit_id" ref="BugFix-Accounting.view_tp_invoice_header_form"/>
         <field name="arch" type="xml">
             <data>
               <!-- v0.0.29: was //button[@name='1384'], switched to positional.
@@ -195,13 +195,13 @@
             </data>
         </field>
     </record>
-    <record id="ported_view_3050_odoo_studio_default_c572715b_284c_469b_9b41_7a04b3431fc6" model="ir.ui.view">
+    <record id="view_default_list_view_for_tp_invoice_header_inherit_2" model="ir.ui.view">
         <field name="name">Odoo Studio: Default list view for tp_invoice_header customization</field>
         <field name="model">tp_invoice_header</field>
         <field name="type">tree</field>
         <field name="priority">99</field>
         <field name="mode">extension</field>
-        <field name="inherit_id" ref="BugFix-Accounting.ported_default_list_view_fo_87762a20_9628_4266_a414_8bb858fd9746"/>
+        <field name="inherit_id" ref="BugFix-Accounting.view_tp_invoice_header_list"/>
         <field name="arch" type="xml">
             <data>
               <xpath expr="//tree[1]" position="attributes">

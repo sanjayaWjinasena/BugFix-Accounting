@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data noupdate="1">
-    <record id="default_312_x_rm_gross_margin_invo_active" model="ir.default">
+    <record id="default_rm_gross_margin_invo_active" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_rm_gross_margin_invo__active"/>
       <field name="json_value">true</field>
     </record>
-    <record id="default_313_x_rm_gross_margin_invo_sequence" model="ir.default">
+    <record id="default_rm_gross_margin_invo_sequence" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_rm_gross_margin_invo__sequence"/>
       <field name="json_value">10</field>
     </record>

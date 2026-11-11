@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="action_1682_rm_customer_wise_invoices" model="ir.actions.act_window">
+  <record id="action_rm_customer_wise_invoices" model="ir.actions.act_window">
     <field name="name">RM Customer wise Invoices</field>
     <field name="res_model">rm_customer_wise_inv</field>
     <field name="view_mode">tree,form</field>
   </record>
-  <record id="ported_default_form_view_fo_28459b2e_d60c_4b3a_9ee2_68b375f0d598" model="ir.ui.view">
+  <record id="view_rm_customer_wise_inv_form" model="ir.ui.view">
     <field name="name">Default form view for rm_customer_wise_inv</field>
     <field name="model">rm_customer_wise_inv</field>
     <field name="key">studio_customization.default_form_view_fo_28459b2e-d60c-4b3a-9ee2-68b375f0d598</field>
@@ -32,7 +32,7 @@
       </form>
     </field>
   </record>
-  <record id="ported_default_list_view_fo_051fc709_c824_40ce_92e9_91a84d268510" model="ir.ui.view">
+  <record id="view_rm_customer_wise_inv_list" model="ir.ui.view">
     <field name="name">Default list view for rm_customer_wise_inv</field>
     <field name="model">rm_customer_wise_inv</field>
     <field name="key">studio_customization.default_list_view_fo_051fc709-c824-40ce-92e9-91a84d268510</field>
@@ -46,7 +46,7 @@
       </tree>
     </field>
   </record>
-  <record id="ported_default_search_view__49a7dbb3_8287_49cd_8415_ee80c4cf86ad" model="ir.ui.view">
+  <record id="view_rm_customer_wise_inv_search" model="ir.ui.view">
     <field name="name">Default search view for rm_customer_wise_inv</field>
     <field name="model">rm_customer_wise_inv</field>
     <field name="key">studio_customization.default_search_view__49a7dbb3-8287-49cd-8415-ee80c4cf86ad</field>
@@ -62,7 +62,7 @@
       </search>
     </field>
   </record>
-    <record id="ported_view_3817_default_search_view_49a7dbb3_8287_49cd_8415_ee80c4cf86ad" model="ir.ui.view">
+    <record id="view_rm_customer_wise_inv_search_2" model="ir.ui.view">
         <field name="name">Default search view for rm_customer_wise_inv</field>
         <field name="model">rm_customer_wise_inv</field>
         <field name="type">search</field>
@@ -77,13 +77,13 @@
             </search>
         </field>
     </record>
-    <record id="ported_view_3818_odoo_studio_default_461f7504_2101_403c_880e_62b0d141b1b4" model="ir.ui.view">
+    <record id="view_default_form_view_for_rm_customer_wise_inv_inherit" model="ir.ui.view">
         <field name="name">Odoo Studio: Default form view for rm_customer_wise_inv customization</field>
         <field name="model">rm_customer_wise_inv</field>
         <field name="type">form</field>
         <field name="priority">99</field>
         <field name="mode">extension</field>
-        <field name="inherit_id" ref="BugFix-Accounting.ported_default_form_view_fo_28459b2e_d60c_4b3a_9ee2_68b375f0d598"/>
+        <field name="inherit_id" ref="BugFix-Accounting.view_rm_customer_wise_inv_form"/>
         <field name="arch" type="xml">
             <data>
               <xpath expr="//group[@name='studio_group_907795_left']" position="inside">

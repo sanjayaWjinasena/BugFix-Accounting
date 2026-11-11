@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="action_2491_pump_price_costing" model="ir.actions.act_window">
+  <record id="action_pump_price_costing_2" model="ir.actions.act_window">
     <field name="name">Pump Price Costing</field>
     <field name="res_model">pump_price_costing</field>
     <field name="view_mode">tree,form</field>
   </record>
-  <record id="action_2529_costing_worksheet" model="ir.actions.act_window">
+  <record id="action_costing_worksheet" model="ir.actions.act_window">
     <field name="name">Costing Worksheet</field>
     <field name="res_model">pump_price_costing</field>
     <field name="view_mode">tree,form,pivot</field>
   </record>
-  <record id="action_2533_pump_costing_worksheet" model="ir.actions.act_window">
+  <record id="action_pump_costing_worksheet" model="ir.actions.act_window">
     <field name="name">Pump Costing Worksheet</field>
     <field name="res_model">pump_price_costing</field>
     <field name="view_mode">tree,kanban,form,pivot,graph</field>
   </record>
-  <record id="ported_view_5422_default_list_pump_price_costing" model="ir.ui.view">
+  <record id="view_pump_price_costing_list" model="ir.ui.view">
     <field name="name">Default list view for pump_price_costing</field>
     <field name="model">pump_price_costing</field>
     <field name="type">tree</field>
@@ -29,14 +29,14 @@
 </tree>
     </field>
   </record>
-  <record id="ported_view_5425_customization_x_pump_price_costing_tree" model="ir.ui.view">
+  <record id="view_default_list_view_for_pump_price_costing_inherit" model="ir.ui.view">
     <field name="name">Odoo Studio: Default list view for pump_price_costing customization</field>
     <field name="model">pump_price_costing</field>
     <field name="type">tree</field>
     <field name="mode">extension</field>
     <field name="priority">99</field>
     <field name="active" eval="True"/>
-    <field name="inherit_id" ref="BugFix-Accounting.ported_view_5422_default_list_pump_price_costing"/>
+    <field name="inherit_id" ref="BugFix-Accounting.view_pump_price_costing_list"/>
     <field name="arch" type="xml">
 <data>
   <xpath expr="//tree[1]" position="attributes">
@@ -89,7 +89,7 @@
 </data>
     </field>
   </record>
-    <record id="view_5423_default_form_view_for_x_pump_price_costing_e" model="ir.ui.view">
+    <record id="view_pump_price_costing_form" model="ir.ui.view">
       <field name="name">Default form view for pump_price_costing</field>
       <field name="model">pump_price_costing</field>
       <field name="type">form</field>
@@ -117,7 +117,7 @@
 </form>
       </field>
     </record>
-    <record id="view_5424_default_search_view_for_x_pump_price_costing_e" model="ir.ui.view">
+    <record id="view_pump_price_costing_search" model="ir.ui.view">
       <field name="name">Default search view for pump_price_costing</field>
       <field name="model">pump_price_costing</field>
       <field name="type">search</field>

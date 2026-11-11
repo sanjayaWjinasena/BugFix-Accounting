@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data noupdate="1">
-  <record id="ar_relaxed_journal_entry_sls_overdue_approval_sales_credit_note_approve" model="studio.approval.rule">
+  <record id="approval_rule_ar_relaxed_journal_entry_sls_overdue_approval_sales_credit_note_ap" model="studio.approval.rule">
     <field name="name">Journal Entry/SLS - Overdue Approval (Sales / Credit Note Approver) (24)</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
-    <field name="action_id" ref="BugFix-Sales.server_action_1478_sls_overdue_approval"/>
-    <field name="group_id" ref="BugFix-Approvals.group_129_jin_sales_credit_note_approvers"/>
+    <field name="action_id" ref="BugFix-Sales.action_sls_overdue_approval"/>
+    <field name="group_id" ref="BugFix-Approvals.group_jin_sales_credit_note_approvers"/>
   </record>
     </data>
-  <record id="sa_f5_account_move_rr_validate_rug_in_customer_invoice" model="ir.actions.server">
+  <record id="action_account_move_rr_validate_rug_in_customer_invoice" model="ir.actions.server">
     <field name="name">RR - Validate RUG in Customer Invoice</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="state">code</field>
@@ -27,7 +27,7 @@
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="sa_f5_account_move_project_update_project_no_for_manual_transactions" model="ir.actions.server">
+  <record id="action_account_move_project_update_project_no_for_manual_transactions" model="ir.actions.server">
     <field name="name">Project - Update Project No for Manual Transactions</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="state">code</field>
@@ -48,7 +48,7 @@
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="sa_f5_account_move_sls_validate_bank_guarantee_in_customer_invoice" model="ir.actions.server">
+  <record id="action_account_move_sls_validate_bank_guarantee_in_customer_invoice" model="ir.actions.server">
     <field name="name">SLS - Validate Bank Guarantee in Customer Invoice</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="state">code</field>
@@ -87,7 +87,7 @@
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="sa_f5_account_move_sls_validate_payment_in_customer_invoice" model="ir.actions.server">
+  <record id="action_account_move_sls_validate_payment_in_customer_invoice" model="ir.actions.server">
     <field name="name">SLS - Validate Payment in Customer Invoice</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="state">code</field>
@@ -112,7 +112,7 @@
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="server_action_2176_rr_rug_account_update_in_si" model="ir.actions.server">
+  <record id="action_rr_rug_account_update_in_si" model="ir.actions.server">
     <field name="name">RR - RUG Account Update in SI</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="state">code</field>
@@ -147,7 +147,7 @@
   record.write({'rug_acc_updated': True})]]></field>
     <field name="usage">ir_actions_server</field>
   </record>
-  <record id="server_action_2331_rr_validate_rug_in_customer_invoice" model="ir.actions.server">
+  <record id="action_rr_validate_rug_in_customer_invoice" model="ir.actions.server">
     <field name="name">RR - Validate RUG in Customer Invoice</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="state">code</field>
@@ -165,7 +165,7 @@
 ]]></field>
     <field name="usage">base_automation</field>
   </record>
-  <record id="server_action_2738_project_update_project_no_for_manual_transactions" model="ir.actions.server">
+  <record id="action_project_update_project_no_for_manual_transactions" model="ir.actions.server">
     <field name="name">Project - Update Project No for Manual Transactions</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="state">code</field>
@@ -185,7 +185,7 @@
 ]]></field>
     <field name="usage">base_automation</field>
   </record>
-  <record id="server_action_1775_sls_validate_bank_guarantee_in_customer_invoice" model="ir.actions.server">
+  <record id="action_sls_validate_bank_guarantee_in_customer_invoice" model="ir.actions.server">
     <field name="name">SLS - Validate Bank Guarantee in Customer Invoice</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="state">code</field>
@@ -223,7 +223,7 @@
 ]]></field>
     <field name="usage">base_automation</field>
   </record>
-  <record id="server_action_1751_sls_validate_payment_in_customer_invoice" model="ir.actions.server">
+  <record id="action_sls_validate_payment_in_customer_invoice" model="ir.actions.server">
     <field name="name">SLS - Validate Payment in Customer Invoice</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="state">code</field>
@@ -252,7 +252,7 @@
   <!-- from Clear-DB. Referenced by data/automations.xml TODOs.    -->
   <!-- =========================================================== -->
   <!-- Clear-DB action 1144 -->
-  <record id="server_action_1144_work_center_costing_model_update_journal_entries" model="ir.actions.server">
+  <record id="action_work_center_costing_model_update_journal_entries" model="ir.actions.server">
     <field name="name">Work Center Costing Model - Update Journal Entries</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="state">code</field>
@@ -278,7 +278,7 @@
     <field name="usage">base_automation</field>
   </record>
   <!-- Clear-DB action 1368 -->
-  <record id="server_action_1368_imp_update_consignment_vendor_bill" model="ir.actions.server">
+  <record id="action_imp_update_consignment_vendor_bill" model="ir.actions.server">
     <field name="name">IMP - Update Consignment - Vendor Bill</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="state">code</field>
@@ -299,7 +299,7 @@ if record.invoice_origin:
     <field name="usage">base_automation</field>
   </record>
   <!-- Clear-DB action 1408 -->
-  <record id="server_action_1408_imp_update_lc_status_to_paid" model="ir.actions.server">
+  <record id="action_imp_update_lc_status_to_paid" model="ir.actions.server">
     <field name="name">IMP - Update LC Status to Paid</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="state">code</field>
@@ -317,7 +317,7 @@ if record.invoice_origin:
     <field name="usage">base_automation</field>
   </record>
   <!-- Clear-DB action 1720 -->
-  <record id="server_action_1720_validate_journals_created_from_cp_npo" model="ir.actions.server">
+  <record id="action_validate_journals_created_from_cp_npo" model="ir.actions.server">
     <field name="name">Validate Journals Created from CP &amp; NPO</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="state">code</field>
@@ -334,7 +334,7 @@ if record.created_from_npo_no.id != False:
     <field name="usage">base_automation</field>
   </record>
   <!-- Clear-DB action 1733 -->
-  <record id="server_action_1733_srm_update_sales_order_customer_invoice" model="ir.actions.server">
+  <record id="action_srm_update_sales_order_customer_invoice" model="ir.actions.server">
     <field name="name">SRM - Update Sales Order - Customer Invoice</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="state">code</field>
@@ -348,7 +348,7 @@ if record.invoice_origin and not record.sale_id:
     <field name="usage">base_automation</field>
   </record>
   <!-- Clear-DB action 1766 -->
-  <record id="server_action_1766_supplier_invoice_no_update_in_import_vendor_bill" model="ir.actions.server">
+  <record id="action_supplier_invoice_no_update_in_import_vendor_bill" model="ir.actions.server">
     <field name="name">Supplier Invoice No Update in Import Vendor Bill</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="state">code</field>
@@ -367,7 +367,7 @@ if record.invoice_origin and not record.sale_id:
     <field name="usage">base_automation</field>
   </record>
   <!-- Clear-DB action 1847 -->
-  <record id="server_action_1847_supplier_invoice_no_update_in_import_vendor_bill_2" model="ir.actions.server">
+  <record id="action_supplier_invoice_no_update_in_import_vendor_bill_2" model="ir.actions.server">
     <field name="name">Supplier Invoice No Update in Import Vendor Bill - 2</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="state">code</field>
@@ -385,7 +385,7 @@ if record.invoice_origin and not record.sale_id:
     <field name="usage">base_automation</field>
   </record>
   <!-- Clear-DB action 2417 -->
-  <record id="server_action_2417_update_analytic_tag_parameters_sales_invoice_customer" model="ir.actions.server">
+  <record id="action_update_analytic_tag_parameters_sales_invoice_customer" model="ir.actions.server">
     <field name="name">Update Analytic Tag Parameters - Sales Invoice - Customer</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="state">code</field>
@@ -1331,7 +1331,7 @@ if record.partner_id.customer_rank > 0:
        Skips duplicates of standard Odoo actions + ir_cron.
        state=next_activity + object_write records loaded first
        so state=multi child_ids can reference them. -->
-  <record id="server_action_2539_sls_credit_note_approval_confirm" model="ir.actions.server">
+  <record id="action_sls_credit_note_approval_confirm" model="ir.actions.server">
     <field name="name">SLS - Credit Note Approval - Confirm</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="state">next_activity</field>
@@ -1344,7 +1344,7 @@ if record.partner_id.customer_rank > 0:
     <field name="activity_summary">Credit Note Approval - Confirm</field>
     <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
   </record>
-  <record id="server_action_1491_sls_request_credit_note_approval_notify_user" model="ir.actions.server">
+  <record id="action_sls_request_credit_note_approval_notify_user" model="ir.actions.server">
     <field name="name">SLS - Request Credit Note Approval - Notify User</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="state">next_activity</field>
@@ -1362,7 +1362,7 @@ if record.partner_id.customer_rank > 0:
        mail.activity.mixin - install fails with "A next activity can
        only be planned on models that use activities". These are
        leftover Studio test artifacts named "TEST", safe to skip. -->
-  <record id="server_action_2537_sls_credit_note_approval" model="ir.actions.server">
+  <record id="action_sls_credit_note_approval" model="ir.actions.server">
     <field name="name">SLS - Credit Note Approval</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="state">object_write</field>
@@ -1375,7 +1375,7 @@ if record.partner_id.customer_rank > 0:
     <field name="update_field_id" ref="BugFix-Accounting.field_account_move__credit_note_approved"/>
     <field name="value">Yes</field>
   </record>
-  <record id="server_action_1489_sls_request_credit_note_approval_sent" model="ir.actions.server">
+  <record id="action_sls_request_credit_note_approval_sent" model="ir.actions.server">
     <field name="name">SLS - Request Credit Note Approval Sent</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="state">object_write</field>
@@ -1388,23 +1388,23 @@ if record.partner_id.customer_rank > 0:
     <field name="update_field_id" ref="BugFix-Accounting.field_account_move__credit_note_request_sent"/>
     <field name="value">Yes</field>
   </record>
-  <record id="server_action_1495_sls_credit_note_approval_main" model="ir.actions.server">
+  <record id="action_sls_credit_note_approval_main" model="ir.actions.server">
     <field name="name">SLS - Credit Note Approval - Main</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="state">multi</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2537_sls_credit_note_approval'), ref('BugFix-Accounting.server_action_2539_sls_credit_note_approval_confirm')])]"/>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_sls_credit_note_approval'), ref('BugFix-Accounting.action_sls_credit_note_approval_confirm')])]"/>
   </record>
-  <record id="server_action_1493_sls_request_credit_note_approval" model="ir.actions.server">
+  <record id="action_sls_request_credit_note_approval" model="ir.actions.server">
     <field name="name">SLS - Request Credit Note Approval</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="state">multi</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
-    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1491_sls_request_credit_note_approval_notify_user'), ref('BugFix-Accounting.server_action_1489_sls_request_credit_note_approval_sent')])]"/>
+    <field name="child_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_sls_request_credit_note_approval_notify_user'), ref('BugFix-Accounting.action_sls_request_credit_note_approval_sent')])]"/>
   </record>
-  <record id="server_action_1374_imp_testing" model="ir.actions.server">
+  <record id="action_imp_testing" model="ir.actions.server">
     <field name="name">IMP - Testing</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="state">code</field>
@@ -1500,7 +1500,7 @@ if record.partner_id.customer_rank > 0:
 
 ]]></field>
   </record>
-  <record id="server_action_1370_imp_update_consignment_pi" model="ir.actions.server">
+  <record id="action_imp_update_consignment_pi" model="ir.actions.server">
     <field name="name">IMP - Update Consignment - PI</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="state">code</field>
@@ -2082,7 +2082,7 @@ if record.partner_id.customer_rank > 0:
    
   record['update_consignment'] = True]]></field>
   </record>
-  <record id="server_action_1396_imp_update_consignment_vendor_bill" model="ir.actions.server">
+  <record id="action_imp_update_consignment_vendor_bill_2" model="ir.actions.server">
     <field name="name">IMP - Update Consignment - Vendor Bill</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="state">code</field>
@@ -2100,7 +2100,7 @@ if record.invoice_origin:
 
 ]]></field>
   </record>
-  <record id="server_action_2366_imp_vendor_bill_currency_rate" model="ir.actions.server">
+  <record id="action_imp_vendor_bill_currency_rate" model="ir.actions.server">
     <field name="name">IMP - Vendor Bill Currency Rate</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="state">code</field>
@@ -2134,7 +2134,7 @@ else:
 
  ]]></field>
   </record>
-  <record id="server_action_2884_pr_validate_cash_issued_in_npo" model="ir.actions.server">
+  <record id="action_pr_validate_cash_issued_in_npo" model="ir.actions.server">
     <field name="name">PR - Validate Cash Issued in NPO</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="state">code</field>
@@ -2161,7 +2161,7 @@ else:
 
 ]]></field>
   </record>
-  <record id="server_action_2762_project_update_advance_payment_account_vendor_bill" model="ir.actions.server">
+  <record id="action_project_update_advance_payment_account_vendor_bill" model="ir.actions.server">
     <field name="name">Project - Update Advance Payment Account - Vendor Bill</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="state">code</field>
@@ -2205,7 +2205,7 @@ else:
 
 ]]></field>
   </record>
-  <record id="server_action_1519_sls_payment_reconciliation_automate" model="ir.actions.server">
+  <record id="action_sls_payment_reconciliation_automate" model="ir.actions.server">
     <field name="name">SLS - Payment Reconciliation - Automate</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="state">code</field>
@@ -2311,7 +2311,7 @@ else:
 
 ]]></field>
   </record>
-  <record id="server_action_1851_sls_send_bank_guarantee_notification_in_customer_invoice" model="ir.actions.server">
+  <record id="action_sls_send_bank_guarantee_notification_in_customer_invoice" model="ir.actions.server">
     <field name="name">SLS - Send Bank Guarantee Notification in Customer Invoice</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="state">code</field>
@@ -2334,7 +2334,7 @@ else:
 
 ]]></field>
   </record>
-  <record id="server_action_1852_sls_view_bank_guarantee_validation_in_customer_invoice" model="ir.actions.server">
+  <record id="action_sls_view_bank_guarantee_validation_in_customer_invoice" model="ir.actions.server">
     <field name="name">SLS - View Bank Guarantee Validation in Customer Invoice</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="state">code</field>
@@ -2354,7 +2354,7 @@ else:
 
 ]]></field>
   </record>
-  <record id="server_action_1854_sls_view_credit_limit_validation_in_customer_invoice" model="ir.actions.server">
+  <record id="action_sls_view_credit_limit_validation_in_customer_invoice" model="ir.actions.server">
     <field name="name">SLS - View Credit Limit Validation in Customer Invoice</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="state">code</field>
@@ -2367,7 +2367,7 @@ else:
         raise UserError("Customer's credit limit is exceeded." + "\n" + "Customer credit limit: " + str(record.partner_id.credit_limit) + "\n" + "Cust. Total Receivable: " + str(record.partner_id.credit) + "\n" + "Current Tot. Amount: " + str(record.amount_total) + "\n" + "Over Credit Amount: " + str((record.partner_id.credit + record.amount_total) - record.partner_id.credit_limit))
 ]]></field>
   </record>
-  <record id="server_action_1740_srm_auto_populate_report_type_in_account_move" model="ir.actions.server">
+  <record id="action_srm_auto_populate_report_type_in_account_move" model="ir.actions.server">
     <field name="name">SRM - Auto Populate Report Type in Account Move</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="state">code</field>
@@ -2391,7 +2391,7 @@ else:
 
 ]]></field>
   </record>
-  <record id="server_action_2418_update_analytic_tag_parameters_sales_invoice_user" model="ir.actions.server">
+  <record id="action_update_analytic_tag_parameters_sales_invoice_user" model="ir.actions.server">
     <field name="name">Update Analytic Tag Parameters - Sales Invoice - User</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="state">code</field>
@@ -2414,11 +2414,11 @@ else:
 ]]></field>
   </record>
     <data noupdate="1">
-  <record id="ar_final_journal_entry_sls_credit_note_approval_sales_credit_note_app" model="studio.approval.rule">
+  <record id="approval_rule_ar_final_journal_entry_sls_credit_note_approval_sales_credit_note" model="studio.approval.rule">
     <field name="name">Journal Entry/SLS - Credit Note Approval (Sales / Credit Note Approver) (25)</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="action_id" ref="BugFix-Accounting.srv_sls_credit_note_approval_main"/>
-    <field name="group_id" ref="BugFix-Approvals.group_129_jin_sales_credit_note_approvers"/>
+    <field name="group_id" ref="BugFix-Approvals.group_jin_sales_credit_note_approvers"/>
   </record>
     </data>
   <!-- 22 automations ports for BugFix-Accounting (auto-generated from Clear-DB snapshot) -->
@@ -2427,77 +2427,77 @@ else:
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="active" eval="True"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('server_action_1144_work_center_costing_model_update_journal_entries')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('action_work_center_costing_model_update_journal_entries')])]"/>
   </record>
   <record id="automation_64_imp_update_consignment_vendor_bill" model="base.automation">
     <field name="name">IMP - Update Consignment - Vendor Bill</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="active" eval="True"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('server_action_1368_imp_update_consignment_vendor_bill')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('action_imp_update_consignment_vendor_bill')])]"/>
   </record>
   <record id="automation_72_imp_update_lc_status_to_paid" model="base.automation">
     <field name="name">IMP - Update LC Status to Paid</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="active" eval="True"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('server_action_1408_imp_update_lc_status_to_paid')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('action_imp_update_lc_status_to_paid')])]"/>
   </record>
-  <record id="automation_115_validate_journals_created_from_cp_npo" model="base.automation">
+  <record id="automation_validate_journals_created_from_cp_npo" model="base.automation">
     <field name="name">Validate Journals Created from CP &amp; NPO</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="trigger">on_unlink</field>
     <field name="active" eval="True"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('server_action_1720_validate_journals_created_from_cp_npo')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('action_validate_journals_created_from_cp_npo')])]"/>
   </record>
-  <record id="automation_121_srm_update_sales_order_customer_invoice" model="base.automation">
+  <record id="automation_srm_update_sales_order_customer_invoice" model="base.automation">
     <field name="name">SRM - Update Sales Order - Customer Invoice</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="active" eval="True"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('server_action_1733_srm_update_sales_order_customer_invoice')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('action_srm_update_sales_order_customer_invoice')])]"/>
   </record>
-  <record id="automation_138_supplier_invoice_no_update_in_import_vendor_bill" model="base.automation">
+  <record id="automation_supplier_invoice_no_update_in_import_vendor_bill" model="base.automation">
     <field name="name">Supplier Invoice No Update in Import Vendor Bill</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="trigger">on_change</field>
     <field name="active" eval="True"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('server_action_1766_supplier_invoice_no_update_in_import_vendor_bill')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('action_supplier_invoice_no_update_in_import_vendor_bill')])]"/>
   </record>
-  <record id="automation_145_sls_validate_bank_guarantee_in_customer_invoice" model="base.automation">
+  <record id="automation_sls_validate_bank_guarantee_in_customer_invoice" model="base.automation">
     <field name="name">SLS - Validate Bank Guarantee in Customer Invoice</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="active" eval="True"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('server_action_1775_sls_validate_bank_guarantee_in_customer_invoice')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('action_sls_validate_bank_guarantee_in_customer_invoice')])]"/>
   </record>
-  <record id="automation_170_supplier_invoice_no_update_in_import_vendor_bill_2" model="base.automation">
+  <record id="automation_supplier_invoice_no_update_in_import_vendor_bill_2" model="base.automation">
     <field name="name">Supplier Invoice No Update in Import Vendor Bill - 2</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="active" eval="True"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('server_action_1847_supplier_invoice_no_update_in_import_vendor_bill_2')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('action_supplier_invoice_no_update_in_import_vendor_bill_2')])]"/>
   </record>
-  <record id="automation_215_rr_validate_rug_in_customer_invoice" model="base.automation">
+  <record id="automation_rr_validate_rug_in_customer_invoice" model="base.automation">
     <field name="name">RR - Validate RUG in Customer Invoice</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="active" eval="True"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('server_action_2331_rr_validate_rug_in_customer_invoice')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('action_rr_validate_rug_in_customer_invoice')])]"/>
   </record>
-  <record id="automation_237_update_analytic_tag_parameters_sales_invoice_customer" model="base.automation">
+  <record id="automation_update_analytic_tag_parameters_sales_invoice_customer" model="base.automation">
     <field name="name">Update Analytic Tag Parameters - Sales Invoice - Customer</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="trigger">on_change</field>
     <field name="active" eval="True"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('server_action_2417_update_analytic_tag_parameters_sales_invoice_customer')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('action_update_analytic_tag_parameters_sales_invoice_customer')])]"/>
   </record>
-  <record id="automation_328_project_update_project_no_for_manual_transactions" model="base.automation">
+  <record id="automation_project_update_project_no_for_manual_transactions" model="base.automation">
     <field name="name">Project - Update Project No for Manual Transactions</field>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="trigger">on_change</field>
     <field name="active" eval="True"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('server_action_2738_project_update_project_no_for_manual_transactions')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('action_project_update_project_no_for_manual_transactions')])]"/>
   </record>
   <!-- v0.0.52: 48 base.automation trigger records -->
   <record id="base_automation_43_work_center_costing_model_update_journal_entries" model="base.automation">
@@ -2506,7 +2506,7 @@ else:
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="trigger_field_ids" eval="[(6, 0, [ref('account.field_account_move__create_date')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1144_work_center_costing_model_update_journal_entries')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_work_center_costing_model_update_journal_entries')])]"/>
   </record>
   <record id="base_automation_64_imp_update_consignment_vendor_bill" model="base.automation">
     <field name="name">IMP - Update Consignment - Vendor Bill</field>
@@ -2514,76 +2514,76 @@ else:
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="trigger_field_ids" eval="[(6, 0, [ref('account.field_account_move__create_date')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1368_imp_update_consignment_vendor_bill')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_imp_update_consignment_vendor_bill')])]"/>
   </record>
   <record id="base_automation_72_imp_update_lc_status_to_paid" model="base.automation">
     <field name="name">IMP - Update LC Status to Paid</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="trigger">on_create_or_write</field>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1408_imp_update_lc_status_to_paid')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_imp_update_lc_status_to_paid')])]"/>
   </record>
-  <record id="base_automation_115_validate_journals_created_from_cp_npo" model="base.automation">
+  <record id="automation_validate_journals_created_from_cp_npo_2" model="base.automation">
     <field name="name">Validate Journals Created from CP &amp; NPO</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="trigger">on_unlink</field>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1720_validate_journals_created_from_cp_npo')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_validate_journals_created_from_cp_npo')])]"/>
   </record>
-  <record id="base_automation_121_srm_update_sales_order_customer_invoice" model="base.automation">
+  <record id="automation_srm_update_sales_order_customer_invoice_2" model="base.automation">
     <field name="name">SRM - Update Sales Order - Customer Invoice</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="trigger_field_ids" eval="[(6, 0, [ref('account.field_account_move__create_date')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1733_srm_update_sales_order_customer_invoice')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_srm_update_sales_order_customer_invoice')])]"/>
   </record>
-  <record id="base_automation_138_supplier_invoice_no_update_in_import_vendor_bill" model="base.automation">
+  <record id="automation_supplier_invoice_no_update_in_import_vendor_bill_3" model="base.automation">
     <field name="name">Supplier Invoice No Update in Import Vendor Bill</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="trigger">on_change</field>
     <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_account_move__consignment_no')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1766_supplier_invoice_no_update_in_import_vendor_bill')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_supplier_invoice_no_update_in_import_vendor_bill')])]"/>
   </record>
-  <record id="base_automation_145_sls_validate_bank_guarantee_in_customer_invoice" model="base.automation">
+  <record id="automation_sls_validate_bank_guarantee_in_customer_invoice_2" model="base.automation">
     <field name="name">SLS - Validate Bank Guarantee in Customer Invoice</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="trigger">on_create_or_write</field>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1775_sls_validate_bank_guarantee_in_customer_invoice')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_sls_validate_bank_guarantee_in_customer_invoice')])]"/>
   </record>
-  <record id="base_automation_170_supplier_invoice_no_update_in_import_vendor_bill_2" model="base.automation">
+  <record id="automation_supplier_invoice_no_update_in_import_vendor_bill_2_2" model="base.automation">
     <field name="name">Supplier Invoice No Update in Import Vendor Bill - 2</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="trigger">on_create_or_write</field>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1847_supplier_invoice_no_update_in_import_vendor_bill_2')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_supplier_invoice_no_update_in_import_vendor_bill_2')])]"/>
   </record>
-  <record id="base_automation_215_rr_validate_rug_in_customer_invoice" model="base.automation">
+  <record id="automation_rr_validate_rug_in_customer_invoice_2" model="base.automation">
     <field name="name">RR - Validate RUG in Customer Invoice</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="trigger">on_create_or_write</field>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2331_rr_validate_rug_in_customer_invoice')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_rr_validate_rug_in_customer_invoice')])]"/>
   </record>
-  <record id="base_automation_237_update_analytic_tag_parameters_sales_invoice_customer" model="base.automation">
+  <record id="automation_update_analytic_tag_parameters_sales_invoice_customer_2" model="base.automation">
     <field name="name">Update Analytic Tag Parameters - Sales Invoice - Customer</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="trigger">on_change</field>
     <field name="on_change_field_ids" eval="[(6, 0, [ref('account.field_account_move__partner_id')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2417_update_analytic_tag_parameters_sales_invoice_customer')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_update_analytic_tag_parameters_sales_invoice_customer')])]"/>
   </record>
-  <record id="base_automation_328_project_update_project_no_for_manual_transactions" model="base.automation">
+  <record id="automation_project_update_project_no_for_manual_transactions_2" model="base.automation">
     <field name="name">Project - Update Project No for Manual Transactions</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'account.move')]"/>
     <field name="trigger">on_change</field>
     <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_account_move__journal_type')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2738_project_update_project_no_for_manual_transactions')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_project_update_project_no_for_manual_transactions')])]"/>
   </record>
-  <record id="server_action_1751_sls_validate_payment_in_customer_invoice" model="ir.actions.server">
+  <record id="action_sls_validate_payment_in_customer_invoice" model="ir.actions.server">
     <field name="name">SLS - Validate Payment in Customer Invoice</field>
     <field name="model_id" ref="account.model_account_move"/>
     <field name="state">code</field>
@@ -2609,7 +2609,7 @@ if record.state == 'posted':
 
     ]]></field>
   </record>
-  <record id="server_action_1775_sls_validate_bank_guarantee_in_customer_invoice" model="ir.actions.server">
+  <record id="action_sls_validate_bank_guarantee_in_customer_invoice" model="ir.actions.server">
     <field name="name">SLS - Validate Bank Guarantee in Customer Invoice</field>
     <field name="model_id" ref="account.model_account_move"/>
     <field name="state">code</field>
@@ -2649,7 +2649,7 @@ if record.partner_id.customer_rank > 0:
 
     ]]></field>
   </record>
-  <record id="server_action_2331_rr_validate_rug_in_customer_invoice" model="ir.actions.server">
+  <record id="action_rr_validate_rug_in_customer_invoice" model="ir.actions.server">
     <field name="name">RR - Validate RUG in Customer Invoice</field>
     <field name="model_id" ref="account.model_account_move"/>
     <field name="state">code</field>
@@ -2669,7 +2669,7 @@ if record.rug_confirmed == True:
 
     ]]></field>
   </record>
-  <record id="server_action_2738_project_update_project_no_for_manual_transactions" model="ir.actions.server">
+  <record id="action_project_update_project_no_for_manual_transactions" model="ir.actions.server">
     <field name="name">Project - Update Project No for Manual Transactions</field>
     <field name="model_id" ref="account.model_account_move"/>
     <field name="state">code</field>
@@ -2691,34 +2691,34 @@ if record.project_no != False:
 
     ]]></field>
   </record>
-  <record id="base_automation_123_srm_auto_populate_report_type_in_account_move" model="base.automation">
+  <record id="automation_srm_auto_populate_report_type_in_account_move" model="base.automation">
     <field name="name">SRM - Auto Populate Report Type in Account Move</field>
     <field name="active" eval="False"/>
     <field name="model_id" ref="account.model_account_move"/>
     <field name="trigger">on_create_or_write</field>
     <field name="filter_domain">[]</field>
   </record>
-  <record id="base_automation_127_sls_validate_payment_in_customer_invoice" model="base.automation">
+  <record id="automation_sls_validate_payment_in_customer_invoice" model="base.automation">
     <field name="name">SLS - Validate Payment in Customer Invoice</field>
     <field name="active" eval="False"/>
     <field name="model_id" ref="account.model_account_move"/>
     <field name="trigger">on_write</field>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1751_sls_validate_payment_in_customer_invoice')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_sls_validate_payment_in_customer_invoice')])]"/>
   </record>
-  <record id="base_automation_238_update_analytic_tag_parameters_sales_invoice_user" model="base.automation">
+  <record id="automation_update_analytic_tag_parameters_sales_invoice_user" model="base.automation">
     <field name="name">Update Analytic Tag Parameters - Sales Invoice - User</field>
     <field name="active" eval="False"/>
     <field name="model_id" ref="account.model_account_move"/>
     <field name="trigger">on_create_or_write</field>
   </record>
-  <record id="base_automation_338_pr_validate_cash_issued_in_npo" model="base.automation">
+  <record id="automation_pr_validate_cash_issued_in_npo" model="base.automation">
     <field name="name">PR - Validate Cash Issued in NPO</field>
     <field name="active" eval="False"/>
     <field name="model_id" ref="account.model_account_move"/>
     <field name="trigger">on_create_or_write</field>
   </record>
     <data noupdate="1">
-    <record id="default_473_account_move_journal_type" model="ir.default">
+    <record id="default_account_move_journal_type" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_account_move__journal_type"/>
       <field name="json_value">""</field>
     </record>

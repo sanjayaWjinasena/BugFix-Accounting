@@ -39,4 +39,4 @@ Purpose not evident from code. It holds fixed values for a Paymaster bank transf
 
 | Name | Record name | Function | Depends on | Used by |
 |---|---|---|---|---|
-| jinasena_paymaster_config user access | `access_x_jinasena_paymaster_config_user` | Gives **User types / Internal User** read/write/create/delete access to CBC Paymaster Config records. | `group base.group_user` (base)<br>`model jinasena_paymaster_config` |  |
+| jinasena_paymaster_config user access | `access_jinasena_paymaster_config_user` | Gives **User types / Internal User** read/write/create/delete access to CBC Paymaster Config records. | `group base.group_user` (base)<br>`model jinasena_paymaster_config` |  |

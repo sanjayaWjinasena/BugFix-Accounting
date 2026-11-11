@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="action_1683_rm_cust_invoice_s1" model="ir.actions.act_window">
+  <record id="action_rm_cust_invoice_s1" model="ir.actions.act_window">
     <field name="name">RM Cust Invoice S1</field>
     <field name="res_model">rm_cust_invoice_s1</field>
     <field name="view_mode">tree,form</field>
   </record>
-  <record id="ported_default_form_view_fo_7a09d097_0d14_4d92_aaab_95b003fbf75f" model="ir.ui.view">
+  <record id="view_rm_cust_invoice_s1_form" model="ir.ui.view">
     <field name="name">Default form view for rm_cust_invoice_s1</field>
     <field name="model">rm_cust_invoice_s1</field>
     <field name="key">studio_customization.default_form_view_fo_7a09d097-0d14-4d92-aaab-95b003fbf75f</field>
@@ -32,7 +32,7 @@
       </form>
     </field>
   </record>
-  <record id="ported_default_list_view_fo_ec66ddc5_7ff8_42ac_8238_bdb020f850a2" model="ir.ui.view">
+  <record id="view_rm_cust_invoice_s1_list" model="ir.ui.view">
     <field name="name">Default list view for rm_cust_invoice_s1</field>
     <field name="model">rm_cust_invoice_s1</field>
     <field name="key">studio_customization.default_list_view_fo_ec66ddc5-7ff8-42ac-8238-bdb020f850a2</field>
@@ -46,7 +46,7 @@
       </tree>
     </field>
   </record>
-  <record id="ported_default_search_view__57a6d70d_a772_4194_afbe_241836e855ac" model="ir.ui.view">
+  <record id="view_rm_cust_invoice_s1_search" model="ir.ui.view">
     <field name="name">Default search view for rm_cust_invoice_s1</field>
     <field name="model">rm_cust_invoice_s1</field>
     <field name="key">studio_customization.default_search_view__57a6d70d-a772-4194-afbe-241836e855ac</field>
@@ -62,7 +62,7 @@
       </search>
     </field>
   </record>
-    <record id="ported_view_3821_default_search_view_57a6d70d_a772_4194_afbe_241836e855ac" model="ir.ui.view">
+    <record id="view_rm_cust_invoice_s1_search_2" model="ir.ui.view">
         <field name="name">Default search view for rm_cust_invoice_s1</field>
         <field name="model">rm_cust_invoice_s1</field>
         <field name="type">search</field>
@@ -77,13 +77,13 @@
             </search>
         </field>
     </record>
-    <record id="ported_view_3823_odoo_studio_default_b7f83450_d158_4b53_ab6a_3722eac4db7f" model="ir.ui.view">
+    <record id="view_default_form_view_for_rm_cust_invoice_s1_inherit" model="ir.ui.view">
         <field name="name">Odoo Studio: Default form view for rm_cust_invoice_s1 customization</field>
         <field name="model">rm_cust_invoice_s1</field>
         <field name="type">form</field>
         <field name="priority">99</field>
         <field name="mode">extension</field>
-        <field name="inherit_id" ref="BugFix-Accounting.ported_default_form_view_fo_7a09d097_0d14_4d92_aaab_95b003fbf75f"/>
+        <field name="inherit_id" ref="BugFix-Accounting.view_rm_cust_invoice_s1_form"/>
         <field name="arch" type="xml">
             <data>
               <xpath expr="//group[@name='studio_group_1b21a2_left']" position="inside">

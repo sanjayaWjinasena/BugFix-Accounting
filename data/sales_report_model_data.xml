@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="sa_f5_x_sales_report_model_report_model_created_date" model="ir.actions.server">
+  <record id="action_sales_report_model_report_model_created_date" model="ir.actions.server">
     <field name="name">Report Model Created Date</field>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="state">code</field>
@@ -11,7 +11,7 @@
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="sa_f5_x_sales_report_model_report_model_seq_no" model="ir.actions.server">
+  <record id="action_sales_report_model_report_model_seq_no" model="ir.actions.server">
     <field name="name">Report Model Seq.No</field>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="state">code</field>
@@ -30,7 +30,7 @@ if record.name == 'New':
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="sa_f5_x_sales_report_model_restrict_delete_in_sales_report_model" model="ir.actions.server">
+  <record id="action_sales_report_model_restrict_delete_in_sales_report_model" model="ir.actions.server">
     <field name="name">Restrict Delete in Sales Report Model</field>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="state">code</field>
@@ -45,7 +45,7 @@ if record.name == 'New':
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="sa_f5_x_sales_report_model_srm_auto_delete_sub_models" model="ir.actions.server">
+  <record id="action_sales_report_model_srm_auto_delete_sub_models" model="ir.actions.server">
     <field name="name">SRM - Auto Delete Sub Models</field>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="state">code</field>
@@ -72,7 +72,7 @@ if record.name == 'New':
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="sa_f5_x_sales_report_model_srm_rpt_costing_work_sheet" model="ir.actions.server">
+  <record id="action_sales_report_model_srm_rpt_costing_work_sheet" model="ir.actions.server">
     <field name="name">SRM - RPT - Costing Work Sheet</field>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="state">code</field>
@@ -605,7 +605,7 @@ if record.name == 'New':
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="sa_f5_x_sales_report_model_srm_rpt_daily_sales_summary" model="ir.actions.server">
+  <record id="action_sales_report_model_srm_rpt_daily_sales_summary" model="ir.actions.server">
     <field name="name">SRM - RPT - Daily Sales Summary</field>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="state">code</field>
@@ -671,7 +671,7 @@ if record.name == 'New':
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="sa_f5_x_sales_report_model_srm_rpt_production_job_variance" model="ir.actions.server">
+  <record id="action_sales_report_model_srm_rpt_production_job_variance" model="ir.actions.server">
     <field name="name">SRM - RPT - Production Job Variance</field>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="state">code</field>
@@ -725,7 +725,7 @@ if record.name == 'New':
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="sa_f5_x_sales_report_model_srm_rpt_production_overview_wip" model="ir.actions.server">
+  <record id="action_sales_report_model_srm_rpt_production_overview_wip" model="ir.actions.server">
     <field name="name">SRM - RPT - Production Overview - WIP</field>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="state">code</field>
@@ -779,7 +779,7 @@ if record.name == 'New':
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="sa_f5_x_sales_report_model_srm_rpt_production_summary_split" model="ir.actions.server">
+  <record id="action_sales_report_model_srm_rpt_production_summary_split" model="ir.actions.server">
     <field name="name">SRM - RPT - Production Summary - Split</field>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="state">code</field>
@@ -829,7 +829,7 @@ if record.name == 'New':
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="sa_f5_x_sales_report_model_srm_rpt_project_gross_margin" model="ir.actions.server">
+  <record id="action_sales_report_model_srm_rpt_project_gross_margin" model="ir.actions.server">
     <field name="name">SRM - RPT - Project Gross Margin</field>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="state">code</field>
@@ -1803,14 +1803,14 @@ if record.name == 'New':
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="sa_f5_x_sales_report_model_srm_rpt_project_gross_margin_notify_users" model="ir.actions.server">
+  <record id="action_sales_report_model_srm_rpt_project_gross_margin_notify_users" model="ir.actions.server">
     <field name="name">SRM - RPT - Project Gross Margin - Notify Users</field>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="state">next_activity</field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="sa_f5_x_sales_report_model_srm_rpt_sales_production_purchase_report" model="ir.actions.server">
+  <record id="action_sales_report_model_srm_rpt_sales_production_purchase_report" model="ir.actions.server">
     <field name="name">SRM - RPT - Sales - Production - Purchase Report</field>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="state">code</field>
@@ -1922,7 +1922,7 @@ if record.name == 'New':
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="sa_f5_x_sales_report_model_srm_rpt_sales_details_for_incentive_calc" model="ir.actions.server">
+  <record id="action_sales_report_model_srm_rpt_sales_details_for_incentive_calc" model="ir.actions.server">
     <field name="name">SRM - RPT - Sales Details for Incentive Calc.</field>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="state">code</field>
@@ -1988,7 +1988,7 @@ if record.name == 'New':
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="sa_f5_x_sales_report_model_srm_rpt_slow_moving_items" model="ir.actions.server">
+  <record id="action_sales_report_model_srm_rpt_slow_moving_items" model="ir.actions.server">
     <field name="name">SRM - RPT - Slow Moving Items</field>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="state">code</field>
@@ -2239,7 +2239,7 @@ if record.name == 'New':
   <!-- v0.0.51: 27 missing server actions for base.automation triggers.
        state=next_activity records (if any) come before state=multi
        to satisfy Odoo XML load-order for child_ids refs. -->
-  <record id="server_action_2129_srm_rpt_project_gross_margin_notify_users" model="ir.actions.server">
+  <record id="action_srm_rpt_project_gross_margin_notify_users" model="ir.actions.server">
     <field name="name">SRM - RPT - Project Gross Margin - Notify Users</field>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="state">next_activity</field>
@@ -2252,7 +2252,7 @@ if record.name == 'New':
     <field name="activity_summary">Gross Margin Report Generated</field>
     <field name="activity_note">&lt;p&gt;&lt;br&gt;&lt;/p&gt;</field>
   </record>
-  <record id="server_action_1675_restrict_delete_in_sales_report_model" model="ir.actions.server">
+  <record id="action_restrict_delete_in_sales_report_model" model="ir.actions.server">
     <field name="name">Restrict Delete in Sales Report Model</field>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="state">code</field>
@@ -2267,7 +2267,7 @@ if record.name == 'New':
 
 ]]></field>
   </record>
-  <record id="server_action_1726_srm_auto_populate_data" model="ir.actions.server">
+  <record id="action_srm_auto_populate_data_2" model="ir.actions.server">
     <field name="name">SRM - Auto Populate Data</field>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="state">code</field>
@@ -2757,7 +2757,7 @@ if record.name == 'New':
 
       create_sub_model = env['rm_prod_summary_spli'].create({'sales_report_model_id':record.id,'description':line.raw_material_production_id.product_id.id,'production_id':line.raw_material_production_id.id,'prod_qty':line.raw_material_production_id.product_qty,'description_1':line.product_id.id,'bom_qty':line.original_qty,'esti_qty':line.original_qty,'cons_qty':line.product_uom_qty,'variance':line.variance,'avg_cost':line.price_unit,'total_cost':(line.product_uom_qty*line.price_unit),'header_reference': record.name})]]></field>
   </record>
-  <record id="server_action_1746_srm_auto_delete_sub_models" model="ir.actions.server">
+  <record id="action_srm_auto_delete_sub_models" model="ir.actions.server">
     <field name="name">SRM - Auto Delete Sub Models</field>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="state">code</field>
@@ -2784,7 +2784,7 @@ if record.name == 'New':
   for del_record5 in temp_rec5:
     del_record5.unlink()]]></field>
   </record>
-  <record id="server_action_1747_report_model_seq_no" model="ir.actions.server">
+  <record id="action_report_model_seq_no" model="ir.actions.server">
     <field name="name">Report Model Seq.No</field>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="state">code</field>
@@ -2803,7 +2803,7 @@ if record.name == 'New':
 
 ]]></field>
   </record>
-  <record id="server_action_1759_srm_rpt_daily_sales_summary" model="ir.actions.server">
+  <record id="action_srm_rpt_daily_sales_summary" model="ir.actions.server">
     <field name="name">SRM - RPT - Daily Sales Summary</field>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="state">code</field>
@@ -2869,7 +2869,7 @@ if record.name == 'New':
 
   ]]></field>
   </record>
-  <record id="server_action_1760_srm_rpt_sales_details_for_incentive_calc" model="ir.actions.server">
+  <record id="action_srm_rpt_sales_details_for_incentive_calc" model="ir.actions.server">
     <field name="name">SRM - RPT - Sales Details for Incentive Calc.</field>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="state">code</field>
@@ -2935,7 +2935,7 @@ if record.name == 'New':
 
   ]]></field>
   </record>
-  <record id="server_action_1761_srm_rpt_production_overview_wip" model="ir.actions.server">
+  <record id="action_srm_rpt_production_overview_wip" model="ir.actions.server">
     <field name="name">SRM - RPT - Production Overview - WIP</field>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="state">code</field>
@@ -2989,7 +2989,7 @@ if record.name == 'New':
 
   ]]></field>
   </record>
-  <record id="server_action_1762_srm_rpt_slow_moving_items" model="ir.actions.server">
+  <record id="action_srm_rpt_slow_moving_items" model="ir.actions.server">
     <field name="name">SRM - RPT - Slow Moving Items</field>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="state">code</field>
@@ -3223,7 +3223,7 @@ if record.name == 'New':
 
   ]]></field>
   </record>
-  <record id="server_action_1763_srm_rpt_sales_production_purchase_report" model="ir.actions.server">
+  <record id="action_srm_rpt_sales_production_purchase_report" model="ir.actions.server">
     <field name="name">SRM - RPT - Sales - Production - Purchase Report</field>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="state">code</field>
@@ -3335,7 +3335,7 @@ if record.name == 'New':
 
   ]]></field>
   </record>
-  <record id="server_action_1764_srm_rpt_production_summary_split" model="ir.actions.server">
+  <record id="action_srm_rpt_production_summary_split" model="ir.actions.server">
     <field name="name">SRM - RPT - Production Summary - Split</field>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="state">code</field>
@@ -3385,7 +3385,7 @@ if record.name == 'New':
 
       create_sub_model = env['rm_prod_summary_spli'].create({'sales_report_model_id':record.id,'description':line.raw_material_production_id.product_id.id,'production_id':line.raw_material_production_id.id,'prod_qty':line.raw_material_production_id.product_qty,'description_1':line.product_id.id,'bom_qty':line.original_qty,'esti_qty':line.original_qty,'cons_qty':line.product_uom_qty,'variance':line.variance,'avg_cost':line.price_unit,'total_cost':(line.product_uom_qty*line.price_unit),'header_reference': record.name})]]></field>
   </record>
-  <record id="server_action_1765_srm_rpt_production_job_variance" model="ir.actions.server">
+  <record id="action_srm_rpt_production_job_variance" model="ir.actions.server">
     <field name="name">SRM - RPT - Production Job Variance</field>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="state">code</field>
@@ -3439,7 +3439,7 @@ if record.name == 'New':
 
   ]]></field>
   </record>
-  <record id="server_action_2102_srm_rpt_project_gross_margin" model="ir.actions.server">
+  <record id="action_srm_rpt_project_gross_margin" model="ir.actions.server">
     <field name="name">SRM - RPT - Project Gross Margin</field>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="state">code</field>
@@ -4413,7 +4413,7 @@ if record.name == 'New':
 
     create_estimated_sub_model = env['rm_gross_margin_invo'].create({'sales_report_model_id':record.id,'header_reference': record.name,'group_title':'Actual GP%','amount':actual_gp}) ]]></field>
   </record>
-  <record id="server_action_2126_report_model_created_date" model="ir.actions.server">
+  <record id="action_report_model_created_date" model="ir.actions.server">
     <field name="name">Report Model Created Date</field>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="state">code</field>
@@ -4424,7 +4424,7 @@ if record.name == 'New':
 
 ]]></field>
   </record>
-  <record id="server_action_2490_srm_rpt_costing_work_sheet" model="ir.actions.server">
+  <record id="action_srm_rpt_costing_work_sheet" model="ir.actions.server">
     <field name="name">SRM - RPT - Costing Work Sheet</field>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="state">code</field>
@@ -4957,14 +4957,14 @@ if record.name == 'New':
 
 #operation_ids    ]]></field>
   </record>
-  <record id="server_action_1676_rpt_sample_button" model="ir.actions.server">
+  <record id="action_rpt_sample_button" model="ir.actions.server">
     <field name="name">RPT - Sample Button</field>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="state">object_write</field>
     <field name="usage">ir_actions_server</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="server_action_1681_rpt_customer_wise_invoices_clear" model="ir.actions.server">
+  <record id="action_rpt_customer_wise_invoices_clear" model="ir.actions.server">
     <field name="name">RPT - Customer wise Invoices - Clear</field>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="state">code</field>
@@ -4984,7 +4984,7 @@ if record.name == 'New':
     record['selection_field_Fbw0x'] = 'Draft'
 ]]></field>
   </record>
-  <record id="server_action_1680_rpt_customer_wise_invoices_generate" model="ir.actions.server">
+  <record id="action_rpt_customer_wise_invoices_generate" model="ir.actions.server">
     <field name="name">RPT - Customer wise Invoices - Generate</field>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="state">code</field>
@@ -5023,7 +5023,7 @@ if record.name == 'New':
    
 ]]></field>
   </record>
-  <record id="server_action_1671_rpt_daily_sales_report_clear" model="ir.actions.server">
+  <record id="action_rpt_daily_sales_report_clear" model="ir.actions.server">
     <field name="name">RPT - Daily Sales Report - Clear</field>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="state">code</field>
@@ -5060,7 +5060,7 @@ if record.name == 'New':
   record['selection_field_Fbw0x'] = 'Draft'
 ]]></field>
   </record>
-  <record id="server_action_1670_rpt_daily_sales_report_generate" model="ir.actions.server">
+  <record id="action_rpt_daily_sales_report_generate" model="ir.actions.server">
     <field name="name">RPT - Daily Sales Report - Generate</field>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="state">code</field>
@@ -5099,7 +5099,7 @@ if record.name == 'New':
    
 ]]></field>
   </record>
-  <record id="server_action_1709_srm_auto_populate_data" model="ir.actions.server">
+  <record id="action_srm_auto_populate_data" model="ir.actions.server">
     <field name="name">SRM - Auto Populate Data</field>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="state">code</field>
@@ -5126,7 +5126,7 @@ if record.name == 'New':
   
   #record['selection_field_Fbw0x'] = 'Done']]></field>
   </record>
-  <record id="server_action_1711_srm_auto_populate_data_2" model="ir.actions.server">
+  <record id="action_srm_auto_populate_data_2_2" model="ir.actions.server">
     <field name="name">SRM - Auto Populate Data - 2</field>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="state">code</field>
@@ -5140,7 +5140,7 @@ if record.name == 'New':
   
   #record['selection_field_Fbw0x'] = 'Done']]></field>
   </record>
-  <record id="server_action_1727_srm_auto_populate_data_tau" model="ir.actions.server">
+  <record id="action_srm_auto_populate_data_tau" model="ir.actions.server">
     <field name="name">SRM - Auto Populate Data - TAU</field>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="state">code</field>
@@ -5163,7 +5163,7 @@ if record.name == 'New':
   for line in report_type_lines:
     create_sub_model = env['rm_daily_s1'].create({'sales_report_model_id':record.id,'accounting_invoice_date':line.date,'number':line.move_name,'partner':line.partner_id.id,'sales_centre':line.sales_team.id,'product_id':line.product_id.id,'quantity':line.quantity,'value':line.price_subtotal})]]></field>
   </record>
-  <record id="server_action_1730_srm_auto_populate_data_original" model="ir.actions.server">
+  <record id="action_srm_auto_populate_data_original" model="ir.actions.server">
     <field name="name">SRM - Auto Populate Data-Original</field>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="state">code</field>
@@ -5191,9 +5191,9 @@ if record.name == 'New':
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="trigger">on_unlink</field>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1675_restrict_delete_in_sales_report_model')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_restrict_delete_in_sales_report_model')])]"/>
   </record>
-  <record id="base_automation_116_srm_auto_populate_data" model="base.automation">
+  <record id="automation_srm_auto_populate_data" model="base.automation">
     <field name="name">SRM - Auto Populate Data</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
@@ -5201,26 +5201,26 @@ if record.name == 'New':
     <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_sales_report_model__as_on_date')])]"/>
     <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_sales_report_model__as_on_date'), ref('BugFix-Accounting.field_sales_report_model__from_date'), ref('BugFix-Accounting.field_sales_report_model__report_type'), ref('BugFix-Accounting.field_sales_report_model__sales_centre')])]"/>
     <field name="filter_domain">[]</field>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1726_srm_auto_populate_data')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_srm_auto_populate_data_2')])]"/>
   </record>
-  <record id="base_automation_125_srm_auto_delete_sub_models" model="base.automation">
+  <record id="automation_srm_auto_delete_sub_models" model="base.automation">
     <field name="name">SRM - Auto Delete Sub Models</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="trigger">on_unlink</field>
     <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_sales_report_model__as_on_date')])]"/>
     <field name="filter_domain">[]</field>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1746_srm_auto_delete_sub_models')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_srm_auto_delete_sub_models')])]"/>
   </record>
-  <record id="base_automation_126_jin_report_model_seq_no" model="base.automation">
+  <record id="automation_jin_report_model_seq_no" model="base.automation">
     <field name="name">JIN-Report Model Seq.No</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_sales_report_model__create_date')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1747_report_model_seq_no')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_report_model_seq_no')])]"/>
   </record>
-  <record id="base_automation_131_srm_rpt_daily_sales_summary" model="base.automation">
+  <record id="automation_srm_rpt_daily_sales_summary" model="base.automation">
     <field name="name">SRM - RPT - Daily Sales Summary</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
@@ -5228,9 +5228,9 @@ if record.name == 'New':
     <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_sales_report_model__as_on_date')])]"/>
     <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_sales_report_model__as_on_date'), ref('BugFix-Accounting.field_sales_report_model__report_type'), ref('BugFix-Accounting.field_sales_report_model__sales_centre')])]"/>
     <field name="filter_domain">[]</field>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1759_srm_rpt_daily_sales_summary')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_srm_rpt_daily_sales_summary')])]"/>
   </record>
-  <record id="base_automation_132_srm_rpt_sales_details_for_incentive_calc" model="base.automation">
+  <record id="automation_srm_rpt_sales_details_for_incentive_calc" model="base.automation">
     <field name="name">SRM - RPT - Sales Details for Incentive Calc.</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
@@ -5238,9 +5238,9 @@ if record.name == 'New':
     <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_sales_report_model__as_on_date')])]"/>
     <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_sales_report_model__as_on_date'), ref('BugFix-Accounting.field_sales_report_model__report_type')])]"/>
     <field name="filter_domain">[]</field>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1760_srm_rpt_sales_details_for_incentive_calc')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_srm_rpt_sales_details_for_incentive_calc')])]"/>
   </record>
-  <record id="base_automation_133_srm_rpt_production_overview_wip" model="base.automation">
+  <record id="automation_srm_rpt_production_overview_wip" model="base.automation">
     <field name="name">SRM - RPT - Production Overview - WIP</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
@@ -5248,9 +5248,9 @@ if record.name == 'New':
     <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_sales_report_model__as_on_date')])]"/>
     <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_sales_report_model__report_type')])]"/>
     <field name="filter_domain">[]</field>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1761_srm_rpt_production_overview_wip')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_srm_rpt_production_overview_wip')])]"/>
   </record>
-  <record id="base_automation_134_srm_rpt_slow_moving_items" model="base.automation">
+  <record id="automation_srm_rpt_slow_moving_items" model="base.automation">
     <field name="name">SRM - RPT - Slow Moving Items</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
@@ -5258,9 +5258,9 @@ if record.name == 'New':
     <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_sales_report_model__as_on_date')])]"/>
     <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_sales_report_model__as_on_date'), ref('BugFix-Accounting.field_sales_report_model__report_type')])]"/>
     <field name="filter_domain">[]</field>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1762_srm_rpt_slow_moving_items')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_srm_rpt_slow_moving_items')])]"/>
   </record>
-  <record id="base_automation_135_srm_rpt_sales_production_purchase_report" model="base.automation">
+  <record id="automation_srm_rpt_sales_production_purchase_report" model="base.automation">
     <field name="name">SRM - RPT - Sales - Production - Purchase Report</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
@@ -5268,9 +5268,9 @@ if record.name == 'New':
     <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_sales_report_model__as_on_date')])]"/>
     <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_sales_report_model__as_on_date'), ref('BugFix-Accounting.field_sales_report_model__report_type')])]"/>
     <field name="filter_domain">[]</field>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1763_srm_rpt_sales_production_purchase_report')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_srm_rpt_sales_production_purchase_report')])]"/>
   </record>
-  <record id="base_automation_136_srm_rpt_production_summary_split" model="base.automation">
+  <record id="automation_srm_rpt_production_summary_split" model="base.automation">
     <field name="name">SRM - RPT - Production Summary - Split</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
@@ -5278,9 +5278,9 @@ if record.name == 'New':
     <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_sales_report_model__as_on_date')])]"/>
     <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_sales_report_model__as_on_date'), ref('BugFix-Accounting.field_sales_report_model__report_type')])]"/>
     <field name="filter_domain">[]</field>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1764_srm_rpt_production_summary_split')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_srm_rpt_production_summary_split')])]"/>
   </record>
-  <record id="base_automation_137_srm_rpt_production_job_variance" model="base.automation">
+  <record id="automation_srm_rpt_production_job_variance" model="base.automation">
     <field name="name">SRM - RPT - Production Job Variance</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
@@ -5288,9 +5288,9 @@ if record.name == 'New':
     <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_sales_report_model__as_on_date')])]"/>
     <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_sales_report_model__as_on_date'), ref('BugFix-Accounting.field_sales_report_model__from_date'), ref('BugFix-Accounting.field_sales_report_model__report_type')])]"/>
     <field name="filter_domain">[]</field>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1765_srm_rpt_production_job_variance')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_srm_rpt_production_job_variance')])]"/>
   </record>
-  <record id="base_automation_182_srm_rpt_project_gross_margin" model="base.automation">
+  <record id="automation_srm_rpt_project_gross_margin" model="base.automation">
     <field name="name">SRM - RPT - Project Gross Margin</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
@@ -5299,25 +5299,25 @@ if record.name == 'New':
     <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_sales_report_model__report_type')])]"/>
     <field name="filter_pre_domain">[["report_code","=","Project Gross Margin"]]</field>
     <field name="filter_domain">[["report_code","=","Project Gross Margin"]]</field>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2102_srm_rpt_project_gross_margin')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_srm_rpt_project_gross_margin')])]"/>
   </record>
-  <record id="base_automation_188_report_model_created_date" model="base.automation">
+  <record id="automation_report_model_created_date" model="base.automation">
     <field name="name">Report Model Created Date</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_sales_report_model__create_date')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2126_report_model_created_date')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_report_model_created_date')])]"/>
   </record>
-  <record id="base_automation_189_srm_rpt_project_gross_margin_notify_users" model="base.automation">
+  <record id="automation_srm_rpt_project_gross_margin_notify_users" model="base.automation">
     <field name="name">SRM - RPT - Project Gross Margin - Notify Users</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_sales_report_model__create_date')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2129_srm_rpt_project_gross_margin_notify_users')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_srm_rpt_project_gross_margin_notify_users')])]"/>
   </record>
-  <record id="base_automation_248_srm_rpt_costing_work_sheet" model="base.automation">
+  <record id="automation_srm_rpt_costing_work_sheet" model="base.automation">
     <field name="name">SRM - RPT - Costing Work Sheet</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'sales_report_model')]"/>
@@ -5326,9 +5326,9 @@ if record.name == 'New':
     <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_sales_report_model__as_on_date_1'), ref('BugFix-Accounting.field_sales_report_model__contingency_'), ref('BugFix-Accounting.field_sales_report_model__distributor_addition'), ref('BugFix-Accounting.field_sales_report_model__factory_oh'), ref('BugFix-Accounting.field_sales_report_model__factory_oh_labour'), ref('BugFix-Accounting.field_sales_report_model__idling_rate'), ref('BugFix-Accounting.field_sales_report_model__other_oh'), ref('BugFix-Accounting.field_sales_report_model__report_type'), ref('BugFix-Accounting.field_sales_report_model__sales_oh')])]"/>
     <field name="filter_pre_domain">[["report_code","=","Costing Work Sheet"]]</field>
     <field name="filter_domain">[["report_code","=","Costing Work Sheet"]]</field>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2490_srm_rpt_costing_work_sheet')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_srm_rpt_costing_work_sheet')])]"/>
   </record>
-  <record id="server_action_1675_restrict_delete_in_sales_report_model" model="ir.actions.server">
+  <record id="action_restrict_delete_in_sales_report_model" model="ir.actions.server">
     <field name="name">Restrict Delete in Sales Report Model</field>
     <field name="model_id" ref="BugFix-Accounting.model_sales_report_model"/>
     <field name="state">code</field>
@@ -5344,7 +5344,7 @@ if record.selection_field_Fbw0x == 'Done':
 
     ]]></field>
   </record>
-  <record id="server_action_1746_srm_auto_delete_sub_models" model="ir.actions.server">
+  <record id="action_srm_auto_delete_sub_models" model="ir.actions.server">
     <field name="name">SRM - Auto Delete Sub Models</field>
     <field name="model_id" ref="BugFix-Accounting.model_sales_report_model"/>
     <field name="state">code</field>
@@ -5372,7 +5372,7 @@ if record.id:
     del_record5.unlink()
     ]]></field>
   </record>
-  <record id="server_action_1747_report_model_seq_no" model="ir.actions.server">
+  <record id="action_report_model_seq_no" model="ir.actions.server">
     <field name="name">Report Model Seq.No</field>
     <field name="model_id" ref="BugFix-Accounting.model_sales_report_model"/>
     <field name="state">code</field>
@@ -5392,7 +5392,7 @@ if record.name == 'New':
 
     ]]></field>
   </record>
-  <record id="server_action_1759_srm_rpt_daily_sales_summary" model="ir.actions.server">
+  <record id="action_srm_rpt_daily_sales_summary" model="ir.actions.server">
     <field name="name">SRM - RPT - Daily Sales Summary</field>
     <field name="model_id" ref="BugFix-Accounting.model_sales_report_model"/>
     <field name="state">code</field>
@@ -5459,7 +5459,7 @@ if record.report_type:
   
     ]]></field>
   </record>
-  <record id="server_action_1760_srm_rpt_sales_details_for_incentive_calc" model="ir.actions.server">
+  <record id="action_srm_rpt_sales_details_for_incentive_calc" model="ir.actions.server">
     <field name="name">SRM - RPT - Sales Details for Incentive Calc.</field>
     <field name="model_id" ref="BugFix-Accounting.model_sales_report_model"/>
     <field name="state">code</field>
@@ -5526,7 +5526,7 @@ if record.report_type:
   
     ]]></field>
   </record>
-  <record id="server_action_1761_srm_rpt_production_overview_wip" model="ir.actions.server">
+  <record id="action_srm_rpt_production_overview_wip" model="ir.actions.server">
     <field name="name">SRM - RPT - Production Overview - WIP</field>
     <field name="model_id" ref="BugFix-Accounting.model_sales_report_model"/>
     <field name="state">code</field>
@@ -5581,7 +5581,7 @@ if record.report_type:
   
     ]]></field>
   </record>
-  <record id="server_action_1762_srm_rpt_slow_moving_items" model="ir.actions.server">
+  <record id="action_srm_rpt_slow_moving_items" model="ir.actions.server">
     <field name="name">SRM - RPT - Slow Moving Items</field>
     <field name="model_id" ref="BugFix-Accounting.model_sales_report_model"/>
     <field name="state">code</field>
@@ -5816,7 +5816,7 @@ if record.report_type:
   
     ]]></field>
   </record>
-  <record id="server_action_1763_srm_rpt_sales_production_purchase_report" model="ir.actions.server">
+  <record id="action_srm_rpt_sales_production_purchase_report" model="ir.actions.server">
     <field name="name">SRM - RPT - Sales - Production - Purchase Report</field>
     <field name="model_id" ref="BugFix-Accounting.model_sales_report_model"/>
     <field name="state">code</field>
@@ -5929,7 +5929,7 @@ if record.report_type:
   
     ]]></field>
   </record>
-  <record id="server_action_1764_srm_rpt_production_summary_split" model="ir.actions.server">
+  <record id="action_srm_rpt_production_summary_split" model="ir.actions.server">
     <field name="name">SRM - RPT - Production Summary - Split</field>
     <field name="model_id" ref="BugFix-Accounting.model_sales_report_model"/>
     <field name="state">code</field>
@@ -5980,7 +5980,7 @@ if record.report_type:
       create_sub_model = env['rm_prod_summary_spli'].create({'sales_report_model_id':record.id,'description':line.raw_material_production_id.product_id.id,'production_id':line.raw_material_production_id.id,'prod_qty':line.raw_material_production_id.product_qty,'description_1':line.product_id.id,'bom_qty':line.original_qty,'esti_qty':line.original_qty,'cons_qty':line.product_uom_qty,'variance':line.variance,'avg_cost':line.price_unit,'total_cost':(line.product_uom_qty*line.price_unit),'header_reference': record.name})
     ]]></field>
   </record>
-  <record id="server_action_1765_srm_rpt_production_job_variance" model="ir.actions.server">
+  <record id="action_srm_rpt_production_job_variance" model="ir.actions.server">
     <field name="name">SRM - RPT - Production Job Variance</field>
     <field name="model_id" ref="BugFix-Accounting.model_sales_report_model"/>
     <field name="state">code</field>
@@ -6035,7 +6035,7 @@ if record.report_type:
   
     ]]></field>
   </record>
-  <record id="server_action_2102_srm_rpt_project_gross_margin" model="ir.actions.server">
+  <record id="action_srm_rpt_project_gross_margin" model="ir.actions.server">
     <field name="name">SRM - RPT - Project Gross Margin</field>
     <field name="model_id" ref="BugFix-Accounting.model_sales_report_model"/>
     <field name="state">code</field>
@@ -7010,7 +7010,7 @@ if record.report_type:
     create_estimated_sub_model = env['rm_gross_margin_invo'].create({'sales_report_model_id':record.id,'header_reference': record.name,'group_title':'Actual GP%','amount':actual_gp}) 
     ]]></field>
   </record>
-  <record id="server_action_2116_project_gross_margin_report" model="ir.actions.server">
+  <record id="action_project_gross_margin_report" model="ir.actions.server">
     <field name="name">Project Gross Margin Report</field>
     <field name="model_id" ref="BugFix-Accounting.model_sales_report_model"/>
     <field name="state">code</field>
@@ -7021,7 +7021,7 @@ if report_type:
   create_report_model = env['sales_report_model'].create({'report_type':report_type.id,'project_no':2466,'auto_generated':True}) 
     ]]></field>
   </record>
-  <record id="server_action_2126_report_model_created_date" model="ir.actions.server">
+  <record id="action_report_model_created_date" model="ir.actions.server">
     <field name="name">Report Model Created Date</field>
     <field name="model_id" ref="BugFix-Accounting.model_sales_report_model"/>
     <field name="state">code</field>
@@ -7033,7 +7033,7 @@ record['created_date'] = datetime.datetime.today()
 
     ]]></field>
   </record>
-  <record id="server_action_2127_project_gross_margin_delete_reports" model="ir.actions.server">
+  <record id="action_project_gross_margin_delete_reports" model="ir.actions.server">
     <field name="name">Project Gross Margin - Delete Reports</field>
     <field name="model_id" ref="BugFix-Accounting.model_sales_report_model"/>
     <field name="state">code</field>
@@ -7072,7 +7072,7 @@ if report_type:
         delete_report.unlink()
     ]]></field>
   </record>
-  <record id="server_action_2128_project_gross_margin_report_management_purpose" model="ir.actions.server">
+  <record id="action_project_gross_margin_report_management_purpose" model="ir.actions.server">
     <field name="name">Project Gross Margin Report - Management Purpose</field>
     <field name="model_id" ref="BugFix-Accounting.model_sales_report_model"/>
     <field name="state">code</field>
@@ -7083,7 +7083,7 @@ if report_type:
   create_report_model = env['sales_report_model'].create({'report_type':report_type.id,'project_no':2466,'management_purpose':True}) 
     ]]></field>
   </record>
-  <record id="server_action_2129_srm_rpt_project_gross_margin_notify_users" model="ir.actions.server">
+  <record id="action_srm_rpt_project_gross_margin_notify_users" model="ir.actions.server">
     <field name="name">SRM - RPT - Project Gross Margin - Notify Users</field>
     <field name="model_id" ref="BugFix-Accounting.model_sales_report_model"/>
     <field name="state">next_activity</field>
@@ -7106,7 +7106,7 @@ if report_type:
 
     ]]></field>
   </record>
-  <record id="server_action_2490_srm_rpt_costing_work_sheet" model="ir.actions.server">
+  <record id="action_srm_rpt_costing_work_sheet" model="ir.actions.server">
     <field name="name">SRM - RPT - Costing Work Sheet</field>
     <field name="model_id" ref="BugFix-Accounting.model_sales_report_model"/>
     <field name="state">code</field>
@@ -7640,14 +7640,14 @@ if record.report_type:
 #operation_ids    
     ]]></field>
   </record>
-  <record id="base_automation_117_srm_auto_populate_data_tau" model="base.automation">
+  <record id="automation_srm_auto_populate_data_tau" model="base.automation">
     <field name="name">SRM - Auto Populate Data - TAU</field>
     <field name="active" eval="False"/>
     <field name="model_id" ref="BugFix-Accounting.model_sales_report_model"/>
     <field name="trigger">on_create_or_write</field>
     <field name="filter_domain">[]</field>
   </record>
-  <record id="base_automation_119_srm_auto_populate_data_original" model="base.automation">
+  <record id="automation_srm_auto_populate_data_original" model="base.automation">
     <field name="name">SRM - Auto Populate Data-Original</field>
     <field name="active" eval="False"/>
     <field name="model_id" ref="BugFix-Accounting.model_sales_report_model"/>
@@ -7655,63 +7655,63 @@ if record.report_type:
     <field name="filter_domain">[]</field>
   </record>
     <data noupdate="1">
-    <record id="default_250_x_sales_report_model_active" model="ir.default">
+    <record id="default_sales_report_model_active" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_sales_report_model__active"/>
       <field name="json_value">true</field>
     </record>
-    <record id="default_251_x_sales_report_model_sequence" model="ir.default">
+    <record id="default_sales_report_model_sequence" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_sales_report_model__sequence"/>
       <field name="json_value">10</field>
     </record>
-    <record id="default_395_x_sales_report_model_idling_rate" model="ir.default">
+    <record id="default_sales_report_model_idling_rate" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_sales_report_model__idling_rate"/>
       <field name="json_value">"155"</field>
     </record>
-    <record id="default_396_x_sales_report_model_x_studio_distributor_additi" model="ir.default">
+    <record id="default_sales_report_model_distributor_additi" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_sales_report_model__distributor_addition"/>
       <field name="json_value">"18.5"</field>
     </record>
-    <record id="default_397_x_sales_report_model_sscl" model="ir.default">
+    <record id="default_sales_report_model_sscl" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_sales_report_model__sscl"/>
       <field name="json_value">"2.5"</field>
     </record>
-    <record id="default_398_x_sales_report_model_contingency_" model="ir.default">
+    <record id="default_sales_report_model_contingency" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_sales_report_model__contingency_"/>
       <field name="json_value">"30"</field>
     </record>
-    <record id="default_399_x_sales_report_model_factory_oh_labour" model="ir.default">
+    <record id="default_sales_report_model_factory_oh_labour" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_sales_report_model__factory_oh_labour"/>
       <field name="json_value">"350"</field>
     </record>
-    <record id="default_400_x_sales_report_model_factory_oh" model="ir.default">
+    <record id="default_sales_report_model_factory_oh" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_sales_report_model__factory_oh"/>
       <field name="json_value">"418"</field>
     </record>
-    <record id="default_401_x_sales_report_model_sales_oh" model="ir.default">
+    <record id="default_sales_report_model_sales_oh" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_sales_report_model__sales_oh"/>
       <field name="json_value">"467"</field>
     </record>
-    <record id="default_402_x_sales_report_model_other_oh" model="ir.default">
+    <record id="default_sales_report_model_other_oh" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_sales_report_model__other_oh"/>
       <field name="json_value">"510"</field>
     </record>
-    <record id="default_403_x_sales_report_model_x_studio_oh_absorbed_factor" model="ir.default">
+    <record id="default_sales_report_model_oh_absorbed_factor" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_sales_report_model__oh_absorbed_factory"/>
       <field name="json_value">"768"</field>
     </record>
-    <record id="default_404_x_sales_report_model_profit_mark_up_" model="ir.default">
+    <record id="default_sales_report_model_profit_mark_up" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_sales_report_model__profit_mark_up_"/>
       <field name="json_value">"20"</field>
     </record>
-    <record id="default_405_x_sales_report_model_x_studio_oh_absorbed_2_fact" model="ir.default">
+    <record id="default_sales_report_model_oh_absorbed_2_fact" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_sales_report_model__oh_absorbed_2_factory"/>
       <field name="json_value">"1209"</field>
     </record>
-    <record id="default_406_x_sales_report_model_actuals" model="ir.default">
+    <record id="default_sales_report_model_actuals" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_sales_report_model__actuals"/>
       <field name="json_value">"1"</field>
     </record>
-    <record id="default_256_x_sales_report_model_selection_field_Fbw0x" model="ir.default">
+    <record id="default_sales_report_model_selection_field_Fbw0x" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_sales_report_model__selection_field_Fbw0x"/>
       <field name="json_value">"Draft"</field>
     </record>

@@ -26,10 +26,10 @@ This repo adds an 'Estimate' monetary field to budget lines. Its compute always 
 
 **Server actions (1):**
 
-- **Execute Code** (`server_action_2184_proj_pass_analytic_account_to_lines`, type `code`)
+- **Execute Code** (`action_proj_pass_analytic_account_to_lines`, type `code`)
   - Function: Run by automation on budget lines: copies the budget's Analytic Account onto the line's analytic account.
   - Depends on: `crossovered.budget.lines.crossovered_budget_id` (account_budget), `model crossovered.budget.lines` (account_budget)
-  - Used by: `automation BugFix-Accounting.base_automation_198_proj_pass_analytic_account_to_lines`
+  - Used by: `automation BugFix-Accounting.automation_proj_pass_analytic_account_to_lines`
   <details><summary>code (3 lines)</summary>
 
 ```python
@@ -45,10 +45,10 @@ if record.crossovered_budget_id.analytic_account.id != False:
 
 | Name | Record name | State | Function | Depends on | Used by |
 |---|---|---|---|---|---|
-| PROJ - Pass Analytic Account to Lines | `base_automation_198_proj_pass_analytic_account_to_lines` |  | When a record is created or updated on Budget Line, runs _Execute Code_. | `crossovered.budget.lines.create_date` (account_budget)<br>`model crossovered.budget.lines` (account_budget)<br>`server action BugFix-Accounting.server_action_2184_proj_pass_analytic_account_to_lines` |  |
+| PROJ - Pass Analytic Account to Lines | `automation_proj_pass_analytic_account_to_lines` |  | When a record is created or updated on Budget Line, runs _Execute Code_. | `crossovered.budget.lines.create_date` (account_budget)<br>`model crossovered.budget.lines` (account_budget)<br>`server action BugFix-Accounting.action_proj_pass_analytic_account_to_lines` |  |
 
 **Record rules (1):**
 
 | Name | Record name | Function | Depends on | Used by |
 |---|---|---|---|---|
-| Budget lines multi-company | `rule_332_budget_lines_multi_company` | For everyone (global rule): read/write/create/delete on Budget Line only where `[('company_id', 'in', company_ids)]`. | `crossovered.budget.lines.company_id` (account_budget)<br>`model crossovered.budget.lines` (account_budget) |  |
+| Budget lines multi-company | `rule_budget_lines_multi_company` | For everyone (global rule): read/write/create/delete on Budget Line only where `[('company_id', 'in', company_ids)]`. | `crossovered.budget.lines.company_id` (account_budget)<br>`model crossovered.budget.lines` (account_budget) |  |

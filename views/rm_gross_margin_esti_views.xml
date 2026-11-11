@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="action_2099_rm_gross_margin_estimated" model="ir.actions.act_window">
+  <record id="action_rm_gross_margin_estimated" model="ir.actions.act_window">
     <field name="name">RM Gross Margin - Estimated</field>
     <field name="res_model">rm_gross_margin_esti</field>
     <field name="view_mode">tree,form</field>
   </record>
-    <record id="ported_view_4871_default_form_view_fo_6233055b_75ed_47bf_8232_4667a7f9d72b" model="ir.ui.view">
+    <record id="view_rm_gross_margin_esti_form" model="ir.ui.view">
         <field name="name">Default form view for rm_gross_margin_esti</field>
         <field name="model">rm_gross_margin_esti</field>
         <field name="type">form</field>
@@ -35,7 +35,7 @@
             </form>
         </field>
     </record>
-    <record id="ported_view_4872_default_search_view_aca1482c_811f_4aff_ade3_0748ad1ac819" model="ir.ui.view">
+    <record id="view_rm_gross_margin_esti_search" model="ir.ui.view">
         <field name="name">Default search view for rm_gross_margin_esti</field>
         <field name="model">rm_gross_margin_esti</field>
         <field name="type">search</field>
@@ -50,7 +50,7 @@
             </search>
         </field>
     </record>
-    <record id="ported_view_4870_default_list_view_fo_a37b2709_b9dd_4ac5_8f02_4efcd329d6d2" model="ir.ui.view">
+    <record id="view_rm_gross_margin_esti_list" model="ir.ui.view">
         <field name="name">Default list view for rm_gross_margin_esti</field>
         <field name="model">rm_gross_margin_esti</field>
         <field name="type">tree</field>
@@ -63,13 +63,13 @@
             </tree>
         </field>
     </record>
-    <record id="ported_view_4879_odoo_studio_default_711ca605_7b7e_469e_9a40_a8a43ffb4176" model="ir.ui.view">
+    <record id="view_default_list_view_for_rm_gross_margin_esti_inherit" model="ir.ui.view">
         <field name="name">Odoo Studio: Default list view for rm_gross_margin_esti customization</field>
         <field name="model">rm_gross_margin_esti</field>
         <field name="type">tree</field>
         <field name="priority">99</field>
         <field name="mode">extension</field>
-        <field name="inherit_id" ref="BugFix-Accounting.ported_view_4870_default_list_view_fo_a37b2709_b9dd_4ac5_8f02_4efcd329d6d2"/>
+        <field name="inherit_id" ref="BugFix-Accounting.view_rm_gross_margin_esti_list"/>
         <field name="arch" type="xml">
             <data>
               <xpath expr="//tree[1]" position="attributes">

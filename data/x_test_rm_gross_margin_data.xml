@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data noupdate="1">
-    <!-- DROPPED default_473_account_move_journal_type: selection value '' not in field allowed set -->
+    <!-- DROPPED default_account_move_journal_type: selection value '' not in field allowed set -->
 <!-- upgrade-testing: points at a specific record (company/user/partner/location/stage...), not shipped (company/user specific):
     <record id="default_573_crossovered_budget_total" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_crossovered_budget__total"/>

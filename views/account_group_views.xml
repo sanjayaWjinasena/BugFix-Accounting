@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="ported_view_6033_customization_account_group_tree" model="ir.ui.view">
+  <record id="view_account_group_tree_inherit" model="ir.ui.view">
     <field name="name">Odoo Studio: account.group.tree customization</field>
     <field name="model">account.group</field>
     <field name="type">tree</field>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="sa_f5_x_tp_invoice_line_tp_invoice_linetax_update" model="ir.actions.server">
+  <record id="action_tp_invoice_line_tp_invoice_linetax_update" model="ir.actions.server">
     <field name="name">TP Invoice LineTAX Update</field>
     <field name="model_id" search="[('model', '=', 'tp_invoice_line')]"/>
     <field name="state">code</field>
@@ -22,7 +22,7 @@ record.write({'tax_amount':taxes})
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="server_action_2432_tp_invoice_linetax_update" model="ir.actions.server">
+  <record id="action_tp_invoice_linetax_update" model="ir.actions.server">
     <field name="name">TP Invoice LineTAX Update</field>
     <field name="model_id" search="[('model', '=', 'tp_invoice_line')]"/>
     <field name="state">code</field>
@@ -44,15 +44,15 @@ record.write({'tax_amount':taxes})
 
 ]]></field>
   </record>
-  <record id="base_automation_242_tp_invoice_linetax_update" model="base.automation">
+  <record id="automation_tp_invoice_linetax_update" model="base.automation">
     <field name="name">TP Invoice LineTAX Update</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'tp_invoice_line')]"/>
     <field name="trigger">on_change</field>
     <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_tp_invoice_line__taxes')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2432_tp_invoice_linetax_update')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_tp_invoice_linetax_update')])]"/>
   </record>
-  <record id="server_action_2432_tp_invoice_linetax_update" model="ir.actions.server">
+  <record id="action_tp_invoice_linetax_update" model="ir.actions.server">
     <field name="name">TP Invoice LineTAX Update</field>
     <field name="model_id" ref="BugFix-Accounting.model_tp_invoice_line"/>
     <field name="state">code</field>
@@ -76,11 +76,11 @@ record.write({'tax_amount':taxes})
     ]]></field>
   </record>
     <data noupdate="1">
-    <record id="default_176_x_tp_invoice_line_active" model="ir.default">
+    <record id="default_tp_invoice_line_active" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_tp_invoice_line__active"/>
       <field name="json_value">true</field>
     </record>
-    <record id="default_177_x_tp_invoice_line_sequence" model="ir.default">
+    <record id="default_tp_invoice_line_sequence" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_tp_invoice_line__sequence"/>
       <field name="json_value">10</field>
     </record>

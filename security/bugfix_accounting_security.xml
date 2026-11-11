@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="rule_f7_x_custom_currency_rate_jin_multi_company_custom_currency_rate" model="ir.rule">
+  <record id="rule_f7_custom_currency_rate_jin_multi_company_custom_currency_rate" model="ir.rule">
     <field name="name">JIN - Multi-Company - Custom Currency Rate</field>
     <field name="model_id" search="[('model', '=', 'custom_currency_rate')]"/>
     <field name="domain_force">['|', ('accounting_company_id', 'in', company_ids), ('accounting_company_id', '=', False)]</field>
   </record>
-  <record id="rule_f7_x_custom_currency_jin_multi_company_custom_currency" model="ir.rule">
+  <record id="rule_f7_custom_currency_jin_multi_company_custom_currency" model="ir.rule">
     <field name="name">JIN - Multi-Company - Custom Currency</field>
     <field name="model_id" search="[('model', '=', 'custom_currency')]"/>
     <field name="domain_force">['|', ('accounting_company_id', 'in', company_ids), ('accounting_company_id', '=', False)]</field>
@@ -41,7 +41,7 @@
     <field name="active" eval="True"/>
     <field name="groups" eval="[(6, 0, [ref('account.group_account_invoice')])]"/>
   </record>
-  <record id="rule_135_account_analytic_line_timesheet_user" model="ir.rule">
+  <record id="rule_account_analytic_line_timesheet_user" model="ir.rule">
     <field name="name">account.analytic.line.timesheet.user</field>
     <field name="model_id" ref="BugFix-Accounting.model_account_analytic_line"/>
     <field name="domain_force">[
@@ -59,7 +59,7 @@
     <field name="active" eval="True"/>
     <field name="groups" eval="[(6, 0, [ref('hr_timesheet.group_hr_timesheet_user')])]"/>
   </record>
-  <record id="rule_136_account_analytic_line_timesheet_approver" model="ir.rule">
+  <record id="rule_account_analytic_line_timesheet_approver" model="ir.rule">
     <field name="name">account.analytic.line.timesheet.approver</field>
     <field name="model_id" ref="BugFix-Accounting.model_account_analytic_line"/>
     <field name="domain_force">[
@@ -75,7 +75,7 @@
     <field name="active" eval="True"/>
     <field name="groups" eval="[(6, 0, [ref('hr_timesheet.group_hr_timesheet_approver')])]"/>
   </record>
-  <record id="rule_137_account_analytic_line_timesheet_manager" model="ir.rule">
+  <record id="rule_account_analytic_line_timesheet_manager" model="ir.rule">
     <field name="name">account.analytic.line.timesheet.manager</field>
     <field name="model_id" ref="BugFix-Accounting.model_account_analytic_line"/>
     <field name="domain_force">[('project_id', '!=', False)]</field>
@@ -86,7 +86,7 @@
     <field name="active" eval="True"/>
     <field name="groups" eval="[(6, 0, [ref('hr_timesheet.group_timesheet_manager')])]"/>
   </record>
-  <record id="rule_181_account_analytic_line_timesheet_user_update_unlink" model="ir.rule">
+  <record id="rule_account_analytic_line_timesheet_user_update_unlink" model="ir.rule">
     <field name="name">account.analytic.line.timesheet.user.update-unlink</field>
     <field name="model_id" ref="BugFix-Accounting.model_account_analytic_line"/>
     <field name="domain_force">[
@@ -106,7 +106,7 @@
     <field name="active" eval="True"/>
     <field name="groups" eval="[(6, 0, [ref('hr_timesheet.group_hr_timesheet_user')])]"/>
   </record>
-  <record id="rule_430_account_analytic_line_helpdesk_user" model="ir.rule">
+  <record id="rule_account_analytic_line_helpdesk_user" model="ir.rule">
     <field name="name">account.analytic.line.helpdesk.user</field>
     <field name="model_id" ref="BugFix-Accounting.model_account_analytic_line"/>
     <field name="domain_force">[('user_id', '=', user.id), ('helpdesk_ticket_id', '!=', False)]</field>
@@ -117,7 +117,7 @@
     <field name="active" eval="True"/>
     <field name="groups" eval="[(6, 0, [ref('helpdesk.group_helpdesk_user')])]"/>
   </record>
-  <record id="rule_431_account_analytic_line_timesheet_manager" model="ir.rule">
+  <record id="rule_account_analytic_line_timesheet_manager_2" model="ir.rule">
     <field name="name">account.analytic.line.timesheet.manager</field>
     <field name="model_id" ref="BugFix-Accounting.model_account_analytic_line"/>
     <field name="domain_force">[('helpdesk_ticket_id', '!=', False)]</field>
@@ -128,7 +128,7 @@
     <field name="active" eval="True"/>
     <field name="groups" eval="[(6, 0, [ref('helpdesk.group_helpdesk_manager')])]"/>
   </record>
-  <record id="rule_675_account_analytic_line_readonly_user" model="ir.rule">
+  <record id="rule_account_analytic_line_readonly_user" model="ir.rule">
     <field name="name">account.analytic.line.readonly.user</field>
     <field name="model_id" ref="BugFix-Accounting.model_account_analytic_line"/>
     <field name="domain_force">[(1, '=', 1)]</field>
@@ -149,7 +149,7 @@
     <field name="perm_unlink" eval="True"/>
     <field name="active" eval="True"/>
   </record>
-  <record id="rule_146_point_of_sale_bank_statement_pos_user" model="ir.rule">
+  <record id="rule_point_of_sale_bank_statement_pos_user" model="ir.rule">
     <field name="name">Point Of Sale Bank Statement POS User</field>
     <field name="model_id" ref="account.model_account_bank_statement"/>
     <field name="domain_force">[(1, '=', 1)]</field>
@@ -160,7 +160,7 @@
     <field name="active" eval="True"/>
     <field name="groups" eval="[(6, 0, [ref('point_of_sale.group_pos_user')])]"/>
   </record>
-  <record id="rule_147_point_of_sale_bank_statement_accountant" model="ir.rule">
+  <record id="rule_point_of_sale_bank_statement_accountant" model="ir.rule">
     <field name="name">Point Of Sale Bank Statement Accountant</field>
     <field name="model_id" ref="account.model_account_bank_statement"/>
     <field name="domain_force">[(1, '=', 1)]</field>
@@ -181,7 +181,7 @@
     <field name="perm_unlink" eval="True"/>
     <field name="active" eval="True"/>
   </record>
-  <record id="rule_148_point_of_sale_bank_statement_line_pos_user" model="ir.rule">
+  <record id="rule_point_of_sale_bank_statement_line_pos_user" model="ir.rule">
     <field name="name">Point Of Sale Bank Statement Line POS User</field>
     <field name="model_id" ref="BugFix-Accounting.model_account_bank_statement_line"/>
     <field name="domain_force">[(1, '=', 1)]</field>
@@ -192,7 +192,7 @@
     <field name="active" eval="True"/>
     <field name="groups" eval="[(6, 0, [ref('point_of_sale.group_pos_user')])]"/>
   </record>
-  <record id="rule_149_point_of_sale_bank_statement_line_accountant" model="ir.rule">
+  <record id="rule_point_of_sale_bank_statement_line_accountant" model="ir.rule">
     <field name="name">Point Of Sale Bank Statement Line Accountant</field>
     <field name="model_id" ref="BugFix-Accounting.model_account_bank_statement_line"/>
     <field name="domain_force">[(1, '=', 1)]</field>
@@ -203,7 +203,7 @@
     <field name="active" eval="True"/>
     <field name="groups" eval="[(6, 0, [ref('account.group_account_invoice')])]"/>
   </record>
-  <record id="rule_330_budget_post_multi_company" model="ir.rule">
+  <record id="rule_budget_post_multi_company" model="ir.rule">
     <field name="name">Budget post multi-company</field>
     <field name="model_id" ref="account_budget.model_account_budget_post"/>
     <field name="domain_force">[('company_id', 'in', company_ids)]</field>
@@ -233,7 +233,7 @@
     <field name="perm_unlink" eval="True"/>
     <field name="active" eval="True"/>
   </record>
-  <record id="rule_170_personal_invoices_analysis" model="ir.rule">
+  <record id="rule_personal_invoices_analysis" model="ir.rule">
     <field name="name">Personal Invoices Analysis</field>
     <field name="model_id" ref="account.model_account_invoice_report"/>
     <field name="domain_force">['|', ('invoice_user_id', '=', user.id), ('invoice_user_id', '=', False)]</field>
@@ -244,7 +244,7 @@
     <field name="active" eval="True"/>
     <field name="groups" eval="[(6, 0, [ref('sales_team.group_sale_salesman')])]"/>
   </record>
-  <record id="rule_171_all_invoices_analysis" model="ir.rule">
+  <record id="rule_all_invoices_analysis" model="ir.rule">
     <field name="name">All Invoices Analysis</field>
     <field name="model_id" ref="account.model_account_invoice_report"/>
     <field name="domain_force">[(1, '=', 1)]</field>
@@ -329,7 +329,7 @@
     <field name="active" eval="True"/>
     <field name="groups" eval="[(6, 0, [ref('account.group_account_invoice')])]"/>
   </record>
-  <record id="rule_142_purchase_user_account_move" model="ir.rule">
+  <record id="rule_purchase_user_account_move" model="ir.rule">
     <field name="name">Purchase User Account Move</field>
     <field name="model_id" ref="BugFix-Accounting.model_account_move"/>
     <field name="domain_force">[('move_type', 'in', ('in_invoice', 'in_refund', 'in_receipt'))]</field>
@@ -340,7 +340,7 @@
     <field name="active" eval="True"/>
     <field name="groups" eval="[(6, 0, [ref('purchase.group_purchase_user')])]"/>
   </record>
-  <record id="rule_172_personal_invoices" model="ir.rule">
+  <record id="rule_personal_invoices" model="ir.rule">
     <field name="name">Personal Invoices</field>
     <field name="model_id" ref="BugFix-Accounting.model_account_move"/>
     <field name="domain_force">[('move_type', 'in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund')), '|', ('invoice_user_id', '=', user.id), ('invoice_user_id', '=', False)]</field>
@@ -351,7 +351,7 @@
     <field name="active" eval="True"/>
     <field name="groups" eval="[(6, 0, [ref('sales_team.group_sale_salesman')])]"/>
   </record>
-  <record id="rule_173_all_invoices" model="ir.rule">
+  <record id="rule_all_invoices" model="ir.rule">
     <field name="name">All Invoices</field>
     <field name="model_id" ref="BugFix-Accounting.model_account_move"/>
     <field name="domain_force">[('move_type', 'in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund'))]</field>
@@ -362,7 +362,7 @@
     <field name="active" eval="True"/>
     <field name="groups" eval="[(6, 0, [ref('sales_team.group_sale_salesman_all_leads')])]"/>
   </record>
-  <record id="rule_634_expense_team_approver_account_move" model="ir.rule">
+  <record id="rule_expense_team_approver_account_move" model="ir.rule">
     <field name="name">Expense Team Approver Account Move</field>
     <field name="model_id" ref="BugFix-Accounting.model_account_move"/>
     <field name="domain_force">[('line_ids.expense_id', '!=', False)]</field>
@@ -373,7 +373,7 @@
     <field name="active" eval="True"/>
     <field name="groups" eval="[(6, 0, [ref('hr_expense.group_hr_expense_team_approver')])]"/>
   </record>
-  <record id="rule_637_point_of_sale_account_move" model="ir.rule">
+  <record id="rule_point_of_sale_account_move" model="ir.rule">
     <field name="name">Point Of Sale Account move</field>
     <field name="model_id" ref="BugFix-Accounting.model_account_move"/>
     <field name="domain_force">[('pos_order_ids', '!=', False)]</field>
@@ -384,7 +384,7 @@
     <field name="active" eval="True"/>
     <field name="groups" eval="[(6, 0, [ref('point_of_sale.group_pos_user')])]"/>
   </record>
-  <record id="rule_776_invoice_pos_user" model="ir.rule">
+  <record id="rule_invoice_pos_user" model="ir.rule">
     <field name="name">Invoice POS User</field>
     <field name="model_id" ref="BugFix-Accounting.model_account_move"/>
     <field name="domain_force">[('pos_order_ids', '!=', False)]</field>
@@ -438,7 +438,7 @@
     <field name="active" eval="True"/>
     <field name="groups" eval="[(6, 0, [ref('account.group_account_readonly')])]"/>
   </record>
-  <record id="rule_100_readonly_move_line" model="ir.rule">
+  <record id="rule_readonly_move_line" model="ir.rule">
     <field name="name">Readonly Move Line</field>
     <field name="model_id" ref="BugFix-Accounting.model_account_move_line"/>
     <field name="domain_force">[(1, '=', 1)]</field>
@@ -449,7 +449,7 @@
     <field name="active" eval="True"/>
     <field name="groups" eval="[(6, 0, [ref('account.group_account_invoice')])]"/>
   </record>
-  <record id="rule_141_purchase_user_account_move_line" model="ir.rule">
+  <record id="rule_purchase_user_account_move_line" model="ir.rule">
     <field name="name">Purchase User Account Move Line</field>
     <field name="model_id" ref="BugFix-Accounting.model_account_move_line"/>
     <field name="domain_force">[('move_id.move_type', 'in', ('in_invoice', 'in_refund', 'in_receipt'))]</field>
@@ -460,7 +460,7 @@
     <field name="active" eval="True"/>
     <field name="groups" eval="[(6, 0, [ref('purchase.group_purchase_user')])]"/>
   </record>
-  <record id="rule_174_personal_invoice_lines" model="ir.rule">
+  <record id="rule_personal_invoice_lines" model="ir.rule">
     <field name="name">Personal Invoice Lines</field>
     <field name="model_id" ref="BugFix-Accounting.model_account_move_line"/>
     <field name="domain_force">[('move_id.move_type', 'in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund')), '|', ('move_id.invoice_user_id', '=', user.id), ('move_id.invoice_user_id', '=', False)]</field>
@@ -471,7 +471,7 @@
     <field name="active" eval="True"/>
     <field name="groups" eval="[(6, 0, [ref('sales_team.group_sale_salesman')])]"/>
   </record>
-  <record id="rule_175_all_invoice_lines" model="ir.rule">
+  <record id="rule_all_invoice_lines" model="ir.rule">
     <field name="name">All Invoice Lines</field>
     <field name="model_id" ref="BugFix-Accounting.model_account_move_line"/>
     <field name="domain_force">[('move_id.move_type', 'in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund'))]</field>
@@ -482,7 +482,7 @@
     <field name="active" eval="True"/>
     <field name="groups" eval="[(6, 0, [ref('sales_team.group_sale_salesman_all_leads')])]"/>
   </record>
-  <record id="rule_329_expense_team_approver_account_move_line" model="ir.rule">
+  <record id="rule_expense_team_approver_account_move_line" model="ir.rule">
     <field name="name">Expense Team Approver Account Move Line</field>
     <field name="model_id" ref="BugFix-Accounting.model_account_move_line"/>
     <field name="domain_force">[('expense_id', '!=', False)]</field>
@@ -493,7 +493,7 @@
     <field name="active" eval="True"/>
     <field name="groups" eval="[(6, 0, [ref('hr_expense.group_hr_expense_team_approver')])]"/>
   </record>
-  <record id="rule_636_point_of_sale_account_move_line" model="ir.rule">
+  <record id="rule_point_of_sale_account_move_line" model="ir.rule">
     <field name="name">Point Of Sale Account move line</field>
     <field name="model_id" ref="BugFix-Accounting.model_account_move_line"/>
     <field name="domain_force">[('move_id.pos_order_ids','!=',False)]</field>
@@ -504,7 +504,7 @@
     <field name="active" eval="True"/>
     <field name="groups" eval="[(6, 0, [ref('point_of_sale.group_pos_user')])]"/>
   </record>
-  <record id="rule_769_readonly_invoice_send_and_print" model="ir.rule">
+  <record id="rule_readonly_invoice_send_and_print" model="ir.rule">
     <field name="name">Readonly Invoice Send and Print</field>
     <field name="model_id" ref="account.model_account_move_send"/>
     <field name="domain_force">[(1, '=', 1)]</field>
@@ -515,7 +515,7 @@
     <field name="active" eval="True"/>
     <field name="groups" eval="[(6, 0, [ref('account.group_account_invoice')])]"/>
   </record>
-  <record id="rule_777_personal_invoice_send_and_print" model="ir.rule">
+  <record id="rule_personal_invoice_send_and_print" model="ir.rule">
     <field name="name">Personal Invoice Send and Print</field>
     <field name="model_id" ref="account.model_account_move_send"/>
     <field name="domain_force">[('move_ids.move_type', 'in', ('out_invoice', 'out_refund')), '|', ('move_ids.invoice_user_id', '=', user.id), ('move_ids.invoice_user_id', '=', False)]</field>
@@ -526,7 +526,7 @@
     <field name="active" eval="True"/>
     <field name="groups" eval="[(6, 0, [ref('sales_team.group_sale_salesman')])]"/>
   </record>
-  <record id="rule_778_all_invoice_send_and_print" model="ir.rule">
+  <record id="rule_all_invoice_send_and_print" model="ir.rule">
     <field name="name">All Invoice Send and Print</field>
     <field name="model_id" ref="account.model_account_move_send"/>
     <field name="domain_force">[('move_ids.move_type', 'in', ('out_invoice', 'out_refund'))]</field>
@@ -587,7 +587,7 @@
     <field name="perm_unlink" eval="True"/>
     <field name="active" eval="True"/>
   </record>
-  <record id="rule_768_tax_group_multi_company" model="ir.rule">
+  <record id="rule_tax_group_multi_company" model="ir.rule">
     <field name="name">Tax group multi-company</field>
     <field name="model_id" ref="BugFix-Accounting.model_account_tax_group"/>
     <field name="domain_force">[('company_id', 'parent_of', company_ids)]</field>
@@ -597,7 +597,7 @@
     <field name="perm_unlink" eval="True"/>
     <field name="active" eval="True"/>
   </record>
-  <record id="rule_631_tax_repartition_multi_company" model="ir.rule">
+  <record id="rule_tax_repartition_multi_company" model="ir.rule">
     <field name="name">Tax Repartition multi-company</field>
     <field name="model_id" ref="account.model_account_tax_repartition_line"/>
     <field name="domain_force">['|',('company_id','=',False), ('company_id', 'parent_of', company_ids)]</field>
@@ -607,7 +607,7 @@
     <field name="perm_unlink" eval="True"/>
     <field name="active" eval="True"/>
   </record>
-  <record id="rule_331_budget_multi_company" model="ir.rule">
+  <record id="rule_budget_multi_company" model="ir.rule">
     <field name="name">Budget multi-company</field>
     <field name="model_id" ref="BugFix-Accounting.model_crossovered_budget"/>
     <field name="domain_force">[('company_id', 'in', company_ids)]</field>
@@ -617,7 +617,7 @@
     <field name="perm_unlink" eval="True"/>
     <field name="active" eval="True"/>
   </record>
-  <record id="rule_332_budget_lines_multi_company" model="ir.rule">
+  <record id="rule_budget_lines_multi_company" model="ir.rule">
     <field name="name">Budget lines multi-company</field>
     <field name="model_id" ref="BugFix-Accounting.model_crossovered_budget_lines"/>
     <field name="domain_force">[('company_id', 'in', company_ids)]</field>
@@ -646,7 +646,7 @@
     <field name="perm_unlink" eval="True"/>
     <field name="active" eval="True"/>
   </record>
-  <record id="rule_445_public_product_template" model="ir.rule">
+  <record id="rule_public_product_template" model="ir.rule">
     <field name="name">Public product template</field>
     <field name="model_id" ref="BugFix-Accounting.model_product_template"/>
     <field name="domain_force">[('website_published', '=', True), ("sale_ok", "=", True)]</field>
@@ -657,7 +657,7 @@
     <field name="active" eval="True"/>
     <field name="groups" eval="[(6, 0, [ref('base.group_portal'), ref('base.group_public')])]"/>
   </record>
-  <record id="rule_521_jin_multi_company_consignment_charge_header" model="ir.rule">
+  <record id="rule_jin_multi_company_consignment_charge_header" model="ir.rule">
     <field name="name">JIN - Multi-Company - Consignment Charge Header</field>
     <field name="model_id" ref="BugFix-Accounting.model_consignment_charge_h"/>
     <field name="domain_force">['|', ('accounting_company_id', 'in', company_ids), ('accounting_company_id', '=', False)]</field>
@@ -667,7 +667,7 @@
     <field name="perm_unlink" eval="True"/>
     <field name="active" eval="True"/>
   </record>
-  <record id="rule_562_jin_multi_company_custom_currency" model="ir.rule">
+  <record id="rule_jin_multi_company_custom_currency" model="ir.rule">
     <field name="name">JIN - Multi-Company - Custom Currency</field>
     <field name="model_id" ref="BugFix-Accounting.model_custom_currency"/>
     <field name="domain_force">['|', ('accounting_company_id', 'in', company_ids), ('accounting_company_id', '=', False)]</field>
@@ -677,7 +677,7 @@
     <field name="perm_unlink" eval="True"/>
     <field name="active" eval="True"/>
   </record>
-  <record id="rule_563_jin_multi_company_custom_currency_rate" model="ir.rule">
+  <record id="rule_jin_multi_company_custom_currency_rate" model="ir.rule">
     <field name="name">JIN - Multi-Company - Custom Currency Rate</field>
     <field name="model_id" ref="BugFix-Accounting.model_custom_currency_rate"/>
     <field name="domain_force">['|', ('accounting_company_id', 'in', company_ids), ('accounting_company_id', '=', False)]</field>
@@ -687,7 +687,7 @@
     <field name="perm_unlink" eval="True"/>
     <field name="active" eval="True"/>
   </record>
-  <record id="rule_629_jin_multi_company_journal_types" model="ir.rule">
+  <record id="rule_jin_multi_company_journal_types" model="ir.rule">
     <field name="name">JIN - Multi-Company - Journal Types</field>
     <field name="model_id" ref="BugFix-Accounting.model_journal_types"/>
     <field name="domain_force">['|', ('accounting_company_id', 'in', company_ids), ('accounting_company_id', '=', False)]</field>
@@ -697,7 +697,7 @@
     <field name="perm_unlink" eval="True"/>
     <field name="active" eval="True"/>
   </record>
-  <record id="rule_516_jin_multi_company_lc_header" model="ir.rule">
+  <record id="rule_jin_multi_company_lc_header" model="ir.rule">
     <field name="name">JIN - Multi-Company - LC Header</field>
     <field name="model_id" ref="BugFix-Accounting.model_lc_header"/>
     <field name="domain_force">['|', ('accounting_company_id', 'in', company_ids), ('accounting_company_id', '=', False)]</field>
@@ -707,7 +707,7 @@
     <field name="perm_unlink" eval="True"/>
     <field name="active" eval="True"/>
   </record>
-  <record id="rule_570_jin_multi_company_misc_charge_codes" model="ir.rule">
+  <record id="rule_jin_multi_company_misc_charge_codes" model="ir.rule">
     <field name="name">JIN - Multi-Company - Misc Charge Codes</field>
     <field name="model_id" ref="BugFix-Accounting.model_misc_charge_codes"/>
     <field name="domain_force">['|', ('accounting_company_id', 'in', company_ids), ('accounting_company_id', '=', False)]</field>
@@ -717,7 +717,7 @@
     <field name="perm_unlink" eval="True"/>
     <field name="active" eval="True"/>
   </record>
-    <record id="rule_570_jin_multi_company_misc_charge_codes" model="ir.rule">
+    <record id="rule_jin_multi_company_misc_charge_codes" model="ir.rule">
       <field name="name">JIN - Multi-Company - Misc Charge Codes</field>
       <field name="model_id" ref="BugFix-Accounting.model_misc_charge_codes"/>
       <field name="domain_force"> ['|', ('accounting_company_id', 'in', company_ids), ('accounting_company_id', '=', False)]</field>
@@ -727,7 +727,7 @@
       <field name="perm_unlink" eval="True"/>
       <field name="active" eval="True"/>
     </record>
-    <record id="rule_516_jin_multi_company_lc_header" model="ir.rule">
+    <record id="rule_jin_multi_company_lc_header" model="ir.rule">
       <field name="name">JIN - Multi-Company - LC Header</field>
       <field name="model_id" ref="BugFix-Accounting.model_lc_header"/>
       <field name="domain_force">['|', ('accounting_company_id', 'in', company_ids), ('accounting_company_id', '=', False)]</field>
@@ -737,7 +737,7 @@
       <field name="perm_unlink" eval="True"/>
       <field name="active" eval="True"/>
     </record>
-    <record id="rule_521_jin_multi_company_consignment_charge_header" model="ir.rule">
+    <record id="rule_jin_multi_company_consignment_charge_header" model="ir.rule">
       <field name="name">JIN - Multi-Company - Consignment Charge Header</field>
       <field name="model_id" ref="BugFix-Accounting.model_consignment_charge_h"/>
       <field name="domain_force"> ['|', ('accounting_company_id', 'in', company_ids), ('accounting_company_id', '=', False)]</field>

@@ -6,7 +6,7 @@
 
 *Extends a model created by `analytic`.*
 
-Other repos that use this model: `record rule BugFix-Analytics.rule_63_analytic_multi_company_rule` (BugFix-Analytics)<br>`sale.order.line._bugfix_analytics_resolve_account()` (BugFix-Analytics)<br>`server action BugFix-Sales.server_action_2178_proj_create_budget_entries` (BugFix-Sales)<br>`stock.picking.analytic_account` (BugFix-Analytics)<br>`window action BugFix-Analytics.act_window_2333_analytic_account` (BugFix-Analytics)<br>`window action BugFix-Analytics.act_window_3276_account_analytic_account` (BugFix-Analytics)<br>`work_center_costing.general_analytic_tag` (BugFix-Studio-Misc)<br>`work_center_costing.labour_analytic_tag` (BugFix-Studio-Misc)<details><summary>+1 more</summary>`work_center_costing.overhead_analytic_tag` (BugFix-Studio-Misc)</details>
+Other repos that use this model: `record rule BugFix-Analytics.rule_63_analytic_multi_company_rule` (BugFix-Analytics)<br>`sale.order.line._bugfix_analytics_resolve_account()` (BugFix-Analytics)<br>`server action BugFix-Sales.action_proj_create_budget_entries` (BugFix-Sales)<br>`stock.picking.analytic_account` (BugFix-Analytics)<br>`window action BugFix-Analytics.action_analytic_account` (BugFix-Analytics)<br>`window action BugFix-Analytics.action_account_analytic_account` (BugFix-Analytics)<br>`work_center_costing.general_analytic_tag` (BugFix-Studio-Misc)<br>`work_center_costing.labour_analytic_tag` (BugFix-Studio-Misc)<details><summary>+1 more</summary>`work_center_costing.overhead_analytic_tag` (BugFix-Studio-Misc)</details>
 
 **Summary:**
 
@@ -51,11 +51,11 @@ This repo adds no fields to analytic accounts. It adds an optional record ID col
 
 | Name | Record name | Function | Depends on | Used by |
 |---|---|---|---|---|
-| Analytic Account | `action_2333_analytic_account` | Opens **Analytic Account** records (tree,form), filtered to `[('plan_id', '=', active_id)]`. | `account.analytic.account.plan_id` (analytic)<br>`model account.analytic.account` (analytic) | `view BugFix-Accounting.view_5073_odoo_studio_account_analytic_group_form_customization_e` |
-| account.analytic.account | `action_3276_account_analytic_account` | Opens **Analytic Account** records (kanban,tree,form). | `model account.analytic.account` (analytic) |  |
+| Analytic Account | `action_analytic_account` | Opens **Analytic Account** records (tree,form), filtered to `[('plan_id', '=', active_id)]`. | `account.analytic.account.plan_id` (analytic)<br>`model account.analytic.account` (analytic) | `view BugFix-Accounting.view_account_analytic_group_form_inherit` |
+| account.analytic.account | `action_account_analytic_account` | Opens **Analytic Account** records (kanban,tree,form). | `model account.analytic.account` (analytic) |  |
 
 **Views (1):**
 
 | Name | Record name | Type | What it changes | Function | Depends on | Used by |
 |---|---|---|---|---|---|---|
-| Odoo Studio: account.analytic.account.list customization | `ported_view_5075_customization_account_analytic_account_tree` | tree | after `//field[@name='balance']`: add field id | Adds an optional record ID column after Balance in the Analytic Accounts list. | `view analytic.view_account_analytic_account_list` (analytic) |  |
+| Odoo Studio: account.analytic.account.list customization | `view_account_analytic_account_list_inherit` | tree | after `//field[@name='balance']`: add field id | Adds an optional record ID column after Balance in the Analytic Accounts list. | `view analytic.view_account_analytic_account_list` (analytic) |  |

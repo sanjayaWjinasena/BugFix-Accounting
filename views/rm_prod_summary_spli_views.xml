@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="action_1754_rm_prod_summary_split" model="ir.actions.act_window">
+  <record id="action_rm_prod_summary_split" model="ir.actions.act_window">
     <field name="name">RM Prod. Summary Split</field>
     <field name="res_model">rm_prod_summary_spli</field>
     <field name="view_mode">tree,form</field>
   </record>
-    <record id="ported_view_3936_default_form_view_fo_9f2ff4db_10ca_4848_aa31_d452c05bc15c" model="ir.ui.view">
+    <record id="view_rm_prod_summary_spli_form" model="ir.ui.view">
         <field name="name">Default form view for rm_prod_summary_spli</field>
         <field name="model">rm_prod_summary_spli</field>
         <field name="type">form</field>
@@ -35,7 +35,7 @@
             </form>
         </field>
     </record>
-    <record id="ported_view_3937_default_search_view_b3fbef6a_5931_490b_8ee6_9cf0ea636639" model="ir.ui.view">
+    <record id="view_rm_prod_summary_spli_search" model="ir.ui.view">
         <field name="name">Default search view for rm_prod_summary_spli</field>
         <field name="model">rm_prod_summary_spli</field>
         <field name="type">search</field>
@@ -50,7 +50,7 @@
             </search>
         </field>
     </record>
-    <record id="ported_view_3935_default_list_view_fo_f2b77645_4d95_4aa1_83c9_0622d79dcc78" model="ir.ui.view">
+    <record id="view_rm_prod_summary_spli_list" model="ir.ui.view">
         <field name="name">Default list view for rm_prod_summary_spli</field>
         <field name="model">rm_prod_summary_spli</field>
         <field name="type">tree</field>
@@ -63,13 +63,13 @@
             </tree>
         </field>
     </record>
-    <record id="ported_view_3938_odoo_studio_default_06d8db89_39f8_4f7c_ad81_ffb70a49da31" model="ir.ui.view">
+    <record id="view_default_list_view_for_rm_prod_summary_spli_inherit" model="ir.ui.view">
         <field name="name">Odoo Studio: Default list view for rm_prod_summary_spli customization</field>
         <field name="model">rm_prod_summary_spli</field>
         <field name="type">tree</field>
         <field name="priority">99</field>
         <field name="mode">extension</field>
-        <field name="inherit_id" ref="BugFix-Accounting.ported_view_3935_default_list_view_fo_f2b77645_4d95_4aa1_83c9_0622d79dcc78"/>
+        <field name="inherit_id" ref="BugFix-Accounting.view_rm_prod_summary_spli_list"/>
         <field name="arch" type="xml">
             <data>
               <xpath expr="//tree[1]" position="attributes">

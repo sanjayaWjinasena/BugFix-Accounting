@@ -7,14 +7,14 @@
     <field name="domain">[('created_from_sales_order_1', '=', active_id)]</field>
     <field name="context">{'search_default_created_from_sales_order_1': active_id,'default_created_from_sales_order_1': active_id}</field>
   </record>
-  <record id="action_2180_budget" model="ir.actions.act_window">
+  <record id="action_budget" model="ir.actions.act_window">
     <field name="name">Budget</field>
     <field name="res_model">crossovered.budget</field>
     <field name="view_mode">tree,form</field>
     <field name="domain">[('created_from_sales_order_1', '=', active_id)]</field>
     <field name="context">{'search_default_created_from_sales_order_1': active_id,'default_created_from_sales_order_1': active_id}</field>
   </record>
-    <record id="ported_view_4942_odoo_studio_crossove_a555672e_6698_4232_9115_1daaed24a1bb" model="ir.ui.view">
+    <record id="view_crossovered_budget_view_form_inherit" model="ir.ui.view">
         <field name="name">Odoo Studio: crossovered.budget.view.form customization</field>
         <field name="model">crossovered.budget</field>
         <field name="type">form</field>
@@ -78,7 +78,7 @@
             </data>
         </field>
     </record>
-    <record id="ported_view_5912_odoo_studio_crossove_b4e03115_c663_4324_8258_dcddf1e8a51d" model="ir.ui.view">
+    <record id="view_crossovered_budget_view_tree_inherit" model="ir.ui.view">
         <field name="name">Odoo Studio: crossovered.budget.view.tree customization</field>
         <field name="model">crossovered.budget</field>
         <field name="type">tree</field>
@@ -93,7 +93,7 @@
             </data>
         </field>
     </record>
-  <record id="act_window_2180_budget" model="ir.actions.act_window">
+  <record id="action_budget_2" model="ir.actions.act_window">
     <field name="name">Budget</field>
     <field name="res_model">crossovered.budget</field>
     <field name="view_mode">tree,form</field>

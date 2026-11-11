@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="action_1753_rm_sales_prod_purch" model="ir.actions.act_window">
+  <record id="action_rm_sales_prod_purch" model="ir.actions.act_window">
     <field name="name">RM Sales Prod. Purch.</field>
     <field name="res_model">rm_sales_prod_purch</field>
     <field name="view_mode">tree,form</field>
   </record>
-    <record id="ported_view_3932_default_form_view_fo_52e990fa_e355_47f9_9cb1_9be71892a34b" model="ir.ui.view">
+    <record id="view_rm_sales_prod_purch_form" model="ir.ui.view">
         <field name="name">Default form view for rm_sales_prod_purch</field>
         <field name="model">rm_sales_prod_purch</field>
         <field name="type">form</field>
@@ -35,7 +35,7 @@
             </form>
         </field>
     </record>
-    <record id="ported_view_3933_default_search_view_b017dd1c_861a_489e_8cfe_83fc4b2c11b6" model="ir.ui.view">
+    <record id="view_rm_sales_prod_purch_search" model="ir.ui.view">
         <field name="name">Default search view for rm_sales_prod_purch</field>
         <field name="model">rm_sales_prod_purch</field>
         <field name="type">search</field>
@@ -50,7 +50,7 @@
             </search>
         </field>
     </record>
-    <record id="ported_view_3931_default_list_view_fo_971f3310_0e31_4c66_8f32_11bbb51d4576" model="ir.ui.view">
+    <record id="view_rm_sales_prod_purch_list" model="ir.ui.view">
         <field name="name">Default list view for rm_sales_prod_purch</field>
         <field name="model">rm_sales_prod_purch</field>
         <field name="type">tree</field>
@@ -63,13 +63,13 @@
             </tree>
         </field>
     </record>
-    <record id="ported_view_3934_odoo_studio_default_1173b94f_3524_4e9c_b3fe_6f80310e9207" model="ir.ui.view">
+    <record id="view_default_list_view_for_rm_sales_prod_purch_inherit" model="ir.ui.view">
         <field name="name">Odoo Studio: Default list view for rm_sales_prod_purch customization</field>
         <field name="model">rm_sales_prod_purch</field>
         <field name="type">tree</field>
         <field name="priority">99</field>
         <field name="mode">extension</field>
-        <field name="inherit_id" ref="BugFix-Accounting.ported_view_3931_default_list_view_fo_971f3310_0e31_4c66_8f32_11bbb51d4576"/>
+        <field name="inherit_id" ref="BugFix-Accounting.view_rm_sales_prod_purch_list"/>
         <field name="arch" type="xml">
             <data>
               <xpath expr="//tree[1]" position="attributes">

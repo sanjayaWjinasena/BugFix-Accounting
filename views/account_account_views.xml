@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="action_2190_project_budgeted_cash_flow" model="ir.actions.act_window">
+  <record id="action_project_budgeted_cash_flow" model="ir.actions.act_window">
     <field name="name">Project Budgeted Cash Flow</field>
     <field name="res_model">account.account</field>
     <field name="view_mode">kanban,tree,form</field>
   </record>
-  <record id="action_2191_project_budgeted_cash_flow" model="ir.actions.act_window">
+  <record id="action_project_budgeted_cash_flow_2" model="ir.actions.act_window">
     <field name="name">Project Budgeted Cash Flow</field>
     <field name="res_model">account.account</field>
     <field name="view_mode">kanban,tree,form</field>
   </record>
-  <record id="action_1977_stock_picking" model="ir.actions.act_window">
+  <record id="action_stock_picking" model="ir.actions.act_window">
     <field name="name">stock.picking</field>
     <field name="res_model">account.account</field>
     <field name="view_mode">kanban,tree,form</field>
   </record>
-  <record id="ported_view_2195_customization_account_account_form" model="ir.ui.view">
+  <record id="view_account_account_form_inherit" model="ir.ui.view">
     <field name="name">Odoo Studio: account.account.form customization</field>
     <field name="model">account.account</field>
     <field name="type">form</field>
@@ -28,7 +28,7 @@
   </data>
     </field>
   </record>
-  <record id="ported_view_2943_customization_account_account_tree" model="ir.ui.view">
+  <record id="view_account_account_list_inherit" model="ir.ui.view">
     <field name="name">Odoo Studio: account.account.list customization</field>
     <field name="model">account.account</field>
     <field name="type">tree</field>

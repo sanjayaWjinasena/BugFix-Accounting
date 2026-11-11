@@ -6,7 +6,7 @@
 
 *Extends a model created by `analytic`.* Python: `models/account_analytic_distribution_model.py`.
 
-Other repos that use this model: `server action BugFix-Purchase.server_action_2411_update_analytic_tag_parameters_purchase_line_produ` (BugFix-Purchase)<br>`server action BugFix-Purchase.server_action_2412_update_analytic_tag_parameters_purchase_order_vend` (BugFix-Purchase)<br>`server action BugFix-Purchase.server_action_2413_update_analytic_tag_parameters_purchase_order_user` (BugFix-Purchase)<br>`server action BugFix-Sales.server_action_2414_update_analytic_tag_parameters_sales_order_customer` (BugFix-Sales)<br>`server action BugFix-Sales.server_action_2415_update_analytic_tag_parameters_sales_order_user` (BugFix-Sales)<br>`server action BugFix-Sales.server_action_2416_update_analytic_tag_parameters_sales_line_product` (BugFix-Sales)
+Other repos that use this model: `server action BugFix-Purchase.action_update_analytic_tag_parameters_purchase_line_produ` (BugFix-Purchase)<br>`server action BugFix-Purchase.action_update_analytic_tag_parameters_purchase_order_vend` (BugFix-Purchase)<br>`server action BugFix-Purchase.action_update_analytic_tag_parameters_purchase_order_user` (BugFix-Purchase)<br>`server action BugFix-Sales.action_update_analytic_tag_parameters_sales_order_customer` (BugFix-Sales)<br>`server action BugFix-Sales.action_update_analytic_tag_parameters_sales_order_user` (BugFix-Sales)<br>`server action BugFix-Sales.action_update_analytic_tag_parameters_sales_line_product` (BugFix-Sales)
 
 **Summary:**
 

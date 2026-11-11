@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="action_1737_wip_production_orders" model="ir.actions.act_window">
+  <record id="action_wip_production_orders" model="ir.actions.act_window">
     <field name="name">WIP Production Orders</field>
     <field name="res_model">rm_production_orders</field>
     <field name="view_mode">pivot</field>
   </record>
-  <record id="action_1745_pivot_views" model="ir.actions.act_window">
+  <record id="action_pivot_views" model="ir.actions.act_window">
     <field name="name">Pivot Views</field>
     <field name="res_model">rm_production_orders</field>
     <field name="view_mode">tree,form</field>
   </record>
-    <record id="ported_view_3900_default_form_view_fo_2e0357df_6cb4_436f_b62f_f15c8fd55cde" model="ir.ui.view">
+    <record id="view_rm_production_orders_form" model="ir.ui.view">
         <field name="name">Default form view for rm_production_orders</field>
         <field name="model">rm_production_orders</field>
         <field name="type">form</field>
@@ -40,7 +40,7 @@
             </form>
         </field>
     </record>
-    <record id="ported_view_3901_default_search_view_b4661ac0_4ee2_4d8b_9ee3_d62cb8a3cf0a" model="ir.ui.view">
+    <record id="view_rm_production_orders_search" model="ir.ui.view">
         <field name="name">Default search view for rm_production_orders</field>
         <field name="model">rm_production_orders</field>
         <field name="type">search</field>
@@ -55,7 +55,7 @@
             </search>
         </field>
     </record>
-    <record id="ported_view_3899_default_list_view_fo_fbf09a9f_0dc9_473b_9b62_84c53b338217" model="ir.ui.view">
+    <record id="view_rm_production_orders_list" model="ir.ui.view">
         <field name="name">Default list view for rm_production_orders</field>
         <field name="model">rm_production_orders</field>
         <field name="type">tree</field>
@@ -68,13 +68,13 @@
             </tree>
         </field>
     </record>
-    <record id="ported_view_3902_odoo_studio_default_cbe89251_52fd_4882_a708_fda7b4132347" model="ir.ui.view">
+    <record id="view_default_list_view_for_rm_production_orders_inherit" model="ir.ui.view">
         <field name="name">Odoo Studio: Default list view for rm_production_orders customization</field>
         <field name="model">rm_production_orders</field>
         <field name="type">tree</field>
         <field name="priority">99</field>
         <field name="mode">extension</field>
-        <field name="inherit_id" ref="BugFix-Accounting.ported_view_3899_default_list_view_fo_fbf09a9f_0dc9_473b_9b62_84c53b338217"/>
+        <field name="inherit_id" ref="BugFix-Accounting.view_rm_production_orders_list"/>
         <field name="arch" type="xml">
             <data>
               <xpath expr="//field[@name='name']" position="replace">

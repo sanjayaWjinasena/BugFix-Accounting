@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="action_1679_rm_daily_s3" model="ir.actions.act_window">
+  <record id="action_rm_daily_s3" model="ir.actions.act_window">
     <field name="name">RM Daily S3</field>
     <field name="res_model">rm_daily_s3</field>
     <field name="view_mode">tree,form</field>
   </record>
-    <record id="ported_view_3810_default_form_view_fo_a5dfdae0_6aa5_4ccc_9466_84fde1363927" model="ir.ui.view">
+    <record id="view_rm_daily_s3_form" model="ir.ui.view">
         <field name="name">Default form view for rm_daily_s3</field>
         <field name="model">rm_daily_s3</field>
         <field name="type">form</field>
@@ -35,7 +35,7 @@
             </form>
         </field>
     </record>
-    <record id="ported_view_3811_default_search_view_caa9a3e6_5a95_452d_b66f_aeaa32017275" model="ir.ui.view">
+    <record id="view_rm_daily_s3_search" model="ir.ui.view">
         <field name="name">Default search view for rm_daily_s3</field>
         <field name="model">rm_daily_s3</field>
         <field name="type">search</field>
@@ -50,7 +50,7 @@
             </search>
         </field>
     </record>
-    <record id="ported_view_3809_default_list_view_fo_bb0154ee_5685_4655_a271_a89ac8597200" model="ir.ui.view">
+    <record id="view_rm_daily_s3_list" model="ir.ui.view">
         <field name="name">Default list view for rm_daily_s3</field>
         <field name="model">rm_daily_s3</field>
         <field name="type">tree</field>
@@ -63,13 +63,13 @@
             </tree>
         </field>
     </record>
-    <record id="ported_view_3814_odoo_studio_default_bbdb4d27_c755_4b18_a675_1142c0001aa0" model="ir.ui.view">
+    <record id="view_default_form_view_for_rm_daily_s3_inherit" model="ir.ui.view">
         <field name="name">Odoo Studio: Default form view for rm_daily_s3 customization</field>
         <field name="model">rm_daily_s3</field>
         <field name="type">form</field>
         <field name="priority">99</field>
         <field name="mode">extension</field>
-        <field name="inherit_id" ref="BugFix-Accounting.ported_view_3810_default_form_view_fo_a5dfdae0_6aa5_4ccc_9466_84fde1363927"/>
+        <field name="inherit_id" ref="BugFix-Accounting.view_rm_daily_s3_form"/>
         <field name="arch" type="xml">
             <data>
               <xpath expr="//group[@name='studio_group_2c1b48_left']" position="inside">

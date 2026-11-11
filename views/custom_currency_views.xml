@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="action_1308_custom_currency" model="ir.actions.act_window">
+  <record id="action_custom_currency" model="ir.actions.act_window">
     <field name="name">Custom Currency</field>
     <field name="res_model">custom_currency</field>
     <field name="view_mode">tree,form</field>
   </record>
-  <record id="action_2063_custom_currency_rates" model="ir.actions.act_window">
+  <record id="action_custom_currency_rates" model="ir.actions.act_window">
     <field name="name">Custom Currency Rates</field>
     <field name="res_model">custom_currency</field>
     <field name="view_mode">tree,form</field>
   </record>
-  <record id="ported_default_form_view_fo_8a4b6def_7c88_4ab2_9f17_96bd901a9f4e" model="ir.ui.view">
+  <record id="view_custom_currency_form" model="ir.ui.view">
     <field name="name">Default form view for custom_currency</field>
     <field name="model">custom_currency</field>
     <field name="key">studio_customization.default_form_view_fo_8a4b6def-7c88-4ab2-9f17-96bd901a9f4e</field>
@@ -37,7 +37,7 @@
       </form>
     </field>
   </record>
-  <record id="ported_default_list_view_fo_c10f81e8_0461_45dc_bca4_c7824d05528e" model="ir.ui.view">
+  <record id="view_custom_currency_list" model="ir.ui.view">
     <field name="name">Default list view for custom_currency</field>
     <field name="model">custom_currency</field>
     <field name="key">studio_customization.default_list_view_fo_c10f81e8-0461-45dc-bca4-c7824d05528e</field>
@@ -51,7 +51,7 @@
       </tree>
     </field>
   </record>
-  <record id="ported_default_search_view__a298038c_e955_424c_892e_bd176971bcc1" model="ir.ui.view">
+  <record id="view_custom_currency_search" model="ir.ui.view">
     <field name="name">Default search view for custom_currency</field>
     <field name="model">custom_currency</field>
     <field name="key">studio_customization.default_search_view__a298038c-e955-424c-892e-bd176971bcc1</field>
@@ -67,7 +67,7 @@
       </search>
     </field>
   </record>
-    <record id="ported_view_2923_default_search_view_a298038c_e955_424c_892e_bd176971bcc1" model="ir.ui.view">
+    <record id="view_custom_currency_search_2" model="ir.ui.view">
         <field name="name">Default search view for custom_currency</field>
         <field name="model">custom_currency</field>
         <field name="type">search</field>
@@ -82,13 +82,13 @@
             </search>
         </field>
     </record>
-    <record id="ported_view_2927_odoo_studio_default_d6e426ae_1b5c_4bbd_b6cf_aaab9463d6cb" model="ir.ui.view">
+    <record id="view_default_form_view_for_custom_currency_inherit" model="ir.ui.view">
         <field name="name">Odoo Studio: Default form view for custom_currency customization</field>
         <field name="model">custom_currency</field>
         <field name="type">form</field>
         <field name="priority">99</field>
         <field name="mode">extension</field>
-        <field name="inherit_id" ref="BugFix-Accounting.ported_default_form_view_fo_8a4b6def_7c88_4ab2_9f17_96bd901a9f4e"/>
+        <field name="inherit_id" ref="BugFix-Accounting.view_custom_currency_form"/>
         <field name="arch" type="xml">
             <data>
               <xpath expr="//widget[@name='web_ribbon']" position="before">
@@ -116,13 +116,13 @@
             </data>
         </field>
     </record>
-    <record id="ported_view_2931_odoo_studio_default_527d6591_4b52_40f4_a210_0cfd294b2cf0" model="ir.ui.view">
+    <record id="view_default_list_view_for_custom_currency_inherit" model="ir.ui.view">
         <field name="name">Odoo Studio: Default list view for custom_currency customization</field>
         <field name="model">custom_currency</field>
         <field name="type">tree</field>
         <field name="priority">99</field>
         <field name="mode">extension</field>
-        <field name="inherit_id" ref="BugFix-Accounting.ported_default_list_view_fo_c10f81e8_0461_45dc_bca4_c7824d05528e"/>
+        <field name="inherit_id" ref="BugFix-Accounting.view_custom_currency_list"/>
         <field name="arch" type="xml">
             <data>
               <xpath expr="//field[@name='sequence']" position="before">

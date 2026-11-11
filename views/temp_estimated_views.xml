@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="action_2122_temp_estimated" model="ir.actions.act_window">
+  <record id="action_temp_estimated" model="ir.actions.act_window">
     <field name="name">Temp_Estimated</field>
     <field name="res_model">temp_estimated</field>
     <field name="view_mode">tree,form</field>
   </record>
-    <record id="ported_view_4903_default_form_view_fo_42bb817f_40d0_41af_aa71_7138b5c321e5" model="ir.ui.view">
+    <record id="view_temp_estimated_form" model="ir.ui.view">
         <field name="name">Default form view for temp_estimated</field>
         <field name="model">temp_estimated</field>
         <field name="type">form</field>
@@ -35,7 +35,7 @@
             </form>
         </field>
     </record>
-    <record id="ported_view_4904_default_search_view_351dd6de_0dcf_478f_81af_897f479a9ac2" model="ir.ui.view">
+    <record id="view_temp_estimated_search" model="ir.ui.view">
         <field name="name">Default search view for temp_estimated</field>
         <field name="model">temp_estimated</field>
         <field name="type">search</field>
@@ -50,7 +50,7 @@
             </search>
         </field>
     </record>
-    <record id="ported_view_4902_default_list_view_fo_cc637f5f_a4e7_4817_b179_6e0729f60644" model="ir.ui.view">
+    <record id="view_temp_estimated_list" model="ir.ui.view">
         <field name="name">Default list view for temp_estimated</field>
         <field name="model">temp_estimated</field>
         <field name="type">tree</field>
@@ -63,13 +63,13 @@
             </tree>
         </field>
     </record>
-    <record id="ported_view_4905_odoo_studio_default_38889867_2068_4538_8a83_e98d387a8822" model="ir.ui.view">
+    <record id="view_default_list_view_for_temp_estimated_inherit" model="ir.ui.view">
         <field name="name">Odoo Studio: Default list view for temp_estimated customization</field>
         <field name="model">temp_estimated</field>
         <field name="type">tree</field>
         <field name="priority">99</field>
         <field name="mode">extension</field>
-        <field name="inherit_id" ref="BugFix-Accounting.ported_view_4902_default_list_view_fo_cc637f5f_a4e7_4817_b179_6e0729f60644"/>
+        <field name="inherit_id" ref="BugFix-Accounting.view_temp_estimated_list"/>
         <field name="arch" type="xml">
             <data>
               <xpath expr="//field[@name='name']" position="attributes">

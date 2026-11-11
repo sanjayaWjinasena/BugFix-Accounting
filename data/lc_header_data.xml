@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="sa_f5_x_lc_header_imp_lc_amount_validation" model="ir.actions.server">
+  <record id="action_lc_header_imp_lc_amount_validation" model="ir.actions.server">
     <field name="name">IMP - LC Amount Validation</field>
     <field name="model_id" search="[('model', '=', 'lc_header')]"/>
     <field name="state">code</field>
@@ -28,7 +28,7 @@ else:
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="sa_f5_x_lc_header_jin_company_id_in_lc_header" model="ir.actions.server">
+  <record id="action_lc_header_jin_company_id_in_lc_header" model="ir.actions.server">
     <field name="name">JIN - Company Id in LC Header</field>
     <field name="model_id" search="[('model', '=', 'lc_header')]"/>
     <field name="state">code</field>
@@ -39,7 +39,7 @@ record['accounting_company_id'] = company.id]]></field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="sa_f5_x_lc_header_lc_registration_seq_no" model="ir.actions.server">
+  <record id="action_lc_header_lc_registration_seq_no" model="ir.actions.server">
     <field name="name">LC Registration Seq.No</field>
     <field name="model_id" search="[('model', '=', 'lc_header')]"/>
     <field name="state">code</field>
@@ -135,7 +135,7 @@ if record.id:
     record['selection_field_yo4qM'] = 'Amended'
 ]]></field>
     </record>
-  <record id="server_action_1402_lc_registration_seq_no" model="ir.actions.server">
+  <record id="action_lc_registration_seq_no" model="ir.actions.server">
     <field name="name">LC Registration Seq.No</field>
     <field name="model_id" search="[('model', '=', 'lc_header')]"/>
     <field name="state">code</field>
@@ -151,7 +151,7 @@ if record.name == 'New':
 
 ]]></field>
   </record>
-  <record id="server_action_1407_imp_lc_amount_validation" model="ir.actions.server">
+  <record id="action_imp_lc_amount_validation" model="ir.actions.server">
     <field name="name">IMP - LC Amount Validation</field>
     <field name="model_id" search="[('model', '=', 'lc_header')]"/>
     <field name="state">code</field>
@@ -179,7 +179,7 @@ else:
 
 ]]></field>
   </record>
-  <record id="server_action_2612_jin_company_id_in_lc_header" model="ir.actions.server">
+  <record id="action_jin_company_id_in_lc_header" model="ir.actions.server">
     <field name="name">JIN - Company Id in LC Header</field>
     <field name="model_id" search="[('model', '=', 'lc_header')]"/>
     <field name="state">code</field>
@@ -190,7 +190,7 @@ company = env['res.company'].browse(company_id)
 
 record['accounting_company_id'] = company.id]]></field>
   </record>
-  <record id="server_action_1405_imp_amend_lc" model="ir.actions.server">
+  <record id="action_imp_amend_lc" model="ir.actions.server">
     <field name="name">IMP - Amend LC</field>
     <field name="model_id" search="[('model', '=', 'lc_header')]"/>
     <field name="state">code</field>
@@ -249,7 +249,7 @@ record['accounting_company_id'] = company.id]]></field>
   record['selection_field_yo4qM'] = 'Amended'
 ]]></field>
   </record>
-  <record id="server_action_1404_imp_post_lc" model="ir.actions.server">
+  <record id="action_imp_post_lc" model="ir.actions.server">
     <field name="name">IMP - Post LC</field>
     <field name="model_id" search="[('model', '=', 'lc_header')]"/>
     <field name="state">code</field>
@@ -268,7 +268,7 @@ record['selection_field_yo4qM'] = 'Posted'
     <field name="model_id" search="[('model', '=', 'lc_header')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_lc_header__create_date')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1402_lc_registration_seq_no')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_lc_registration_seq_no')])]"/>
   </record>
   <record id="base_automation_71_imp_lc_amount_validation" model="base.automation">
     <field name="name">IMP - LC Amount Validation</field>
@@ -276,17 +276,17 @@ record['selection_field_yo4qM'] = 'Posted'
     <field name="model_id" search="[('model', '=', 'lc_header')]"/>
     <field name="trigger">on_change</field>
     <field name="on_change_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_lc_header__lc_amount')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_1407_imp_lc_amount_validation')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_imp_lc_amount_validation')])]"/>
   </record>
-  <record id="base_automation_284_jin_company_id_in_lc_header" model="base.automation">
+  <record id="automation_jin_company_id_in_lc_header" model="base.automation">
     <field name="name">JIN - Company Id in LC Header</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'lc_header')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_lc_header__create_date')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.server_action_2612_jin_company_id_in_lc_header')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Accounting.action_jin_company_id_in_lc_header')])]"/>
   </record>
-  <record id="server_action_1402_lc_registration_seq_no" model="ir.actions.server">
+  <record id="action_lc_registration_seq_no" model="ir.actions.server">
     <field name="name">LC Registration Seq.No</field>
     <field name="model_id" ref="BugFix-Accounting.model_lc_header"/>
     <field name="state">code</field>
@@ -303,7 +303,7 @@ if record.name == 'New':
 
     ]]></field>
   </record>
-  <record id="server_action_1407_imp_lc_amount_validation" model="ir.actions.server">
+  <record id="action_imp_lc_amount_validation" model="ir.actions.server">
     <field name="name">IMP - LC Amount Validation</field>
     <field name="model_id" ref="BugFix-Accounting.model_lc_header"/>
     <field name="state">code</field>
@@ -332,7 +332,7 @@ else:
 
     ]]></field>
   </record>
-  <record id="server_action_2612_jin_company_id_in_lc_header" model="ir.actions.server">
+  <record id="action_jin_company_id_in_lc_header" model="ir.actions.server">
     <field name="name">JIN - Company Id in LC Header</field>
     <field name="model_id" ref="BugFix-Accounting.model_lc_header"/>
     <field name="state">code</field>
@@ -345,42 +345,42 @@ record['accounting_company_id'] = company.id
     ]]></field>
   </record>
     <data noupdate="1">
-    <!-- DROPPED default_179_x_tp_invoice_header_pipeline_status_bar: selection default (defer to user via UI) -->
-<!-- DROPPED default_180_x_tp_invoice_header_status: selection default (defer to user via UI) -->
-<record id="default_185_x_lc_header_active" model="ir.default">
+    <!-- DROPPED default_tp_invoice_header_pipeline_status_bar: selection default (defer to user via UI) -->
+<!-- DROPPED default_tp_invoice_header_status: selection default (defer to user via UI) -->
+<record id="default_lc_header_active" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_lc_header__active"/>
       <field name="json_value">true</field>
     </record>
-    <record id="default_186_x_lc_header_sequence" model="ir.default">
+    <record id="default_lc_header_sequence" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_lc_header__sequence"/>
       <field name="json_value">10</field>
     </record>
-    <!-- DROPPED default_187_x_lc_header_lc_credit_type: selection value 'Irrevocable' not in field allowed set -->
-<!-- DROPPED default_188_x_lc_header_lc_credit_sub_type: selection value 'Non Transferable' not in field allowed set -->
-<!-- DROPPED default_189_x_lc_header_status: selection value 'Draft' not in field allowed set -->
-<!-- DROPPED default_190_x_lc_header_tolerance_type: selection value 'Plus' not in field allowed set -->
-<!-- DROPPED default_191_x_lc_header_partial_shipment: selection value 'Allowed' not in field allowed set -->
-<!-- DROPPED default_192_x_lc_header_transshipment: selection value 'Allowed' not in field allowed set -->
-<!-- DROPPED default_193_x_lc_header_draft: selection value 'At Sight' not in field allowed set -->
-<!-- DROPPED default_194_x_lc_header_confirmation_instructions: selection value 'None' not in field allowed set -->
-<record id="default_195_x_lc_header_name" model="ir.default">
+    <!-- DROPPED default_lc_header_lc_credit_type: selection value 'Irrevocable' not in field allowed set -->
+<!-- DROPPED default_lc_header_lc_credit_sub_type: selection value 'Non Transferable' not in field allowed set -->
+<!-- DROPPED default_lc_header_status: selection value 'Draft' not in field allowed set -->
+<!-- DROPPED default_lc_header_tolerance_type: selection value 'Plus' not in field allowed set -->
+<!-- DROPPED default_lc_header_partial_shipment: selection value 'Allowed' not in field allowed set -->
+<!-- DROPPED default_lc_header_transshipment: selection value 'Allowed' not in field allowed set -->
+<!-- DROPPED default_lc_header_draft: selection value 'At Sight' not in field allowed set -->
+<!-- DROPPED default_lc_header_confirmation_instructions: selection value 'None' not in field allowed set -->
+<record id="default_lc_header_name" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_lc_header__name"/>
       <field name="json_value">"New"</field>
     </record>
-    <!-- DROPPED default_197_x_lc_header_selection_field_yo4qM: selection value 'Draft' not in field allowed set -->
-<record id="default_199_x_lc_header_version_no" model="ir.default">
+    <!-- DROPPED default_lc_header_selection_field_yo4qM: selection value 'Draft' not in field allowed set -->
+<record id="default_lc_header_version_no" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_lc_header__version_no"/>
       <field name="json_value">"0"</field>
     </record>
-    <record id="default_227_x_lc_header_accounting_currency_id" model="ir.default">
+    <record id="default_lc_header_accounting_currency_id" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_lc_header__accounting_currency_id"/>
       <field name="json_value">145</field>
     </record>
-    <record id="default_428_x_lc_header_accounting_currency_id" model="ir.default">
+    <record id="default_lc_header_accounting_currency_id_2" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_lc_header__accounting_currency_id"/>
       <field name="json_value">145</field>
     </record>
-    <record id="default_194_x_lc_header_confirmation_instructions" model="ir.default">
+    <record id="default_lc_header_confirmation_instructions" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_lc_header__confirmation_instructions"/>
       <field name="json_value">"None"</field>
     </record>
@@ -392,35 +392,35 @@ record['accounting_company_id'] = company.id
          Python declares [('Item','Item'),('G/L Account','G/L Account')])
          — likely a Python-vs-DB sync-order quirk during cascade install.
          Users can set the value manually in the UI; no functional loss. -->
-    <record id="default_187_x_lc_header_lc_credit_type" model="ir.default">
+    <record id="default_lc_header_lc_credit_type" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_lc_header__lc_credit_type"/>
       <field name="json_value">"Irrevocable"</field>
     </record>
-    <record id="default_188_x_lc_header_lc_credit_sub_type" model="ir.default">
+    <record id="default_lc_header_lc_credit_sub_type" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_lc_header__lc_credit_sub_type"/>
       <field name="json_value">"Non Transferable"</field>
     </record>
-    <record id="default_189_x_lc_header_status" model="ir.default">
+    <record id="default_lc_header_status" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_lc_header__status"/>
       <field name="json_value">"Draft"</field>
     </record>
-    <record id="default_190_x_lc_header_tolerance_type" model="ir.default">
+    <record id="default_lc_header_tolerance_type" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_lc_header__tolerance_type"/>
       <field name="json_value">"Plus"</field>
     </record>
-    <record id="default_191_x_lc_header_partial_shipment" model="ir.default">
+    <record id="default_lc_header_partial_shipment" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_lc_header__partial_shipment"/>
       <field name="json_value">"Allowed"</field>
     </record>
-    <record id="default_192_x_lc_header_transshipment" model="ir.default">
+    <record id="default_lc_header_transshipment" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_lc_header__transshipment"/>
       <field name="json_value">"Allowed"</field>
     </record>
-    <record id="default_193_x_lc_header_draft" model="ir.default">
+    <record id="default_lc_header_draft" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_lc_header__draft"/>
       <field name="json_value">"At Sight"</field>
     </record>
-    <record id="default_197_x_lc_header_selection_field_yo4qM" model="ir.default">
+    <record id="default_lc_header_selection_field_yo4qM" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_lc_header__selection_field_yo4qM"/>
       <field name="json_value">"Draft"</field>
     </record>
