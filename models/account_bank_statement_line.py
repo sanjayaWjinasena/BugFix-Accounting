@@ -8,9 +8,10 @@ from odoo import fields, models
 # `_unknown` for the whole upgrade-mode registry build (see BugFix-Purchase
 # models/upstream_link_fields.py). Do NOT re-add them here.
 
-# v0.0.148: fields that exist on account.move are NOT declared here. account.bank.statement.line
-#   _inherits account.move, so Odoo adds them automatically as related='move_id.<name>' (as on
-#   Clear-DB). Declaring them here replaced that link with an always-empty plain field.
+# v0.0.148: fields that exist on account.move are NOT declared here.
+# account.bank.statement.line _inherits account.move, so Odoo adds them automatically as
+# related='move_id.<name>' (as on Clear-DB). Declaring them here replaced that link with
+# an always-empty plain field.
 
 
 class AccountBankStatementLine(models.Model):
