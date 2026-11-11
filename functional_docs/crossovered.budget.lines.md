@@ -16,13 +16,13 @@ This repo adds an 'Estimate' monetary field to budget lines. Its compute always 
 
 | Field | Label | Type | Function | How it gets its value | Depends on | Used by |
 |---|---|---|---|---|---|---|
-| `x_studio_estimate` | Estimate | monetary | Monetary 'Estimate' on budget lines whose compute always returns 0 (the original Studio field had an empty compute); no business effect. | computed by `_compute_x_studio_estimate`; not stored | `crossovered.budget.lines._compute_x_studio_estimate()` | `crossovered.budget.lines._compute_x_studio_estimate()` |
+| `estimate` | Estimate | monetary | Monetary 'Estimate' on budget lines whose compute always returns 0 (the original Studio field had an empty compute); no business effect. | computed by `_compute_estimate`; not stored | `crossovered.budget.lines._compute_estimate()` | `crossovered.budget.lines._compute_estimate()` |
 
 **Python methods (1):**
 
 | Method | Function | Decorators | Extends standard | Depends on | Used by | Where |
 |---|---|---|---|---|---|---|
-| `_compute_x_studio_estimate` | Compute for Estimate on budget lines; a no-op placeholder that always sets 0. |  |  | `crossovered.budget.lines.x_studio_estimate` | `crossovered.budget.lines.x_studio_estimate` | `models/crossovered_budget.py:352` |
+| `_compute_estimate` | Compute for Estimate on budget lines; a no-op placeholder that always sets 0. |  |  | `crossovered.budget.lines.estimate` | `crossovered.budget.lines.estimate` | `models/crossovered_budget.py:352` |
 
 **Server actions (1):**
 
@@ -33,10 +33,10 @@ This repo adds an 'Estimate' monetary field to budget lines. Its compute always 
   <details><summary>code (3 lines)</summary>
 
 ```python
-if record.crossovered_budget_id.x_studio_analytic_account.id != False:
+if record.crossovered_budget_id.analytic_account.id != False:
     record.write(
         {
-            "analytic_account_id": record.crossovered_budget_id.x_studio_analytic_account.id
+            "analytic_account_id": record.crossovered_budget_id.analytic_account.id
         }
     )
 ```

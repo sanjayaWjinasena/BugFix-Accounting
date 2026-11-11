@@ -6,7 +6,7 @@
 
 *Extends a model created by `account_budget`.*
 
-Other repos that use this model: `sale.order.x_studio_many2one_field_KjdJ3` (BugFix-Sales)
+Other repos that use this model: `sale.order.many2one_field_KjdJ3` (BugFix-Sales)
 
 **Summary:**
 

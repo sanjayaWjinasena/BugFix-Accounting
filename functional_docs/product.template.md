@@ -6,7 +6,7 @@
 
 *Extends a model created by `product`.* Python: `models/product_template.py`.
 
-Other repos that use this model: `automation BugFix-Sales.base_automation_268_jin_company_id_in_product` (BugFix-Sales)<br>`automation BugFix-Sales.base_automation_66_imp_service_item_charge_duty_tax` (BugFix-Sales)<br>`automation BugFix-Sales.base_automation_83_imp_validate_default_split_method_in_item_master` (BugFix-Sales)<br>`automation BugFix-Sales.base_automation_84_imp_pass_split_method_in_item_master` (BugFix-Sales)<br>`server action BugFix-Purchase.sa_f5_x_imports_ledger_setup_imp_update_cost_allocation_method_in_items` (BugFix-Purchase)<br>`server action BugFix-Purchase.server_action_1453_imp_update_cost_allocation_method_in_items` (BugFix-Purchase)<br>`server action BugFix-Sales.server_action_1142_update_product_cost_work_center_cost_2` (BugFix-Sales)<br>`server action BugFix-Sales.server_action_1387_imp_service_item_charge_duty_tax` (BugFix-Sales)<details><summary>+18 more</summary>`server action BugFix-Sales.server_action_1451_imp_validate_default_split_method_in_item_master` (BugFix-Sales)<br>`server action BugFix-Sales.server_action_1452_imp_pass_split_method_in_item_master` (BugFix-Sales)<br>`server action BugFix-Sales.server_action_2289_plm_item_approval_request_sent` (BugFix-Sales)<br>`server action BugFix-Sales.server_action_2291_plm_item_approval_request_notify_user` (BugFix-Sales)<br>`server action BugFix-Sales.server_action_2293_plm_request_item_approval` (BugFix-Sales)<br>`server action BugFix-Sales.server_action_2295_plm_item_approval` (BugFix-Sales)<br>`server action BugFix-Sales.server_action_2297_plm_item_approval_notify_project_user` (BugFix-Sales)<br>`server action BugFix-Sales.server_action_2299_plm_item_approval_validate` (BugFix-Sales)<br>`server action BugFix-Sales.server_action_2301_plm_item_approval_final` (BugFix-Sales)<br>`server action BugFix-Sales.server_action_2587_jin_company_id_in_product` (BugFix-Sales)<br>`server action BugFix-Sales.server_action_808_avoid_product_duplicate` (BugFix-Sales)<br>`server action BugFix-Studio-Misc.server_action_1743_sample_server_action` (BugFix-Studio-Misc)<br>`server action BugFix-Studio-Misc.server_action_2586_sample_server_action_to_get_company_id` (BugFix-Studio-Misc)<br>`server action BugFix-Studio-Misc.server_action_2831_mst_odoo_data_clean_up_001` (BugFix-Studio-Misc)<br>`window action BugFix-Sales.act_window_204_products` (BugFix-Sales)<br>`window action BugFix-Sales.act_window_2288_product_template` (BugFix-Sales)<br>`window action BugFix-Sales.act_window_2622_product_template` (BugFix-Sales)<br>`x_product_test.x_studio_product_1` (BugFix-Studio-Misc)</details>
+Other repos that use this model: `automation BugFix-Sales.base_automation_268_jin_company_id_in_product` (BugFix-Sales)<br>`automation BugFix-Sales.base_automation_66_imp_service_item_charge_duty_tax` (BugFix-Sales)<br>`automation BugFix-Sales.base_automation_83_imp_validate_default_split_method_in_item_master` (BugFix-Sales)<br>`automation BugFix-Sales.base_automation_84_imp_pass_split_method_in_item_master` (BugFix-Sales)<br>`server action BugFix-Purchase.sa_f5_x_imports_ledger_setup_imp_update_cost_allocation_method_in_items` (BugFix-Purchase)<br>`server action BugFix-Purchase.server_action_1453_imp_update_cost_allocation_method_in_items` (BugFix-Purchase)<br>`server action BugFix-Sales.server_action_1142_update_product_cost_work_center_cost_2` (BugFix-Sales)<br>`server action BugFix-Sales.server_action_1387_imp_service_item_charge_duty_tax` (BugFix-Sales)<details><summary>+18 more</summary>`server action BugFix-Sales.server_action_1451_imp_validate_default_split_method_in_item_master` (BugFix-Sales)<br>`server action BugFix-Sales.server_action_1452_imp_pass_split_method_in_item_master` (BugFix-Sales)<br>`server action BugFix-Sales.server_action_2289_plm_item_approval_request_sent` (BugFix-Sales)<br>`server action BugFix-Sales.server_action_2291_plm_item_approval_request_notify_user` (BugFix-Sales)<br>`server action BugFix-Sales.server_action_2293_plm_request_item_approval` (BugFix-Sales)<br>`server action BugFix-Sales.server_action_2295_plm_item_approval` (BugFix-Sales)<br>`server action BugFix-Sales.server_action_2297_plm_item_approval_notify_project_user` (BugFix-Sales)<br>`server action BugFix-Sales.server_action_2299_plm_item_approval_validate` (BugFix-Sales)<br>`server action BugFix-Sales.server_action_2301_plm_item_approval_final` (BugFix-Sales)<br>`server action BugFix-Sales.server_action_2587_jin_company_id_in_product` (BugFix-Sales)<br>`server action BugFix-Sales.server_action_808_avoid_product_duplicate` (BugFix-Sales)<br>`server action BugFix-Studio-Misc.server_action_1743_sample_server_action` (BugFix-Studio-Misc)<br>`server action BugFix-Studio-Misc.server_action_2586_sample_server_action_to_get_company_id` (BugFix-Studio-Misc)<br>`server action BugFix-Studio-Misc.server_action_2831_mst_odoo_data_clean_up_001` (BugFix-Studio-Misc)<br>`window action BugFix-Sales.act_window_204_products` (BugFix-Sales)<br>`window action BugFix-Sales.act_window_2288_product_template` (BugFix-Sales)<br>`window action BugFix-Sales.act_window_2622_product_template` (BugFix-Sales)<br>`x_product_test.product_1` (BugFix-Studio-Misc)</details>
 
 **Summary:**
 
@@ -18,14 +18,14 @@ This repo adds two product fields: Charge Type (Charge, Duty or Tax) and Non Bil
 
 | Field | Label | Type | Function | How it gets its value | Depends on | Used by |
 |---|---|---|---|---|---|---|
-| `x_studio_charge_type` | Charge Type | selection: Charge=Charge; Duty=Duty; Tax=Tax | Classifies a service product as a Charge, Duty or Tax; read by the 'IMP - Service Item Charge/Duty' action and shown on the product form. | stored |  | `product.product.x_studio_charge_type`<br>`server action BugFix-Accounting.server_action_1387_imp_service_item_charge_duty_tax`<br>`server action BugFix-Sales.server_action_1387_imp_service_item_charge_duty_tax` (BugFix-Sales)<br>`view BugFix-Accounting.product_template_form_bugfix_accounting_field_content` |
-| `x_studio_non_billable` | Non Billable | boolean | Marks the product as non-billable; read by the 'IMP - Service Item Charge/Duty' action and shown on the product form. | stored |  | `product.product.x_studio_non_billable`<br>`server action BugFix-Accounting.server_action_1387_imp_service_item_charge_duty_tax`<br>`server action BugFix-Sales.server_action_1387_imp_service_item_charge_duty_tax` (BugFix-Sales)<br>`view BugFix-Accounting.product_template_form_bugfix_accounting_field_content` |
+| `charge_type` | Charge Type | selection: Charge=Charge; Duty=Duty; Tax=Tax | Classifies a service product as a Charge, Duty or Tax; read by the 'IMP - Service Item Charge/Duty' action and shown on the product form. | stored |  | `product.product.charge_type`<br>`server action BugFix-Accounting.server_action_1387_imp_service_item_charge_duty_tax`<br>`server action BugFix-Sales.server_action_1387_imp_service_item_charge_duty_tax` (BugFix-Sales)<br>`view BugFix-Accounting.product_template_form_bugfix_accounting_field_content` |
+| `non_billable` | Non Billable | boolean | Marks the product as non-billable; read by the 'IMP - Service Item Charge/Duty' action and shown on the product form. | stored |  | `product.product.non_billable`<br>`server action BugFix-Accounting.server_action_1387_imp_service_item_charge_duty_tax`<br>`server action BugFix-Sales.server_action_1387_imp_service_item_charge_duty_tax` (BugFix-Sales)<br>`view BugFix-Accounting.product_template_form_bugfix_accounting_field_content` |
 
 **Server actions (2):**
 
 - **IMP - Service Item - Charge-Duty-Tax** (`server_action_1387_imp_service_item_charge_duty_tax`, type `code`)
   - Function: For service products, prevents more than one billable service item per company being set up as Charge, Duty or Tax (and one non-billable Charge/Duty) by raising an error.
-  - Depends on: `model product.template` (product), `model res.company` (base), `product.template.type` (product), `product.template.x_studio_charge_type`, `product.template.x_studio_non_billable`
+  - Depends on: `model product.template` (product), `model res.company` (base), `product.template.type` (product), `product.template.charge_type`, `product.template.non_billable`
   - Used by: — (not linked to a button, menu or automation)
   <details><summary>code (48 lines)</summary>
 
@@ -35,13 +35,13 @@ if record.type == "service":
     company = env["res.company"].browse(company_id)
 
     if (
-        record.x_studio_charge_type == "Charge"
-        and record.x_studio_non_billable == False
+        record.charge_type == "Charge"
+        and record.non_billable == False
     ):
         product = env["product.template"].search(
             [
-                ("x_studio_charge_type", "=", "Charge"),
-                ("x_studio_non_billable", "=", False),
+                ("charge_type", "=", "Charge"),
+                ("non_billable", "=", False),
                 ("company_id", "=", company.id),
             ],
             limit=1,
@@ -53,11 +53,11 @@ if record.type == "service":
                         "Only One Service Item can be Setup as Charge/ Not Non Billable Item!"
                     )
 
-    if record.x_studio_charge_type == "Duty" and record.x_studio_non_billable == False:
+    if record.charge_type == "Duty" and record.non_billable == False:
         product = env["product.template"].search(
             [
-                ("x_studio_charge_type", "=", "Duty"),
-                ("x_studio_non_billable", "=", False),
+                ("charge_type", "=", "Duty"),
+                ("non_billable", "=", False),
                 ("company_id", "=", company.id),
             ],
             limit=1,
@@ -69,11 +69,11 @@ if record.type == "service":
                         "Ony One Service Item can be Setup as Duty/ Not Non Billable Item!"
                     )
 
-    if record.x_studio_charge_type == "Tax" and record.x_studio_non_billable == False:
+    if record.charge_type == "Tax" and record.non_billable == False:
         product = env["product.template"].search(
             [
-                ("x_studio_charge_type", "=", "Tax"),
-                ("x_studio_non_billable", "=", False),
+                ("charge_type", "=", "Tax"),
+                ("non_billable", "=", False),
                 ("company_id", "=", company.id),
             ],
             limit=1,
@@ -85,11 +85,11 @@ if record.type == "service":
                         "Ony One Service Item can be Setup as Tax/ Not Non Billable Item!"
                     )
 
-    if record.x_studio_charge_type == "Charge" and record.x_studio_non_billable == True:
+    if record.charge_type == "Charge" and record.non_billable == True:
         product = env["product.template"].search(
             [
-                ("x_studio_charge_type", "=", "Charge"),
-                ("x_studio_non_billable", "=", True),
+                ("charge_type", "=", "Charge"),
+                ("non_billable", "=", True),
                 ("company_id", "=", company.id),
             ],
             limit=1,
@@ -101,11 +101,11 @@ if record.type == "service":
                         "Ony One Service Item can be Setup as Charge/ Non Billable Item!"
                     )
 
-    if record.x_studio_charge_type == "Duty" and record.x_studio_non_billable == True:
+    if record.charge_type == "Duty" and record.non_billable == True:
         product = env["product.template"].search(
             [
-                ("x_studio_charge_type", "=", "Duty"),
-                ("x_studio_non_billable", "=", True),
+                ("charge_type", "=", "Duty"),
+                ("non_billable", "=", True),
                 ("company_id", "=", company.id),
             ],
             limit=1,
@@ -117,8 +117,8 @@ if record.type == "service":
                         "Ony One Service Item can be Setup as Duty/ Non Billable Item!"
                     )
 
-    """if record.x_studio_charge_type == 'Tax' and record.x_studio_non_billable == True:
-    product = env['product.template'].search([('x_studio_charge_type', '=', 'Tax'), ('x_studio_non_billable', '=', True),('company_id', '=', company.id)], limit=1)
+    """if record.charge_type == 'Tax' and record.non_billable == True:
+    product = env['product.template'].search([('charge_type', '=', 'Tax'), ('non_billable', '=', True),('company_id', '=', company.id)], limit=1)
     if product:
       for p in product:
         if p.id != record.id:
@@ -157,7 +157,7 @@ record["company_id"] = company.id
 
 | Name | Record name | Type | What it changes | Function | Depends on | Used by |
 |---|---|---|---|---|---|---|
-| product.template.form.bugfix.accounting.field.content | `product_template_form_bugfix_accounting_field_content` | form | inside `//group[@name='studio_group_zujMt_right']`: add field x_studio_charge_type, field x_studio_non_billable | Adds Charge Type (radio) and Non Billable to the right-hand Studio group of the product form; both are editable only for service products. | `product.template.type` (product)<br>`product.template.x_studio_charge_type`<br>`product.template.x_studio_non_billable`<br>`view BugFix-Sales.ported_product_template_studio_2551` (BugFix-Sales) |  |
+| product.template.form.bugfix.accounting.field.content | `product_template_form_bugfix_accounting_field_content` | form | inside `//group[@name='studio_group_zujMt_right']`: add field charge_type, field non_billable | Adds Charge Type (radio) and Non Billable to the right-hand Studio group of the product form; both are editable only for service products. | `product.template.type` (product)<br>`product.template.charge_type`<br>`product.template.non_billable`<br>`view BugFix-Sales.ported_product_template_studio_2551` (BugFix-Sales) |  |
 | product.template.product.form_button | `view_5061_product_template_product_form_button_e` | form | before `//button[@name='action_open_label_layout']`: add | Inactive (archived) product form extension whose only content (an action button) was stripped as unresolvable; has no effect. | `view product.product_template_only_form_view` (product) |  |
 
 **Record rules (3):**

@@ -5,13 +5,13 @@
     <field name="model_id" search="[('model', '=', 'crossovered.budget')]"/>
     <field name="state">code</field>
     <field name="code"><![CDATA[if record.state == 'confirm':
-  """if record.x_studio_created_from_sales_order_1.id != False:
-    if record.x_studio_valid_budget_lines == False:
+  """if record.created_from_sales_order_1.id != False:
+    if record.valid_budget_lines == False:
       raise UserError('At least one budget line should be available with value greater than zero when confirming.')"""
-  if record.x_studio_valid_budget_lines == False:
+  if record.valid_budget_lines == False:
     raise UserError('At least one budget line should be available with value greater than zero when confirming.')
       
-    if record.x_studio_confirm_status == True:
+    if record.confirm_status == True:
       raise UserError('Please finalize all the related RFQs.')
 
 ]]></field>
@@ -22,7 +22,7 @@
     <field name="name">PROJ - Validate Delete</field>
     <field name="model_id" search="[('model', '=', 'crossovered.budget')]"/>
     <field name="state">code</field>
-    <field name="code"><![CDATA[if record.x_studio_created_from_sales_order_1.id != False:
+    <field name="code"><![CDATA[if record.created_from_sales_order_1.id != False:
   raise UserError('Budgets created from SOs can not be deleted.')
 
 
@@ -36,7 +36,7 @@
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.x_studio_created_from_sales_order_1.id != False:
+    <field name="code"><![CDATA[if record.created_from_sales_order_1.id != False:
   raise UserError('Budgets created from SOs can not be deleted.')
 
 
@@ -49,13 +49,13 @@
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
     <field name="code"><![CDATA[if record.state == 'confirm':
-  """if record.x_studio_created_from_sales_order_1.id != False:
-    if record.x_studio_valid_budget_lines == False:
+  """if record.created_from_sales_order_1.id != False:
+    if record.valid_budget_lines == False:
       raise UserError('At least one budget line should be available with value greater than zero when confirming.')"""
-  if record.x_studio_valid_budget_lines == False:
+  if record.valid_budget_lines == False:
     raise UserError('At least one budget line should be available with value greater than zero when confirming.')
       
-    if record.x_studio_confirm_status == True:
+    if record.confirm_status == True:
       raise UserError('Please finalize all the related RFQs.')
 
 ]]></field>
@@ -80,7 +80,7 @@
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="code"><![CDATA[
-if record.x_studio_created_from_sales_order_1.id != False:
+if record.created_from_sales_order_1.id != False:
   raise UserError('Budgets created from SOs can not be deleted.')
 
 
@@ -94,21 +94,21 @@ if record.x_studio_created_from_sales_order_1.id != False:
     <field name="usage">base_automation</field>
     <field name="code"><![CDATA[
 if record.state == 'confirm':
-  """if record.x_studio_created_from_sales_order_1.id != False:
-    if record.x_studio_valid_budget_lines == False:
+  """if record.created_from_sales_order_1.id != False:
+    if record.valid_budget_lines == False:
       raise UserError('At least one budget line should be available with value greater than zero when confirming.')"""
-  if record.x_studio_valid_budget_lines == False:
+  if record.valid_budget_lines == False:
     raise UserError('At least one budget line should be available with value greater than zero when confirming.')
       
-    if record.x_studio_confirm_status == True:
+    if record.confirm_status == True:
       raise UserError('Please finalize all the related RFQs.')
 
 
     ]]></field>
   </record>
     <data noupdate="1">
-    <record id="default_412_crossovered_budget_x_studio_confirm_validation" model="ir.default">
-      <field name="field_id" ref="BugFix-Accounting.field_crossovered_budget__x_studio_confirm_validation"/>
+    <record id="default_412_crossovered_budget_confirm_validation" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_crossovered_budget__confirm_validation"/>
       <field name="json_value">"The project budget can't be confirmed until all the PRs are updated. "</field>
     </record>
     </data>

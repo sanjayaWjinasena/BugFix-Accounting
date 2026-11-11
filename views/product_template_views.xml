@@ -45,8 +45,8 @@
     <field name="priority">100</field>
     <field name="arch" type="xml">
       <xpath expr="//group[@name='studio_group_zujMt_right']" position="inside">
-        <field name="x_studio_charge_type" string="Charge Type" widget="radio" readonly="type != 'service'"/>
-        <field name="x_studio_non_billable" string="Non Billable" readonly="type != 'service'"/>
+        <field name="charge_type" string="Charge Type" widget="radio" readonly="type != 'service'"/>
+        <field name="non_billable" string="Non Billable" readonly="type != 'service'"/>
       </xpath>
     </field>
   </record>

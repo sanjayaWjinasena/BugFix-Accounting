@@ -6,7 +6,7 @@
 
 *Extends a model created by `analytic`.*
 
-Other repos that use this model: `record rule BugFix-Analytics.rule_63_analytic_multi_company_rule` (BugFix-Analytics)<br>`sale.order.line._bugfix_analytics_resolve_account()` (BugFix-Analytics)<br>`server action BugFix-Sales.server_action_2178_proj_create_budget_entries` (BugFix-Sales)<br>`stock.picking.x_studio_analytic_account` (BugFix-Analytics)<br>`window action BugFix-Analytics.act_window_2333_analytic_account` (BugFix-Analytics)<br>`window action BugFix-Analytics.act_window_3276_account_analytic_account` (BugFix-Analytics)<br>`x_work_center_costing.x_studio_general_analytic_tag` (BugFix-Studio-Misc)<br>`x_work_center_costing.x_studio_labour_analytic_tag` (BugFix-Studio-Misc)<details><summary>+1 more</summary>`x_work_center_costing.x_studio_overhead_analytic_tag` (BugFix-Studio-Misc)</details>
+Other repos that use this model: `record rule BugFix-Analytics.rule_63_analytic_multi_company_rule` (BugFix-Analytics)<br>`sale.order.line._bugfix_analytics_resolve_account()` (BugFix-Analytics)<br>`server action BugFix-Sales.server_action_2178_proj_create_budget_entries` (BugFix-Sales)<br>`stock.picking.analytic_account` (BugFix-Analytics)<br>`window action BugFix-Analytics.act_window_2333_analytic_account` (BugFix-Analytics)<br>`window action BugFix-Analytics.act_window_3276_account_analytic_account` (BugFix-Analytics)<br>`work_center_costing.general_analytic_tag` (BugFix-Studio-Misc)<br>`work_center_costing.labour_analytic_tag` (BugFix-Studio-Misc)<details><summary>+1 more</summary>`work_center_costing.overhead_analytic_tag` (BugFix-Studio-Misc)</details>
 
 **Summary:**
 

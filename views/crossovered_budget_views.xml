@@ -4,15 +4,15 @@
     <field name="name">Budget</field>
     <field name="res_model">crossovered.budget</field>
     <field name="view_mode">tree,form</field>
-    <field name="domain">[('x_studio_created_from_sales_order_1', '=', active_id)]</field>
-    <field name="context">{'search_default_x_studio_created_from_sales_order_1': active_id,'default_x_studio_created_from_sales_order_1': active_id}</field>
+    <field name="domain">[('created_from_sales_order_1', '=', active_id)]</field>
+    <field name="context">{'search_default_created_from_sales_order_1': active_id,'default_created_from_sales_order_1': active_id}</field>
   </record>
   <record id="action_2180_budget" model="ir.actions.act_window">
     <field name="name">Budget</field>
     <field name="res_model">crossovered.budget</field>
     <field name="view_mode">tree,form</field>
-    <field name="domain">[('x_studio_created_from_sales_order_1', '=', active_id)]</field>
-    <field name="context">{'search_default_x_studio_created_from_sales_order_1': active_id,'default_x_studio_created_from_sales_order_1': active_id}</field>
+    <field name="domain">[('created_from_sales_order_1', '=', active_id)]</field>
+    <field name="context">{'search_default_created_from_sales_order_1': active_id,'default_created_from_sales_order_1': active_id}</field>
   </record>
     <record id="ported_view_4942_odoo_studio_crossove_a555672e_6698_4232_9115_1daaed24a1bb" model="ir.ui.view">
         <field name="name">Odoo Studio: crossovered.budget.view.form customization</field>
@@ -28,49 +28,49 @@
                 <attribute name="delete">true</attribute>
               </xpath>
               <xpath expr="//button[@name='action_budget_validate']" position="attributes">
-                <attribute name="invisible">((state != 'confirm') or ((state != 'confirm') or (x_studio_spr_status == True))) or (state not in ['False'])</attribute>
+                <attribute name="invisible">((state != 'confirm') or ((state != 'confirm') or (spr_status == True))) or (state not in ['False'])</attribute>
               </xpath>
               <xpath expr="//form[1]/sheet[1]/div[1]/h1[1]/field[@name='name']" position="attributes">
-                <attribute name="readonly">(state != 'draft') or ((x_studio_created_from_sales_order_1 != False) or (state != 'draft'))</attribute>
+                <attribute name="readonly">(state != 'draft') or ((created_from_sales_order_1 != False) or (state != 'draft'))</attribute>
               </xpath>
               <xpath expr="//field[@name='user_id']" position="after">
-                <field name="x_studio_analytic_account" string="Analytic Account" force_save="True" readonly="1" invisible="x_studio_created_from_sales_order_1 == False"/>
-                <field name="x_studio_project_no" string="Project No" force_save="True" readonly="1" invisible="x_studio_project_no == False"/>
-                <field name="x_studio_created_from_sales_order_1" string="Created From Sales Order" force_save="True" readonly="1" invisible="x_studio_created_from_sales_order_1 == False"/>
-                <field name="x_studio_confirm_validation" string="Confirm Validation" force_save="True" readonly="1" invisible="1"/>
-                <field name="x_studio_spr_status" string="SPR Status" force_save="True" invisible="1"/>
+                <field name="analytic_account" string="Analytic Account" force_save="True" readonly="1" invisible="created_from_sales_order_1 == False"/>
+                <field name="project_no" string="Project No" force_save="True" readonly="1" invisible="project_no == False"/>
+                <field name="created_from_sales_order_1" string="Created From Sales Order" force_save="True" readonly="1" invisible="created_from_sales_order_1 == False"/>
+                <field name="confirm_validation" string="Confirm Validation" force_save="True" readonly="1" invisible="1"/>
+                <field name="spr_status" string="SPR Status" force_save="True" invisible="1"/>
               </xpath>
               <xpath expr="//form[1]/sheet[1]/group[1]/group[2]/label[1]" position="before">
-                <field name="x_studio_total" string="Total" invisible="1"/>
-                <field name="x_studio_confirm_status" string="Confirm Status" force_save="True" readonly="1" help="To validate the Confirm button without valid budget lines." invisible="1"/>
-                <field name="x_studio_valid_budget_lines" string="Valid Budget Lines" force_save="True" readonly="1" help="o check if valid budget lines exist." invisible="1"/>
+                <field name="total" string="Total" invisible="1"/>
+                <field name="confirm_status" string="Confirm Status" force_save="True" readonly="1" help="To validate the Confirm button without valid budget lines." invisible="1"/>
+                <field name="valid_budget_lines" string="Valid Budget Lines" force_save="True" readonly="1" help="o check if valid budget lines exist." invisible="1"/>
               </xpath>
               <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='budget_lines']/field[@name='crossovered_budget_line']/tree[1]/field[@name='general_budget_id']" position="before">
                 <field name="crossovered_budget_id" optional="show"/>
               </xpath>
               <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='budget_lines']/field[@name='crossovered_budget_line']/tree[1]/field[@name='analytic_account_id']" position="attributes">
-                <attribute name="readonly">parent.x_studio_analytic_account != False</attribute>
+                <attribute name="readonly">parent.analytic_account != False</attribute>
               </xpath>
               <xpath expr="//field[@name='theoritical_amount']" position="after">
-                <field optional="show" name="x_studio_estimate" string="Estimate" force_save="True" readonly="1"/>
+                <field optional="show" name="estimate" string="Estimate" force_save="True" readonly="1"/>
               </xpath>
               <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
                 <page string="Estimate Run" name="studio_page_men8E" invisible="True">
                   <group name="studio_group_men8E">
                     <group name="studio_group_men8E_left">
-                      <field name="x_studio_project_value" string="Project Value"/>
-                      <field name="x_studio_total_project_expenses" string="Total Project Expenses"/>
-                      <field name="x_studio_actual_invoiced_amount" string="Actual Invoiced Amount"/>
-                      <field name="x_studio_actual_expenses_incurred" string="Actual Expenses Incurred"/>
-                      <field name="x_currency_id" invisible="1"/>
+                      <field name="project_value" string="Project Value"/>
+                      <field name="total_project_expenses" string="Total Project Expenses"/>
+                      <field name="actual_invoiced_amount" string="Actual Invoiced Amount"/>
+                      <field name="actual_expenses_incurred" string="Actual Expenses Incurred"/>
+                      <field name="currency_id" invisible="1"/>
                     </group>
                     <group name="studio_group_men8E_right">
-                      <field name="x_studio_project_completed_percentage" string="Project Completed Percentage" invisible="1"/>
-                      <field name="x_studio_project_completed_percentage_1" string="Project Completed Percentage" force_save="True" readonly="1" widget="float"/>
-                      <field name="x_studio_estimated_revenue_1" string="Estimated Revenue"/>
-                      <field name="x_studio_gross_margin" string="Gross Margin"/>
-                      <field name="x_studio_gross_margin_percentage" string="Gross Margin Percentage" invisible="1"/>
-                      <field name="x_studio_gross_margin_percentage_1" string="Gross Margin Percentage"/>
+                      <field name="project_completed_percentage" string="Project Completed Percentage" invisible="1"/>
+                      <field name="project_completed_percentage_1" string="Project Completed Percentage" force_save="True" readonly="1" widget="float"/>
+                      <field name="estimated_revenue_1" string="Estimated Revenue"/>
+                      <field name="gross_margin" string="Gross Margin"/>
+                      <field name="gross_margin_percentage" string="Gross Margin Percentage" invisible="1"/>
+                      <field name="gross_margin_percentage_1" string="Gross Margin Percentage"/>
                     </group>
                   </group>
                 </page>
@@ -97,7 +97,7 @@
     <field name="name">Budget</field>
     <field name="res_model">crossovered.budget</field>
     <field name="view_mode">tree,form</field>
-    <field name="domain">[('x_studio_created_from_sales_order_1', '=', active_id)]</field>
-    <field name="context">{'search_default_x_studio_created_from_sales_order_1': active_id,'default_x_studio_created_from_sales_order_1': active_id}</field>
+    <field name="domain">[('created_from_sales_order_1', '=', active_id)]</field>
+    <field name="context">{'search_default_created_from_sales_order_1': active_id,'default_created_from_sales_order_1': active_id}</field>
   </record>
 </odoo>

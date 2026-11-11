@@ -62,7 +62,7 @@ Six live in `reports/reports.xml` TODOs:
 - Pro-forma Invoice
 - account.payment (×2)
 
-Eight more scattered on `x_sales_report_model` + `crossovered.budget`.
+Eight more scattered on `sales_report_model` + `crossovered.budget`.
 
 **Why deferred:** Each needs full QWeb template + report action ported.
 High business value, high effort. Not blocking install.
@@ -79,15 +79,15 @@ item 5 are now definitively deferred.**
 Three attempts to restore them, all reverted:
 
 * **v0.0.50** — declared 5 related-nav O2Ms in BugFix-Accounting's
-  `x_sales_report_model.py` + restored view arch + added
+  `sales_report_model.py` + restored view arch + added
   `Jinasena_Masterdata_Reporting` manifest dep. Server crashed at
-  `_setup_related` on x_studio_sales_prod_purch_id. Root cause:
+  `_setup_related` on sales_prod_purch_id. Root cause:
   double-declaration with JMR (which already owns those 5 fields).
 
 * **v0.0.51** — kept the view arch + manifest dep, removed the
   Python field decls. Server crashed at view-arch validation on
-  x_studio_related_field_oeTJK "does not exist in model
-  x_sales_report_model". The manifest dep reshuffled load order in
+  related_field_oeTJK "does not exist in model
+  sales_report_model". The manifest dep reshuffled load order in
   a way that hid JMR's field visibility at BugFix-Accounting's
   validation moment.
 
@@ -109,58 +109,58 @@ touching JMR's data files. Not attempted this arc.
 
 **Rule captured as [[feedback-setup-related-race]] in project memory.**
 
-### 4. Six form tabs stripped from `x_sales_report_model`
+### 4. Six form tabs stripped from `sales_report_model`
 
 | Tab | Field referenced | Cycle owner |
 |---|---|---|
-| MO - WIP | `x_studio_related_field_oeTJK` → mrp.production | BugFix-MRP |
-| Slow Moving Items | `x_studio_related_field_XCKXu` → stock.move.line | BugFix-Stock |
-| Sales - Prod. - Purch. | `x_studio_related_field_NsCKm` → stock.move.line | BugFix-Stock |
-| Prod. Summary Split | `x_studio_related_field_bCtVj` → stock.move.line | BugFix-Stock |
-| Production Variance | `x_studio_related_field_PaCjA` → stock.move | BugFix-Stock |
-| Pump Price Costing | `x_studio_pump_price_costing_ids` → x_pump_price_costing | model doesn't exist on-disk |
+| MO - WIP | `related_field_oeTJK` → mrp.production | BugFix-MRP |
+| Slow Moving Items | `related_field_XCKXu` → stock.move.line | BugFix-Stock |
+| Sales - Prod. - Purch. | `related_field_NsCKm` → stock.move.line | BugFix-Stock |
+| Prod. Summary Split | `related_field_bCtVj` → stock.move.line | BugFix-Stock |
+| Production Variance | `related_field_PaCjA` → stock.move | BugFix-Stock |
+| Pump Price Costing | `pump_price_costing_ids` → pump_price_costing | model doesn't exist on-disk |
 
 Each stripped tab replaced with empty `<page invisible="1"/>` stub so
 notebook tab-bar stays intact and restoration is search-and-replace.
 
 **Why deferred:** BugFix-Stock and BugFix-MRP declare
-`Many2one('x_sales_report_type')` — that model is defined in
+`Many2one('sales_report_type')` — that model is defined in
 BugFix-Accounting. Adding either as a dep forces it to load FIRST,
-and its M2O fails because `x_sales_report_type` isn't registered
+and its M2O fails because `sales_report_type` isn't registered
 yet. **Circular dependency.**
 
-**Restore:** Upstream `x_sales_report_type` + `x_sales_report_model`
+**Restore:** Upstream `sales_report_type` + `sales_report_model`
 to `studio_usermodel_migration` (or a new shared root). All BugFix-*
 depend on that upstream. Cycle disappears. Restore the 5 stock/mrp
 tabs by reverting the strip in `views/x_sales_report_model_studio_ported_v2.xml`.
 
-For Pump Price Costing tab specifically: port `x_pump_price_costing`
+For Pump Price Costing tab specifically: port `pump_price_costing`
 model + fields first, then restore the tab.
 
-### 5. Five tree columns stripped from `x_sales_report_type` tree
+### 5. Five tree columns stripped from `sales_report_type` tree
 
-`x_studio_production_order_id`, `x_studio_slow_moving_item_id`,
-`x_studio_sales_prod_purch_id`, `x_studio_prod_summary_split_id`,
-`x_studio_production_variance_id`.
+`production_order_id`, `slow_moving_item_id`,
+`sales_prod_purch_id`, `prod_summary_split_id`,
+`production_variance_id`.
 
 Same cycle as tabs above. Same restore path.
 
-### 6. Six TODO O2M fields on `x_sales_report_model` model
+### 6. Six TODO O2M fields on `sales_report_model` model
 
-- `x_studio_pump_price_costing_ids`
-- `x_studio_related_field_NsCKm`
-- `x_studio_related_field_PaCjA`
-- `x_studio_related_field_XCKXu`
-- `x_studio_related_field_bCtVj`
-- `x_studio_related_field_oeTJK`
+- `pump_price_costing_ids`
+- `related_field_NsCKm`
+- `related_field_PaCjA`
+- `related_field_XCKXu`
+- `related_field_bCtVj`
+- `related_field_oeTJK`
 
-### 7. Five TODO O2M fields on `x_sales_report_type` model
+### 7. Five TODO O2M fields on `sales_report_type` model
 
-- `x_studio_production_order_id`
-- `x_studio_slow_moving_item_id`
-- `x_studio_sales_prod_purch_id`
-- `x_studio_prod_summary_split_id`
-- `x_studio_production_variance_id`
+- `production_order_id`
+- `slow_moving_item_id`
+- `sales_prod_purch_id`
+- `prod_summary_split_id`
+- `production_variance_id`
 
 ### 9. VIEWS_TODO.md — 84 Studio views triage (v0.0.47 follow-up, 2026-08-31)
 
@@ -269,7 +269,7 @@ files and rewrote each broken ref to the real record. 19 fixes across
 
 ### v0.0.23 — Routing miss on bank-data fields
 
-**Error:** `Field "x_dest_bank_micr" does not exist in model "account.move.line"`
+**Error:** `Field "dest_bank_micr" does not exist in model "account.move.line"`
 
 **Root cause:** 19 bare `x_` fields on account.move.line + 17 on
 hr.payslip pinned to `bank-data` module per Clear-DB `ir.model.data`.
@@ -319,21 +319,21 @@ Rewrote all 7 view refs to `%(BugFix-Accounting.xmlid)d` interpolation.
 
 ### v0.0.25 — Missing mail.thread inherit on 20 x_ models
 
-**Error:** `Field "message_follower_ids" does not exist in model "x_consignment_charge_h"`
+**Error:** `Field "message_follower_ids" does not exist in model "consignment_charge_h"`
 
 **Root cause:** Ported Studio views contain `<div class="oe_chatter">`
 blocks that reference `message_follower_ids`, `message_ids`,
 `activity_ids`. Those fields come from `mail.thread` +
 `mail.activity.mixin`. Our on-disk model ports missed the inherit
 lines. Clear-DB has the mixin on all 20 models — RPC-verified for
-every one; visually confirmed via Playwright on `x_tp_invoice_line`
+every one; visually confirmed via Playwright on `tp_invoice_line`
 form (Send message / Log note / Activities / Follow buttons render).
 
 **Fix:** Batch-added `_inherit = ['mail.thread', 'mail.activity.mixin']`
-to 19 existing model files. Created new `models/x_journal_types.py`
-(missing entirely). Added `model_x_journal_types` pin to
+to 19 existing model files. Created new `models/journal_types.py`
+(missing entirely). Added `model_journal_types` pin to
 `security/ir_model_pins.xml`. Fixed 2 latent bugs where
-`x_rm_gross_margin_esti.py` + `x_rm_gross_margin_esti_line_7e86d.py`
+`rm_gross_margin_esti.py` + `rm_gross_margin_esti_line_7e86d.py`
 existed on-disk but were never imported by `models/__init__.py`.
 
 **Change scope:** purely additive — new fields, new chatter UI panel.
@@ -343,11 +343,11 @@ Zero existing functionality touched.
 
 ---
 
-### v0.0.26 — Auto-porter dropped header buttons on x_lc_header
+### v0.0.26 — Auto-porter dropped header buttons on lc_header
 
 **Error:** `xpath //button[@name='1404'] cannot be located in parent view`
 
-**Root cause:** Clear-DB's primary form for x_lc_header had 2 header
+**Root cause:** Clear-DB's primary form for lc_header had 2 header
 buttons (Post LC = action 1404, Amend LC = action 1405). Auto-porter
 stripped them when it fetched the arch, leaving `<header></header>`
 empty. Studio extension view expected them via xpath anchor.
@@ -384,14 +384,14 @@ positional works.
 
 ### v0.0.28 — Missing sentinel field for button modifier
 
-**Error:** `Field 'x_studio_status' used in modifier 'invisible' must be present in view but is missing`
+**Error:** `Field 'status' used in modifier 'invisible' must be present in view but is missing`
 
-**Root cause:** Restored Post/Amend LC buttons had `invisible="x_studio_status not in ['Draft']"` modifiers. The
-`x_studio_status` field is declared visibly in the extension view,
+**Root cause:** Restored Post/Amend LC buttons had `invisible="status not in ['Draft']"` modifiers. The
+`status` field is declared visibly in the extension view,
 but Odoo validates the primary view arch STANDALONE before applying
 extensions on fresh install. Primary needed the field accessible.
 
-**Fix:** Added `<field name="x_studio_status" invisible="1"/>`
+**Fix:** Added `<field name="status" invisible="1"/>`
 sentinel to primary view arch. Zero UI impact (`invisible=1`), zero
 functional change (extension still declares visibly).
 
@@ -413,15 +413,15 @@ had `//button[@name='1384']`. Both anchored to buttons the porter
 dropped from the primary view.
 
 **Fix:**
-- `x_sales_report_model`: primary already had the Clear Data button
+- `sales_report_model`: primary already had the Clear Data button
   (v0.0.24 already ported action 1676). Just switched xpath to
   positional.
-- `x_tp_invoice_header`: full treatment.
+- `tp_invoice_header`: full treatment.
   - Ported action 1384 (IMP - Post TP Invoice, **8 KB** — cost-allocation
     by weight/volume/amount + stock valuation-layer updates +
     account.move creation for the TP reversal) verbatim.
   - Restored Post button in primary header.
-  - Added `x_studio_status` sentinel.
+  - Added `status` sentinel.
   - Switched xpath to positional.
 
 **Post-fix invariant:** grep confirmed **zero live numeric xpath
@@ -433,17 +433,17 @@ anchors** remain across the module.
 
 ### v0.0.30 — First TODO field cascade
 
-**Error:** `Field "x_studio_journal_item_ids" does not exist in model "x_sales_report_model"`
+**Error:** `Field "journal_item_ids" does not exist in model "sales_report_model"`
 
 **Root cause:** Field was TODO-commented by auto-porter (couldn't
 determine O2M inverse). It's a related O2M navigating through
-`x_studio_report_type.x_studio_journal_items_id` which was ALSO
-TODO'd on x_sales_report_type.
+`report_type.journal_items_id` which was ALSO
+TODO'd on sales_report_type.
 
 **Fix:** Un-TODO'd both fields (cascade):
-- `x_sales_report_type.x_studio_journal_items_id = fields.One2many('account.move.line', 'x_studio_sales_report_type', ...)`
+- `sales_report_type.journal_items_id = fields.One2many('account.move.line', 'sales_report_type', ...)`
   (inverse M2O already exists on account.move.line)
-- `x_sales_report_model.x_studio_journal_item_ids = fields.One2many('account.move.line', related='x_studio_report_type.x_studio_journal_items_id', ...)`
+- `sales_report_model.journal_item_ids = fields.One2many('account.move.line', related='report_type.journal_items_id', ...)`
 
 Kept tight — didn't batch other TODO fields yet.
 
@@ -453,35 +453,35 @@ Kept tight — didn't batch other TODO fields yet.
 
 ### v0.0.31 — Whack-a-mole → batch un-TODO + cross-repo cycle discovery
 
-**Error:** `Field "x_studio_related_field_DqBBB" does not exist in model "x_sales_report_model"` (next TODO field surfaced)
+**Error:** `Field "related_field_DqBBB" does not exist in model "sales_report_model"` (next TODO field surfaced)
 
-**Root cause:** 25 TODO fields on x_sales_report_model + 6 on
-x_sales_report_type referenced by v2 views. Deep dive revealed a
+**Root cause:** 25 TODO fields on sales_report_model + 6 on
+sales_report_type referenced by v2 views. Deep dive revealed a
 **cross-repo dependency cycle**:
 
-- Related O2Ms navigate through x_sales_report_type
-- x_sales_report_type would need to declare O2Ms with inverses on
-  `stock.move.line.x_studio_report_type_sales_prod_purch` etc.
+- Related O2Ms navigate through sales_report_type
+- sales_report_type would need to declare O2Ms with inverses on
+  `stock.move.line.report_type_sales_prod_purch` etc.
 - Those inverse M2Os live in BugFix-Stock / BugFix-MRP
 - Adding BugFix-Stock as dep of BugFix-Accounting forces it to load
   FIRST
-- But BugFix-Stock's M2Os declare `Many2one('x_sales_report_type')` —
-  and `x_sales_report_type` is defined in BugFix-Accounting
+- But BugFix-Stock's M2Os declare `Many2one('sales_report_type')` —
+  and `sales_report_type` is defined in BugFix-Accounting
 - **Cycle**
 
 **Fix (user chose pragmatic path):** Un-TODO 19 safe fields, strip 6
 cycle-blocked fields from view. Preserve ~90% of form functionality.
 
-- 16 direct O2Ms on x_sales_report_model (local x_rm_* target inverses,
+- 16 direct O2Ms on sales_report_model (local x_rm_* target inverses,
   safe) un-TODO'd
-- 3 related O2Ms on x_sales_report_model with same-repo or already-
+- 3 related O2Ms on sales_report_model with same-repo or already-
   depended-on inverse un-TODO'd
-  (`x_studio_related_field_DqBBB` sale.order.line via BugFix-Sales dep,
-  `x_studio_related_field_n589a` same account.move.line path as
-  journal_item_ids, `x_studio_related_field_nfrkz` account.move via
+  (`related_field_DqBBB` sale.order.line via BugFix-Sales dep,
+  `related_field_n589a` same account.move.line path as
+  journal_item_ids, `related_field_nfrkz` account.move via
   BugFix-Accounting's own inherit)
-- 2 cascade fields on x_sales_report_type un-TODO'd
-  (`x_studio_sales_lines_id`, `x_studio_journal_entry_id`)
+- 2 cascade fields on sales_report_type un-TODO'd
+  (`sales_lines_id`, `journal_entry_id`)
 - 6 view pages stripped and replaced with empty `<page invisible="1"/>`
   stubs
 
@@ -489,20 +489,20 @@ cycle-blocked fields from view. Preserve ~90% of form functionality.
 
 ---
 
-### v0.0.32 — Same cascade on x_sales_report_type view
+### v0.0.32 — Same cascade on sales_report_type view
 
-**Error:** `Field "x_studio_test" does not exist in model "x_sales_report_type"`
+**Error:** `Field "test" does not exist in model "sales_report_type"`
 
-**Root cause:** x_sales_report_type's own v2 view had 6 TODO fields
+**Root cause:** sales_report_type's own v2 view had 6 TODO fields
 referenced. Same cycle pattern as v0.0.31.
 
 **Fix:**
-- Un-TODO'd `x_studio_test` (safe — account.move.line inverse via
-  `x_studio_many2one_field_kiSUJ` already on our port)
+- Un-TODO'd `test` (safe — account.move.line inverse via
+  `many2one_field_kiSUJ` already on our port)
 - Stripped 5 cycle-blocked field references from tree extension:
-  `x_studio_production_order_id`, `x_studio_slow_moving_item_id`,
-  `x_studio_sales_prod_purch_id`, `x_studio_prod_summary_split_id`,
-  `x_studio_production_variance_id`
+  `production_order_id`, `slow_moving_item_id`,
+  `sales_prod_purch_id`, `prod_summary_split_id`,
+  `production_variance_id`
 
 **Cost:** 1 commit, ~10 min
 
@@ -551,7 +551,7 @@ Companion insights (in commit messages rather than memory):
 
 ## Follow-up priority order
 
-1. **Upstream `x_sales_report_type` + `x_sales_report_model`** to
+1. **Upstream `sales_report_type` + `sales_report_model`** to
    `studio_usermodel_migration`. Unlocks: 5 stock/mrp form tabs +
    5 tree columns + 11 TODO O2M fields (across 2 models). Biggest
    single restore win.
@@ -566,8 +566,8 @@ Companion insights (in commit messages rather than memory):
 4. **Port the 14 QWeb reports.** High business value — user-facing
    documents. Full QWeb template + report action each.
 
-5. **Port the `x_pump_price_costing` model.** Unlocks the Pump Price
-   Costing tab on x_sales_report_model.
+5. **Port the `pump_price_costing` model.** Unlocks the Pump Price
+   Costing tab on sales_report_model.
 
 6. **Re-enable bank-data's HR menu.** File already exists at
    `bank-data/_disabled/hr_menu_employee_bank_accounts.xml` with

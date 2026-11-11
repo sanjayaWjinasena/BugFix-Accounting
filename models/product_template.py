@@ -4,7 +4,7 @@ from odoo import fields, models
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
-    x_studio_charge_type = fields.Selection(
+    charge_type = fields.Selection(
         [
             ("Charge", "Charge"),
             ("Duty", "Duty"),
@@ -12,4 +12,4 @@ class ProductTemplate(models.Model):
         ],
         string="Charge Type",
     )
-    x_studio_non_billable = fields.Boolean(string="Non Billable")
+    non_billable = fields.Boolean(string="Non Billable")

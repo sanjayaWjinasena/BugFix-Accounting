@@ -222,7 +222,7 @@
         <field name="sequence" eval="1"/>
         <field name="hierarchy_level" eval="0"/>
         <field name="groupby" eval="False"/>
-        <field name="user_groupby">x_studio_sales_team</field>
+        <field name="user_groupby">sales_team</field>
         <field name="foldable" eval="False"/>
         <field name="hide_if_zero" eval="False"/>
         <field name="print_on_new_page" eval="False"/>

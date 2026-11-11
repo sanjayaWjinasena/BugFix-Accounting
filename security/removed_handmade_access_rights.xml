@@ -1249,11 +1249,11 @@
     <field name="perm_unlink" eval="False"/>
   </record>
   -->
-<!-- REMOVED access_6883_x_consignment_charge_h (1100): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Purchase / Jin - PO Invoicing & Payment - Imports". Uncomment (and set the group) to bring it back. -->
+<!-- REMOVED access_6883_consignment_charge_h (1100): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Purchase / Jin - PO Invoicing & Payment - Imports". Uncomment (and set the group) to bring it back. -->
   <!--
-  <record id="access_6883_x_consignment_charge_h" model="ir.model.access">
-    <field name="name">x_consignment_charge_h</field>
-    <field name="model_id" ref="BugFix-Accounting.model_x_consignment_charge_h"/>
+  <record id="access_6883_consignment_charge_h" model="ir.model.access">
+    <field name="name">consignment_charge_h</field>
+    <field name="model_id" ref="BugFix-Accounting.model_consignment_charge_h"/>
     <field name="group_id" ref="BugFix-Studio-Misc.group_g_purchase_jin_po_invoicing_payment_imports"/>
     <field name="perm_read" eval="True"/>
     <field name="perm_write" eval="True"/>
@@ -1261,11 +1261,11 @@
     <field name="perm_unlink" eval="False"/>
   </record>
   -->
-<!-- REMOVED access_6670_x_consignment_charge_h (1110): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Purchase / Jin - Procurement - End User - Imports". Uncomment (and set the group) to bring it back. -->
+<!-- REMOVED access_6670_consignment_charge_h (1110): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Purchase / Jin - Procurement - End User - Imports". Uncomment (and set the group) to bring it back. -->
   <!--
-  <record id="access_6670_x_consignment_charge_h" model="ir.model.access">
-    <field name="name">x_consignment_charge_h</field>
-    <field name="model_id" ref="BugFix-Accounting.model_x_consignment_charge_h"/>
+  <record id="access_6670_consignment_charge_h" model="ir.model.access">
+    <field name="name">consignment_charge_h</field>
+    <field name="model_id" ref="BugFix-Accounting.model_consignment_charge_h"/>
     <field name="group_id" ref="BugFix-Studio-Misc.group_g_purchase_jin_procurement_end_user_imports"/>
     <field name="perm_read" eval="True"/>
     <field name="perm_write" eval="True"/>
@@ -1277,7 +1277,7 @@
   <!--
   <record id="access_5657_temp__budget" model="ir.model.access">
     <field name="name">Temp. Budget</field>
-    <field name="model_id" ref="BugFix-Accounting.model_x_temp_actual_budget"/>
+    <field name="model_id" ref="BugFix-Accounting.model_temp_actual_budget"/>
     <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_jin_projectinvoice"/>
     <field name="perm_read" eval="True"/>
     <field name="perm_write" eval="False"/>
@@ -1285,11 +1285,11 @@
     <field name="perm_unlink" eval="False"/>
   </record>
   -->
-<!-- REMOVED access_6881_x_temp_tp_invoice_head (1111): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Purchase / Jin - PO Invoicing & Payment - Imports". Uncomment (and set the group) to bring it back. -->
+<!-- REMOVED access_6881_temp_tp_invoice_head (1111): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Purchase / Jin - PO Invoicing & Payment - Imports". Uncomment (and set the group) to bring it back. -->
   <!--
-  <record id="access_6881_x_temp_tp_invoice_head" model="ir.model.access">
-    <field name="name">x_temp_tp_invoice_head</field>
-    <field name="model_id" ref="BugFix-Accounting.model_x_temp_tp_invoice_head"/>
+  <record id="access_6881_temp_tp_invoice_head" model="ir.model.access">
+    <field name="name">temp_tp_invoice_head</field>
+    <field name="model_id" ref="BugFix-Accounting.model_temp_tp_invoice_head"/>
     <field name="group_id" ref="BugFix-Studio-Misc.group_g_purchase_jin_po_invoicing_payment_imports"/>
     <field name="perm_read" eval="True"/>
     <field name="perm_write" eval="True"/>
@@ -1297,11 +1297,11 @@
     <field name="perm_unlink" eval="True"/>
   </record>
   -->
-<!-- REMOVED access_6882_x_temp_tp_invoice_line (1110): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Purchase / Jin - PO Invoicing & Payment - Imports". Uncomment (and set the group) to bring it back. -->
+<!-- REMOVED access_6882_temp_tp_invoice_line (1110): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Purchase / Jin - PO Invoicing & Payment - Imports". Uncomment (and set the group) to bring it back. -->
   <!--
-  <record id="access_6882_x_temp_tp_invoice_line" model="ir.model.access">
-    <field name="name">x_temp_tp_invoice_line</field>
-    <field name="model_id" ref="BugFix-Accounting.model_x_temp_tp_invoice_line"/>
+  <record id="access_6882_temp_tp_invoice_line" model="ir.model.access">
+    <field name="name">temp_tp_invoice_line</field>
+    <field name="model_id" ref="BugFix-Accounting.model_temp_tp_invoice_line"/>
     <field name="group_id" ref="BugFix-Studio-Misc.group_g_purchase_jin_po_invoicing_payment_imports"/>
     <field name="perm_read" eval="True"/>
     <field name="perm_write" eval="True"/>
@@ -1309,11 +1309,11 @@
     <field name="perm_unlink" eval="False"/>
   </record>
   -->
-<!-- REMOVED access_6884_x_tp_invoice_header (1110): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Purchase / Jin - PO Invoicing & Payment - Imports". Uncomment (and set the group) to bring it back. -->
+<!-- REMOVED access_6884_tp_invoice_header (1110): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Purchase / Jin - PO Invoicing & Payment - Imports". Uncomment (and set the group) to bring it back. -->
   <!--
-  <record id="access_6884_x_tp_invoice_header" model="ir.model.access">
-    <field name="name">x_tp_invoice_header</field>
-    <field name="model_id" ref="BugFix-Accounting.model_x_tp_invoice_header"/>
+  <record id="access_6884_tp_invoice_header" model="ir.model.access">
+    <field name="name">tp_invoice_header</field>
+    <field name="model_id" ref="BugFix-Accounting.model_tp_invoice_header"/>
     <field name="group_id" ref="BugFix-Studio-Misc.group_g_purchase_jin_po_invoicing_payment_imports"/>
     <field name="perm_read" eval="True"/>
     <field name="perm_write" eval="True"/>
@@ -1321,11 +1321,11 @@
     <field name="perm_unlink" eval="False"/>
   </record>
   -->
-<!-- REMOVED access_6885_x_tp_invoice_line (1110): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Purchase / Jin - PO Invoicing & Payment - Imports". Uncomment (and set the group) to bring it back. -->
+<!-- REMOVED access_6885_tp_invoice_line (1110): hand-made on production (hand-made (no id)); the port had dropped its group so it applied to every user. Production restricts it to group "Purchase / Jin - PO Invoicing & Payment - Imports". Uncomment (and set the group) to bring it back. -->
   <!--
-  <record id="access_6885_x_tp_invoice_line" model="ir.model.access">
-    <field name="name">x_tp_invoice_line</field>
-    <field name="model_id" ref="BugFix-Accounting.model_x_tp_invoice_line"/>
+  <record id="access_6885_tp_invoice_line" model="ir.model.access">
+    <field name="name">tp_invoice_line</field>
+    <field name="model_id" ref="BugFix-Accounting.model_tp_invoice_line"/>
     <field name="group_id" ref="BugFix-Studio-Misc.group_g_purchase_jin_po_invoicing_payment_imports"/>
     <field name="perm_read" eval="True"/>
     <field name="perm_write" eval="True"/>
@@ -1337,7 +1337,7 @@
   <!--
   <record id="access_5657_temp_budget" model="ir.model.access">
     <field name="name">Temp. Budget</field>
-    <field name="model_id" ref="BugFix-Accounting.model_x_temp_actual_budget"/>
+    <field name="model_id" ref="BugFix-Accounting.model_temp_actual_budget"/>
     <field name="group_id" ref="BugFix-Studio-Misc.group_g_accounting_jin_projectinvoice"/>
     <field name="perm_read" eval="True"/>
     <field name="perm_write" eval="False"/>

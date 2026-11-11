@@ -16,11 +16,11 @@ This repo adds eight char fields to the 'add bank account' setup wizard: bank co
 
 | Field | Label | Type | Function | How it gets its value | Depends on | Used by |
 |---|---|---|---|---|---|---|
-| `x_studio_bank_code` | bank code | char | Bank code entered in the 'add bank account' setup wizard (duplicate of 'Bank code'); transient and not stored, and not used by any logic. | not stored |  |  |
-| `x_studio_bank_code_1` | Bank code | char | Bank code entered in the 'add bank account' setup wizard; transient and not stored, and not used by any logic in this repo. | not stored |  |  |
-| `x_studio_branch_code` | branch code | char | Branch code entered in the 'add bank account' setup wizard (duplicate of 'Branch code'); transient and not stored, and not used by any logic. | not stored |  |  |
-| `x_studio_branch_code_1` | Branch code | char | Branch code entered in the 'add bank account' setup wizard; transient and not stored, and not used by any logic in this repo. | not stored |  |  |
-| `x_studio_char_field_445_1jk2c8gep` | New Text | char | Unnamed Studio text field on the 'add bank account' setup wizard; transient, not stored and not used anywhere. | not stored |  |  |
-| `x_studio_char_field_8qe_1jk2c6sho` | New Text | char | Unnamed Studio text field on the 'add bank account' setup wizard; transient, not stored and not used anywhere. | not stored |  |  |
-| `x_studio_char_field_yfp1a` | New Text | char | Unnamed Studio text field on the 'add bank account' setup wizard; transient, not stored and not used anywhere. | not stored |  |  |
-| `x_studio_swift_code` | SWIFT Code | char | SWIFT code entered in the 'add bank account' setup wizard; transient and not stored, and not used by any logic in this repo. | not stored |  |  |
+| `bank_code` | bank code | char | Bank code entered in the 'add bank account' setup wizard (duplicate of 'Bank code'); transient and not stored, and not used by any logic. | not stored |  |  |
+| `bank_code_1` | Bank code | char | Bank code entered in the 'add bank account' setup wizard; transient and not stored, and not used by any logic in this repo. | not stored |  |  |
+| `branch_code` | branch code | char | Branch code entered in the 'add bank account' setup wizard (duplicate of 'Branch code'); transient and not stored, and not used by any logic. | not stored |  |  |
+| `branch_code_1` | Branch code | char | Branch code entered in the 'add bank account' setup wizard; transient and not stored, and not used by any logic in this repo. | not stored |  |  |
+| `char_field_445_1jk2c8gep` | New Text | char | Unnamed Studio text field on the 'add bank account' setup wizard; transient, not stored and not used anywhere. | not stored |  |  |
+| `char_field_8qe_1jk2c6sho` | New Text | char | Unnamed Studio text field on the 'add bank account' setup wizard; transient, not stored and not used anywhere. | not stored |  |  |
+| `char_field_yfp1a` | New Text | char | Unnamed Studio text field on the 'add bank account' setup wizard; transient, not stored and not used anywhere. | not stored |  |  |
+| `swift_code` | SWIFT Code | char | SWIFT code entered in the 'add bank account' setup wizard; transient and not stored, and not used by any logic in this repo. | not stored |  |  |

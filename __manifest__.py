@@ -2,7 +2,7 @@
     # upgrade-testing branch: data files below are commented out - this branch installs
     # functions only, no data is seeded.
     "name": "Jinasena : Module : Accounting",
-    "version": "17.0.0.0.154",
+    "version": "17.0.0.0.155",
     "summary": "Studio-to-Python port for BugFix-Accounting",
     "author": "Jinasena Agricultural Machinery (Pvt) Ltd.",
     "category": "Accounting",
@@ -21,7 +21,7 @@
     # 59 documented as skipped duplicates).
     # v0.0.56: 12 view records to close the remaining priority=99 view
     # gap (2 primaries + 9 customization inherits + 1 extra supporting
-    # primary for x_pump_price_costing). View coverage: 84% -> 100%
+    # primary for pump_price_costing). View coverage: 84% -> 100%
     # (67/67 shipped). Uses same sentinel-injection + numeric-ref
     # conversion pipeline as Purchase view arc.
     # v0.0.55: bulk-port 46 remaining act_window records. Skipped 61
@@ -53,40 +53,40 @@
     # v0.0.51: 27 server actions appended to data/server_actions_v2.xml
     # (was 19, now 46). These are the state=code base_automation actions
     # referenced by the 27 unwired base.automation records to be shipped
-    # in v0.0.52. Actions cover x_sales_report_model (15), x_lc_header (3),
-    # x_tp_invoice_header (2), account.move.line (2), crossovered.budget (2),
-    # x_journal_types (1), x_misc_charge_codes (1), x_tp_invoice_line (1).
+    # in v0.0.52. Actions cover sales_report_model (15), lc_header (3),
+    # tp_invoice_header (2), account.move.line (2), crossovered.budget (2),
+    # journal_types (1), misc_charge_codes (1), tp_invoice_line (1).
     # v0.0.50: break the 2-way cycle Purchase <-> Accounting that was
     # silently blocking cross-module upgrades. Removed BugFix-Purchase
-    # from depends. Fix: account_move.x_studio_cre (the only STORED
-    # Many2one to x_purchase_request_cas in this module) is now
+    # from depends. Fix: account_move.cre (the only STORED
+    # Many2one to purchase_request_cas in this module) is now
     # store=False. The account_payment / account_bank_statement_line
     # versions were already store=False. crossovered.budget compute
-    # traversals into x_purchase_request use env.get() which is
+    # traversals into purchase_request use env.get() which is
     # runtime-guarded (returns None if model absent). No schema-time
     # need for the dep anymore.
     # Enables clean DAG: Sales -> Accounting -> Purchase (Purchase at
     # top of stack), where Purchase can freely depend on Accounting
     # for its own artifacts without creating a cycle.
     # v0.0.14 additions:
-    #   * mrp — x_rm_production_orders / x_rm_production_varian
+    #   * mrp — rm_production_orders / rm_production_varian
     #     m2o into mrp.production; without this dep the setup_nonrelated
     #     fails with KeyError on fresh install.
-    #   * sale — x_rm_sales_order_line m2o into sale.order.
-    #   * crm — x_rm_daily_s1/s2/s3 m2o into crm.team (sales centre).
-    #   * stock — x_rm_production_orders.x_studio_warehouse into
+    #   * sale — rm_sales_order_line m2o into sale.order.
+    #   * crm — rm_daily_s1/s2/s3 m2o into crm.team (sales centre).
+    #   * stock — rm_production_orders.warehouse into
     #     stock.location.
-    #   * studio_usermodel_migration — x_rm_sales_order_line m2o into
-    #     x_customer_group. That module owns the customer/vendor group
+    #   * studio_usermodel_migration — rm_sales_order_line m2o into
+    #     customer_group. That module owns the customer/vendor group
     #     catalog. Adds a new local dep edge into BugFix-Accounting,
     #     which was previously a root. No cycle: studio_usermodel_migration
     #     is itself a root.
     #
     # v0.0.15 additions:
-    #   * project — x_temp_estimated.x_studio_project_no m2o into
+    #   * project — temp_estimated.project_no m2o into
     #     project.project. Standard Odoo module.
-    #   * BugFix-Project — x_temp_estimated.x_studio_category m2o into
-    #     x_project_category (owned by BugFix-Project). New local dep
+    #   * BugFix-Project — temp_estimated.category m2o into
+    #     project_category (owned by BugFix-Project). New local dep
     #     edge BugFix-Accounting -> BugFix-Project verified acyclic
     #     (BugFix-Project depends only on standard Odoo modules).
     #
@@ -98,14 +98,14 @@
     #     sale.order.quotation_type / _inventory_short /
     #     _sub_contract fields, which BugFix-Sales owns.
     #   * BugFix-Purchase — crossovered.budget compute uses
-    #     env['x_purchase_request'] (soft-guarded so absence doesn't
+    #     env['purchase_request'] (soft-guarded so absence doesn't
     #     crash, but declaring the dep is cleaner for fresh install).
     # v0.0.19 addition:
     #   * account_reports — v0.0.19 resolves the account.archived.tax.tag.tree
     #     inherit against account_reports.view_archived_tag_move_tree.
     # v0.0.23 addition:
     #   * bank-data — supplies the 19 bare x_ fields on account.move.line
-    #     (x_dest_bank_micr, x_cbc_amount, x_return_code, ...) that the
+    #     (dest_bank_micr, cbc_amount, return_code, ...) that the
     #     ported Studio tree-BankData + tree-EPF views reference. Also
     #     supplies the 17 hr.payslip fields and paymaster.config model.
     #     Verified acyclic (bank-data depends on account/hr/hr_payroll/base
@@ -116,38 +116,38 @@
     #     srv_sls_credit_note_notify_tharaka child action which uses
     #     activity_user_id=seed_master_data_and_settings.user_146 (Tharaka
     #     Herath). No cycle: seed only depends on base/stock/hr/mail.
-    # v0.0.49: Restore "Pump Price Costing" form tab on x_sales_report_model.
+    # v0.0.49: Restore "Pump Price Costing" form tab on sales_report_model.
     #   * views/x_sales_report_model_studio_ported_v2.xml: the
     #     `<page name="studio_page_l5MQG" invisible="1"/>` stub added
-    #     in v0.0.31 (stripped because x_pump_price_costing wasn't
+    #     in v0.0.31 (stripped because pump_price_costing wasn't
     #     on-disk) is replaced with the byte-verbatim 6994-byte page
     #     block from Clear-DB view 3786. 65 field columns on the
-    #     nested x_pump_price_costing tree + parent.x_studio_actuals
+    #     nested pump_price_costing tree + parent.actuals
     #     column-invisible expressions + page-level invisible bound
-    #     to x_studio_report_code == 'Costing Work Sheet'.
-    #   * All 66 field refs (65 on x_pump_price_costing + the O2M on
-    #     x_sales_report_model) verified present on repair-test-101
+    #     to report_code == 'Costing Work Sheet'.
+    #   * All 66 field refs (65 on pump_price_costing + the O2M on
+    #     sales_report_model) verified present on repair-test-101
     #     before landing.
     #   * docs/INSTALL_JOURNEY.md item #4 "Pump Price Costing" restore
     #     path complete.
-    # v0.0.48: x_pump_price_costing custom model port.
-    #   * models/x_pump_price_costing.py declares the 69 Studio x_*
+    # v0.0.48: pump_price_costing custom model port.
+    #   * models/pump_price_costing.py declares the 69 Studio x_*
     #     fields from Clear-DB verbatim (0 rows on Clear-DB - schema-
     #     only asset). Order: sequence asc, id asc. Mixed with
     #     mail.thread + mail.activity.mixin per the ir.model.data state.
-    #   * models/x_sales_report_model.py: TODO comment for
-    #     x_studio_pump_price_costing_ids O2M replaced with the real
+    #   * models/sales_report_model.py: TODO comment for
+    #     pump_price_costing_ids O2M replaced with the real
     #     declaration pointing at the new model via
-    #     x_studio_sales_report_model_id (the inverse M2O this file
+    #     sales_report_model_id (the inverse M2O this file
     #     declares).
-    #   * security/ir_model_pins.xml: added model_x_pump_price_costing
+    #   * security/ir_model_pins.xml: added model_pump_price_costing
     #     pin so cross-refs resolve on module load.
     #   * security/ir.model.access.csv: base.group_user rw access.
     #   * Views (form, tree, search) not ported this pass - the Studio
     #     defaults on Clear-DB are auto-generated stubs, no
     #     act_window references any of them.
     #   * Unblocks docs/INSTALL_JOURNEY.md item #4 "Pump Price Costing" tab
-    #     restoration on x_sales_report_model form (follow-up commit).
+    #     restoration on sales_report_model form (follow-up commit).
     # v0.0.47: wired 18 base.automation stubs to their server actions.
     #   * data/server_actions.xml grew from 13 -> 22 records with
     #     byte-verbatim ports of the 9 previously-missing actions
@@ -158,7 +158,7 @@
     #     18/18 wires. base.automation records now actually invoke
     #     their server actions on trigger.
     #   * New models/account_analytic_distribution_model.py declares
-    #     x_studio_partner_mandatory (Bool) - required by action 2417
+    #     partner_mandatory (Bool) - required by action 2417
     #     (Update Analytic Tag Parameters). Clear-DB has no on-disk
     #     definition for this field either; we're the first Python
     #     owner. account.analytic.distribution.model is standard Odoo,
@@ -186,12 +186,12 @@
     #   * srv_imp_update_consignment_pi (Clear-DB action 1370, ~30 KB
     #     of Python). Reconciles vendor bill against consignment,
     #     aggregates charge/duty/tax across 4 billable buckets,
-    #     rewrites invoice lines against x_imports_ledger_setup, and
+    #     rewrites invoice lines against imports_ledger_setup, and
     #     creates vendor-despatch + custom-clearance reversal journal
     #     entries when the consignment header enables them. See the
     #     comment block above the record in data/server_actions_v2.xml.
-    #   * New models/product_template.py adds x_studio_charge_type
-    #     (Selection Charge/Duty/Tax) + x_studio_non_billable (Bool)
+    #   * New models/product_template.py adds charge_type
+    #     (Selection Charge/Duty/Tax) + non_billable (Bool)
     #     to product.template. Clear-DB pins them as state='manual'
     #     with pin.module='product'; on-disk we own them here because
     #     BugFix-Accounting is the only consumer (three
@@ -231,46 +231,46 @@
         "data/account_move_data.xml",
         "data/account_payment_data.xml",
         "data/crossovered_budget_data.xml",
-        "data/x_custom_currency_data.xml",
-        "data/x_custom_currency_rate_data.xml",
-        "data/x_journal_types_data.xml",
-        "data/x_lc_header_data.xml",
-        "data/x_misc_charge_codes_data.xml",
-        "data/x_sales_report_model_data.xml",
-        "data/x_tp_invoice_header_data.xml",
-        "data/x_tp_invoice_line_data.xml",
+        "data/custom_currency_data.xml",
+        "data/custom_currency_rate_data.xml",
+        "data/journal_types_data.xml",
+        "data/lc_header_data.xml",
+        "data/misc_charge_codes_data.xml",
+        "data/sales_report_model_data.xml",
+        "data/tp_invoice_header_data.xml",
+        "data/tp_invoice_line_data.xml",
         "data/defaults_f2.xml",
         "data/account_move_line_data.xml",
         "data/account_payment_term_data.xml",
         "data/account_analytic_account_data.xml",
-        "data/x_temp_tp_invoice_head_data.xml",
-        "data/x_consignment_charge_h_data.xml",
+        "data/temp_tp_invoice_head_data.xml",
+        "data/consignment_charge_h_data.xml",
         "data/crossovered_budget_lines_data.xml",
         "data/product_template_data.xml",
-        "data/x_advance_payment_acco_data.xml",
-        "data/x_customer_posting_pro_data.xml",
-        "data/x_pump_price_costing_data.xml",
-        "data/x_rm_cust_invoice_s1_data.xml",
-        "data/x_rm_customer_wise_inv_data.xml",
-        "data/x_rm_daily_s1_data.xml",
-        "data/x_rm_daily_s2_data.xml",
-        "data/x_rm_daily_s3_data.xml",
-        "data/x_rm_daily_sales_repor_data.xml",
+        "data/advance_payment_acco_data.xml",
+        "data/customer_posting_pro_data.xml",
+        "data/pump_price_costing_data.xml",
+        "data/rm_cust_invoice_s1_data.xml",
+        "data/rm_customer_wise_inv_data.xml",
+        "data/rm_daily_s1_data.xml",
+        "data/rm_daily_s2_data.xml",
+        "data/rm_daily_s3_data.xml",
+        "data/rm_daily_sales_repor_data.xml",
         "data/x_rm_date_test_data.xml",
-        "data/x_rm_gross_margin_actu_data.xml",
-        "data/x_rm_gross_margin_comp_data.xml",
-        "data/x_rm_gross_margin_esti_data.xml",
-        "data/x_rm_gross_margin_invo_data.xml",
-        "data/x_rm_none_moving_data.xml",
-        "data/x_rm_prod_summary_spli_data.xml",
-        "data/x_rm_production_orders_data.xml",
-        "data/x_rm_production_varian_data.xml",
-        "data/x_rm_sales_order_line_data.xml",
-        "data/x_rm_sales_prod_purch_data.xml",
-        "data/x_sales_report_type_data.xml",
-        "data/x_temp_actual_budget_data.xml",
-        "data/x_temp_estimated_data.xml",
-        "data/x_temp_tp_invoice_line_data.xml",
+        "data/rm_gross_margin_actu_data.xml",
+        "data/rm_gross_margin_comp_data.xml",
+        "data/rm_gross_margin_esti_data.xml",
+        "data/rm_gross_margin_invo_data.xml",
+        "data/rm_none_moving_data.xml",
+        "data/rm_prod_summary_spli_data.xml",
+        "data/rm_production_orders_data.xml",
+        "data/rm_production_varian_data.xml",
+        "data/rm_sales_order_line_data.xml",
+        "data/rm_sales_prod_purch_data.xml",
+        "data/sales_report_type_data.xml",
+        "data/temp_actual_budget_data.xml",
+        "data/temp_estimated_data.xml",
+        "data/temp_tp_invoice_line_data.xml",
         "data/x_test_rm_gross_margin_data.xml",
         "report/account_move_reports.xml",
         "report/account_payment_reports.xml",
@@ -282,7 +282,7 @@
         "views/account_payment_views.xml",
         "views/crossovered_budget_views.xml",
         "views/product_template_views.xml",
-        "views/x_custom_currency_rate_views.xml",
+        "views/custom_currency_rate_views.xml",
         "views/account_account_views.xml",
         "views/account_analytic_account_views.xml",
         "views/account_analytic_plan_views.xml",
@@ -290,44 +290,44 @@
         "views/account_journal_views.xml",
         "views/account_tax_group_views.xml",
         "views/account_tax_views.xml",
-        "views/x_advance_payment_acco_views.xml",
-        "views/x_consignment_charge_h_views.xml",
-        "views/x_custom_currency_views.xml",
-        "views/x_customer_posting_pro_views.xml",
-        "views/x_journal_types_views.xml",
-        "views/x_lc_header_views.xml",
-        "views/x_misc_charge_codes_views.xml",
-        "views/x_pump_price_costing_views.xml",
-        "views/x_rm_cust_invoice_s1_views.xml",
-        "views/x_rm_customer_wise_inv_views.xml",
-        "views/x_rm_daily_s1_views.xml",
-        "views/x_rm_daily_s2_views.xml",
-        "views/x_rm_daily_s3_views.xml",
-        "views/x_rm_daily_sales_repor_views.xml",
+        "views/advance_payment_acco_views.xml",
+        "views/consignment_charge_h_views.xml",
+        "views/custom_currency_views.xml",
+        "views/customer_posting_pro_views.xml",
+        "views/journal_types_views.xml",
+        "views/lc_header_views.xml",
+        "views/misc_charge_codes_views.xml",
+        "views/pump_price_costing_views.xml",
+        "views/rm_cust_invoice_s1_views.xml",
+        "views/rm_customer_wise_inv_views.xml",
+        "views/rm_daily_s1_views.xml",
+        "views/rm_daily_s2_views.xml",
+        "views/rm_daily_s3_views.xml",
+        "views/rm_daily_sales_repor_views.xml",
         "views/x_rm_date_test_views.xml",
-        "views/x_rm_gross_margin_actu_views.xml",
-        "views/x_rm_gross_margin_comp_views.xml",
-        "views/x_rm_gross_margin_esti_views.xml",
-        "views/x_rm_gross_margin_invo_views.xml",
-        "views/x_rm_none_moving_views.xml",
-        "views/x_rm_prod_summary_spli_views.xml",
-        "views/x_rm_production_orders_views.xml",
-        "views/x_rm_production_varian_views.xml",
-        "views/x_rm_sales_order_line_views.xml",
-        "views/x_rm_sales_prod_purch_views.xml",
-        "views/x_sales_report_model_views.xml",
-        "views/x_sales_report_type_views.xml",
-        "views/x_temp_actual_budget_views.xml",
-        "views/x_temp_estimated_views.xml",
-        "views/x_temp_tp_invoice_head_views.xml",
-        "views/x_temp_tp_invoice_line_views.xml",
+        "views/rm_gross_margin_actu_views.xml",
+        "views/rm_gross_margin_comp_views.xml",
+        "views/rm_gross_margin_esti_views.xml",
+        "views/rm_gross_margin_invo_views.xml",
+        "views/rm_none_moving_views.xml",
+        "views/rm_prod_summary_spli_views.xml",
+        "views/rm_production_orders_views.xml",
+        "views/rm_production_varian_views.xml",
+        "views/rm_sales_order_line_views.xml",
+        "views/rm_sales_prod_purch_views.xml",
+        "views/sales_report_model_views.xml",
+        "views/sales_report_type_views.xml",
+        "views/temp_actual_budget_views.xml",
+        "views/temp_estimated_views.xml",
+        "views/temp_tp_invoice_head_views.xml",
+        "views/temp_tp_invoice_line_views.xml",
         "views/x_test_rm_gross_margin_views.xml",
-        "views/x_tp_invoice_header_views.xml",
-        "views/x_tp_invoice_line_views.xml",
+        "views/tp_invoice_header_views.xml",
+        "views/tp_invoice_line_views.xml",
         "views/account_report_expression_views.xml",
         "views/account_report_external_value_views.xml",
         "views/account_tax_repartition_line_views.xml",
-        "views/x_rm_gross_margin_esti_line_7e86d_views.xml",
+        "views/rm_gross_margin_esti_line_7e86d_views.xml",
         "views/account_asset_views.xml",
         "views/account_group_views.xml",
         "views/account_payment_term_views.xml",

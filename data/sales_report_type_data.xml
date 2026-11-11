@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+    <record id="default_252_x_sales_report_type_active" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_sales_report_type__active"/>
+      <field name="json_value">true</field>
+    </record>
+    <record id="default_253_x_sales_report_type_sequence" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_sales_report_type__sequence"/>
+      <field name="json_value">10</field>
+    </record>
+    </data>
+</odoo>

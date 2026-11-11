@@ -18,4 +18,4 @@ This repo adds one field: a 'Partner Mandatory' checkbox on analytic distributio
 
 | Field | Label | Type | Function | How it gets its value | Depends on | Used by |
 |---|---|---|---|---|---|---|
-| `x_studio_partner_mandatory` | Partner Mandatory | boolean | Checkbox on analytic distribution models flagging that a partner is mandatory; no logic in this repo reads it. | stored |  |  |
+| `partner_mandatory` | Partner Mandatory | boolean | Checkbox on analytic distribution models flagging that a partner is mandatory; no logic in this repo reads it. | stored |  |  |

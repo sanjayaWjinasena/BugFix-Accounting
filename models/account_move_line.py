@@ -4,293 +4,293 @@ from odoo import api, fields, models
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
-    x_studio_aaa = fields.Char(string="AAA", readonly=True, store=False)
-    x_studio_account_mandatory = fields.Boolean(string="Account Mandatory")
-    x_studio_analytic_group = fields.Many2one(
+    aaa = fields.Char(string="AAA", readonly=True, store=False)
+    account_mandatory = fields.Boolean(string="Account Mandatory")
+    analytic_group = fields.Many2one(
         "account.analytic.plan", string="Analytic Group"
     )
-    x_studio_beneficiary_id = fields.Char(
+    beneficiary_id = fields.Char(
         string="Beneficiary ID",
-        related="x_studio_contract_id.employee_id.identification_id",
+        related="contract_id.employee_id.identification_id",
         store=True,
         readonly=True,
     )
-    x_studio_beneficiary_name = fields.Char(
+    beneficiary_name = fields.Char(
         string="Beneficiary Name",
-        related="x_studio_contract_id.employee_id.name",
+        related="contract_id.employee_id.name",
         store=True,
         readonly=True,
     )
-    x_studio_category = fields.Many2one("x_project_category", string="Category")
-    x_studio_contract_id = fields.Many2one("hr.contract", string="Contract Id")
-    x_studio_credit_limit = fields.Float(
+    category = fields.Many2one("project_category", string="Category")
+    contract_id = fields.Many2one("hr.contract", string="Contract Id")
+    accounting_credit_limit = fields.Float(
         string="Credit Limit",
         related="partner_id.credit_limit",
         store=True,
         readonly=True,
     )
-    x_studio_credit_limit_2 = fields.Float(
+    credit_limit_2 = fields.Float(
         string="Credit Limit 2",
-        compute="_compute_x_studio_credit_limit_2",
+        compute="_compute_credit_limit_2",
         store=False,
         readonly=True,
     )
-    x_studio_customer_group_type = fields.Selection(
+    customer_group_type = fields.Selection(
         string="Customer Group Type",
-        related="partner_id.x_studio_customer_group.x_studio_group_type",
+        related="partner_id.customer_group.group_type",
         store=True,
         readonly=True,
     )
-    x_studio_employers_contribution = fields.Float(
+    employers_contribution = fields.Float(
         string="Employer's Contribution",
-        compute="_compute_x_studio_employers_contribution",
+        compute="_compute_employers_contribution",
         store=True,
         readonly=True,
     )
-    x_studio_epf_number = fields.Char(
+    epf_number = fields.Char(
         string="EPF Number",
-        related="x_studio_contract_id.employee_id.x_studio_epf_no",
+        related="contract_id.employee_id.epf_no",
         store=True,
         readonly=True,
     )
-    x_studio_etf_number = fields.Char(
+    etf_number = fields.Char(
         string="ETF Number",
-        related="x_studio_contract_id.employee_id.x_studio_etf_no",
+        related="contract_id.employee_id.etf_no",
         store=True,
         readonly=True,
     )
-    x_studio_initials = fields.Char(
+    initials = fields.Char(
         string="Initials",
-        related="x_studio_contract_id.x_studio_initial",
+        related="contract_id.initial",
         store=True,
         readonly=True,
     )
-    x_studio_invoice_date = fields.Date(
+    accounting_invoice_date = fields.Date(
         string="Invoice Date", related="move_id.invoice_date", store=True, readonly=True
     )
-    x_studio_journal = fields.Many2one(
+    journal = fields.Many2one(
         "account.move", string="Journal", readonly=True, related="move_id", store=True
     )
-    x_studio_journal_type = fields.Selection(
+    journal_type = fields.Selection(
         string="Journal Type",
-        related="move_id.x_studio_journal_type",
+        related="move_id.journal_type",
         store=True,
         readonly=True,
     )
-    x_studio_many2one_field_kiSUJ = fields.Many2one(
-        "x_sales_report_type", string="Sales Report Type"
+    many2one_field_kiSUJ = fields.Many2one(
+        "sales_report_type", string="Sales Report Type"
     )
-    x_studio_members_contribution = fields.Float(
+    members_contribution = fields.Float(
         string="Member's Contribution",
-        compute="_compute_x_studio_members_contribution",
+        compute="_compute_members_contribution",
         store=True,
         readonly=True,
     )
-    x_studio_nic_number = fields.Char(
+    nic_number = fields.Char(
         string="NIC Number",
-        related="x_studio_contract_id.employee_id.identification_id",
+        related="contract_id.employee_id.identification_id",
         store=True,
         readonly=True,
     )
-    x_studio_occupation_code = fields.Char(
+    occupation_code = fields.Char(
         string="New Related Field",
-        related="x_studio_contract_id.employee_id.x_studio_occupation_code",
+        related="contract_id.employee_id.occupation_code",
         store=True,
         readonly=True,
     )
-    x_studio_partner = fields.Many2one(
+    partner = fields.Many2one(
         "res.partner",
         string="Partner",
         related="move_id.partner_id",
         store=True,
         readonly=True,
     )
-    x_studio_payment_status = fields.Selection(
+    payment_status = fields.Selection(
         string="Payment Status",
         related="move_id.payment_state",
         store=True,
         readonly=True,
     )
-    x_studio_pr_type = fields.Selection(
+    pr_type = fields.Selection(
         string="PR Type",
-        related="move_id.x_studio_purchase_type",
+        related="move_id.purchase_type",
         store=True,
         readonly=True,
     )
-    x_studio_product_category = fields.Many2one(
+    product_category = fields.Many2one(
         "product.category",
         string="Product Category",
         related="product_id.categ_id",
         store=False,
         readonly=True,
     )
-    x_studio_project_no = fields.Many2one(
+    project_no = fields.Many2one(
         "project.project",
         string="Project No",
-        related="move_id.x_studio_project_no",
+        related="move_id.project_no",
         store=True,
         readonly=True,
     )
-    x_studio_purchase_order = fields.Char(
+    purchase_order = fields.Char(
         string="Purchase Order",
         related="purchase_order_id.name",
         store=True,
         readonly=True,
     )
-    x_studio_purpose_code = fields.Char(
+    purpose_code = fields.Char(
         string="Purpose Code",
-        related="x_studio_contract_id.employee_id.x_studio_purpose_code",
+        related="contract_id.employee_id.purpose_code",
         store=True,
         readonly=True,
     )
-    x_studio_related_field_5LBku = fields.Char(
+    related_field_5LBku = fields.Char(
         string="New Related Field", readonly=True, store=False
     )
-    x_studio_related_field_5j5_1isv2aad6 = fields.Char(
+    related_field_5j5_1isv2aad6 = fields.Char(
         string="New Related Field",
-        related="x_studio_contract_id.employee_id.x_studio_occupation_code",
+        related="contract_id.employee_id.occupation_code",
         store=True,
         readonly=True,
     )
-    x_studio_related_field_CQ41C = fields.Many2one(
+    related_field_CQ41C = fields.Many2one(
         "product.product",
         string="New Related Field",
         related="product_id.product_variant_id.product_variant_id",
         store=False,
         readonly=True,
     )
-    x_studio_related_field_CvPMn = fields.Char(
+    related_field_CvPMn = fields.Char(
         string="New Related Field",
-        related="product_id.x_studio_many2one_field_8eWzY.item_ids.price",
+        related="product_id.many2one_field_8eWzY.item_ids.price",
         store=False,
         readonly=True,
     )
-    x_studio_related_field_FWW4G = fields.Float(
+    related_field_FWW4G = fields.Float(
         string="New Related Field", readonly=True
     )
-    x_studio_related_field_HFHrh = fields.Char(
+    related_field_HFHrh = fields.Char(
         string="New Related Field", readonly=True, store=False
     )
-    x_studio_related_field_HO3gE = fields.Char(
+    related_field_HO3gE = fields.Char(
         string="New Related Field", readonly=True, store=False
     )
-    x_studio_related_field_MnJZJ = fields.Char(
+    related_field_MnJZJ = fields.Char(
         string="New Related Field", readonly=True, store=False
     )
-    x_studio_related_field_Nf3SX = fields.Float(
+    related_field_Nf3SX = fields.Float(
         string="New Related Field", readonly=True
     )
-    x_studio_related_field_SORzX = fields.Integer(
+    related_field_SORzX = fields.Integer(
         string="New Related Field",
         related="move_id.journal_id.id",
         store=True,
         readonly=True,
     )
-    x_studio_related_field_VzwUx = fields.Integer(
+    related_field_VzwUx = fields.Integer(
         string="New Related Field",
         related="move_id.journal_id.id",
         store=True,
         readonly=True,
     )
-    x_studio_related_field_WVIs6 = fields.Char(
+    related_field_WVIs6 = fields.Char(
         string="New Related Field",
-        compute="_compute_x_studio_related_field_WVIs6",
+        compute="_compute_related_field_WVIs6",
         store=False,
         readonly=True,
     )
-    x_studio_related_field_X2pdt = fields.Float(
+    related_field_X2pdt = fields.Float(
         string="New Related Field",
-        related="product_id.x_studio_many2one_field_8eWzY.item_ids.fixed_price",
+        related="product_id.many2one_field_8eWzY.item_ids.fixed_price",
         store=True,
         readonly=True,
     )
-    x_studio_related_field_aD9tj = fields.Float(
+    related_field_aD9tj = fields.Float(
         string="New Related Field",
-        related="product_id.x_studio_many2one_field_8eWzY.item_ids.fixed_price",
+        related="product_id.many2one_field_8eWzY.item_ids.fixed_price",
         store=True,
         readonly=True,
     )
-    x_studio_related_field_e9NHB = fields.Char(
+    related_field_e9NHB = fields.Char(
         string="New Related Field", readonly=True
     )
-    x_studio_related_field_kbp8y = fields.Char(
+    related_field_kbp8y = fields.Char(
         string="New Related Field",
         related="product_id.product_variant_id.display_name",
         store=False,
         readonly=True,
     )
-    x_studio_related_field_lBjdh = fields.Float(
+    related_field_lBjdh = fields.Float(
         string="New Related Field",
         related="product_id.list_price",
         store=False,
         readonly=True,
     )
-    # TODO: x_studio_related_field_zy8mz = fields.One2many(...) -- Studio inverse name
+    # TODO: related_field_zy8mz = fields.One2many(...) -- Studio inverse name
     # unknown; port from Clear-DB manually.
-    x_studio_sales_report_type = fields.Many2one(
-        "x_sales_report_type", string="Report Type (S- Incentive Calculation)"
+    sales_report_type = fields.Many2one(
+        "sales_report_type", string="Report Type (S- Incentive Calculation)"
     )
-    x_studio_sales_team = fields.Many2one(
+    sales_team = fields.Many2one(
         "crm.team",
         string="Sales Team",
         related="move_id.team_id",
         store=True,
         readonly=True,
     )
-    x_studio_status = fields.Selection(
+    status = fields.Selection(
         string="Status", related="move_id.state", store=True, readonly=True
     )
-    x_studio_status_1 = fields.Selection(
+    status_1 = fields.Selection(
         string="Status", related="move_id.state", store=True, readonly=True
     )
-    x_studio_surname = fields.Char(
+    surname = fields.Char(
         string="Surname",
-        related="x_studio_contract_id.x_studio_surname",
+        related="contract_id.surname",
         store=True,
         readonly=True,
     )
-    x_studio_swift_code = fields.Char(
+    swift_code = fields.Char(
         string="Swift Code",
-        related="x_studio_contract_id.employee_id.bank_account_id.x_studio_swift_code",
+        related="contract_id.employee_id.bank_account_id.swift_code",
         store=True,
         readonly=True,
     )
-    x_studio_tags = fields.Many2many(
-        "x_misc_charge_codes",
+    tags = fields.Many2many(
+        "misc_charge_codes",
         "account_move_line_x_studio_tags_rel",
         "account_id",
         "x_misc_charge_codes_id",
         string="Tags",
     )
-    x_studio_tax = fields.Monetary(
+    tax = fields.Monetary(
         string="Tax",
         readonly=True,
         currency_field="currency_id",
         related="move_id.amount_tax",
         store=True,
     )
-    x_studio_to_account = fields.Char(
+    to_account = fields.Char(
         string="To Account",
-        related="x_studio_contract_id.employee_id.bank_account_id.acc_number",
+        related="contract_id.employee_id.bank_account_id.acc_number",
         store=True,
         readonly=True,
     )
-    x_studio_total_contribution = fields.Float(
+    total_contribution = fields.Float(
         string="Total Contribution",
-        compute="_compute_x_studio_total_contribution",
+        compute="_compute_total_contribution",
         store=True,
         readonly=True,
     )
-    x_studio_total_earnings = fields.Monetary(
+    total_earnings = fields.Monetary(
         string="Total Earnings",
         readonly=True,
         currency_field="currency_id",
-        related="x_studio_contract_id.wage",
+        related="contract_id.wage",
         store=True,
     )
 
     @api.depends("distribution_analytic_account_ids", "journal_id", "name", "date")
-    def _compute_x_studio_employers_contribution(self):
+    def _compute_employers_contribution(self):
         AML = self.env["account.move.line"]
         for rec in self:
             value = 0
@@ -311,10 +311,10 @@ class AccountMoveLine(models.Model):
                 )
                 if etf:
                     value = abs(etf.amount_currency or 0)
-            rec.x_studio_employers_contribution = value
+            rec.employers_contribution = value
 
     @api.depends("distribution_analytic_account_ids", "journal_id", "name", "date")
-    def _compute_x_studio_members_contribution(self):
+    def _compute_members_contribution(self):
         AML = self.env["account.move.line"]
         for rec in self:
             value = 0
@@ -335,31 +335,31 @@ class AccountMoveLine(models.Model):
                 )
                 if epf:
                     value = abs(epf.amount_currency or 0)
-            rec.x_studio_members_contribution = value
+            rec.members_contribution = value
 
-    @api.depends("x_studio_members_contribution", "x_studio_employers_contribution")
-    def _compute_x_studio_total_contribution(self):
+    @api.depends("members_contribution", "employers_contribution")
+    def _compute_total_contribution(self):
         for rec in self:
-            rec.x_studio_total_contribution = (
-                rec.x_studio_members_contribution + rec.x_studio_employers_contribution
+            rec.total_contribution = (
+                rec.members_contribution + rec.employers_contribution
             )
 
     @api.depends("purchase_order_id")
-    def _compute_x_studio_related_field_WVIs6(self):
-        # CDB related target: purchase_order_id.order_line.x_studio_indent_no
-        # x_studio_indent_no on purchase.order.line is BugFix-Purchase-owned,
+    def _compute_related_field_WVIs6(self):
+        # CDB related target: purchase_order_id.order_line.indent_no
+        # indent_no on purchase.order.line is BugFix-Purchase-owned,
         # loads AFTER Accounting - can't use related at setup time. Runtime
         # hasattr guard reads first order line's indent_no if available.
         for rec in self:
             value = False
             po = rec.purchase_order_id
-            if po and po.order_line and "x_studio_indent_no" in po.order_line._fields:
+            if po and po.order_line and "indent_no" in po.order_line._fields:
                 first_line = po.order_line[:1]
                 if first_line:
-                    value = first_line.x_studio_indent_no or False
-            rec.x_studio_related_field_WVIs6 = value
+                    value = first_line.indent_no or False
+            rec.related_field_WVIs6 = value
 
-    def _compute_x_studio_credit_limit_2(self):
+    def _compute_credit_limit_2(self):
         # CDB compute calls self._fix_repair_compute_credit_limit_2() which
         # is a Fix-repair-added method. Fix-repair loads AFTER Accounting,
         # so at Accounting-load time the method doesn't exist. Guard at
@@ -368,13 +368,13 @@ class AccountMoveLine(models.Model):
             if hasattr(rec, "_fix_repair_compute_credit_limit_2"):
                 rec._fix_repair_compute_credit_limit_2()
             else:
-                rec.x_studio_credit_limit_2 = 0
+                rec.credit_limit_2 = 0
 
 
 class AccountMoveLineGap(models.Model):
     _inherit = "account.move.line"
 
-    x_studio_related_field_zy8mz = fields.One2many(
+    related_field_zy8mz = fields.One2many(
         string="New Related Field",
         related="purchase_order_id.order_line",
         readonly=True,

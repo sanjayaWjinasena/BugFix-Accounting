@@ -7,9 +7,9 @@
     <field name="model_id" search="[('model', '=', 'crossovered.budget.lines')]"/>
     <field name="state">code</field>
     <field name="usage">base_automation</field>
-    <field name="code">if record.crossovered_budget_id.x_studio_analytic_account.id != False:
+    <field name="code">if record.crossovered_budget_id.analytic_account.id != False:
 
-  record.write({'analytic_account_id': record.crossovered_budget_id.x_studio_analytic_account.id})</field>
+  record.write({'analytic_account_id': record.crossovered_budget_id.analytic_account.id})</field>
   </record>
   <record id="base_automation_198_proj_pass_analytic_account_to_lines" model="base.automation">
     <field name="name">PROJ - Pass Analytic Account to Lines</field>

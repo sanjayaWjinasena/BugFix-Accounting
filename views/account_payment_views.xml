@@ -9,15 +9,15 @@
     <field name="name">Advance Payments</field>
     <field name="res_model">account.payment</field>
     <field name="view_mode">tree,form</field>
-    <field name="domain">[('x_studio_purchase_order', '=', active_id)]</field>
-    <field name="context">{'search_default_x_studio_purchase_order': active_id,'default_x_studio_purchase_order': active_id}</field>
+    <field name="domain">[('purchase_order', '=', active_id)]</field>
+    <field name="context">{'search_default_purchase_order': active_id,'default_purchase_order': active_id}</field>
   </record>
   <record id="aw_f4_account_payment_payments" model="ir.actions.act_window">
     <field name="name">Payments</field>
     <field name="res_model">account.payment</field>
     <field name="view_mode">tree,form</field>
-    <field name="domain">[('x_studio_project_no_1', '=', active_id)]</field>
-    <field name="context">{'search_default_x_studio_project_no_1': active_id,'default_x_studio_project_no_1': active_id}</field>
+    <field name="domain">[('project_no_1', '=', active_id)]</field>
+    <field name="context">{'search_default_project_no_1': active_id,'default_project_no_1': active_id}</field>
   </record>
   <record id="action_1442_account_payment" model="ir.actions.act_window">
     <field name="name">account.payment</field>
@@ -28,8 +28,8 @@
     <field name="name">Advance Payments</field>
     <field name="res_model">account.payment</field>
     <field name="view_mode">tree,form</field>
-    <field name="domain">[('x_studio_purchase_order', '=', active_id)]</field>
-    <field name="context">{'search_default_x_studio_purchase_order': active_id,'default_x_studio_purchase_order': active_id}</field>
+    <field name="domain">[('purchase_order', '=', active_id)]</field>
+    <field name="context">{'search_default_purchase_order': active_id,'default_purchase_order': active_id}</field>
   </record>
   <record id="action_2342_payments" model="ir.actions.act_window">
     <field name="name">Payments</field>
@@ -42,8 +42,8 @@
     <field name="name">Payments</field>
     <field name="res_model">account.payment</field>
     <field name="view_mode">tree,form</field>
-    <field name="domain">[('x_studio_project_no_1', '=', active_id)]</field>
-    <field name="context">{'search_default_x_studio_project_no_1': active_id,'default_x_studio_project_no_1': active_id}</field>
+    <field name="domain">[('project_no_1', '=', active_id)]</field>
+    <field name="context">{'search_default_project_no_1': active_id,'default_project_no_1': active_id}</field>
   </record>
     <record id="ported_view_3066_odoo_studio_account_b5367f7f_470f_43eb_bfb4_583117888f1f" model="ir.ui.view">
         <field name="name">Odoo Studio: account.payment.form customization</field>
@@ -55,26 +55,26 @@
         <field name="arch" type="xml">
             <data>
               <xpath expr="//button[@name='action_void_check']" position="after">
-                <button type="action" name="%(BugFix-Accounting.srv_advance_payment_acc_update)d" string="Update Advance Payment Account" class="btn-primary" invisible="((x_studio_advance_payment_acc_updated == True) and (x_studio_type == 'Advance Payment')) or (x_studio_type != 'Advance Payment')"/>
+                <button type="action" name="%(BugFix-Accounting.srv_advance_payment_acc_update)d" string="Update Advance Payment Account" class="btn-primary" invisible="((advance_payment_acc_updated == True) and (type == 'Advance Payment')) or (type != 'Advance Payment')"/>
               </xpath>
               <xpath expr="//button[@name='action_post']" position="attributes">
-                <attribute name="invisible">(state != 'draft') or ((x_studio_advance_payment_acc_updated == False) and (x_studio_type == 'Advance Payment'))</attribute></xpath>
+                <attribute name="invisible">(state != 'draft') or ((advance_payment_acc_updated == False) and (type == 'Advance Payment'))</attribute></xpath>
               <xpath expr="//field[@name='payment_method_line_id']" position="after">
-                <field name="x_studio_type" string="Type" readonly="state != 'draft'"/>
+                <field name="type" string="Type" readonly="state != 'draft'"/>
               </xpath>
               <xpath expr="//form[1]/sheet[1]/group[1]/group[@name='group2']/field[@name='partner_bank_id']" position="after">
                 <field name="sales_order" string="Sales Order" domain="[('partner_id', '=', partner_id)]" readonly="(partner_id == False) or (state != 'draft')"/>
-                <field name="x_studio_project_no_1" string="Project No" readonly="(state != 'draft') or (x_studio_created_from_project_1 == True)"/>
-                <field name="x_studio_created_from_project_1" string="Created From Project" force_save="True" readonly="1" invisible="1"/>
-                <field name="x_studio_lc_no_1" string="LC No" domain="[('x_studio_vendor', '=', partner_id),('x_studio_status', '=', 'Posted')]" readonly="state != 'draft'"/>
-                <field name="x_studio_purchase_order" string="Purchase Order" force_save="True" domain="[('partner_id', '=', partner_id)]" readonly="(partner_id == False) or (state != 'draft')"/>
-                <field name="x_studio_tp_invoice_no" string="TP Invoice No" domain="[('x_studio_vendor', '=', partner_id)]" readonly="(partner_id == False) or (state != 'draft')"/>
-                <field name="x_studio_payment_validation" string="Payment Validation" force_save="True" readonly="1" invisible="1"/>
+                <field name="project_no_1" string="Project No" readonly="(state != 'draft') or (created_from_project_1 == True)"/>
+                <field name="created_from_project_1" string="Created From Project" force_save="True" readonly="1" invisible="1"/>
+                <field name="lc_no_1" string="LC No" domain="[('vendor', '=', partner_id),('status', '=', 'Posted')]" readonly="state != 'draft'"/>
+                <field name="purchase_order" string="Purchase Order" force_save="True" domain="[('partner_id', '=', partner_id)]" readonly="(partner_id == False) or (state != 'draft')"/>
+                <field name="tp_invoice_no" string="TP Invoice No" domain="[('vendor', '=', partner_id)]" readonly="(partner_id == False) or (state != 'draft')"/>
+                <field name="payment_validation" string="Payment Validation" force_save="True" readonly="1" invisible="1"/>
               </xpath>
               <xpath expr="//field[@name='payment_transaction_id']" position="after">
                 <field name="quotation_type" string="Quotation Type" force_save="True" invisible="1" readonly="1"/>
-                <field name="x_studio_payment_validation_1" string="Payment Validation" force_save="True" readonly="1" invisible="x_studio_payment_validation == False"/>
-                <field name="x_studio_advance_payment_acc_updated" force_save="True" readonly="1" invisible="1"/>
+                <field name="payment_validation_1" string="Payment Validation" force_save="True" readonly="1" invisible="payment_validation == False"/>
+                <field name="advance_payment_acc_updated" force_save="True" readonly="1" invisible="1"/>
               </xpath>
             </data>
         </field>
@@ -117,8 +117,8 @@
     <field name="name">Advance Payments</field>
     <field name="res_model">account.payment</field>
     <field name="view_mode">tree,form</field>
-    <field name="domain">[('x_studio_purchase_order', '=', active_id)]</field>
-    <field name="context">{'search_default_x_studio_purchase_order': active_id,'default_x_studio_purchase_order': active_id}</field>
+    <field name="domain">[('purchase_order', '=', active_id)]</field>
+    <field name="context">{'search_default_purchase_order': active_id,'default_purchase_order': active_id}</field>
   </record>
   <record id="act_window_2342_payments" model="ir.actions.act_window">
     <field name="name">Payments</field>
@@ -131,7 +131,7 @@
     <field name="name">Payments</field>
     <field name="res_model">account.payment</field>
     <field name="view_mode">tree,form</field>
-    <field name="domain">[('x_studio_project_no_1', '=', active_id)]</field>
-    <field name="context">{'search_default_x_studio_project_no_1': active_id,'default_x_studio_project_no_1': active_id}</field>
+    <field name="domain">[('project_no_1', '=', active_id)]</field>
+    <field name="context">{'search_default_project_no_1': active_id,'default_project_no_1': active_id}</field>
   </record>
 </odoo>

@@ -16,7 +16,7 @@ if record.state == 'draft':
           
     min_magin = record.company_id
     if min_magin:
-      so_value = round(record.sales_order.amount_total * (min_magin.x_studio_advance_payment_/100),2)
+      so_value = round(record.sales_order.amount_total * (min_magin.advance_payment_/100),2)
         
     if so_value > (record.amount + sum_total):
       raise UserError('Payment is not within the minimum precentage.')
@@ -33,10 +33,10 @@ if record.state == 'draft':
     <field name="name">Update Project No in Journal Entry</field>
     <field name="model_id" search="[('model', '=', 'account.payment')]"/>
     <field name="state">code</field>
-    <field name="code"><![CDATA[if record.x_studio_project_no_1 != False:
+    <field name="code"><![CDATA[if record.project_no_1 != False:
   journal_entry = env['account.move'].search([('payment_id', '=', record.id)],limit=1)
   if journal_entry:
-    journal_entry.write({'x_studio_project_no':record.x_studio_project_no_1.id, 'x_studio_journal_type':'Payment', 'x_studio_project_no_issue':record.x_studio_project_no_1.id, 'x_studio_type':record.x_studio_type})
+    journal_entry.write({'project_no':record.project_no_1.id, 'journal_type':'Payment', 'project_no_issue':record.project_no_1.id, 'type':record.type})
     
     ]]></field>
     <field name="usage">base_automation</field>
@@ -58,7 +58,7 @@ if record.state == 'draft':
           
     min_magin = record.company_id
     if min_magin:
-      so_value = round(record.sales_order.amount_total * (min_magin.x_studio_advance_payment_/100),2)
+      so_value = round(record.sales_order.amount_total * (min_magin.advance_payment_/100),2)
         
     if so_value > (record.amount + sum_total):
       raise UserError('Payment is not within the minimum precentage.')
@@ -74,10 +74,10 @@ if record.state == 'draft':
     <field name="name">Update Project No in Journal Entry</field>
     <field name="model_id" search="[('model', '=', 'account.payment')]"/>
     <field name="state">code</field>
-    <field name="code"><![CDATA[if record.x_studio_project_no_1 != False:
+    <field name="code"><![CDATA[if record.project_no_1 != False:
   journal_entry = env['account.move'].search([('payment_id', '=', record.id)],limit=1)
   if journal_entry:
-    journal_entry.write({'x_studio_project_no':record.x_studio_project_no_1.id, 'x_studio_journal_type':'Payment', 'x_studio_project_no_issue':record.x_studio_project_no_1.id, 'x_studio_type':record.x_studio_type})
+    journal_entry.write({'project_no':record.project_no_1.id, 'journal_type':'Payment', 'project_no_issue':record.project_no_1.id, 'type':record.type})
     
     ]]></field>
     <field name="usage">base_automation</field>
@@ -89,8 +89,8 @@ if record.state == 'draft':
     <field name="state">code</field>
     <field name="code"><![CDATA[if record.state == 'posted':
   amount_lcy = 0.00
-  if record.x_studio_lc_no_1 != False:
-    lc_lines = env['x_lc_header'].search([('id', '=', record.x_studio_lc_no_1.id), ('x_studio_status', '=', 'Posted')],limit=1)
+  if record.lc_no_1 != False:
+    lc_lines = env['lc_header'].search([('id', '=', record.lc_no_1.id), ('status', '=', 'Posted')],limit=1)
     if lc_lines:
       currency = env['res.currency'].search([('id', '=', record.currency_id.id),('date', '<=', datetime.datetime.now().date()),('active', '=', True)],limit=1)
       if currency:
@@ -98,7 +98,7 @@ if record.state == 'draft':
       else:
         amount_lcy = record.amount
         
-      lc_lines.write({'x_studio_status':'Paid','x_studio_selection_field_yo4qM':'Paid','x_studio_paid_amount_lcy':amount_lcy})
+      lc_lines.write({'status':'Paid','selection_field_yo4qM':'Paid','paid_amount_lcy':amount_lcy})
   
   
 
@@ -121,7 +121,7 @@ if record.state == 'draft':
          Full port of the Clear-DB Python — this is a real business
          rule, not a stub. Referenced by
          views/account_payment_studio_ported_v2.xml line 26. Depends
-         on x_advance_payment_acco model (already ported in v0.0.14). -->
+         on advance_payment_acco model (already ported in v0.0.14). -->
     <record id="srv_advance_payment_acc_update" model="ir.actions.server">
         <field name="name">Project - Update Advance Payment Account</field>
         <field name="model_id" ref="account.model_account_payment"/>
@@ -130,11 +130,11 @@ if record.state == 'draft':
         <field name="usage">base_automation</field>
         <field name="sequence">5</field>
         <field name="code"><![CDATA[
-if record.x_studio_type == 'Advance Payment':
-    account = env['x_advance_payment_acco'].search([('id', '=', 1)], limit=1)
+if record.type == 'Advance Payment':
+    account = env['advance_payment_acco'].search([('id', '=', 1)], limit=1)
     if account:
         if record.partner_type == 'customer':
-            if account.x_studio_advance_payment_account_sales == False:
+            if account.advance_payment_account_sales == False:
                 raise UserError('Advance Payment Account (Sales) must be Specified in Accounting Configuration')
 
             journal_entry = env['account.move'].search([('payment_id', '=', record.id)], limit=1)
@@ -142,21 +142,21 @@ if record.x_studio_type == 'Advance Payment':
                 if record.payment_type == 'inbound':
                     lines = env['account.move.line'].search([('move_id', '=', journal_entry.id), ('debit', '>', 0)], limit=1)
                     if lines:
-                        lines.write({'account_id': account.x_studio_advance_payment_account_sales.id})
-                        record.write({'x_studio_advance_payment_acc_updated': True})
+                        lines.write({'account_id': account.advance_payment_account_sales.id})
+                        record.write({'advance_payment_acc_updated': True})
                     else:
                         raise UserError('There is no payment line to update.')
                 else:
                     lines = env['account.move.line'].search([('move_id', '=', journal_entry.id), ('credit', '>', 0)], limit=1)
                     if lines:
-                        lines.write({'account_id': account.x_studio_advance_payment_account_sales.id})
-                        record.write({'x_studio_advance_payment_acc_updated': True})
+                        lines.write({'account_id': account.advance_payment_account_sales.id})
+                        record.write({'advance_payment_acc_updated': True})
                     else:
                         raise UserError('There is no payment line to update.')
             else:
                 raise UserError('There is no payment to update.')
         else:
-            if account.x_studio_advance_payment_account_purchases_1 == False:
+            if account.advance_payment_account_purchases_1 == False:
                 raise UserError('Advance Payment Account (Purchases) must be Specified in Accounting Configuration')
 
             journal_entry = env['account.move'].search([('payment_id', '=', record.id)], limit=1)
@@ -164,15 +164,15 @@ if record.x_studio_type == 'Advance Payment':
                 if record.payment_type == 'inbound':
                     lines = env['account.move.line'].search([('move_id', '=', journal_entry.id), ('debit', '>', 0)], limit=1)
                     if lines:
-                        lines.write({'account_id': account.x_studio_advance_payment_account_purchases_1.id})
-                        record.write({'x_studio_advance_payment_acc_updated': True})
+                        lines.write({'account_id': account.advance_payment_account_purchases_1.id})
+                        record.write({'advance_payment_acc_updated': True})
                     else:
                         raise UserError('There is no payment line to update.')
                 else:
                     lines = env['account.move.line'].search([('move_id', '=', journal_entry.id), ('credit', '>', 0)], limit=1)
                     if lines:
-                        lines.write({'account_id': account.x_studio_advance_payment_account_purchases_1.id})
-                        record.write({'x_studio_advance_payment_acc_updated': True})
+                        lines.write({'account_id': account.advance_payment_account_purchases_1.id})
+                        record.write({'advance_payment_acc_updated': True})
                     else:
                         raise UserError('There is no payment line to update.')
             else:
@@ -208,11 +208,11 @@ if records:
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
-    <field name="code"><![CDATA[if record.x_studio_type == 'Advance Payment':
-  account = env['x_advance_payment_acco'].search([('id', '=', 1)], limit=1)
+    <field name="code"><![CDATA[if record.type == 'Advance Payment':
+  account = env['advance_payment_acco'].search([('id', '=', 1)], limit=1)
   if account:
     if record.partner_type == 'customer':
-      if account.x_studio_advance_payment_account_sales == False:
+      if account.advance_payment_account_sales == False:
         raise UserError('Advance Payment Account (Sales) must be Specified in Accounting Configuration')
       
       journal_entry = env['account.move'].search([('payment_id', '=', record.id)], limit=1)
@@ -220,21 +220,21 @@ if records:
         if record.payment_type == 'inbound':
           lines = env['account.move.line'].search([('move_id', '=', journal_entry.id),('debit', '>', 0)], limit=1)
           if lines:
-            lines.write({'account_id':account.x_studio_advance_payment_account_sales.id}) 
-            record.write({'x_studio_advance_payment_acc_updated': True})
+            lines.write({'account_id':account.advance_payment_account_sales.id}) 
+            record.write({'advance_payment_acc_updated': True})
           else:
             raise UserError('There is no payment line to update.') 
         else:
           lines = env['account.move.line'].search([('move_id', '=', journal_entry.id),('credit', '>', 0)], limit=1)
           if lines:
-            lines.write({'account_id':account.x_studio_advance_payment_account_sales.id}) 
-            record.write({'x_studio_advance_payment_acc_updated': True})
+            lines.write({'account_id':account.advance_payment_account_sales.id}) 
+            record.write({'advance_payment_acc_updated': True})
           else:
             raise UserError('There is no payment line to update.')
       else:
         raise UserError('There is no payment to update.')
     else:
-      if account.x_studio_advance_payment_account_purchases_1 == False:
+      if account.advance_payment_account_purchases_1 == False:
         raise UserError('Advance Payment Account (Purchases) must be Specified in Accounting Configuration')
       
       journal_entry = env['account.move'].search([('payment_id', '=', record.id)], limit=1)
@@ -242,15 +242,15 @@ if records:
         if record.payment_type == 'inbound':
           lines = env['account.move.line'].search([('move_id', '=', journal_entry.id),('debit', '>', 0)], limit=1)
           if lines:
-            lines.write({'account_id':account.x_studio_advance_payment_account_purchases_1.id}) 
-            record.write({'x_studio_advance_payment_acc_updated': True})
+            lines.write({'account_id':account.advance_payment_account_purchases_1.id}) 
+            record.write({'advance_payment_acc_updated': True})
           else:
             raise UserError('There is no payment line to update.') 
         else:
           lines = env['account.move.line'].search([('move_id', '=', journal_entry.id),('credit', '>', 0)], limit=1)
           if lines:
-            lines.write({'account_id':account.x_studio_advance_payment_account_purchases_1.id}) 
-            record.write({'x_studio_advance_payment_acc_updated': True})
+            lines.write({'account_id':account.advance_payment_account_purchases_1.id}) 
+            record.write({'advance_payment_acc_updated': True})
           else:
             raise UserError('There is no payment line to update.')
       else:
@@ -326,7 +326,7 @@ if record.state == 'draft':
           
     min_magin = record.company_id
     if min_magin:
-      so_value = round(record.sales_order.amount_total * (min_magin.x_studio_advance_payment_/100),2)
+      so_value = round(record.sales_order.amount_total * (min_magin.advance_payment_/100),2)
         
     if so_value > (record.amount + sum_total):
       raise UserError('Payment is not within the minimum precentage.')
@@ -344,21 +344,21 @@ if record.state == 'draft':
     <field name="state">code</field>
     <field name="usage">base_automation</field>
     <field name="code"><![CDATA[
-if record.x_studio_project_no_1 != False:
+if record.project_no_1 != False:
   journal_entry = env['account.move'].search([('payment_id', '=', record.id)],limit=1)
   if journal_entry:
-    journal_entry.write({'x_studio_project_no':record.x_studio_project_no_1.id, 'x_studio_journal_type':'Payment', 'x_studio_project_no_issue':record.x_studio_project_no_1.id, 'x_studio_type':record.x_studio_type})
+    journal_entry.write({'project_no':record.project_no_1.id, 'journal_type':'Payment', 'project_no_issue':record.project_no_1.id, 'type':record.type})
     
     
     ]]></field>
   </record>
     <data noupdate="1">
-    <record id="default_385_account_payment_x_studio_payment_validation_1" model="ir.default">
-      <field name="field_id" ref="BugFix-Accounting.field_account_payment__x_studio_payment_validation_1"/>
+    <record id="default_385_account_payment_payment_validation_1" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_account_payment__payment_validation_1"/>
       <field name="json_value">"The Payment amount is less than the minimum % for repairs."</field>
     </record>
-    <record id="default_451_account_payment_x_studio_type" model="ir.default">
-      <field name="field_id" ref="BugFix-Accounting.field_account_payment__x_studio_type"/>
+    <record id="default_451_account_payment_type" model="ir.default">
+      <field name="field_id" ref="BugFix-Accounting.field_account_payment__type"/>
       <field name="json_value">"General"</field>
     </record>
     </data>

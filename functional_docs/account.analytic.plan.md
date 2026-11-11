@@ -18,8 +18,8 @@ This repo adds two integer 'Group count' fields to analytic plans. They have no 
 
 | Field | Label | Type | Function | How it gets its value | Depends on | Used by |
 |---|---|---|---|---|---|---|
-| `x_group_id_account_analytic_account_count` | Group count | integer | Count field shown on the analytic plan form customization; plain integer with no compute in this repo, so it is never calculated. | not stored |  | `view BugFix-Accounting.view_5073_odoo_studio_account_analytic_group_form_customization_e` |
-| `x_group_id_account_analytic_line_count` | Group count | integer | Count field shown on the analytic plan form customization; plain integer with no compute in this repo, so it is never calculated. | not stored |  | `view BugFix-Accounting.view_5073_odoo_studio_account_analytic_group_form_customization_e` |
+| `group_id_account_analytic_account_count` | Group count | integer | Count field shown on the analytic plan form customization; plain integer with no compute in this repo, so it is never calculated. | not stored |  | `view BugFix-Accounting.view_5073_odoo_studio_account_analytic_group_form_customization_e` |
+| `group_id_account_analytic_line_count` | Group count | integer | Count field shown on the analytic plan form customization; plain integer with no compute in this repo, so it is never calculated. | not stored |  | `view BugFix-Accounting.view_5073_odoo_studio_account_analytic_group_form_customization_e` |
 
 **Window actions (2):**
 
@@ -32,4 +32,4 @@ This repo adds two integer 'Group count' fields to analytic plans. They have no 
 
 | Name | Record name | Type | What it changes | Function | Depends on | Used by |
 |---|---|---|---|---|---|---|
-| Odoo Studio: account.analytic.group.form customization | `view_5073_odoo_studio_account_analytic_group_form_customization_e` | form | before `//form[1]/sheet[1]/group[1]`: add div | Inactive (archived) view: would add Analytic Account and Analytic Line count smart buttons to the Analytic Plan form; has no effect. | `account.analytic.plan.x_group_id_account_analytic_account_count`<br>`account.analytic.plan.x_group_id_account_analytic_line_count`<br>`view analytic.account_analytic_plan_form_view` (analytic)<br>`window action BugFix-Accounting.act_window_2334_analytic_line`<br>`window action BugFix-Accounting.action_2333_analytic_account` |  |
+| Odoo Studio: account.analytic.group.form customization | `view_5073_odoo_studio_account_analytic_group_form_customization_e` | form | before `//form[1]/sheet[1]/group[1]`: add div | Inactive (archived) view: would add Analytic Account and Analytic Line count smart buttons to the Analytic Plan form; has no effect. | `account.analytic.plan.group_id_account_analytic_account_count`<br>`account.analytic.plan.group_id_account_analytic_line_count`<br>`view analytic.account_analytic_plan_form_view` (analytic)<br>`window action BugFix-Accounting.act_window_2334_analytic_line`<br>`window action BugFix-Accounting.action_2333_analytic_account` |  |

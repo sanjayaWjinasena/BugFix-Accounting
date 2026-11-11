@@ -6,7 +6,7 @@
 
 *Extends a model created by `account`.*
 
-Other repos that use this model: `res.users.x_studio_payment_term` (studio_usermodel_migration)<br>`res.users.x_studio_related_field_j3X4Q` (studio_usermodel_migration)<br>`res.users.x_studio_related_field_ngmve` (studio_usermodel_migration)<br>`res.users.x_studio_related_field_tLbBY` (studio_usermodel_migration)<br>`res.users.x_studio_terms_of_payment` (studio_usermodel_migration)<br>`server action BugFix-Studio-Misc.server_action_2827_jin_company_id_in_payment_terms_d7` (BugFix-Studio-Misc)<br>`x_customer_group.x_studio_payment_term` (studio_usermodel_migration)<br>`x_vendor_group.x_studio_payment_term` (studio_usermodel_migration)
+Other repos that use this model: `res.users.payment_term` (studio_usermodel_migration)<br>`res.users.related_field_j3X4Q` (studio_usermodel_migration)<br>`res.users.related_field_ngmve` (studio_usermodel_migration)<br>`res.users.related_field_tLbBY` (studio_usermodel_migration)<br>`res.users.terms_of_payment` (studio_usermodel_migration)<br>`server action BugFix-Studio-Misc.server_action_2827_jin_company_id_in_payment_terms_d7` (BugFix-Studio-Misc)<br>`customer_group.payment_term` (studio_usermodel_migration)<br>`vendor_group.payment_term` (studio_usermodel_migration)
 
 **Summary:**
 

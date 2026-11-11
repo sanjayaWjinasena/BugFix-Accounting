@@ -6,7 +6,7 @@
 
 *Extends a model created by `account`.*
 
-Other repos that use this model: `window action BugFix-Studio-Misc.act_window_2758_taxes_d7` (BugFix-Studio-Misc)<br>`x_po_line_non_inventor.x_studio_taxes` (BugFix-Purchase)
+Other repos that use this model: `window action BugFix-Studio-Misc.act_window_2758_taxes_d7` (BugFix-Studio-Misc)<br>`po_line_non_inventor.taxes` (BugFix-Purchase)
 
 **Summary:**
 

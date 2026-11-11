@@ -14,8 +14,8 @@
     <field name="name">All Journal Items</field>
     <field name="res_model">account.move.line</field>
     <field name="view_mode">tree,form</field>
-    <field name="domain">[('x_studio_project_no', '=', active_id)]</field>
-    <field name="context">{'search_default_x_studio_project_no': active_id,'default_x_studio_project_no': active_id}</field>
+    <field name="domain">[('project_no', '=', active_id)]</field>
+    <field name="context">{'search_default_project_no': active_id,'default_project_no': active_id}</field>
   </record>
   <record id="aw_f4_account_move_line_etf_schedule" model="ir.actions.act_window">
     <field name="name">ETF Schedule</field>
@@ -58,8 +58,8 @@
     <field name="name">Journal Items</field>
     <field name="res_model">account.move.line</field>
     <field name="view_mode">tree,form</field>
-    <field name="domain">[('x_studio_project_no', '=', active_id)]</field>
-    <field name="context">{'search_default_x_studio_project_no': active_id,'default_x_studio_project_no': active_id}</field>
+    <field name="domain">[('project_no', '=', active_id)]</field>
+    <field name="context">{'search_default_project_no': active_id,'default_project_no': active_id}</field>
   </record>
   <record id="aw_f4_account_move_line_pump_price_costing" model="ir.actions.act_window">
     <field name="name">Pump Price Costing</field>
@@ -95,8 +95,8 @@
     <field name="name">All Journal Items</field>
     <field name="res_model">account.move.line</field>
     <field name="view_mode">tree,form</field>
-    <field name="domain">[('x_studio_project_no', '=', active_id)]</field>
-    <field name="context">{'search_default_x_studio_project_no': active_id,'default_x_studio_project_no': active_id}</field>
+    <field name="domain">[('project_no', '=', active_id)]</field>
+    <field name="context">{'search_default_project_no': active_id,'default_project_no': active_id}</field>
   </record>
   <record id="action_2893_etf_schedule" model="ir.actions.act_window">
     <field name="name">ETF Schedule</field>
@@ -139,8 +139,8 @@
     <field name="name">Journal Items</field>
     <field name="res_model">account.move.line</field>
     <field name="view_mode">tree,form</field>
-    <field name="domain">[('x_studio_project_no', '=', active_id)]</field>
-    <field name="context">{'search_default_x_studio_project_no': active_id,'default_x_studio_project_no': active_id}</field>
+    <field name="domain">[('project_no', '=', active_id)]</field>
+    <field name="context">{'search_default_project_no': active_id,'default_project_no': active_id}</field>
   </record>
   <record id="action_2278_pump_price_costing" model="ir.actions.act_window">
     <field name="name">Pump Price Costing</field>
@@ -333,14 +333,14 @@
         <field name="arch" type="xml">
             <data>
               <xpath expr="//field[@name='move_id']" position="after">
-                <field name="x_studio_many2one_field_kiSUJ"/>
-                <field name="x_studio_sales_report_type" string="Report Type (S- Incentive Calculation)"/>
+                <field name="many2one_field_kiSUJ"/>
+                <field name="sales_report_type" string="Report Type (S- Incentive Calculation)"/>
                 <field name="price_unit"/>
                 <field name="price_subtotal"/>
                 <field name="price_total"/>
                 <field name="account_internal_group"/>
                 <field name="display_type"/>
-                <field name="x_studio_status"/>
+                <field name="status"/>
               </xpath>
             </data>
         </field>
@@ -360,11 +360,11 @@
                 <attribute name="column_invisible">True</attribute>
               </xpath>
               <xpath expr="//field[@name='date']" position="after">
-                <field optional="show" name="x_studio_surname"/>
-                <field optional="show" name="x_studio_initials"/>
-                <field optional="show" name="x_studio_nic_number"/>
-                <field optional="show" name="x_studio_etf_number"/>
-                <field optional="hide" name="x_studio_contract_id" readonly="True" column_invisible="True"/>
+                <field optional="show" name="surname"/>
+                <field optional="show" name="initials"/>
+                <field optional="show" name="nic_number"/>
+                <field optional="show" name="etf_number"/>
+                <field optional="hide" name="contract_id" readonly="True" column_invisible="True"/>
               </xpath>
               <xpath expr="//field[@name='journal_id']" position="attributes">
                 <attribute name="column_invisible">True</attribute>
@@ -390,9 +390,9 @@
                 <attribute name="string">Contribution</attribute>
               </xpath>
               <xpath expr="//field[@name='amount_currency']" position="after">
-                <field optional="show" name="x_studio_employers_contribution" readonly="True" column_invisible="True"/>
-                <field optional="show" name="x_studio_members_contribution" readonly="True" column_invisible="True"/>
-                <field optional="show" name="x_studio_total_contribution" readonly="True" column_invisible="True"/>
+                <field optional="show" name="employers_contribution" readonly="True" column_invisible="True"/>
+                <field optional="show" name="members_contribution" readonly="True" column_invisible="True"/>
+                <field optional="show" name="total_contribution" readonly="True" column_invisible="True"/>
               </xpath>
               <xpath expr="//field[@name='debit']" position="attributes">
                 <attribute name="column_invisible">True</attribute>
@@ -423,16 +423,16 @@
         <field name="arch" type="xml">
             <data>
               <xpath expr="//field[@name='invoice_date']" position="after">
-                <field name="x_studio_nic_number" optional="show"/>
-                <field name="x_studio_surname" optional="show"/>
-                <field name="x_studio_initials" optional="show"/>
-                <field optional="show" name="x_studio_epf_number"/>
+                <field name="nic_number" optional="show"/>
+                <field name="surname" optional="show"/>
+                <field name="initials" optional="show"/>
+                <field optional="show" name="epf_number"/>
                 <field name="name" optional="show"/>
-                <field name="x_studio_total_contribution" optional="show"/>
-                <field name="x_studio_employers_contribution" optional="show"/>
-                <field name="x_studio_members_contribution" optional="show"/>
-                <field optional="show" name="x_studio_total_earnings"/>
-                <field optional="show" name="x_studio_occupation_code"/>
+                <field name="total_contribution" optional="show"/>
+                <field name="employers_contribution" optional="show"/>
+                <field name="members_contribution" optional="show"/>
+                <field optional="show" name="total_earnings"/>
+                <field optional="show" name="occupation_code"/>
               </xpath>
               <xpath expr="//field[@name='date']" position="attributes">
                 <attribute name="column_invisible">True</attribute>
@@ -521,25 +521,25 @@
                 <attribute name="column_invisible">True</attribute>
               </xpath>
               <xpath expr="//field[@name='analytic_distribution']" position="after">
-                <field name="x_dest_bank_micr" optional="show" string="Dest Bank (B)"/>
-                <field name="x_dest_branch" optional="show" string="Dest Branch (C)"/>
-                <field name="x_dest_account" optional="show" string="Dest Account (D)"/>
-                <field name="x_dest_name" optional="show" string="Dest Name (E)"/>
-                <field name="x_trn_code" optional="show" string="TRN Code (F)"/>
-                <field name="x_return_code" optional="show" string="Return Code (G)"/>
-                <field name="x_cr_dr_code" optional="show" string="Cr/Dr (H)"/>
-                <field name="x_return_date" optional="show" string="Return Date (I)"/>
-                <field name="x_cbc_amount" optional="show" string="Amount (J)"/>
-                <field name="x_currency_code" optional="show" string="Currency (K)"/>
-                <field name="x_orig_bank_micr" optional="show" string="Orig Bank (L)"/>
-                <field name="x_orig_branch" optional="show" string="Orig Branch (M)"/>
-                <field name="x_orig_account" optional="show" string="Orig Account (N)"/>
-                <field name="x_orig_name" optional="show" string="Orig Name (O)"/>
-                <field name="x_particulars" optional="show" string="Particulars (P)"/>
-                <field name="x_reference" optional="show" string="Reference (Q)"/>
-                <field name="x_value_date" optional="show" string="Value Date (R)"/>
-                <field name="x_security_field" optional="show" string="Security (S)"/>
-                <field name="x_filler" optional="show" string="Filler (T)"/>
+                <field name="dest_bank_micr" optional="show" string="Dest Bank (B)"/>
+                <field name="dest_branch" optional="show" string="Dest Branch (C)"/>
+                <field name="dest_account" optional="show" string="Dest Account (D)"/>
+                <field name="dest_name" optional="show" string="Dest Name (E)"/>
+                <field name="trn_code" optional="show" string="TRN Code (F)"/>
+                <field name="return_code" optional="show" string="Return Code (G)"/>
+                <field name="cr_dr_code" optional="show" string="Cr/Dr (H)"/>
+                <field name="return_date" optional="show" string="Return Date (I)"/>
+                <field name="cbc_amount" optional="show" string="Amount (J)"/>
+                <field name="currency_code" optional="show" string="Currency (K)"/>
+                <field name="orig_bank_micr" optional="show" string="Orig Bank (L)"/>
+                <field name="orig_branch" optional="show" string="Orig Branch (M)"/>
+                <field name="orig_account" optional="show" string="Orig Account (N)"/>
+                <field name="orig_name" optional="show" string="Orig Name (O)"/>
+                <field name="particulars" optional="show" string="Particulars (P)"/>
+                <field name="reference" optional="show" string="Reference (Q)"/>
+                <field name="value_date" optional="show" string="Value Date (R)"/>
+                <field name="security_field" optional="show" string="Security (S)"/>
+                <field name="filler" optional="show" string="Filler (T)"/>
               </xpath>
             </data>
         </field>
@@ -555,7 +555,7 @@
         <field name="arch" type="xml">
             <data>
               <xpath expr="//field[@name='credit']" position="after">
-                <field name="x_studio_contract_id" optional="show"/>
+                <field name="contract_id" optional="show"/>
                 <field name="analytic_line_ids" optional="show" widget="many2many"/>
                 <field name="distribution_analytic_account_ids" optional="show" widget="autosave_many2many_tags"/>
               </xpath>
@@ -637,8 +637,8 @@
     <field name="name">All Journal Items</field>
     <field name="res_model">account.move.line</field>
     <field name="view_mode">tree,form</field>
-    <field name="domain">[('x_studio_project_no', '=', active_id)]</field>
-    <field name="context">{'search_default_x_studio_project_no': active_id,'default_x_studio_project_no': active_id}</field>
+    <field name="domain">[('project_no', '=', active_id)]</field>
+    <field name="context">{'search_default_project_no': active_id,'default_project_no': active_id}</field>
   </record>
   <record id="act_window_2893_etf_schedule" model="ir.actions.act_window">
     <field name="name">ETF Schedule</field>
@@ -681,8 +681,8 @@
     <field name="name">Journal Items</field>
     <field name="res_model">account.move.line</field>
     <field name="view_mode">tree,form</field>
-    <field name="domain">[('x_studio_project_no', '=', active_id)]</field>
-    <field name="context">{'search_default_x_studio_project_no': active_id,'default_x_studio_project_no': active_id}</field>
+    <field name="domain">[('project_no', '=', active_id)]</field>
+    <field name="context">{'search_default_project_no': active_id,'default_project_no': active_id}</field>
   </record>
   <record id="act_window_2278_pump_price_costing" model="ir.actions.act_window">
     <field name="name">Pump Price Costing</field>
@@ -715,7 +715,7 @@
       <field name="arch" type="xml">
         <data>
   <xpath expr="//field[@name='date']" position="after">
-    <field name="x_studio_credit_limit" optional="show"/>
+    <field name="accounting_credit_limit" optional="show"/>
   </xpath>
 </data>
       </field>
