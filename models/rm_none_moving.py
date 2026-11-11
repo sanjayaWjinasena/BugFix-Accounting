@@ -16,14 +16,13 @@ class XRmNoneMoving(models.Model):
     _order = "sequence, id"
     _rec_name = "name"
 
-    active = fields.Boolean(string="Active", default=True)
-    name = fields.Char(string="Name")
-    base_price = fields.Float(string="Base Price")
+    active = fields.Boolean(default=True)
+    name = fields.Char()
+    base_price = fields.Float()
     description = fields.Many2one(
         "product.product",
-        string="Description",
     )
-    header_reference = fields.Char(string="Header Reference")
+    header_reference = fields.Char()
     in_hand_1 = fields.Float(string="In Hand")
     in_hand_2 = fields.Float(string="In Hand")
     in_hand_3 = fields.Float(string="In Hand")
@@ -44,18 +43,18 @@ class XRmNoneMoving(models.Model):
         related="description.default_code",
         readonly=True,
     )
-    qty = fields.Float(string="Qty")
+    qty = fields.Float()
     sales_report_model_id = fields.Many2one(
         "sales_report_model",
         string="Sales Report Model Id",
     )
-    sequence = fields.Integer(string="Sequence", default=10)
-    value = fields.Float(string="Value")
+    sequence = fields.Integer(default=10)
+    value = fields.Float()
 
 
 class XRmNoneMovingGap(models.Model):
     _inherit = "rm_none_moving"
     _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    active = fields.Boolean(string="Active")
-    name = fields.Char(string="Name")
+    active = fields.Boolean()
+    name = fields.Char()

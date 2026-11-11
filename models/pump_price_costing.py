@@ -29,22 +29,20 @@ class XPumpPriceCosting(models.Model):
     _order = "sequence asc, id asc"
     _rec_name = "name"
 
-    active = fields.Boolean(string="Active")
-    name = fields.Char(string="Name")
+    active = fields.Boolean()
+    name = fields.Char()
     actual = fields.Float(string="Actual (Exc. Casting Hours)")
     actual_1 = fields.Float(string="Actual (Tot. Labour Hours)")
     contingency_1 = fields.Float(string="Contingency %")
     contingency_rs = fields.Float(string="Contingency (Rs.)")
     contribution_2 = fields.Float(string="Contribution %")
     contribution_rs = fields.Float(string="Contribution Rs.")
-    current_base_price = fields.Float(string="Current Base Price")
-    current_retail_price_vat_18 = fields.Float(
-        string="Current Retail Price (VAT 15%)"
-    )
-    date = fields.Date(string="Date")
-    difference = fields.Float(string="Difference")
+    current_base_price = fields.Float()
+    current_retail_price_vat_18 = fields.Float(string="Current Retail Price (VAT 15%)")
+    date = fields.Date()
+    difference = fields.Float()
     accounting_discount = fields.Float(string="Discount")
-    distributor_addition = fields.Float(string="Distributor Addition")
+    distributor_addition = fields.Float()
     factory_oh = fields.Float(string="Factory OH")
     float_field_YMvHy = fields.Float(string="New Decimal")
     idling_rate = fields.Float(string="Idling Rate (Exc. Casting Hours)")
@@ -56,7 +54,7 @@ class XPumpPriceCosting(models.Model):
     max_discount = fields.Float(string="Max. Discount")
     max_discount_1 = fields.Float(string="Max Discount ")
     max_discount_2 = fields.Float(string="Max Discount ")
-    net_selling_price = fields.Float(string="Net Selling Price")
+    net_selling_price = fields.Float()
     net_selling_price_1 = fields.Float(string="Net Selling Price")
     net_selling_price_2 = fields.Float(string="Net Selling Price")
     oh_absorbed_factory = fields.Float(string="OH Absorbed Factory")
@@ -68,20 +66,16 @@ class XPumpPriceCosting(models.Model):
     other_oh = fields.Float(string="Other OH")
     other_oh_rs = fields.Float(string="Other OH Rs.")
     product_id = fields.Many2one("product.product", string="Product Id")
-    product_id_1 = fields.Many2one(
-        "product.template", string="Product Id (Actual)"
-    )
+    product_id_1 = fields.Many2one("product.template", string="Product Id (Actual)")
     profit_mark_up_ = fields.Float(string="Profit Mark Up %")
     profit_mark_up_3 = fields.Float(string="Profit Mark Up")
     profit_mark_up_rs = fields.Float(string="Profit Mark Up Rs.")
     profit_mark_up_rs_1 = fields.Float(string="Profit Mark Up Rs.")
-    profitloss_as_of_net_sale = fields.Float(
-        string="Profit/(Loss) As % of Net Sale"
-    )
-    proposed_base_price = fields.Float(string="Proposed Base Price")
+    profitloss_as_of_net_sale = fields.Float(string="Profit/(Loss) As % of Net Sale")
+    proposed_base_price = fields.Float()
     proposed_base_price_1 = fields.Float(string="Proposed Base Price")
     report_reference_1 = fields.Char(string="Report Reference")
-    route_time = fields.Float(string="Route Time")
+    route_time = fields.Float()
     rs = fields.Float(string="Rs.")
     rs_1 = fields.Char(string="Rs.")
     sales_oh = fields.Float(string="Sales OH")
@@ -90,24 +84,22 @@ class XPumpPriceCosting(models.Model):
         "sales_report_model", string="Report Reference"
     )
     satd_discount = fields.Float(string="Satd. Discount")
-    sequence = fields.Integer(string="Sequence")
+    sequence = fields.Integer()
     sscl = fields.Float(string="SSCL")
     sscl_1 = fields.Float(string="SSCL")
     sscl_2 = fields.Float(string="SSCL")
     standard = fields.Float(string="Standard (Exc. Casting Hours)")
     standard_1 = fields.Float(string="Standard (Tot. Labour Hours)")
-    system_cost = fields.Float(string="System Cost", store=False)
-    total_actual_labour_cost = fields.Float(string="Total Actual Labour Cost")
-    total_actual_labour_cost_ot = fields.Float(
-        string="Total Actual Labour Cost (OT)"
-    )
+    system_cost = fields.Float(store=False)
+    total_actual_labour_cost = fields.Float()
+    total_actual_labour_cost_ot = fields.Float(string="Total Actual Labour Cost (OT)")
     total_actual_labour_cost_without_ot = fields.Float(
         string="Total Actual Labour Cost (Without OT)"
     )
-    total_cost = fields.Float(string="Total Cost")
-    total_factory_cost = fields.Float(string="Total Factory Cost")
+    total_cost = fields.Float()
+    total_factory_cost = fields.Float()
     total_factory_cost_1 = fields.Float(string="Total Factory Cost (Actual)")
-    total_material_cost = fields.Float(string="Total Material Cost")
+    total_material_cost = fields.Float()
     total_material_cost_1 = fields.Float(string="Total Material Cost")
     total_material_cost_2 = fields.Float(string="Total Material Cost")
 
@@ -116,5 +108,5 @@ class XPumpPriceCostingGap(models.Model):
     _inherit = "pump_price_costing"
     _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    active = fields.Boolean(string="Active")
-    name = fields.Char(string="Name")
+    active = fields.Boolean()
+    name = fields.Char()

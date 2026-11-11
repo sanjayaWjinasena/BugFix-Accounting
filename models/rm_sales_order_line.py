@@ -21,39 +21,37 @@ class XRmSalesOrderLine(models.Model):
     _order = "sequence, id"
     _rec_name = "name"
 
-    active = fields.Boolean(string="Active", default=True)
-    name = fields.Char(string="Name")
-    customer_acc = fields.Many2one("res.partner", string="Customer Acc")
+    active = fields.Boolean(default=True)
+    name = fields.Char()
+    customer_acc = fields.Many2one("res.partner")
     customer_group = fields.Many2one(
         "customer_group",
-        string="Customer Group",
     )
-    date = fields.Date(string="Date")
+    date = fields.Date()
     disc_ = fields.Float(string="Disc (%)")
     disc_amount = fields.Float(string="Disc. Amount")
     inv_address = fields.Char(string="Inv. Address")
-    invoice = fields.Many2one("account.move", string="Invoice")
+    invoice = fields.Many2one("account.move")
     accounting_name = fields.Char(string="Name")
-    net_value = fields.Float(string="Net Value")
+    net_value = fields.Float()
     product_1 = fields.Many2one("product.product", string="Product")
     product_category = fields.Many2one(
         "product.category",
-        string="Product Category",
     )
-    quantity = fields.Float(string="Quantity")
-    sales_order = fields.Many2one("sale.order", string="Sales Order")
+    quantity = fields.Float()
+    sales_order = fields.Many2one("sale.order")
     sales_report_model_id = fields.Many2one(
         "sales_report_model",
         string="Sales Report Model Id",
     )
-    sequence = fields.Integer(string="Sequence", default=10)
-    total_base_price = fields.Float(string="Total Base Price")
-    unit_price = fields.Float(string="Unit Price")
+    sequence = fields.Integer(default=10)
+    total_base_price = fields.Float()
+    unit_price = fields.Float()
 
 
 class XRmSalesOrderLineGap(models.Model):
     _inherit = "rm_sales_order_line"
     _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    active = fields.Boolean(string="Active")
-    name = fields.Char(string="Name")
+    active = fields.Boolean()
+    name = fields.Char()

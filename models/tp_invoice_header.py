@@ -20,8 +20,8 @@ class XTpInvoiceHeader(models.Model):
     _order = "sequence, id"
     _rec_name = "name"
 
-    active = fields.Boolean(string="Active", default=True)
-    currency_id = fields.Many2one("res.currency", string="Currency")
+    active = fields.Boolean(default=True)
+    currency_id = fields.Many2one("res.currency")
     name = fields.Char(string="Invoice Reference")
     con_no = fields.Many2one(
         "consignment_header",
@@ -43,12 +43,11 @@ class XTpInvoiceHeader(models.Model):
         [("Draft", "Draft"), ("Posted", "Posted")],
         string="Pipeline status bar",
     )
-    sequence = fields.Integer(string="Sequence", default=10)
+    sequence = fields.Integer(default=10)
     status = fields.Selection(
         [("Draft", "Draft"), ("Posted", "Posted")],
-        string="Status",
     )
-    vendor = fields.Many2one("res.partner", string="Vendor")
+    vendor = fields.Many2one("res.partner")
     tp_lines = fields.One2many(
         "tp_invoice_line",
         "tp_invoice_header_id",
@@ -79,7 +78,6 @@ class XTpInvoiceHeader(models.Model):
         readonly=True,
     )
     total_original_invoice_amount = fields.Float(
-        string="Total Original Invoice Amount",
         compute="_compute_total_original_invoice_amount",
         store=False,
         readonly=True,
@@ -96,9 +94,7 @@ class XTpInvoiceHeader(models.Model):
     )
     def _compute_total_invoice_amount(self):
         for rec in self:
-            rec.total_invoice_amount = sum(
-                line.invoice_amount for line in rec.tp_lines
-            )
+            rec.total_invoice_amount = sum(line.invoice_amount for line in rec.tp_lines)
 
     @api.depends(
         "tp_lines",
@@ -107,9 +103,7 @@ class XTpInvoiceHeader(models.Model):
     )
     def _compute_taxes_1(self):
         for rec in self:
-            rec.taxes_1 = sum(
-                line.tax_amount for line in rec.tp_lines
-            )
+            rec.taxes_1 = sum(line.tax_amount for line in rec.tp_lines)
 
     @api.depends(
         "total_invoice_amount",
@@ -117,9 +111,7 @@ class XTpInvoiceHeader(models.Model):
     )
     def _compute_total_1(self):
         for rec in self:
-            rec.total_1 = (
-                rec.total_invoice_amount + rec.taxes_1
-            )
+            rec.total_1 = rec.total_invoice_amount + rec.taxes_1
 
     @api.depends(
         "tp_lines",
@@ -149,9 +141,7 @@ class XTpInvoiceHeader(models.Model):
             ["tp_id"],
         )
         counts = {
-            r["tp_id"][0]: r["x_studio_tp_id_count"]
-            for r in results
-            if r.get("tp_id")
+            r["tp_id"][0]: r["x_studio_tp_id_count"] for r in results if r.get("tp_id")
         }
         for rec in self:
             rec.tp_id__account_move_count = counts.get(rec.id, 0)
@@ -161,6 +151,6 @@ class XTpInvoiceHeaderGap(models.Model):
     _inherit = "tp_invoice_header"
     _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    active = fields.Boolean(string="Active")
-    currency_id = fields.Many2one(comodel_name="res.currency", string="Currency")
+    active = fields.Boolean()
+    currency_id = fields.Many2one(comodel_name="res.currency")
     name = fields.Char(string="Invoice Reference")

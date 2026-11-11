@@ -5,10 +5,8 @@ class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
     aaa = fields.Char(string="AAA", readonly=True, store=False)
-    account_mandatory = fields.Boolean(string="Account Mandatory")
-    analytic_group = fields.Many2one(
-        "account.analytic.plan", string="Analytic Group"
-    )
+    account_mandatory = fields.Boolean()
+    analytic_group = fields.Many2one("account.analytic.plan")
     beneficiary_id = fields.Char(
         string="Beneficiary ID",
         related="contract_id.employee_id.identification_id",
@@ -21,7 +19,7 @@ class AccountMoveLine(models.Model):
         store=True,
         readonly=True,
     )
-    category = fields.Many2one("project_category", string="Category")
+    category = fields.Many2one("project_category")
     contract_id = fields.Many2one("hr.contract", string="Contract Id")
     accounting_credit_limit = fields.Float(
         string="Credit Limit",
@@ -30,7 +28,6 @@ class AccountMoveLine(models.Model):
         readonly=True,
     )
     credit_limit_2 = fields.Float(
-        string="Credit Limit 2",
         compute="_compute_credit_limit_2",
         store=False,
         readonly=True,
@@ -165,9 +162,7 @@ class AccountMoveLine(models.Model):
         store=False,
         readonly=True,
     )
-    related_field_FWW4G = fields.Float(
-        string="New Related Field", readonly=True
-    )
+    related_field_FWW4G = fields.Float(string="New Related Field", readonly=True)
     related_field_HFHrh = fields.Char(
         string="New Related Field", readonly=True, store=False
     )
@@ -177,9 +172,7 @@ class AccountMoveLine(models.Model):
     related_field_MnJZJ = fields.Char(
         string="New Related Field", readonly=True, store=False
     )
-    related_field_Nf3SX = fields.Float(
-        string="New Related Field", readonly=True
-    )
+    related_field_Nf3SX = fields.Float(string="New Related Field", readonly=True)
     related_field_SORzX = fields.Integer(
         string="New Related Field",
         related="move_id.journal_id.id",
@@ -210,9 +203,7 @@ class AccountMoveLine(models.Model):
         store=True,
         readonly=True,
     )
-    related_field_e9NHB = fields.Char(
-        string="New Related Field", readonly=True
-    )
+    related_field_e9NHB = fields.Char(string="New Related Field", readonly=True)
     related_field_kbp8y = fields.Char(
         string="New Related Field",
         related="product_id.product_variant_id.display_name",
@@ -260,7 +251,6 @@ class AccountMoveLine(models.Model):
         "account_move_line_x_studio_tags_rel",
         "account_id",
         "x_misc_charge_codes_id",
-        string="Tags",
     )
     tax = fields.Monetary(
         string="Tax",
@@ -276,7 +266,6 @@ class AccountMoveLine(models.Model):
         readonly=True,
     )
     total_contribution = fields.Float(
-        string="Total Contribution",
         compute="_compute_total_contribution",
         store=True,
         readonly=True,

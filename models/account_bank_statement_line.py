@@ -30,19 +30,13 @@ class AccountBankStatementLine(models.Model):
     boolean_field_ydmJ5 = fields.Boolean(string="New Checkbox", store=False)
     boolean_field_ygnit = fields.Boolean(string="New Checkbox", store=False)
     char_field_FnRNH = fields.Char(string="New Text", store=False)
-    co = fields.Many2one("consignment_header", string="Co", store=False)
-    create_from_transfer = fields.Many2one(
-        "stock.picking", string="Create From Transfer", store=False
-    )
-    created_from_consignment_2 = fields.Many2one(
-        "consignment_header", string="Created From Consignment 2", store=False
-    )
+    co = fields.Many2one("consignment_header", store=False)
+    create_from_transfer = fields.Many2one("stock.picking", store=False)
+    created_from_consignment_2 = fields.Many2one("consignment_header", store=False)
     created_from_tp_invoice = fields.Many2one(
         "tp_invoice_header", string="Created From TP Invoice", store=False
     )
-    created_transfer = fields.Many2one(
-        "stock.picking", string="Created Transfer", store=False
-    )
+    created_transfer = fields.Many2one("stock.picking", store=False)
     float_field_5tma1 = fields.Float(string="New Decimal", store=False)
     many2one_field_6HjHy = fields.Many2one(
         "account.move", string="Journal Entry", store=False
@@ -65,9 +59,7 @@ class AccountBankStatementLine(models.Model):
     many2one_field_P4o2n = fields.Many2one(
         "project.project", string="Project", store=False
     )
-    many2one_field_PJkjM = fields.Many2one(
-        "lc_header", string="LC Header", store=False
-    )
+    many2one_field_PJkjM = fields.Many2one("lc_header", string="LC Header", store=False)
     many2one_field_R46Ke = fields.Many2one(
         "project.project", string="Project", store=False
     )
@@ -104,9 +96,7 @@ class AccountBankStatementLine(models.Model):
     many2one_field_xkSx5 = fields.Many2one(
         "account.move", string="Journal Entry", store=False
     )
-    project_no_1 = fields.Many2one(
-        "project.project", string="Project No", store=False
-    )
+    project_no_1 = fields.Many2one("project.project", string="Project No", store=False)
     project_no_settle_1 = fields.Many2one(
         "project.project", string="Project No Settle", store=False
     )
@@ -152,12 +142,6 @@ class AccountBankStatementLine(models.Model):
     related_field_yj3hQ = fields.Selection(
         [], string="New Related Field", readonly=True, store=False
     )
-    selection_field_5Gimk = fields.Selection(
-        [], string="New Selection", store=False
-    )
-    selection_field_KlNrV = fields.Selection(
-        [], string="New Selection", store=False
-    )
-    selection_field_N6ihz = fields.Selection(
-        [], string="New Selection", store=False
-    )
+    selection_field_5Gimk = fields.Selection([], string="New Selection", store=False)
+    selection_field_KlNrV = fields.Selection([], string="New Selection", store=False)
+    selection_field_N6ihz = fields.Selection([], string="New Selection", store=False)

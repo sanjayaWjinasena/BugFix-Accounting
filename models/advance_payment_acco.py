@@ -9,8 +9,8 @@ class XAdvancePaymentAcco(models.Model):
     _inherit = ["mail.activity.mixin"]
     _description = "Advance Payment Account"
 
-    active = fields.Boolean(string="Active")
-    name = fields.Char(string="Name")
+    active = fields.Boolean()
+    name = fields.Char()
     advance_account_project = fields.Many2one(
         "account.account", string="Advance Account (Project)"
     )
@@ -23,12 +23,12 @@ class XAdvancePaymentAcco(models.Model):
     advance_payment_account_sales = fields.Many2one(
         "account.account", string="Advance Payment Account (Sales)"
     )
-    sequence = fields.Integer(string="Sequence")
+    sequence = fields.Integer()
 
 
 class XAdvancePaymentAccoGap(models.Model):
     _inherit = "advance_payment_acco"
     _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    active = fields.Boolean(string="Active")
-    name = fields.Char(string="Name")
+    active = fields.Boolean()
+    name = fields.Char()

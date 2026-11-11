@@ -22,9 +22,9 @@ class XTempEstimated(models.Model):
     _order = "sequence, id"
     _rec_name = "name"
 
-    active = fields.Boolean(string="Active", default=True)
-    currency_id = fields.Many2one("res.currency", string="Currency")
-    name = fields.Char(string="Name")
+    active = fields.Boolean(default=True)
+    currency_id = fields.Many2one("res.currency")
+    name = fields.Char()
 
     # Parent-pointer m2os (inverse for the header's one2many).
     actual_line_ids = fields.Many2one(
@@ -40,32 +40,29 @@ class XTempEstimated(models.Model):
 
     category = fields.Many2one(
         "project_category",
-        string="Category",
     )
-    customer = fields.Many2one("res.partner", string="Customer")
-    delivered_qty = fields.Float(string="Delivered Qty")
-    description = fields.Char(string="Description")
+    customer = fields.Many2one("res.partner")
+    delivered_qty = fields.Float()
+    description = fields.Char()
     product_id = fields.Many2one(
         "product.product",
         string="Product Id",
     )
     project_no = fields.Many2one(
         "project.project",
-        string="Project No",
     )
-    quantity = fields.Float(string="Quantity")
-    sales_order = fields.Many2one("sale.order", string="Sales Order")
+    quantity = fields.Float()
+    sales_order = fields.Many2one("sale.order")
     sales_order_line_id = fields.Many2one(
         "sale.order.line",
         string="Sales Order Line Id",
     )
-    sequence = fields.Integer(string="Sequence", default=10)
+    sequence = fields.Integer(default=10)
     sub_total = fields.Monetary(
-        string="Sub Total",
         currency_field="currency_id",
     )
-    trans_type = fields.Char(string="Trans Type")
-    unit_price = fields.Float(string="Unit Price")
+    trans_type = fields.Char()
+    unit_price = fields.Float()
     uom = fields.Many2one("uom.uom", string="UOM")
 
 
@@ -73,6 +70,6 @@ class XTempEstimatedGap(models.Model):
     _inherit = "temp_estimated"
     _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    active = fields.Boolean(string="Active")
-    currency_id = fields.Many2one(comodel_name="res.currency", string="Currency")
-    name = fields.Char(string="Name")
+    active = fields.Boolean()
+    currency_id = fields.Many2one(comodel_name="res.currency")
+    name = fields.Char()

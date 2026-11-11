@@ -20,7 +20,7 @@ class XRmGrossMarginEstiLine(models.Model):
     rm_gross_margin_esti_id = fields.Many2one(
         "rm_gross_margin_esti",
     )
-    sequence = fields.Integer(string="Sequence", default=10)
+    sequence = fields.Integer(default=10)
 
 
 class XRmGrossMarginEstiLine7e86dGap(models.Model):

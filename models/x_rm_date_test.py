@@ -18,7 +18,7 @@ class XRmDateTest(models.Model):
     _order = "sequence, id"
     _rec_name = "name"
 
-    active = fields.Boolean(string="Active", default=True)
-    name = fields.Char(string="Name")
+    active = fields.Boolean(default=True)
+    name = fields.Char()
     x_studio_date_test = fields.Date(string="Date Test")
-    sequence = fields.Integer(string="Sequence", default=10)
+    sequence = fields.Integer(default=10)

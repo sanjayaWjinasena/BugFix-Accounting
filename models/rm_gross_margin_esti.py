@@ -16,14 +16,14 @@ class XRmGrossMarginEsti(models.Model):
     _order = "sequence, id"
     _rec_name = "name"
 
-    active = fields.Boolean(string="Active", default=True)
-    name = fields.Char(string="Name")
+    active = fields.Boolean(default=True)
+    name = fields.Char()
     actual_cost = fields.Float(string="Delivered Amount")
     balance_cost = fields.Float(string="Balance Amount")
-    category = fields.Char(string="Category")
+    category = fields.Char()
     estimated_amt = fields.Float(string="Estimated Amt.")
     group_title = fields.Char(string="          ")
-    header_reference = fields.Char(string="Header Reference")
+    header_reference = fields.Char()
     sales_order_line_ids = fields.One2many(
         "temp_estimated",
         "estimated_line_ids",
@@ -34,8 +34,8 @@ class XRmGrossMarginEsti(models.Model):
         string="Sales Report Model Id",
         ondelete="cascade",
     )
-    sequence = fields.Integer(string="Sequence", default=10)
-    total = fields.Boolean(string="Total")
+    sequence = fields.Integer(default=10)
+    total = fields.Boolean()
     transaction_type = fields.Selection(
         [
             ("Item", "Item"),
@@ -43,7 +43,6 @@ class XRmGrossMarginEsti(models.Model):
             ("Fee", "Fee"),
             ("Hour", "Hour"),
         ],
-        string="Transaction Type",
     )
 
 
@@ -51,5 +50,5 @@ class XRmGrossMarginEstiGap(models.Model):
     _inherit = "rm_gross_margin_esti"
     _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    active = fields.Boolean(string="Active")
-    name = fields.Char(string="Name")
+    active = fields.Boolean()
+    name = fields.Char()

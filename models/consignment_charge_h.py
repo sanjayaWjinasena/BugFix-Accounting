@@ -15,13 +15,12 @@ class XConsignmentChargeH(models.Model):
     _description = "Consignment Charge Header"
 
     _inherit = ["mail.thread", "mail.activity.mixin"]
-    active = fields.Boolean(string="Active")
-    name = fields.Char(string="Name")
-    allocate_header_charges = fields.Boolean(string="Allocate Header Charges")
-    amount = fields.Float(string="Amount")
+    active = fields.Boolean()
+    name = fields.Char()
+    allocate_header_charges = fields.Boolean()
+    amount = fields.Float()
     basis = fields.Selection(
         [("Percentage", "Percentage"), ("Fixed Per Document", "Fixed Per Document")],
-        string="Basis",
     )
     charge_group = fields.Selection(
         [
@@ -30,17 +29,14 @@ class XConsignmentChargeH(models.Model):
             ("Duty", "Duty"),
             ("Taxes", "Taxes"),
         ],
-        string="Charge Group",
     )
-    charge_name = fields.Char(string="Charge Name")
+    charge_name = fields.Char()
     accounting_company_id = fields.Many2one("res.company", string="Company")
-    consignment_id = fields.Many2one(
-        "consignment_header", string="Consignment Id"
-    )
-    formula = fields.Char(string="Formula")
-    ledger_post = fields.Boolean(string="Ledger Post")
-    sequence = fields.Integer(string="Sequence")
-    structure_no = fields.Integer(string="Structure No")
+    consignment_id = fields.Many2one("consignment_header", string="Consignment Id")
+    formula = fields.Char()
+    ledger_post = fields.Boolean()
+    sequence = fields.Integer()
+    structure_no = fields.Integer()
     tax_appicable = fields.Boolean(string="Tax Applicable")
     tax_appicable2 = fields.Boolean(string="Tax Applicable2")
     tp_processed = fields.Boolean(string="TP Processed")
@@ -50,5 +46,5 @@ class XConsignmentChargeHGap(models.Model):
     _inherit = "consignment_charge_h"
     _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    active = fields.Boolean(string="Active")
-    name = fields.Char(string="Name")
+    active = fields.Boolean()
+    name = fields.Char()

@@ -9,6 +9,6 @@ class XTestRmGrossMargin(models.Model):
     _inherit = ["mail.activity.mixin"]
     _description = "Test - RM Gross Margin - Actuals"
 
-    active = fields.Boolean(string="Active")
+    active = fields.Boolean()
     name = fields.Char(string="Description", required=True)
-    sequence = fields.Integer(string="Sequence")
+    sequence = fields.Integer()

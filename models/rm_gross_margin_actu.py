@@ -18,9 +18,9 @@ class XRmGrossMarginActu(models.Model):
     _order = "sequence, id"
     _rec_name = "name"
 
-    active = fields.Boolean(string="Active", default=True)
-    name = fields.Char(string="Name")
-    budget_line = fields.Boolean(string="Budget Line")
+    active = fields.Boolean(default=True)
+    name = fields.Char()
+    budget_line = fields.Boolean()
     budget_line_ids = fields.One2many(
         "temp_actual_budget",
         "actual_line_ids",
@@ -28,9 +28,9 @@ class XRmGrossMarginActu(models.Model):
     )
     cost_price = fields.Float(string="Delivered Amount")
     estimated_total = fields.Float(string="Estimated Amount")
-    header_reference = fields.Char(string="Header Reference")
-    normal_line = fields.Boolean(string="Normal Line")
-    other_expenses = fields.Char(string="Other Expenses")
+    header_reference = fields.Char()
+    normal_line = fields.Boolean()
+    other_expenses = fields.Char()
     sales_order_line_ids = fields.One2many(
         "temp_estimated",
         "actual_line_ids",
@@ -41,7 +41,7 @@ class XRmGrossMarginActu(models.Model):
         string="Sales Report Model Id",
         ondelete="cascade",
     )
-    sequence = fields.Integer(string="Sequence", default=10)
+    sequence = fields.Integer(default=10)
     transaction_type_1 = fields.Selection(
         [
             ("Item", "Item"),
@@ -58,5 +58,5 @@ class XRmGrossMarginActuGap(models.Model):
     _inherit = "rm_gross_margin_actu"
     _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    active = fields.Boolean(string="Active")
-    name = fields.Char(string="Name")
+    active = fields.Boolean()
+    name = fields.Char()

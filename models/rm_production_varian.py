@@ -19,8 +19,8 @@ class XRmProductionVarian(models.Model):
     _order = "sequence, id"
     _rec_name = "name"
 
-    active = fields.Boolean(string="Active", default=True)
-    name = fields.Char(string="Name")
+    active = fields.Boolean(default=True)
+    name = fields.Char()
     avg_cost = fields.Float(string="Avg. Cost")
     bom_item = fields.Char(
         string="BOM Item",
@@ -31,14 +31,13 @@ class XRmProductionVarian(models.Model):
     cons_qty = fields.Float(string="Cons. Qty")
     description = fields.Many2one(
         "product.product",
-        string="Description",
     )
     description_1 = fields.Many2one(
         "product.product",
         string="Description",
     )
     esti_qty = fields.Float(string="Esti. Qty")
-    header_reference = fields.Char(string="Header Reference")
+    header_reference = fields.Char()
     item_number = fields.Char(
         string="Item Number",
         related="description.default_code",
@@ -53,8 +52,8 @@ class XRmProductionVarian(models.Model):
         "sales_report_model",
         string="Sales Report Model Id",
     )
-    sequence = fields.Integer(string="Sequence", default=10)
-    total_cost = fields.Float(string="Total Cost")
+    sequence = fields.Integer(default=10)
+    total_cost = fields.Float()
     unit = fields.Many2one(
         "uom.uom",
         string="Unit",
@@ -62,12 +61,12 @@ class XRmProductionVarian(models.Model):
         store=False,
         readonly=True,
     )
-    variance = fields.Float(string="Variance")
+    variance = fields.Float()
 
 
 class XRmProductionVarianGap(models.Model):
     _inherit = "rm_production_varian"
     _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    active = fields.Boolean(string="Active")
-    name = fields.Char(string="Name")
+    active = fields.Boolean()
+    name = fields.Char()

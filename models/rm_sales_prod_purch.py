@@ -16,16 +16,15 @@ class XRmSalesProdPurch(models.Model):
     _order = "sequence, id"
     _rec_name = "name"
 
-    active = fields.Boolean(string="Active", default=True)
-    name = fields.Char(string="Name")
-    base_price = fields.Float(string="Base Price")
-    date = fields.Date(string="Date")
+    active = fields.Boolean(default=True)
+    name = fields.Char()
+    base_price = fields.Float()
+    date = fields.Date()
     date_1 = fields.Date(string="Date")
     description = fields.Many2one(
         "product.product",
-        string="Description",
     )
-    header_reference = fields.Char(string="Header Reference")
+    header_reference = fields.Char()
     product_category = fields.Many2one(
         "product.category",
         string="Product Category",
@@ -44,21 +43,21 @@ class XRmSalesProdPurch(models.Model):
         store=False,
         readonly=True,
     )
-    production_qty = fields.Float(string="Production Qty")
+    production_qty = fields.Float()
     project_category = fields.Float(string="Project")
-    purchase_qty = fields.Float(string="Purchase Qty")
-    sales_order = fields.Float(string="Sales Order")
+    purchase_qty = fields.Float()
+    sales_order = fields.Float()
     sales_report_model_id = fields.Many2one(
         "sales_report_model",
         string="Sales Report Model Id",
     )
-    sequence = fields.Integer(string="Sequence", default=10)
-    unit_cost = fields.Float(string="Unit Cost")
+    sequence = fields.Integer(default=10)
+    unit_cost = fields.Float()
 
 
 class XRmSalesProdPurchGap(models.Model):
     _inherit = "rm_sales_prod_purch"
     _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    active = fields.Boolean(string="Active")
-    name = fields.Char(string="Name")
+    active = fields.Boolean()
+    name = fields.Char()

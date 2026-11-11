@@ -18,7 +18,7 @@ class XMiscChargeCodes(models.Model):
     _description = "Misc Charge Codes"
 
     _inherit = ["mail.thread", "mail.activity.mixin"]
-    active = fields.Boolean(string="Active")
+    active = fields.Boolean()
     name = fields.Char(string="Misc. Charge Code")
     charge_group = fields.Selection(
         [
@@ -27,27 +27,24 @@ class XMiscChargeCodes(models.Model):
             ("Duty", "Duty"),
             ("Taxes", "Taxes"),
         ],
-        string="Charge Group",
     )
     accounting_company_id = fields.Many2one("res.company", string="Company")
     credit_acc_type = fields.Selection(
         [("Item", "Item"), ("G/L Account", "G/L Account")], string="Credit Acc. Type"
     )
-    credit_account = fields.Many2one(
-        "account.account", string="Credit Account"
-    )
+    credit_account = fields.Many2one("account.account")
     debit_acc_type = fields.Selection(
         [("Item", "Item"), ("G/L Account", "G/L Account")], string="Cost Load Type"
     )
-    debit_account = fields.Many2one("account.account", string="Debit Account")
-    description = fields.Char(string="Description")
-    sequence = fields.Integer(string="Sequence")
-    system_entry = fields.Boolean(string="System Entry")
+    debit_account = fields.Many2one("account.account")
+    description = fields.Char()
+    sequence = fields.Integer()
+    system_entry = fields.Boolean()
 
 
 class XMiscChargeCodesGap(models.Model):
     _inherit = "misc_charge_codes"
     _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    active = fields.Boolean(string="Active")
+    active = fields.Boolean()
     name = fields.Char(string="Misc. Charge Code")

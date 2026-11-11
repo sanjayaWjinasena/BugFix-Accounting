@@ -9,7 +9,7 @@ class XLcHeader(models.Model):
     _inherit = ["mail.activity.mixin"]
     _description = "LC Header"
 
-    active = fields.Boolean(string="Active")
+    active = fields.Boolean()
     name = fields.Char(string="LC Registration No")
     additional_conditions = fields.Text(string="Additional Conditions (47A/B)")
     available_with_by = fields.Char(string="Available with / By (41A)")
@@ -20,14 +20,12 @@ class XLcHeader(models.Model):
         [("None", "None"), ("A", "A"), ("B", "B"), ("C", "C")],
         string="Confirmation Instructions (49)",
     )
-    created_from_purchase_order = fields.Many2one(
-        "purchase.order", string="PO Number"
-    )
+    created_from_purchase_order = fields.Many2one("purchase.order", string="PO Number")
     accounting_currency_id = fields.Many2one("res.currency", string="Currency")
     date_of_expiry = fields.Date(string="Date of Expiry (31D)")
     date_of_issue = fields.Date(string="Date of Issue (31C)")
     date_of_receipt = fields.Date(string="Date of Receipt")
-    deferred_days = fields.Float(string="Deferred Days")
+    deferred_days = fields.Float()
     description_of_goods = fields.Char(
         string="Description of Goods and / or Services (45A)"
     )
@@ -36,12 +34,10 @@ class XLcHeader(models.Model):
         [("At Sight", "At Sight"), ("Deferred Payment", "Deferred Payment")],
         string="Draft (42C)",
     )
-    indent_no = fields.Char(string="Indent No")
+    indent_no = fields.Char()
     instruction_remarks = fields.Text(string="Instruction / Remarks (78)")
-    issuing_bank = fields.Many2one("res.bank", string="Issuing Bank")
-    issuing_bank_reference_no_1 = fields.Char(
-        string="Issuing Bank Reference No"
-    )
+    issuing_bank = fields.Many2one("res.bank")
+    issuing_bank_reference_no_1 = fields.Char(string="Issuing Bank Reference No")
     latest_shipment_date = fields.Date(string="Latest Shipment Date (44C)")
     lc_amount = fields.Float(string="LC Amount (32B)")
     lc_amount_lcy = fields.Float(
@@ -69,9 +65,7 @@ class XLcHeader(models.Model):
         [("Allowed", "Allowed"), ("Not Allowed", "Not Allowed")],
         string="Partial Shipment (43P)",
     )
-    period_for_presentation = fields.Float(
-        string="Period for Presentation (48)"
-    )
+    period_for_presentation = fields.Float(string="Period for Presentation (48)")
     place_of_expiry = fields.Char(string="Place of Expiry (31D)")
     revised_lc_amount = fields.Float(
         string="Revised Amount",
@@ -80,9 +74,7 @@ class XLcHeader(models.Model):
         readonly=True,
     )
 
-    @api.depends(
-        "accounting_currency_id", "accounting_currency_id.rate", "lc_amount"
-    )
+    @api.depends("accounting_currency_id", "accounting_currency_id.rate", "lc_amount")
     def _compute_lc_amount_lcy(self):
         # Ported from CDB Studio compute. Original did a res.currency search
         # with a non-existent 'date' filter (schema-invalid); rewritten to
@@ -91,9 +83,7 @@ class XLcHeader(models.Model):
         for rec in self:
             cur = rec.accounting_currency_id
             if cur and cur.rate:
-                rec.lc_amount_lcy = round(
-                    (rec.lc_amount or 0) / cur.rate, 2
-                )
+                rec.lc_amount_lcy = round((rec.lc_amount or 0) / cur.rate, 2)
             else:
                 rec.lc_amount_lcy = 0
 
@@ -120,7 +110,7 @@ class XLcHeader(models.Model):
         ],
         string="Pipeline status bar",
     )
-    sequence = fields.Integer(string="Sequence")
+    sequence = fields.Integer()
     status = fields.Selection(
         [
             ("Draft", "Draft"),
@@ -129,24 +119,21 @@ class XLcHeader(models.Model):
             ("Amended", "Amended"),
             ("Cancelled", "Cancelled"),
         ],
-        string="Status",
     )
     tolerance = fields.Float(string="Tolerance (39A)")
-    tolerance_type = fields.Selection(
-        [("Plus", "Plus"), ("Minus", "Minus")], string="Tolerance Type"
-    )
+    tolerance_type = fields.Selection([("Plus", "Plus"), ("Minus", "Minus")])
     transportation = fields.Char(string="Transportation (44B)")
     transshipment = fields.Selection(
         [("Allowed", "Allowed"), ("Not Allowed", "Not Allowed")],
         string="Transshipment (43T)",
     )
-    vendor = fields.Many2one("res.partner", string="Vendor")
-    version_no = fields.Integer(string="Version No")
+    vendor = fields.Many2one("res.partner")
+    version_no = fields.Integer()
 
 
 class XLcHeaderGap(models.Model):
     _inherit = "lc_header"
     _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    active = fields.Boolean(string="Active")
+    active = fields.Boolean()
     name = fields.Char(string="LC Registration No")

@@ -15,25 +15,24 @@ class XRmDailyS2(models.Model):
     _order = "sequence, id"
     _rec_name = "name"
 
-    active = fields.Boolean(string="Active", default=True)
-    name = fields.Char(string="Name")
+    active = fields.Boolean(default=True)
+    name = fields.Char()
     accounting_invoice_date = fields.Date(string="Invoice Date")
-    number = fields.Char(string="Number")
-    partner = fields.Many2one("res.partner", string="Partner")
-    product_id = fields.Many2one("product.product", string="Product")
-    quantity = fields.Float(string="Quantity")
-    sales_centre = fields.Many2one("crm.team", string="Sales Centre")
+    number = fields.Char()
+    partner = fields.Many2one("res.partner")
+    product_id = fields.Many2one("product.product")
+    quantity = fields.Float()
+    sales_centre = fields.Many2one("crm.team")
     sales_report_model_id = fields.Many2one(
         "sales_report_model",
-        string="Sales Report Model",
     )
-    sequence = fields.Integer(string="Sequence", default=10)
-    value = fields.Float(string="Value")
+    sequence = fields.Integer(default=10)
+    value = fields.Float()
 
 
 class XRmDailyS2Gap(models.Model):
     _inherit = "rm_daily_s2"
     _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    active = fields.Boolean(string="Active")
-    name = fields.Char(string="Name")
+    active = fields.Boolean()
+    name = fields.Char()

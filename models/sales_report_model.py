@@ -9,35 +9,32 @@ class XSalesReportModel(models.Model):
     _description = "Sales Report Model"
 
     _inherit = ["mail.thread", "mail.activity.mixin"]
-    active = fields.Boolean(string="Active")
-    name = fields.Char(string="Name")
+    active = fields.Boolean()
+    name = fields.Char()
     actual_gp_ = fields.Float(string="Actual GP")
     actual_line_ids = fields.One2many(
         "rm_gross_margin_actu",
         "sales_report_model_id",
         string="Actual Line Ids",
     )
-    actuals = fields.Boolean(string="Actuals")
+    actuals = fields.Boolean()
     as_on_date = fields.Date(string="As on Date")
     as_on_date_1 = fields.Date(string="From Date")
     as_on_date_2 = fields.Date(string="To Date")
-    auto_generated = fields.Boolean(string="Auto Generated")
+    auto_generated = fields.Boolean()
     comparison_line_ids = fields.One2many(
         "rm_gross_margin_comp",
         "sales_report_model_id",
         string="Comparison Line Ids",
     )
     contingency_ = fields.Float(string="Contingency %")
-    created_date = fields.Date(string="Created Date")
-    created_from_project_update = fields.Many2one(
-        "project.update", string="Created From Project Update"
-    )
+    created_date = fields.Date()
+    created_from_project_update = fields.Many2one("project.update")
     customer = fields.Many2many(
         "res.partner",
         "x_sales_report_model_x_studio_customer_rel",
         "host_id",
         "target_id",
-        string="Customer",
     )
     daily_sales_report_id = fields.One2many(
         "rm_daily_sales_repor",
@@ -59,7 +56,7 @@ class XSalesReportModel(models.Model):
         "sales_report_model_id",
         string="Daily Sales Report Id 4",
     )
-    date_updated = fields.Boolean(string="Date Updated")
+    date_updated = fields.Boolean()
     distributor_addition = fields.Float(string="Distributor Addition %")
     estimated_gp_ = fields.Float(string="Estimated GP")
     estimated_line_ids = fields.One2many(
@@ -69,8 +66,8 @@ class XSalesReportModel(models.Model):
     )
     factory_oh = fields.Float(string="Factory OH")
     factory_oh_labour = fields.Float(string="Factory OH (Labour)")
-    financial_progress = fields.Float(string="Financial Progress")
-    from_date = fields.Date(string="From Date")
+    financial_progress = fields.Float()
+    from_date = fields.Date()
     idling_rate = fields.Float(string="Idling Rate %")
     invoice_details_line_ids = fields.One2many(
         "rm_gross_margin_invo",
@@ -83,8 +80,8 @@ class XSalesReportModel(models.Model):
         string="Journal Item Ids",
         readonly=True,
     )
-    management_purpose = fields.Boolean(string="Management Purpose")
-    month_end_entry_updated = fields.Boolean(string="Month End Entry Updated")
+    management_purpose = fields.Boolean()
+    month_end_entry_updated = fields.Boolean()
     none_moving_item_ids = fields.One2many(
         "rm_none_moving",
         "sales_report_model_id",
@@ -121,7 +118,7 @@ class XSalesReportModel(models.Model):
     )
     other_oh = fields.Float(string="Other OH")
     profit_mark_up_ = fields.Float(string="Profit Mark Up %")
-    project_no = fields.Many2one("project.project", string="Project No")
+    project_no = fields.Many2one("project.project")
     pump_price_costing_ids = fields.One2many(
         "pump_price_costing",
         "sales_report_model_id",
@@ -161,13 +158,12 @@ class XSalesReportModel(models.Model):
         store=True,
         readonly=True,
     )
-    report_type = fields.Many2one("sales_report_type", string="Report Type")
+    report_type = fields.Many2one("sales_report_type")
     sales_centre = fields.Many2many(
         "crm.team",
         "x_sales_report_model_x_studio_sales_centre_rel",
         "host_id",
         "target_id",
-        string="Sales Centre",
     )
     sales_oh = fields.Float(string="Sales OH")
     sales_report_model_id_4 = fields.One2many(
@@ -183,7 +179,7 @@ class XSalesReportModel(models.Model):
     selection_field_Fbw0x = fields.Selection(
         [("Draft", "Draft"), ("Done", "Done")], string="Status"
     )
-    sequence = fields.Integer(string="Sequence")
+    sequence = fields.Integer()
     sscl = fields.Float(string="SSCL %")
 
 
@@ -191,5 +187,5 @@ class XSalesReportModelGap(models.Model):
     _inherit = "sales_report_model"
     _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    active = fields.Boolean(string="Active")
-    name = fields.Char(string="Name")
+    active = fields.Boolean()
+    name = fields.Char()

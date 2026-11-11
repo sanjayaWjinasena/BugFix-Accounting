@@ -6,7 +6,7 @@ from odoo import api, fields, models
 class AccountMove(models.Model):
     _inherit = "account.move"
 
-    account_mandatory = fields.Boolean(string="Account Mandatory")
+    account_mandatory = fields.Boolean()
     advance_acc_updated = fields.Boolean(string="Advance ACC Updated")
     bank_guarantee_approved = fields.Boolean(
         string="Bank Guarantee Approved",
@@ -15,21 +15,17 @@ class AccountMove(models.Model):
         store=True,
     )
     bank_guarantee_notification = fields.Boolean(
-        string="Bank Guarantee Notification",
         readonly=True,
         compute="_compute_bank_guarantee_notification",
         store=True,
     )
     bank_guarantee_validation = fields.Boolean(
-        string="Bank Guarantee Validation",
         readonly=True,
         compute="_compute_bank_guarantee_validation",
         store=True,
     )
     bg_sent = fields.Boolean(string="BG Sent")
-    consignment_no = fields.Many2one(
-        "consignment_header", string="Consignment No"
-    )
+    consignment_no = fields.Many2one("consignment_header")
     # v0.0.129 recovery — declared here as plain M2O so account.payment
     # can relate to them via move_id.X. On CDB these existed only as
     # state='manual' on account.move; the v0.0.113 orphan filter skipped
@@ -37,10 +33,8 @@ class AccountMove(models.Model):
     # them functional. store=True except created_from_pr_no
     # which targets a BugFix-Purchase-owned comodel (downstream, needs
     # store=False to avoid _auto_init cycle at Accounting load time).
-    co = fields.Many2one("consignment_header", string="Co")
-    create_from_transfer = fields.Many2one(
-        "stock.picking", string="Create From Transfer"
-    )
+    co = fields.Many2one("consignment_header")
+    create_from_transfer = fields.Many2one("stock.picking")
     # v0.0.143: created_from_pr_no, cre and
     # created_from_npo_no MOVED to BugFix-Purchase (models/account_move.py).
     # Their comodels (po_non_inventory, purchase_request_cas) are owned by
@@ -48,22 +42,14 @@ class AccountMove(models.Model):
     create_from_transfer_1 = fields.Many2one(
         "stock.picking", string="Create From Transfer"
     )
-    created_from_consignment = fields.Many2one(
-        "consignment_header", string="Created From Consignment"
-    )
+    created_from_consignment = fields.Many2one("consignment_header")
     created_from_consignment_1 = fields.Many2one(
         "consignment_header", string="Created From Consignment"
     )
-    created_from_project = fields.Boolean(string="Created From Project")
-    created_from_project_no = fields.Many2one(
-        "project.project", string="Created From Project No"
-    )
-    created_from_transfer = fields.Many2one(
-        "stock.picking", string="Created From Transfer"
-    )
-    created_from_vendor_bill = fields.Many2one(
-        "account.move", string="Created From Vendor Bill"
-    )
+    created_from_project = fields.Boolean()
+    created_from_project_no = fields.Many2one("project.project")
+    created_from_transfer = fields.Many2one("stock.picking")
+    created_from_vendor_bill = fields.Many2one("account.move")
     created_from_vendor_bill_1 = fields.Many2one(
         "account.move", string="Created From Vendor Bill"
     )
@@ -74,17 +60,14 @@ class AccountMove(models.Model):
         store=True,
     )
     credit_limit_validation = fields.Boolean(
-        string="Credit Limit Validation",
         readonly=True,
         compute="_compute_credit_limit_validation",
         store=True,
     )
-    credit_note_approved = fields.Boolean(string="Credit Note Approved")
-    credit_note_request_sent = fields.Boolean(
-        string="Credit Note Request Sent"
-    )
-    currency_rate = fields.Float(string="Currency Rate")
-    currency_rate_updated = fields.Boolean(string="Currency Rate Updated")
+    credit_note_approved = fields.Boolean()
+    credit_note_request_sent = fields.Boolean()
+    currency_rate = fields.Float()
+    currency_rate_updated = fields.Boolean()
     custom_clearance_no = fields.Char(
         string="Custom Clearance No",
         readonly=True,
@@ -93,7 +76,6 @@ class AccountMove(models.Model):
     )
     journal_type = fields.Selection(
         [("Bill", "Bill"), ("Payment", "Payment"), ("Settlement", "Settlement")],
-        string="Journal Type",
     )
     lc_no = fields.Many2one("lc_header", string="LC No")
     # Would be related='purchase_id.lc' per CDB, but lc
@@ -119,16 +101,10 @@ class AccountMove(models.Model):
         related="sale_id.over_bank_guarantee",
         store=True,
     )
-    project_no = fields.Many2one("project.project", string="Project No")
-    project_no_bill = fields.Many2one(
-        "project.project", string="Project No Bill"
-    )
-    project_no_issue = fields.Many2one(
-        "project.project", string="Project No Issue"
-    )
-    project_no_settle = fields.Many2one(
-        "project.project", string="Project No Settle"
-    )
+    project_no = fields.Many2one("project.project")
+    project_no_bill = fields.Many2one("project.project")
+    project_no_issue = fields.Many2one("project.project")
+    project_no_settle = fields.Many2one("project.project")
     accounting_purchase_id = fields.Many2one("purchase.order", string="Purchase Order")
     # Same load-order trap as lc_test1 above - pr_type
     # on purchase.order is a BugFix-Purchase-added field. Use compute
@@ -160,18 +136,13 @@ class AccountMove(models.Model):
     supplier_invoice_number = fields.Char(
         string="XXX Supplier's Invoice Number (Bill Reference)"
     )
-    test_type = fields.Selection(
-        [("One", "One"), ("Two", "Two")], string="Test Type"
-    )
-    tp_id = fields.Many2one(
-        "tp_invoice_header", string="Created From TP Invoice"
-    )
+    test_type = fields.Selection([("One", "One"), ("Two", "Two")])
+    tp_id = fields.Many2one("tp_invoice_header", string="Created From TP Invoice")
     type = fields.Selection(
-        [("General", "General"), ("Advance Payment", "Advance Payment")], string="Type"
+        [("General", "General"), ("Advance Payment", "Advance Payment")]
     )
-    update_consignment = fields.Boolean(string="Update Consignment")
+    update_consignment = fields.Boolean()
     valid_lines = fields.Boolean(
-        string="Valid Lines",
         readonly=True,
         store=False,
         compute="_compute_valid_lines",
@@ -191,9 +162,7 @@ class AccountMove(models.Model):
     # Computed fields (ported from CDB Studio compute code)
     # ------------------------------------------------------------------
 
-    @api.depends(
-        "partner_id", "amount_total", "bank_guarantee_approved", "move_type"
-    )
+    @api.depends("partner_id", "amount_total", "bank_guarantee_approved", "move_type")
     def _compute_bank_guarantee_notification(self):
         today = datetime.date.today()
         for record in self:
@@ -206,9 +175,7 @@ class AccountMove(models.Model):
                     and record.move_type == "out_invoice"
                 ):
                     cg = getattr(p, "customer_group", False)
-                    group_type = (
-                        getattr(cg, "group_type", None) if cg else None
-                    )
+                    group_type = getattr(cg, "group_type", None) if cg else None
                     if group_type and group_type != "General":
                         mandatory = getattr(p, "mandatory_bank_guarantee", False)
                         expiry = getattr(p, "expiry_date", None)
@@ -222,9 +189,7 @@ class AccountMove(models.Model):
                                 notification = True
             record.bank_guarantee_notification = notification
 
-    @api.depends(
-        "partner_id", "amount_total", "bank_guarantee_approved", "move_type"
-    )
+    @api.depends("partner_id", "amount_total", "bank_guarantee_approved", "move_type")
     def _compute_bank_guarantee_validation(self):
         today = datetime.date.today()
         for record in self:
@@ -237,9 +202,7 @@ class AccountMove(models.Model):
                     and record.move_type == "out_invoice"
                 ):
                     cg = getattr(p, "customer_group", False)
-                    group_type = (
-                        getattr(cg, "group_type", None) if cg else None
-                    )
+                    group_type = getattr(cg, "group_type", None) if cg else None
                     if group_type and group_type != "General":
                         mandatory = getattr(p, "mandatory_bank_guarantee", False)
                         expiry = getattr(p, "expiry_date", None)

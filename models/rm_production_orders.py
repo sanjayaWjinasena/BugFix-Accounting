@@ -16,16 +16,15 @@ class XRmProductionOrders(models.Model):
     _order = "sequence, id"
     _rec_name = "name"
 
-    active = fields.Boolean(string="Active", default=True)
-    name = fields.Char(string="Name")
-    description = fields.Char(string="Description")
+    active = fields.Boolean(default=True)
+    name = fields.Char()
+    description = fields.Char()
     accounting_end = fields.Datetime(string="End")
-    estimated = fields.Float(string="Estimated")
-    good_qty = fields.Float(string="Good Qty")
-    header_reference = fields.Char(string="Header Reference")
+    estimated = fields.Float()
+    good_qty = fields.Float()
+    header_reference = fields.Char()
     product_code = fields.Many2one(
         "product.product",
-        string="Product Code",
     )
     production_id = fields.Many2one(
         "mrp.production",
@@ -35,9 +34,9 @@ class XRmProductionOrders(models.Model):
         "sales_report_model",
         string="Sales Report Model Id",
     )
-    sequence = fields.Integer(string="Sequence", default=10)
-    start = fields.Datetime(string="Start")
-    started = fields.Float(string="Started")
+    sequence = fields.Integer(default=10)
+    start = fields.Datetime()
+    started = fields.Float()
     status = fields.Selection(
         [
             ("draft", "Draft"),
@@ -48,14 +47,13 @@ class XRmProductionOrders(models.Model):
             # Studio-verbatim typo 'canccel' preserved.
             ("canccel", "Cancelled"),
         ],
-        string="Status",
     )
-    warehouse = fields.Many2one("stock.location", string="Warehouse")
+    warehouse = fields.Many2one("stock.location")
 
 
 class XRmProductionOrdersGap(models.Model):
     _inherit = "rm_production_orders"
     _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    active = fields.Boolean(string="Active")
-    name = fields.Char(string="Name")
+    active = fields.Boolean()
+    name = fields.Char()

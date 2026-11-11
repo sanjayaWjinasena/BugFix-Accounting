@@ -9,7 +9,7 @@ class XSalesReportType(models.Model):
     _description = "Sales Report Type"
 
     _inherit = ["mail.thread", "mail.activity.mixin"]
-    active = fields.Boolean(string="Active")
+    active = fields.Boolean()
     name = fields.Char(string="Report Name")
     journal_entry_id = fields.One2many(
         "account.move",
@@ -45,7 +45,6 @@ class XSalesReportType(models.Model):
             ("Project Gross Margin", "Project Gross Margin"),
             ("Costing Work Sheet", "Costing Work Sheet"),
         ],
-        string="Report Code",
     )
     sales_lines_id = fields.One2many(
         "sale.order.line",
@@ -54,7 +53,7 @@ class XSalesReportType(models.Model):
     )
     # TODO: sales_prod_purch_id = fields.One2many('stock.move.line', <inverse>,
     # string='Sales Prod. Purch. Id')
-    sequence = fields.Integer(string="Sequence")
+    sequence = fields.Integer()
     # TODO: slow_moving_item_id = fields.One2many('stock.move.line', <inverse>,
     # string='Slow Moving Item Id')
     test = fields.One2many(
@@ -68,5 +67,5 @@ class XSalesReportTypeGap(models.Model):
     _inherit = "sales_report_type"
     _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    active = fields.Boolean(string="Active")
+    active = fields.Boolean()
     name = fields.Char(string="Report Name")

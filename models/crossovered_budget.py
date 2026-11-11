@@ -38,36 +38,32 @@ from odoo import api, fields, models
 class CrossoveredBudget(models.Model):
     _inherit = "crossovered.budget"
 
-    currency_id = fields.Many2one("res.currency", string="Currency")
+    currency_id = fields.Many2one("res.currency")
 
     # ---- Standard scalars (stored, no compute) ----
     analytic_account = fields.Many2one(
         "account.analytic.account",
-        string="Analytic Account",
     )
-    confirm_validation = fields.Text(string="Confirm Validation")
+    confirm_validation = fields.Text()
     created_from_sales_order_1 = fields.Many2one(
         "sale.order",
         string="Created From Sales Order",
     )
     project_no = fields.Many2one(
         "project.project",
-        string="Project No",
     )
-    total = fields.Integer(string="Total")
+    total = fields.Integer()
 
     # ---- Percentage char sentinel (non-stored, read-only) ----
     # Clear-DB has compute='' (empty string) with depends set.
     # Preserved as an empty compute that assigns "" so the depends
     # graph still fires when the depended-on fields change.
     percentage = fields.Char(
-        string="Percentage",
         compute="_compute_percentage",
         store=False,
         readonly=True,
     )
     project_completed_percentage = fields.Monetary(
-        string="Project Completed Percentage",
         currency_field="currency_id",
         compute="_compute_project_completed_percentage",
         store=False,
@@ -80,28 +76,24 @@ class CrossoveredBudget(models.Model):
     # Clear-DB uses those exact strings.
 
     project_value = fields.Monetary(
-        string="Project Value",
         currency_field="currency_id",
         compute="_compute_project_value",
         store=False,
         readonly=True,
     )
     total_project_expenses = fields.Monetary(
-        string="Total Project Expenses",
         currency_field="currency_id",
         compute="_compute_total_project_expenses",
         store=False,
         readonly=True,
     )
     actual_invoiced_amount = fields.Monetary(
-        string="Actual Invoiced Amount",
         currency_field="currency_id",
         compute="_compute_actual_invoiced_amount",
         store=False,
         readonly=True,
     )
     actual_expenses_incurred = fields.Monetary(
-        string="Actual Expenses Incurred",
         currency_field="currency_id",
         compute="_compute_actual_expenses_incurred",
         store=False,
@@ -117,14 +109,12 @@ class CrossoveredBudget(models.Model):
         readonly=True,
     )
     gross_margin = fields.Monetary(
-        string="Gross Margin",
         currency_field="currency_id",
         compute="_compute_gross_margin",
         store=False,
         readonly=True,
     )
     gross_margin_percentage = fields.Monetary(
-        string="Gross Margin Percentage",
         currency_field="currency_id",
         compute="_compute_gross_margin_percentage",
         store=False,
@@ -146,7 +136,6 @@ class CrossoveredBudget(models.Model):
     # ---- SO-driven validation booleans (traverse BugFix-Sales +
     # BugFix-Purchase) ----
     confirm_status = fields.Boolean(
-        string="Confirm Status",
         compute="_compute_confirm_status",
         store=False,
         readonly=True,
@@ -158,7 +147,6 @@ class CrossoveredBudget(models.Model):
         readonly=True,
     )
     valid_budget_lines = fields.Boolean(
-        string="Valid Budget Lines",
         compute="_compute_valid_budget_lines",
         store=False,
         readonly=True,
@@ -220,9 +208,7 @@ class CrossoveredBudget(models.Model):
     def _compute_estimated_revenue_1(self):
         for rec in self:
             perc = (rec.project_completed_percentage_1 or 0) / 100
-            rec.estimated_revenue_1 = (
-                rec.project_value or 0
-            ) * round(perc, 4)
+            rec.estimated_revenue_1 = (rec.project_value or 0) * round(perc, 4)
 
     @api.depends(
         "estimated_revenue_1",
@@ -239,18 +225,14 @@ class CrossoveredBudget(models.Model):
         for rec in self:
             gross = float(rec.gross_margin or 0)
             total = float(rec.estimated_revenue_1 or 0)
-            rec.gross_margin_percentage = (
-                (gross / total) * 100 if total > 0 else 0
-            )
+            rec.gross_margin_percentage = (gross / total) * 100 if total > 0 else 0
 
     @api.depends("gross_margin", "estimated_revenue_1")
     def _compute_gross_margin_percentage_1(self):
         for rec in self:
             gross = float(rec.gross_margin or 0)
             total = float(rec.estimated_revenue_1 or 0)
-            rec.gross_margin_percentage_1 = (
-                (gross / total) * 100 if total > 0 else 0
-            )
+            rec.gross_margin_percentage_1 = (gross / total) * 100 if total > 0 else 0
 
     @api.depends(
         "actual_expenses_incurred",
@@ -260,9 +242,7 @@ class CrossoveredBudget(models.Model):
         for rec in self:
             act = float(rec.actual_expenses_incurred or 0)
             total = float(rec.total_project_expenses or 0)
-            rec.project_completed_percentage_1 = (
-                (act / total) * 100 if total > 0 else 0
-            )
+            rec.project_completed_percentage_1 = (act / total) * 100 if total > 0 else 0
 
     @api.depends(
         "created_from_sales_order_1.quotation_type",
@@ -350,7 +330,6 @@ class CrossoveredBudgetLines(models.Model):
     _inherit = "crossovered.budget.lines"
 
     estimate = fields.Monetary(
-        string="Estimate",
         compute="_compute_estimate",
         store=False,
         readonly=True,
@@ -367,4 +346,4 @@ class CrossoveredBudgetLines(models.Model):
 class CrossoveredBudgetGap(models.Model):
     _inherit = "crossovered.budget"
 
-    currency_id = fields.Many2one(comodel_name="res.currency", string="Currency")
+    currency_id = fields.Many2one(comodel_name="res.currency")

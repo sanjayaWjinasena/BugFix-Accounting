@@ -19,14 +19,14 @@ class XRmGrossMarginInvo(models.Model):
     _order = "sequence, id"
     _rec_name = "name"
 
-    active = fields.Boolean(string="Active", default=True)
-    name = fields.Char(string="Name")
-    amount = fields.Float(string="Amount")
+    active = fields.Boolean(default=True)
+    name = fields.Char()
+    amount = fields.Float()
     group_title = fields.Char(string="          ")
-    header_reference = fields.Char(string="Header Reference")
+    header_reference = fields.Char()
     accounting_invoice_date = fields.Date(string="Invoice Date")
-    invoice_no = fields.Many2one("account.move", string="Invoice No")
-    invoice_status = fields.Char(string="Invoice Status")
+    invoice_no = fields.Many2one("account.move")
+    invoice_status = fields.Char()
     payment_status = fields.Selection(
         [
             ("not_paid", "Not Paid"),
@@ -36,14 +36,13 @@ class XRmGrossMarginInvo(models.Model):
             ("reversed", "Reversed"),
             ("invoicing_legacy", "Invoicing App Legacy"),
         ],
-        string="Payment Status",
     )
     sales_report_model_id = fields.Many2one(
         "sales_report_model",
         string="Sales Report Model Id",
         ondelete="cascade",
     )
-    sequence = fields.Integer(string="Sequence", default=10)
+    sequence = fields.Integer(default=10)
     status = fields.Selection(
         [
             ("draft", "Draft"),
@@ -58,5 +57,5 @@ class XRmGrossMarginInvoGap(models.Model):
     _inherit = "rm_gross_margin_invo"
     _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    active = fields.Boolean(string="Active")
-    name = fields.Char(string="Name")
+    active = fields.Boolean()
+    name = fields.Char()

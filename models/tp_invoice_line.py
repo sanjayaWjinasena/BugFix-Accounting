@@ -16,14 +16,13 @@ class XTpInvoiceLine(models.Model):
     _order = "sequence, id"
     _rec_name = "name"
 
-    active = fields.Boolean(string="Active", default=True)
-    name = fields.Char(string="Name")
+    active = fields.Boolean(default=True)
+    name = fields.Char()
     basis = fields.Selection(
         [
             ("Percentage", "Percentage"),
             ("Fixed Per Document", "Fixed Per Document"),
         ],
-        string="Basis",
     )
     charge_group = fields.Selection(
         [
@@ -32,9 +31,8 @@ class XTpInvoiceLine(models.Model):
             ("Duty", "Duty"),
             ("Taxes", "Taxes"),
         ],
-        string="Charge Group",
     )
-    charge_name = fields.Char(string="Charge Name")
+    charge_name = fields.Char()
     consignment_charge_header_id = fields.Many2one(
         "consignment_charge_h",
         string="Consignment Charge Header Id",
@@ -43,16 +41,15 @@ class XTpInvoiceLine(models.Model):
         "consignment_header",
         string="Consignment Id",
     )
-    invoice_amount = fields.Float(string="Invoice Amount")
-    original_amount = fields.Float(string="Original Amount")
-    sequence = fields.Integer(string="Sequence", default=10)
-    tax_amount = fields.Float(string="Tax Amount")
+    invoice_amount = fields.Float()
+    original_amount = fields.Float()
+    sequence = fields.Integer(default=10)
+    tax_amount = fields.Float()
     taxes = fields.Many2many(
         "account.tax",
         relation="account_tax_x_tp_invoice_line_rel",
         column1="x_tp_invoice_line_id",
         column2="account_tax_id",
-        string="Taxes",
     )
     tp_invoice_header_id = fields.Many2one(
         "tp_invoice_header",
@@ -65,5 +62,5 @@ class XTpInvoiceLineGap(models.Model):
     _inherit = "tp_invoice_line"
     _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    active = fields.Boolean(string="Active")
-    name = fields.Char(string="Name")
+    active = fields.Boolean()
+    name = fields.Char()

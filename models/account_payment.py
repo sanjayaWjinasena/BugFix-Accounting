@@ -24,9 +24,7 @@ class AccountPayment(models.Model):
         store=True,
         readonly=True,
     )
-    advance_payment_acc_updated = fields.Boolean(
-        string="Advance Payment ACC Updated"
-    )
+    advance_payment_acc_updated = fields.Boolean(string="Advance Payment ACC Updated")
     bank_guarantee_approved = fields.Boolean(
         string="Bank Guarantee Approved",
         related="move_id.bank_guarantee_approved",
@@ -104,9 +102,7 @@ class AccountPayment(models.Model):
         store=True,
         readonly=True,
     )
-    created_from_consignment_2 = fields.Many2one(
-        "consignment_header", string="Created From Consignment 2", store=False
-    )
+    created_from_consignment_2 = fields.Many2one("consignment_header", store=False)
     created_from_project = fields.Boolean(
         string="Created From Project",
         related="move_id.created_from_project",
@@ -145,9 +141,7 @@ class AccountPayment(models.Model):
         store=False,
         readonly=True,
     )
-    created_transfer = fields.Many2one(
-        "stock.picking", string="Created Transfer", store=False
-    )
+    created_transfer = fields.Many2one("stock.picking", store=False)
     credit_limit_approved = fields.Boolean(
         string="Credit Limit Approved",
         related="move_id.credit_limit_approved",
@@ -232,9 +226,7 @@ class AccountPayment(models.Model):
     many2one_field_P4o2n = fields.Many2one(
         "project.project", string="Project", store=False
     )
-    many2one_field_PJkjM = fields.Many2one(
-        "lc_header", string="LC Header", store=False
-    )
+    many2one_field_PJkjM = fields.Many2one("lc_header", string="LC Header", store=False)
     many2one_field_R46Ke = fields.Many2one(
         "project.project", string="Project", store=False
     )
@@ -284,7 +276,6 @@ class AccountPayment(models.Model):
         readonly=True,
     )
     payment_validation = fields.Boolean(
-        string="Payment Validation",
         compute="_compute_payment_validation",
         store=True,
         readonly=True,
@@ -329,7 +320,7 @@ class AccountPayment(models.Model):
         store=False,
         readonly=True,
     )
-    purchase_order = fields.Many2one("purchase.order", string="Purchase Order")
+    purchase_order = fields.Many2one("purchase.order")
     purchase_type = fields.Selection(
         string="PR Type",
         related="move_id.purchase_type",
@@ -338,7 +329,6 @@ class AccountPayment(models.Model):
     )
     quotation_type = fields.Selection(
         [("Sales", "Sales"), ("Project", "Project"), ("Repair", "Repair")],
-        string="Quotation Type",
     )
     related_field_1JsOz = fields.Boolean(
         string="New Related Field", readonly=True, store=False
@@ -414,16 +404,10 @@ class AccountPayment(models.Model):
         store=False,
         readonly=True,
     )
-    sales_order = fields.Many2one("sale.order", string="Sales Order")
-    selection_field_5Gimk = fields.Selection(
-        [], string="New Selection", store=False
-    )
-    selection_field_KlNrV = fields.Selection(
-        [], string="New Selection", store=False
-    )
-    selection_field_N6ihz = fields.Selection(
-        [], string="New Selection", store=False
-    )
+    sales_order = fields.Many2one("sale.order")
+    selection_field_5Gimk = fields.Selection([], string="New Selection", store=False)
+    selection_field_KlNrV = fields.Selection([], string="New Selection", store=False)
+    selection_field_N6ihz = fields.Selection([], string="New Selection", store=False)
     supplier_invoice_number = fields.Char(
         string="XXX Supplier's Invoice Number (Bill Reference)",
         related="move_id.supplier_invoice_number",
@@ -443,11 +427,9 @@ class AccountPayment(models.Model):
         store=True,
         readonly=True,
     )
-    tp_invoice_no = fields.Many2one(
-        "tp_invoice_header", string="TP Invoice No"
-    )
+    tp_invoice_no = fields.Many2one("tp_invoice_header", string="TP Invoice No")
     type = fields.Selection(
-        [("General", "General"), ("Advance Payment", "Advance Payment")], string="Type"
+        [("General", "General"), ("Advance Payment", "Advance Payment")]
     )
     update_consignment = fields.Boolean(
         string="Update Consignment",

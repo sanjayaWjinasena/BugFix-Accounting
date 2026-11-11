@@ -16,8 +16,8 @@ class XRmDailySalesRepor(models.Model):
     _order = "sequence, id"
     _rec_name = "name"
 
-    active = fields.Boolean(string="Active", default=True)
-    name = fields.Char(string="Name")
+    active = fields.Boolean(default=True)
+    name = fields.Char()
     achieve_cumulative_ = fields.Float(string="Achieve Cumulative (%)")
     achievement_ = fields.Float(string="Achievement (%)")
     m_sales_target = fields.Float(string="M. Sales Target")
@@ -31,17 +31,17 @@ class XRmDailySalesRepor(models.Model):
         string="Net Invoice Value - Month",
     )
     s_target_cumulative = fields.Float(string="S. Target - Cumulative ")
-    sales_centre = fields.Char(string="Sales Centre")
+    sales_centre = fields.Char()
     sales_report_model_id = fields.Many2one(
         "sales_report_model",
         string="Sales Report Model Id",
     )
-    sequence = fields.Integer(string="Sequence", default=10)
+    sequence = fields.Integer(default=10)
 
 
 class XRmDailySalesReporGap(models.Model):
     _inherit = "rm_daily_sales_repor"
     _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    active = fields.Boolean(string="Active")
-    name = fields.Char(string="Name")
+    active = fields.Boolean()
+    name = fields.Char()

@@ -10,6 +10,5 @@ class ProductTemplate(models.Model):
             ("Duty", "Duty"),
             ("Tax", "Tax"),
         ],
-        string="Charge Type",
     )
-    non_billable = fields.Boolean(string="Non Billable")
+    non_billable = fields.Boolean()

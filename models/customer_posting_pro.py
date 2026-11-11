@@ -9,20 +9,19 @@ class XCustomerPostingPro(models.Model):
     _inherit = ["mail.activity.mixin"]
     _description = "Customer Posting Profile"
 
-    active = fields.Boolean(string="Active")
+    active = fields.Boolean()
     name = fields.Char(string="Customer Posting Profile")
     item_relation_type = fields.Selection(
         [("All", "All"), ("Group", "Group"), ("Table", "Table")],
-        string="Item Relation Type",
     )
     many2one_field_eYVbe = fields.Many2one("product.product", string="Product")
-    notes = fields.Text(string="Notes")
-    sequence = fields.Integer(string="Sequence")
+    notes = fields.Text()
+    sequence = fields.Integer()
 
 
 class XCustomerPostingProGap(models.Model):
     _inherit = "customer_posting_pro"
     _rec_name = "name"  # Clear-DB Studio model: records are named by name
 
-    active = fields.Boolean(string="Active")
+    active = fields.Boolean()
     name = fields.Char(string="Customer Posting Profile")
