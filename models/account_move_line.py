@@ -359,10 +359,6 @@ class AccountMoveLine(models.Model):
             else:
                 rec.credit_limit_2 = 0
 
-
-class AccountMoveLineGap(models.Model):
-    _inherit = "account.move.line"
-
     related_field_zy8mz = fields.One2many(
         string="New Related Field",
         related="purchase_order_id.order_line",
