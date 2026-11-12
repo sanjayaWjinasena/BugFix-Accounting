@@ -5,7 +5,7 @@ becomes related, so recompute them for existing records. ORM only.
 
 from odoo import SUPERUSER_ID, api
 
-FIELDS = {"x_sales_report_model": ["x_studio_report_code"]}
+FIELDS = {"sales_report_model": ["report_code"]}
 
 
 def migrate(cr, version):
