@@ -3,7 +3,7 @@ access_advance_payment_acco_user,advance_payment_acco user access,model_advance_
 access_custom_currency_user,custom_currency user access,model_custom_currency,base.group_user,1,1,1,1
 access_custom_currency_rate_user,custom_currency_rate user access,model_custom_currency_rate,base.group_user,1,1,1,1
 access_customer_posting_pro_user,customer_posting_pro user access,model_customer_posting_pro,base.group_user,1,1,1,1
-access_jinasena_paymaster_config_user,jinasena_paymaster_config accounting manager,model_jinasena_paymaster_config,account.group_account_manager,1,1,1,1
+access_misc_jinasena_paymaster_config_user,misc_jinasena_paymaster_config accounting manager,model_misc_jinasena_paymaster_config,account.group_account_manager,1,1,1,1
 access_rm_cust_invoice_s1_user,rm_cust_invoice_s1 user access,model_rm_cust_invoice_s1,base.group_user,1,1,1,1
 access_rm_customer_wise_inv_user,rm_customer_wise_inv user access,model_rm_customer_wise_inv,base.group_user,1,1,1,1
 access_rm_gross_margin_comp_user,rm_gross_margin_comp user access,model_rm_gross_margin_comp,base.group_user,1,1,1,1

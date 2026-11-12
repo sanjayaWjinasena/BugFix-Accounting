@@ -14,7 +14,7 @@ from . import consignment_charge_h
 from . import custom_currency
 from . import custom_currency_rate
 from . import customer_posting_pro
-from . import jinasena_paymaster_config
+from . import misc_jinasena_paymaster_config
 from . import journal_types
 from . import lc_header
 from . import misc_charge_codes
