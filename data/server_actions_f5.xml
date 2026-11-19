@@ -15,10 +15,10 @@
     
     if (record.x_studio_lc_amount_lcy + sum_lc) > record.x_studio_issuing_bank.x_studio_lc_limit:
       raise UserError('Current LC Amount must be within the Available LC Balance.' + '\n' +
-                    'Current LC Amount (LCY): ' + str(record.x_studio_lc_amount_lcy) + '\n' + '\n' +
-                    'Bank LC Limit (LCY): ' + str(record.x_studio_issuing_bank.x_studio_lc_limit) + '\n' + 
-                    'Posted LC Amount (LCY): ' + str(sum_lc) + '\n' +
-                    'Available LC Balance (LCY): ' + str(record.x_studio_issuing_bank.x_studio_lc_limit - sum_lc))
+                    'Current LC Amount (LCY): ' + '{:,.2f}'.format(record.x_studio_lc_amount_lcy) + '\n' + '\n' +
+                    'Bank LC Limit (LCY): ' + '{:,.2f}'.format(record.x_studio_issuing_bank.x_studio_lc_limit) + '\n' + 
+                    'Posted LC Amount (LCY): ' + '{:,.2f}'.format(sum_lc) + '\n' +
+                    'Available LC Balance (LCY): ' + '{:,.2f}'.format(record.x_studio_issuing_bank.x_studio_lc_limit - sum_lc))
   else:
     raise UserError('LC Limit of the Selected Issuing Bank must be Specified.')
 else:
