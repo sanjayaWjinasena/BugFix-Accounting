@@ -58,7 +58,7 @@
                         <field name="payment_id" invisible="1"/>
                         <button name="edit" type="edit" icon="fa-edit" title="Edit" invisible="((payment_id != False) or (statement_id != False)) and (move_type == 'entry')"/>
                         <button name="action_post" icon="fa-check" title="Post" type="object" groups="account.group_account_invoice" invisible="state not in ['draft']"/>
-                        <button name="281" title="Reverse" icon="fa-undo" type="action" groups="account.group_account_invoice" invisible="state not in ['posted']"/>
+                        <button name="%(account.action_view_account_move_reversal)d" title="Reverse" icon="fa-undo" type="action" groups="account.group_account_invoice" invisible="state not in ['posted']"/>
                         <button name="action_duplicate" icon="fa-files-o" title="Duplicate" type="object" groups="account.group_account_invoice"/>
                     </groupby>
                 </tree>

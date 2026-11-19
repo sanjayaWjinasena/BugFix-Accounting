@@ -11,7 +11,7 @@ from odoo import fields, models
 
 class XRmProductionOrders(models.Model):
     _name = 'x_rm_production_orders'
-    _description = 'Production Orders Reporting Row'
+    _description = 'RM Production Orders'
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'x_studio_sequence, id'
     _rec_name = 'x_name'

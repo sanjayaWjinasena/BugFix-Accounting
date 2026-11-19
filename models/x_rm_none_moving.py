@@ -11,7 +11,7 @@ from odoo import fields, models
 
 class XRmNoneMoving(models.Model):
     _name = 'x_rm_none_moving'
-    _description = 'None-Moving Stock Reporting Row'
+    _description = 'RM None Moving'
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'x_studio_sequence, id'
     _rec_name = 'x_name'

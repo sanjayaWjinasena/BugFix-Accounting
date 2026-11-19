@@ -146,10 +146,10 @@ if record.x_studio_issuing_bank.id != 0:
     
     if (record.x_studio_lc_amount_lcy + sum_lc) > record.x_studio_issuing_bank.x_studio_lc_limit:
       raise UserError('Current LC Amount must be within the Available LC Balance.' + '\n' +
-                    'Current LC Amount (LCY): ' + str(record.x_studio_lc_amount_lcy) + '\n' + '\n' +
-                    'Bank LC Limit (LCY): ' + str(record.x_studio_issuing_bank.x_studio_lc_limit) + '\n' + 
-                    'Posted LC Amount (LCY): ' + str(sum_lc) + '\n' +
-                    'Available LC Balance (LCY): ' + str(record.x_studio_issuing_bank.x_studio_lc_limit - sum_lc))
+                    'Current LC Amount (LCY): ' + '{:,.2f}'.format(record.x_studio_lc_amount_lcy) + '\n' + '\n' +
+                    'Bank LC Limit (LCY): ' + '{:,.2f}'.format(record.x_studio_issuing_bank.x_studio_lc_limit) + '\n' + 
+                    'Posted LC Amount (LCY): ' + '{:,.2f}'.format(sum_lc) + '\n' +
+                    'Available LC Balance (LCY): ' + '{:,.2f}'.format(record.x_studio_issuing_bank.x_studio_lc_limit - sum_lc))
   else:
     raise UserError('LC Limit of the Selected Issuing Bank must be Specified.')
 else:
@@ -1239,6 +1239,9 @@ if report_type:
     <field name="name">SRM - RPT - Project Gross Margin - Notify Users</field>
     <field name="model_id" ref="BugFix-Accounting.model_x_sales_report_model"/>
     <field name="state">next_activity</field>
+    <!-- Clear-DB: activity goes to rohana.b@jinasena.com.lk (user is environment data: matched by login). -->
+    <field name="activity_user_type">specific</field>
+    <field name="activity_user_id" search="[('login', '=', 'rohana.b@jinasena.com.lk')]"/>
     <field name="usage">base_automation</field>
     <field name="code"><![CDATA[
 # Available variables:
@@ -1373,7 +1376,8 @@ if record.x_studio_report_type:
     # Pump Price Costing
     # Tab - 01 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
-    pump = env['product.template'].search([('x_studio_product_type', '=', 'Pump'),('company_id', '=', company.id)])
+    # Internal Product Type's value is 'Pumps' (there is no 'Pump'), so the search found nothing (22/Oct).
+    pump = env['product.template'].search([('x_studio_product_type', '=', 'Pumps'),('company_id', '=', company.id)])
     for pumps in pump:
       standard_count = 0
       standard_final = 0

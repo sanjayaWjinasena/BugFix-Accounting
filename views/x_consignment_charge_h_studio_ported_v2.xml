@@ -93,8 +93,7 @@
               </xpath>
               <xpath expr="//group[@name='studio_group_99a601_right']" position="inside">
                 <field name="x_studio_consignment_id" string="Consignment Id" invisible="1"/>
-                <field name="x_studio_structure_details_line_ids" string="Structure Details Line Ids" invisible="1"/>
-                <field name="x_studio_structure_master_id" string="Structure Master Id" invisible="1"/>
+                <!-- v143: x_studio_structure_details_line_ids / x_studio_structure_master_id moved to BugFix-Purchase (upstream_link_fields_views.xml) -->
                 <field name="x_studio_structure_no" string="Structure No" invisible="1"/>
                 <field name="x_studio_tax_appicable" string="Tax Appicable" invisible="1"/>
               </xpath>

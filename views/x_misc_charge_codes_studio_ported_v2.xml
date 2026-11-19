@@ -95,9 +95,7 @@
                 <field name="x_studio_description" string="Description"/>
                 <field name="x_studio_charge_group" string="Charge Group" help="The grouping which determines whether the line is of a Charge, Duty or Tax."/>
                 <field name="x_studio_debit_acc_type" help="Whether the cost of the Charge/Duty/Tax to be loaded to the item or ledger."/>
-                <field name="x_studio_charges_line_id" string="Charges Line Id" invisible="1"/>
-                <field name="x_studio_duties_line_id" string="Duties Line Id" invisible="1"/>
-                <field name="x_studio_taxes_line_id" string="Taxes Line Id" invisible="1"/>
+                <!-- v141: x_studio_{charges,duties,taxes}_line_id moved to BugFix-Purchase; re-added there by views/x_misc_charge_codes_link_fields.xml -->
               </xpath>
             </data>
         </field>
@@ -129,9 +127,7 @@
                 <field name="x_studio_credit_acc_type" string="Credit Acc. Type" required="1" column_invisible="1"/>
                 <field name="x_studio_credit_account" string="Credit Account" column_invisible="1" readonly="x_studio_credit_acc_type == 'Item'"/>
                 <field name="x_studio_system_entry" string="System Entry" column_invisible="1"/>
-                <field name="x_studio_charges_line_id" optional="show" column_invisible="1"/>
-                <field name="x_studio_duties_line_id" optional="show" column_invisible="1"/>
-                <field name="x_studio_taxes_line_id" optional="show" column_invisible="1"/>
+                <!-- v141: x_studio_{charges,duties,taxes}_line_id moved to BugFix-Purchase; re-added there by views/x_misc_charge_codes_link_fields.xml -->
               </xpath>
             </data>
         </field>

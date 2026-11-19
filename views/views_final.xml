@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- BugFix-Accounting: Views final - 1 remaining views --><odoo>
+  <data>
+    <!-- STRIPPED: refs open_bank_statement_view not on account.move --></data>
+</odoo>

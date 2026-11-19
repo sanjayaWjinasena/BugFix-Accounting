@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 {
+    # upgrade-testing branch: data files below are commented out - this branch installs functions only, no data is seeded.
     'name': 'Jinasena : Module : Accounting',
-    'version': '17.0.0.0.70',
+    'version': '17.0.0.0.154',
     'summary': 'Studio-to-Python port for BugFix-Accounting',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Accounting',
@@ -214,19 +215,19 @@
     #     as full QWeb templates + report actions.
     #   * views/ -- 84 view records need hand-porting (see VIEWS_TODO.md).
     'data': [
+        'data/approval_rules_relaxed.xml',
+        'data/defaults_final.xml',
+        'views/views_final.xml',
+        'data/rules_f7.xml',
+        'data/server_actions_f5.xml',
+        'data/window_actions_f4.xml',
+        'data/defaults_f2.xml',
         'security/ir_model_pins.xml',
-        'security/ir.model.access.csv',
         'data/server_actions.xml',
-        # v0.0.20: 9 server-action stubs + 2 window actions needed by
-        # views/account_move_studio_ported_v2.xml (which was hitting
-        # "Action 2176 (id: 2176) does not exist" install failure
-        # because it referenced Clear-DB's auto-numbered ids by
-        # `name="NNNN"`). All 11 now have stable xmlids that the view
-        # arch references via %(BugFix-Accounting.xxx)d interpolation.
-        # Server-action stubs raise UserError with "port pending"
-        # until each is filled with the Clear-DB Python code in
-        # follow-up commits.
+        'security/ir.model.access.csv',
+        'security/removed_handmade_access_rights.xml',
         'data/server_actions_v2.xml',
+        'data/approval_rules_final.xml',
         'data/automations.xml',
         'data/act_windows.xml',
         'views/x_advance_payment_acco_studio_ported.xml',
@@ -258,23 +259,7 @@
         'views/account_group_studio_ported.xml',
         'views/account_tax_studio_ported.xml',
         'views/account_analytic_line_studio_ported.xml',
-        # v0.0.18: auto-generated view records ported from Clear-DB
-        # by scripts/port_bugfix_accounting_views.py (2026-08-29).
-        # 40 files, 140 view records covering all 40 target models —
-        # default primary form/tree/search PLUS priority-99 Studio
-        # inherits with byte-verbatim arch_db. Loaded AFTER the older
-        # hand-ported views so any id collisions get caught by
-        # ir.model.data uniqueness (the earlier records win).
         'views/account_analytic_line_studio_ported_v2.xml',
-        # v0.0.19: TODO markers resolved. account.out.invoice.tree
-        # inherits resolved to account.view_out_invoice_tree +
-        # account.view_in_invoice_tree (both children of the same
-        # Studio pin name but different Odoo canonical xmlids).
-        # account.move.line.tree-ETF and -BankData now inherit from
-        # our own ported_view_8294 / ported_view_8295 primary parents
-        # (Clear-DB's ad-hoc primaries with no ir.model.data pin —
-        # rehosted verbatim). account.archived.tax.tag.tree resolved
-        # to account_reports.view_archived_tag_move_tree.
         'views/account_move_studio_ported_v2.xml',
         'views/account_move_line_studio_ported_v2.xml',
         'views/account_payment_studio_ported_v2.xml',
@@ -314,29 +299,33 @@
         'views/x_test_rm_gross_margin_studio_ported_v2.xml',
         'views/x_tp_invoice_header_studio_ported_v2.xml',
         'views/x_tp_invoice_line_studio_ported_v2.xml',
-        # v0.0.56: final 11 view gaps (view coverage 84% -> 100%).
         'views/accounting_final_11_views_studio_ported.xml',
-        # v0.0.46: 6 Studio QWeb reports (2 substantive + 4 empty stubs).
-        # See the v0.0.46 comment block above for per-report notes and
-        # Clear-DB id -> local xmlid correspondence.
         'reports/reports.xml',
         'data/record_rules.xml',
         'data/server_actions_backlog.xml',
         'data/automations_backlog.xml',
         'data/window_actions_backlog.xml',
-        'data/menus_from_routing.xml',
         'data/record_rules_gap.xml',
         'data/server_actions_gap.xml',
+        'data/account_reports_jinasena.xml',
         'data/automations_gap.xml',
         'data/window_actions_gap.xml',
-        'data/ir_defaults_gap.xml',
+        'data/ir_defaults_gap.xml',  # upgrade-testing: form defaults shipped; record-specific ones commented inside
+        'data/ir_defaults_unblocked.xml',  # upgrade-testing: form defaults shipped; record-specific ones commented inside
         'views/account_analytic_plan_e_views.xml',
         'views/account_move_e_views.xml',
         'views/account_move_line_e_views.xml',
         'views/product_template_e_views.xml',
         'views/x_pump_price_costing_e_views.xml',
+        'data/menus_from_routing.xml',
+        'data/menus_f6.xml',
+        'data/menus_visual_fixes.xml',
+        'views/qweb_studio_ported.xml',
+        'views/sale_order_studio_ported.xml',
+        'views/product_template_studio_pages_content.xml',
     ],
-    'installable': True,
+    'post_init_hook': 'post_init_hook',
+'installable': True,
     'auto_install': False,
     'application': True,
 }

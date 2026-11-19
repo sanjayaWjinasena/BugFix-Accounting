@@ -5,7 +5,8 @@ from odoo import fields, models
 
 class XSalesReportModel(models.Model):
     _name = 'x_sales_report_model'
-    _description = 'X Sales Report Model'
+    _rec_name = 'x_name'  # Clear-DB Studio model: records are named by x_name
+    _description = 'Sales Report Model'
 
     _inherit = ['mail.thread', 'mail.activity.mixin']
     x_active = fields.Boolean(string='Active')
@@ -87,12 +88,12 @@ class XSalesReportModel(models.Model):
         readonly=True,
     )
     # TODO: x_studio_related_field_oeTJK = fields.One2many('mrp.production', <inverse>, string='New Related Field')
-    x_studio_report_code = fields.Selection([], string='Report Code')
+    x_studio_report_code = fields.Selection(string='Report Code', related='x_studio_report_type.x_studio_report_code', store=True, readonly=True)
     x_studio_report_type = fields.Many2one('x_sales_report_type', string='Report Type')
     x_studio_sales_centre = fields.Many2many('crm.team', 'x_sales_report_model_x_studio_sales_centre_rel', 'host_id', 'target_id', string='Sales Centre')
     x_studio_sales_oh = fields.Float(string='Sales OH')
     x_studio_sales_report_model_id_4 = fields.One2many('x_rm_customer_wise_inv', 'x_studio_sales_report_model_id', string='Sales Report Model Id')
     x_studio_sales_report_model_id_5 = fields.One2many('x_rm_cust_invoice_s1', 'x_studio_sales_report_model_id', string='Sales Report Model Id')
-    x_studio_selection_field_Fbw0x = fields.Selection([], string='Status')
+    x_studio_selection_field_Fbw0x = fields.Selection([('Draft', 'Draft'), ('Done', 'Done')], string='Status')
     x_studio_sequence = fields.Integer(string='Sequence')
     x_studio_sscl = fields.Float(string='SSCL %')

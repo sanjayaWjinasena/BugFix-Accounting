@@ -11,7 +11,7 @@ from odoo import fields, models
 
 class XRmSalesProdPurch(models.Model):
     _name = 'x_rm_sales_prod_purch'
-    _description = 'Sales / Production / Purchase Reporting Row'
+    _description = 'RM Sales Prod. Purch.'
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'x_studio_sequence, id'
     _rec_name = 'x_name'
@@ -38,11 +38,6 @@ class XRmSalesProdPurch(models.Model):
         readonly=True,
     )
     x_studio_product_type = fields.Selection(
-        [
-            ('consu', 'Consumable'),
-            ('service', 'Service'),
-            ('product', 'Storable Product'),
-        ],
         string='Product Type',
         related='x_studio_description.type',
         store=False,

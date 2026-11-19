@@ -482,17 +482,21 @@
       <field name="json_value">10</field>
     </record>
 
-    <!-- DROPPED default_473_account_move_x_studio_journal_type: selection value '' not in field allowed set --><record id="default_573_crossovered_budget_x_studio_total" model="ir.default">
+    <!-- DROPPED default_473_account_move_x_studio_journal_type: selection value '' not in field allowed set --><!-- upgrade-testing: points at a specific record (company/user/partner/location/stage...), not shipped (company/user specific):
+    <record id="default_573_crossovered_budget_x_studio_total" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_crossovered_budget__x_studio_total"/>
       <field name="json_value">"0"</field>
       <field name="company_id" ref="seed_master_data_and_settings.company_jinasena_pvt_ltd"/>
     </record>
+    -->
 
+    <!-- upgrade-testing: points at a specific record (company/user/partner/location/stage...), not shipped (company/user specific):
     <record id="default_574_crossovered_budget_x_currency_id" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_crossovered_budget__x_currency_id"/>
       <field name="json_value">145</field>
       <field name="company_id" ref="seed_master_data_and_settings.company_jinasena_pvt_ltd"/>
     </record>
+    -->
 
     <record id="default_642_x_test_rm_gross_margin_x_active" model="ir.default">
       <field name="field_id" ref="BugFix-Accounting.field_x_test_rm_gross_margin__x_active"/>

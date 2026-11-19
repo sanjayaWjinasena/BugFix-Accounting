@@ -12,7 +12,7 @@ from odoo import fields, models
 
 class XRmGrossMarginEstiLine(models.Model):
     _name = 'x_rm_gross_margin_esti_line_7e86d'
-    _description = 'Gross Margin Estimate Sub-Line'
+    _description = 'Rm Gross Margin Esti  Lines'
     _order = 'x_studio_sequence, id'
     _rec_name = 'x_name'
 

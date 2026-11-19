@@ -13,7 +13,7 @@ from odoo import fields, models
 
 class XRmDateTest(models.Model):
     _name = 'x_rm_date_test'
-    _description = 'Date Test Reporting Row'
+    _description = 'RM Date Test'
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'x_studio_sequence, id'
     _rec_name = 'x_name'

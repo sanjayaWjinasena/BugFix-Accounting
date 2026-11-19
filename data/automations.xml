@@ -315,7 +315,9 @@
     <field name="model_id" search="[('model', '=', 'x_consignment_charge_h')]"/>
     <field name="trigger">on_create_or_write</field>
     <field name="trigger_field_ids" eval="[(6, 0, [ref('BugFix-Accounting.field_x_consignment_charge_h__create_date')])]"/>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Stock.server_action_2617_jin_company_id_in_consignment_charge_header')])]"/>
+    <!-- action_server_ids ref to BugFix-Stock.server_action_2617_... removed
+         to break Stock↔Accounting install-time cycle. Restore post-install. -->
+    <field name="action_server_ids" eval="[(5, 0, 0)]"/>
   </record>
 
   <record id="base_automation_61_imp_pass_currency_information_to_custom_currency" model="base.automation">
